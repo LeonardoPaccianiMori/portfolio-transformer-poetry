@@ -1,0 +1,28 @@
+{
+  "started_at_utc": "2026-06-02T17:48:10+00:00",
+  "finished_at_utc": "2026-06-02T18:16:22+00:00",
+  "dataset": "expanded_with_petrarch",
+  "sources": [
+    "giacomo",
+    "dante",
+    "cavalcanti",
+    "cino",
+    "cecco",
+    "folgore",
+    "guittone",
+    "petrarca"
+  ],
+  "seed": 1337,
+  "candidate_counts": {
+    "giacomo": 29,
+    "dante": 118,
+    "cavalcanti": 74,
+    "cino": 123,
+    "cecco": 130,
+    "folgore": 46,
+    "guittone": 239,
+    "petrarca": 366
+  },
+  "manifest_rows": 1125,
+  "included_rows": 921
+}
