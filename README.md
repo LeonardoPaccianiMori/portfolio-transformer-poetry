@@ -22,13 +22,15 @@ The project will progress in stages:
 
 1. Corpus source audit and data provenance.
 2. Reproducible raw/interim/processed data pipeline.
-3. Character-level baseline language model.
-4. Classic GPT-style causal transformer.
-5. BPE tokenization experiments.
+3. Character tokenizer, random batching, and PyTorch tensor/data-loading exercises.
+4. Character-level from-scratch base pretraining with a classic GPT-style causal transformer.
+5. BPE tokenization experiments and direct comparison against the character baseline.
 6. Modern transformer components such as RMSNorm, RoPE, SwiGLU, weight tying, and improved training schedules.
-7. Sonnet-corpus experiments comparing source balance, tokenization, architecture, and decoding choices.
-8. Repeatable evaluation harness and comparison reports.
-9. Lightweight local generation demo.
+7. Corpus mixture and curriculum experiments, including core, expanded, and conditioned sonnet variants.
+8. Lightweight task-format post-training for sonnet continuation or metadata-controlled generation.
+9. Repeatable evaluation harness, fixed-prompt samples, memorization checks, and comparison reports.
+10. Local open-source pretrained causal LM fine-tuning as a comparison baseline.
+11. Lightweight local generation demo.
 
 ## Constraints
 
