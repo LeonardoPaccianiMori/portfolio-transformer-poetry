@@ -9,8 +9,10 @@ from sonnet_corpus.dataset_text import (
     dataset_include_column,
     dataset_split_column,
     encode_text_stream,
+    load_encoded_splits,
     load_poem_text,
     load_poem_texts,
+    load_split_text_stream,
     read_manifest_rows,
     select_manifest_rows,
 )
@@ -237,3 +239,134 @@ def test_encode_text_stream_rejects_empty_stream():
 
     with pytest.raises(ValueError, match="must not be empty"):
         encode_text_stream("", tokenizer)
+
+
+def test_load_split_text_stream_builds_stream_from_manifest_rows(tmp_path):
+    manifest_path = tmp_path / "manifest.csv"
+    write_test_manifest(manifest_path)
+
+    poem_path = tmp_path / "data" / "processed" / "poems" / "poem_train.txt"
+    poem_path.parent.mkdir(parents=True)
+    poem_path.write_text("Amor\n", encoding="utf-8")
+
+    text_stream = load_split_text_stream(
+        manifest_path=manifest_path,
+        repo_root=tmp_path,
+        dataset="expanded_with_petrarch",
+        split="train",
+    )
+
+    assert text_stream == "Amor\n"
+
+
+def test_load_split_text_stream_uses_poem_separator_for_multiple_poems(tmp_path):
+    manifest_path = tmp_path / "manifest.csv"
+
+    rows = [
+        {
+            "poem_id": "first",
+            "clean_text_path": "data/processed/poems/first.txt",
+            "include_in_core_pre_petrarch": "True",
+            "include_in_expanded_with_petrarch": "True",
+            "split_core_pre_petrarch": "train",
+            "split_expanded_with_petrarch": "train",
+        },
+        {
+            "poem_id": "second",
+            "clean_text_path": "data/processed/poems/second.txt",
+            "include_in_core_pre_petrarch": "True",
+            "include_in_expanded_with_petrarch": "True",
+            "split_core_pre_petrarch": "train",
+            "split_expanded_with_petrarch": "train",
+        },
+    ]
+
+    with manifest_path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=list(rows[0].keys()),
+        )
+        writer.writeheader()
+        writer.writerows(rows)
+
+    first_path = tmp_path / "data" / "processed" / "poems" / "first.txt"
+    second_path = tmp_path / "data" / "processed" / "poems" / "second.txt"
+    first_path.parent.mkdir(parents=True)
+    first_path.write_text("First\n", encoding="utf-8")
+    second_path.write_text("Second\n", encoding="utf-8")
+
+    text_stream = load_split_text_stream(
+        manifest_path=manifest_path,
+        repo_root=tmp_path,
+        dataset="expanded_with_petrarch",
+        split="train",
+        poem_separator="\n---\n",
+    )
+
+    assert text_stream == "First\n\n---\nSecond\n"
+
+
+def write_split_manifest(path: Path) -> None:
+    rows = [
+        {
+            "poem_id": "train",
+            "clean_text_path": "data/processed/poems/train.txt",
+            "include_in_core_pre_petrarch": "True",
+            "include_in_expanded_with_petrarch": "True",
+            "split_core_pre_petrarch": "train",
+            "split_expanded_with_petrarch": "train",
+        },
+        {
+            "poem_id": "validation",
+            "clean_text_path": "data/processed/poems/validation.txt",
+            "include_in_core_pre_petrarch": "True",
+            "include_in_expanded_with_petrarch": "True",
+            "split_core_pre_petrarch": "validation",
+            "split_expanded_with_petrarch": "validation",
+        },
+        {
+            "poem_id": "test",
+            "clean_text_path": "data/processed/poems/test.txt",
+            "include_in_core_pre_petrarch": "True",
+            "include_in_expanded_with_petrarch": "True",
+            "split_core_pre_petrarch": "test",
+            "split_expanded_with_petrarch": "test",
+        },
+    ]
+
+    with path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=list(rows[0].keys()),
+        )
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def test_load_encoded_splits_returns_split_tensors_and_shared_tokenizer(tmp_path):
+    manifest_path = tmp_path / "manifest.csv"
+    write_split_manifest(manifest_path)
+
+    poems_dir = tmp_path / "data" / "processed" / "poems"
+    poems_dir.mkdir(parents=True)
+    (poems_dir / "train.txt").write_text("abc\n", encoding="utf-8")
+    (poems_dir / "validation.txt").write_text("cabV\n", encoding="utf-8")
+    (poems_dir / "test.txt").write_text("bcaT\n", encoding="utf-8")
+
+    train_tokens, validation_tokens, test_tokens, tokenizer = load_encoded_splits(
+        manifest_path=manifest_path,
+        repo_root=tmp_path,
+        dataset="expanded_with_petrarch",
+    )
+
+    assert train_tokens.dtype == torch.long
+    assert validation_tokens.dtype == torch.long
+    assert test_tokens.dtype == torch.long
+
+    assert train_tokens.ndim == 1
+    assert validation_tokens.ndim == 1
+    assert test_tokens.ndim == 1
+
+    assert tokenizer.decode(train_tokens.tolist()) == "abc\n"
+    assert tokenizer.decode(validation_tokens.tolist()) == "cabV\n"
+    assert tokenizer.decode(test_tokens.tolist()) == "bcaT\n"

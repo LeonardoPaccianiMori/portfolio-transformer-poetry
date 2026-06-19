@@ -110,3 +110,68 @@ def encode_text_stream(
         token_ids,
         dtype=torch.long,
     )
+
+
+def load_split_text_stream(
+    manifest_path: Path,
+    repo_root: Path,
+    dataset: str,
+    split: str,
+    poem_separator: str = DEFAULT_POEM_SEPARATOR,
+) -> str:
+    rows = read_manifest_rows(manifest_path)
+    selected_rows = select_manifest_rows(
+        rows=rows,
+        dataset=dataset,
+        split=split,
+    )
+    texts = load_poem_texts(
+        rows=selected_rows,
+        repo_root=repo_root,
+    )
+
+    return build_text_stream(
+        texts,
+        poem_separator=poem_separator,
+    )
+
+
+def load_encoded_splits(
+    manifest_path: Path,
+    repo_root: Path,
+    dataset: str,
+    poem_separator: str = DEFAULT_POEM_SEPARATOR,
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, CharTokenizer]:
+    train_text = load_split_text_stream(
+        manifest_path=manifest_path,
+        repo_root=repo_root,
+        dataset=dataset,
+        split="train",
+        poem_separator=poem_separator,
+    )
+    validation_text = load_split_text_stream(
+        manifest_path=manifest_path,
+        repo_root=repo_root,
+        dataset=dataset,
+        split="validation",
+        poem_separator=poem_separator,
+    )
+    test_text = load_split_text_stream(
+        manifest_path=manifest_path,
+        repo_root=repo_root,
+        dataset=dataset,
+        split="test",
+        poem_separator=poem_separator,
+    )
+
+    tokenizer = CharTokenizer.from_texts([
+        train_text,
+        validation_text,
+        test_text,
+    ])
+
+    train_tokens = encode_text_stream(train_text, tokenizer)
+    validation_tokens = encode_text_stream(validation_text, tokenizer)
+    test_tokens = encode_text_stream(test_text, tokenizer)
+
+    return train_tokens, validation_tokens, test_tokens, tokenizer
