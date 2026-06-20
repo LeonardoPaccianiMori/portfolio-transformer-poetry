@@ -1,4 +1,5 @@
 import torch
+import torch.nn.functional as F
 from torch import nn
 
 
@@ -42,3 +43,64 @@ class TokenAndPositionEmbedding(nn.Module):
         position_embeddings = self.position_embedding(position_ids)
 
         return token_embeddings + position_embeddings
+
+
+class CausalSelfAttentionHead(nn.Module):
+    def __init__(
+        self,
+        embedding_dim: int,
+        head_dim: int,
+        max_context_length: int,
+    ):
+        super().__init__()
+
+        if embedding_dim <= 0:
+            raise ValueError("embedding_dim must be greater than 0")
+
+        if head_dim <= 0:
+            raise ValueError("head_dim must be greater than 0")
+
+        if max_context_length <= 0:
+            raise ValueError("max_context_length must be greater than 0")
+
+        self.max_context_length = max_context_length
+        self.head_dim = head_dim
+        self.query = nn.Linear(embedding_dim, head_dim, bias=False)
+        self.key = nn.Linear(embedding_dim, head_dim, bias=False)
+        self.value = nn.Linear(embedding_dim, head_dim, bias=False)
+
+        causal_mask = torch.tril(torch.ones(max_context_length, max_context_length))
+        self.register_buffer("causal_mask", causal_mask)
+
+    def forward(
+        self,
+        x: torch.Tensor,
+        return_attention_weights: bool = False,
+    ) -> torch.Tensor | tuple[torch.Tensor, torch.Tensor]:
+        if x.ndim != 3:
+            raise ValueError(
+                "x must have shape (batch_size, context_length, embedding_dim)"
+            )
+
+        _, context_length, _ = x.shape
+
+        if context_length > self.max_context_length:
+            raise ValueError("context_length exceeds max_context_length")
+
+        queries = self.query(x)
+        keys = self.key(x)
+        values = self.value(x)
+
+        attention_scores = queries @ keys.transpose(-2, -1)
+        attention_scores = attention_scores * (self.head_dim ** -0.5)
+
+        mask = self.causal_mask[:context_length, :context_length]
+        attention_scores = attention_scores.masked_fill(mask == 0, float("-inf"))
+
+        attention_weights = F.softmax(attention_scores, dim=-1)
+        output = attention_weights @ values
+
+        if return_attention_weights:
+            return output, attention_weights
+
+        return output
