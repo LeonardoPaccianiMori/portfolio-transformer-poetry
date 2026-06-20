@@ -1,3 +1,4 @@
+import pytest
 import torch
 
 from sonnet_model.bigram import BigramLanguageModel
@@ -112,3 +113,74 @@ def test_bigram_optimizer_step_updates_embedding_weights():
     weights_after = model.token_embedding_table.weight.detach().clone()
 
     assert not torch.equal(weights_before, weights_after)
+
+
+def test_bigram_generate_appends_requested_number_of_tokens():
+    vocab_size = 10
+    model = BigramLanguageModel(vocab_size=vocab_size)
+
+    input_ids = torch.tensor(
+        [[1, 2, 3]],
+        dtype=torch.long,
+    )
+    generator = torch.Generator().manual_seed(0)
+
+    generated_ids = model.generate(
+        input_ids=input_ids,
+        max_new_tokens=5,
+        generator=generator,
+    )
+
+    assert generated_ids.shape == (1, 8)
+    assert torch.equal(generated_ids[:, :3], input_ids)
+    assert generated_ids.min().item() >= 0
+    assert generated_ids.max().item() < vocab_size
+
+
+def test_bigram_generate_returns_prompt_when_no_new_tokens_requested():
+    vocab_size = 10
+    model = BigramLanguageModel(vocab_size=vocab_size)
+
+    input_ids = torch.tensor(
+        [[1, 2, 3]],
+        dtype=torch.long,
+    )
+
+    generated_ids = model.generate(
+        input_ids=input_ids,
+        max_new_tokens=0,
+    )
+
+    assert torch.equal(generated_ids, input_ids)
+
+
+def test_bigram_generate_rejects_non_batched_input_ids():
+    vocab_size = 10
+    model = BigramLanguageModel(vocab_size=vocab_size)
+
+    input_ids = torch.tensor(
+        [1, 2, 3],
+        dtype=torch.long,
+    )
+
+    with pytest.raises(ValueError, match="shape"):
+        model.generate(
+            input_ids=input_ids,
+            max_new_tokens=5,
+        )
+
+
+def test_bigram_generate_rejects_negative_max_new_tokens():
+    vocab_size = 10
+    model = BigramLanguageModel(vocab_size=vocab_size)
+
+    input_ids = torch.tensor(
+        [[1, 2, 3]],
+        dtype=torch.long,
+    )
+
+    with pytest.raises(ValueError, match="max_new_tokens"):
+        model.generate(
+            input_ids=input_ids,
+            max_new_tokens=-1,
+        )
