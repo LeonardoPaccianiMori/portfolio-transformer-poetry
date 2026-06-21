@@ -3,6 +3,7 @@ import torch
 
 from sonnet_model.transformer import (
     CausalSelfAttentionHead,
+    FeedForward,
     MultiHeadCausalSelfAttention,
     TokenAndPositionEmbedding,
 )
@@ -481,4 +482,80 @@ def test_multi_head_causal_self_attention_rejects_invalid_init_arguments():
             num_heads=2,
             head_dim=16,
             max_context_length=0,
+        )
+
+
+def test_feed_forward_returns_expected_shape():
+    batch_size = 4
+    context_length = 8
+    embedding_dim = 32
+    feed_forward_dim = 128
+
+    feed_forward = FeedForward(
+        embedding_dim=embedding_dim,
+        feed_forward_dim=feed_forward_dim,
+    )
+    x = torch.randn(batch_size, context_length, embedding_dim)
+
+    output = feed_forward(x)
+
+    assert output.shape == (batch_size, context_length, embedding_dim)
+
+
+def test_feed_forward_rejects_non_embedding_input():
+    feed_forward = FeedForward(
+        embedding_dim=32,
+        feed_forward_dim=128,
+    )
+    x = torch.randn(4, 32)
+
+    with pytest.raises(ValueError, match="shape"):
+        feed_forward(x)
+
+
+def test_feed_forward_preserves_input_device():
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    feed_forward = FeedForward(
+        embedding_dim=32,
+        feed_forward_dim=128,
+    ).to(device)
+    x = torch.randn(4, 8, 32, device=device)
+
+    output = feed_forward(x)
+
+    assert output.device == x.device
+
+
+def test_feed_forward_backpropagates_to_both_linear_layers():
+    feed_forward = FeedForward(
+        embedding_dim=32,
+        feed_forward_dim=128,
+    )
+    x = torch.randn(4, 8, 32)
+
+    output = feed_forward(x)
+    loss = output.sum()
+
+    loss.backward()
+
+    first_linear = feed_forward.network[0]
+    second_linear = feed_forward.network[2]
+
+    assert first_linear.weight.grad is not None
+    assert first_linear.bias.grad is not None
+    assert second_linear.weight.grad is not None
+    assert second_linear.bias.grad is not None
+
+
+def test_feed_forward_rejects_invalid_init_arguments():
+    with pytest.raises(ValueError, match="embedding_dim"):
+        FeedForward(
+            embedding_dim=0,
+            feed_forward_dim=128,
+        )
+
+    with pytest.raises(ValueError, match="feed_forward_dim"):
+        FeedForward(
+            embedding_dim=32,
+            feed_forward_dim=0,
         )

@@ -179,3 +179,32 @@ class MultiHeadCausalSelfAttention(nn.Module):
         concatenated = torch.cat(head_outputs, dim=-1)
 
         return self.output_projection(concatenated)
+
+
+class FeedForward(nn.Module):
+    def __init__(
+        self,
+        embedding_dim: int,
+        feed_forward_dim: int,
+    ):
+        super().__init__()
+
+        if embedding_dim <= 0:
+            raise ValueError("embedding_dim must be greater than 0")
+
+        if feed_forward_dim <= 0:
+            raise ValueError("feed_forward_dim must be greater than 0")
+
+        self.network = nn.Sequential(
+            nn.Linear(embedding_dim, feed_forward_dim),
+            nn.ReLU(),
+            nn.Linear(feed_forward_dim, embedding_dim),
+        )
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        if x.ndim != 3:
+            raise ValueError(
+                "x must have shape (batch_size, context_length, embedding_dim)"
+            )
+
+        return self.network(x)
