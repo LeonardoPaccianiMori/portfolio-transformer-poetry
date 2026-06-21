@@ -912,3 +912,113 @@ def test_causal_transformer_language_model_rejects_invalid_init_arguments():
 
         with pytest.raises(ValueError, match=argument_name):
             CausalTransformerLanguageModel(**invalid_arguments)
+
+
+def test_causal_transformer_language_model_generate_appends_requested_tokens():
+    vocab_size = 20
+    model = build_test_transformer_model()
+    input_ids = torch.tensor(
+        [[1, 2, 3]],
+        dtype=torch.long,
+    )
+    generator = torch.Generator().manual_seed(0)
+
+    generated_ids = model.generate(
+        input_ids=input_ids,
+        max_new_tokens=5,
+        generator=generator,
+    )
+
+    assert generated_ids.shape == (1, 8)
+    assert torch.equal(generated_ids[:, :3], input_ids)
+    assert generated_ids.min().item() >= 0
+    assert generated_ids.max().item() < vocab_size
+
+
+def test_causal_transformer_language_model_generate_returns_prompt_when_no_tokens_requested():
+    model = build_test_transformer_model()
+    input_ids = torch.tensor(
+        [[1, 2, 3]],
+        dtype=torch.long,
+    )
+
+    generated_ids = model.generate(
+        input_ids=input_ids,
+        max_new_tokens=0,
+    )
+
+    assert torch.equal(generated_ids, input_ids)
+
+
+def test_causal_transformer_language_model_generate_rejects_non_batched_input_ids():
+    model = build_test_transformer_model()
+    input_ids = torch.tensor(
+        [1, 2, 3],
+        dtype=torch.long,
+    )
+
+    with pytest.raises(ValueError, match="shape"):
+        model.generate(
+            input_ids=input_ids,
+            max_new_tokens=5,
+        )
+
+
+def test_causal_transformer_language_model_generate_rejects_negative_max_new_tokens():
+    model = build_test_transformer_model()
+    input_ids = torch.tensor(
+        [[1, 2, 3]],
+        dtype=torch.long,
+    )
+
+    with pytest.raises(ValueError, match="max_new_tokens"):
+        model.generate(
+            input_ids=input_ids,
+            max_new_tokens=-1,
+        )
+
+
+def test_causal_transformer_language_model_generate_crops_long_context():
+    vocab_size = 20
+    model = CausalTransformerLanguageModel(
+        vocab_size=vocab_size,
+        embedding_dim=32,
+        num_layers=2,
+        num_heads=2,
+        head_dim=16,
+        feed_forward_dim=128,
+        max_context_length=4,
+    )
+    input_ids = torch.tensor(
+        [[1, 2, 3, 4]],
+        dtype=torch.long,
+    )
+    generator = torch.Generator().manual_seed(0)
+
+    generated_ids = model.generate(
+        input_ids=input_ids,
+        max_new_tokens=5,
+        generator=generator,
+    )
+
+    assert generated_ids.shape == (1, 9)
+    assert torch.equal(generated_ids[:, :4], input_ids)
+    assert generated_ids.min().item() >= 0
+    assert generated_ids.max().item() < vocab_size
+
+
+def test_causal_transformer_language_model_generate_preserves_input_device():
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    model = build_test_transformer_model().to(device)
+    input_ids = torch.tensor(
+        [[1, 2, 3]],
+        dtype=torch.long,
+        device=device,
+    )
+
+    generated_ids = model.generate(
+        input_ids=input_ids,
+        max_new_tokens=5,
+    )
+
+    assert generated_ids.device == input_ids.device
