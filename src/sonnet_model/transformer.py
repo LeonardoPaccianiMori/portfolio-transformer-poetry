@@ -208,3 +208,54 @@ class FeedForward(nn.Module):
             )
 
         return self.network(x)
+
+
+class TransformerBlock(nn.Module):
+    def __init__(
+        self,
+        embedding_dim: int,
+        num_heads: int,
+        head_dim: int,
+        feed_forward_dim: int,
+        max_context_length: int,
+    ):
+        super().__init__()
+
+        if embedding_dim <= 0:
+            raise ValueError("embedding_dim must be greater than 0")
+
+        if num_heads <= 0:
+            raise ValueError("num_heads must be greater than 0")
+
+        if head_dim <= 0:
+            raise ValueError("head_dim must be greater than 0")
+
+        if feed_forward_dim <= 0:
+            raise ValueError("feed_forward_dim must be greater than 0")
+
+        if max_context_length <= 0:
+            raise ValueError("max_context_length must be greater than 0")
+
+        self.attention_layer_norm = nn.LayerNorm(embedding_dim)
+        self.attention = MultiHeadCausalSelfAttention(
+            embedding_dim=embedding_dim,
+            num_heads=num_heads,
+            head_dim=head_dim,
+            max_context_length=max_context_length,
+        )
+        self.feed_forward_layer_norm = nn.LayerNorm(embedding_dim)
+        self.feed_forward = FeedForward(
+            embedding_dim=embedding_dim,
+            feed_forward_dim=feed_forward_dim,
+        )
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        if x.ndim != 3:
+            raise ValueError(
+                "x must have shape (batch_size, context_length, embedding_dim)"
+            )
+
+        x = x + self.attention(self.attention_layer_norm(x))
+        x = x + self.feed_forward(self.feed_forward_layer_norm(x))
+
+        return x

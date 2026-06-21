@@ -6,6 +6,7 @@ from sonnet_model.transformer import (
     FeedForward,
     MultiHeadCausalSelfAttention,
     TokenAndPositionEmbedding,
+    TransformerBlock,
 )
 
 
@@ -558,4 +559,153 @@ def test_feed_forward_rejects_invalid_init_arguments():
         FeedForward(
             embedding_dim=32,
             feed_forward_dim=0,
+        )
+
+
+def test_transformer_block_returns_expected_shape():
+    batch_size = 4
+    context_length = 8
+    embedding_dim = 32
+
+    block = TransformerBlock(
+        embedding_dim=embedding_dim,
+        num_heads=2,
+        head_dim=16,
+        feed_forward_dim=128,
+        max_context_length=128,
+    )
+    x = torch.randn(batch_size, context_length, embedding_dim)
+
+    output = block(x)
+
+    assert output.shape == (batch_size, context_length, embedding_dim)
+
+
+def test_transformer_block_rejects_non_embedding_input():
+    block = TransformerBlock(
+        embedding_dim=32,
+        num_heads=2,
+        head_dim=16,
+        feed_forward_dim=128,
+        max_context_length=128,
+    )
+    x = torch.randn(4, 32)
+
+    with pytest.raises(ValueError, match="shape"):
+        block(x)
+
+
+def test_transformer_block_rejects_too_long_context():
+    block = TransformerBlock(
+        embedding_dim=32,
+        num_heads=2,
+        head_dim=16,
+        feed_forward_dim=128,
+        max_context_length=4,
+    )
+    x = torch.randn(2, 5, 32)
+
+    with pytest.raises(ValueError, match="max_context_length"):
+        block(x)
+
+
+def test_transformer_block_output_is_not_trivially_identical_to_input():
+    block = TransformerBlock(
+        embedding_dim=32,
+        num_heads=2,
+        head_dim=16,
+        feed_forward_dim=128,
+        max_context_length=128,
+    )
+    x = torch.randn(4, 8, 32)
+
+    output = block(x)
+
+    assert not torch.equal(output, x)
+
+
+def test_transformer_block_preserves_input_device():
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    block = TransformerBlock(
+        embedding_dim=32,
+        num_heads=2,
+        head_dim=16,
+        feed_forward_dim=128,
+        max_context_length=128,
+    ).to(device)
+    x = torch.randn(4, 8, 32, device=device)
+
+    output = block(x)
+
+    assert output.device == x.device
+
+
+def test_transformer_block_backpropagates_to_attention_feed_forward_and_layer_norms():
+    block = TransformerBlock(
+        embedding_dim=32,
+        num_heads=2,
+        head_dim=16,
+        feed_forward_dim=128,
+        max_context_length=128,
+    )
+    x = torch.randn(4, 8, 32)
+
+    output = block(x)
+    loss = output.sum()
+
+    loss.backward()
+
+    assert block.attention_layer_norm.weight.grad is not None
+    assert block.attention_layer_norm.bias.grad is not None
+    assert block.feed_forward_layer_norm.weight.grad is not None
+    assert block.feed_forward_layer_norm.bias.grad is not None
+    assert block.attention.output_projection.weight.grad is not None
+    assert block.feed_forward.network[0].weight.grad is not None
+    assert block.feed_forward.network[2].weight.grad is not None
+
+
+def test_transformer_block_rejects_invalid_init_arguments():
+    with pytest.raises(ValueError, match="embedding_dim"):
+        TransformerBlock(
+            embedding_dim=0,
+            num_heads=2,
+            head_dim=16,
+            feed_forward_dim=128,
+            max_context_length=128,
+        )
+
+    with pytest.raises(ValueError, match="num_heads"):
+        TransformerBlock(
+            embedding_dim=32,
+            num_heads=0,
+            head_dim=16,
+            feed_forward_dim=128,
+            max_context_length=128,
+        )
+
+    with pytest.raises(ValueError, match="head_dim"):
+        TransformerBlock(
+            embedding_dim=32,
+            num_heads=2,
+            head_dim=0,
+            feed_forward_dim=128,
+            max_context_length=128,
+        )
+
+    with pytest.raises(ValueError, match="feed_forward_dim"):
+        TransformerBlock(
+            embedding_dim=32,
+            num_heads=2,
+            head_dim=16,
+            feed_forward_dim=0,
+            max_context_length=128,
+        )
+
+    with pytest.raises(ValueError, match="max_context_length"):
+        TransformerBlock(
+            embedding_dim=32,
+            num_heads=2,
+            head_dim=16,
+            feed_forward_dim=128,
+            max_context_length=0,
         )
