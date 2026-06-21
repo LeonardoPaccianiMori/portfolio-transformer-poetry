@@ -104,3 +104,78 @@ class CausalSelfAttentionHead(nn.Module):
             return output, attention_weights
 
         return output
+
+
+class MultiHeadCausalSelfAttention(nn.Module):
+    def __init__(
+        self,
+        embedding_dim: int,
+        num_heads: int,
+        head_dim: int,
+        max_context_length: int,
+    ):
+        super().__init__()
+
+        if embedding_dim <= 0:
+            raise ValueError("embedding_dim must be greater than 0")
+
+        if num_heads <= 0:
+            raise ValueError("num_heads must be greater than 0")
+
+        if head_dim <= 0:
+            raise ValueError("head_dim must be greater than 0")
+
+        if max_context_length <= 0:
+            raise ValueError("max_context_length must be greater than 0")
+
+        self.heads = nn.ModuleList([
+            CausalSelfAttentionHead(
+                embedding_dim=embedding_dim,
+                head_dim=head_dim,
+                max_context_length=max_context_length,
+            )
+            for _ in range(num_heads)
+        ])
+        self.output_projection = nn.Linear(
+            num_heads * head_dim,
+            embedding_dim,
+        )
+
+    def forward(
+        self,
+        x: torch.Tensor,
+        return_attention_weights: bool = False,
+    ) -> torch.Tensor | tuple[torch.Tensor, torch.Tensor]:
+        if x.ndim != 3:
+            raise ValueError(
+                "x must have shape (batch_size, context_length, embedding_dim)"
+            )
+
+        if return_attention_weights:
+            head_outputs = []
+            head_attention_weights = []
+
+            for head in self.heads:
+                head_output, attention_weights = head(
+                    x,
+                    return_attention_weights=True,
+                )
+                head_outputs.append(head_output)
+                head_attention_weights.append(attention_weights)
+
+            concatenated = torch.cat(head_outputs, dim=-1)
+            output = self.output_projection(concatenated)
+            stacked_attention_weights = torch.stack(
+                head_attention_weights,
+                dim=1,
+            )
+
+            return output, stacked_attention_weights
+
+        head_outputs = [
+            head(x)
+            for head in self.heads
+        ]
+        concatenated = torch.cat(head_outputs, dim=-1)
+
+        return self.output_projection(concatenated)
