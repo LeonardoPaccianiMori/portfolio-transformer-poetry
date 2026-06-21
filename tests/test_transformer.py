@@ -3,6 +3,7 @@ import torch
 
 from sonnet_model.transformer import (
     CausalSelfAttentionHead,
+    CausalTransformerLanguageModel,
     FeedForward,
     MultiHeadCausalSelfAttention,
     TokenAndPositionEmbedding,
@@ -709,3 +710,205 @@ def test_transformer_block_rejects_invalid_init_arguments():
             feed_forward_dim=128,
             max_context_length=0,
         )
+
+
+def build_test_transformer_model() -> CausalTransformerLanguageModel:
+    return CausalTransformerLanguageModel(
+        vocab_size=20,
+        embedding_dim=32,
+        num_layers=2,
+        num_heads=2,
+        head_dim=16,
+        feed_forward_dim=128,
+        max_context_length=128,
+    )
+
+
+def test_causal_transformer_language_model_returns_logits_without_targets():
+    vocab_size = 20
+    batch_size = 4
+    context_length = 8
+
+    model = build_test_transformer_model()
+    input_ids = torch.randint(
+        low=0,
+        high=vocab_size,
+        size=(batch_size, context_length),
+    )
+
+    logits, loss = model(input_ids)
+
+    assert logits.shape == (batch_size, context_length, vocab_size)
+    assert loss is None
+
+
+def test_causal_transformer_language_model_returns_logits_and_scalar_loss_with_targets():
+    vocab_size = 20
+    batch_size = 4
+    context_length = 8
+
+    model = build_test_transformer_model()
+    input_ids = torch.randint(
+        low=0,
+        high=vocab_size,
+        size=(batch_size, context_length),
+    )
+    target_ids = torch.randint(
+        low=0,
+        high=vocab_size,
+        size=(batch_size, context_length),
+    )
+
+    logits, loss = model(input_ids, target_ids)
+
+    assert logits.shape == (batch_size, context_length, vocab_size)
+    assert loss is not None
+    assert loss.ndim == 0
+
+
+def test_causal_transformer_language_model_rejects_non_batched_input_ids():
+    model = build_test_transformer_model()
+    input_ids = torch.tensor(
+        [1, 2, 3],
+        dtype=torch.long,
+    )
+
+    with pytest.raises(ValueError, match="shape"):
+        model(input_ids)
+
+
+def test_causal_transformer_language_model_rejects_mismatched_target_shape():
+    vocab_size = 20
+    model = build_test_transformer_model()
+    input_ids = torch.randint(
+        low=0,
+        high=vocab_size,
+        size=(4, 8),
+    )
+    target_ids = torch.randint(
+        low=0,
+        high=vocab_size,
+        size=(4, 7),
+    )
+
+    with pytest.raises(ValueError, match="same shape"):
+        model(input_ids, target_ids)
+
+
+def test_causal_transformer_language_model_rejects_too_long_context():
+    vocab_size = 20
+    model = CausalTransformerLanguageModel(
+        vocab_size=vocab_size,
+        embedding_dim=32,
+        num_layers=2,
+        num_heads=2,
+        head_dim=16,
+        feed_forward_dim=128,
+        max_context_length=4,
+    )
+    input_ids = torch.randint(
+        low=0,
+        high=vocab_size,
+        size=(2, 5),
+    )
+
+    with pytest.raises(ValueError, match="max_context_length"):
+        model(input_ids)
+
+
+def test_causal_transformer_language_model_preserves_input_device():
+    vocab_size = 20
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    model = build_test_transformer_model().to(device)
+    input_ids = torch.randint(
+        low=0,
+        high=vocab_size,
+        size=(4, 8),
+        device=device,
+    )
+
+    logits, _ = model(input_ids)
+
+    assert logits.device == input_ids.device
+
+
+def test_causal_transformer_language_model_backpropagates_through_full_model():
+    vocab_size = 20
+    model = build_test_transformer_model()
+    input_ids = torch.randint(
+        low=0,
+        high=vocab_size,
+        size=(4, 8),
+    )
+    target_ids = torch.randint(
+        low=0,
+        high=vocab_size,
+        size=(4, 8),
+    )
+
+    _, loss = model(input_ids, target_ids)
+
+    assert loss is not None
+
+    loss.backward()
+
+    assert model.embedding.token_embedding.weight.grad is not None
+    assert model.embedding.position_embedding.weight.grad is not None
+    assert model.blocks[0].attention.output_projection.weight.grad is not None
+    assert model.blocks[0].feed_forward.network[0].weight.grad is not None
+    assert model.final_layer_norm.weight.grad is not None
+    assert model.output_projection.weight.grad is not None
+
+
+def test_causal_transformer_language_model_optimizer_step_updates_weights():
+    vocab_size = 20
+    model = build_test_transformer_model()
+    optimizer = torch.optim.AdamW(
+        model.parameters(),
+        lr=1e-3,
+    )
+    input_ids = torch.randint(
+        low=0,
+        high=vocab_size,
+        size=(4, 8),
+    )
+    target_ids = torch.randint(
+        low=0,
+        high=vocab_size,
+        size=(4, 8),
+    )
+
+    weights_before = model.output_projection.weight.detach().clone()
+
+    _, loss = model(input_ids, target_ids)
+
+    assert loss is not None
+
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+
+    weights_after = model.output_projection.weight.detach().clone()
+
+    assert not torch.equal(weights_before, weights_after)
+
+
+def test_causal_transformer_language_model_rejects_invalid_init_arguments():
+    valid_arguments = {
+        "vocab_size": 20,
+        "embedding_dim": 32,
+        "num_layers": 2,
+        "num_heads": 2,
+        "head_dim": 16,
+        "feed_forward_dim": 128,
+        "max_context_length": 128,
+    }
+
+    for argument_name in valid_arguments:
+        invalid_arguments = {
+            **valid_arguments,
+            argument_name: 0,
+        }
+
+        with pytest.raises(ValueError, match=argument_name):
+            CausalTransformerLanguageModel(**invalid_arguments)

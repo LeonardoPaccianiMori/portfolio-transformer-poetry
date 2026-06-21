@@ -259,3 +259,90 @@ class TransformerBlock(nn.Module):
         x = x + self.feed_forward(self.feed_forward_layer_norm(x))
 
         return x
+
+
+class CausalTransformerLanguageModel(nn.Module):
+    def __init__(
+        self,
+        vocab_size: int,
+        embedding_dim: int,
+        num_layers: int,
+        num_heads: int,
+        head_dim: int,
+        feed_forward_dim: int,
+        max_context_length: int,
+    ):
+        super().__init__()
+
+        if vocab_size <= 0:
+            raise ValueError("vocab_size must be greater than 0")
+
+        if embedding_dim <= 0:
+            raise ValueError("embedding_dim must be greater than 0")
+
+        if num_layers <= 0:
+            raise ValueError("num_layers must be greater than 0")
+
+        if num_heads <= 0:
+            raise ValueError("num_heads must be greater than 0")
+
+        if head_dim <= 0:
+            raise ValueError("head_dim must be greater than 0")
+
+        if feed_forward_dim <= 0:
+            raise ValueError("feed_forward_dim must be greater than 0")
+
+        if max_context_length <= 0:
+            raise ValueError("max_context_length must be greater than 0")
+
+        self.embedding = TokenAndPositionEmbedding(
+            vocab_size=vocab_size,
+            embedding_dim=embedding_dim,
+            max_context_length=max_context_length,
+        )
+        self.blocks = nn.ModuleList([
+            TransformerBlock(
+                embedding_dim=embedding_dim,
+                num_heads=num_heads,
+                head_dim=head_dim,
+                feed_forward_dim=feed_forward_dim,
+                max_context_length=max_context_length,
+            )
+            for _ in range(num_layers)
+        ])
+        self.final_layer_norm = nn.LayerNorm(embedding_dim)
+        self.output_projection = nn.Linear(embedding_dim, vocab_size)
+
+    def forward(
+        self,
+        input_ids: torch.Tensor,
+        target_ids: torch.Tensor | None = None,
+    ) -> tuple[torch.Tensor, torch.Tensor | None]:
+        if input_ids.ndim != 2:
+            raise ValueError("input_ids must have shape (batch_size, context_length)")
+
+        if target_ids is not None and target_ids.shape != input_ids.shape:
+            raise ValueError("target_ids must have the same shape as input_ids")
+
+        hidden_states = self.embedding(input_ids)
+
+        for block in self.blocks:
+            hidden_states = block(hidden_states)
+
+        hidden_states = self.final_layer_norm(hidden_states)
+        logits = self.output_projection(hidden_states)
+
+        loss = None
+
+        if target_ids is not None:
+            batch_size, context_length, vocab_size = logits.shape
+            logits_flat = logits.view(
+                batch_size * context_length,
+                vocab_size,
+            )
+            targets_flat = target_ids.view(
+                batch_size * context_length,
+            )
+            loss = F.cross_entropy(logits_flat, targets_flat)
+
+        return logits, loss
