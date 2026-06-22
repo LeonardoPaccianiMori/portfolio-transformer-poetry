@@ -21,6 +21,15 @@ from sonnet_training.transformer_run import (
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset", default="expanded_with_petrarch")
+    parser.add_argument(
+        "--tokenizer-type",
+        choices=["character", "bpe"],
+        default="character",
+    )
+    parser.add_argument(
+        "--bpe-tokenizer-path",
+        default="data/metadata/bpe_tokenizer.json",
+    )
     parser.add_argument("--output-dir", type=Path, default=ROOT / "runs" / "transformer")
     parser.add_argument("--batch-size", type=int, default=32)
     parser.add_argument("--context-length", type=int, default=128)
@@ -45,6 +54,8 @@ def main() -> None:
     args = parse_args()
     config = TransformerTrainingConfig(
         dataset=args.dataset,
+        tokenizer_type=args.tokenizer_type,
+        bpe_tokenizer_path=args.bpe_tokenizer_path,
         batch_size=args.batch_size,
         context_length=args.context_length,
         train_steps=args.train_steps,

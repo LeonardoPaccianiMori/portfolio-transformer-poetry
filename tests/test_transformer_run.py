@@ -4,6 +4,7 @@ from pathlib import Path
 import pytest
 import torch
 
+from sonnet_corpus.bpe import train_bpe_tokenizer
 from sonnet_training.transformer_run import (
     TransformerTrainingConfig,
     resolve_device,
@@ -39,6 +40,17 @@ def write_tiny_poems(repo_root: Path) -> None:
         encoding="utf-8",
     )
     poems_dir.joinpath("test.txt").write_text("ab" * 100, encoding="utf-8")
+
+
+def write_tiny_bpe_tokenizer(repo_root: Path) -> Path:
+    tokenizer_path = repo_root / "data" / "metadata" / "bpe_tokenizer.json"
+    tokenizer = train_bpe_tokenizer(
+        texts=["ab" * 100],
+        vocab_size=4,
+    )
+    tokenizer.save(tokenizer_path)
+
+    return tokenizer_path
 
 
 def read_json(path: Path) -> dict:
@@ -106,6 +118,8 @@ def test_train_transformer_run_writes_reproducible_artifacts(tmp_path):
     )
 
     assert saved_config["dataset"] == "expanded_with_petrarch"
+    assert saved_config["tokenizer_type"] == "character"
+    assert saved_config["bpe_tokenizer_path"] is None
     assert saved_config["resolved_device"] == "cpu"
     assert saved_config["embedding_dim"] == config.embedding_dim
     assert saved_config["num_layers"] == config.num_layers
@@ -122,6 +136,55 @@ def test_train_transformer_run_writes_reproducible_artifacts(tmp_path):
     assert "optimizer_state_dict" in checkpoint
     assert checkpoint["vocab_size"] == saved_config["vocab_size"]
     assert checkpoint["config"]["embedding_dim"] == config.embedding_dim
+
+
+def test_train_transformer_run_supports_bpe_tokenizer(tmp_path):
+    write_tiny_manifest(tmp_path)
+    write_tiny_poems(tmp_path)
+    write_tiny_bpe_tokenizer(tmp_path)
+
+    output_dir = tmp_path / "runs" / "transformer_bpe"
+    config = TransformerTrainingConfig(
+        **{
+            **tiny_transformer_config().__dict__,
+            "tokenizer_type": "bpe",
+            "bpe_tokenizer_path": "data/metadata/bpe_tokenizer.json",
+        }
+    )
+
+    result = train_transformer_run(
+        repo_root=tmp_path,
+        output_dir=output_dir,
+        config=config,
+    )
+
+    saved_config = read_json(result["config_path"])
+    saved_tokenizer = read_json(result["tokenizer_path"])
+    generated_sample = result["sample_path"].read_text(encoding="utf-8")
+
+    assert saved_config["tokenizer_type"] == "bpe"
+    assert saved_config["bpe_tokenizer_path"] == "data/metadata/bpe_tokenizer.json"
+    assert saved_config["vocab_size"] == 4
+    assert saved_tokenizer["type"] == "unicode_bpe"
+    assert generated_sample.startswith("a")
+
+
+def test_train_transformer_run_rejects_unknown_tokenizer_type(tmp_path):
+    write_tiny_manifest(tmp_path)
+    write_tiny_poems(tmp_path)
+    config = TransformerTrainingConfig(
+        **{
+            **tiny_transformer_config().__dict__,
+            "tokenizer_type": "unknown",
+        }
+    )
+
+    with pytest.raises(ValueError, match="tokenizer_type"):
+        train_transformer_run(
+            repo_root=tmp_path,
+            output_dir=tmp_path / "runs" / "transformer",
+            config=config,
+        )
 
 
 def test_train_transformer_run_rejects_context_longer_than_model_context(tmp_path):

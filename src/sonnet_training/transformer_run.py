@@ -4,7 +4,8 @@ from pathlib import Path
 
 import torch
 
-from sonnet_corpus.dataset_text import load_encoded_splits
+from sonnet_corpus.bpe import BytePairEncodingTokenizer
+from sonnet_corpus.dataset_text import load_bpe_encoded_splits, load_encoded_splits
 from sonnet_model.transformer import CausalTransformerLanguageModel
 from sonnet_training.steps import train_next_token_model
 
@@ -12,6 +13,8 @@ from sonnet_training.steps import train_next_token_model
 @dataclass(frozen=True)
 class TransformerTrainingConfig:
     dataset: str = "expanded_with_petrarch"
+    tokenizer_type: str = "character"
+    bpe_tokenizer_path: str = "data/metadata/bpe_tokenizer.json"
     batch_size: int = 32
     context_length: int = 128
     train_steps: int = 200
@@ -64,6 +67,37 @@ def save_tokenizer(path: Path, char_to_id: dict[str, int]) -> None:
     )
 
 
+def load_training_splits_for_tokenizer(
+    repo_root: Path,
+    manifest_path: Path,
+    config: TransformerTrainingConfig,
+):
+    if config.tokenizer_type == "character":
+        return load_encoded_splits(
+            manifest_path=manifest_path,
+            repo_root=repo_root,
+            dataset=config.dataset,
+        )
+
+    if config.tokenizer_type == "bpe":
+        return load_bpe_encoded_splits(
+            manifest_path=manifest_path,
+            repo_root=repo_root,
+            dataset=config.dataset,
+            tokenizer_path=repo_root / config.bpe_tokenizer_path,
+        )
+
+    raise ValueError("tokenizer_type must be 'character' or 'bpe'")
+
+
+def save_run_tokenizer(path: Path, tokenizer) -> None:
+    if isinstance(tokenizer, BytePairEncodingTokenizer):
+        tokenizer.save(path)
+        return
+
+    save_tokenizer(path, tokenizer.char_to_id)
+
+
 def train_transformer_run(
     repo_root: Path,
     output_dir: Path,
@@ -77,10 +111,10 @@ def train_transformer_run(
     device = resolve_device(config.device)
     manifest_path = repo_root / "data" / "metadata" / "poems_manifest.csv"
 
-    train_tokens, validation_tokens, _, tokenizer = load_encoded_splits(
-        manifest_path=manifest_path,
+    train_tokens, validation_tokens, _, tokenizer = load_training_splits_for_tokenizer(
         repo_root=repo_root,
-        dataset=config.dataset,
+        manifest_path=manifest_path,
+        config=config,
     )
 
     model = CausalTransformerLanguageModel(
@@ -133,13 +167,19 @@ def train_transformer_run(
         payload={
             **asdict(config),
             "resolved_device": str(device),
+            "tokenizer_type": config.tokenizer_type,
+            "bpe_tokenizer_path": (
+                config.bpe_tokenizer_path
+                if config.tokenizer_type == "bpe"
+                else None
+            ),
             "vocab_size": tokenizer.vocab_size,
             "train_tokens": int(train_tokens.numel()),
             "validation_tokens": int(validation_tokens.numel()),
         },
     )
     write_jsonl(log_path, history)
-    save_tokenizer(tokenizer_path, tokenizer.char_to_id)
+    save_run_tokenizer(tokenizer_path, tokenizer)
     sample_path.write_text(generated_text, encoding="utf-8")
     torch.save(
         {
