@@ -3,6 +3,7 @@ from pathlib import Path
 
 import torch
 
+from sonnet_corpus.bpe import BytePairEncodingTokenizer
 from sonnet_corpus.tokenizer import CharTokenizer
 
 
@@ -112,6 +113,21 @@ def encode_text_stream(
     )
 
 
+def encode_bpe_text_stream(
+    text_stream: str,
+    tokenizer: BytePairEncodingTokenizer,
+) -> torch.Tensor:
+    if text_stream == "":
+        raise ValueError("text_stream must not be empty")
+
+    token_ids = tokenizer.encode(text_stream)
+
+    return torch.tensor(
+        token_ids,
+        dtype=torch.long,
+    )
+
+
 def load_split_text_stream(
     manifest_path: Path,
     repo_root: Path,
@@ -173,5 +189,47 @@ def load_encoded_splits(
     train_tokens = encode_text_stream(train_text, tokenizer)
     validation_tokens = encode_text_stream(validation_text, tokenizer)
     test_tokens = encode_text_stream(test_text, tokenizer)
+
+    return train_tokens, validation_tokens, test_tokens, tokenizer
+
+
+def load_bpe_encoded_splits(
+    manifest_path: Path,
+    repo_root: Path,
+    dataset: str,
+    tokenizer_path: Path,
+    poem_separator: str = DEFAULT_POEM_SEPARATOR,
+) -> tuple[
+    torch.Tensor,
+    torch.Tensor,
+    torch.Tensor,
+    BytePairEncodingTokenizer,
+]:
+    tokenizer = BytePairEncodingTokenizer.load(tokenizer_path)
+    train_text = load_split_text_stream(
+        manifest_path=manifest_path,
+        repo_root=repo_root,
+        dataset=dataset,
+        split="train",
+        poem_separator=poem_separator,
+    )
+    validation_text = load_split_text_stream(
+        manifest_path=manifest_path,
+        repo_root=repo_root,
+        dataset=dataset,
+        split="validation",
+        poem_separator=poem_separator,
+    )
+    test_text = load_split_text_stream(
+        manifest_path=manifest_path,
+        repo_root=repo_root,
+        dataset=dataset,
+        split="test",
+        poem_separator=poem_separator,
+    )
+
+    train_tokens = encode_bpe_text_stream(train_text, tokenizer)
+    validation_tokens = encode_bpe_text_stream(validation_text, tokenizer)
+    test_tokens = encode_bpe_text_stream(test_text, tokenizer)
 
     return train_tokens, validation_tokens, test_tokens, tokenizer

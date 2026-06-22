@@ -8,7 +8,9 @@ from sonnet_corpus.dataset_text import (
     build_text_stream,
     dataset_include_column,
     dataset_split_column,
+    encode_bpe_text_stream,
     encode_text_stream,
+    load_bpe_encoded_splits,
     load_encoded_splits,
     load_poem_text,
     load_poem_texts,
@@ -16,7 +18,7 @@ from sonnet_corpus.dataset_text import (
     read_manifest_rows,
     select_manifest_rows,
 )
-
+from sonnet_corpus.bpe import BytePairEncodingTokenizer, train_bpe_tokenizer
 from sonnet_corpus.tokenizer import CharTokenizer
 
 
@@ -241,6 +243,31 @@ def test_encode_text_stream_rejects_empty_stream():
         encode_text_stream("", tokenizer)
 
 
+def test_encode_bpe_text_stream_returns_1d_long_tensor():
+    text_stream = "Amor\n<|poem_end|>\n"
+    tokenizer = train_bpe_tokenizer(
+        texts=[text_stream],
+        vocab_size=20,
+        special_tokens=["<|poem_end|>"],
+    )
+
+    encoded = encode_bpe_text_stream(text_stream, tokenizer)
+
+    assert encoded.ndim == 1
+    assert encoded.dtype == torch.long
+    assert tokenizer.decode(encoded.tolist()) == text_stream
+
+
+def test_encode_bpe_text_stream_rejects_empty_stream():
+    tokenizer = train_bpe_tokenizer(
+        texts=["abc"],
+        vocab_size=3,
+    )
+
+    with pytest.raises(ValueError, match="must not be empty"):
+        encode_bpe_text_stream("", tokenizer)
+
+
 def test_load_split_text_stream_builds_stream_from_manifest_rows(tmp_path):
     manifest_path = tmp_path / "manifest.csv"
     write_test_manifest(manifest_path)
@@ -370,3 +397,53 @@ def test_load_encoded_splits_returns_split_tensors_and_shared_tokenizer(tmp_path
     assert tokenizer.decode(train_tokens.tolist()) == "abc\n"
     assert tokenizer.decode(validation_tokens.tolist()) == "cabV\n"
     assert tokenizer.decode(test_tokens.tolist()) == "bcaT\n"
+
+
+def test_load_bpe_encoded_splits_returns_split_tensors_and_saved_tokenizer(tmp_path):
+    manifest_path = tmp_path / "manifest.csv"
+    tokenizer_path = tmp_path / "bpe_tokenizer.json"
+    write_split_manifest(manifest_path)
+
+    poems_dir = tmp_path / "data" / "processed" / "poems"
+    poems_dir.mkdir(parents=True)
+    (poems_dir / "train.txt").write_text("abc\n", encoding="utf-8")
+    (poems_dir / "validation.txt").write_text("cabV\n", encoding="utf-8")
+    (poems_dir / "test.txt").write_text("bcaT\n", encoding="utf-8")
+
+    tokenizer = train_bpe_tokenizer(
+        texts=["abc\n"],
+        base_texts=[
+            "abc\n",
+            "cabV\n",
+            "bcaT\n",
+        ],
+        vocab_size=12,
+        special_tokens=["<|poem_end|>"],
+    )
+    tokenizer.save(tokenizer_path)
+
+    train_tokens, validation_tokens, test_tokens, loaded_tokenizer = (
+        load_bpe_encoded_splits(
+            manifest_path=manifest_path,
+            repo_root=tmp_path,
+            dataset="expanded_with_petrarch",
+            tokenizer_path=tokenizer_path,
+        )
+    )
+
+    assert train_tokens.dtype == torch.long
+    assert validation_tokens.dtype == torch.long
+    assert test_tokens.dtype == torch.long
+
+    assert loaded_tokenizer.decode(train_tokens.tolist()) == "abc\n"
+    assert loaded_tokenizer.decode(validation_tokens.tolist()) == "cabV\n"
+    assert loaded_tokenizer.decode(test_tokens.tolist()) == "bcaT\n"
+
+
+def test_committed_bpe_tokenizer_round_trips_separator_text():
+    repo_root = Path(__file__).resolve().parents[1]
+    tokenizer_path = repo_root / "data" / "metadata" / "bpe_tokenizer.json"
+    tokenizer = BytePairEncodingTokenizer.load(tokenizer_path)
+    text = "Amor\n<|poem_end|>\n"
+
+    assert tokenizer.decode(tokenizer.encode(text)) == text
