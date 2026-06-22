@@ -4,9 +4,11 @@ Generation directory: `outputs/generations/transformer_context768_scaled_001`
 
 ## Review Instructions
 
-- Fill in each `TODO` field after reading the generated text.
-
 - Use `low`, `medium`, or `high` consistently within this report.
+
+- For positive fields, `high` means the desired property is clearly present.
+
+- For problem fields, `high` means the problem is severe.
 
 - Judge the generated text as model output, not as a polished poem.
 
@@ -22,19 +24,19 @@ Generation directory: `outputs/generations/transformer_context768_scaled_001`
 
 ### Human Review
 
-- Sonnet-like structure: TODO: low / medium / high
+- Sonnet-like structure: low
 
-- Language/style plausibility: TODO: low / medium / high
+- Language/style plausibility: low
 
-- Coherence: TODO: low / medium / high
+- Coherence: low
 
-- Repetition problems: TODO: low / medium / high
+- Repetition problems: medium
 
-- Memorization concern: TODO: low / medium / high
+- Memorization concern: low
 
-- Strongest failure mode: TODO
+- Strongest failure mode: malformed words and malformed special-token text.
 
-- Notes: TODO
+- Notes: The prompt is not preserved cleanly because `Amor` is immediately fused into `Amorziavta`. The sample has line breaks and punctuation, but most words are not interpretable Italian or plausible archaic Italian. It emits both a corrupted separator-like string and one correct `<|poem_end|>`, so the model has partially learned the separator pattern without controlling it reliably.
 
 ### Generated Text
 
@@ -83,19 +85,19 @@ Eunala peve derdoi mpi nia ir ceri bi
 
 ### Human Review
 
-- Sonnet-like structure: TODO: low / medium / high
+- Sonnet-like structure: low
 
-- Language/style plausibility: TODO: low / medium / high
+- Language/style plausibility: low
 
-- Coherence: TODO: low / medium / high
+- Coherence: low
 
-- Repetition problems: TODO: low / medium / high
+- Repetition problems: medium
 
-- Memorization concern: TODO: low / medium / high
+- Memorization concern: low
 
-- Strongest failure mode: TODO
+- Strongest failure mode: incoherent character-level word formation.
 
-- Notes: TODO
+- Notes: The prompt is preserved as its own first line, and the output contains punctuation and line breaks. However, most generated words are malformed. The output also contains a corrupted separator fragment before a correct `<|poem_end|>`, which indicates weak control of the end-of-poem token.
 
 ### Generated Text
 
@@ -143,19 +145,19 @@ mare chezio pe male susí fenon si necreli sen
 
 ### Human Review
 
-- Sonnet-like structure: TODO: low / medium / high
+- Sonnet-like structure: low
 
-- Language/style plausibility: TODO: low / medium / high
+- Language/style plausibility: low
 
-- Coherence: TODO: low / medium / high
+- Coherence: low
 
-- Repetition problems: TODO: low / medium / high
+- Repetition problems: medium
 
-- Memorization concern: TODO: low / medium / high
+- Memorization concern: low
 
-- Strongest failure mode: TODO
+- Strongest failure mode: no stable lexical or poem-boundary control.
 
-- Notes: TODO
+- Notes: The opening prompt is absorbed into a malformed first word. The sample has many line breaks and some old-Italian-looking character patterns, including accented vowels and apostrophes, but it does not maintain readable syntax. It produces a corrupted separator-like sequence rather than the correct `<|poem_end|>`.
 
 ### Generated Text
 
@@ -203,19 +205,19 @@ Pia e gio st mo matetomi l chentumo
 
 ### Human Review
 
-- Sonnet-like structure: TODO: low / medium / high
+- Sonnet-like structure: low
 
-- Language/style plausibility: TODO: low / medium / high
+- Language/style plausibility: medium
 
-- Coherence: TODO: low / medium / high
+- Coherence: low
 
-- Repetition problems: TODO: low / medium / high
+- Repetition problems: medium
 
-- Memorization concern: TODO: low / medium / high
+- Memorization concern: low
 
-- Strongest failure mode: TODO
+- Strongest failure mode: local style imitation without semantic coherence.
 
-- Notes: TODO
+- Notes: This is the strongest sample stylistically because the prompt is a real Petrarch opening and the model continues with line breaks, apostrophes, accents, and a correct `<|poem_end|>`. It still does not form a coherent sonnet: the line count is too high, the syntax is mostly broken, and the continuation is not semantically readable.
 
 ### Generated Text
 
@@ -261,19 +263,19 @@ l afegisoné d micusi.
 
 ### Human Review
 
-- Sonnet-like structure: TODO: low / medium / high
+- Sonnet-like structure: low
 
-- Language/style plausibility: TODO: low / medium / high
+- Language/style plausibility: low
 
-- Coherence: TODO: low / medium / high
+- Coherence: low
 
-- Repetition problems: TODO: low / medium / high
+- Repetition problems: medium
 
-- Memorization concern: TODO: low / medium / high
+- Memorization concern: low
 
-- Strongest failure mode: TODO
+- Strongest failure mode: malformed token and word generation.
 
-- Notes: TODO
+- Notes: The initial prompt is preserved, and the sample contains line breaks and a correct `<|poem_end|>` later in the output. The output also contains a corrupted separator-like fragment and many malformed words. The sample does not maintain a 14-line structure or a coherent theme.
 
 ### Generated Text
 
@@ -312,4 +314,3 @@ n, ei·chena ege io t lion ango be bien ma:
 losgh'Ame per, conzzitoll pel ar lta di,
 ce peliar
 ```
-
