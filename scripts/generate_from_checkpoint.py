@@ -29,6 +29,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-new-tokens", type=int, default=900)
     parser.add_argument("--seed", type=int, default=1337)
     parser.add_argument("--device", default="auto")
+    parser.add_argument("--temperature", type=float, default=1.0)
+    parser.add_argument("--top-k", type=int, default=None)
+    parser.add_argument("--stop-text", default=None)
+    parser.add_argument("--target-lines", type=int, default=None)
     return parser.parse_args()
 
 
@@ -50,6 +54,10 @@ def main() -> None:
         max_new_tokens=args.max_new_tokens,
         seed=args.seed,
         device=device,
+        temperature=args.temperature,
+        top_k=args.top_k,
+        stop_text=args.stop_text,
+        target_lines=args.target_lines,
     )
 
     print(f"wrote output directory: {args.output_dir}")

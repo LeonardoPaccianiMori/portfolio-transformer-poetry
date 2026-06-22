@@ -354,6 +354,9 @@ class CausalTransformerLanguageModel(nn.Module):
         input_ids: torch.Tensor,
         max_new_tokens: int,
         generator: torch.Generator | None = None,
+        temperature: float = 1.0,
+        top_k: int | None = None,
+        stop_token_id: int | None = None,
     ) -> torch.Tensor:
         if input_ids.ndim != 2:
             raise ValueError("input_ids must have shape (batch_size, context_length)")
@@ -361,12 +364,33 @@ class CausalTransformerLanguageModel(nn.Module):
         if max_new_tokens < 0:
             raise ValueError("max_new_tokens must be greater than or equal to 0")
 
+        if temperature <= 0:
+            raise ValueError("temperature must be greater than 0")
+
+        if top_k is not None and top_k <= 0:
+            raise ValueError("top_k must be greater than 0")
+
         generated_ids = input_ids
 
         for _ in range(max_new_tokens):
             cropped_input_ids = generated_ids[:, -self.max_context_length:]
             logits, _ = self(cropped_input_ids)
             next_token_logits = logits[:, -1, :]
+            next_token_logits = next_token_logits / temperature
+
+            if top_k is not None:
+                vocab_size = next_token_logits.shape[-1]
+
+                if top_k > vocab_size:
+                    raise ValueError("top_k must be less than or equal to vocab_size")
+
+                top_values, _ = torch.topk(next_token_logits, k=top_k, dim=-1)
+                minimum_top_value = top_values[:, [-1]]
+                next_token_logits = next_token_logits.masked_fill(
+                    next_token_logits < minimum_top_value,
+                    float("-inf"),
+                )
+
             next_token_probabilities = F.softmax(next_token_logits, dim=-1)
             next_token_ids = torch.multinomial(
                 next_token_probabilities,
@@ -377,5 +401,11 @@ class CausalTransformerLanguageModel(nn.Module):
                 (generated_ids, next_token_ids),
                 dim=1,
             )
+
+            if (
+                stop_token_id is not None
+                and torch.all(next_token_ids == stop_token_id)
+            ):
+                break
 
         return generated_ids

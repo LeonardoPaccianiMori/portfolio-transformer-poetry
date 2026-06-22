@@ -79,20 +79,152 @@ def generate_text(
     max_new_tokens: int,
     device: torch.device | str,
     seed: int,
+    temperature: float = 1.0,
+    top_k: int | None = None,
+    stop_text: str | None = None,
+    target_lines: int | None = None,
 ) -> str:
+    result = generate_text_result(
+        model=model,
+        tokenizer=tokenizer,
+        prompt=prompt,
+        max_new_tokens=max_new_tokens,
+        device=device,
+        seed=seed,
+        temperature=temperature,
+        top_k=top_k,
+        stop_text=stop_text,
+        target_lines=target_lines,
+    )
+
+    return result["text"]
+
+
+def non_empty_line_count(text: str) -> int:
+    return len([
+        line
+        for line in text.splitlines()
+        if line.strip()
+    ])
+
+
+def completed_non_empty_line_count(text: str) -> int:
+    if text == "":
+        return 0
+
+    if text.endswith(("\n", "\r")):
+        completed_text = text
+    else:
+        completed_text = "\n".join(text.splitlines()[:-1])
+
+    return non_empty_line_count(completed_text)
+
+
+def line_count_stop_reached(text: str, target_lines: int | None) -> bool:
+    if target_lines is None:
+        return False
+
+    if target_lines <= 0:
+        raise ValueError("target_lines must be greater than 0")
+
+    return completed_non_empty_line_count(text) >= target_lines
+
+
+def validate_stop_text(tokenizer: CharTokenizer, stop_text: str | None) -> None:
+    if stop_text is None:
+        return
+
+    if stop_text == "":
+        raise ValueError("stop_text must not be empty")
+
+    tokenizer.encode(stop_text)
+
+
+def stop_reason_for_text(
+    text: str,
+    stop_text: str | None,
+    target_lines: int | None,
+) -> str | None:
+    if stop_text is not None and stop_text in text:
+        return "stop_text"
+
+    if line_count_stop_reached(text, target_lines):
+        return "target_lines"
+
+    return None
+
+
+def generate_text_result(
+    model: CausalTransformerLanguageModel,
+    tokenizer: CharTokenizer,
+    prompt: str,
+    max_new_tokens: int,
+    device: torch.device | str,
+    seed: int,
+    temperature: float = 1.0,
+    top_k: int | None = None,
+    stop_text: str | None = None,
+    target_lines: int | None = None,
+) -> dict[str, Any]:
+    validate_stop_text(tokenizer, stop_text)
+
     generator = torch.Generator(device=device).manual_seed(seed)
     input_ids = torch.tensor(
         [tokenizer.encode(prompt)],
         dtype=torch.long,
         device=device,
     )
-    generated_ids = model.generate(
-        input_ids=input_ids,
-        max_new_tokens=max_new_tokens,
-        generator=generator,
+
+    uses_text_stopping = stop_text is not None or target_lines is not None
+
+    if not uses_text_stopping:
+        generated_ids = model.generate(
+            input_ids=input_ids,
+            max_new_tokens=max_new_tokens,
+            generator=generator,
+            temperature=temperature,
+            top_k=top_k,
+        )
+
+        return {
+            "text": tokenizer.decode(generated_ids[0].cpu().tolist()),
+            "stop_reason": "max_new_tokens",
+            "generated_new_tokens": generated_ids.shape[1] - input_ids.shape[1],
+        }
+
+    generated_ids = input_ids
+    stop_reason = stop_reason_for_text(
+        text=prompt,
+        stop_text=stop_text,
+        target_lines=target_lines,
     )
 
-    return tokenizer.decode(generated_ids[0].cpu().tolist())
+    for _ in range(max_new_tokens):
+        if stop_reason is not None:
+            break
+
+        generated_ids = model.generate(
+            input_ids=generated_ids,
+            max_new_tokens=1,
+            generator=generator,
+            temperature=temperature,
+            top_k=top_k,
+        )
+        generated_text = tokenizer.decode(generated_ids[0].cpu().tolist())
+        stop_reason = stop_reason_for_text(
+            text=generated_text,
+            stop_text=stop_text,
+            target_lines=target_lines,
+        )
+
+    if stop_reason is None:
+        stop_reason = "max_new_tokens"
+
+    return {
+        "text": tokenizer.decode(generated_ids[0].cpu().tolist()),
+        "stop_reason": stop_reason,
+        "generated_new_tokens": generated_ids.shape[1] - input_ids.shape[1],
+    }
 
 
 def safe_prompt_filename(prompt_id: str) -> str:
@@ -117,6 +249,10 @@ def generate_for_prompts(
     max_new_tokens: int,
     seed: int,
     device: torch.device | str,
+    temperature: float = 1.0,
+    top_k: int | None = None,
+    stop_text: str | None = None,
+    target_lines: int | None = None,
 ) -> dict[str, Any]:
     tokenizer = load_char_tokenizer(run_dir / "tokenizer.json")
     model = load_transformer_from_checkpoint(
@@ -129,14 +265,19 @@ def generate_for_prompts(
     generated_files = []
 
     for prompt_index, prompt in enumerate(prompts):
-        generated_text = generate_text(
+        generation_result = generate_text_result(
             model=model,
             tokenizer=tokenizer,
             prompt=prompt["text"],
             max_new_tokens=max_new_tokens,
             device=device,
             seed=seed + prompt_index,
+            temperature=temperature,
+            top_k=top_k,
+            stop_text=stop_text,
+            target_lines=target_lines,
         )
+        generated_text = generation_result["text"]
         output_path = output_dir / safe_prompt_filename(prompt["id"])
         output_path.write_text(generated_text, encoding="utf-8")
         generated_files.append({
@@ -144,6 +285,8 @@ def generate_for_prompts(
             "prompt_text": prompt["text"],
             "path": str(output_path),
             "seed": seed + prompt_index,
+            "stop_reason": generation_result["stop_reason"],
+            "generated_new_tokens": generation_result["generated_new_tokens"],
         })
 
     metadata = {
@@ -152,6 +295,10 @@ def generate_for_prompts(
         "max_new_tokens": max_new_tokens,
         "base_seed": seed,
         "device": str(device),
+        "temperature": temperature,
+        "top_k": top_k,
+        "stop_text": stop_text,
+        "target_lines": target_lines,
         "generated_files": generated_files,
     }
     metadata_path = output_dir / "metadata.json"

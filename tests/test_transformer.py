@@ -1022,3 +1022,87 @@ def test_causal_transformer_language_model_generate_preserves_input_device():
     )
 
     assert generated_ids.device == input_ids.device
+
+
+def build_biased_generation_model(
+    favored_token_id: int,
+) -> CausalTransformerLanguageModel:
+    model = build_test_transformer_model()
+
+    with torch.no_grad():
+        for parameter in model.parameters():
+            parameter.zero_()
+
+        model.output_projection.bias[favored_token_id] = 10.0
+
+    return model
+
+
+def test_causal_transformer_language_model_generate_supports_top_k_sampling():
+    model = build_biased_generation_model(favored_token_id=2)
+    input_ids = torch.tensor(
+        [[1, 1]],
+        dtype=torch.long,
+    )
+
+    generated_ids = model.generate(
+        input_ids=input_ids,
+        max_new_tokens=3,
+        top_k=1,
+    )
+
+    assert generated_ids.tolist() == [[1, 1, 2, 2, 2]]
+
+
+def test_causal_transformer_language_model_generate_stops_on_stop_token_id():
+    model = build_biased_generation_model(favored_token_id=2)
+    input_ids = torch.tensor(
+        [[1, 1]],
+        dtype=torch.long,
+    )
+
+    generated_ids = model.generate(
+        input_ids=input_ids,
+        max_new_tokens=5,
+        top_k=1,
+        stop_token_id=2,
+    )
+
+    assert generated_ids.tolist() == [[1, 1, 2]]
+
+
+def test_causal_transformer_language_model_generate_rejects_invalid_temperature():
+    model = build_test_transformer_model()
+    input_ids = torch.tensor(
+        [[1, 2, 3]],
+        dtype=torch.long,
+    )
+
+    with pytest.raises(ValueError, match="temperature"):
+        model.generate(
+            input_ids=input_ids,
+            max_new_tokens=1,
+            temperature=0.0,
+        )
+
+
+def test_causal_transformer_language_model_generate_rejects_invalid_top_k():
+    model = build_test_transformer_model()
+    input_ids = torch.tensor(
+        [[1, 2, 3]],
+        dtype=torch.long,
+    )
+
+    with pytest.raises(ValueError, match="top_k"):
+        model.generate(
+            input_ids=input_ids,
+            max_new_tokens=1,
+            top_k=0,
+        )
+
+    with pytest.raises(ValueError, match="vocab_size"):
+        model.generate(
+            input_ids=input_ids,
+            max_new_tokens=1,
+            top_k=21,
+        )
