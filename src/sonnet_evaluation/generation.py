@@ -4,6 +4,7 @@ from typing import Any
 
 import torch
 
+from sonnet_corpus.bpe import BytePairEncodingTokenizer
 from sonnet_corpus.tokenizer import CharTokenizer
 from sonnet_model.transformer import CausalTransformerLanguageModel
 
@@ -24,6 +25,23 @@ def load_char_tokenizer(tokenizer_path: Path) -> CharTokenizer:
     char_to_id = payload["char_to_id"]
 
     return CharTokenizer(char_to_id=char_to_id)
+
+
+def load_tokenizer(tokenizer_path: Path) -> CharTokenizer | BytePairEncodingTokenizer:
+    payload = read_json(tokenizer_path)
+
+    if not isinstance(payload, dict):
+        raise ValueError("tokenizer file must contain a JSON object")
+
+    tokenizer_type = payload.get("type")
+
+    if tokenizer_type == "character":
+        return CharTokenizer(char_to_id=payload["char_to_id"])
+
+    if tokenizer_type == "unicode_bpe":
+        return BytePairEncodingTokenizer.from_dict(payload)
+
+    raise ValueError(f"unsupported tokenizer type: {tokenizer_type}")
 
 
 def load_transformer_from_checkpoint(
@@ -254,7 +272,7 @@ def generate_for_prompts(
     stop_text: str | None = None,
     target_lines: int | None = None,
 ) -> dict[str, Any]:
-    tokenizer = load_char_tokenizer(run_dir / "tokenizer.json")
+    tokenizer = load_tokenizer(run_dir / "tokenizer.json")
     model = load_transformer_from_checkpoint(
         checkpoint_path=run_dir / "model.pt",
         config_path=run_dir / "config.json",

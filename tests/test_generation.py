@@ -4,6 +4,7 @@ from pathlib import Path
 import pytest
 import torch
 
+from sonnet_corpus.bpe import train_bpe_tokenizer
 from sonnet_evaluation.generation import (
     completed_non_empty_line_count,
     generate_for_prompts,
@@ -12,6 +13,7 @@ from sonnet_evaluation.generation import (
     line_count_stop_reached,
     load_char_tokenizer,
     load_prompts,
+    load_tokenizer,
     load_transformer_from_checkpoint,
     non_empty_line_count,
     safe_prompt_filename,
@@ -122,6 +124,35 @@ def write_biased_tiny_run(
     )
 
 
+def write_tiny_bpe_run(run_dir: Path) -> None:
+    run_dir.mkdir(parents=True)
+    model = build_tiny_model()
+    tokenizer = train_bpe_tokenizer(
+        texts=["Amor"],
+        vocab_size=4,
+    )
+    write_json(
+        run_dir / "config.json",
+        {
+            "vocab_size": 4,
+            "embedding_dim": 8,
+            "num_layers": 1,
+            "num_heads": 2,
+            "head_dim": 4,
+            "feed_forward_dim": 16,
+            "max_context_length": 8,
+        },
+    )
+    tokenizer.save(run_dir / "tokenizer.json")
+    torch.save(
+        {
+            "model_state_dict": model.state_dict(),
+            "vocab_size": 4,
+        },
+        run_dir / "model.pt",
+    )
+
+
 def write_line_biased_tiny_run(run_dir: Path) -> None:
     run_dir.mkdir(parents=True)
     model = build_tiny_model()
@@ -195,6 +226,32 @@ def test_load_char_tokenizer_rejects_non_character_tokenizer(tmp_path):
 
     with pytest.raises(ValueError, match="character"):
         load_char_tokenizer(tokenizer_path)
+
+
+def test_load_tokenizer_loads_unicode_bpe_tokenizer(tmp_path):
+    tokenizer_path = tmp_path / "tokenizer.json"
+    tokenizer = train_bpe_tokenizer(
+        texts=["Amor"],
+        vocab_size=4,
+    )
+    tokenizer.save(tokenizer_path)
+
+    loaded = load_tokenizer(tokenizer_path)
+
+    assert loaded.decode(loaded.encode("Amor")) == "Amor"
+
+
+def test_load_tokenizer_rejects_unknown_tokenizer_type(tmp_path):
+    tokenizer_path = tmp_path / "tokenizer.json"
+    write_json(
+        tokenizer_path,
+        {
+            "type": "unknown",
+        },
+    )
+
+    with pytest.raises(ValueError, match="unsupported tokenizer"):
+        load_tokenizer(tokenizer_path)
 
 
 def test_load_prompts_reads_prompt_list(tmp_path):
@@ -406,6 +463,32 @@ def test_generate_for_prompts_writes_outputs_and_metadata(tmp_path):
     assert metadata["stop_text"] is None
     assert metadata["target_lines"] is None
     assert len(metadata["generated_files"]) == 2
+
+
+def test_generate_for_prompts_supports_bpe_tokenizer(tmp_path):
+    run_dir = tmp_path / "run"
+    output_dir = tmp_path / "outputs"
+    write_tiny_bpe_run(run_dir)
+
+    metadata = generate_for_prompts(
+        run_dir=run_dir,
+        prompts=[
+            {
+                "id": "amor",
+                "text": "Amor",
+            },
+        ],
+        output_dir=output_dir,
+        max_new_tokens=1,
+        seed=123,
+        device=torch.device("cpu"),
+    )
+
+    first_output = output_dir / "amor.txt"
+
+    assert first_output.is_file()
+    assert first_output.read_text(encoding="utf-8").startswith("Amor")
+    assert len(metadata["generated_files"]) == 1
 
 
 def test_generate_for_prompts_records_controlled_decoding_metadata(tmp_path):

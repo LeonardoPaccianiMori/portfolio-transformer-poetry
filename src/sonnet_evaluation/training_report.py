@@ -48,6 +48,7 @@ def summarize_training_run(
     return {
         "run_name": run_dir.name,
         "dataset": config["dataset"],
+        "tokenizer_type": config.get("tokenizer_type", "character"),
         "context_length": config["context_length"],
         "batch_size": config["batch_size"],
         "train_steps": config["train_steps"],
@@ -75,6 +76,7 @@ def summarize_training_run(
 def markdown_table(rows: list[dict[str, Any]]) -> str:
     headers = [
         "Run",
+        "Tok",
         "Ctx",
         "Batch",
         "Steps",
@@ -97,6 +99,7 @@ def markdown_table(rows: list[dict[str, Any]]) -> str:
     for row in rows:
         values = [
             row["run_name"],
+            row["tokenizer_type"],
             str(row["context_length"]),
             str(row["batch_size"]),
             str(row["train_steps"]),

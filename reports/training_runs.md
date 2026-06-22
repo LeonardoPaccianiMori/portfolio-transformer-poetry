@@ -2,12 +2,13 @@
 
 This report summarizes ignored raw training runs from `runs/`.
 
-| Run | Ctx | Batch | Steps | LR | Emb | Layers | Heads | FF | Final Train | Final Val | Best Val | Best Step | Ckpt MB |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| transformer_debug_5k_001 | 128 | 32 | 5000 | 3.0e-04 | 32 | 2 | 2 | 128 | 2.1963 | 2.1878 | 2.1878 | 5000 | 0.70 |
-| transformer_context768_scaled_001 | 768 | 8 | 5000 | 3.0e-04 | 64 | 4 | 4 | 256 | 2.1727 | 2.1896 | 2.1896 | 5000 | 39.08 |
-| transformer_context768_001 | 768 | 16 | 5000 | 3.0e-04 | 32 | 2 | 2 | 128 | 2.3418 | 2.3320 | 2.3282 | 4500 | 9.68 |
-| transformer_calibration_001 | 128 | 32 | 500 | 3.0e-04 | 32 | 2 | 2 | 128 | 2.6384 | 2.6299 | 2.6299 | 500 | 0.70 |
+| Run | Tok | Ctx | Batch | Steps | LR | Emb | Layers | Heads | FF | Final Train | Final Val | Best Val | Best Step | Ckpt MB |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| transformer_debug_5k_001 | character | 128 | 32 | 5000 | 3.0e-04 | 32 | 2 | 2 | 128 | 2.1963 | 2.1878 | 2.1878 | 5000 | 0.70 |
+| transformer_context768_scaled_001 | character | 768 | 8 | 5000 | 3.0e-04 | 64 | 4 | 4 | 256 | 2.1727 | 2.1896 | 2.1896 | 5000 | 39.08 |
+| transformer_context768_001 | character | 768 | 16 | 5000 | 3.0e-04 | 32 | 2 | 2 | 128 | 2.3418 | 2.3320 | 2.3282 | 4500 | 9.68 |
+| transformer_calibration_001 | character | 128 | 32 | 500 | 3.0e-04 | 32 | 2 | 2 | 128 | 2.6384 | 2.6299 | 2.6299 | 500 | 0.70 |
+| transformer_bpe_512_context256_001 | bpe | 256 | 16 | 5000 | 3.0e-04 | 64 | 4 | 4 | 256 | 3.9522 | 4.1658 | 4.1658 | 5000 | 7.32 |
 
 ## Sample Previews
 
@@ -30,5 +31,10 @@ Amoremava da è digese azzzzzia lore canel vi ve si,\nOrbive e me:\ndi quo.\n<|>
 
 ```text
 Amorema ta finndigese az do ia mor\ne.moel v<Zu'e ., OrbKir e mú ba stco.en cpcêal smon cr, ·an vTincona_e se,\nse caraiomilitvi n c\nU\ní'ornpia do cmon'ra saigdi tor_a das_eAri mii gta Dinden'r pol diem
+```
+### transformer_bpe_512_context256_001
+
+```text
+Amore\ndel tua terzell'Amor co,\nnon posso futole.\nVolgo gente.\nPutare è cosa lo 'nsomar è care,\ncui prego, per far tuo, ver' a spo' gran valention, malende bene que dare\ne tenamar tu dì, che lei a ta,\n
 ```
 

@@ -33,6 +33,7 @@ def write_fake_run(run_dir: Path, final_validation_loss: float = 2.0) -> None:
         run_dir / "config.json",
         {
             "dataset": "expanded_with_petrarch",
+            "tokenizer_type": "character",
             "context_length": 128,
             "batch_size": 32,
             "train_steps": 3,
@@ -119,6 +120,7 @@ def test_summarize_training_run_extracts_config_losses_and_artifacts(tmp_path):
 
     assert summary["run_name"] == "run_a"
     assert summary["dataset"] == "expanded_with_petrarch"
+    assert summary["tokenizer_type"] == "character"
     assert summary["context_length"] == 128
     assert summary["final_train_loss"] == 2.1
     assert summary["final_validation_loss"] == 2.0
@@ -141,6 +143,7 @@ def test_build_training_report_sorts_by_final_validation_loss():
     rows = [
         {
             "run_name": "worse",
+            "tokenizer_type": "character",
             "context_length": 128,
             "batch_size": 32,
             "train_steps": 3,
@@ -158,6 +161,7 @@ def test_build_training_report_sorts_by_final_validation_loss():
         },
         {
             "run_name": "better",
+            "tokenizer_type": "bpe",
             "context_length": 128,
             "batch_size": 32,
             "train_steps": 3,
@@ -178,7 +182,7 @@ def test_build_training_report_sorts_by_final_validation_loss():
     report = build_training_report(rows)
 
     assert report.index("better") < report.index("worse")
-    assert "| Run | Ctx | Batch |" in report
+    assert "| Run | Tok | Ctx | Batch |" in report
     assert "## Sample Previews" in report
 
 
