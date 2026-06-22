@@ -1,5 +1,8 @@
 from collections import Counter
 from dataclasses import dataclass
+import json
+from pathlib import Path
+from typing import Any
 
 
 TokenPair = tuple[str, str]
@@ -120,6 +123,51 @@ class BytePairEncodingTokenizer:
     def vocab_size(self) -> int:
         return len(self.token_to_id)
 
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "type": "unicode_bpe",
+            "token_to_id": self.token_to_id,
+            "merges": [
+                list(pair)
+                for pair in self.merges
+            ],
+            "special_tokens": self.special_tokens,
+        }
+
+    @classmethod
+    def from_dict(cls, payload: dict[str, Any]) -> "BytePairEncodingTokenizer":
+        if payload.get("type") != "unicode_bpe":
+            raise ValueError("tokenizer payload must have type unicode_bpe")
+
+        token_to_id = payload["token_to_id"]
+        merges = [
+            (pair[0], pair[1])
+            for pair in payload["merges"]
+        ]
+        special_tokens = payload["special_tokens"]
+
+        return cls(
+            token_to_id=token_to_id,
+            merges=merges,
+            special_tokens=special_tokens,
+        )
+
+    def save(self, path: Path) -> None:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(
+            json.dumps(self.to_dict(), ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+
+    @classmethod
+    def load(cls, path: Path) -> "BytePairEncodingTokenizer":
+        payload = json.loads(path.read_text(encoding="utf-8"))
+
+        if not isinstance(payload, dict):
+            raise ValueError("tokenizer file must contain a JSON object")
+
+        return cls.from_dict(payload)
+
     def encode(self, text: str) -> list[int]:
         token_sequence = split_text_into_initial_tokens(
             text=text,
@@ -142,6 +190,12 @@ class BytePairEncodingTokenizer:
         ]
 
         return "".join(tokens)
+
+    def tokenize_texts(self, texts: list[str]) -> list[list[int]]:
+        return [
+            self.encode(text)
+            for text in texts
+        ]
 
 
 def build_base_vocabulary(
