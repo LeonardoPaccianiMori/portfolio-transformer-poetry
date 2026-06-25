@@ -1071,6 +1071,45 @@ def test_causal_transformer_language_model_generate_stops_on_stop_token_id():
     assert generated_ids.tolist() == [[1, 1, 2]]
 
 
+def test_causal_transformer_language_model_generate_forbids_token_ids():
+    model = build_biased_generation_model(favored_token_id=2)
+    input_ids = torch.tensor(
+        [[1, 1]],
+        dtype=torch.long,
+    )
+
+    generated_ids = model.generate(
+        input_ids=input_ids,
+        max_new_tokens=3,
+        top_k=1,
+        forbidden_token_ids={2},
+    )
+
+    assert 2 not in generated_ids[:, 2:].tolist()[0]
+
+
+def test_causal_transformer_language_model_generate_rejects_invalid_forbidden_ids():
+    model = build_test_transformer_model()
+    input_ids = torch.tensor(
+        [[1, 2, 3]],
+        dtype=torch.long,
+    )
+
+    with pytest.raises(ValueError, match="forbidden_token_ids"):
+        model.generate(
+            input_ids=input_ids,
+            max_new_tokens=1,
+            forbidden_token_ids={20},
+        )
+
+    with pytest.raises(ValueError, match="forbidden_token_ids"):
+        model.generate(
+            input_ids=input_ids,
+            max_new_tokens=1,
+            forbidden_token_ids=set(range(20)),
+        )
+
+
 def test_causal_transformer_language_model_generate_rejects_invalid_temperature():
     model = build_test_transformer_model()
     input_ids = torch.tensor(

@@ -357,6 +357,7 @@ class CausalTransformerLanguageModel(nn.Module):
         temperature: float = 1.0,
         top_k: int | None = None,
         stop_token_id: int | None = None,
+        forbidden_token_ids: set[int] | None = None,
     ) -> torch.Tensor:
         if input_ids.ndim != 2:
             raise ValueError("input_ids must have shape (batch_size, context_length)")
@@ -370,6 +371,21 @@ class CausalTransformerLanguageModel(nn.Module):
         if top_k is not None and top_k <= 0:
             raise ValueError("top_k must be greater than 0")
 
+        if forbidden_token_ids is not None:
+            vocab_size = self.output_projection.out_features
+
+            if len(forbidden_token_ids) >= vocab_size:
+                raise ValueError("forbidden_token_ids cannot contain every token")
+
+            invalid_token_ids = [
+                token_id
+                for token_id in forbidden_token_ids
+                if token_id < 0 or token_id >= vocab_size
+            ]
+
+            if invalid_token_ids:
+                raise ValueError("forbidden_token_ids contains an invalid token id")
+
         generated_ids = input_ids
 
         for _ in range(max_new_tokens):
@@ -377,6 +393,9 @@ class CausalTransformerLanguageModel(nn.Module):
             logits, _ = self(cropped_input_ids)
             next_token_logits = logits[:, -1, :]
             next_token_logits = next_token_logits / temperature
+
+            if forbidden_token_ids is not None:
+                next_token_logits[:, list(forbidden_token_ids)] = float("-inf")
 
             if top_k is not None:
                 vocab_size = next_token_logits.shape[-1]

@@ -17,6 +17,7 @@ from sonnet_evaluation.generation import (
     load_transformer_from_checkpoint,
     non_empty_line_count,
     safe_prompt_filename,
+    single_token_id_for_text,
     stop_reason_for_text,
     validate_stop_text,
 )
@@ -148,6 +149,58 @@ def write_tiny_bpe_run(run_dir: Path) -> None:
         {
             "model_state_dict": model.state_dict(),
             "vocab_size": 4,
+        },
+        run_dir / "model.pt",
+    )
+
+
+def build_tiny_model_with_vocab(vocab_size: int) -> CausalTransformerLanguageModel:
+    return CausalTransformerLanguageModel(
+        vocab_size=vocab_size,
+        embedding_dim=8,
+        num_layers=1,
+        num_heads=2,
+        head_dim=4,
+        feed_forward_dim=16,
+        max_context_length=8,
+    )
+
+
+def write_stop_biased_tiny_bpe_run(run_dir: Path) -> None:
+    run_dir.mkdir(parents=True)
+    tokenizer = train_bpe_tokenizer(
+        texts=["A\n<|poem_end|>"],
+        vocab_size=4,
+        special_tokens=["<|poem_end|>"],
+    )
+    model = build_tiny_model_with_vocab(tokenizer.vocab_size)
+    stop_token_id = tokenizer.encode("<|poem_end|>")[0]
+    newline_token_id = tokenizer.encode("\n")[0]
+
+    with torch.no_grad():
+        for parameter in model.parameters():
+            parameter.zero_()
+
+        model.output_projection.bias[stop_token_id] = 10.0
+        model.output_projection.bias[newline_token_id] = 9.0
+
+    write_json(
+        run_dir / "config.json",
+        {
+            "vocab_size": tokenizer.vocab_size,
+            "embedding_dim": 8,
+            "num_layers": 1,
+            "num_heads": 2,
+            "head_dim": 4,
+            "feed_forward_dim": 16,
+            "max_context_length": 8,
+        },
+    )
+    tokenizer.save(run_dir / "tokenizer.json")
+    torch.save(
+        {
+            "model_state_dict": model.state_dict(),
+            "vocab_size": tokenizer.vocab_size,
         },
         run_dir / "model.pt",
     )
@@ -353,6 +406,15 @@ def test_validate_stop_text_rejects_empty_stop_text(tmp_path):
         validate_stop_text(tokenizer, "")
 
 
+def test_single_token_id_for_text_rejects_multi_token_text(tmp_path):
+    run_dir = tmp_path / "run"
+    write_tiny_run(run_dir)
+    tokenizer = load_char_tokenizer(run_dir / "tokenizer.json")
+
+    with pytest.raises(ValueError, match="exactly one token"):
+        single_token_id_for_text(tokenizer, "Am")
+
+
 def test_stop_reason_for_text_prefers_stop_text_over_target_lines():
     reason = stop_reason_for_text(
         text="A\nm",
@@ -414,6 +476,81 @@ def test_generate_text_result_stops_after_target_line_is_completed(tmp_path):
     assert result["text"] == "A\n"
     assert result["stop_reason"] == "target_lines"
     assert result["generated_new_tokens"] == 1
+
+
+def test_generate_text_result_suppresses_one_token_stop_text_until_target_lines(tmp_path):
+    run_dir = tmp_path / "run"
+    write_stop_biased_tiny_bpe_run(run_dir)
+    tokenizer = load_tokenizer(run_dir / "tokenizer.json")
+    model = load_transformer_from_checkpoint(
+        checkpoint_path=run_dir / "model.pt",
+        config_path=run_dir / "config.json",
+        device=torch.device("cpu"),
+    )
+
+    result = generate_text_result(
+        model=model,
+        tokenizer=tokenizer,
+        prompt="A",
+        max_new_tokens=5,
+        device=torch.device("cpu"),
+        seed=123,
+        top_k=1,
+        stop_text="<|poem_end|>",
+        target_lines=1,
+        suppress_stop_text_until_target_lines=True,
+    )
+
+    assert result["text"] == "A\n"
+    assert result["stop_reason"] == "target_lines"
+    assert "<|poem_end|>" not in result["text"]
+
+
+def test_generate_text_result_requires_stop_text_for_stop_suppression(tmp_path):
+    run_dir = tmp_path / "run"
+    write_tiny_run(run_dir)
+    tokenizer = load_char_tokenizer(run_dir / "tokenizer.json")
+    model = load_transformer_from_checkpoint(
+        checkpoint_path=run_dir / "model.pt",
+        config_path=run_dir / "config.json",
+        device=torch.device("cpu"),
+    )
+
+    with pytest.raises(ValueError, match="stop_text"):
+        generate_text_result(
+            model=model,
+            tokenizer=tokenizer,
+            prompt="A",
+            max_new_tokens=1,
+            device=torch.device("cpu"),
+            seed=123,
+            target_lines=1,
+            suppress_stop_text_until_target_lines=True,
+        )
+
+
+def test_generate_text_result_requires_single_token_stop_text_for_stop_suppression(tmp_path):
+    run_dir = tmp_path / "run"
+    write_tiny_run(run_dir)
+    tokenizer = load_char_tokenizer(run_dir / "tokenizer.json")
+    model = load_transformer_from_checkpoint(
+        checkpoint_path=run_dir / "model.pt",
+        config_path=run_dir / "config.json",
+        device=torch.device("cpu"),
+    )
+
+    with pytest.raises(ValueError, match="exactly one token"):
+        generate_text_result(
+            model=model,
+            tokenizer=tokenizer,
+            prompt="A",
+            max_new_tokens=1,
+            device=torch.device("cpu"),
+            seed=123,
+            stop_text="Am",
+            target_lines=1,
+            suppress_stop_text_until_target_lines=True,
+        )
 
 
 def test_safe_prompt_filename_sanitizes_prompt_id():
@@ -512,11 +649,13 @@ def test_generate_for_prompts_records_controlled_decoding_metadata(tmp_path):
         top_k=1,
         stop_text="m",
         target_lines=14,
+        suppress_stop_text_until_target_lines=False,
     )
 
     assert metadata["temperature"] == 0.8
     assert metadata["top_k"] == 1
     assert metadata["stop_text"] == "m"
     assert metadata["target_lines"] == 14
+    assert metadata["suppress_stop_text_until_target_lines"] is False
     assert metadata["generated_files"][0]["stop_reason"] == "stop_text"
     assert metadata["generated_files"][0]["generated_new_tokens"] == 1

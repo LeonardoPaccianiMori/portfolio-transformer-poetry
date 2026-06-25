@@ -33,6 +33,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--top-k", type=int, default=None)
     parser.add_argument("--stop-text", default=None)
     parser.add_argument("--target-lines", type=int, default=None)
+    parser.add_argument(
+        "--suppress-stop-text-until-target-lines",
+        action="store_true",
+        help=(
+            "forbid a one-token stop text until the target line count is reached"
+        ),
+    )
     return parser.parse_args()
 
 
@@ -58,6 +65,9 @@ def main() -> None:
         top_k=args.top_k,
         stop_text=args.stop_text,
         target_lines=args.target_lines,
+        suppress_stop_text_until_target_lines=(
+            args.suppress_stop_text_until_target_lines
+        ),
     )
 
     print(f"wrote output directory: {args.output_dir}")

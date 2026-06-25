@@ -92,7 +92,7 @@ def load_prompts(prompts_path: Path) -> list[dict[str, str]]:
 
 def generate_text(
     model: CausalTransformerLanguageModel,
-    tokenizer: CharTokenizer,
+    tokenizer: CharTokenizer | BytePairEncodingTokenizer,
     prompt: str,
     max_new_tokens: int,
     device: torch.device | str,
@@ -101,6 +101,7 @@ def generate_text(
     top_k: int | None = None,
     stop_text: str | None = None,
     target_lines: int | None = None,
+    suppress_stop_text_until_target_lines: bool = False,
 ) -> str:
     result = generate_text_result(
         model=model,
@@ -113,6 +114,7 @@ def generate_text(
         top_k=top_k,
         stop_text=stop_text,
         target_lines=target_lines,
+        suppress_stop_text_until_target_lines=suppress_stop_text_until_target_lines,
     )
 
     return result["text"]
@@ -148,7 +150,10 @@ def line_count_stop_reached(text: str, target_lines: int | None) -> bool:
     return completed_non_empty_line_count(text) >= target_lines
 
 
-def validate_stop_text(tokenizer: CharTokenizer, stop_text: str | None) -> None:
+def validate_stop_text(
+    tokenizer: CharTokenizer | BytePairEncodingTokenizer,
+    stop_text: str | None,
+) -> None:
     if stop_text is None:
         return
 
@@ -156,6 +161,36 @@ def validate_stop_text(tokenizer: CharTokenizer, stop_text: str | None) -> None:
         raise ValueError("stop_text must not be empty")
 
     tokenizer.encode(stop_text)
+
+
+def single_token_id_for_text(
+    tokenizer: CharTokenizer | BytePairEncodingTokenizer,
+    text: str,
+) -> int:
+    token_ids = tokenizer.encode(text)
+
+    if len(token_ids) != 1:
+        raise ValueError("suppressed stop text must encode to exactly one token")
+
+    return token_ids[0]
+
+
+def validate_stop_text_suppression(
+    tokenizer: CharTokenizer | BytePairEncodingTokenizer,
+    stop_text: str | None,
+    target_lines: int | None,
+    suppress_stop_text_until_target_lines: bool,
+) -> int | None:
+    if not suppress_stop_text_until_target_lines:
+        return None
+
+    if stop_text is None:
+        raise ValueError("stop_text is required when suppressing stop text")
+
+    if target_lines is None:
+        raise ValueError("target_lines is required when suppressing stop text")
+
+    return single_token_id_for_text(tokenizer, stop_text)
 
 
 def stop_reason_for_text(
@@ -174,7 +209,7 @@ def stop_reason_for_text(
 
 def generate_text_result(
     model: CausalTransformerLanguageModel,
-    tokenizer: CharTokenizer,
+    tokenizer: CharTokenizer | BytePairEncodingTokenizer,
     prompt: str,
     max_new_tokens: int,
     device: torch.device | str,
@@ -183,8 +218,15 @@ def generate_text_result(
     top_k: int | None = None,
     stop_text: str | None = None,
     target_lines: int | None = None,
+    suppress_stop_text_until_target_lines: bool = False,
 ) -> dict[str, Any]:
     validate_stop_text(tokenizer, stop_text)
+    suppressed_stop_token_id = validate_stop_text_suppression(
+        tokenizer=tokenizer,
+        stop_text=stop_text,
+        target_lines=target_lines,
+        suppress_stop_text_until_target_lines=suppress_stop_text_until_target_lines,
+    )
 
     generator = torch.Generator(device=device).manual_seed(seed)
     input_ids = torch.tensor(
@@ -211,6 +253,7 @@ def generate_text_result(
         }
 
     generated_ids = input_ids
+    generated_text = prompt
     stop_reason = stop_reason_for_text(
         text=prompt,
         stop_text=stop_text,
@@ -221,12 +264,21 @@ def generate_text_result(
         if stop_reason is not None:
             break
 
+        forbidden_token_ids = None
+
+        if (
+            suppressed_stop_token_id is not None
+            and not line_count_stop_reached(generated_text, target_lines)
+        ):
+            forbidden_token_ids = {suppressed_stop_token_id}
+
         generated_ids = model.generate(
             input_ids=generated_ids,
             max_new_tokens=1,
             generator=generator,
             temperature=temperature,
             top_k=top_k,
+            forbidden_token_ids=forbidden_token_ids,
         )
         generated_text = tokenizer.decode(generated_ids[0].cpu().tolist())
         stop_reason = stop_reason_for_text(
@@ -271,6 +323,7 @@ def generate_for_prompts(
     top_k: int | None = None,
     stop_text: str | None = None,
     target_lines: int | None = None,
+    suppress_stop_text_until_target_lines: bool = False,
 ) -> dict[str, Any]:
     tokenizer = load_tokenizer(run_dir / "tokenizer.json")
     model = load_transformer_from_checkpoint(
@@ -294,6 +347,7 @@ def generate_for_prompts(
             top_k=top_k,
             stop_text=stop_text,
             target_lines=target_lines,
+            suppress_stop_text_until_target_lines=suppress_stop_text_until_target_lines,
         )
         generated_text = generation_result["text"]
         output_path = output_dir / safe_prompt_filename(prompt["id"])
@@ -317,6 +371,7 @@ def generate_for_prompts(
         "top_k": top_k,
         "stop_text": stop_text,
         "target_lines": target_lines,
+        "suppress_stop_text_until_target_lines": suppress_stop_text_until_target_lines,
         "generated_files": generated_files,
     }
     metadata_path = output_dir / "metadata.json"
