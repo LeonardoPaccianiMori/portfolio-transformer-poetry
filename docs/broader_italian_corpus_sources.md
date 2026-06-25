@@ -35,6 +35,132 @@ comfortably, this policy can be revisited. Otherwise, use reproducible build
 scripts, Git LFS, release artifacts, or external artifact storage after an
 explicit decision.
 
+## Access And Reuse Follow-Up
+
+Status date: 2026-06-25.
+
+This section records the first follow-up on the two blocking source-policy
+questions:
+
+1. Can OVI/TLIO be used for model training?
+2. Can Italian Wikisource CC BY-SA text be used as a fallback source?
+
+### OVI / TLIO Status
+
+Current status: `blocked_pending_permission`.
+
+What public sources confirm:
+
+- TLIO is the best conceptual match for this project because it is described as
+  a corpus of Italian texts before 1375.
+- A public corpus overview reports about 1,780 TLIO texts and about 20M words,
+  including prose and poetry.
+- The TLIO page describes GATTO as an online system that shows the corpus text
+  used by the dictionary editors.
+
+What is not confirmed:
+
+- official bulk download route;
+- explicit permission for model training;
+- permission to redistribute processed derived corpus text;
+- database/edition-specific reuse constraints;
+- whether automated access is acceptable.
+
+Browsing note:
+
+- Attempts to open the official OVI/TLIO web pages from the browsing tool timed
+  out during this audit pass.
+- Secondary sources link to the official TLIO and OVI pages, but secondary
+  sources are not enough to approve reuse for training.
+
+Decision:
+
+Do not use OVI/TLIO as training data until official terms or direct permission
+are obtained.
+
+Allowed now:
+
+- use OVI/TLIO as evidence that enough old Italian text likely exists;
+- use it as a source-discovery reference;
+- record its reported scale and period coverage in planning documents.
+
+Not allowed yet:
+
+- bulk download;
+- scraping;
+- training on extracted TLIO text;
+- committing TLIO-derived processed text.
+
+Recommended action:
+
+Find an official contact or access page and ask whether noncommercial academic
+model training is allowed, whether bulk text access exists, and whether local
+derived training text may be stored but not redistributed.
+
+### Italian Wikisource Status
+
+Current status: `approved_fallback_with_attribution_policy`.
+
+What public sources confirm:
+
+- Italian Wikisource is a digital library containing public-domain texts or
+  freely licensed texts.
+- Its collection description says texts are either public domain or under
+  CC BY-SA.
+- Wikimedia provides bulk dumps for Italian Wikisource. The latest dump listing
+  includes `itwikisource-latest-pages-articles.xml.bz2`.
+
+Policy decision:
+
+Italian Wikisource can be used as the practical fallback source, including
+CC BY-SA pages, if we preserve attribution and license metadata.
+
+Required metadata for each Wikisource-derived text:
+
+- source page URL;
+- title;
+- author or anonymous status;
+- Wikisource page revision or dump date if available;
+- source archive: `Italian Wikisource`;
+- source license label, such as public domain or CC BY-SA;
+- source edition or scan metadata when available;
+- extraction date;
+- cleaning notes;
+- whether text was modified during cleaning.
+
+CC BY-SA handling:
+
+- prefer public-domain pages where possible;
+- include CC BY-SA pages only when attribution/license metadata is recorded;
+- do not present CC BY-SA text as public domain;
+- public reports should state that some training text may come from CC BY-SA
+  Wikisource pages if such pages are included;
+- processed large corpus text should not be committed to normal Git by default.
+
+Reasoning:
+
+Creative Commons BY-SA allows sharing and adaptation, including commercial use,
+when attribution, license link, change notices, and share-alike requirements are
+respected. This is compatible enough for this project if we treat attribution
+and license metadata as part of the dataset, not as an afterthought.
+
+### Practical Source Direction
+
+Use this order:
+
+1. Keep OVI/TLIO as the ideal target, but blocked pending official reuse clarity.
+2. Build the first practical broader corpus probe from curated Italian
+   Wikisource pages.
+3. Add Liber Liber, Project Gutenberg, and Biblioteca Italiana only after their
+   source-specific terms are audited.
+
+Next practical artifact:
+
+`docs/broader_italian_wikisource_worklist.md`
+
+This should list candidate authors and works from Italian Wikisource, with
+period, genre, likely source URL, license/status field, and inclusion priority.
+
 ## Why This Corpus Exists
 
 The current sonnet corpus is too small to train a realistic language model from
