@@ -149,17 +149,24 @@ and license metadata as part of the dataset, not as an afterthought.
 Use this order:
 
 1. Keep OVI/TLIO as the ideal target, but blocked pending official reuse clarity.
-2. Build the first practical broader corpus probe from curated Italian
-   Wikisource pages.
-3. Add Liber Liber, Project Gutenberg, and Biblioteca Italiana only after their
-   source-specific terms are audited.
+2. Build the first practical broader corpus probe from curated public-domain
+   prose works in Project Gutenberg, because Gutenberg has explicit per-book
+   landing pages, public-domain status fields, and stable download metadata.
+3. Add Liber Liber works as targeted candidates when the underlying work is out
+   of copyright and the manifest records the Liber Liber license layer. Treat
+   Liber Liber edition material as separate from the public-domain underlying
+   text.
+4. Add Italian Wikisource and Biblioteca Italiana candidates after their
+   source-specific terms, attribution requirements, and extraction path are
+   recorded.
 
-Next practical artifact:
+Current practical artifact:
 
-`docs/broader_italian_wikisource_worklist.md`
+`docs/broader_italian_prose_worklist.md`
 
-This should list candidate authors and works from Italian Wikisource, with
-period, genre, likely source URL, license/status field, and inclusion priority.
+This lists candidate prose works from Project Gutenberg, Liber Liber, and
+Italian Wikisource, with period, genre, likely source URL, license/status field,
+and inclusion priority.
 
 ## Why This Corpus Exists
 
@@ -315,67 +322,168 @@ Candidate work groups:
 
 ### 3. Liber Liber / Progetto Manuzio
 
-Source link:
+Source links:
 
-- https://it.wikipedia.org/wiki/Liber_Liber
+- https://liberliber.it/
+- https://liberliber.it/opere/libri/licenze/
+- https://liberliber.it/autori/autori-b/giovanni-boccaccio/
+- https://liberliber.it/autori/autori-b/matteo-bandello/
+- https://liberliber.it/autori/autori-b/pietro-bembo/
 
 Why it matters:
 
-- large Italian digital library;
-- reported to contain thousands of digitized works;
+- large Italian digital library with a clear author/work index;
 - many works are classics and out of copyright;
-- may provide simpler text/ePub files than raw Wikisource markup.
+- may provide simpler text/ePub files than raw Wikisource markup;
+- contains important prose candidates, including Boccaccio's *Decameron*,
+  *Elegia di Madonna Fiammetta*, *Filocolo*, and *Trattatello in laude di
+  Dante*; Bandello's *Novelle*; and Bembo's *Gli Asolani* and *Prose della
+  volgar lingua*.
+
+Reuse status:
+
+- Liber Liber says e-books can be downloaded and used personally for free.
+- It distinguishes works free of copyright from works protected by copyright.
+- For works free of copyright, it says the works can be used freely, while
+  protected edition elements such as layout and covers are distributed, unless
+  otherwise stated, under Creative Commons Attribution-NonCommercial-ShareAlike
+  4.0.
+- It defines "free of copyright" pragmatically as works whose authors,
+  translators, and editors have been dead for more than 70 years, with a note
+  that legal exceptions may apply.
+
+Project policy:
+
+- use Liber Liber as a candidate-discovery and fallback text source;
+- prefer extracting plain primary text, not cover/layout/synopsis material;
+- record both the underlying-work public-domain status and the Liber Liber
+  edition/license layer;
+- do not use Liber Liber texts marked as protected by copyright;
+- do not assume commercial reuse for Liber Liber edition material because of the
+  CC BY-NC-SA layer;
+- do not bulk scrape the site; use manually approved URLs or a respectful,
+  source-aware downloader only after the manifest is defined.
 
 Risks:
 
-- site terms and per-work reuse need direct verification;
 - some texts may be modern editorial versions;
 - period metadata may require manual work;
-- files may include headers, volunteer notes, and formatting artifacts.
+- files may include headers, volunteer notes, and formatting artifacts;
+- non-commercial restrictions on Liber Liber edition elements are not ideal for
+  a dataset that might later be published broadly.
 
 Audit questions:
 
-- What are the exact reuse terms for downloaded texts?
 - Are text files or ePubs available for the early Italian works we need?
 - Are edition/transcription notes sufficient for provenance?
 - Does the site permit automated downloads, or should we manually list approved
   URLs?
+- Can the corpus builder cleanly remove Liber Liber site/edition wrapper text
+  while retaining attribution metadata?
 
 Recommendation:
 
-Use Liber Liber as a targeted expansion source after terms are verified. Do not
-bulk scrape until access policy is known.
+Use Liber Liber as a targeted expansion source, not as the first automated bulk
+source. It is useful for high-value prose candidates, but the manifest must
+preserve license/provenance metadata and mark the edition layer separately.
+
+Initial prose-only Liber Liber candidates:
+
+| Priority | Author | Work | Approx. period | Genre | Inclusion note |
+| ---: | --- | --- | --- | --- | --- |
+| 1 | Giovanni Boccaccio | *Decameron* | 1349-1353 | prose novelle / frame narrative | Strongest prose candidate; include before later Renaissance prose if licensing and edition metadata are clean. |
+| 2 | Giovanni Boccaccio | *Trattatello in laude di Dante* | 14th c. | literary biography / prose | Good old Italian prose; useful style bridge from Dante/Boccaccio period. |
+| 3 | Giovanni Boccaccio | *Elegia di Madonna Fiammetta* | 1343-1344 | prose fiction | Strong prose candidate; verify edition source and remove paratext. |
+| 4 | Giovanni Boccaccio | *Filocolo* | 1336-1338 | prose romance | Strong but long; useful if edition text is clean. |
+| 5 | Matteo Bandello | *Novelle* | 1554/1573 | prose novelle | Later Tier C scale expansion; include only in a labeled 1200-1600 corpus. |
+| 6 | Pietro Bembo | *Prose della volgar lingua* | 1525 | linguistic prose dialogue/treatise | Useful for historical Italian prose and language discussion; Tier C. |
+| 7 | Pietro Bembo | *Gli Asolani* | 1505/1530 | prose dialogue | Tier C literary prose; include only after core medieval prose. |
+
+Explicit exclusions from this audit pass:
+
+- Ariosto, *Orlando Furioso*: exclude because it is verse, even though it is a
+  major historical Italian text.
+- Ariosto, *Rinaldo*: exclude because it is verse/fragments, not prose.
+- Any *Rime*, canzonieri, ottave, capitoli, or poem collections from Liber
+  Liber: exclude from the broader prose pretraining corpus. They may be useful
+  only for a separate poetry experiment.
 
 ### 4. Project Gutenberg
 
 Source links:
 
-- https://en.wikipedia.org/wiki/Project_Gutenberg
 - https://www.gutenberg.org/
+- https://www.gutenberg.org/browse/languages/it
+- https://www.gutenberg.org/policy/terms_of_use.html
+- https://www.gutenberg.org/policy/permission.html
+- https://www.gutenberg.org/ebooks/44549
+- https://www.gutenberg.org/ebooks/69898
+- https://www.gutenberg.org/ebooks/30766
+- https://www.gutenberg.org/ebooks/26961
+- https://www.gutenberg.org/ebooks/71218
 
 Why it matters:
 
 - strong public-domain clearance tradition under US law;
-- easy downloads;
-- useful fallback for canonical Italian works.
+- explicit landing pages with per-book public-domain status;
+- Italian-language browse page makes candidate discovery practical;
+- Project Gutenberg's permissions page says most permission requests do not need
+  a custom response because most e-books are public domain in the United States,
+  including commercial use, derivative works, and republication;
+- good fallback for old Italian prose, chronicles, commentaries, treatises, and
+  narrative prose.
+
+Reuse status:
+
+- use only Project Gutenberg e-books whose landing page says public domain in
+  the USA;
+- obey Gutenberg's site rules: use main landing-page links in documentation,
+  use mirrors/catalogs for automated downloads, and strip Gutenberg header/footer
+  boilerplate from training text;
+- record that copyright status is US-based and may differ in other countries.
 
 Risks:
 
 - Italian historical coverage may be uneven;
 - editions may be modernized;
 - Project Gutenberg trademark and redistribution rules must be respected;
-- legal public-domain status can differ by country.
+- legal public-domain status can differ by country;
+- some strong-looking texts are translations into English or modern Italian and
+  should be excluded unless explicitly intended for a different experiment.
 
 Audit questions:
 
-- Which Italian-language medieval/Trecento works are present?
-- Are the Italian texts original-language or translations?
 - Which editions are used?
 - Do we need to strip Project Gutenberg header/footer boilerplate?
+- How should we handle mixed prose/poetry works, such as Dante's *Vita nuova*?
 
 Recommendation:
 
-Use for selected texts, not as the main corpus source.
+Use Project Gutenberg as the first practical automated probe for the broader
+prose corpus, because the source metadata and public-domain status are explicit.
+Start with a small manually curated manifest, estimate text size, then expand.
+
+Initial prose-only Project Gutenberg candidates:
+
+| Priority | Author | Work | PG eBook | Approx. period | Genre | Inclusion note |
+| ---: | --- | --- | --- | --- | --- | --- |
+| 1 | Sidrac / anonymous tradition | *Il libro di Sidrach: testo inedito del secolo XIV* | 44549 | 14th c. text | encyclopedic / philosophical prose | Strong Tier A/B prose candidate; large plain text file; public domain in USA. |
+| 2 | Matteo Villani | *Cronica di Matteo Villani*, vols. 1-5 | 69898 and related author page | 14th c. | chronicle prose | Very strong old Italian prose candidate; include all volumes after verifying related eBook IDs. |
+| 3 | Jacopo Alighieri | *Chiose alla cantica dell'Inferno* | 30766 | early 14th c. text, later edition | commentary prose | Useful commentary prose; remove modern editor introduction if separable. |
+| 4 | Caterina da Siena | *Libro della divina dottrina: Dialogo della divina provvidenza* | 26961 | late 14th c. | mystical/spiritual prose | Strong Tier B prose; source mentions Biblioteca Italiana images, so keep provenance. |
+| 5 | Dante Alighieri | *La vita nuova* | 71218 | 1294 | mixed prose and poetry | Do not include as-is in prose corpus; include only if prose sections can be extracted cleanly and poems excluded. |
+| 6 | Giovanni Boccaccio | *Decameron* if Italian edition is present | TBD | 1349-1353 | prose novelle | Search Gutenberg catalog directly during manifest creation; if only translations are present, exclude those translations. |
+| 7 | Niccolo Machiavelli | Italian prose works if present | author page 563 includes one Italian mixed/dramatic item | 16th c. | political/prose or drama | Defer for Tier C; current visible Italian item is *La mandragola - La Clizia - Belfagor*, which includes drama and is not an ideal prose-pretraining core. |
+
+Explicit exclusions from this audit pass:
+
+- Dante, *Divina Commedia*: exclude because it is poetry.
+- Ariosto, *Orlando Furioso*: exclude because it is poetry.
+- English translations of Italian works, such as Gutenberg's English *The
+  Banquet (Il Convito)*: exclude from Italian pretraining.
+- Drama-only works: defer unless we create a separate dialogue/drama corpus.
+- Modern novels and essays: defer to a labeled post-1600 scale experiment, not
+  the vintage core.
 
 ### 5. Biblioteca Italiana And Scholarly Digital Editions
 
@@ -447,6 +555,19 @@ Exclude or defer:
   comparison corpus;
 - pages where the primary text cannot be separated from notes or navigation;
 - duplicated works from multiple editions unless an edition policy is defined.
+- poetry and verse works from the broader pretraining corpus, even if they are
+  historically important;
+- mixed prose/poetry works unless the corpus builder can extract prose sections
+  cleanly and record that extraction decision.
+
+Prose-only rule:
+
+The broader Italian pretraining corpus should start as a prose corpus. The
+sonnet corpus already handles poetry specialization. Keeping the broader corpus
+prose-only reduces contamination from verse lineation, rhyme, and meter, and
+makes the pretraining objective focus on grammar, syntax, discourse coherence,
+historical vocabulary, and narrative/expository structure. Poetry can be added
+only as a named, separate experiment.
 
 ## Proposed Dataset Versions
 
@@ -454,27 +575,35 @@ Exclude or defer:
 | --- | --- | --- |
 | `old_italian_core_pre1375` | verified pre-1375 Italian/volgare texts only | period-pure pretraining core |
 | `old_italian_wikisource_selected` | curated Wikisource early Italian works | practical first build |
+| `old_italian_prose_pg_liberliber_probe` | curated Project Gutenberg and Liber Liber prose candidates | first practical prose-only source probe |
 | `historical_italian_1200_1600` | broader medieval/early modern corpus | scale expansion |
 | `historical_italian_plus_sonnets` | broader corpus plus sonnet fine-tuning lineage | final from-scratch path |
 
 ## Recommended Next Steps
 
-1. Verify OVI/TLIO access and reuse terms.
-2. Build a candidate worklist for Italian Wikisource early texts.
-3. Decide whether CC BY-SA Wikisource text is acceptable for training and public
-   project documentation.
-4. Define a broader-corpus manifest schema, separate from but compatible with
+1. Define a broader-corpus manifest schema, separate from but compatible with
    the sonnet manifest.
-5. Implement a small source-probe script that counts candidate Wikisource pages
-   and estimates cleaned text size before downloading any large dump.
+2. Implement a small source-probe script for Project Gutenberg candidates that
+   reads landing-page metadata, strips boilerplate from text downloads, and
+   estimates cleaned text size.
+3. Add Liber Liber only after the manifest can record the underlying work status
+   and the Liber Liber edition/license layer separately.
+4. Verify OVI/TLIO access and reuse terms in parallel, but do not block the
+   Project Gutenberg prose probe on OVI/TLIO.
+5. Build a candidate worklist for Italian Wikisource early prose after the
+   Project Gutenberg/Liber Liber probe is working.
+6. Decide whether CC BY-SA Wikisource text is acceptable for training and public
+   project documentation.
 
 ## Current Recommendation
 
-Start with source audit and metadata only. Do not download or build the broader
-corpus until the OVI/TLIO access question and the Wikisource CC BY-SA policy
-question are resolved.
+Start with source audit and metadata only. Do not download or build a large
+broader corpus yet.
 
 If OVI/TLIO is reusable, it should be the primary corpus.
 
-If OVI/TLIO is not reusable or is practically inaccessible, use a curated
-Wikisource/Liber Liber/Gutenberg corpus with strict period labels and provenance.
+For immediate progress, build a small prose-only Project Gutenberg probe first.
+Then add Liber Liber prose works with strict license/provenance fields. If
+OVI/TLIO is not reusable or is practically inaccessible, expand through a
+curated Gutenberg/Liber Liber/Wikisource corpus with strict period labels,
+genre labels, and provenance.
