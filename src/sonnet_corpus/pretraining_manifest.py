@@ -201,3 +201,15 @@ def write_pretraining_manifest(rows: list[PretrainingSourceRow], path: Path) -> 
         writer.writeheader()
         for row in rows:
             writer.writerow(asdict(row))
+
+
+def read_pretraining_manifest(path: Path) -> list[PretrainingSourceRow]:
+    """Read broader pretraining source rows from CSV."""
+
+    with path.open(encoding="utf-8", newline="") as handle:
+        rows = [PretrainingSourceRow(**row) for row in csv.DictReader(handle)]
+
+    for row in rows:
+        row.validate()
+
+    return rows
