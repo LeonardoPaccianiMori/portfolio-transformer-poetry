@@ -581,29 +581,31 @@ only as a named, separate experiment.
 
 ## Recommended Next Steps
 
-1. Define a broader-corpus manifest schema, separate from but compatible with
-   the sonnet manifest.
-2. Implement a small source-probe script for Project Gutenberg candidates that
-   reads landing-page metadata, strips boilerplate from text downloads, and
-   estimates cleaned text size.
-3. Add Liber Liber only after the manifest can record the underlying work status
-   and the Liber Liber edition/license layer separately.
-4. Verify OVI/TLIO access and reuse terms in parallel, but do not block the
-   Project Gutenberg prose probe on OVI/TLIO.
-5. Build a candidate worklist for Italian Wikisource early prose after the
-   Project Gutenberg/Liber Liber probe is working.
-6. Decide whether CC BY-SA Wikisource text is acceptable for training and public
-   project documentation.
+1. Expand the manifest with additional verified Project Gutenberg prose volumes
+   and the audited Liber Liber Boccaccio candidates.
+2. Probe each added work and keep source, period, genre, edition, and licensing
+   metadata explicit.
+3. Implement the complete processed-text builder after the candidate pool is
+   large enough to justify a named corpus version.
+4. Train a new BPE tokenizer on the selected broader corpus; do not reuse the
+   sonnet-only vocabulary as if it covered the new domain.
+5. Verify OVI/TLIO access and reuse terms in parallel, but do not block practical
+   corpus expansion on OVI/TLIO.
+6. Build a candidate worklist for Italian Wikisource early prose if Gutenberg
+   and Liber Liber remain below the target.
 
 ## Current Recommendation
 
-Start with source audit and metadata only. Do not download or build a large
-broader corpus yet.
+The first live Project Gutenberg probe is complete. Four prose works produced
+2,502,986 cleaned characters and 417,955 whitespace-delimited units; see
+`data/metadata/broader_prose_probe_report.json`. This is not enough for the
+planned 10M-25M BPE-token first corpus, so the source pool must expand before
+the complete corpus build.
 
 If OVI/TLIO is reusable, it should be the primary corpus.
 
-For immediate progress, build a small prose-only Project Gutenberg probe first.
-Then add Liber Liber prose works with strict license/provenance fields. If
-OVI/TLIO is not reusable or is practically inaccessible, expand through a
-curated Gutenberg/Liber Liber/Wikisource corpus with strict period labels,
-genre labels, and provenance.
+For immediate progress, add related Project Gutenberg prose volumes and Liber
+Liber prose works with strict license/provenance fields. If OVI/TLIO is not
+reusable or is practically inaccessible, continue through a curated
+Gutenberg/Liber Liber/Wikisource corpus with strict period labels, genre labels,
+and provenance.

@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+from sonnet_corpus.bpe import BytePairEncodingTokenizer
 from sonnet_corpus.gutenberg import FetchedGutenbergText
 from sonnet_corpus.pretraining_manifest import (
     PretrainingSourceRow,
@@ -121,6 +122,8 @@ def test_probe_gutenberg_sources_writes_report(tmp_path: Path):
     assert report["skipped_rows"] == 1
     assert report["total_cleaned_words"] == 6
     assert report["total_bpe_tokens"] is None
+    assert report["bpe_tokenized_rows"] == 0
+    assert report["bpe_tokenization_error_rows"] == 0
 
     saved = json.loads(report_path.read_text(encoding="utf-8"))
     assert saved["results"][0]["source_id"] == "pg_sidrac_44549"
@@ -151,3 +154,43 @@ def test_probe_gutenberg_sources_records_fetch_errors(tmp_path: Path):
 
     saved = json.loads(report_path.read_text(encoding="utf-8"))
     assert saved["results"][0]["status"] == "error"
+
+
+def test_probe_records_incompatible_tokenizer_without_losing_text_counts(
+    tmp_path: Path,
+):
+    manifest_path = tmp_path / "manifest.csv"
+    report_path = tmp_path / "report.json"
+    tokenizer_path = tmp_path / "tokenizer.json"
+    write_pretraining_manifest([make_row()], manifest_path)
+    BytePairEncodingTokenizer(
+        token_to_id={"a": 0},
+        merges=[],
+        special_tokens=[],
+    ).save(tokenizer_path)
+
+    def fake_fetch_text(ebook_id, session=None):
+        return FetchedGutenbergText(
+            ebook_id=ebook_id,
+            url="https://example.test/book.txt",
+            text="ab",
+        )
+
+    report = probe_gutenberg_sources(
+        manifest_path=manifest_path,
+        report_path=report_path,
+        tokenizer_path=tokenizer_path,
+        request_delay=0,
+        fetch_text=fake_fetch_text,
+    )
+
+    result = report["results"][0]
+    assert result["status"] == "ok"
+    assert result["cleaned_character_count"] == 3
+    assert result["bpe_token_count"] is None
+    assert result["bpe_tokenization_error"] == (
+        "tokenizer vocabulary does not contain 'b'"
+    )
+    assert report["bpe_tokenized_rows"] == 0
+    assert report["bpe_tokenization_error_rows"] == 1
+    assert report["total_bpe_tokens"] is None

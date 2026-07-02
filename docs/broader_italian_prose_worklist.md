@@ -88,16 +88,25 @@ Required metadata fields:
 | Any source | *Rime*, canzonieri, ottave, capitoli, poem collections | Poetry. Keep separate from broader prose corpus. |
 | Any source | Drama-only works | Defer unless we create a dialogue/drama dataset version. |
 
-## Next Builder Step
+## First Probe Result
 
-Build a small Project Gutenberg source-probe script that:
+The first live probe completed on 2026-07-02. Its committed report is
+`data/metadata/broader_prose_probe_report.json`.
 
-1. reads a manifest with the first four `include_probe` candidates;
-2. downloads or reads the listed plain-text files through a respectful access
-   path;
-3. strips Project Gutenberg boilerplate;
-4. estimates cleaned character count and BPE token count;
-5. writes a metadata report, not a large committed corpus file.
+| Measure | Result |
+| --- | ---: |
+| successfully fetched prose works | 4 |
+| cleaned characters | 2,502,986 |
+| whitespace-delimited units | 417,955 |
+| exact BPE tokens | unavailable with the sonnet tokenizer |
 
-After the Project Gutenberg probe works, add Liber Liber candidates with a
-separate source adapter and stricter license-layer metadata.
+The existing sonnet BPE tokenizer cannot encode every character in these
+works. This is expected because its base vocabulary was learned from the much
+smaller sonnet corpus. The report records each incompatibility instead of
+misreporting a partial token total. A new BPE tokenizer will be trained after
+the broader corpus contents are selected.
+
+This probe is substantially below the planned 10M-25M BPE-token first-corpus
+target. The next source checkpoint is therefore to add more verified prose
+volumes, starting with related Project Gutenberg volumes and the audited Liber
+Liber Boccaccio works, before implementing the complete processed-text builder.
