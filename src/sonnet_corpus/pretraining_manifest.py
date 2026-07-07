@@ -180,6 +180,14 @@ class PretrainingSourceRow:
                     "Liber Liber row requires a separate license/edition-layer note: "
                     f"{self.source_id}"
                 )
+            if self.inclusion_status in {
+                "include_probe",
+                "conditional_extract_prose",
+            } and "cc by-nc-sa 4.0" not in license_text:
+                raise ValueError(
+                    "active Liber Liber row requires exact CC BY-NC-SA 4.0 terms: "
+                    f"{self.source_id}"
+                )
 
     def _validate_split_policy(self) -> None:
         if self.inclusion_status in {"exclude", "defer"} and self.split not in {"", "excluded"}:

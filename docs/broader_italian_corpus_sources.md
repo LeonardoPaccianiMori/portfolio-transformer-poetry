@@ -364,6 +364,15 @@ Project policy:
 - do not bulk scrape the site; use manually approved URLs or a respectful,
   source-aware downloader only after the manifest is defined.
 
+Decision on 2026-07-07:
+
+- active Liber Liber editions explicitly licensed `CC BY-NC-SA 4.0` are
+  approved for this project;
+- every row must retain source, edition, contributor, and exact license
+  attribution;
+- this corpus/model lineage is non-commercial and share-alike unless those
+  editions are replaced or separately licensed.
+
 Risks:
 
 - some texts may be modern editorial versions;
@@ -581,11 +590,11 @@ only as a named, separate experiment.
 
 ## Recommended Next Steps
 
-1. Expand the manifest with additional verified Project Gutenberg prose volumes
-   and the audited Liber Liber Boccaccio candidates.
-2. Probe each added work and keep source, period, genre, edition, and licensing
-   metadata explicit.
-3. Implement the complete processed-text builder after the candidate pool is
+1. Implement a Liber Liber source adapter for the approved Creative Commons
+   prose rows.
+2. Probe each added work and emit source, period, genre, edition, licensing, and
+   attribution metadata.
+3. Implement the complete processed-text builder after the measured candidate pool is
    large enough to justify a named corpus version.
 4. Train a new BPE tokenizer on the selected broader corpus; do not reuse the
    sonnet-only vocabulary as if it covered the new domain.
@@ -596,16 +605,15 @@ only as a named, separate experiment.
 
 ## Current Recommendation
 
-The first live Project Gutenberg probe is complete. Four prose works produced
-2,502,986 cleaned characters and 417,955 whitespace-delimited units; see
+The expanded Project Gutenberg probe is complete. Eight prose works produced
+4,342,736 cleaned characters and 718,512 whitespace-delimited units; see
 `data/metadata/broader_prose_probe_report.json`. This is not enough for the
-planned 10M-25M BPE-token first corpus, so the source pool must expand before
-the complete corpus build.
+planned 10M-25M BPE-token first corpus, so the approved Creative Commons source
+pool must be measured before the complete corpus build.
 
 If OVI/TLIO is reusable, it should be the primary corpus.
 
-For immediate progress, add related Project Gutenberg prose volumes and Liber
-Liber prose works with strict license/provenance fields. If OVI/TLIO is not
-reusable or is practically inaccessible, continue through a curated
-Gutenberg/Liber Liber/Wikisource corpus with strict period labels, genre labels,
-and provenance.
+For immediate progress, measure the approved Liber Liber prose works with strict
+license/provenance fields. If OVI/TLIO is not reusable or Gutenberg and Liber
+Liber remain too small, continue through a curated Wikisource corpus with strict
+period labels, genre labels, and provenance.

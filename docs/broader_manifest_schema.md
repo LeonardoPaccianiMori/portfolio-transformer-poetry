@@ -141,6 +141,14 @@ This matters because the model should train on primary text, not silently absorb
 archive wrapper text or modern edition material. From a project-governance view,
 the manifest makes this distinction explicit and reviewable.
 
+The project accepts active Liber Liber editions licensed under
+`CC BY-NC-SA 4.0`. Every active row must record that exact license, the source
+edition and editor when provided, and the named digitization/publication/review
+contributors. The broader-corpus builder must generate an attribution file from
+these fields. The non-commercial restriction applies to this corpus/model track;
+commercial reuse would require replacing these editions or obtaining separate
+permission.
+
 ## Data Science Role
 
 This manifest is dataset governance.

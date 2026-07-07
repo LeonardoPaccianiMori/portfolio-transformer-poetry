@@ -1,14 +1,14 @@
 {
-  "started_at_utc": "2026-07-02T07:18:55+00:00",
-  "finished_at_utc": "2026-07-02T07:20:12+00:00",
+  "started_at_utc": "2026-07-07T15:06:48+00:00",
+  "finished_at_utc": "2026-07-07T15:07:07+00:00",
   "manifest_path": "data/metadata/broader_prose_sources_manifest.csv",
-  "tokenizer_path": "data/metadata/bpe_tokenizer.json",
-  "selected_rows": 4,
-  "skipped_rows": 1,
-  "total_cleaned_characters": 2502986,
-  "total_cleaned_words": 417955,
+  "tokenizer_path": "",
+  "selected_rows": 8,
+  "skipped_rows": 10,
+  "total_cleaned_characters": 4342736,
+  "total_cleaned_words": 718512,
   "bpe_tokenized_rows": 0,
-  "bpe_tokenization_error_rows": 4,
+  "bpe_tokenization_error_rows": 0,
   "total_bpe_tokens": null,
   "results": [
     {
@@ -24,7 +24,7 @@
       "cleaned_character_count": 850892,
       "cleaned_word_count": 144479,
       "bpe_token_count": null,
-      "bpe_tokenization_error": "tokenizer vocabulary does not contain '8'",
+      "bpe_tokenization_error": "",
       "cleaning_notes": "Preserve source spelling and punctuation after boilerplate removal."
     },
     {
@@ -40,7 +40,7 @@
       "cleaned_character_count": 459600,
       "cleaned_word_count": 74872,
       "bpe_token_count": null,
-      "bpe_tokenization_error": "tokenizer vocabulary does not contain '’'",
+      "bpe_tokenization_error": "",
       "cleaning_notes": "Preserve source spelling and punctuation after boilerplate removal."
     },
     {
@@ -56,7 +56,7 @@
       "cleaned_character_count": 230886,
       "cleaned_word_count": 36518,
       "bpe_token_count": null,
-      "bpe_tokenization_error": "tokenizer vocabulary does not contain '/'",
+      "bpe_tokenization_error": "",
       "cleaning_notes": "Remove modern introduction if separable from primary commentary text."
     },
     {
@@ -72,8 +72,72 @@
       "cleaned_character_count": 961608,
       "cleaned_word_count": 162086,
       "bpe_token_count": null,
-      "bpe_tokenization_error": "tokenizer vocabulary does not contain '/'",
+      "bpe_tokenization_error": "",
       "cleaning_notes": "Preserve source spelling and punctuation after boilerplate removal."
+    },
+    {
+      "source_id": "pg_villani_cronica_vol2_69899",
+      "title": "Cronica di Matteo Villani: volume 2",
+      "author": "Matteo Villani",
+      "ebook_id": "69899",
+      "landing_page_url": "https://www.gutenberg.org/ebooks/69899",
+      "status": "ok",
+      "error": "",
+      "fetched_url": "https://www.gutenberg.org/cache/epub/69899/pg69899.txt",
+      "raw_character_count": 445736,
+      "cleaned_character_count": 418443,
+      "cleaned_word_count": 67418,
+      "bpe_token_count": null,
+      "bpe_tokenization_error": "",
+      "cleaning_notes": "Preserve original spelling and punctuation after removing source paratext."
+    },
+    {
+      "source_id": "pg_villani_cronica_vol3_69900",
+      "title": "Cronica di Matteo Villani: volume 3",
+      "author": "Matteo Villani",
+      "ebook_id": "69900",
+      "landing_page_url": "https://www.gutenberg.org/ebooks/69900",
+      "status": "ok",
+      "error": "",
+      "fetched_url": "https://www.gutenberg.org/cache/epub/69900/pg69900.txt",
+      "raw_character_count": 514949,
+      "cleaned_character_count": 486258,
+      "cleaned_word_count": 79121,
+      "bpe_token_count": null,
+      "bpe_tokenization_error": "",
+      "cleaning_notes": "Preserve original spelling and punctuation after removing source paratext."
+    },
+    {
+      "source_id": "pg_villani_cronica_vol4_69901",
+      "title": "Cronica di Matteo Villani: volume 4",
+      "author": "Matteo Villani",
+      "ebook_id": "69901",
+      "landing_page_url": "https://www.gutenberg.org/ebooks/69901",
+      "status": "ok",
+      "error": "",
+      "fetched_url": "https://www.gutenberg.org/cache/epub/69901/pg69901.txt",
+      "raw_character_count": 519011,
+      "cleaned_character_count": 490561,
+      "cleaned_word_count": 80713,
+      "bpe_token_count": null,
+      "bpe_tokenization_error": "",
+      "cleaning_notes": "Preserve original spelling and punctuation after removing source paratext."
+    },
+    {
+      "source_id": "pg_villani_cronica_vol5_69902",
+      "title": "Cronica di Matteo Villani: volume 5",
+      "author": "Matteo Villani",
+      "ebook_id": "69902",
+      "landing_page_url": "https://www.gutenberg.org/ebooks/69902",
+      "status": "ok",
+      "error": "",
+      "fetched_url": "https://www.gutenberg.org/cache/epub/69902/pg69902.txt",
+      "raw_character_count": 472179,
+      "cleaned_character_count": 444488,
+      "cleaned_word_count": 73305,
+      "bpe_token_count": null,
+      "bpe_tokenization_error": "",
+      "cleaning_notes": "Preserve original spelling and punctuation after removing source paratext."
     }
   ]
 }
