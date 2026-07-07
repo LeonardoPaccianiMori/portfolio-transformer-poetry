@@ -611,9 +611,16 @@ The expanded Project Gutenberg probe is complete. Eight prose works produced
 planned 10M-25M BPE-token first corpus, so the approved Creative Commons source
 pool must be measured before the complete corpus build.
 
+The Liber Liber probe is also complete. Eight active prose works produced
+7,374,920 extracted characters and 1,278,303 whitespace-delimited units after
+generic archive-wrapper removal. Combined measured size is 11,717,656
+characters. Exact training size remains provisional until source-specific
+paratext cleaning and broader-corpus BPE tokenization are complete.
+
 If OVI/TLIO is reusable, it should be the primary corpus.
 
-For immediate progress, measure the approved Liber Liber prose works with strict
-license/provenance fields. If OVI/TLIO is not reusable or Gutenberg and Liber
-Liber remain too small, continue through a curated Wikisource corpus with strict
-period labels, genre labels, and provenance.
+For immediate progress, decide whether to expand the source pool before the
+processed build. The current character count is likely below the 10M-25M BPE
+token target, but this must be confirmed with a tokenizer trained on the final
+selected corpus. If OVI/TLIO is not reusable, use labeled Tier C or curated
+Wikisource prose with strict period, genre, license, and provenance metadata.

@@ -127,3 +127,25 @@ This probe is substantially below the planned 10M-25M BPE-token first-corpus
 target. The next checkpoint is to implement the Liber Liber source adapter and
 measure the approved Creative Commons source set before implementing the
 complete processed-text builder.
+
+## Liber Liber Probe Result
+
+The live Creative Commons probe completed on 2026-07-07. Its report and
+attribution are committed as:
+
+- `data/metadata/broader_prose_liber_liber_probe_report.json`;
+- `data/metadata/broader_prose_attribution.md`.
+
+| Measure | Result |
+| --- | ---: |
+| successfully fetched prose works | 8 |
+| extracted characters after generic wrapper removal | 7,374,920 |
+| whitespace-delimited units | 1,278,303 |
+| failed works | 0 |
+
+Combined with the Gutenberg probe, the currently measured pool contains
+11,717,656 characters and 1,996,815 whitespace-delimited units. These are probe
+measurements, not final corpus statistics. Boundary inspection confirmed that
+literary content was retained, but some title-page lines and isolated digital
+edition notes remain. The processed-corpus builder must apply and test
+source-specific paratext removal before tokenizer training.
