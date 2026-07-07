@@ -166,6 +166,26 @@ def test_starter_broader_prose_manifest_rows_are_valid():
         "ll_giovanni_villani_nuova_cronica",
         "ll_boccaccio_decameron_mondadori",
         "ll_sacchetti_trecentonovelle",
+        "ll_bandello_novelle",
+        "ll_bembo_asolani",
+        "ll_bembo_prose_volgar_lingua",
+        "ll_castiglione_cortegiano",
+        "ll_cellini_vita",
+        "ll_machiavelli_discorsi",
+        "ll_machiavelli_istorie_fiorentine",
+        "ll_machiavelli_arte_guerra",
+        "ll_machiavelli_principe",
+        "ll_guicciardini_storia_italia",
+        "ll_guicciardini_storie_fiorentine",
+        "ll_guicciardini_discorsi_politici",
+        "ll_guicciardini_ricordi",
+        "ll_vasari_vite_1568",
+        "ll_masuccio_novellino",
+        "ll_ramusio_navigazioni_viaggi",
     }
     for row in rows:
         row.validate()
+
+    rows_by_id = {row.source_id: row for row in rows}
+    assert rows_by_id["ll_cellini_vita"].inclusion_status == "defer"
+    assert rows_by_id["ll_cellini_vita"].split == "excluded"

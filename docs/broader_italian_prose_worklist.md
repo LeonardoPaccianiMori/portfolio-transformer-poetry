@@ -78,9 +78,22 @@ Required metadata fields:
 | 7 | include_probe | Giovanni Boccaccio | *Trattatello in laude di Dante* | https://liberliber.it/autori/autori-b/giovanni-boccaccio/trattatello-in-laude-di-dante/ | Tier A | literary biography / prose | Period-compatible biographical and critical prose. |
 | 8 | include_probe | Franco Sacchetti | *Il Trecentonovelle* | https://liberliber.it/autori/autori-s/franco-sacchetti/il-trecentonovelle/ | Tier B | prose novelle | Written mainly in the 1390s; useful spoken and dialectal prose. |
 | 9 | conditional_extract_prose | Giovanni Sercambi | *Novelle* | https://liberliber.it/autori/autori-s/giovanni-sercambi/novelle/ | Tier C | mixed prose and poetry | Include only after poetic interludes can be removed reproducibly. |
-| 10 | tier_c_scale | Matteo Bandello | *Novelle* | https://liberliber.it/autori/autori-b/matteo-bandello/ | Tier C | prose novelle | Use only in a labeled 1200-1600 expansion corpus. |
-| 11 | tier_c_scale | Pietro Bembo | *Prose della volgar lingua* | https://liberliber.it/autori/autori-b/pietro-bembo/ | Tier C | linguistic prose dialogue/treatise | Useful for language-history prose, not core old Italian. |
-| 12 | tier_c_scale | Pietro Bembo | *Gli Asolani* | https://liberliber.it/autori/autori-b/pietro-bembo/ | Tier C | prose dialogue | Later literary prose expansion. |
+| 10 | include_probe | Matteo Bandello | *Novelle* | https://liberliber.it/autori/autori-b/matteo-bandello/novelle/ | Tier C | prose novelle | Complete 214-novella collection. |
+| 11 | include_probe | Pietro Bembo | *Prose della volgar lingua* | https://liberliber.it/autori/autori-b/pietro-bembo/prose-della-volgar-lingua/ | Tier C | linguistic prose dialogue/treatise | Historically relevant discussion of Italian literary language. |
+| 12 | include_probe | Pietro Bembo | *Gli Asolani* | https://liberliber.it/autori/autori-b/pietro-bembo/gli-asolani/ | Tier C | prose dialogue | Renaissance literary prose. |
+| 13 | include_probe | Baldassarre Castiglione | *Il libro del Cortegiano* | https://liberliber.it/autori/autori-c/baldassarre-castiglione/il-libro-del-cortegiano/ | Tier C | prose dialogue | Major Renaissance courtly dialogue. |
+| 14 | defer | Benvenuto Cellini | *La Vita* | https://liberliber.it/autori/autori-c/benvenuto-cellini/la-vita/ | Tier C | autobiographical prose | Liber Liber's TXT ZIP fails CRC validation. Reconsider after archive repair or an approved RTF extractor. |
+| 15 | include_probe | Niccolò Machiavelli | *Discorsi sopra la prima Deca di Tito Livio* | https://liberliber.it/autori/autori-m/niccol-machiavelli/discorsi-sopra-la-prima-deca-di-tito-livio/ | Tier C | political/historical prose | Large political work. |
+| 16 | include_probe | Niccolò Machiavelli | *Istorie fiorentine* | https://liberliber.it/autori/autori-m/niccol-machiavelli/istorie-fiorentine/ | Tier C | historical prose | Distinct historical work. |
+| 17 | include_probe | Niccolò Machiavelli | *Dell'arte della guerra* | https://liberliber.it/autori/autori-m/niccol-machiavelli/dellarte-della-guerra/ | Tier C | prose dialogue | Technical and political vocabulary. |
+| 18 | include_probe | Niccolò Machiavelli | *Il Principe* | https://liberliber.it/autori/autori-m/niccol-machiavelli/il-principe/ | Tier C | political treatise | Canonical shorter prose work. |
+| 19 | include_probe | Francesco Guicciardini | *Storia d'Italia* | https://liberliber.it/autori/autori-g/francesco-guicciardini/storia-ditalia/ | Tier C | historical prose | Very large scale source. |
+| 20 | include_probe | Francesco Guicciardini | *Storie Fiorentine dal 1378 al 1509* | https://liberliber.it/autori/autori-g/francesco-guicciardini/storie-fiorentine-dal-1378-al-1509/ | Tier C | historical prose | Earlier history, distinct from *Storia d'Italia*. |
+| 21 | include_probe | Francesco Guicciardini | *Discorsi politici* | https://liberliber.it/autori/autori-g/francesco-guicciardini/discorsi-politici/ | Tier C | political prose | Smaller non-overlapping political work. |
+| 22 | include_probe | Francesco Guicciardini | *Ricordi* | https://liberliber.it/autori/autori-g/francesco-guicciardini/ricordi/ | Tier C | aphoristic prose | Numbered political and moral observations. |
+| 23 | include_probe | Giorgio Vasari | *Le vite dei più eccellenti pittori, scultori e architetti* (1568) | https://liberliber.it/autori/autori-v/giorgio-vasari/le-vite-dei-piu-eccellenti-pittori-scultori-e-architetti/ | Tier C | biographies / art history | Use only the expanded 1568 edition; exclude the overlapping 1550 edition. |
+| 24 | include_probe | Masuccio Salernitano | *Il Novellino* | https://liberliber.it/autori/autori-m/masuccio-salernitano/il-novellino/ | Tier C | prose novelle | Fifty novelle from 1476; valuable regional and chronological coverage. |
+| 25 | include_probe | Giovan Battista Ramusio | *Navigazioni e Viaggi* | https://liberliber.it/autori/autori-r/giovan-battista-ramusio/navigazioni-e-viaggi/ | Tier C | geographical / travel prose compilation | Six-volume Italian compilation. Track translated contributors and cap sampling weight if this source dominates. |
 
 ## Explicit Exclusions
 
@@ -93,6 +106,8 @@ Required metadata fields:
 | Project Gutenberg | Boccaccio, *The Decameron of Giovanni Boccaccio*, eBook 23700 | English translation by John Payne. Exclude from Italian pretraining. |
 | Project Gutenberg | Castiglione, *The Book of the Courtier*, eBook 67799 | English translation. Exclude from Italian pretraining. |
 | Project Gutenberg | Vasari, *Lives of the Most Eminent Painters, Sculptors and Architects* | Available Gutenberg volumes are English translations. Exclude from Italian pretraining. |
+| Liber Liber | Vasari, *Le vite* (1550 edition) | Substantially overlaps the selected expanded 1568 edition. Exclude to prevent duplicated training text. |
+| Liber Liber | Straparola, *Le piacevoli notti* | Contains prose tales and verse riddles. Keep conditional until a reproducible prose-only extractor exists. |
 | Any source | *Rime*, canzonieri, ottave, capitoli, poem collections | Poetry. Keep separate from broader prose corpus. |
 | Any source | Drama-only works | Defer unless we create a dialogue/drama dataset version. |
 
@@ -149,3 +164,29 @@ measurements, not final corpus statistics. Boundary inspection confirmed that
 literary content was retained, but some title-page lines and isolated digital
 edition notes remain. The processed-corpus builder must apply and test
 source-specific paratext removal before tokenizer training.
+
+## Tier C Scale Expansion Result
+
+The 1200-1600 source audit and expanded live probe completed on 2026-07-07.
+It added prose by Masuccio, Bandello, Bembo, Castiglione, Machiavelli,
+Guicciardini, Vasari, and Ramusio. Only the expanded 1568 Vasari edition is
+selected; the overlapping 1550 edition is excluded.
+
+| Measure | Result |
+| --- | ---: |
+| successfully fetched Liber Liber prose works | 23 |
+| Liber Liber extracted characters | 37,368,858 |
+| Liber Liber whitespace-delimited units | 6,363,301 |
+| combined Gutenberg and Liber Liber characters | 41,711,594 |
+| combined whitespace-delimited units | 7,081,813 |
+
+The agreed provisional threshold of 35 million characters has been exceeded.
+These remain extraction-probe counts, not final clean-corpus or BPE-token
+counts. Ramusio alone contributes 11,966,998 characters, so the final builder
+must report per-source shares and support deterministic source weighting or
+caps. Cellini's *Vita* is deferred because its TXT ZIP fails CRC validation.
+
+The next checkpoint is the processed pretraining-corpus builder: fetch the
+approved rows, remove source-specific paratext, validate boundaries, write
+reproducible processed files and reports, and delete temporary raw/interim
+artifacts after a successful build.
