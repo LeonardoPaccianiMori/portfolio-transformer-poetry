@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
@@ -9,7 +10,7 @@ import torch
 
 from sonnet_corpus.bpe import BytePairEncodingTokenizer
 from sonnet_model.transformer import CausalTransformerLanguageModel
-from sonnet_training.steps import train_next_token_model
+from sonnet_training.steps import estimate_next_token_loss, train_next_token_step
 from sonnet_training.transformer_run import resolve_device, write_json, write_jsonl
 
 
@@ -38,6 +39,8 @@ class PretrainingRunConfig:
     head_dim: int = 32
     feed_forward_dim: int = 1024
     max_context_length: int = 512
+    checkpoint_interval: int = 0
+    resume_from_checkpoint: str = ""
 
 
 def train_pretraining_run(
@@ -68,18 +71,29 @@ def train_pretraining_run(
         model.parameters(),
         lr=config.learning_rate,
     )
+    start_step = 0
+    if config.resume_from_checkpoint:
+        start_step = load_pretraining_checkpoint(
+            checkpoint_path=repo_root / config.resume_from_checkpoint,
+            model=model,
+            optimizer=optimizer,
+            device=device,
+        )
+        if start_step >= config.train_steps:
+            raise ValueError(
+                "resume checkpoint step must be less than train_steps"
+            )
 
-    history = train_next_token_model(
+    history = train_pretraining_steps(
         model=model,
         optimizer=optimizer,
         train_token_ids=train_tokens,
         validation_token_ids=validation_tokens,
-        batch_size=config.batch_size,
-        context_length=config.context_length,
-        train_steps=config.train_steps,
-        eval_interval=config.eval_interval,
-        eval_batches=config.eval_batches,
+        config=config,
         device=device,
+        output_dir=output_dir,
+        tokenizer=tokenizer,
+        start_step=start_step,
     )
 
     generated_text = _generate_sample(
@@ -106,13 +120,114 @@ def train_pretraining_run(
             "train_tokens": int(train_tokens.numel()),
             "validation_tokens": int(validation_tokens.numel()),
             "parameter_count": count_parameters(model),
+            "start_step": start_step,
+            "completed_steps": config.train_steps,
         },
     )
-    write_jsonl(log_path, history)
+    saved_history = merge_existing_history(
+        log_path=log_path,
+        new_history=history,
+        start_step=start_step,
+    )
+    write_jsonl(log_path, saved_history)
     tokenizer.save(tokenizer_output_path)
     sample_path.write_text(generated_text, encoding="utf-8")
+    save_pretraining_checkpoint(
+        checkpoint_path=checkpoint_path,
+        model=model,
+        optimizer=optimizer,
+        config=config,
+        tokenizer=tokenizer,
+        step=config.train_steps,
+    )
+
+    return {
+        "config_path": config_path,
+        "log_path": log_path,
+        "tokenizer_path": tokenizer_output_path,
+        "sample_path": sample_path,
+        "checkpoint_path": checkpoint_path,
+        "checkpoint_dir": output_dir / "checkpoints",
+        "history": saved_history,
+    }
+
+
+def train_pretraining_steps(
+    *,
+    model: CausalTransformerLanguageModel,
+    optimizer: torch.optim.Optimizer,
+    train_token_ids: torch.Tensor,
+    validation_token_ids: torch.Tensor,
+    config: PretrainingRunConfig,
+    device: torch.device,
+    output_dir: Path,
+    tokenizer: BytePairEncodingTokenizer,
+    start_step: int,
+) -> list[dict[str, float | int]]:
+    """Train from start_step to config.train_steps with resumable checkpoints."""
+
+    history: list[dict[str, float | int]] = []
+    if start_step >= config.train_steps:
+        return history
+
+    for step in range(start_step + 1, config.train_steps + 1):
+        train_loss = train_next_token_step(
+            model=model,
+            optimizer=optimizer,
+            token_ids=train_token_ids,
+            batch_size=config.batch_size,
+            context_length=config.context_length,
+            device=device,
+        )
+
+        should_evaluate = (
+            step == start_step + 1
+            or step % config.eval_interval == 0
+            or step == config.train_steps
+        )
+        if should_evaluate:
+            validation_loss = estimate_next_token_loss(
+                model=model,
+                token_ids=validation_token_ids,
+                batch_size=config.batch_size,
+                context_length=config.context_length,
+                eval_batches=config.eval_batches,
+                device=device,
+            )
+            history.append({
+                "step": step,
+                "train_loss": train_loss,
+                "validation_loss": validation_loss,
+            })
+
+        if config.checkpoint_interval and step % config.checkpoint_interval == 0:
+            save_pretraining_checkpoint(
+                checkpoint_path=output_dir / "checkpoints" / f"step_{step}.pt",
+                model=model,
+                optimizer=optimizer,
+                config=config,
+                tokenizer=tokenizer,
+                step=step,
+            )
+
+    return history
+
+
+def save_pretraining_checkpoint(
+    *,
+    checkpoint_path: Path,
+    model: CausalTransformerLanguageModel,
+    optimizer: torch.optim.Optimizer,
+    config: PretrainingRunConfig,
+    tokenizer: BytePairEncodingTokenizer,
+    step: int,
+) -> None:
+    """Save model and optimizer state for later resume/fine-tuning."""
+
+    checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
     torch.save(
         {
+            "step": step,
             "model_state_dict": model.state_dict(),
             "optimizer_state_dict": optimizer.state_dict(),
             "config": asdict(config),
@@ -122,14 +237,50 @@ def train_pretraining_run(
         checkpoint_path,
     )
 
-    return {
-        "config_path": config_path,
-        "log_path": log_path,
-        "tokenizer_path": tokenizer_output_path,
-        "sample_path": sample_path,
-        "checkpoint_path": checkpoint_path,
-        "history": history,
-    }
+
+def load_pretraining_checkpoint(
+    *,
+    checkpoint_path: Path,
+    model: CausalTransformerLanguageModel,
+    optimizer: torch.optim.Optimizer,
+    device: torch.device,
+) -> int:
+    """Load model/optimizer state and return the completed checkpoint step."""
+
+    if not checkpoint_path.is_file():
+        raise FileNotFoundError(f"checkpoint file does not exist: {checkpoint_path}")
+
+    checkpoint = torch.load(checkpoint_path, map_location=device)
+    if not isinstance(checkpoint, dict):
+        raise ValueError(f"checkpoint must contain a dictionary: {checkpoint_path}")
+
+    model.load_state_dict(checkpoint["model_state_dict"])
+    optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
+    return int(checkpoint["step"])
+
+
+def merge_existing_history(
+    *,
+    log_path: Path,
+    new_history: list[dict[str, float | int]],
+    start_step: int,
+) -> list[dict[str, float | int]]:
+    """Keep previous rows through start_step, then append new rows."""
+
+    if not log_path.is_file():
+        return new_history
+
+    previous_history = [
+        json.loads(line)
+        for line in log_path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    preserved_history = [
+        row
+        for row in previous_history
+        if int(row["step"]) <= start_step
+    ]
+    return [*preserved_history, *new_history]
 
 
 def load_token_tensor(path: Path) -> torch.Tensor:
@@ -165,6 +316,14 @@ def _validate_config(config: PretrainingRunConfig) -> None:
         raise ValueError("batch_size must be greater than 0")
     if config.max_new_tokens < 0:
         raise ValueError("max_new_tokens must be greater than or equal to 0")
+    if config.train_steps <= 0:
+        raise ValueError("train_steps must be greater than 0")
+    if config.eval_interval <= 0:
+        raise ValueError("eval_interval must be greater than 0")
+    if config.eval_batches <= 0:
+        raise ValueError("eval_batches must be greater than 0")
+    if config.checkpoint_interval < 0:
+        raise ValueError("checkpoint_interval must be greater than or equal to 0")
 
 
 def _generate_sample(

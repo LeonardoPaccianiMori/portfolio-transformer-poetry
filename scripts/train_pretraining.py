@@ -51,6 +51,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--head-dim", type=int, default=32)
     parser.add_argument("--feed-forward-dim", type=int, default=1024)
     parser.add_argument("--max-context-length", type=int, default=512)
+    parser.add_argument("--checkpoint-interval", type=int, default=0)
+    parser.add_argument("--resume-from-checkpoint", default="")
     return parser.parse_args()
 
 
@@ -76,6 +78,8 @@ def main() -> None:
         head_dim=args.head_dim,
         feed_forward_dim=args.feed_forward_dim,
         max_context_length=args.max_context_length,
+        checkpoint_interval=args.checkpoint_interval,
+        resume_from_checkpoint=args.resume_from_checkpoint,
     )
     result = train_pretraining_run(
         repo_root=ROOT,
