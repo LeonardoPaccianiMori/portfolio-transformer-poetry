@@ -160,7 +160,7 @@ def benchmark_one_candidate(
     started_at = _utc_now()
     if device.type == "cuda":
         torch.cuda.empty_cache()
-        torch.cuda.reset_peak_memory_stats(device)
+        torch.cuda.reset_peak_memory_stats(_cuda_device_index(device))
 
     try:
         model = CausalTransformerLanguageModel(
@@ -259,13 +259,19 @@ def _validate_config(config: PretrainingBenchmarkConfig) -> None:
 
 def _synchronize_if_cuda(device: torch.device) -> None:
     if device.type == "cuda":
-        torch.cuda.synchronize(device)
+        torch.cuda.synchronize(_cuda_device_index(device))
 
 
 def _peak_cuda_memory_mib(device: torch.device) -> float | None:
     if device.type != "cuda":
         return None
-    return torch.cuda.max_memory_allocated(device) / (1024 * 1024)
+    return torch.cuda.max_memory_allocated(_cuda_device_index(device)) / (1024 * 1024)
+
+
+def _cuda_device_index(device: torch.device) -> int:
+    if device.type != "cuda":
+        raise ValueError("device must be a CUDA device")
+    return 0 if device.index is None else device.index
 
 
 def _write_json(path: Path, payload: dict[str, Any]) -> None:

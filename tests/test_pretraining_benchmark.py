@@ -8,6 +8,7 @@ from sonnet_corpus.pretraining_tokenizer import train_weighted_pretoken_bpe_toke
 from sonnet_training.pretraining_benchmark import (
     PretrainingBenchmarkConfig,
     PretrainingModelCandidate,
+    _cuda_device_index,
     benchmark_pretraining_candidates,
     build_markdown_report,
     default_pretraining_candidates,
@@ -140,3 +141,14 @@ def test_build_markdown_report_formats_error_rows():
     })
 
     assert "| bad | error |" in markdown
+
+
+def test_cuda_device_index_handles_explicit_and_implicit_cuda_devices():
+    assert _cuda_device_index(torch.device("cuda")) == 0
+    assert _cuda_device_index(torch.device("cuda:0")) == 0
+    assert _cuda_device_index(torch.device("cuda:1")) == 1
+
+
+def test_cuda_device_index_rejects_cpu_device():
+    with pytest.raises(ValueError, match="CUDA"):
+        _cuda_device_index(torch.device("cpu"))
