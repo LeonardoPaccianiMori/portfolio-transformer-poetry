@@ -9,6 +9,7 @@ from sonnet_training.pretraining_benchmark import (
     PretrainingBenchmarkConfig,
     PretrainingModelCandidate,
     _cuda_device_index,
+    _call_cuda_device_function,
     benchmark_pretraining_candidates,
     build_markdown_report,
     default_pretraining_candidates,
@@ -152,3 +153,45 @@ def test_cuda_device_index_handles_explicit_and_implicit_cuda_devices():
 def test_cuda_device_index_rejects_cpu_device():
     with pytest.raises(ValueError, match="CUDA"):
         _cuda_device_index(torch.device("cpu"))
+
+
+def test_call_cuda_device_function_falls_back_to_no_argument_call(monkeypatch):
+    calls = []
+
+    def fake_set_device(device_index):
+        calls.append(("set_device", device_index))
+
+    def fake_cuda_function(device_index=None):
+        calls.append(("function", device_index))
+        if device_index is not None:
+            raise RuntimeError("Invalid device argument")
+        return 123
+
+    monkeypatch.setattr(torch.cuda, "set_device", fake_set_device)
+
+    result = _call_cuda_device_function(
+        fake_cuda_function,
+        torch.device("cuda:0"),
+    )
+
+    assert result == 123
+    assert calls == [
+        ("set_device", 0),
+        ("function", 0),
+        ("function", None),
+    ]
+
+
+def test_call_cuda_device_function_returns_default_if_both_calls_fail(monkeypatch):
+    monkeypatch.setattr(torch.cuda, "set_device", lambda device_index: None)
+
+    def always_fails(device_index=None):
+        raise RuntimeError("Invalid device argument")
+
+    result = _call_cuda_device_function(
+        always_fails,
+        torch.device("cuda:0"),
+        default="fallback",
+    )
+
+    assert result == "fallback"

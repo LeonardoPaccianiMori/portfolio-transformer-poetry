@@ -158,9 +158,7 @@ def benchmark_one_candidate(
     """Benchmark one candidate and return a serializable result row."""
 
     started_at = _utc_now()
-    if device.type == "cuda":
-        torch.cuda.empty_cache()
-        torch.cuda.reset_peak_memory_stats(_cuda_device_index(device))
+    _prepare_cuda_memory_measurement(device)
 
     try:
         model = CausalTransformerLanguageModel(
@@ -259,13 +257,46 @@ def _validate_config(config: PretrainingBenchmarkConfig) -> None:
 
 def _synchronize_if_cuda(device: torch.device) -> None:
     if device.type == "cuda":
-        torch.cuda.synchronize(_cuda_device_index(device))
+        _call_cuda_device_function(torch.cuda.synchronize, device)
 
 
 def _peak_cuda_memory_mib(device: torch.device) -> float | None:
     if device.type != "cuda":
         return None
-    return torch.cuda.max_memory_allocated(_cuda_device_index(device)) / (1024 * 1024)
+    return _call_cuda_device_function(
+        torch.cuda.max_memory_allocated,
+        device,
+        default=0,
+    ) / (1024 * 1024)
+
+
+def _prepare_cuda_memory_measurement(device: torch.device) -> None:
+    if device.type != "cuda":
+        return
+
+    torch.cuda.empty_cache()
+    _call_cuda_device_function(
+        torch.cuda.reset_peak_memory_stats,
+        device,
+        default=None,
+    )
+
+
+def _call_cuda_device_function(
+    function,
+    device: torch.device,
+    *,
+    default=None,
+):
+    device_index = _cuda_device_index(device)
+    torch.cuda.set_device(device_index)
+    try:
+        return function(device_index)
+    except RuntimeError:
+        try:
+            return function()
+        except RuntimeError:
+            return default
 
 
 def _cuda_device_index(device: torch.device) -> int:
