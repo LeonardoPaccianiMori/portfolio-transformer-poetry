@@ -25,6 +25,7 @@ dist/
 # Data and generated artifacts
 data/raw/
 data/interim/
+data/local/
 checkpoints/
 models/
 runs/
