@@ -58,6 +58,21 @@ def test_strip_gutenberg_boilerplate_returns_stripped_text_without_markers():
     assert stripped == "Solo corpo\n"
 
 
+def test_strip_gutenberg_boilerplate_removes_legacy_footer_line():
+    text = "\n".join(
+        [
+            "*** START OF THE PROJECT GUTENBERG EBOOK TEST ***",
+            "Capitolo primo",
+            "Questo e il corpo.",
+            "End of Project Gutenberg's Libro della divina dottrina",
+        ]
+    )
+
+    stripped = strip_gutenberg_boilerplate(text)
+
+    assert stripped == "Capitolo primo\nQuesto e il corpo.\n"
+
+
 def test_fetch_gutenberg_text_tries_next_candidate_after_404():
     session = FakeSession(
         [

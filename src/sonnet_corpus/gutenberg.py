@@ -39,6 +39,7 @@ def strip_gutenberg_boilerplate(text: str) -> str:
     content_start = start_index + 1 if start_index >= 0 else 0
     content_end = end_index if end_index >= content_start else len(lines)
     body = lines[content_start:content_end]
+    body = _strip_legacy_footer(body)
 
     return "\n".join(body).strip() + "\n"
 
@@ -102,3 +103,11 @@ def _find_marker_index(lines: list[str], *, marker: str, default: int) -> int:
         ):
             return index
     return default
+
+
+def _strip_legacy_footer(lines: list[str]) -> list[str]:
+    for index, line in enumerate(lines):
+        normalized = " ".join(line.casefold().split())
+        if normalized.startswith("end of project gutenberg"):
+            return lines[:index]
+    return lines
