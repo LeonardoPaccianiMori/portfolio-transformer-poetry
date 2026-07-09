@@ -6,6 +6,7 @@ import pytest
 from sonnet_corpus.pretraining_tokenizer import (
     PretrainingTokenizerConfig,
     count_bpe_tokens_by_pretoken,
+    encode_text_by_pretoken,
     inspect_build_report_boundaries,
     train_pretraining_bpe_tokenizer,
     train_weighted_pretoken_bpe_tokenizer,
@@ -39,6 +40,21 @@ def test_count_bpe_tokens_by_pretoken_matches_regular_encoding():
     token_count = count_bpe_tokens_by_pretoken(text, tokenizer)
 
     assert token_count == len(tokenizer.encode(text))
+
+
+def test_encode_text_by_pretoken_matches_regular_encoding():
+    text = "amor amor\nvirtute\n"
+    tokenizer = train_weighted_pretoken_bpe_tokenizer(
+        training_text=text,
+        base_text=text,
+        vocab_size=24,
+        special_tokens=["<|endoftext|>"],
+    )
+
+    token_ids = encode_text_by_pretoken(text, tokenizer)
+
+    assert token_ids == tokenizer.encode(text)
+    assert tokenizer.decode(token_ids) == text
 
 
 def test_train_pretraining_bpe_tokenizer_writes_tokenizer_and_report(tmp_path: Path):

@@ -163,6 +163,25 @@ def count_bpe_tokens_by_pretoken(
     )
 
 
+def encode_text_by_pretoken(
+    text: str,
+    tokenizer: BytePairEncodingTokenizer,
+) -> list[int]:
+    """Encode text with the same pretoken cache strategy used in reports."""
+
+    merge_ranks = _merge_ranks(tokenizer)
+    encoded: list[int] = []
+    encoded_pretokens: dict[str, list[int]] = {}
+    for pretoken in _iter_pretokens(text):
+        if pretoken not in encoded_pretokens:
+            encoded_pretokens[pretoken] = [
+                tokenizer.token_to_id[token]
+                for token in _encode_pretoken(pretoken, merge_ranks)
+            ]
+        encoded.extend(encoded_pretokens[pretoken])
+    return encoded
+
+
 def inspect_build_report_boundaries(build_report_path: Path) -> list[dict[str, str]]:
     """Return boundary-sample warnings from the broader-corpus build report."""
 
