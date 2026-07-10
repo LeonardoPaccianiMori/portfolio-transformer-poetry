@@ -4,6 +4,7 @@ from pathlib import Path
 import torch
 
 from sonnet_corpus.bpe import BytePairEncodingTokenizer
+from sonnet_corpus.pretraining_tokenizer import encode_text_by_pretoken
 from sonnet_corpus.tokenizer import CharTokenizer
 
 
@@ -86,6 +87,7 @@ def load_poem_texts(
     ]
 
 DEFAULT_POEM_SEPARATOR = "\n\n<|poem_end|>\n\n"
+PRETRAINING_DOCUMENT_SEPARATOR = "<|endoftext|>"
 
 
 def build_text_stream(
@@ -232,4 +234,119 @@ def load_bpe_encoded_splits(
     validation_tokens = encode_bpe_text_stream(validation_text, tokenizer)
     test_tokens = encode_bpe_text_stream(test_text, tokenizer)
 
+    return train_tokens, validation_tokens, test_tokens, tokenizer
+
+
+def encode_poem_texts_with_pretraining_tokenizer(
+    texts: list[str],
+    tokenizer: BytePairEncodingTokenizer,
+    document_separator: str = PRETRAINING_DOCUMENT_SEPARATOR,
+) -> torch.Tensor:
+    """Encode one sonnet split with the tokenizer used by pretraining.
+
+    The separator is appended between poems as one protected BPE token. This
+    preserves poem boundaries while keeping IDs compatible with the parent
+    transformer's token embedding and output projection.
+    """
+    if not texts:
+        raise ValueError("texts must contain at least one poem")
+
+    separator_ids = tokenizer.encode(document_separator)
+    if len(separator_ids) != 1:
+        raise ValueError(
+            "document_separator must encode to exactly one token for fine-tuning"
+        )
+
+    token_ids: list[int] = []
+    for index, text in enumerate(texts):
+        if not text.strip():
+            raise ValueError("poem text must not be empty")
+        if index > 0:
+            token_ids.extend(separator_ids)
+        token_ids.extend(encode_text_by_pretoken(text, tokenizer))
+
+    return torch.tensor(token_ids, dtype=torch.long)
+
+
+def missing_tokenizer_characters(
+    texts: list[str],
+    tokenizer: BytePairEncodingTokenizer,
+) -> list[str]:
+    """Return sorted literal characters absent from a fixed BPE vocabulary."""
+    return sorted({
+        character
+        for text in texts
+        for character in text
+        if character not in tokenizer.token_to_id
+    })
+
+
+def extend_tokenizer_for_character_coverage(
+    tokenizer: BytePairEncodingTokenizer,
+    texts: list[str],
+) -> tuple[BytePairEncodingTokenizer, list[str]]:
+    """Append raw character tokens needed to preserve fine-tuning text exactly.
+
+    Existing token IDs and merge rules are unchanged. New characters receive
+    IDs after the parent vocabulary, so a fine-tuning model can retain every
+    parent embedding/output row and learn only the appended rows.
+    """
+    added_characters = missing_tokenizer_characters(texts, tokenizer)
+    if not added_characters:
+        return tokenizer, []
+
+    token_to_id = dict(tokenizer.token_to_id)
+    for character in added_characters:
+        token_to_id[character] = len(token_to_id)
+
+    return (
+        BytePairEncodingTokenizer(
+            token_to_id=token_to_id,
+            merges=list(tokenizer.merges),
+            special_tokens=list(tokenizer.special_tokens),
+        ),
+        added_characters,
+    )
+
+
+def load_pretraining_bpe_encoded_splits(
+    manifest_path: Path,
+    repo_root: Path,
+    dataset: str,
+    tokenizer_path: Path,
+    document_separator: str = PRETRAINING_DOCUMENT_SEPARATOR,
+) -> tuple[
+    torch.Tensor,
+    torch.Tensor,
+    torch.Tensor,
+    BytePairEncodingTokenizer,
+]:
+    """Load sonnet splits encoded by the fixed broader-pretraining tokenizer."""
+    tokenizer = BytePairEncodingTokenizer.load(tokenizer_path)
+    rows = read_manifest_rows(manifest_path)
+
+    split_texts: list[list[str]] = []
+    for split in ("train", "validation", "test"):
+        selected_rows = select_manifest_rows(
+            rows=rows,
+            dataset=dataset,
+            split=split,
+        )
+        split_texts.append(load_poem_texts(selected_rows, repo_root=repo_root))
+
+    tokenizer, _ = extend_tokenizer_for_character_coverage(
+        tokenizer=tokenizer,
+        texts=[text for texts in split_texts for text in texts],
+    )
+    encoded_splits = []
+    for texts in split_texts:
+        encoded_splits.append(
+            encode_poem_texts_with_pretraining_tokenizer(
+                texts=texts,
+                tokenizer=tokenizer,
+                document_separator=document_separator,
+            )
+        )
+
+    train_tokens, validation_tokens, test_tokens = encoded_splits
     return train_tokens, validation_tokens, test_tokens, tokenizer
