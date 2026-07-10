@@ -54,14 +54,15 @@ def load_transformer_from_checkpoint(
     if not isinstance(config, dict):
         raise ValueError("config file must contain a JSON object")
 
+    model_config = config.get("model_architecture", config)
     model = CausalTransformerLanguageModel(
-        vocab_size=config["vocab_size"],
-        embedding_dim=config["embedding_dim"],
-        num_layers=config["num_layers"],
-        num_heads=config["num_heads"],
-        head_dim=config["head_dim"],
-        feed_forward_dim=config["feed_forward_dim"],
-        max_context_length=config["max_context_length"],
+        vocab_size=model_config["vocab_size"],
+        embedding_dim=model_config["embedding_dim"],
+        num_layers=model_config["num_layers"],
+        num_heads=model_config["num_heads"],
+        head_dim=model_config["head_dim"],
+        feed_forward_dim=model_config["feed_forward_dim"],
+        max_context_length=model_config["max_context_length"],
     )
     checkpoint = torch.load(
         checkpoint_path,
@@ -324,11 +325,15 @@ def generate_for_prompts(
     stop_text: str | None = None,
     target_lines: int | None = None,
     suppress_stop_text_until_target_lines: bool = False,
+    checkpoint_path: Path | None = None,
+    model_config_path: Path | None = None,
 ) -> dict[str, Any]:
     tokenizer = load_tokenizer(run_dir / "tokenizer.json")
+    checkpoint_path = checkpoint_path or run_dir / "model.pt"
+    model_config_path = model_config_path or run_dir / "config.json"
     model = load_transformer_from_checkpoint(
-        checkpoint_path=run_dir / "model.pt",
-        config_path=run_dir / "config.json",
+        checkpoint_path=checkpoint_path,
+        config_path=model_config_path,
         device=device,
     )
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -363,6 +368,8 @@ def generate_for_prompts(
 
     metadata = {
         "run_dir": str(run_dir),
+        "checkpoint_path": str(checkpoint_path),
+        "model_config_path": str(model_config_path),
         "output_dir": str(output_dir),
         "max_new_tokens": max_new_tokens,
         "base_seed": seed,

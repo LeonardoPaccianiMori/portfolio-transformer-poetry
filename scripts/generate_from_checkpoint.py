@@ -21,6 +21,18 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument(
+        "--checkpoint-path",
+        type=Path,
+        default=None,
+        help="Checkpoint to evaluate; defaults to --run-dir/model.pt.",
+    )
+    parser.add_argument(
+        "--model-config-path",
+        type=Path,
+        default=None,
+        help="Config or selection manifest with model architecture metadata.",
+    )
+    parser.add_argument(
         "--prompts",
         type=Path,
         default=ROOT / "configs" / "evaluation_prompts.json",
@@ -68,6 +80,8 @@ def main() -> None:
         suppress_stop_text_until_target_lines=(
             args.suppress_stop_text_until_target_lines
         ),
+        checkpoint_path=args.checkpoint_path,
+        model_config_path=args.model_config_path,
     )
 
     print(f"wrote output directory: {args.output_dir}")

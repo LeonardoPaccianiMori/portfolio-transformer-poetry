@@ -353,6 +353,34 @@ def test_load_transformer_from_checkpoint_restores_model(tmp_path):
     assert model.output_projection.out_features == 4
 
 
+def test_load_transformer_from_checkpoint_supports_selection_architecture(tmp_path):
+    run_dir = tmp_path / "run"
+    selection_path = tmp_path / "selected_checkpoint.json"
+    write_tiny_run(run_dir)
+    write_json(
+        selection_path,
+        {
+            "model_architecture": {
+                "vocab_size": 4,
+                "embedding_dim": 8,
+                "num_layers": 1,
+                "num_heads": 2,
+                "head_dim": 4,
+                "feed_forward_dim": 16,
+                "max_context_length": 8,
+            },
+        },
+    )
+
+    model = load_transformer_from_checkpoint(
+        checkpoint_path=run_dir / "model.pt",
+        config_path=selection_path,
+        device=torch.device("cpu"),
+    )
+
+    assert model.output_projection.out_features == 4
+
+
 def test_generate_text_returns_prompt_plus_generated_text(tmp_path):
     run_dir = tmp_path / "run"
     write_tiny_run(run_dir)
@@ -626,6 +654,41 @@ def test_generate_for_prompts_supports_bpe_tokenizer(tmp_path):
     assert first_output.is_file()
     assert first_output.read_text(encoding="utf-8").startswith("Amor")
     assert len(metadata["generated_files"]) == 1
+
+
+def test_generate_for_prompts_records_explicit_checkpoint_and_config_paths(tmp_path):
+    run_dir = tmp_path / "run"
+    output_dir = tmp_path / "outputs"
+    selection_path = tmp_path / "selected_checkpoint.json"
+    write_tiny_run(run_dir)
+    write_json(
+        selection_path,
+        {
+            "model_architecture": {
+                "vocab_size": 4,
+                "embedding_dim": 8,
+                "num_layers": 1,
+                "num_heads": 2,
+                "head_dim": 4,
+                "feed_forward_dim": 16,
+                "max_context_length": 8,
+            },
+        },
+    )
+
+    metadata = generate_for_prompts(
+        run_dir=run_dir,
+        prompts=[{"id": "amor", "text": "Amor"}],
+        output_dir=output_dir,
+        max_new_tokens=1,
+        seed=123,
+        device=torch.device("cpu"),
+        checkpoint_path=run_dir / "model.pt",
+        model_config_path=selection_path,
+    )
+
+    assert metadata["checkpoint_path"] == str(run_dir / "model.pt")
+    assert metadata["model_config_path"] == str(selection_path)
 
 
 def test_generate_for_prompts_records_controlled_decoding_metadata(tmp_path):
