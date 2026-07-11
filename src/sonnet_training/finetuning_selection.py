@@ -68,32 +68,57 @@ def build_finetuning_checkpoint_selection(
     """Create a selection manifest with parent architecture and checkpoint lineage."""
     config = json.loads((run_dir / "config.json").read_text(encoding="utf-8"))
     history = load_loss_history(run_dir / "loss_history.jsonl")
-    best_row, selected_step, selected_path = select_checkpoint_at_or_before(
-        history,
-        interval_checkpoints(run_dir / "checkpoints"),
+    best_row = min(history, key=lambda row: row["validation_loss"])
+    best_checkpoint_path = run_dir / "best_validation.pt"
+    if best_checkpoint_path.is_file():
+        selected_step = int(best_row["step"])
+        selected_path = best_checkpoint_path
+        selection_rule = "exact_best_validation_checkpoint"
+    else:
+        _, selected_step, selected_path = select_checkpoint_at_or_before(
+            history,
+            interval_checkpoints(run_dir / "checkpoints"),
+        )
+        selection_rule = "latest_interval_checkpoint_at_or_before_best_validation"
+    model_architecture = _model_architecture_from_run_config(
+        repo_root=repo_root,
+        config=config,
     )
+
+    return {
+        "fine_tuning_run_dir": str(run_dir),
+        "parent_checkpoint_path": config.get("pretraining_checkpoint_path"),
+        "parent_checkpoint_step": config.get("parent_checkpoint_step"),
+        "best_validation_step": int(best_row["step"]),
+        "best_validation_loss": float(best_row["validation_loss"]),
+        "selected_checkpoint_step": selected_step,
+        "selected_checkpoint_path": str(selected_path),
+        "selection_rule": selection_rule,
+        "exact_best_checkpoint_available": selected_step == int(best_row["step"]),
+        "model_architecture": model_architecture,
+    }
+
+
+def _model_architecture_from_run_config(
+    *,
+    repo_root: Path,
+    config: dict[str, Any],
+) -> dict[str, int]:
+    if "model_architecture" in config:
+        return {
+            name: int(config["model_architecture"][name])
+            for name in ("vocab_size", *MODEL_ARCHITECTURE_KEYS)
+        }
+
     parent_path = repo_root / config["pretraining_checkpoint_path"]
     parent_checkpoint = torch.load(parent_path, map_location="cpu")
     parent_config = parent_checkpoint["config"]
-    model_architecture = {
+    return {
         "vocab_size": int(config["vocab_size"]),
         **{
             name: int(parent_config[name])
             for name in MODEL_ARCHITECTURE_KEYS
         },
-    }
-
-    return {
-        "fine_tuning_run_dir": str(run_dir),
-        "parent_checkpoint_path": config["pretraining_checkpoint_path"],
-        "parent_checkpoint_step": int(config["parent_checkpoint_step"]),
-        "best_validation_step": int(best_row["step"]),
-        "best_validation_loss": float(best_row["validation_loss"]),
-        "selected_checkpoint_step": selected_step,
-        "selected_checkpoint_path": str(selected_path),
-        "selection_rule": "latest_interval_checkpoint_at_or_before_best_validation",
-        "exact_best_checkpoint_available": selected_step == int(best_row["step"]),
-        "model_architecture": model_architecture,
     }
 
 
