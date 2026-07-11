@@ -130,3 +130,56 @@ def test_control_comparison_summarizes_matching_arms_and_writes_report(tmp_path)
     assert "lower best validation loss by 1.0000" in report
     assert output_path.is_file()
     assert summaries["random"]["best_row"]["validation_loss"] == 3.0
+
+
+def test_control_comparison_allows_declared_schedule_difference(tmp_path):
+    manifest_path = write_manifest(tmp_path)
+    left_run, left_generation = write_arm(tmp_path, "constant", "pretrained", 2.0)
+    right_run, right_generation = write_arm(tmp_path, "cosine", "pretrained", 2.1)
+    for run_dir, schedule, warmup, minimum in (
+        (left_run, "constant", 0, 0.0),
+        (right_run, "warmup_cosine", 2, 1e-6),
+    ):
+        config_path = run_dir / "config.json"
+        config = json.loads(config_path.read_text(encoding="utf-8"))
+        config["learning_rate_schedule"] = schedule
+        config["warmup_steps"] = warmup
+        config["min_learning_rate"] = minimum
+        config_path.write_text(json.dumps(config), encoding="utf-8")
+
+    left = summarize_control_arm(
+        run_dir=left_run,
+        generation_dir=left_generation,
+        manifest_path=manifest_path,
+        repo_root=tmp_path,
+    )
+    right = summarize_control_arm(
+        run_dir=right_run,
+        generation_dir=right_generation,
+        manifest_path=manifest_path,
+        repo_root=tmp_path,
+    )
+    report = build_control_comparison_markdown(
+        left,
+        right,
+        experiment_name="Learning-Rate Schedule",
+        left_label="constant",
+        right_label="warmup cosine",
+        intended_difference="the learning-rate schedule",
+        allowed_difference_fields={
+            "learning_rate_schedule",
+            "warmup_steps",
+            "min_learning_rate",
+        },
+    )
+
+    assert control_arms_are_comparable(
+        left,
+        right,
+        allowed_difference_fields={
+            "learning_rate_schedule",
+            "warmup_steps",
+            "min_learning_rate",
+        },
+    )
+    assert "# Controlled Experiment Comparison: Learning-Rate Schedule" in report

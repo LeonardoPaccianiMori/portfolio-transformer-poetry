@@ -26,7 +26,15 @@ COMPARABILITY_FIELDS = (
     "learning_rate",
     "seed",
     "optimizer_state_restored",
+    "learning_rate_schedule",
+    "warmup_steps",
+    "min_learning_rate",
 )
+COMPARABILITY_DEFAULTS = {
+    "learning_rate_schedule": "constant",
+    "warmup_steps": 0,
+    "min_learning_rate": 0.0,
+}
 
 
 def summarize_control_arm(
@@ -73,12 +81,20 @@ def summarize_control_arm(
 def control_arms_are_comparable(
     pretrained: dict[str, Any],
     random: dict[str, Any],
+    allowed_difference_fields: set[str] | None = None,
 ) -> bool:
     """Check that all declared shared experimental settings match."""
+    allowed_difference_fields = allowed_difference_fields or set()
     return all(
-        pretrained["config"][field] == random["config"][field]
+        _config_value(pretrained["config"], field)
+        == _config_value(random["config"], field)
         for field in COMPARABILITY_FIELDS
+        if field not in allowed_difference_fields
     )
+
+
+def _config_value(config: dict[str, Any], field: str) -> Any:
+    return config.get(field, COMPARABILITY_DEFAULTS.get(field))
 
 
 def average_metric(rows: list[dict[str, Any]], field: str) -> float:
@@ -99,21 +115,43 @@ def risk_counts(rows: list[dict[str, Any]]) -> dict[str, int]:
 def build_control_comparison_markdown(
     pretrained: dict[str, Any],
     random: dict[str, Any],
+    *,
+    experiment_name: str = "Initialization",
+    left_label: str = "pretrained",
+    right_label: str = "random",
+    intended_difference: str = (
+        "broader-pretrained weights versus random weights"
+    ),
+    allowed_difference_fields: set[str] | None = None,
 ) -> str:
     """Render the causal comparison while preserving its experimental limits."""
-    comparable = control_arms_are_comparable(pretrained, random)
+    comparable = control_arms_are_comparable(
+        pretrained,
+        random,
+        allowed_difference_fields=allowed_difference_fields,
+    )
     pretrained_best = pretrained["best_row"]
     random_best = random["best_row"]
     validation_gap = (
         float(random_best["validation_loss"])
         - float(pretrained_best["validation_loss"])
     )
+    if validation_gap >= 0:
+        validation_interpretation = (
+            f"The {left_label} arm achieved a lower best validation loss by "
+            f"{validation_gap:.4f} nats per BPE token."
+        )
+    else:
+        validation_interpretation = (
+            f"The {right_label} arm achieved a lower best validation loss by "
+            f"{-validation_gap:.4f} nats per BPE token."
+        )
     rows = []
-    for arm in (pretrained, random):
+    for label, arm in ((left_label, pretrained), (right_label, random)):
         metrics_rows = arm["metrics_rows"]
         risks = risk_counts(arm["memorization_rows"])
         rows.append([
-            arm["config"]["initialization"],
+            label,
             f"{arm['best_row']['step']:,}",
             f"{arm['best_row']['validation_loss']:.4f}",
             f"{arm['final_row']['validation_loss']:.4f}",
@@ -130,12 +168,12 @@ def build_control_comparison_markdown(
         *["| " + " | ".join(row) + " |" for row in rows],
     ]
     return "\n\n".join([
-        "# Controlled Initialization Comparison",
+        f"# Controlled Experiment Comparison: {experiment_name}",
         (
             "This report compares two sonnet-corpus training runs with matching "
             "architecture, tokenizer, data, optimizer initialization, seed, and "
-            "training schedule. The intended difference is model initialization: "
-            "broader-pretrained weights versus random weights."
+            "training schedule except for the declared experimental factor. The "
+            f"intended difference is {intended_difference}."
         ),
         "## Comparability\n\n"
         + (
@@ -145,14 +183,8 @@ def build_control_comparison_markdown(
         ),
         "## Results\n\n" + "\n".join(table_lines),
         "## Interpretation\n\n"
-        + (
-            f"The pretrained arm achieved a lower best validation loss by "
-            f"{validation_gap:.4f} nats per BPE token. Both arms use the same "
-            "tokenizer, so this loss difference is directly comparable. The "
-            "pretrained arm reached its best value earlier, while the random arm "
-            "required substantially more sonnet-only updates and still had a worse "
-            "best validation result."
-        ),
+        + validation_interpretation
+        + " Both arms use the same tokenizer, so this loss difference is directly comparable.",
         (
             "The 14-line generation target is decoder enforced in both arms. "
             "Automatic format metrics therefore validate the control procedure, not "
@@ -178,6 +210,13 @@ def write_control_comparison_report(
     manifest_path: Path,
     repo_root: Path,
     output_path: Path,
+    experiment_name: str = "Initialization",
+    left_label: str = "pretrained",
+    right_label: str = "random",
+    intended_difference: str = (
+        "broader-pretrained weights versus random weights"
+    ),
+    allowed_difference_fields: set[str] | None = None,
 ) -> dict[str, dict[str, Any]]:
     """Write one public comparison report from two local control-run artifacts."""
     pretrained = summarize_control_arm(
@@ -194,7 +233,15 @@ def write_control_comparison_report(
     )
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(
-        build_control_comparison_markdown(pretrained, random),
+        build_control_comparison_markdown(
+            pretrained,
+            random,
+            experiment_name=experiment_name,
+            left_label=left_label,
+            right_label=right_label,
+            intended_difference=intended_difference,
+            allowed_difference_fields=allowed_difference_fields,
+        ),
         encoding="utf-8",
     )
     return {"pretrained": pretrained, "random": random}
