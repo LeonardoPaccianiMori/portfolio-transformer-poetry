@@ -42,6 +42,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--eval-batches", type=int, default=5)
     parser.add_argument("--checkpoint-interval", type=int, default=1_000)
     parser.add_argument("--learning-rate", type=float, default=3e-5)
+    parser.add_argument(
+        "--learning-rate-schedule",
+        choices=["constant", "warmup_cosine"],
+        default="constant",
+    )
+    parser.add_argument("--warmup-steps", type=int, default=0)
+    parser.add_argument("--min-learning-rate", type=float, default=0.0)
     parser.add_argument("--seed", type=int, default=1337)
     parser.add_argument("--prompt", default="Amor")
     parser.add_argument("--max-new-tokens", type=int, default=300)
@@ -64,6 +71,9 @@ def main() -> None:
         eval_batches=args.eval_batches,
         checkpoint_interval=args.checkpoint_interval,
         learning_rate=args.learning_rate,
+        learning_rate_schedule=args.learning_rate_schedule,
+        warmup_steps=args.warmup_steps,
+        min_learning_rate=args.min_learning_rate,
         seed=args.seed,
         prompt=args.prompt,
         max_new_tokens=args.max_new_tokens,

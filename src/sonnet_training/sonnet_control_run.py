@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import math
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Literal
@@ -19,6 +20,7 @@ from sonnet_training.transformer_run import resolve_device, write_json, write_js
 
 
 InitializationMode = Literal["pretrained", "random"]
+LearningRateSchedule = Literal["constant", "warmup_cosine"]
 MODEL_ARCHITECTURE_KEYS = (
     "vocab_size",
     "embedding_dim",
@@ -48,6 +50,9 @@ class SonnetControlRunConfig:
     eval_batches: int = 5
     checkpoint_interval: int = 1_000
     learning_rate: float = 3e-5
+    learning_rate_schedule: LearningRateSchedule = "constant"
+    warmup_steps: int = 0
+    min_learning_rate: float = 0.0
     seed: int = 1337
     prompt: str = "Amor"
     max_new_tokens: int = 300
@@ -207,6 +212,8 @@ def train_control_steps(
     history: list[dict[str, float | int]] = []
     best_validation_row: dict[str, float | int] | None = None
     for step in range(1, config.train_steps + 1):
+        current_learning_rate = learning_rate_for_step(config, step)
+        set_optimizer_learning_rate(optimizer, current_learning_rate)
         train_loss = train_next_token_step(
             model=model,
             optimizer=optimizer,
@@ -233,6 +240,7 @@ def train_control_steps(
                 "step": step,
                 "train_loss": train_loss,
                 "validation_loss": validation_loss,
+                "learning_rate": current_learning_rate,
             }
             history.append(row)
             if (
@@ -338,6 +346,36 @@ def build_run_metadata(
     }
 
 
+def learning_rate_for_step(config: SonnetControlRunConfig, step: int) -> float:
+    """Return the configured learning rate for one one-indexed training step."""
+    if step <= 0 or step > config.train_steps:
+        raise ValueError("step must be between 1 and train_steps")
+    if config.learning_rate_schedule == "constant":
+        return config.learning_rate
+
+    if config.learning_rate_schedule == "warmup_cosine":
+        if config.warmup_steps and step <= config.warmup_steps:
+            return config.learning_rate * step / config.warmup_steps
+
+        decay_steps = config.train_steps - config.warmup_steps
+        decay_progress = (step - config.warmup_steps) / decay_steps
+        cosine_factor = 0.5 * (1.0 + math.cos(math.pi * decay_progress))
+        return config.min_learning_rate + cosine_factor * (
+            config.learning_rate - config.min_learning_rate
+        )
+
+    raise ValueError("unsupported learning_rate_schedule")
+
+
+def set_optimizer_learning_rate(
+    optimizer: torch.optim.Optimizer,
+    learning_rate: float,
+) -> None:
+    """Apply the current schedule value to every AdamW parameter group."""
+    for parameter_group in optimizer.param_groups:
+        parameter_group["lr"] = learning_rate
+
+
 def _validate_tokenizer_architecture(
     tokenizer: BytePairEncodingTokenizer,
     model_architecture: dict[str, int],
@@ -383,5 +421,13 @@ def _validate_config(config: SonnetControlRunConfig) -> None:
         raise ValueError("checkpoint_interval must be greater than or equal to 0")
     if config.learning_rate <= 0:
         raise ValueError("learning_rate must be greater than 0")
+    if config.learning_rate_schedule not in {"constant", "warmup_cosine"}:
+        raise ValueError("unsupported learning_rate_schedule")
+    if config.warmup_steps < 0 or config.warmup_steps >= config.train_steps:
+        raise ValueError("warmup_steps must be at least 0 and less than train_steps")
+    if config.min_learning_rate < 0:
+        raise ValueError("min_learning_rate must be greater than or equal to 0")
+    if config.min_learning_rate > config.learning_rate:
+        raise ValueError("min_learning_rate must not exceed learning_rate")
     if config.max_new_tokens < 0:
         raise ValueError("max_new_tokens must be greater than or equal to 0")

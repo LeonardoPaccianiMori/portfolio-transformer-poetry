@@ -10,7 +10,9 @@ from sonnet_model.transformer import CausalTransformerLanguageModel
 from sonnet_training.sonnet_control_run import (
     SonnetControlRunConfig,
     initialize_control_model,
+    learning_rate_for_step,
     load_model_architecture,
+    set_optimizer_learning_rate,
     train_sonnet_control_run,
 )
 
@@ -148,6 +150,34 @@ def test_pretrained_control_uses_parent_weights_with_fresh_adamw_state(tmp_path)
         model.embedding.token_embedding.weight,
         parent_checkpoint["model_state_dict"]["embedding.token_embedding.weight"],
     )
+
+
+def test_learning_rate_schedule_returns_constant_or_warmup_cosine_values(tmp_path):
+    constant_config = tiny_control_config(tmp_path, "random")
+    scheduled_config = SonnetControlRunConfig(
+        **{
+            **constant_config.__dict__,
+            "train_steps": 10,
+            "learning_rate": 1e-3,
+            "learning_rate_schedule": "warmup_cosine",
+            "warmup_steps": 2,
+            "min_learning_rate": 1e-4,
+        }
+    )
+
+    assert learning_rate_for_step(constant_config, 1) == 3e-5
+    assert learning_rate_for_step(scheduled_config, 1) == 5e-4
+    assert learning_rate_for_step(scheduled_config, 2) == 1e-3
+    assert learning_rate_for_step(scheduled_config, 10) == 1e-4
+
+
+def test_set_optimizer_learning_rate_updates_adamw_parameter_groups():
+    model = torch.nn.Linear(2, 1)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3)
+
+    set_optimizer_learning_rate(optimizer, 2e-4)
+
+    assert optimizer.param_groups[0]["lr"] == 2e-4
 
 
 def test_control_arms_write_matching_data_and_architecture_metadata(tmp_path):
