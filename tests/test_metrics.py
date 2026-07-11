@@ -51,6 +51,7 @@ def write_generation_directory(generation_dir: Path) -> None:
                     "seed": 1338,
                 },
             ],
+            "stop_text": "<|poem_end|>",
         },
     )
 
@@ -104,7 +105,7 @@ def test_score_generated_text_returns_basic_metrics():
 
     assert metrics["character_count"] == 27
     assert metrics["non_empty_line_count"] == 3
-    assert metrics["poem_separator_count"] == 1
+    assert metrics["boundary_marker_count"] == 1
     assert metrics["unique_character_ratio"] > 0.0
     assert metrics["repetition_ratio"] >= 0.0
     assert metrics["prompt_preserved"]
@@ -119,7 +120,7 @@ def test_score_generation_directory_scores_each_generated_file(tmp_path):
     assert len(rows) == 2
     assert rows[0]["prompt_id"] == "amor"
     assert rows[0]["prompt_preserved"]
-    assert rows[0]["poem_separator_count"] == 1
+    assert rows[0]["boundary_marker_count"] == 1
     assert rows[1]["prompt_id"] == "donna"
 
 
@@ -130,7 +131,8 @@ def test_build_generation_metrics_report_contains_table_and_notes(tmp_path):
             "prompt_id": "amor",
             "character_count": 10,
             "non_empty_line_count": 2,
-            "poem_separator_count": 1,
+            "boundary_marker_count": 1,
+            "boundary_marker": "<|poem_end|>",
             "unique_character_ratio": 0.5,
             "repetition_ratio": 0.25,
             "prompt_preserved": True,
@@ -147,6 +149,20 @@ def test_build_generation_metrics_report_contains_table_and_notes(tmp_path):
     assert "| Prompt | Chars | Lines |" in report
     assert "amor" in report
     assert "## Notes" in report
+
+
+def test_score_generation_directory_uses_stop_text_as_boundary_marker(tmp_path):
+    generation_dir = tmp_path / "generation"
+    write_generation_directory(generation_dir)
+    metadata_path = generation_dir / "metadata.json"
+    metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+    metadata["stop_text"] = "<|endoftext|>"
+    metadata_path.write_text(json.dumps(metadata), encoding="utf-8")
+
+    rows = score_generation_directory(generation_dir)
+
+    assert rows[0]["boundary_marker"] == "<|endoftext|>"
+    assert rows[0]["boundary_marker_count"] == 0
 
 
 def test_write_generation_metrics_report_writes_markdown(tmp_path):

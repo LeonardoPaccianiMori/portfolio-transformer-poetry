@@ -2,7 +2,7 @@
 
 Generation directory: `outputs/generations/transformer_bpe_512_context256_001_suppress_stop`
 
-| Prompt | Chars | Lines | Separators | Unique Chars | Repeat Ratio | Prompt Kept | Seed |
+| Prompt | Chars | Lines | Boundary Markers | Unique Chars | Repeat Ratio | Prompt Kept | Seed |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | amor | 362 | 14 | 0 | 0.0884 | 0.0669 | yes | 1337 |
 | donna | 557 | 14 | 0 | 0.0862 | 0.0830 | yes | 1338 |
@@ -14,9 +14,8 @@ Generation directory: `outputs/generations/transformer_bpe_512_context256_001_su
 
 - `Lines` counts non-empty lines.
 
-- `Separators` counts `<|poem_end|>` occurrences.
+- `Boundary Markers` counts `<|poem_end|>` occurrences.
 
 - `Repeat Ratio` is based on repeated character 4-grams by default.
 
 - These are basic automatic checks, not a full quality evaluation.
-

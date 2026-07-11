@@ -281,8 +281,7 @@ def build_memorization_report(
         "- Risk labels are heuristic surface-copying checks, not proof of memorization.",
         f"- `medium`: containment >= {MEDIUM_CONTAINMENT_THRESHOLD:.2f} or LCS >= {MEDIUM_SUBSTRING_THRESHOLD} chars.",
         f"- `high`: containment >= {HIGH_CONTAINMENT_THRESHOLD:.2f} or LCS >= {HIGH_SUBSTRING_THRESHOLD} chars.",
-        "",
-    ])
+    ]) + "\n"
 
 
 def write_memorization_report(
