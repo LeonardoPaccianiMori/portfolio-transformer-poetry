@@ -154,14 +154,18 @@ def train_sonnet_control_run(
     }
 
 
-def load_model_architecture(path: Path) -> dict[str, int]:
+def load_model_architecture(path: Path) -> dict[str, int | float | str]:
     """Load the architecture manifest shared by every control arm."""
     payload = json.loads(path.read_text(encoding="utf-8"))
     architecture = payload.get("model_architecture", payload)
     missing = [name for name in MODEL_ARCHITECTURE_KEYS if name not in architecture]
     if missing:
         raise ValueError("model architecture is missing fields: " + ", ".join(missing))
-    return {name: int(architecture[name]) for name in MODEL_ARCHITECTURE_KEYS}
+    return {
+        **{name: int(architecture[name]) for name in MODEL_ARCHITECTURE_KEYS},
+        "normalization_type": architecture.get("normalization_type", "layer_norm"),
+        "normalization_eps": float(architecture.get("normalization_eps", 1e-5)),
+    }
 
 
 def initialize_control_model(
@@ -169,7 +173,7 @@ def initialize_control_model(
     repo_root: Path,
     config: SonnetControlRunConfig,
     tokenizer: BytePairEncodingTokenizer,
-    model_architecture: dict[str, int],
+    model_architecture: dict[str, int | float | str],
     device: torch.device,
 ) -> tuple[
     CausalTransformerLanguageModel,
@@ -206,7 +210,7 @@ def train_control_steps(
     device: torch.device,
     output_dir: Path,
     tokenizer: BytePairEncodingTokenizer,
-    model_architecture: dict[str, int],
+    model_architecture: dict[str, int | float | str],
     parent_checkpoint: dict[str, Any] | None,
 ) -> tuple[
     list[dict[str, float | int | None]],
@@ -291,7 +295,7 @@ def save_control_checkpoint(
     optimizer: torch.optim.Optimizer,
     config: SonnetControlRunConfig,
     tokenizer: BytePairEncodingTokenizer,
-    model_architecture: dict[str, int],
+    model_architecture: dict[str, int | float | str],
     parent_checkpoint: dict[str, Any] | None,
     step: int,
     best_validation_row: dict[str, float | int | None] | None,
@@ -328,7 +332,7 @@ def build_run_metadata(
     train_tokens: torch.Tensor,
     validation_tokens: torch.Tensor,
     model: CausalTransformerLanguageModel,
-    model_architecture: dict[str, int],
+    model_architecture: dict[str, int | float | str],
     parent_checkpoint: dict[str, Any] | None,
     best_validation_row: dict[str, float | int | None],
 ) -> dict[str, Any]:
@@ -385,7 +389,7 @@ def set_optimizer_learning_rate(
 
 def _validate_tokenizer_architecture(
     tokenizer: BytePairEncodingTokenizer,
-    model_architecture: dict[str, int],
+    model_architecture: dict[str, int | float | str],
 ) -> None:
     if tokenizer.vocab_size != model_architecture["vocab_size"]:
         raise ValueError("tokenizer vocabulary size does not match model architecture")
@@ -393,12 +397,15 @@ def _validate_tokenizer_architecture(
 
 def _validate_model_architecture(
     model: CausalTransformerLanguageModel,
-    model_architecture: dict[str, int],
+    model_architecture: dict[str, int | float | str],
 ) -> None:
     if model.output_projection.out_features != model_architecture["vocab_size"]:
         raise ValueError("pretrained model vocabulary does not match model architecture")
     if model.max_context_length != model_architecture["max_context_length"]:
         raise ValueError("pretrained model context does not match model architecture")
+    normalization_type = model_architecture.get("normalization_type", "layer_norm")
+    if model.normalization_type != normalization_type:
+        raise ValueError("pretrained model normalization does not match model architecture")
 
 
 def _validate_context_length(

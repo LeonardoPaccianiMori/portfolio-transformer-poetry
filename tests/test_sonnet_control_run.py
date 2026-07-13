@@ -128,7 +128,11 @@ def test_load_model_architecture_reads_selection_manifest(tmp_path):
 
     loaded = load_model_architecture(tmp_path / "runs" / "architecture.json")
 
-    assert loaded == architecture
+    assert loaded == {
+        **architecture,
+        "normalization_type": "layer_norm",
+        "normalization_eps": 1e-5,
+    }
 
 
 def test_pretrained_control_uses_parent_weights_with_fresh_adamw_state(tmp_path):

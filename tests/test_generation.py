@@ -21,6 +21,7 @@ from sonnet_evaluation.generation import (
     stop_reason_for_text,
     validate_stop_text,
 )
+from sonnet_model.normalization import RMSNorm
 from sonnet_model.transformer import CausalTransformerLanguageModel
 
 
@@ -351,6 +352,45 @@ def test_load_transformer_from_checkpoint_restores_model(tmp_path):
 
     assert not model.training
     assert model.output_projection.out_features == 4
+
+
+def test_load_transformer_from_checkpoint_restores_rms_norm_architecture(tmp_path):
+    checkpoint_path = tmp_path / "model.pt"
+    config_path = tmp_path / "config.json"
+    model = CausalTransformerLanguageModel(
+        vocab_size=4,
+        embedding_dim=8,
+        num_layers=1,
+        num_heads=2,
+        head_dim=4,
+        feed_forward_dim=16,
+        max_context_length=8,
+        normalization_type="rms_norm",
+    )
+    write_json(
+        config_path,
+        {
+            "vocab_size": 4,
+            "embedding_dim": 8,
+            "num_layers": 1,
+            "num_heads": 2,
+            "head_dim": 4,
+            "feed_forward_dim": 16,
+            "max_context_length": 8,
+            "normalization_type": "rms_norm",
+            "normalization_eps": 1e-5,
+        },
+    )
+    torch.save({"model_state_dict": model.state_dict()}, checkpoint_path)
+
+    restored = load_transformer_from_checkpoint(
+        checkpoint_path=checkpoint_path,
+        config_path=config_path,
+        device=torch.device("cpu"),
+    )
+
+    assert restored.normalization_type == "rms_norm"
+    assert isinstance(restored.final_layer_norm, RMSNorm)
 
 
 def test_load_transformer_from_checkpoint_supports_selection_architecture(tmp_path):

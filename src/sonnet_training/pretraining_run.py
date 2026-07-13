@@ -9,6 +9,7 @@ from pathlib import Path
 import torch
 
 from sonnet_corpus.bpe import BytePairEncodingTokenizer
+from sonnet_model.normalization import NormalizationType
 from sonnet_model.transformer import CausalTransformerLanguageModel
 from sonnet_training.steps import estimate_next_token_loss, train_next_token_step
 from sonnet_training.transformer_run import resolve_device, write_json, write_jsonl
@@ -39,6 +40,8 @@ class PretrainingRunConfig:
     head_dim: int = 32
     feed_forward_dim: int = 1024
     max_context_length: int = 512
+    normalization_type: NormalizationType = "layer_norm"
+    normalization_eps: float = 1e-5
     checkpoint_interval: int = 0
     resume_from_checkpoint: str = ""
 
@@ -66,6 +69,8 @@ def train_pretraining_run(
         head_dim=config.head_dim,
         feed_forward_dim=config.feed_forward_dim,
         max_context_length=config.max_context_length,
+        normalization_type=config.normalization_type,
+        normalization_eps=config.normalization_eps,
     ).to(device)
     optimizer = torch.optim.AdamW(
         model.parameters(),

@@ -63,6 +63,8 @@ def load_transformer_from_checkpoint(
         head_dim=model_config["head_dim"],
         feed_forward_dim=model_config["feed_forward_dim"],
         max_context_length=model_config["max_context_length"],
+        normalization_type=model_config.get("normalization_type", "layer_norm"),
+        normalization_eps=float(model_config.get("normalization_eps", 1e-5)),
     )
     checkpoint = torch.load(
         checkpoint_path,

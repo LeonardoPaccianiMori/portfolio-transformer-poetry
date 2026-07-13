@@ -2,6 +2,8 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 
+from sonnet_model.normalization import NormalizationType, build_normalization_layer
+
 
 class TokenAndPositionEmbedding(nn.Module):
     def __init__(
@@ -218,6 +220,8 @@ class TransformerBlock(nn.Module):
         head_dim: int,
         feed_forward_dim: int,
         max_context_length: int,
+        normalization_type: NormalizationType = "layer_norm",
+        normalization_eps: float = 1e-5,
     ):
         super().__init__()
 
@@ -236,14 +240,22 @@ class TransformerBlock(nn.Module):
         if max_context_length <= 0:
             raise ValueError("max_context_length must be greater than 0")
 
-        self.attention_layer_norm = nn.LayerNorm(embedding_dim)
+        self.attention_layer_norm = build_normalization_layer(
+            embedding_dim=embedding_dim,
+            normalization_type=normalization_type,
+            eps=normalization_eps,
+        )
         self.attention = MultiHeadCausalSelfAttention(
             embedding_dim=embedding_dim,
             num_heads=num_heads,
             head_dim=head_dim,
             max_context_length=max_context_length,
         )
-        self.feed_forward_layer_norm = nn.LayerNorm(embedding_dim)
+        self.feed_forward_layer_norm = build_normalization_layer(
+            embedding_dim=embedding_dim,
+            normalization_type=normalization_type,
+            eps=normalization_eps,
+        )
         self.feed_forward = FeedForward(
             embedding_dim=embedding_dim,
             feed_forward_dim=feed_forward_dim,
@@ -271,6 +283,8 @@ class CausalTransformerLanguageModel(nn.Module):
         head_dim: int,
         feed_forward_dim: int,
         max_context_length: int,
+        normalization_type: NormalizationType = "layer_norm",
+        normalization_eps: float = 1e-5,
     ):
         super().__init__()
 
@@ -296,6 +310,8 @@ class CausalTransformerLanguageModel(nn.Module):
             raise ValueError("max_context_length must be greater than 0")
 
         self.max_context_length = max_context_length
+        self.normalization_type = normalization_type
+        self.normalization_eps = normalization_eps
         self.embedding = TokenAndPositionEmbedding(
             vocab_size=vocab_size,
             embedding_dim=embedding_dim,
@@ -308,10 +324,16 @@ class CausalTransformerLanguageModel(nn.Module):
                 head_dim=head_dim,
                 feed_forward_dim=feed_forward_dim,
                 max_context_length=max_context_length,
+                normalization_type=normalization_type,
+                normalization_eps=normalization_eps,
             )
             for _ in range(num_layers)
         ])
-        self.final_layer_norm = nn.LayerNorm(embedding_dim)
+        self.final_layer_norm = build_normalization_layer(
+            embedding_dim=embedding_dim,
+            normalization_type=normalization_type,
+            eps=normalization_eps,
+        )
         self.output_projection = nn.Linear(embedding_dim, vocab_size)
 
     def forward(

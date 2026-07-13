@@ -1,6 +1,7 @@
 import pytest
 import torch
 
+from sonnet_model.normalization import RMSNorm
 from sonnet_model.transformer import (
     CausalSelfAttentionHead,
     CausalTransformerLanguageModel,
@@ -665,6 +666,27 @@ def test_transformer_block_backpropagates_to_attention_feed_forward_and_layer_no
     assert block.feed_forward.network[2].weight.grad is not None
 
 
+def test_transformer_block_uses_rms_norm_when_requested():
+    block = TransformerBlock(
+        embedding_dim=32,
+        num_heads=2,
+        head_dim=16,
+        feed_forward_dim=128,
+        max_context_length=128,
+        normalization_type="rms_norm",
+    )
+    x = torch.randn(4, 8, 32)
+
+    output = block(x)
+    output.sum().backward()
+
+    assert isinstance(block.attention_layer_norm, RMSNorm)
+    assert isinstance(block.feed_forward_layer_norm, RMSNorm)
+    assert block.attention_layer_norm.weight.grad is not None
+    assert block.feed_forward_layer_norm.weight.grad is not None
+    assert not hasattr(block.attention_layer_norm, "bias")
+
+
 def test_transformer_block_rejects_invalid_init_arguments():
     with pytest.raises(ValueError, match="embedding_dim"):
         TransformerBlock(
@@ -858,6 +880,27 @@ def test_causal_transformer_language_model_backpropagates_through_full_model():
     assert model.blocks[0].feed_forward.network[0].weight.grad is not None
     assert model.final_layer_norm.weight.grad is not None
     assert model.output_projection.weight.grad is not None
+
+
+def test_causal_transformer_language_model_uses_rms_norm_when_requested():
+    model = CausalTransformerLanguageModel(
+        vocab_size=20,
+        embedding_dim=32,
+        num_layers=2,
+        num_heads=2,
+        head_dim=16,
+        feed_forward_dim=128,
+        max_context_length=128,
+        normalization_type="rms_norm",
+    )
+    input_ids = torch.randint(0, 20, (2, 8))
+    target_ids = torch.randint(0, 20, (2, 8))
+
+    _, loss = model(input_ids, target_ids)
+
+    assert isinstance(model.final_layer_norm, RMSNorm)
+    assert model.normalization_type == "rms_norm"
+    assert loss is not None
 
 
 def test_causal_transformer_language_model_optimizer_step_updates_weights():

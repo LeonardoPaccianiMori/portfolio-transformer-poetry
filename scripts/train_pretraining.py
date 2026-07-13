@@ -51,6 +51,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--head-dim", type=int, default=32)
     parser.add_argument("--feed-forward-dim", type=int, default=1024)
     parser.add_argument("--max-context-length", type=int, default=512)
+    parser.add_argument(
+        "--normalization-type",
+        choices=["layer_norm", "rms_norm"],
+        default="layer_norm",
+    )
+    parser.add_argument("--normalization-eps", type=float, default=1e-5)
     parser.add_argument("--checkpoint-interval", type=int, default=0)
     parser.add_argument("--resume-from-checkpoint", default="")
     return parser.parse_args()
@@ -78,6 +84,8 @@ def main() -> None:
         head_dim=args.head_dim,
         feed_forward_dim=args.feed_forward_dim,
         max_context_length=args.max_context_length,
+        normalization_type=args.normalization_type,
+        normalization_eps=args.normalization_eps,
         checkpoint_interval=args.checkpoint_interval,
         resume_from_checkpoint=args.resume_from_checkpoint,
     )

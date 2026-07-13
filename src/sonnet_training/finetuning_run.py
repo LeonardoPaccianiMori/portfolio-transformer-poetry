@@ -163,6 +163,8 @@ def load_parent_for_finetuning(
         head_dim=int(parent_config["head_dim"]),
         feed_forward_dim=int(parent_config["feed_forward_dim"]),
         max_context_length=int(parent_config["max_context_length"]),
+        normalization_type=parent_config.get("normalization_type", "layer_norm"),
+        normalization_eps=float(parent_config.get("normalization_eps", 1e-5)),
     ).to(device)
     _load_parent_weights_with_extended_vocabulary(
         model=model,

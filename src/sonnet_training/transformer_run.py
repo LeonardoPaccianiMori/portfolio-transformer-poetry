@@ -6,6 +6,7 @@ import torch
 
 from sonnet_corpus.bpe import BytePairEncodingTokenizer
 from sonnet_corpus.dataset_text import load_bpe_encoded_splits, load_encoded_splits
+from sonnet_model.normalization import NormalizationType
 from sonnet_model.transformer import CausalTransformerLanguageModel
 from sonnet_training.steps import train_next_token_model
 
@@ -31,6 +32,8 @@ class TransformerTrainingConfig:
     head_dim: int = 16
     feed_forward_dim: int = 128
     max_context_length: int = 128
+    normalization_type: NormalizationType = "layer_norm"
+    normalization_eps: float = 1e-5
 
 
 def resolve_device(device: str) -> torch.device:
@@ -125,6 +128,8 @@ def train_transformer_run(
         head_dim=config.head_dim,
         feed_forward_dim=config.feed_forward_dim,
         max_context_length=config.max_context_length,
+        normalization_type=config.normalization_type,
+        normalization_eps=config.normalization_eps,
     ).to(device)
     optimizer = torch.optim.AdamW(
         model.parameters(),

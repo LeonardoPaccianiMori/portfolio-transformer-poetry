@@ -103,11 +103,19 @@ def _model_architecture_from_run_config(
     *,
     repo_root: Path,
     config: dict[str, Any],
-) -> dict[str, int]:
+) -> dict[str, int | float | str]:
     if "model_architecture" in config:
         return {
             name: int(config["model_architecture"][name])
             for name in ("vocab_size", *MODEL_ARCHITECTURE_KEYS)
+        } | {
+            "normalization_type": config["model_architecture"].get(
+                "normalization_type",
+                "layer_norm",
+            ),
+            "normalization_eps": float(
+                config["model_architecture"].get("normalization_eps", 1e-5)
+            ),
         }
 
     parent_path = repo_root / config["pretraining_checkpoint_path"]
@@ -119,6 +127,8 @@ def _model_architecture_from_run_config(
             name: int(parent_config[name])
             for name in MODEL_ARCHITECTURE_KEYS
         },
+        "normalization_type": parent_config.get("normalization_type", "layer_norm"),
+        "normalization_eps": float(parent_config.get("normalization_eps", 1e-5)),
     }
 
 
