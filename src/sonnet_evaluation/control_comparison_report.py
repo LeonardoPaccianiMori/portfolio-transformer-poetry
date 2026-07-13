@@ -165,7 +165,7 @@ def build_control_comparison_markdown(
         ])
 
     table_lines = [
-        "| Initialization | Best Step | Best Val | Final Val | Avg Chars | Avg Lines | Avg Repeated 4-gram Ratio | Avg Unique-Character Ratio | Low Memorization Risk |",
+        "| Arm | Best Step | Best Val | Final Val | Avg Chars | Avg Lines | Avg Repeated 4-gram Ratio | Avg Unique-Character Ratio | Low Memorization Risk |",
         "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |",
         *["| " + " | ".join(row) + " |" for row in rows],
     ]

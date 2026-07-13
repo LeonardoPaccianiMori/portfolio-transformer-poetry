@@ -127,6 +127,7 @@ def test_control_comparison_summarizes_matching_arms_and_writes_report(tmp_path)
     report = build_control_comparison_markdown(pretrained, random)
     assert control_arms_are_comparable(pretrained, random)
     assert pretrained["best_row"]["step"] == 5
+    assert "| Arm | Best Step |" in report
     assert "lower best validation loss by 1.0000" in report
     assert output_path.is_file()
     assert summaries["random"]["best_row"]["validation_loss"] == 3.0
