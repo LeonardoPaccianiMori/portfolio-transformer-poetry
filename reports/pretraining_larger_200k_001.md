@@ -22,6 +22,8 @@ This report records a from-scratch broader-Italian-corpus pretraining run. Raw c
 | Attention heads | 8 |
 | Head dimension | 64 |
 | Feed-forward dimension | 2048 |
+| Normalization | layer_norm |
+| Normalization epsilon | 1.0e-05 |
 
 ## Loss Summary
 

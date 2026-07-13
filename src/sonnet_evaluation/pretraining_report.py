@@ -81,6 +81,8 @@ def summarize_pretraining_run(
         "num_heads": config["num_heads"],
         "head_dim": config["head_dim"],
         "feed_forward_dim": config["feed_forward_dim"],
+        "normalization_type": config.get("normalization_type") or "layer_norm",
+        "normalization_eps": float(config.get("normalization_eps") or 1e-5),
         "parameter_count": config["parameter_count"],
         "first_step": first_row["step"],
         "first_train_loss": first_row["train_loss"],
@@ -119,6 +121,8 @@ def _configuration_table(summary: dict[str, Any]) -> str:
         ("Attention heads", summary["num_heads"]),
         ("Head dimension", summary["head_dim"]),
         ("Feed-forward dimension", summary["feed_forward_dim"]),
+        ("Normalization", summary["normalization_type"]),
+        ("Normalization epsilon", f"{summary['normalization_eps']:.1e}"),
     ]
     lines = ["| Setting | Value |", "| --- | --- |"]
     lines.extend(f"| {name} | {value} |" for name, value in rows)
