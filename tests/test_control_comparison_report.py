@@ -183,3 +183,33 @@ def test_control_comparison_allows_declared_schedule_difference(tmp_path):
         },
     )
     assert "# Controlled Experiment Comparison: Learning-Rate Schedule" in report
+
+
+def test_control_comparison_allows_declared_gradient_clipping_difference(tmp_path):
+    manifest_path = write_manifest(tmp_path)
+    left_run, left_generation = write_arm(tmp_path, "unclipped", "pretrained", 2.0)
+    right_run, right_generation = write_arm(tmp_path, "clipped", "pretrained", 2.1)
+    clipped_config_path = right_run / "config.json"
+    clipped_config = json.loads(clipped_config_path.read_text(encoding="utf-8"))
+    clipped_config["max_gradient_norm"] = 1.0
+    clipped_config_path.write_text(json.dumps(clipped_config), encoding="utf-8")
+
+    left = summarize_control_arm(
+        run_dir=left_run,
+        generation_dir=left_generation,
+        manifest_path=manifest_path,
+        repo_root=tmp_path,
+    )
+    right = summarize_control_arm(
+        run_dir=right_run,
+        generation_dir=right_generation,
+        manifest_path=manifest_path,
+        repo_root=tmp_path,
+    )
+
+    assert not control_arms_are_comparable(left, right)
+    assert control_arms_are_comparable(
+        left,
+        right,
+        allowed_difference_fields={"max_gradient_norm"},
+    )

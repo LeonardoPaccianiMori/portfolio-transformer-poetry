@@ -29,11 +29,13 @@ COMPARABILITY_FIELDS = (
     "learning_rate_schedule",
     "warmup_steps",
     "min_learning_rate",
+    "max_gradient_norm",
 )
 COMPARABILITY_DEFAULTS = {
     "learning_rate_schedule": "constant",
     "warmup_steps": 0,
     "min_learning_rate": 0.0,
+    "max_gradient_norm": None,
 }
 
 

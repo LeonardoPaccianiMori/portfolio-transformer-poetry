@@ -53,6 +53,7 @@ class SonnetControlRunConfig:
     learning_rate_schedule: LearningRateSchedule = "constant"
     warmup_steps: int = 0
     min_learning_rate: float = 0.0
+    max_gradient_norm: float | None = None
     seed: int = 1337
     prompt: str = "Amor"
     max_new_tokens: int = 300
@@ -207,20 +208,25 @@ def train_control_steps(
     tokenizer: BytePairEncodingTokenizer,
     model_architecture: dict[str, int],
     parent_checkpoint: dict[str, Any] | None,
-) -> tuple[list[dict[str, float | int]], dict[str, float | int]]:
+) -> tuple[
+    list[dict[str, float | int | None]],
+    dict[str, float | int | None],
+]:
     """Train, evaluate, and overwrite one exact best-validation checkpoint."""
-    history: list[dict[str, float | int]] = []
-    best_validation_row: dict[str, float | int] | None = None
+    history: list[dict[str, float | int | None]] = []
+    best_validation_row: dict[str, float | int | None] | None = None
     for step in range(1, config.train_steps + 1):
         current_learning_rate = learning_rate_for_step(config, step)
         set_optimizer_learning_rate(optimizer, current_learning_rate)
-        train_loss = train_next_token_step(
+        train_loss, pre_clipping_gradient_norm = train_next_token_step(
             model=model,
             optimizer=optimizer,
             token_ids=train_token_ids,
             batch_size=config.batch_size,
             context_length=config.context_length,
             device=device,
+            max_gradient_norm=config.max_gradient_norm,
+            return_gradient_norm=True,
         )
         should_evaluate = (
             step == 1
@@ -241,6 +247,7 @@ def train_control_steps(
                 "train_loss": train_loss,
                 "validation_loss": validation_loss,
                 "learning_rate": current_learning_rate,
+                "pre_clipping_gradient_norm": pre_clipping_gradient_norm,
             }
             history.append(row)
             if (
@@ -287,7 +294,7 @@ def save_control_checkpoint(
     model_architecture: dict[str, int],
     parent_checkpoint: dict[str, Any] | None,
     step: int,
-    best_validation_row: dict[str, float | int] | None,
+    best_validation_row: dict[str, float | int | None] | None,
 ) -> None:
     """Save one control checkpoint with explicit initialization provenance."""
     checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
@@ -323,7 +330,7 @@ def build_run_metadata(
     model: CausalTransformerLanguageModel,
     model_architecture: dict[str, int],
     parent_checkpoint: dict[str, Any] | None,
-    best_validation_row: dict[str, float | int],
+    best_validation_row: dict[str, float | int | None],
 ) -> dict[str, Any]:
     """Create reproducibility metadata shared by reports and selection tooling."""
     return {
@@ -429,5 +436,7 @@ def _validate_config(config: SonnetControlRunConfig) -> None:
         raise ValueError("min_learning_rate must be greater than or equal to 0")
     if config.min_learning_rate > config.learning_rate:
         raise ValueError("min_learning_rate must not exceed learning_rate")
+    if config.max_gradient_norm is not None and config.max_gradient_norm <= 0:
+        raise ValueError("max_gradient_norm must be greater than 0 when provided")
     if config.max_new_tokens < 0:
         raise ValueError("max_new_tokens must be greater than or equal to 0")

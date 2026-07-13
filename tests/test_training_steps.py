@@ -8,6 +8,7 @@ from sonnet_training.steps import (
     train_next_token_step,
 )
 
+
 def test_train_next_token_step_returns_float_loss():
     vocab_size = 10
     token_ids = torch.arange(100, dtype=torch.long) % vocab_size
@@ -76,6 +77,54 @@ def test_train_next_token_step_sets_model_to_train_mode():
     )
 
     assert model.training
+
+
+def test_train_next_token_step_clips_gradients_and_reports_pre_clipping_norm():
+    torch.manual_seed(0)
+    vocab_size = 10
+    token_ids = torch.arange(100, dtype=torch.long) % vocab_size
+    model = BigramLanguageModel(vocab_size=vocab_size)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=1e-2)
+
+    loss, pre_clipping_gradient_norm = train_next_token_step(
+        model=model,
+        optimizer=optimizer,
+        token_ids=token_ids,
+        batch_size=4,
+        context_length=8,
+        device=torch.device("cpu"),
+        max_gradient_norm=0.01,
+        return_gradient_norm=True,
+    )
+    post_clipping_gradient_norm = torch.linalg.vector_norm(
+        torch.stack([
+            parameter.grad.detach().norm()
+            for parameter in model.parameters()
+            if parameter.grad is not None
+        ])
+    )
+
+    assert loss > 0.0
+    assert pre_clipping_gradient_norm is not None
+    assert pre_clipping_gradient_norm > 0.01
+    assert post_clipping_gradient_norm <= 0.01 + 1e-6
+
+
+def test_train_next_token_step_rejects_nonpositive_gradient_norm_limit():
+    model = BigramLanguageModel(vocab_size=10)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=1e-2)
+    token_ids = torch.arange(100, dtype=torch.long) % 10
+
+    with pytest.raises(ValueError, match="max_gradient_norm"):
+        train_next_token_step(
+            model=model,
+            optimizer=optimizer,
+            token_ids=token_ids,
+            batch_size=4,
+            context_length=8,
+            device=torch.device("cpu"),
+            max_gradient_norm=0.0,
+        )
 
 
 def test_estimate_next_token_loss_returns_float_loss():

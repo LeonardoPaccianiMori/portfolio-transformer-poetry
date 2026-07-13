@@ -49,6 +49,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--warmup-steps", type=int, default=0)
     parser.add_argument("--min-learning-rate", type=float, default=0.0)
+    parser.add_argument("--max-gradient-norm", type=float)
     parser.add_argument("--seed", type=int, default=1337)
     parser.add_argument("--prompt", default="Amor")
     parser.add_argument("--max-new-tokens", type=int, default=300)
@@ -74,6 +75,7 @@ def main() -> None:
         learning_rate_schedule=args.learning_rate_schedule,
         warmup_steps=args.warmup_steps,
         min_learning_rate=args.min_learning_rate,
+        max_gradient_norm=args.max_gradient_norm,
         seed=args.seed,
         prompt=args.prompt,
         max_new_tokens=args.max_new_tokens,

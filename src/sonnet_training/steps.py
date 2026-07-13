@@ -11,7 +11,13 @@ def train_next_token_step(
     batch_size: int,
     context_length: int,
     device: torch.device | str,
-) -> float:
+    max_gradient_norm: float | None = None,
+    return_gradient_norm: bool = False,
+) -> float | tuple[float, float | None]:
+    """Run one update, optionally clipping and reporting the gradient norm."""
+    if max_gradient_norm is not None and max_gradient_norm <= 0:
+        raise ValueError("max_gradient_norm must be greater than 0 when provided")
+
     model.train()
 
     input_ids, target_ids = sample_next_token_batch(
@@ -28,9 +34,20 @@ def train_next_token_step(
 
     optimizer.zero_grad()
     loss.backward()
+    pre_clipping_gradient_norm = None
+    if max_gradient_norm is not None:
+        pre_clipping_gradient_norm = float(
+            torch.nn.utils.clip_grad_norm_(
+                model.parameters(),
+                max_norm=max_gradient_norm,
+            ).item()
+        )
     optimizer.step()
 
-    return float(loss.item())
+    loss_value = float(loss.item())
+    if return_gradient_norm:
+        return loss_value, pre_clipping_gradient_norm
+    return loss_value
 
 
 def estimate_next_token_loss(

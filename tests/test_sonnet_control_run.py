@@ -180,6 +180,25 @@ def test_set_optimizer_learning_rate_updates_adamw_parameter_groups():
     assert optimizer.param_groups[0]["lr"] == 2e-4
 
 
+def test_control_run_logs_pre_clipping_gradient_norm_when_enabled(tmp_path):
+    write_control_inputs(tmp_path)
+    config = SonnetControlRunConfig(
+        **{
+            **tiny_control_config(tmp_path, "random").__dict__,
+            "max_gradient_norm": 0.01,
+        }
+    )
+
+    result = train_sonnet_control_run(tmp_path, tmp_path / "runs" / "clipped", config)
+    history = [
+        json.loads(line)
+        for line in result["log_path"].read_text(encoding="utf-8").splitlines()
+    ]
+
+    assert all(row["pre_clipping_gradient_norm"] is not None for row in history)
+    assert all(row["pre_clipping_gradient_norm"] > 0.01 for row in history)
+
+
 def test_control_arms_write_matching_data_and_architecture_metadata(tmp_path):
     write_control_inputs(tmp_path)
     random_result = train_sonnet_control_run(
