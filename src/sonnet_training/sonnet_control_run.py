@@ -1,4 +1,4 @@
-"""Run controlled sonnet-only and pretrained-initialization comparisons."""
+"""Run controlled sonnet experiments with explicit initialization lineage."""
 
 from __future__ import annotations
 
@@ -15,12 +15,16 @@ from sonnet_corpus.dataset_text import load_pretraining_bpe_encoded_splits
 from sonnet_model.transformer import CausalTransformerLanguageModel
 from sonnet_training.finetuning_run import generate_finetuning_sample, load_parent_for_finetuning
 from sonnet_training.pretraining_run import count_parameters
+from sonnet_training.rmsnorm_conversion import (
+    initialize_rms_norm_conversion_from_parent,
+)
 from sonnet_training.steps import estimate_next_token_loss, train_next_token_step
 from sonnet_training.transformer_run import resolve_device, write_json, write_jsonl
 
 
-InitializationMode = Literal["pretrained", "random"]
+InitializationMode = Literal["pretrained", "random", "layernorm_to_rmsnorm"]
 LearningRateSchedule = Literal["constant", "warmup_cosine"]
+ModelArchitecture = dict[str, int | float | str]
 MODEL_ARCHITECTURE_KEYS = (
     "vocab_size",
     "embedding_dim",
@@ -69,8 +73,12 @@ def train_sonnet_control_run(
     _validate_config(config)
     torch.manual_seed(config.seed)
     device = resolve_device(config.device)
-    model_architecture = load_model_architecture(
+    source_model_architecture = load_model_architecture(
         repo_root / config.model_architecture_path
+    )
+    model_architecture = target_model_architecture(
+        initialization=config.initialization,
+        source_model_architecture=source_model_architecture,
     )
     manifest_path = repo_root / "data" / "metadata" / "poems_manifest.csv"
     train_tokens, validation_tokens, _, tokenizer = load_pretraining_bpe_encoded_splits(
@@ -80,7 +88,7 @@ def train_sonnet_control_run(
         tokenizer_path=repo_root / config.pretraining_tokenizer_path,
     )
     _validate_tokenizer_architecture(tokenizer, model_architecture)
-    model, optimizer, parent_checkpoint = initialize_control_model(
+    model, optimizer, parent_checkpoint, initialization_metadata = initialize_control_model(
         repo_root=repo_root,
         config=config,
         tokenizer=tokenizer,
@@ -99,6 +107,7 @@ def train_sonnet_control_run(
         output_dir=output_dir,
         tokenizer=tokenizer,
         model_architecture=model_architecture,
+        initialization_metadata=initialization_metadata,
         parent_checkpoint=parent_checkpoint,
     )
     generated_text = generate_finetuning_sample(
@@ -123,6 +132,8 @@ def train_sonnet_control_run(
         validation_tokens=validation_tokens,
         model=model,
         model_architecture=model_architecture,
+        source_model_architecture=source_model_architecture,
+        initialization_metadata=initialization_metadata,
         parent_checkpoint=parent_checkpoint,
         best_validation_row=best_validation_row,
     )
@@ -137,6 +148,7 @@ def train_sonnet_control_run(
         config=config,
         tokenizer=tokenizer,
         model_architecture=model_architecture,
+        initialization_metadata=initialization_metadata,
         parent_checkpoint=parent_checkpoint,
         step=config.train_steps,
         best_validation_row=best_validation_row,
@@ -154,7 +166,7 @@ def train_sonnet_control_run(
     }
 
 
-def load_model_architecture(path: Path) -> dict[str, int | float | str]:
+def load_model_architecture(path: Path) -> ModelArchitecture:
     """Load the architecture manifest shared by every control arm."""
     payload = json.loads(path.read_text(encoding="utf-8"))
     architecture = payload.get("model_architecture", payload)
@@ -168,23 +180,40 @@ def load_model_architecture(path: Path) -> dict[str, int | float | str]:
     }
 
 
+def target_model_architecture(
+    *,
+    initialization: InitializationMode,
+    source_model_architecture: ModelArchitecture,
+) -> ModelArchitecture:
+    """Derive the model architecture trained by one controlled arm."""
+    if initialization != "layernorm_to_rmsnorm":
+        return source_model_architecture
+    if source_model_architecture["normalization_type"] != "layer_norm":
+        raise ValueError("LayerNorm-to-RMSNorm conversion requires LayerNorm architecture")
+    return {
+        **source_model_architecture,
+        "normalization_type": "rms_norm",
+    }
+
+
 def initialize_control_model(
     *,
     repo_root: Path,
     config: SonnetControlRunConfig,
     tokenizer: BytePairEncodingTokenizer,
-    model_architecture: dict[str, int | float | str],
+    model_architecture: ModelArchitecture,
     device: torch.device,
 ) -> tuple[
     CausalTransformerLanguageModel,
     torch.optim.Optimizer,
+    dict[str, Any] | None,
     dict[str, Any] | None,
 ]:
     """Build one arm while always creating fresh AdamW optimizer state."""
     if config.initialization == "random":
         model = CausalTransformerLanguageModel(**model_architecture).to(device)
         optimizer = torch.optim.AdamW(model.parameters(), lr=config.learning_rate)
-        return model, optimizer, None
+        return model, optimizer, None, None
 
     if config.initialization == "pretrained":
         model, optimizer, parent_checkpoint = load_parent_for_finetuning(
@@ -195,9 +224,23 @@ def initialize_control_model(
             device=device,
         )
         _validate_model_architecture(model, model_architecture)
-        return model, optimizer, parent_checkpoint
+        return model, optimizer, parent_checkpoint, None
 
-    raise ValueError("initialization must be 'pretrained' or 'random'")
+    if config.initialization == "layernorm_to_rmsnorm":
+        model, optimizer, parent_checkpoint, conversion_metadata = (
+            initialize_rms_norm_conversion_from_parent(
+                checkpoint_path=repo_root / config.pretraining_checkpoint_path,
+                tokenizer=tokenizer,
+                learning_rate=config.learning_rate,
+                device=device,
+            )
+        )
+        _validate_model_architecture(model, model_architecture)
+        return model, optimizer, parent_checkpoint, conversion_metadata
+
+    raise ValueError(
+        "initialization must be 'pretrained', 'random', or 'layernorm_to_rmsnorm'"
+    )
 
 
 def train_control_steps(
@@ -210,7 +253,8 @@ def train_control_steps(
     device: torch.device,
     output_dir: Path,
     tokenizer: BytePairEncodingTokenizer,
-    model_architecture: dict[str, int | float | str],
+    model_architecture: ModelArchitecture,
+    initialization_metadata: dict[str, Any] | None,
     parent_checkpoint: dict[str, Any] | None,
 ) -> tuple[
     list[dict[str, float | int | None]],
@@ -266,6 +310,7 @@ def train_control_steps(
                     config=config,
                     tokenizer=tokenizer,
                     model_architecture=model_architecture,
+                    initialization_metadata=initialization_metadata,
                     parent_checkpoint=parent_checkpoint,
                     step=step,
                     best_validation_row=row,
@@ -278,6 +323,7 @@ def train_control_steps(
                 config=config,
                 tokenizer=tokenizer,
                 model_architecture=model_architecture,
+                initialization_metadata=initialization_metadata,
                 parent_checkpoint=parent_checkpoint,
                 step=step,
                 best_validation_row=best_validation_row,
@@ -295,7 +341,8 @@ def save_control_checkpoint(
     optimizer: torch.optim.Optimizer,
     config: SonnetControlRunConfig,
     tokenizer: BytePairEncodingTokenizer,
-    model_architecture: dict[str, int | float | str],
+    model_architecture: ModelArchitecture,
+    initialization_metadata: dict[str, Any] | None,
     parent_checkpoint: dict[str, Any] | None,
     step: int,
     best_validation_row: dict[str, float | int | None] | None,
@@ -313,6 +360,7 @@ def save_control_checkpoint(
             "vocab_size": tokenizer.vocab_size,
             "parameter_count": count_parameters(model),
             "model_architecture": model_architecture,
+            "initialization_metadata": initialization_metadata,
             "parent_checkpoint_step": (
                 int(parent_checkpoint["step"])
                 if parent_checkpoint is not None
@@ -332,7 +380,9 @@ def build_run_metadata(
     train_tokens: torch.Tensor,
     validation_tokens: torch.Tensor,
     model: CausalTransformerLanguageModel,
-    model_architecture: dict[str, int | float | str],
+    model_architecture: ModelArchitecture,
+    source_model_architecture: ModelArchitecture,
+    initialization_metadata: dict[str, Any] | None,
     parent_checkpoint: dict[str, Any] | None,
     best_validation_row: dict[str, float | int | None],
 ) -> dict[str, Any]:
@@ -346,6 +396,8 @@ def build_run_metadata(
         "validation_tokens": int(validation_tokens.numel()),
         "parameter_count": count_parameters(model),
         "model_architecture": model_architecture,
+        "source_model_architecture": source_model_architecture,
+        "initialization_metadata": initialization_metadata,
         "parent_checkpoint_step": (
             int(parent_checkpoint["step"])
             if parent_checkpoint is not None
@@ -389,7 +441,7 @@ def set_optimizer_learning_rate(
 
 def _validate_tokenizer_architecture(
     tokenizer: BytePairEncodingTokenizer,
-    model_architecture: dict[str, int | float | str],
+    model_architecture: ModelArchitecture,
 ) -> None:
     if tokenizer.vocab_size != model_architecture["vocab_size"]:
         raise ValueError("tokenizer vocabulary size does not match model architecture")
@@ -406,6 +458,11 @@ def _validate_model_architecture(
     normalization_type = model_architecture.get("normalization_type", "layer_norm")
     if model.normalization_type != normalization_type:
         raise ValueError("pretrained model normalization does not match model architecture")
+    normalization_eps = float(model_architecture.get("normalization_eps", 1e-5))
+    if model.normalization_eps != normalization_eps:
+        raise ValueError(
+            "pretrained model normalization epsilon does not match model architecture"
+        )
 
 
 def _validate_context_length(
@@ -419,8 +476,10 @@ def _validate_context_length(
 
 
 def _validate_config(config: SonnetControlRunConfig) -> None:
-    if config.initialization not in {"pretrained", "random"}:
-        raise ValueError("initialization must be 'pretrained' or 'random'")
+    if config.initialization not in {"pretrained", "random", "layernorm_to_rmsnorm"}:
+        raise ValueError(
+            "initialization must be 'pretrained', 'random', or 'layernorm_to_rmsnorm'"
+        )
     if config.batch_size <= 0:
         raise ValueError("batch_size must be greater than 0")
     if config.context_length <= 0:

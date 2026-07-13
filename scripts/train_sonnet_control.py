@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Train one controlled sonnet comparison arm from random or pretrained weights."""
+"""Train one controlled sonnet arm from random, pretrained, or converted weights."""
 
 from __future__ import annotations
 
@@ -20,7 +20,11 @@ from sonnet_training.sonnet_control_run import (
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--initialization", choices=["pretrained", "random"], required=True)
+    parser.add_argument(
+        "--initialization",
+        choices=["pretrained", "random", "layernorm_to_rmsnorm"],
+        required=True,
+    )
     parser.add_argument("--dataset", default="expanded_with_petrarch")
     parser.add_argument(
         "--model-architecture-path",

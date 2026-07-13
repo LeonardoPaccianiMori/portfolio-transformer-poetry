@@ -2,6 +2,7 @@ import csv
 import json
 from pathlib import Path
 
+import pytest
 import torch
 
 from sonnet_corpus.bpe import BytePairEncodingTokenizer, train_bpe_tokenizer
@@ -13,6 +14,7 @@ from sonnet_training.sonnet_control_run import (
     learning_rate_for_step,
     load_model_architecture,
     set_optimizer_learning_rate,
+    target_model_architecture,
     train_sonnet_control_run,
 )
 
@@ -140,7 +142,7 @@ def test_pretrained_control_uses_parent_weights_with_fresh_adamw_state(tmp_path)
     tokenizer = BytePairEncodingTokenizer.load(tokenizer_path)
     parent_checkpoint = torch.load(parent_path, map_location="cpu")
 
-    model, optimizer, loaded_parent = initialize_control_model(
+    model, optimizer, loaded_parent, initialization_metadata = initialize_control_model(
         repo_root=tmp_path,
         config=tiny_control_config(tmp_path, "pretrained"),
         tokenizer=tokenizer,
@@ -149,6 +151,7 @@ def test_pretrained_control_uses_parent_weights_with_fresh_adamw_state(tmp_path)
     )
 
     assert loaded_parent is not None
+    assert initialization_metadata is None
     assert optimizer.state == {}
     assert torch.equal(
         model.embedding.token_embedding.weight,
@@ -201,6 +204,44 @@ def test_control_run_logs_pre_clipping_gradient_norm_when_enabled(tmp_path):
 
     assert all(row["pre_clipping_gradient_norm"] is not None for row in history)
     assert all(row["pre_clipping_gradient_norm"] > 0.01 for row in history)
+
+
+def test_conversion_control_run_records_rms_norm_provenance(tmp_path):
+    write_control_inputs(tmp_path)
+    config = tiny_control_config(tmp_path, "layernorm_to_rmsnorm")
+
+    result = train_sonnet_control_run(tmp_path, tmp_path / "runs" / "converted", config)
+    run_metadata = json.loads(result["config_path"].read_text(encoding="utf-8"))
+    checkpoint = torch.load(result["best_checkpoint_path"], map_location="cpu")
+
+    assert run_metadata["model_architecture"]["normalization_type"] == "rms_norm"
+    assert run_metadata["source_model_architecture"]["normalization_type"] == "layer_norm"
+    assert run_metadata["initialization_metadata"]["conversion_type"] == (
+        "layer_norm_to_rms_norm"
+    )
+    assert run_metadata["initialization_metadata"]["optimizer_state_restored"] is False
+    assert checkpoint["initialization_metadata"] == run_metadata["initialization_metadata"]
+    assert "final_layer_norm.bias" not in checkpoint["model_state_dict"]
+
+
+def test_target_model_architecture_requires_layer_norm_source():
+    source_architecture = {
+        "vocab_size": 10,
+        "embedding_dim": 8,
+        "num_layers": 1,
+        "num_heads": 2,
+        "head_dim": 4,
+        "feed_forward_dim": 16,
+        "max_context_length": 8,
+        "normalization_type": "rms_norm",
+        "normalization_eps": 1e-5,
+    }
+
+    with pytest.raises(ValueError, match="LayerNorm architecture"):
+        target_model_architecture(
+            initialization="layernorm_to_rmsnorm",
+            source_model_architecture=source_architecture,
+        )
 
 
 def test_control_arms_write_matching_data_and_architecture_metadata(tmp_path):
