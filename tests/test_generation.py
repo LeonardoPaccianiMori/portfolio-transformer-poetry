@@ -393,6 +393,47 @@ def test_load_transformer_from_checkpoint_restores_rms_norm_architecture(tmp_pat
     assert isinstance(restored.final_layer_norm, RMSNorm)
 
 
+def test_load_transformer_from_checkpoint_restores_rope_architecture(tmp_path):
+    checkpoint_path = tmp_path / "model.pt"
+    config_path = tmp_path / "config.json"
+    model = CausalTransformerLanguageModel(
+        vocab_size=4,
+        embedding_dim=8,
+        num_layers=1,
+        num_heads=2,
+        head_dim=4,
+        feed_forward_dim=16,
+        max_context_length=8,
+        position_encoding_type="rope",
+        rope_theta=10_000.0,
+    )
+    write_json(
+        config_path,
+        {
+            "vocab_size": 4,
+            "embedding_dim": 8,
+            "num_layers": 1,
+            "num_heads": 2,
+            "head_dim": 4,
+            "feed_forward_dim": 16,
+            "max_context_length": 8,
+            "position_encoding_type": "rope",
+            "rope_theta": 10_000.0,
+        },
+    )
+    torch.save({"model_state_dict": model.state_dict()}, checkpoint_path)
+
+    restored = load_transformer_from_checkpoint(
+        checkpoint_path=checkpoint_path,
+        config_path=config_path,
+        device=torch.device("cpu"),
+    )
+
+    assert restored.position_encoding_type == "rope"
+    assert restored.rope_theta == 10_000.0
+    assert restored.embedding.position_embedding is None
+
+
 def test_load_transformer_from_checkpoint_supports_selection_architecture(tmp_path):
     run_dir = tmp_path / "run"
     selection_path = tmp_path / "selected_checkpoint.json"

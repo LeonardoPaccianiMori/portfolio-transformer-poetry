@@ -3,6 +3,11 @@ import torch.nn.functional as F
 from torch import nn
 
 from sonnet_model.normalization import NormalizationType, build_normalization_layer
+from sonnet_model.positional_encoding import (
+    PositionEncodingType,
+    RotaryPositionEmbedding,
+    validate_position_encoding_type,
+)
 
 
 class TokenAndPositionEmbedding(nn.Module):
@@ -11,6 +16,7 @@ class TokenAndPositionEmbedding(nn.Module):
         vocab_size: int,
         embedding_dim: int,
         max_context_length: int,
+        position_encoding_type: PositionEncodingType = "learned_absolute",
     ):
         super().__init__()
 
@@ -22,10 +28,16 @@ class TokenAndPositionEmbedding(nn.Module):
 
         if max_context_length <= 0:
             raise ValueError("max_context_length must be greater than 0")
+        validate_position_encoding_type(position_encoding_type)
 
         self.max_context_length = max_context_length
+        self.position_encoding_type = position_encoding_type
         self.token_embedding = nn.Embedding(vocab_size, embedding_dim)
-        self.position_embedding = nn.Embedding(max_context_length, embedding_dim)
+        self.position_embedding = (
+            nn.Embedding(max_context_length, embedding_dim)
+            if position_encoding_type == "learned_absolute"
+            else None
+        )
 
     def forward(self, input_ids: torch.Tensor) -> torch.Tensor:
         if input_ids.ndim != 2:
@@ -36,12 +48,11 @@ class TokenAndPositionEmbedding(nn.Module):
         if context_length > self.max_context_length:
             raise ValueError("context_length exceeds max_context_length")
 
-        position_ids = torch.arange(
-            context_length,
-            device=input_ids.device,
-        )
-
         token_embeddings = self.token_embedding(input_ids)
+        if self.position_embedding is None:
+            return token_embeddings
+
+        position_ids = torch.arange(context_length, device=input_ids.device)
         position_embeddings = self.position_embedding(position_ids)
 
         return token_embeddings + position_embeddings
@@ -53,6 +64,8 @@ class CausalSelfAttentionHead(nn.Module):
         embedding_dim: int,
         head_dim: int,
         max_context_length: int,
+        position_encoding_type: PositionEncodingType = "learned_absolute",
+        rope_theta: float = 10_000.0,
     ):
         super().__init__()
 
@@ -64,12 +77,25 @@ class CausalSelfAttentionHead(nn.Module):
 
         if max_context_length <= 0:
             raise ValueError("max_context_length must be greater than 0")
+        validate_position_encoding_type(position_encoding_type)
+        if rope_theta <= 0:
+            raise ValueError("rope_theta must be greater than 0")
 
         self.max_context_length = max_context_length
         self.head_dim = head_dim
+        self.position_encoding_type = position_encoding_type
         self.query = nn.Linear(embedding_dim, head_dim, bias=False)
         self.key = nn.Linear(embedding_dim, head_dim, bias=False)
         self.value = nn.Linear(embedding_dim, head_dim, bias=False)
+        self.rotary_embedding = (
+            RotaryPositionEmbedding(
+                head_dim=head_dim,
+                max_context_length=max_context_length,
+                theta=rope_theta,
+            )
+            if position_encoding_type == "rope"
+            else None
+        )
 
         causal_mask = torch.tril(torch.ones(max_context_length, max_context_length))
         self.register_buffer("causal_mask", causal_mask)
@@ -92,6 +118,9 @@ class CausalSelfAttentionHead(nn.Module):
         queries = self.query(x)
         keys = self.key(x)
         values = self.value(x)
+        if self.rotary_embedding is not None:
+            queries = self.rotary_embedding(queries)
+            keys = self.rotary_embedding(keys)
 
         attention_scores = queries @ keys.transpose(-2, -1)
         attention_scores = attention_scores * (self.head_dim ** -0.5)
@@ -115,6 +144,8 @@ class MultiHeadCausalSelfAttention(nn.Module):
         num_heads: int,
         head_dim: int,
         max_context_length: int,
+        position_encoding_type: PositionEncodingType = "learned_absolute",
+        rope_theta: float = 10_000.0,
     ):
         super().__init__()
 
@@ -129,12 +160,15 @@ class MultiHeadCausalSelfAttention(nn.Module):
 
         if max_context_length <= 0:
             raise ValueError("max_context_length must be greater than 0")
+        validate_position_encoding_type(position_encoding_type)
 
         self.heads = nn.ModuleList([
             CausalSelfAttentionHead(
                 embedding_dim=embedding_dim,
                 head_dim=head_dim,
                 max_context_length=max_context_length,
+                position_encoding_type=position_encoding_type,
+                rope_theta=rope_theta,
             )
             for _ in range(num_heads)
         ])
@@ -222,6 +256,8 @@ class TransformerBlock(nn.Module):
         max_context_length: int,
         normalization_type: NormalizationType = "layer_norm",
         normalization_eps: float = 1e-5,
+        position_encoding_type: PositionEncodingType = "learned_absolute",
+        rope_theta: float = 10_000.0,
     ):
         super().__init__()
 
@@ -239,6 +275,7 @@ class TransformerBlock(nn.Module):
 
         if max_context_length <= 0:
             raise ValueError("max_context_length must be greater than 0")
+        validate_position_encoding_type(position_encoding_type)
 
         self.attention_layer_norm = build_normalization_layer(
             embedding_dim=embedding_dim,
@@ -250,6 +287,8 @@ class TransformerBlock(nn.Module):
             num_heads=num_heads,
             head_dim=head_dim,
             max_context_length=max_context_length,
+            position_encoding_type=position_encoding_type,
+            rope_theta=rope_theta,
         )
         self.feed_forward_layer_norm = build_normalization_layer(
             embedding_dim=embedding_dim,
@@ -285,6 +324,8 @@ class CausalTransformerLanguageModel(nn.Module):
         max_context_length: int,
         normalization_type: NormalizationType = "layer_norm",
         normalization_eps: float = 1e-5,
+        position_encoding_type: PositionEncodingType = "learned_absolute",
+        rope_theta: float = 10_000.0,
     ):
         super().__init__()
 
@@ -308,14 +349,18 @@ class CausalTransformerLanguageModel(nn.Module):
 
         if max_context_length <= 0:
             raise ValueError("max_context_length must be greater than 0")
+        validate_position_encoding_type(position_encoding_type)
 
         self.max_context_length = max_context_length
         self.normalization_type = normalization_type
         self.normalization_eps = normalization_eps
+        self.position_encoding_type = position_encoding_type
+        self.rope_theta = rope_theta
         self.embedding = TokenAndPositionEmbedding(
             vocab_size=vocab_size,
             embedding_dim=embedding_dim,
             max_context_length=max_context_length,
+            position_encoding_type=position_encoding_type,
         )
         self.blocks = nn.ModuleList([
             TransformerBlock(
@@ -326,6 +371,8 @@ class CausalTransformerLanguageModel(nn.Module):
                 max_context_length=max_context_length,
                 normalization_type=normalization_type,
                 normalization_eps=normalization_eps,
+                position_encoding_type=position_encoding_type,
+                rope_theta=rope_theta,
             )
             for _ in range(num_layers)
         ])

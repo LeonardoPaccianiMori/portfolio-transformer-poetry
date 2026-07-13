@@ -134,6 +134,8 @@ def test_load_model_architecture_reads_selection_manifest(tmp_path):
         **architecture,
         "normalization_type": "layer_norm",
         "normalization_eps": 1e-5,
+        "position_encoding_type": "learned_absolute",
+        "rope_theta": 10_000.0,
     }
 
 

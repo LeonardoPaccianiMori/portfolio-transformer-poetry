@@ -51,6 +51,11 @@ def initialize_rms_norm_conversion_from_parent(
         max_context_length=int(parent_config["max_context_length"]),
         normalization_type="rms_norm",
         normalization_eps=float(parent_config.get("normalization_eps", 1e-5)),
+        position_encoding_type=parent_config.get(
+            "position_encoding_type",
+            "learned_absolute",
+        ),
+        rope_theta=float(parent_config.get("rope_theta", 10_000.0)),
     ).to(device)
     conversion_metadata = copy_layer_norm_parent_state_to_rms_norm_model(
         model=model,

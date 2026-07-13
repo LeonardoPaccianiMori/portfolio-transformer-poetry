@@ -178,6 +178,11 @@ def load_model_architecture(path: Path) -> ModelArchitecture:
         **{name: int(architecture[name]) for name in MODEL_ARCHITECTURE_KEYS},
         "normalization_type": architecture.get("normalization_type", "layer_norm"),
         "normalization_eps": float(architecture.get("normalization_eps", 1e-5)),
+        "position_encoding_type": architecture.get(
+            "position_encoding_type",
+            "learned_absolute",
+        ),
+        "rope_theta": float(architecture.get("rope_theta", 10_000.0)),
     }
 
 
@@ -471,6 +476,19 @@ def _validate_model_architecture(
     if model.normalization_eps != normalization_eps:
         raise ValueError(
             "pretrained model normalization epsilon does not match model architecture"
+        )
+    position_encoding_type = model_architecture.get(
+        "position_encoding_type",
+        "learned_absolute",
+    )
+    if model.position_encoding_type != position_encoding_type:
+        raise ValueError(
+            "pretrained model position encoding does not match model architecture"
+        )
+    rope_theta = float(model_architecture.get("rope_theta", 10_000.0))
+    if model.rope_theta != rope_theta:
+        raise ValueError(
+            "pretrained model RoPE theta does not match model architecture"
         )
 
 

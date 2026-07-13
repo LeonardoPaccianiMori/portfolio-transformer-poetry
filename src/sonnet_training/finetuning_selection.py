@@ -116,6 +116,13 @@ def _model_architecture_from_run_config(
             "normalization_eps": float(
                 config["model_architecture"].get("normalization_eps", 1e-5)
             ),
+            "position_encoding_type": config["model_architecture"].get(
+                "position_encoding_type",
+                "learned_absolute",
+            ),
+            "rope_theta": float(
+                config["model_architecture"].get("rope_theta", 10_000.0)
+            ),
         }
 
     parent_path = repo_root / config["pretraining_checkpoint_path"]
@@ -129,6 +136,11 @@ def _model_architecture_from_run_config(
         },
         "normalization_type": parent_config.get("normalization_type", "layer_norm"),
         "normalization_eps": float(parent_config.get("normalization_eps", 1e-5)),
+        "position_encoding_type": parent_config.get(
+            "position_encoding_type",
+            "learned_absolute",
+        ),
+        "rope_theta": float(parent_config.get("rope_theta", 10_000.0)),
     }
 
 

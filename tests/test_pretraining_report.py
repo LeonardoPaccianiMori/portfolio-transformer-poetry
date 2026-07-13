@@ -95,6 +95,8 @@ def test_summarize_pretraining_run_extracts_losses_configuration_and_artifacts(t
     assert summary["parameter_count"] == 33_669_952
     assert summary["normalization_type"] == "layer_norm"
     assert summary["normalization_eps"] == 1e-5
+    assert summary["position_encoding_type"] == "learned_absolute"
+    assert summary["rope_theta"] == 10_000.0
     assert summary["first_validation_loss"] == 7.5
     assert summary["final_validation_loss"] == 2.1
     assert summary["best_validation_loss"] == 2.0
@@ -133,6 +135,7 @@ def test_markdown_report_includes_summary_sample_and_full_history(tmp_path):
     assert "| Best validation evaluation | 10,000 | 2.2000 | 2.0000 |" in report
     assert "Nel monte\ndi San Benedetto" in report
     assert "| Normalization | layer_norm |" in report
+    assert "| Position encoding | learned_absolute |" in report
     assert "| 20,000 | 1.8000 | 2.1000 |" in report
 
 
@@ -149,6 +152,21 @@ def test_summarize_pretraining_run_reads_explicit_rms_norm_configuration(tmp_pat
 
     assert summary["normalization_type"] == "rms_norm"
     assert summary["normalization_eps"] == 1e-6
+
+
+def test_summarize_pretraining_run_reads_explicit_rope_configuration(tmp_path):
+    run_dir = tmp_path / "pretraining_run"
+    write_fake_pretraining_run(run_dir)
+    config_path = run_dir / "config.json"
+    config = json.loads(config_path.read_text(encoding="utf-8"))
+    config["position_encoding_type"] = "rope"
+    config["rope_theta"] = 20_000.0
+    write_json(config_path, config)
+
+    summary = summarize_pretraining_run(run_dir)
+
+    assert summary["position_encoding_type"] == "rope"
+    assert summary["rope_theta"] == 20_000.0
 
 
 def test_write_pretraining_markdown_report_writes_public_file(tmp_path):

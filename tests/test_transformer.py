@@ -903,6 +903,35 @@ def test_causal_transformer_language_model_uses_rms_norm_when_requested():
     assert loss is not None
 
 
+def test_causal_transformer_language_model_uses_rope_when_requested():
+    model = CausalTransformerLanguageModel(
+        vocab_size=20,
+        embedding_dim=32,
+        num_layers=2,
+        num_heads=2,
+        head_dim=16,
+        feed_forward_dim=128,
+        max_context_length=128,
+        position_encoding_type="rope",
+        rope_theta=10_000.0,
+    )
+    input_ids = torch.randint(0, 20, (2, 8))
+    target_ids = torch.randint(0, 20, (2, 8))
+
+    logits, loss = model(input_ids, target_ids)
+
+    assert logits.shape == (2, 8, 20)
+    assert loss is not None
+    assert model.position_encoding_type == "rope"
+    assert model.embedding.position_embedding is None
+    assert model.blocks[0].attention.heads[0].rotary_embedding is not None
+
+    loss.backward()
+
+    assert model.embedding.token_embedding.weight.grad is not None
+    assert model.blocks[0].attention.heads[0].query.weight.grad is not None
+
+
 def test_causal_transformer_language_model_optimizer_step_updates_weights():
     vocab_size = 20
     model = build_test_transformer_model()

@@ -57,6 +57,12 @@ def parse_args() -> argparse.Namespace:
         default="layer_norm",
     )
     parser.add_argument("--normalization-eps", type=float, default=1e-5)
+    parser.add_argument(
+        "--position-encoding-type",
+        choices=["learned_absolute", "rope"],
+        default="learned_absolute",
+    )
+    parser.add_argument("--rope-theta", type=float, default=10_000.0)
     parser.add_argument("--checkpoint-interval", type=int, default=0)
     parser.add_argument("--resume-from-checkpoint", default="")
     return parser.parse_args()
@@ -86,6 +92,8 @@ def main() -> None:
         max_context_length=args.max_context_length,
         normalization_type=args.normalization_type,
         normalization_eps=args.normalization_eps,
+        position_encoding_type=args.position_encoding_type,
+        rope_theta=args.rope_theta,
         checkpoint_interval=args.checkpoint_interval,
         resume_from_checkpoint=args.resume_from_checkpoint,
     )

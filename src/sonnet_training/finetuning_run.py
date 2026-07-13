@@ -165,6 +165,11 @@ def load_parent_for_finetuning(
         max_context_length=int(parent_config["max_context_length"]),
         normalization_type=parent_config.get("normalization_type", "layer_norm"),
         normalization_eps=float(parent_config.get("normalization_eps", 1e-5)),
+        position_encoding_type=parent_config.get(
+            "position_encoding_type",
+            "learned_absolute",
+        ),
+        rope_theta=float(parent_config.get("rope_theta", 10_000.0)),
     ).to(device)
     _load_parent_weights_with_extended_vocabulary(
         model=model,

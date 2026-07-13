@@ -137,6 +137,32 @@ def test_train_pretraining_run_writes_reproducible_artifacts(tmp_path: Path):
     assert checkpoint["step"] == config.train_steps
 
 
+def test_train_pretraining_run_supports_rope_and_records_its_configuration(
+    tmp_path: Path,
+):
+    write_tiny_pretraining_artifacts(tmp_path)
+    config = PretrainingRunConfig(
+        **{
+            **tiny_pretraining_config().__dict__,
+            "position_encoding_type": "rope",
+            "rope_theta": 10_000.0,
+        }
+    )
+
+    result = train_pretraining_run(
+        repo_root=tmp_path,
+        output_dir=tmp_path / "runs" / "pretraining_rope",
+        config=config,
+    )
+    saved_config = read_json(result["config_path"])
+    checkpoint = torch.load(result["checkpoint_path"], map_location="cpu")
+
+    assert saved_config["position_encoding_type"] == "rope"
+    assert saved_config["rope_theta"] == 10_000.0
+    assert checkpoint["config"]["position_encoding_type"] == "rope"
+    assert "embedding.position_embedding.weight" not in checkpoint["model_state_dict"]
+
+
 def test_train_pretraining_run_writes_interval_checkpoints(tmp_path: Path):
     write_tiny_pretraining_artifacts(tmp_path)
     output_dir = tmp_path / "runs" / "pretraining"

@@ -65,6 +65,11 @@ def load_transformer_from_checkpoint(
         max_context_length=model_config["max_context_length"],
         normalization_type=model_config.get("normalization_type", "layer_norm"),
         normalization_eps=float(model_config.get("normalization_eps", 1e-5)),
+        position_encoding_type=model_config.get(
+            "position_encoding_type",
+            "learned_absolute",
+        ),
+        rope_theta=float(model_config.get("rope_theta", 10_000.0)),
     )
     checkpoint = torch.load(
         checkpoint_path,
