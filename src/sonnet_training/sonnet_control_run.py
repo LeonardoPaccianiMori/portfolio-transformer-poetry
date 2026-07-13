@@ -76,16 +76,17 @@ def train_sonnet_control_run(
     source_model_architecture = load_model_architecture(
         repo_root / config.model_architecture_path
     )
-    model_architecture = target_model_architecture(
-        initialization=config.initialization,
-        source_model_architecture=source_model_architecture,
-    )
     manifest_path = repo_root / "data" / "metadata" / "poems_manifest.csv"
     train_tokens, validation_tokens, _, tokenizer = load_pretraining_bpe_encoded_splits(
         manifest_path=manifest_path,
         repo_root=repo_root,
         dataset=config.dataset,
         tokenizer_path=repo_root / config.pretraining_tokenizer_path,
+    )
+    model_architecture = target_model_architecture(
+        initialization=config.initialization,
+        source_model_architecture=source_model_architecture,
+        target_vocab_size=tokenizer.vocab_size,
     )
     _validate_tokenizer_architecture(tokenizer, model_architecture)
     model, optimizer, parent_checkpoint, initialization_metadata = initialize_control_model(
@@ -184,16 +185,24 @@ def target_model_architecture(
     *,
     initialization: InitializationMode,
     source_model_architecture: ModelArchitecture,
+    target_vocab_size: int | None = None,
 ) -> ModelArchitecture:
     """Derive the model architecture trained by one controlled arm."""
-    if initialization != "layernorm_to_rmsnorm":
-        return source_model_architecture
-    if source_model_architecture["normalization_type"] != "layer_norm":
+    if target_vocab_size is not None and target_vocab_size <= 0:
+        raise ValueError("target_vocab_size must be greater than 0")
+    if (
+        initialization == "layernorm_to_rmsnorm"
+        and source_model_architecture["normalization_type"] != "layer_norm"
+    ):
         raise ValueError("LayerNorm-to-RMSNorm conversion requires LayerNorm architecture")
-    return {
+    target_architecture = {
         **source_model_architecture,
-        "normalization_type": "rms_norm",
     }
+    if initialization == "layernorm_to_rmsnorm":
+        target_architecture["normalization_type"] = "rms_norm"
+    if target_vocab_size is not None:
+        target_architecture["vocab_size"] = target_vocab_size
+    return target_architecture
 
 
 def initialize_control_model(

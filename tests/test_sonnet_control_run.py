@@ -244,6 +244,30 @@ def test_target_model_architecture_requires_layer_norm_source():
         )
 
 
+def test_target_model_architecture_uses_expanded_finetuning_vocabulary():
+    source_architecture = {
+        "vocab_size": 10,
+        "embedding_dim": 8,
+        "num_layers": 1,
+        "num_heads": 2,
+        "head_dim": 4,
+        "feed_forward_dim": 16,
+        "max_context_length": 8,
+        "normalization_type": "rms_norm",
+        "normalization_eps": 1e-5,
+    }
+
+    target_architecture = target_model_architecture(
+        initialization="pretrained",
+        source_model_architecture=source_architecture,
+        target_vocab_size=13,
+    )
+
+    assert source_architecture["vocab_size"] == 10
+    assert target_architecture["vocab_size"] == 13
+    assert target_architecture["normalization_type"] == "rms_norm"
+
+
 def test_control_arms_write_matching_data_and_architecture_metadata(tmp_path):
     write_control_inputs(tmp_path)
     random_result = train_sonnet_control_run(
