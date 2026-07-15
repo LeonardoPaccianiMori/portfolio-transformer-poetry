@@ -68,7 +68,7 @@ def build_finetuning_checkpoint_selection(
     """Create a selection manifest with parent architecture and checkpoint lineage."""
     config = json.loads((run_dir / "config.json").read_text(encoding="utf-8"))
     history = load_loss_history(run_dir / "loss_history.jsonl")
-    best_row = min(history, key=lambda row: row["validation_loss"])
+    best_row = selected_best_validation_row(history, config)
     best_checkpoint_path = run_dir / "best_validation.pt"
     if best_checkpoint_path.is_file():
         selected_step = int(best_row["step"])
@@ -97,6 +97,27 @@ def build_finetuning_checkpoint_selection(
         "exact_best_checkpoint_available": selected_step == int(best_row["step"]),
         "model_architecture": model_architecture,
     }
+
+
+def selected_best_validation_row(
+    history: list[dict[str, Any]],
+    config: dict[str, Any],
+) -> dict[str, Any]:
+    """Return the run-recorded best row, or the raw minimum for legacy runs."""
+    if not history:
+        raise ValueError("loss history is empty")
+    if "best_validation_step" not in config:
+        return min(history, key=lambda row: row["validation_loss"])
+
+    best_step = int(config["best_validation_step"])
+    matching_rows = [row for row in history if int(row["step"]) == best_step]
+    if len(matching_rows) != 1:
+        raise ValueError("recorded best validation step is missing from loss history")
+    best_row = matching_rows[0]
+    recorded_loss = float(config.get("best_validation_loss", best_row["validation_loss"]))
+    if float(best_row["validation_loss"]) != recorded_loss:
+        raise ValueError("recorded best validation loss does not match loss history")
+    return best_row
 
 
 def _model_architecture_from_run_config(

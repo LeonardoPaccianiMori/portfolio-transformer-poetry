@@ -12,6 +12,7 @@ from sonnet_evaluation.finetuning_report import (
 from sonnet_training.finetuning_selection import (
     build_finetuning_checkpoint_selection,
     select_checkpoint_at_or_before,
+    selected_best_validation_row,
     write_finetuning_checkpoint_selection,
 )
 
@@ -100,6 +101,24 @@ def test_select_checkpoint_at_or_before_rejects_missing_checkpoints():
             [{"step": 1, "validation_loss": 1.0}],
             {},
         )
+
+
+def test_selection_honors_recorded_best_when_minimum_improvement_is_required():
+    history = [
+        {"step": 1_250, "validation_loss": 2.7381},
+        {"step": 1_500, "validation_loss": 2.7296},
+        {"step": 1_750, "validation_loss": 2.7290},
+    ]
+    config = {
+        "best_validation_step": 1_250,
+        "best_validation_loss": 2.7381,
+        "min_validation_improvement": 0.01,
+    }
+
+    selected_row = selected_best_validation_row(history, config)
+
+    assert selected_row["step"] == 1_250
+    assert selected_row["validation_loss"] == 2.7381
 
 
 def test_selection_manifest_contains_parent_architecture_and_lineage(tmp_path):
