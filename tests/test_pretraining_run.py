@@ -191,6 +191,28 @@ def test_train_pretraining_run_supports_swiglu_and_records_its_configuration(
     ]
 
 
+def test_train_pretraining_run_records_tied_token_embeddings(tmp_path: Path):
+    write_tiny_pretraining_artifacts(tmp_path)
+    config = PretrainingRunConfig(
+        **{
+            **tiny_pretraining_config().__dict__,
+            "tie_token_embeddings": True,
+        }
+    )
+
+    result = train_pretraining_run(
+        repo_root=tmp_path,
+        output_dir=tmp_path / "runs" / "pretraining_tied",
+        config=config,
+    )
+    saved_config = read_json(result["config_path"])
+    checkpoint = torch.load(result["checkpoint_path"], map_location="cpu")
+
+    assert saved_config["tie_token_embeddings"] is True
+    assert checkpoint["config"]["tie_token_embeddings"] is True
+    assert saved_config["parameter_count"] == checkpoint["parameter_count"]
+
+
 def test_train_pretraining_run_writes_interval_checkpoints(tmp_path: Path):
     write_tiny_pretraining_artifacts(tmp_path)
     output_dir = tmp_path / "runs" / "pretraining"

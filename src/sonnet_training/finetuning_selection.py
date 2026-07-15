@@ -103,7 +103,7 @@ def _model_architecture_from_run_config(
     *,
     repo_root: Path,
     config: dict[str, Any],
-) -> dict[str, int | float | str]:
+) -> dict[str, int | float | str | bool]:
     if "model_architecture" in config:
         return {
             name: int(config["model_architecture"][name])
@@ -127,6 +127,9 @@ def _model_architecture_from_run_config(
                 "feed_forward_type",
                 "relu",
             ),
+            "tie_token_embeddings": bool(
+                config["model_architecture"].get("tie_token_embeddings", False)
+            ),
         }
 
     parent_path = repo_root / config["pretraining_checkpoint_path"]
@@ -146,6 +149,7 @@ def _model_architecture_from_run_config(
         ),
         "rope_theta": float(parent_config.get("rope_theta", 10_000.0)),
         "feed_forward_type": parent_config.get("feed_forward_type", "relu"),
+        "tie_token_embeddings": bool(parent_config.get("tie_token_embeddings", False)),
     }
 
 

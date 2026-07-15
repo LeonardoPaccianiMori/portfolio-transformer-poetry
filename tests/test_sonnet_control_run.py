@@ -137,6 +137,7 @@ def test_load_model_architecture_reads_selection_manifest(tmp_path):
         "position_encoding_type": "learned_absolute",
         "rope_theta": 10_000.0,
         "feed_forward_type": "relu",
+        "tie_token_embeddings": False,
     }
 
 

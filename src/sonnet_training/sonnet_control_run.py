@@ -25,7 +25,7 @@ from sonnet_training.transformer_run import resolve_device, write_json, write_js
 
 InitializationMode = Literal["pretrained", "random", "layernorm_to_rmsnorm"]
 LearningRateSchedule = Literal["constant", "warmup_cosine"]
-ModelArchitecture = dict[str, int | float | str]
+ModelArchitecture = dict[str, int | float | str | bool]
 MODEL_ARCHITECTURE_KEYS = (
     "vocab_size",
     "embedding_dim",
@@ -186,6 +186,7 @@ def load_model_architecture(path: Path) -> ModelArchitecture:
         ),
         "rope_theta": float(architecture.get("rope_theta", 10_000.0)),
         "feed_forward_type": architecture.get("feed_forward_type", "relu"),
+        "tie_token_embeddings": bool(architecture.get("tie_token_embeddings", False)),
     }
 
 
@@ -492,7 +493,7 @@ def _validate_tokenizer_architecture(
 
 def _validate_model_architecture(
     model: CausalTransformerLanguageModel,
-    model_architecture: dict[str, int | float | str],
+    model_architecture: ModelArchitecture,
 ) -> None:
     if model.output_projection.out_features != model_architecture["vocab_size"]:
         raise ValueError("pretrained model vocabulary does not match model architecture")
@@ -523,6 +524,13 @@ def _validate_model_architecture(
     if model.feed_forward_type != feed_forward_type:
         raise ValueError(
             "pretrained model feed-forward type does not match model architecture"
+        )
+    tie_token_embeddings = bool(
+        model_architecture.get("tie_token_embeddings", False)
+    )
+    if model.tie_token_embeddings != tie_token_embeddings:
+        raise ValueError(
+            "pretrained model tied-embedding setting does not match model architecture"
         )
 
 

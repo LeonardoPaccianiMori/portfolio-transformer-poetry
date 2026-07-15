@@ -65,6 +65,7 @@ def parse_args() -> argparse.Namespace:
         choices=["relu", "swiglu"],
         default="relu",
     )
+    parser.add_argument("--tie-token-embeddings", action="store_true")
     return parser.parse_args()
 
 
@@ -96,6 +97,7 @@ def main() -> None:
         position_encoding_type=args.position_encoding_type,
         rope_theta=args.rope_theta,
         feed_forward_type=args.feed_forward_type,
+        tie_token_embeddings=args.tie_token_embeddings,
     )
 
     result = train_transformer_run(

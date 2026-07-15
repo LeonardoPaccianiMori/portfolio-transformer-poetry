@@ -1002,6 +1002,66 @@ def test_causal_transformer_language_model_uses_swiglu_when_requested():
     assert model.blocks[0].feed_forward.gate_projection.weight.grad is not None
 
 
+def test_causal_transformer_language_model_ties_input_and_output_weights():
+    model = CausalTransformerLanguageModel(
+        vocab_size=20,
+        embedding_dim=32,
+        num_layers=2,
+        num_heads=2,
+        head_dim=16,
+        feed_forward_dim=128,
+        max_context_length=128,
+        tie_token_embeddings=True,
+    )
+    input_ids = torch.randint(0, 20, (2, 8))
+    target_ids = torch.randint(0, 20, (2, 8))
+
+    _, loss = model(input_ids, target_ids)
+
+    assert model.tie_token_embeddings is True
+    assert model.embedding.token_embedding.weight is model.output_projection.weight
+    assert sum(
+        parameter is model.embedding.token_embedding.weight
+        for parameter in model.parameters()
+    ) == 1
+    assert loss is not None
+
+    loss.backward()
+
+    assert model.embedding.token_embedding.weight.grad is not None
+    assert (
+        model.embedding.token_embedding.weight.grad
+        is model.output_projection.weight.grad
+    )
+
+
+def test_tied_token_embeddings_reduce_parameter_count_by_output_weight_size():
+    model_kwargs = {
+        "vocab_size": 20,
+        "embedding_dim": 32,
+        "num_layers": 2,
+        "num_heads": 2,
+        "head_dim": 16,
+        "feed_forward_dim": 128,
+        "max_context_length": 128,
+    }
+    untied_model = CausalTransformerLanguageModel(**model_kwargs)
+    tied_model = CausalTransformerLanguageModel(
+        **model_kwargs,
+        tie_token_embeddings=True,
+    )
+
+    untied_parameter_count = sum(
+        parameter.numel() for parameter in untied_model.parameters()
+    )
+    tied_parameter_count = sum(
+        parameter.numel() for parameter in tied_model.parameters()
+    )
+
+    assert untied_model.tie_token_embeddings is False
+    assert untied_parameter_count - tied_parameter_count == 20 * 32
+
+
 def test_causal_transformer_language_model_optimizer_step_updates_weights():
     vocab_size = 20
     model = build_test_transformer_model()

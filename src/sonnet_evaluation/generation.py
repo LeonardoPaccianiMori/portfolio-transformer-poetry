@@ -71,6 +71,7 @@ def load_transformer_from_checkpoint(
         ),
         rope_theta=float(model_config.get("rope_theta", 10_000.0)),
         feed_forward_type=model_config.get("feed_forward_type", "relu"),
+        tie_token_embeddings=bool(model_config.get("tie_token_embeddings", False)),
     )
     checkpoint = torch.load(
         checkpoint_path,

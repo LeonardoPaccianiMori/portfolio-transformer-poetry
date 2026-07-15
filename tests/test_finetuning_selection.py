@@ -122,6 +122,7 @@ def test_selection_manifest_contains_parent_architecture_and_lineage(tmp_path):
     )
     assert selection["model_architecture"]["rope_theta"] == 10_000.0
     assert selection["model_architecture"]["feed_forward_type"] == "relu"
+    assert selection["model_architecture"]["tie_token_embeddings"] is False
 
 
 def test_write_selection_and_public_report(tmp_path):
@@ -198,6 +199,40 @@ def test_selection_prefers_exact_best_validation_checkpoint_and_direct_architect
     assert selection["exact_best_checkpoint_available"] is True
     assert selection["model_architecture"]["vocab_size"] == 52
     assert selection["model_architecture"]["normalization_type"] == "layer_norm"
+
+
+def test_selection_preserves_explicit_tied_embedding_architecture(tmp_path):
+    run_dir = tmp_path / "runs" / "control"
+    run_dir.mkdir(parents=True)
+    write_json(
+        run_dir / "config.json",
+        {
+            "vocab_size": 52,
+            "model_architecture": {
+                "vocab_size": 52,
+                "embedding_dim": 8,
+                "num_layers": 1,
+                "num_heads": 2,
+                "head_dim": 4,
+                "feed_forward_dim": 16,
+                "max_context_length": 8,
+                "tie_token_embeddings": True,
+            },
+        },
+    )
+    (run_dir / "loss_history.jsonl").write_text(
+        json.dumps({"step": 250, "train_loss": 2.0, "validation_loss": 1.5})
+        + "\n",
+        encoding="utf-8",
+    )
+    (run_dir / "best_validation.pt").write_bytes(b"best")
+
+    selection = build_finetuning_checkpoint_selection(
+        repo_root=tmp_path,
+        run_dir=run_dir,
+    )
+
+    assert selection["model_architecture"]["tie_token_embeddings"] is True
 
 
 def test_selection_preserves_explicit_rms_norm_architecture(tmp_path):

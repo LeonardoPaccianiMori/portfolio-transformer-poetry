@@ -47,6 +47,7 @@ class PretrainingRunConfig:
     position_encoding_type: PositionEncodingType = "learned_absolute"
     rope_theta: float = 10_000.0
     feed_forward_type: FeedForwardType = "relu"
+    tie_token_embeddings: bool = False
     checkpoint_interval: int = 0
     progress_interval: int = 100
     resume_from_checkpoint: str = ""
@@ -80,6 +81,7 @@ def train_pretraining_run(
         position_encoding_type=config.position_encoding_type,
         rope_theta=config.rope_theta,
         feed_forward_type=config.feed_forward_type,
+        tie_token_embeddings=config.tie_token_embeddings,
     ).to(device)
     optimizer = torch.optim.AdamW(
         model.parameters(),

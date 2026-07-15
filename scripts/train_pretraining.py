@@ -68,6 +68,7 @@ def parse_args() -> argparse.Namespace:
         choices=["relu", "swiglu"],
         default="relu",
     )
+    parser.add_argument("--tie-token-embeddings", action="store_true")
     parser.add_argument("--checkpoint-interval", type=int, default=0)
     parser.add_argument("--progress-interval", type=int, default=100)
     parser.add_argument("--resume-from-checkpoint", default="")
@@ -101,6 +102,7 @@ def main() -> None:
         position_encoding_type=args.position_encoding_type,
         rope_theta=args.rope_theta,
         feed_forward_type=args.feed_forward_type,
+        tie_token_embeddings=args.tie_token_embeddings,
         checkpoint_interval=args.checkpoint_interval,
         progress_interval=args.progress_interval,
         resume_from_checkpoint=args.resume_from_checkpoint,

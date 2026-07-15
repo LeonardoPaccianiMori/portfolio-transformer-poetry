@@ -472,6 +472,44 @@ def test_load_transformer_from_checkpoint_restores_swiglu_architecture(tmp_path)
     assert restored.blocks[0].feed_forward.feed_forward_type == "swiglu"
 
 
+def test_load_transformer_from_checkpoint_restores_tied_token_embeddings(tmp_path):
+    checkpoint_path = tmp_path / "model.pt"
+    config_path = tmp_path / "config.json"
+    model = CausalTransformerLanguageModel(
+        vocab_size=4,
+        embedding_dim=8,
+        num_layers=1,
+        num_heads=2,
+        head_dim=4,
+        feed_forward_dim=16,
+        max_context_length=8,
+        tie_token_embeddings=True,
+    )
+    write_json(
+        config_path,
+        {
+            "vocab_size": 4,
+            "embedding_dim": 8,
+            "num_layers": 1,
+            "num_heads": 2,
+            "head_dim": 4,
+            "feed_forward_dim": 16,
+            "max_context_length": 8,
+            "tie_token_embeddings": True,
+        },
+    )
+    torch.save({"model_state_dict": model.state_dict()}, checkpoint_path)
+
+    restored = load_transformer_from_checkpoint(
+        checkpoint_path=checkpoint_path,
+        config_path=config_path,
+        device=torch.device("cpu"),
+    )
+
+    assert restored.tie_token_embeddings is True
+    assert restored.embedding.token_embedding.weight is restored.output_projection.weight
+
+
 def test_load_transformer_from_checkpoint_supports_selection_architecture(tmp_path):
     run_dir = tmp_path / "run"
     selection_path = tmp_path / "selected_checkpoint.json"

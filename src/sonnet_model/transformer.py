@@ -354,6 +354,7 @@ class CausalTransformerLanguageModel(nn.Module):
         position_encoding_type: PositionEncodingType = "learned_absolute",
         rope_theta: float = 10_000.0,
         feed_forward_type: FeedForwardType = "relu",
+        tie_token_embeddings: bool = False,
     ):
         super().__init__()
 
@@ -386,6 +387,7 @@ class CausalTransformerLanguageModel(nn.Module):
         self.position_encoding_type = position_encoding_type
         self.rope_theta = rope_theta
         self.feed_forward_type = feed_forward_type
+        self.tie_token_embeddings = tie_token_embeddings
         self.embedding = TokenAndPositionEmbedding(
             vocab_size=vocab_size,
             embedding_dim=embedding_dim,
@@ -413,6 +415,8 @@ class CausalTransformerLanguageModel(nn.Module):
             eps=normalization_eps,
         )
         self.output_projection = nn.Linear(embedding_dim, vocab_size)
+        if tie_token_embeddings:
+            self.output_projection.weight = self.embedding.token_embedding.weight
 
     def forward(
         self,

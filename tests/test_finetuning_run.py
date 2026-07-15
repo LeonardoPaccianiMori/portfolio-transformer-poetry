@@ -61,7 +61,11 @@ def write_manifest(path: Path) -> None:
         writer.writerows(rows)
 
 
-def write_tiny_finetuning_repository(repo_root: Path) -> tuple[Path, Path]:
+def write_tiny_finetuning_repository(
+    repo_root: Path,
+    *,
+    tie_token_embeddings: bool = False,
+) -> tuple[Path, Path]:
     manifest_path = repo_root / "data" / "metadata" / "poems_manifest.csv"
     manifest_path.parent.mkdir(parents=True)
     write_manifest(manifest_path)
@@ -95,6 +99,7 @@ def write_tiny_finetuning_repository(repo_root: Path) -> tuple[Path, Path]:
         head_dim=4,
         feed_forward_dim=16,
         max_context_length=8,
+        tie_token_embeddings=tie_token_embeddings,
     )
     optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3)
     input_ids = torch.tensor([[1, 2, 3, 4]], dtype=torch.long)
@@ -117,6 +122,7 @@ def write_tiny_finetuning_repository(repo_root: Path) -> tuple[Path, Path]:
                 "head_dim": 4,
                 "feed_forward_dim": 16,
                 "max_context_length": 8,
+                "tie_token_embeddings": tie_token_embeddings,
             },
             "vocab_size": tokenizer.vocab_size,
             "parameter_count": sum(parameter.numel() for parameter in model.parameters()),
@@ -228,6 +234,41 @@ def test_load_parent_for_finetuning_expands_vocabulary_weights_and_adamw_state(t
     assert (
         optimizer.state[model.output_projection.weight]["exp_avg_sq"].shape
         == model.output_projection.weight.shape
+    )
+
+
+def test_load_parent_for_finetuning_preserves_tied_embeddings_when_expanding_vocab(
+    tmp_path,
+):
+    checkpoint_path, tokenizer_path = write_tiny_finetuning_repository(
+        tmp_path,
+        tie_token_embeddings=True,
+    )
+    parent_checkpoint = torch.load(checkpoint_path, map_location="cpu")
+    tokenizer = BytePairEncodingTokenizer.load(tokenizer_path)
+    extended_tokenizer, _ = extend_tokenizer_for_character_coverage(
+        tokenizer,
+        ["virtü\n"],
+    )
+
+    model, optimizer, _ = load_parent_for_finetuning(
+        checkpoint_path=checkpoint_path,
+        tokenizer=extended_tokenizer,
+        learning_rate=3e-5,
+        restore_optimizer_state=True,
+        device=torch.device("cpu"),
+    )
+
+    parent_vocab_size = parent_checkpoint["vocab_size"]
+    assert model.tie_token_embeddings is True
+    assert model.embedding.token_embedding.weight is model.output_projection.weight
+    assert torch.equal(
+        model.embedding.token_embedding.weight[:parent_vocab_size],
+        parent_checkpoint["model_state_dict"]["embedding.token_embedding.weight"],
+    )
+    assert (
+        optimizer.state[model.embedding.token_embedding.weight]["exp_avg"].shape
+        == model.embedding.token_embedding.weight.shape
     )
 
 

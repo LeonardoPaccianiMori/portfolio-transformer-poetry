@@ -57,6 +57,7 @@ def initialize_rms_norm_conversion_from_parent(
         ),
         rope_theta=float(parent_config.get("rope_theta", 10_000.0)),
         feed_forward_type=parent_config.get("feed_forward_type", "relu"),
+        tie_token_embeddings=bool(parent_config.get("tie_token_embeddings", False)),
     ).to(device)
     conversion_metadata = copy_layer_norm_parent_state_to_rms_norm_model(
         model=model,
