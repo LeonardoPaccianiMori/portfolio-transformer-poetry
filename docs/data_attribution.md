@@ -1,5 +1,8 @@
 # Data Attribution
 
+This document covers the sonnet corpus. The repository-wide source index and
+licensing policy are in [`DATA_SOURCES_AND_ATTRIBUTION.md`](../DATA_SOURCES_AND_ATTRIBUTION.md).
+
 The processed corpus files in `data/processed/` are derived from Italian Wikisource pages listed in `data/metadata/poems_manifest.csv`.
 
 The builder records source URLs, archive names, edition notes where available, download timestamps, and license notes for each poem.

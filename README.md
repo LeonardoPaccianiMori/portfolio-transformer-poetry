@@ -7,7 +7,8 @@ The goal is educational and experimental: understand the internals of language m
 ## Project Goals
 
 - Build an inspectable causal transformer implementation in PyTorch.
-- Construct a reproducible corpus of Italian sonnets from reusable public sources.
+- Construct a reproducible corpus of Italian sonnets from public-domain and
+  explicitly licensed reusable sources.
 - Compare tokenization, architecture, training, and decoding choices on a small model.
 - Evaluate generated text with fixed prompts, automatic metrics, qualitative notes, and memorization checks.
 - Document the process clearly enough to support a technical portfolio artifact.
@@ -40,6 +41,9 @@ The project will progress in stages:
 - Preserve original spelling and punctuation unless a specific experiment says otherwise.
 - Track processed corpus files in the repo with source attribution; keep raw/interim extraction files temporary.
 - Track source provenance and licensing before using texts for training.
+
+See [Data Sources And Attribution](DATA_SOURCES_AND_ATTRIBUTION.md) for the
+public source index, licensing policy, and required credit records.
 
 ## Status
 
