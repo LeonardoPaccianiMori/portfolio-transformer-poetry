@@ -87,6 +87,75 @@ def estimate_next_token_loss(
     return float(sum(losses) / len(losses))
 
 
+def sequential_next_token_window_count(
+    token_ids: torch.Tensor,
+    context_length: int,
+) -> int:
+    """Return the number of complete, non-overlapping next-token windows."""
+    if token_ids.ndim != 1:
+        raise ValueError("token_ids must be a 1D tensor")
+    if token_ids.dtype != torch.long:
+        raise ValueError("token_ids must have dtype torch.long")
+    if context_length <= 0:
+        raise ValueError("context_length must be greater than 0")
+    if len(token_ids) <= context_length:
+        raise ValueError("token_ids must be longer than context_length")
+
+    return (len(token_ids) - 1) // context_length
+
+
+def estimate_next_token_loss_on_sequential_windows(
+    model: nn.Module,
+    token_ids: torch.Tensor,
+    batch_size: int,
+    context_length: int,
+    device: torch.device | str,
+) -> float:
+    """Estimate loss over fixed, non-overlapping windows of one token stream."""
+    if batch_size <= 0:
+        raise ValueError("batch_size must be greater than 0")
+
+    window_count = sequential_next_token_window_count(
+        token_ids,
+        context_length,
+    )
+    total_loss = 0.0
+    total_target_tokens = 0
+    model.eval()
+
+    with torch.no_grad():
+        for first_window in range(0, window_count, batch_size):
+            last_window = min(first_window + batch_size, window_count)
+            start_indices = range(
+                first_window * context_length,
+                last_window * context_length,
+                context_length,
+            )
+            input_ids = torch.stack([
+                token_ids[start:start + context_length]
+                for start in start_indices
+            ]).to(device)
+            target_ids = torch.stack([
+                token_ids[start + 1:start + context_length + 1]
+                for start in range(
+                    first_window * context_length,
+                    last_window * context_length,
+                    context_length,
+                )
+            ]).to(device)
+            _, loss = model(input_ids, target_ids)
+
+            if loss is None:
+                raise RuntimeError("model did not return an evaluation loss")
+
+            target_token_count = target_ids.numel()
+            total_loss += float(loss.item()) * target_token_count
+            total_target_tokens += target_token_count
+
+    model.train()
+    return total_loss / total_target_tokens
+
+
 def train_next_token_model(
     model: nn.Module,
     optimizer: torch.optim.Optimizer,

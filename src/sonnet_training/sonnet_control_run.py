@@ -19,12 +19,18 @@ from sonnet_training.progress import TrainingProgressReporter
 from sonnet_training.rmsnorm_conversion import (
     initialize_rms_norm_conversion_from_parent,
 )
-from sonnet_training.steps import estimate_next_token_loss, train_next_token_step
+from sonnet_training.steps import (
+    estimate_next_token_loss,
+    estimate_next_token_loss_on_sequential_windows,
+    sequential_next_token_window_count,
+    train_next_token_step,
+)
 from sonnet_training.transformer_run import resolve_device, write_json, write_jsonl
 
 
 InitializationMode = Literal["pretrained", "random", "layernorm_to_rmsnorm"]
 LearningRateSchedule = Literal["constant", "warmup_cosine"]
+ValidationMode = Literal["random_batches", "sequential_windows"]
 ModelArchitecture = dict[str, int | float | str | bool]
 MODEL_ARCHITECTURE_KEYS = (
     "vocab_size",
@@ -53,6 +59,9 @@ class SonnetControlRunConfig:
     train_steps: int = 20_000
     eval_interval: int = 250
     eval_batches: int = 5
+    validation_mode: ValidationMode = "sequential_windows"
+    early_stopping_patience: int = 8
+    min_validation_improvement: float = 0.01
     checkpoint_interval: int = 1_000
     progress_interval: int = 100
     learning_rate: float = 3e-5
@@ -100,7 +109,7 @@ def train_sonnet_control_run(
     )
     _validate_context_length(config, model)
 
-    history, best_validation_row = train_control_steps(
+    history, best_validation_row, completed_steps, stop_reason = train_control_steps(
         model=model,
         optimizer=optimizer,
         train_token_ids=train_tokens,
@@ -139,6 +148,8 @@ def train_sonnet_control_run(
         initialization_metadata=initialization_metadata,
         parent_checkpoint=parent_checkpoint,
         best_validation_row=best_validation_row,
+        completed_steps=completed_steps,
+        stop_reason=stop_reason,
     )
     write_json(config_path, run_metadata)
     write_jsonl(log_path, history)
@@ -153,8 +164,9 @@ def train_sonnet_control_run(
         model_architecture=model_architecture,
         initialization_metadata=initialization_metadata,
         parent_checkpoint=parent_checkpoint,
-        step=config.train_steps,
+        step=completed_steps,
         best_validation_row=best_validation_row,
+        stop_reason=stop_reason,
     )
 
     return {
@@ -166,6 +178,8 @@ def train_sonnet_control_run(
         "checkpoint_dir": output_dir / "checkpoints",
         "best_checkpoint_path": output_dir / "best_validation.pt",
         "history": history,
+        "completed_steps": completed_steps,
+        "stop_reason": stop_reason,
     }
 
 
@@ -277,10 +291,15 @@ def train_control_steps(
 ) -> tuple[
     list[dict[str, float | int | None]],
     dict[str, float | int | None],
+    int,
+    str,
 ]:
     """Train, evaluate, and overwrite one exact best-validation checkpoint."""
     history: list[dict[str, float | int | None]] = []
     best_validation_row: dict[str, float | int | None] | None = None
+    non_improving_evaluations = 0
+    completed_steps = 0
+    stop_reason = "max_train_steps_reached"
     progress = TrainingProgressReporter(
         total_steps=config.train_steps,
         progress_interval=config.progress_interval,
@@ -305,12 +324,10 @@ def train_control_steps(
             or step == config.train_steps
         )
         if should_evaluate:
-            validation_loss = estimate_next_token_loss(
+            validation_loss = estimate_control_validation_loss(
                 model=model,
-                token_ids=validation_token_ids,
-                batch_size=config.batch_size,
-                context_length=config.context_length,
-                eval_batches=config.eval_batches,
+                validation_token_ids=validation_token_ids,
+                config=config,
                 device=device,
             )
             row = {
@@ -319,15 +336,20 @@ def train_control_steps(
                 "validation_loss": validation_loss,
                 "learning_rate": current_learning_rate,
                 "pre_clipping_gradient_norm": pre_clipping_gradient_norm,
+                "non_improving_evaluations": non_improving_evaluations,
             }
             history.append(row)
             best_validation_updated = False
             if (
                 best_validation_row is None
-                or row["validation_loss"] < best_validation_row["validation_loss"]
+                or row["validation_loss"]
+                < best_validation_row["validation_loss"]
+                - config.min_validation_improvement
             ):
                 best_validation_row = row
                 best_validation_updated = True
+                non_improving_evaluations = 0
+                row["non_improving_evaluations"] = non_improving_evaluations
                 save_control_checkpoint(
                     checkpoint_path=output_dir / "best_validation.pt",
                     model=model,
@@ -339,10 +361,19 @@ def train_control_steps(
                     parent_checkpoint=parent_checkpoint,
                     step=step,
                     best_validation_row=row,
+                    stop_reason=None,
                 )
+            else:
+                non_improving_evaluations += 1
+                row["non_improving_evaluations"] = non_improving_evaluations
+            should_stop_early = (
+                config.early_stopping_patience > 0
+                and non_improving_evaluations >= config.early_stopping_patience
+            )
         else:
             validation_loss = None
             best_validation_updated = False
+            should_stop_early = False
 
         checkpoint_written = False
         if config.checkpoint_interval and step % config.checkpoint_interval == 0:
@@ -357,6 +388,7 @@ def train_control_steps(
                 parent_checkpoint=parent_checkpoint,
                 step=step,
                 best_validation_row=best_validation_row,
+                stop_reason=None,
             )
             checkpoint_written = True
 
@@ -373,9 +405,42 @@ def train_control_steps(
                 best_validation=best_validation_updated,
             )
 
+        completed_steps = step
+        if should_stop_early:
+            stop_reason = "early_stopping_patience_exhausted"
+            break
+
     if best_validation_row is None:
         raise RuntimeError("control run completed without a validation evaluation")
-    return history, best_validation_row
+    return history, best_validation_row, completed_steps, stop_reason
+
+
+def estimate_control_validation_loss(
+    *,
+    model: CausalTransformerLanguageModel,
+    validation_token_ids: torch.Tensor,
+    config: SonnetControlRunConfig,
+    device: torch.device,
+) -> float:
+    """Return validation loss using the configured reproducible evaluation mode."""
+    if config.validation_mode == "random_batches":
+        return estimate_next_token_loss(
+            model=model,
+            token_ids=validation_token_ids,
+            batch_size=config.batch_size,
+            context_length=config.context_length,
+            eval_batches=config.eval_batches,
+            device=device,
+        )
+    if config.validation_mode == "sequential_windows":
+        return estimate_next_token_loss_on_sequential_windows(
+            model=model,
+            token_ids=validation_token_ids,
+            batch_size=config.batch_size,
+            context_length=config.context_length,
+            device=device,
+        )
+    raise ValueError("unsupported validation_mode")
 
 
 def save_control_checkpoint(
@@ -390,6 +455,7 @@ def save_control_checkpoint(
     parent_checkpoint: dict[str, Any] | None,
     step: int,
     best_validation_row: dict[str, float | int | None] | None,
+    stop_reason: str | None,
 ) -> None:
     """Save one control checkpoint with explicit initialization provenance."""
     checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
@@ -411,6 +477,8 @@ def save_control_checkpoint(
                 else None
             ),
             "best_validation_row": best_validation_row,
+            "completed_steps": step,
+            "stop_reason": stop_reason,
         },
         checkpoint_path,
     )
@@ -429,6 +497,8 @@ def build_run_metadata(
     initialization_metadata: dict[str, Any] | None,
     parent_checkpoint: dict[str, Any] | None,
     best_validation_row: dict[str, float | int | None],
+    completed_steps: int,
+    stop_reason: str,
 ) -> dict[str, Any]:
     """Create reproducibility metadata shared by reports and selection tooling."""
     return {
@@ -438,6 +508,10 @@ def build_run_metadata(
         "vocab_size": tokenizer.vocab_size,
         "train_tokens": int(train_tokens.numel()),
         "validation_tokens": int(validation_tokens.numel()),
+        "validation_window_count": sequential_next_token_window_count(
+            validation_tokens,
+            config.context_length,
+        ),
         "parameter_count": count_parameters(model),
         "model_architecture": model_architecture,
         "source_model_architecture": source_model_architecture,
@@ -447,7 +521,8 @@ def build_run_metadata(
             if parent_checkpoint is not None
             else None
         ),
-        "completed_steps": config.train_steps,
+        "completed_steps": completed_steps,
+        "stop_reason": stop_reason,
         "best_validation_step": int(best_validation_row["step"]),
         "best_validation_loss": float(best_validation_row["validation_loss"]),
     }
@@ -559,6 +634,12 @@ def _validate_config(config: SonnetControlRunConfig) -> None:
         raise ValueError("eval_interval must be greater than 0")
     if config.eval_batches <= 0:
         raise ValueError("eval_batches must be greater than 0")
+    if config.validation_mode not in {"random_batches", "sequential_windows"}:
+        raise ValueError("unsupported validation_mode")
+    if config.early_stopping_patience < 0:
+        raise ValueError("early_stopping_patience must be greater than or equal to 0")
+    if config.min_validation_improvement < 0:
+        raise ValueError("min_validation_improvement must be greater than or equal to 0")
     if config.checkpoint_interval < 0:
         raise ValueError("checkpoint_interval must be greater than or equal to 0")
     if config.progress_interval <= 0:

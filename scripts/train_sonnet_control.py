@@ -44,6 +44,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--train-steps", type=int, default=20_000)
     parser.add_argument("--eval-interval", type=int, default=250)
     parser.add_argument("--eval-batches", type=int, default=5)
+    parser.add_argument(
+        "--validation-mode",
+        choices=["random_batches", "sequential_windows"],
+        default="sequential_windows",
+    )
+    parser.add_argument("--early-stopping-patience", type=int, default=8)
+    parser.add_argument("--min-validation-improvement", type=float, default=0.01)
     parser.add_argument("--checkpoint-interval", type=int, default=1_000)
     parser.add_argument("--progress-interval", type=int, default=100)
     parser.add_argument("--learning-rate", type=float, default=3e-5)
@@ -75,6 +82,9 @@ def main() -> None:
         train_steps=args.train_steps,
         eval_interval=args.eval_interval,
         eval_batches=args.eval_batches,
+        validation_mode=args.validation_mode,
+        early_stopping_patience=args.early_stopping_patience,
+        min_validation_improvement=args.min_validation_improvement,
         checkpoint_interval=args.checkpoint_interval,
         progress_interval=args.progress_interval,
         learning_rate=args.learning_rate,
@@ -96,6 +106,11 @@ def main() -> None:
     print(f"wrote sample: {result['sample_path']}")
     print(f"wrote best checkpoint: {result['best_checkpoint_path']}")
     print(f"wrote final checkpoint: {result['checkpoint_path']}")
+    print(
+        "run completion: "
+        f"steps={result['completed_steps']}, "
+        f"reason={result['stop_reason']}"
+    )
     print(
         "final losses: "
         f"train={final_row['train_loss']:.4f}, "

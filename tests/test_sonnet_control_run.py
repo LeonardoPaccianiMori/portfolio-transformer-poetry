@@ -312,3 +312,53 @@ def test_control_arms_write_matching_data_and_architecture_metadata(tmp_path):
     assert random_result["checkpoint_dir"].joinpath("step_2.pt").is_file()
     assert random_result["best_checkpoint_path"].is_file()
     assert best_checkpoint["step"] == random_config["best_validation_step"]
+
+
+def test_control_run_uses_sequential_validation_and_records_its_coverage(tmp_path):
+    write_control_inputs(tmp_path)
+
+    result = train_sonnet_control_run(
+        tmp_path,
+        tmp_path / "runs" / "sequential_validation",
+        tiny_control_config(tmp_path, "random"),
+    )
+    run_metadata = json.loads(result["config_path"].read_text(encoding="utf-8"))
+
+    assert run_metadata["validation_mode"] == "sequential_windows"
+    assert run_metadata["validation_window_count"] == (
+        run_metadata["validation_tokens"] - 1
+    ) // run_metadata["context_length"]
+    assert run_metadata["stop_reason"] == "max_train_steps_reached"
+
+
+def test_control_run_stops_early_and_records_actual_completion(tmp_path):
+    write_control_inputs(tmp_path)
+    config = SonnetControlRunConfig(
+        **{
+            **tiny_control_config(tmp_path, "random").__dict__,
+            "train_steps": 10,
+            "checkpoint_interval": 0,
+            "early_stopping_patience": 1,
+            "min_validation_improvement": 1_000.0,
+        }
+    )
+
+    result = train_sonnet_control_run(
+        tmp_path,
+        tmp_path / "runs" / "early_stopped",
+        config,
+    )
+    run_metadata = json.loads(result["config_path"].read_text(encoding="utf-8"))
+    final_checkpoint = torch.load(result["checkpoint_path"], map_location="cpu")
+    best_checkpoint = torch.load(result["best_checkpoint_path"], map_location="cpu")
+
+    assert result["completed_steps"] == 2
+    assert result["stop_reason"] == "early_stopping_patience_exhausted"
+    assert len(result["history"]) == 2
+    assert result["history"][-1]["non_improving_evaluations"] == 1
+    assert run_metadata["completed_steps"] == 2
+    assert run_metadata["stop_reason"] == "early_stopping_patience_exhausted"
+    assert final_checkpoint["completed_steps"] == 2
+    assert final_checkpoint["stop_reason"] == "early_stopping_patience_exhausted"
+    assert best_checkpoint["step"] == 1
+    assert best_checkpoint["stop_reason"] is None

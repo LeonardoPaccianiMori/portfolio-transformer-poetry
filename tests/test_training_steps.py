@@ -4,6 +4,8 @@ import torch
 from sonnet_model.bigram import BigramLanguageModel
 from sonnet_training.steps import (
     estimate_next_token_loss,
+    estimate_next_token_loss_on_sequential_windows,
+    sequential_next_token_window_count,
     train_next_token_model,
     train_next_token_step,
 )
@@ -178,6 +180,77 @@ def test_estimate_next_token_loss_rejects_invalid_eval_batches():
             batch_size=4,
             context_length=8,
             eval_batches=0,
+            device=torch.device("cpu"),
+        )
+
+
+def test_sequential_validation_uses_all_complete_non_overlapping_windows():
+    class RecordingModel(torch.nn.Module):
+        def __init__(self):
+            super().__init__()
+            self.input_batches: list[torch.Tensor] = []
+
+        def forward(self, input_ids, target_ids):
+            self.input_batches.append(input_ids.cpu())
+            logits = torch.zeros(
+                (*input_ids.shape, 20),
+                device=input_ids.device,
+            )
+            return logits, torch.tensor(2.0, device=input_ids.device)
+
+    token_ids = torch.arange(17, dtype=torch.long)
+    model = RecordingModel()
+
+    loss = estimate_next_token_loss_on_sequential_windows(
+        model=model,
+        token_ids=token_ids,
+        batch_size=2,
+        context_length=4,
+        device=torch.device("cpu"),
+    )
+
+    assert sequential_next_token_window_count(token_ids, context_length=4) == 4
+    assert loss == 2.0
+    assert torch.equal(
+        model.input_batches[0],
+        torch.tensor([[0, 1, 2, 3], [4, 5, 6, 7]]),
+    )
+    assert torch.equal(
+        model.input_batches[1],
+        torch.tensor([[8, 9, 10, 11], [12, 13, 14, 15]]),
+    )
+
+
+def test_sequential_validation_is_deterministic_when_rng_state_changes():
+    token_ids = torch.arange(49, dtype=torch.long) % 10
+    model = BigramLanguageModel(vocab_size=10)
+
+    first_loss = estimate_next_token_loss_on_sequential_windows(
+        model=model,
+        token_ids=token_ids,
+        batch_size=2,
+        context_length=8,
+        device=torch.device("cpu"),
+    )
+    torch.rand(100)
+    second_loss = estimate_next_token_loss_on_sequential_windows(
+        model=model,
+        token_ids=token_ids,
+        batch_size=2,
+        context_length=8,
+        device=torch.device("cpu"),
+    )
+
+    assert first_loss == second_loss
+
+
+def test_sequential_validation_rejects_invalid_batch_size():
+    with pytest.raises(ValueError, match="batch_size"):
+        estimate_next_token_loss_on_sequential_windows(
+            model=BigramLanguageModel(vocab_size=10),
+            token_ids=torch.arange(20, dtype=torch.long) % 10,
+            batch_size=0,
+            context_length=8,
             device=torch.device("cpu"),
         )
 
