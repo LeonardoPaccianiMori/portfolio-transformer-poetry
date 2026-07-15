@@ -189,3 +189,28 @@ def test_starter_broader_prose_manifest_rows_are_valid():
     rows_by_id = {row.source_id: row for row in rows}
     assert rows_by_id["ll_cellini_vita"].inclusion_status == "defer"
     assert rows_by_id["ll_cellini_vita"].split == "excluded"
+
+
+def test_wikisource_expansion_candidates_remain_audited_not_active_sources():
+    path = Path("data/metadata/broader_prose_sources_manifest.csv")
+
+    with path.open(encoding="utf-8", newline="") as handle:
+        rows_by_id = {
+            row.source_id: row
+            for row in (PretrainingSourceRow(**row) for row in csv.DictReader(handle))
+        }
+
+    candidate_ids = {
+        "ws_galileo_saggiatore",
+        "ws_galileo_dialogo",
+        "ws_vico_scienza_nuova",
+        "ws_beccaria_delitti_pene",
+        "ws_giannone_istoria_civile_vol1",
+    }
+
+    assert candidate_ids <= rows_by_id.keys()
+    for source_id in candidate_ids:
+        row = rows_by_id[source_id]
+        assert row.source_archive == "Italian Wikisource"
+        assert row.inclusion_status == "audit_then_include"
+        assert row.period_bucket == "tier_d_post_1600"
