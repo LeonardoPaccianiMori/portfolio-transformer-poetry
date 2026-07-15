@@ -20,11 +20,12 @@ FetchItalianWikisourceWork = Callable[..., FetchedItalianWikisourceWork]
 
 @dataclass(frozen=True)
 class WorkBoundaries:
-    """Recorded first and last subpages expected for one audited work."""
+    """Recorded stable boundaries and selection rules for one audited work."""
 
     first_subpage: str
-    last_subpage: str
+    last_subpage: str = ""
     selected_subpage_titles: tuple[str, ...] = ()
+    excluded_subpage_prefixes: tuple[str, ...] = ()
 
 
 WORK_BOUNDARIES = {
@@ -42,6 +43,13 @@ WORK_BOUNDARIES = {
             "Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano/Giornata seconda",
             "Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano/Giornata terza",
             "Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano/Giornata quarta",
+        ),
+    ),
+    "ws_vico_scienza_nuova": WorkBoundaries(
+        first_subpage="La scienza nuova - Volume I/Titolo",
+        excluded_subpage_prefixes=(
+            "La scienza nuova - Volume I/Dedica dell'editore",
+            "La scienza nuova - Volume I/Introduzione dell'editore",
         ),
     ),
 }
@@ -148,6 +156,7 @@ def _probe_row(
             expected_first_subpage=boundaries.first_subpage,
             expected_last_subpage=boundaries.last_subpage,
             selected_subpage_titles=list(boundaries.selected_subpage_titles) or None,
+            excluded_subpage_prefixes=boundaries.excluded_subpage_prefixes,
             request_delay=request_delay,
             session=session,
             progress=progress,

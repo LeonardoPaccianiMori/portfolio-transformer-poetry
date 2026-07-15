@@ -76,6 +76,7 @@ def fetch_italian_wikisource_work(
     expected_first_subpage: str,
     expected_last_subpage: str,
     selected_subpage_titles: list[str] | None = None,
+    excluded_subpage_prefixes: tuple[str, ...] = (),
     request_delay: float = 1.0,
     retries: int = 5,
     session: requests.Session | None = None,
@@ -115,6 +116,7 @@ def fetch_italian_wikisource_work(
     subpage_titles = select_work_subpage_titles(
         extract_ordered_subpage_titles(root_html, expected_title),
         selected_subpage_titles,
+        excluded_subpage_prefixes,
     )
     validate_work_boundaries(
         subpage_titles,
@@ -265,9 +267,13 @@ def validate_work_boundaries(
     subpage_titles: list[str],
     *,
     expected_first_subpage: str,
-    expected_last_subpage: str,
+    expected_last_subpage: str = "",
 ) -> None:
-    """Reject an index that does not match its recorded work boundaries."""
+    """Reject an index that does not match its recorded stable boundaries.
+
+    A blank final boundary is intentional for an audited recursive work whose
+    complete primary-text tree is selected through explicit exclusion rules.
+    """
 
     if not subpage_titles:
         raise ValueError("Wikisource root page does not contain primary-text subpages")
@@ -276,7 +282,7 @@ def validate_work_boundaries(
             "unexpected first Wikisource subpage: "
             f"expected {expected_first_subpage!r}, got {subpage_titles[0]!r}"
         )
-    if subpage_titles[-1] != expected_last_subpage:
+    if expected_last_subpage and subpage_titles[-1] != expected_last_subpage:
         raise ValueError(
             "unexpected last Wikisource subpage: "
             f"expected {expected_last_subpage!r}, got {subpage_titles[-1]!r}"
@@ -286,11 +292,19 @@ def validate_work_boundaries(
 def select_work_subpage_titles(
     discovered_titles: list[str],
     selected_titles: list[str] | None,
+    excluded_prefixes: tuple[str, ...] = (),
 ) -> list[str]:
-    """Use an explicit approved subset when a collection has related pages."""
+    """Select all non-excluded pages or an explicit approved ordered subset."""
 
     if selected_titles is None:
-        return discovered_titles
+        selected_titles = [
+            title
+            for title in discovered_titles
+            if not any(title.startswith(prefix) for prefix in excluded_prefixes)
+        ]
+        if not selected_titles:
+            raise ValueError("Wikisource scope selected no primary-text subpages")
+        return selected_titles
     missing_titles = [title for title in selected_titles if title not in discovered_titles]
     if missing_titles:
         raise ValueError(f"approved Wikisource subpages are missing: {missing_titles}")

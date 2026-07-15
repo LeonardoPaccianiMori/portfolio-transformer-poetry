@@ -8,6 +8,7 @@ from sonnet_corpus.italian_wikisource import (
     WikisourcePageRevision,
 )
 from sonnet_corpus.italian_wikisource_probe import (
+    WORK_BOUNDARIES,
     probe_italian_wikisource_source,
     select_italian_wikisource_probe_row,
 )
@@ -131,3 +132,14 @@ def test_probe_records_fetch_error_and_keeps_source_audit_only(tmp_path: Path):
     assert report["result"]["status"] == "error"
     assert report["result"]["error"] == "network unavailable"
     assert report["result"]["page_count"] == 0
+
+
+def test_vico_probe_uses_exclusions_and_a_dynamic_final_boundary():
+    boundaries = WORK_BOUNDARIES["ws_vico_scienza_nuova"]
+
+    assert boundaries.first_subpage == "La scienza nuova - Volume I/Titolo"
+    assert boundaries.last_subpage == ""
+    assert boundaries.excluded_subpage_prefixes == (
+        "La scienza nuova - Volume I/Dedica dell'editore",
+        "La scienza nuova - Volume I/Introduzione dell'editore",
+    )

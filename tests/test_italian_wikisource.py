@@ -4,6 +4,7 @@ from sonnet_corpus.italian_wikisource import (
     extract_ordered_subpage_titles,
     extract_wikisource_prose_text,
     fetch_italian_wikisource_work,
+    select_work_subpage_titles,
     validate_work_boundaries,
 )
 
@@ -100,6 +101,45 @@ def test_validate_work_boundaries_rejects_unexpected_last_page():
             ["Il Saggiatore/Dedica", "Il Saggiatore/1"],
             expected_first_subpage="Il Saggiatore/Dedica",
             expected_last_subpage="Il Saggiatore/2",
+        )
+
+
+def test_validate_work_boundaries_allows_a_dynamic_last_page():
+    validate_work_boundaries(
+        ["Il Saggiatore/Dedica", "Il Saggiatore/1"],
+        expected_first_subpage="Il Saggiatore/Dedica",
+    )
+
+
+def test_select_work_subpage_titles_excludes_editorial_subtrees():
+    discovered_titles = [
+        "La scienza nuova - Volume I/Dedica dell'editore",
+        "La scienza nuova - Volume I/Introduzione dell'editore/I",
+        "La scienza nuova - Volume I/Titolo",
+        "La scienza nuova - Volume I/Libro I",
+    ]
+
+    selected = select_work_subpage_titles(
+        discovered_titles,
+        selected_titles=None,
+        excluded_prefixes=(
+            "La scienza nuova - Volume I/Dedica dell'editore",
+            "La scienza nuova - Volume I/Introduzione dell'editore",
+        ),
+    )
+
+    assert selected == [
+        "La scienza nuova - Volume I/Titolo",
+        "La scienza nuova - Volume I/Libro I",
+    ]
+
+
+def test_select_work_subpage_titles_rejects_an_empty_filtered_scope():
+    with pytest.raises(ValueError, match="selected no primary-text subpages"):
+        select_work_subpage_titles(
+            ["La scienza nuova - Volume I/Dedica dell'editore"],
+            selected_titles=None,
+            excluded_prefixes=("La scienza nuova - Volume I/Dedica dell'editore",),
         )
 
 

@@ -83,3 +83,11 @@ The _Dialogo_ probe then verified its six primary sections and activated
 fragments, collection material, and Latin text. The remaining three candidates
 remain `audit_then_include` until they pass the same source-specific inspection
 gate.
+
+Vico audit scope on 2026-07-15: the *Scienza nuova* root index contains two
+editorial branches, `Dedica dell'editore` and `Introduzione dell'editore`, ahead
+of the primary work. The Vico probe excludes those exact title prefixes and
+starts at `Titolo`; it intentionally has no hard-coded final page, so the
+complete current primary-text hierarchy can be inspected rather than silently
+truncated. It remains `audit_then_include` until that local revision-pinned
+probe confirms the selected page list and cleaned samples.
