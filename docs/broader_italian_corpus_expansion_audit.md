@@ -78,5 +78,8 @@ start/end samples, and absence of the checked wrapper markers. Therefore
 `ws_galileo_saggiatore` is activated as `include_probe` for
 `expanded_italian_1200_1800_v1` only. Its committed snapshot is
 [`data/metadata/wikisource_snapshots/ws_galileo_saggiatore.json`](../data/metadata/wikisource_snapshots/ws_galileo_saggiatore.json).
-The other four candidates remain `audit_then_include` until they pass the same
-source-specific inspection gate.
+The _Dialogo_ probe then verified its six primary sections and activated
+`ws_galileo_dialogo` with an `explicit_subpages` snapshot that excludes indexes,
+fragments, collection material, and Latin text. The remaining three candidates
+remain `audit_then_include` until they pass the same source-specific inspection
+gate.

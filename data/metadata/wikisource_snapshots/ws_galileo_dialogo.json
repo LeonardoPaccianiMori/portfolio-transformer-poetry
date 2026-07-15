@@ -1,0 +1,43 @@
+{
+  "source_id": "ws_galileo_dialogo",
+  "landing_page_url": "https://it.wikisource.org/wiki/Dialogo_sopra_i_due_massimi_sistemi_del_mondo_tolemaico_e_copernicano_%28raccolta%29",
+  "title": "Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano",
+  "scope": "explicit_subpages",
+  "root_revision": {
+    "title": "Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano",
+    "revision_id": 3799889,
+    "revision_timestamp": "2026-05-05T20:44:34Z"
+  },
+  "page_revisions": [
+    {
+      "title": "Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano/Dedica",
+      "revision_id": 3799891,
+      "revision_timestamp": "2026-05-05T20:44:35Z"
+    },
+    {
+      "title": "Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano/Al discreto lettore",
+      "revision_id": 3799890,
+      "revision_timestamp": "2026-05-05T20:44:35Z"
+    },
+    {
+      "title": "Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano/Giornata prima",
+      "revision_id": 3799892,
+      "revision_timestamp": "2026-05-05T20:44:37Z"
+    },
+    {
+      "title": "Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano/Giornata seconda",
+      "revision_id": 3799894,
+      "revision_timestamp": "2026-05-05T20:44:42Z"
+    },
+    {
+      "title": "Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano/Giornata terza",
+      "revision_id": 3799895,
+      "revision_timestamp": "2026-05-05T20:44:45Z"
+    },
+    {
+      "title": "Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano/Giornata quarta",
+      "revision_id": 3799893,
+      "revision_timestamp": "2026-05-05T20:44:40Z"
+    }
+  ]
+}

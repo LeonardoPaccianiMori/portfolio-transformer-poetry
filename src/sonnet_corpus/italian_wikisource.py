@@ -45,6 +45,7 @@ class WikisourceWorkSnapshot:
     source_id: str
     landing_page_url: str
     title: str
+    scope: str
     root_revision: WikisourcePageRevision
     page_revisions: list[WikisourcePageRevision]
 
@@ -171,11 +172,14 @@ def read_wikisource_work_snapshot(path: Path) -> WikisourceWorkSnapshot:
         source_id=str(payload["source_id"]),
         landing_page_url=str(payload["landing_page_url"]),
         title=str(payload["title"]),
+        scope=str(payload.get("scope", "all_root_subpages")),
         root_revision=WikisourcePageRevision(**root),
         page_revisions=[WikisourcePageRevision(**page) for page in pages],
     )
     if not snapshot.page_revisions:
         raise ValueError(f"Wikisource snapshot has no pages: {snapshot.source_id}")
+    if snapshot.scope not in {"all_root_subpages", "explicit_subpages"}:
+        raise ValueError(f"invalid Wikisource snapshot scope: {snapshot.scope}")
     return snapshot
 
 
@@ -202,8 +206,12 @@ def fetch_pinned_italian_wikisource_work(
     )
     actual_titles = extract_ordered_subpage_titles(root_html, snapshot.title)
     expected_titles = [revision.title for revision in snapshot.page_revisions]
-    if actual_titles != expected_titles:
+    if snapshot.scope == "all_root_subpages" and actual_titles != expected_titles:
         raise ValueError("Wikisource root page no longer matches committed page snapshot")
+    if snapshot.scope == "explicit_subpages":
+        missing_titles = [title for title in expected_titles if title not in actual_titles]
+        if missing_titles:
+            raise ValueError(f"Wikisource root page is missing committed subpages: {missing_titles}")
 
     parts: list[str] = []
     raw_html_character_count = len(root_html)

@@ -214,5 +214,6 @@ def test_only_audited_wikisource_source_is_active_for_the_expanded_corpus():
         assert row.source_archive == "Italian Wikisource"
         assert row.period_bucket == "tier_d_post_1600"
     assert rows_by_id["ws_galileo_saggiatore"].inclusion_status == "include_probe"
-    for source_id in candidate_ids - {"ws_galileo_saggiatore"}:
+    assert rows_by_id["ws_galileo_dialogo"].inclusion_status == "include_probe"
+    for source_id in candidate_ids - {"ws_galileo_saggiatore", "ws_galileo_dialogo"}:
         assert rows_by_id[source_id].inclusion_status == "audit_then_include"
