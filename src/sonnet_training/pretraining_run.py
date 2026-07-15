@@ -12,6 +12,7 @@ from sonnet_corpus.bpe import BytePairEncodingTokenizer
 from sonnet_model.normalization import NormalizationType
 from sonnet_model.positional_encoding import PositionEncodingType
 from sonnet_model.transformer import CausalTransformerLanguageModel, FeedForwardType
+from sonnet_training.progress import TrainingProgressReporter
 from sonnet_training.steps import estimate_next_token_loss, train_next_token_step
 from sonnet_training.transformer_run import resolve_device, write_json, write_jsonl
 
@@ -47,6 +48,7 @@ class PretrainingRunConfig:
     rope_theta: float = 10_000.0
     feed_forward_type: FeedForwardType = "relu"
     checkpoint_interval: int = 0
+    progress_interval: int = 100
     resume_from_checkpoint: str = ""
 
 
@@ -181,6 +183,12 @@ def train_pretraining_steps(
     history: list[dict[str, float | int]] = []
     if start_step >= config.train_steps:
         return history
+    progress = TrainingProgressReporter(
+        total_steps=config.train_steps,
+        progress_interval=config.progress_interval,
+        start_step=start_step,
+    )
+    progress.write_start(label="pretraining", device=str(device))
 
     for step in range(start_step + 1, config.train_steps + 1):
         train_loss = train_next_token_step(
@@ -212,6 +220,7 @@ def train_pretraining_steps(
                 "validation_loss": validation_loss,
             })
 
+        checkpoint_written = False
         if config.checkpoint_interval and step % config.checkpoint_interval == 0:
             save_pretraining_checkpoint(
                 checkpoint_path=output_dir / "checkpoints" / f"step_{step}.pt",
@@ -220,6 +229,18 @@ def train_pretraining_steps(
                 config=config,
                 tokenizer=tokenizer,
                 step=step,
+            )
+            checkpoint_written = True
+
+        if progress.should_report(
+            step,
+            force=should_evaluate or checkpoint_written,
+        ):
+            progress.write_progress(
+                step=step,
+                train_loss=train_loss,
+                validation_loss=(validation_loss if should_evaluate else None),
+                checkpoint_written=checkpoint_written,
             )
 
     return history
@@ -336,6 +357,8 @@ def _validate_config(config: PretrainingRunConfig) -> None:
         raise ValueError("eval_batches must be greater than 0")
     if config.checkpoint_interval < 0:
         raise ValueError("checkpoint_interval must be greater than or equal to 0")
+    if config.progress_interval <= 0:
+        raise ValueError("progress_interval must be greater than 0")
 
 
 def _generate_sample(

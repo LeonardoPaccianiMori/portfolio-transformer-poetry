@@ -9,6 +9,7 @@ from sonnet_corpus.dataset_text import load_bpe_encoded_splits, load_encoded_spl
 from sonnet_model.normalization import NormalizationType
 from sonnet_model.positional_encoding import PositionEncodingType
 from sonnet_model.transformer import CausalTransformerLanguageModel, FeedForwardType
+from sonnet_training.progress import TrainingProgressReporter
 from sonnet_training.steps import train_next_token_model
 
 
@@ -38,6 +39,7 @@ class TransformerTrainingConfig:
     position_encoding_type: PositionEncodingType = "learned_absolute"
     rope_theta: float = 10_000.0
     feed_forward_type: FeedForwardType = "relu"
+    progress_interval: int = 100
 
 
 def resolve_device(device: str) -> torch.device:
@@ -154,6 +156,7 @@ def train_transformer_run(
         eval_interval=config.eval_interval,
         eval_batches=config.eval_batches,
         device=device,
+        progress_interval=config.progress_interval,
     )
 
     prompt_ids = torch.tensor(

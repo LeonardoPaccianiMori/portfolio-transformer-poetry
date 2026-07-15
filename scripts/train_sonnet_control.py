@@ -45,6 +45,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--eval-interval", type=int, default=250)
     parser.add_argument("--eval-batches", type=int, default=5)
     parser.add_argument("--checkpoint-interval", type=int, default=1_000)
+    parser.add_argument("--progress-interval", type=int, default=100)
     parser.add_argument("--learning-rate", type=float, default=3e-5)
     parser.add_argument(
         "--learning-rate-schedule",
@@ -75,6 +76,7 @@ def main() -> None:
         eval_interval=args.eval_interval,
         eval_batches=args.eval_batches,
         checkpoint_interval=args.checkpoint_interval,
+        progress_interval=args.progress_interval,
         learning_rate=args.learning_rate,
         learning_rate_schedule=args.learning_rate_schedule,
         warmup_steps=args.warmup_steps,

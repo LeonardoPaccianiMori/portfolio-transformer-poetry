@@ -15,6 +15,7 @@ from sonnet_corpus.dataset_text import load_pretraining_bpe_encoded_splits
 from sonnet_model.transformer import CausalTransformerLanguageModel
 from sonnet_training.finetuning_run import generate_finetuning_sample, load_parent_for_finetuning
 from sonnet_training.pretraining_run import count_parameters
+from sonnet_training.progress import TrainingProgressReporter
 from sonnet_training.rmsnorm_conversion import (
     initialize_rms_norm_conversion_from_parent,
 )
@@ -53,6 +54,7 @@ class SonnetControlRunConfig:
     eval_interval: int = 250
     eval_batches: int = 5
     checkpoint_interval: int = 1_000
+    progress_interval: int = 100
     learning_rate: float = 3e-5
     learning_rate_schedule: LearningRateSchedule = "constant"
     warmup_steps: int = 0
@@ -278,6 +280,11 @@ def train_control_steps(
     """Train, evaluate, and overwrite one exact best-validation checkpoint."""
     history: list[dict[str, float | int | None]] = []
     best_validation_row: dict[str, float | int | None] | None = None
+    progress = TrainingProgressReporter(
+        total_steps=config.train_steps,
+        progress_interval=config.progress_interval,
+    )
+    progress.write_start(label="sonnet control", device=str(device))
     for step in range(1, config.train_steps + 1):
         current_learning_rate = learning_rate_for_step(config, step)
         set_optimizer_learning_rate(optimizer, current_learning_rate)
@@ -313,11 +320,13 @@ def train_control_steps(
                 "pre_clipping_gradient_norm": pre_clipping_gradient_norm,
             }
             history.append(row)
+            best_validation_updated = False
             if (
                 best_validation_row is None
                 or row["validation_loss"] < best_validation_row["validation_loss"]
             ):
                 best_validation_row = row
+                best_validation_updated = True
                 save_control_checkpoint(
                     checkpoint_path=output_dir / "best_validation.pt",
                     model=model,
@@ -330,6 +339,11 @@ def train_control_steps(
                     step=step,
                     best_validation_row=row,
                 )
+        else:
+            validation_loss = None
+            best_validation_updated = False
+
+        checkpoint_written = False
         if config.checkpoint_interval and step % config.checkpoint_interval == 0:
             save_control_checkpoint(
                 checkpoint_path=output_dir / "checkpoints" / f"step_{step}.pt",
@@ -342,6 +356,20 @@ def train_control_steps(
                 parent_checkpoint=parent_checkpoint,
                 step=step,
                 best_validation_row=best_validation_row,
+            )
+            checkpoint_written = True
+
+        if progress.should_report(
+            step,
+            force=should_evaluate or checkpoint_written,
+        ):
+            progress.write_progress(
+                step=step,
+                train_loss=train_loss,
+                validation_loss=validation_loss,
+                learning_rate=current_learning_rate,
+                checkpoint_written=checkpoint_written,
+                best_validation=best_validation_updated,
             )
 
     if best_validation_row is None:
@@ -525,6 +553,8 @@ def _validate_config(config: SonnetControlRunConfig) -> None:
         raise ValueError("eval_batches must be greater than 0")
     if config.checkpoint_interval < 0:
         raise ValueError("checkpoint_interval must be greater than or equal to 0")
+    if config.progress_interval <= 0:
+        raise ValueError("progress_interval must be greater than 0")
     if config.learning_rate <= 0:
         raise ValueError("learning_rate must be greater than 0")
     if config.learning_rate_schedule not in {"constant", "warmup_cosine"}:

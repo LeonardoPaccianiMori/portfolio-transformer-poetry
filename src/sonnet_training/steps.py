@@ -2,6 +2,7 @@ import torch
 from torch import nn
 
 from sonnet_corpus.batching import sample_next_token_batch
+from sonnet_training.progress import TrainingProgressReporter
 
 
 def train_next_token_step(
@@ -97,14 +98,24 @@ def train_next_token_model(
     eval_interval: int,
     eval_batches: int,
     device: torch.device | str,
+    progress_interval: int = 0,
 ) -> list[dict[str, float | int]]:
     if train_steps <= 0:
         raise ValueError("train_steps must be greater than 0")
 
     if eval_interval <= 0:
         raise ValueError("eval_interval must be greater than 0")
+    if progress_interval < 0:
+        raise ValueError("progress_interval must be greater than or equal to 0")
 
     history = []
+    progress = None
+    if progress_interval:
+        progress = TrainingProgressReporter(
+            total_steps=train_steps,
+            progress_interval=progress_interval,
+        )
+        progress.write_start(label="transformer training", device=str(device))
 
     for step in range(1, train_steps + 1):
         train_loss = train_next_token_step(
@@ -116,7 +127,12 @@ def train_next_token_model(
             device=device,
         )
 
-        if step == 1 or step % eval_interval == 0 or step == train_steps:
+        should_evaluate = (
+            step == 1
+            or step % eval_interval == 0
+            or step == train_steps
+        )
+        if should_evaluate:
             validation_loss = estimate_next_token_loss(
                 model=model,
                 token_ids=validation_token_ids,
@@ -131,5 +147,15 @@ def train_next_token_model(
                 "train_loss": train_loss,
                 "validation_loss": validation_loss,
             })
+
+        if progress is not None and progress.should_report(
+            step,
+            force=should_evaluate,
+        ):
+            progress.write_progress(
+                step=step,
+                train_loss=train_loss,
+                validation_loss=(validation_loss if should_evaluate else None),
+            )
 
     return history

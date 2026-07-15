@@ -122,6 +122,7 @@ def test_train_transformer_run_writes_reproducible_artifacts(tmp_path):
     assert saved_config["bpe_tokenizer_path"] is None
     assert saved_config["resolved_device"] == "cpu"
     assert saved_config["embedding_dim"] == config.embedding_dim
+    assert saved_config["progress_interval"] == 100
     assert saved_config["num_layers"] == config.num_layers
     assert saved_config["vocab_size"] > 0
     assert len(loss_history) == 3

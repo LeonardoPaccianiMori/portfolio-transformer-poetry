@@ -125,6 +125,7 @@ def test_train_pretraining_run_writes_reproducible_artifacts(tmp_path: Path):
     assert saved_config["train_tokens"] == 240
     assert saved_config["validation_tokens"] == 240
     assert saved_config["parameter_count"] > 0
+    assert saved_config["progress_interval"] == 100
     assert len(loss_history) == 3
     assert loss_history[-1]["step"] == 3
     assert loss_history[-1]["train_loss"] > 0.0

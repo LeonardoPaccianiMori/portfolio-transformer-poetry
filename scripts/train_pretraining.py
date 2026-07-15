@@ -69,6 +69,7 @@ def parse_args() -> argparse.Namespace:
         default="relu",
     )
     parser.add_argument("--checkpoint-interval", type=int, default=0)
+    parser.add_argument("--progress-interval", type=int, default=100)
     parser.add_argument("--resume-from-checkpoint", default="")
     return parser.parse_args()
 
@@ -101,6 +102,7 @@ def main() -> None:
         rope_theta=args.rope_theta,
         feed_forward_type=args.feed_forward_type,
         checkpoint_interval=args.checkpoint_interval,
+        progress_interval=args.progress_interval,
         resume_from_checkpoint=args.resume_from_checkpoint,
     )
     result = train_pretraining_run(

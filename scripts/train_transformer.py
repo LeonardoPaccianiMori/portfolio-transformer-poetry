@@ -47,6 +47,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--head-dim", type=int, default=16)
     parser.add_argument("--feed-forward-dim", type=int, default=128)
     parser.add_argument("--max-context-length", type=int, default=128)
+    parser.add_argument("--progress-interval", type=int, default=100)
     parser.add_argument(
         "--normalization-type",
         choices=["layer_norm", "rms_norm"],
@@ -89,6 +90,7 @@ def main() -> None:
         head_dim=args.head_dim,
         feed_forward_dim=args.feed_forward_dim,
         max_context_length=args.max_context_length,
+        progress_interval=args.progress_interval,
         normalization_type=args.normalization_type,
         normalization_eps=args.normalization_eps,
         position_encoding_type=args.position_encoding_type,
