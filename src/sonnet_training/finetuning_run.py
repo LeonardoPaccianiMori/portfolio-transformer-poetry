@@ -170,6 +170,7 @@ def load_parent_for_finetuning(
             "learned_absolute",
         ),
         rope_theta=float(parent_config.get("rope_theta", 10_000.0)),
+        feed_forward_type=parent_config.get("feed_forward_type", "relu"),
     ).to(device)
     _load_parent_weights_with_extended_vocabulary(
         model=model,

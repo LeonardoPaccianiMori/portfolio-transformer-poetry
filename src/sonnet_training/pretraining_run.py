@@ -11,7 +11,7 @@ import torch
 from sonnet_corpus.bpe import BytePairEncodingTokenizer
 from sonnet_model.normalization import NormalizationType
 from sonnet_model.positional_encoding import PositionEncodingType
-from sonnet_model.transformer import CausalTransformerLanguageModel
+from sonnet_model.transformer import CausalTransformerLanguageModel, FeedForwardType
 from sonnet_training.steps import estimate_next_token_loss, train_next_token_step
 from sonnet_training.transformer_run import resolve_device, write_json, write_jsonl
 
@@ -45,6 +45,7 @@ class PretrainingRunConfig:
     normalization_eps: float = 1e-5
     position_encoding_type: PositionEncodingType = "learned_absolute"
     rope_theta: float = 10_000.0
+    feed_forward_type: FeedForwardType = "relu"
     checkpoint_interval: int = 0
     resume_from_checkpoint: str = ""
 
@@ -76,6 +77,7 @@ def train_pretraining_run(
         normalization_eps=config.normalization_eps,
         position_encoding_type=config.position_encoding_type,
         rope_theta=config.rope_theta,
+        feed_forward_type=config.feed_forward_type,
     ).to(device)
     optimizer = torch.optim.AdamW(
         model.parameters(),

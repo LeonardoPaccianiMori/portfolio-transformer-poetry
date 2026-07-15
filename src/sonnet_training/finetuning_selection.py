@@ -123,6 +123,10 @@ def _model_architecture_from_run_config(
             "rope_theta": float(
                 config["model_architecture"].get("rope_theta", 10_000.0)
             ),
+            "feed_forward_type": config["model_architecture"].get(
+                "feed_forward_type",
+                "relu",
+            ),
         }
 
     parent_path = repo_root / config["pretraining_checkpoint_path"]
@@ -141,6 +145,7 @@ def _model_architecture_from_run_config(
             "learned_absolute",
         ),
         "rope_theta": float(parent_config.get("rope_theta", 10_000.0)),
+        "feed_forward_type": parent_config.get("feed_forward_type", "relu"),
     }
 
 

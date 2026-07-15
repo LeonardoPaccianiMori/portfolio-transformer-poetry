@@ -550,6 +550,43 @@ def test_feed_forward_backpropagates_to_both_linear_layers():
     assert second_linear.bias.grad is not None
 
 
+def test_swiglu_feed_forward_returns_expected_shape_and_gradients():
+    feed_forward = FeedForward(
+        embedding_dim=32,
+        feed_forward_dim=85,
+        feed_forward_type="swiglu",
+    )
+    x = torch.randn(4, 8, 32)
+
+    output = feed_forward(x)
+    output.sum().backward()
+
+    assert output.shape == x.shape
+    assert feed_forward.gate_projection.weight.grad is not None
+    assert feed_forward.value_projection.weight.grad is not None
+    assert feed_forward.output_projection.weight.grad is not None
+
+
+def test_swiglu_width_1365_matches_relu_2048_parameter_budget():
+    relu = FeedForward(
+        embedding_dim=512,
+        feed_forward_dim=2048,
+        feed_forward_type="relu",
+    )
+    swiglu = FeedForward(
+        embedding_dim=512,
+        feed_forward_dim=1365,
+        feed_forward_type="swiglu",
+    )
+
+    parameter_difference = abs(
+        sum(parameter.numel() for parameter in relu.parameters())
+        - sum(parameter.numel() for parameter in swiglu.parameters())
+    )
+
+    assert parameter_difference == 170
+
+
 def test_feed_forward_rejects_invalid_init_arguments():
     with pytest.raises(ValueError, match="embedding_dim"):
         FeedForward(
@@ -561,6 +598,13 @@ def test_feed_forward_rejects_invalid_init_arguments():
         FeedForward(
             embedding_dim=32,
             feed_forward_dim=0,
+        )
+
+    with pytest.raises(ValueError, match="feed_forward_type"):
+        FeedForward(
+            embedding_dim=32,
+            feed_forward_dim=128,
+            feed_forward_type="unknown",
         )
 
 
@@ -930,6 +974,32 @@ def test_causal_transformer_language_model_uses_rope_when_requested():
 
     assert model.embedding.token_embedding.weight.grad is not None
     assert model.blocks[0].attention.heads[0].query.weight.grad is not None
+
+
+def test_causal_transformer_language_model_uses_swiglu_when_requested():
+    model = CausalTransformerLanguageModel(
+        vocab_size=20,
+        embedding_dim=32,
+        num_layers=2,
+        num_heads=2,
+        head_dim=16,
+        feed_forward_dim=85,
+        max_context_length=128,
+        feed_forward_type="swiglu",
+    )
+    input_ids = torch.randint(0, 20, (2, 8))
+    target_ids = torch.randint(0, 20, (2, 8))
+
+    logits, loss = model(input_ids, target_ids)
+
+    assert logits.shape == (2, 8, 20)
+    assert loss is not None
+    assert model.feed_forward_type == "swiglu"
+    assert model.blocks[0].feed_forward.feed_forward_type == "swiglu"
+
+    loss.backward()
+
+    assert model.blocks[0].feed_forward.gate_projection.weight.grad is not None
 
 
 def test_causal_transformer_language_model_optimizer_step_updates_weights():

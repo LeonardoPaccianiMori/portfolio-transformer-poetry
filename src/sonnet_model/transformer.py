@@ -1,3 +1,5 @@
+from typing import Literal
+
 import torch
 import torch.nn.functional as F
 from torch import nn
@@ -8,6 +10,15 @@ from sonnet_model.positional_encoding import (
     RotaryPositionEmbedding,
     validate_position_encoding_type,
 )
+
+
+FeedForwardType = Literal["relu", "swiglu"]
+
+
+def validate_feed_forward_type(feed_forward_type: str) -> None:
+    """Reject unsupported transformer feed-forward variants."""
+    if feed_forward_type not in {"relu", "swiglu"}:
+        raise ValueError("feed_forward_type must be 'relu' or 'swiglu'")
 
 
 class TokenAndPositionEmbedding(nn.Module):
@@ -222,6 +233,7 @@ class FeedForward(nn.Module):
         self,
         embedding_dim: int,
         feed_forward_dim: int,
+        feed_forward_type: FeedForwardType = "relu",
     ):
         super().__init__()
 
@@ -230,12 +242,19 @@ class FeedForward(nn.Module):
 
         if feed_forward_dim <= 0:
             raise ValueError("feed_forward_dim must be greater than 0")
+        validate_feed_forward_type(feed_forward_type)
 
-        self.network = nn.Sequential(
-            nn.Linear(embedding_dim, feed_forward_dim),
-            nn.ReLU(),
-            nn.Linear(feed_forward_dim, embedding_dim),
-        )
+        self.feed_forward_type = feed_forward_type
+        if feed_forward_type == "relu":
+            self.network = nn.Sequential(
+                nn.Linear(embedding_dim, feed_forward_dim),
+                nn.ReLU(),
+                nn.Linear(feed_forward_dim, embedding_dim),
+            )
+        else:
+            self.gate_projection = nn.Linear(embedding_dim, feed_forward_dim)
+            self.value_projection = nn.Linear(embedding_dim, feed_forward_dim)
+            self.output_projection = nn.Linear(feed_forward_dim, embedding_dim)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         if x.ndim != 3:
@@ -243,7 +262,12 @@ class FeedForward(nn.Module):
                 "x must have shape (batch_size, context_length, embedding_dim)"
             )
 
-        return self.network(x)
+        if self.feed_forward_type == "relu":
+            return self.network(x)
+
+        gate = F.silu(self.gate_projection(x))
+        values = self.value_projection(x)
+        return self.output_projection(gate * values)
 
 
 class TransformerBlock(nn.Module):
@@ -258,6 +282,7 @@ class TransformerBlock(nn.Module):
         normalization_eps: float = 1e-5,
         position_encoding_type: PositionEncodingType = "learned_absolute",
         rope_theta: float = 10_000.0,
+        feed_forward_type: FeedForwardType = "relu",
     ):
         super().__init__()
 
@@ -276,6 +301,7 @@ class TransformerBlock(nn.Module):
         if max_context_length <= 0:
             raise ValueError("max_context_length must be greater than 0")
         validate_position_encoding_type(position_encoding_type)
+        validate_feed_forward_type(feed_forward_type)
 
         self.attention_layer_norm = build_normalization_layer(
             embedding_dim=embedding_dim,
@@ -298,6 +324,7 @@ class TransformerBlock(nn.Module):
         self.feed_forward = FeedForward(
             embedding_dim=embedding_dim,
             feed_forward_dim=feed_forward_dim,
+            feed_forward_type=feed_forward_type,
         )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
@@ -326,6 +353,7 @@ class CausalTransformerLanguageModel(nn.Module):
         normalization_eps: float = 1e-5,
         position_encoding_type: PositionEncodingType = "learned_absolute",
         rope_theta: float = 10_000.0,
+        feed_forward_type: FeedForwardType = "relu",
     ):
         super().__init__()
 
@@ -350,12 +378,14 @@ class CausalTransformerLanguageModel(nn.Module):
         if max_context_length <= 0:
             raise ValueError("max_context_length must be greater than 0")
         validate_position_encoding_type(position_encoding_type)
+        validate_feed_forward_type(feed_forward_type)
 
         self.max_context_length = max_context_length
         self.normalization_type = normalization_type
         self.normalization_eps = normalization_eps
         self.position_encoding_type = position_encoding_type
         self.rope_theta = rope_theta
+        self.feed_forward_type = feed_forward_type
         self.embedding = TokenAndPositionEmbedding(
             vocab_size=vocab_size,
             embedding_dim=embedding_dim,
@@ -373,6 +403,7 @@ class CausalTransformerLanguageModel(nn.Module):
                 normalization_eps=normalization_eps,
                 position_encoding_type=position_encoding_type,
                 rope_theta=rope_theta,
+                feed_forward_type=feed_forward_type,
             )
             for _ in range(num_layers)
         ])

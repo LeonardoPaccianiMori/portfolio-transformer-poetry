@@ -87,6 +87,7 @@ def summarize_pretraining_run(
             config.get("position_encoding_type") or "learned_absolute"
         ),
         "rope_theta": float(config.get("rope_theta") or 10_000.0),
+        "feed_forward_type": config.get("feed_forward_type") or "relu",
         "parameter_count": config["parameter_count"],
         "first_step": first_row["step"],
         "first_train_loss": first_row["train_loss"],
@@ -129,6 +130,7 @@ def _configuration_table(summary: dict[str, Any]) -> str:
         ("Normalization epsilon", f"{summary['normalization_eps']:.1e}"),
         ("Position encoding", summary["position_encoding_type"]),
         ("RoPE theta", f"{summary['rope_theta']:g}"),
+        ("Feed-forward type", summary["feed_forward_type"]),
     ]
     lines = ["| Setting | Value |", "| --- | --- |"]
     lines.extend(f"| {name} | {value} |" for name, value in rows)

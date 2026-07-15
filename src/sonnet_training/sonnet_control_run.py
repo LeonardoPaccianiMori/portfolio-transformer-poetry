@@ -183,6 +183,7 @@ def load_model_architecture(path: Path) -> ModelArchitecture:
             "learned_absolute",
         ),
         "rope_theta": float(architecture.get("rope_theta", 10_000.0)),
+        "feed_forward_type": architecture.get("feed_forward_type", "relu"),
     }
 
 
@@ -489,6 +490,11 @@ def _validate_model_architecture(
     if model.rope_theta != rope_theta:
         raise ValueError(
             "pretrained model RoPE theta does not match model architecture"
+        )
+    feed_forward_type = model_architecture.get("feed_forward_type", "relu")
+    if model.feed_forward_type != feed_forward_type:
+        raise ValueError(
+            "pretrained model feed-forward type does not match model architecture"
         )
 
 

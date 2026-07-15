@@ -163,6 +163,33 @@ def test_train_pretraining_run_supports_rope_and_records_its_configuration(
     assert "embedding.position_embedding.weight" not in checkpoint["model_state_dict"]
 
 
+def test_train_pretraining_run_supports_swiglu_and_records_its_configuration(
+    tmp_path: Path,
+):
+    write_tiny_pretraining_artifacts(tmp_path)
+    config = PretrainingRunConfig(
+        **{
+            **tiny_pretraining_config().__dict__,
+            "feed_forward_dim": 5,
+            "feed_forward_type": "swiglu",
+        }
+    )
+
+    result = train_pretraining_run(
+        repo_root=tmp_path,
+        output_dir=tmp_path / "runs" / "pretraining_swiglu",
+        config=config,
+    )
+    saved_config = read_json(result["config_path"])
+    checkpoint = torch.load(result["checkpoint_path"], map_location="cpu")
+
+    assert saved_config["feed_forward_type"] == "swiglu"
+    assert checkpoint["config"]["feed_forward_type"] == "swiglu"
+    assert "blocks.0.feed_forward.gate_projection.weight" in checkpoint[
+        "model_state_dict"
+    ]
+
+
 def test_train_pretraining_run_writes_interval_checkpoints(tmp_path: Path):
     write_tiny_pretraining_artifacts(tmp_path)
     output_dir = tmp_path / "runs" / "pretraining"

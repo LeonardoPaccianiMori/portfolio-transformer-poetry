@@ -8,7 +8,7 @@ from sonnet_corpus.bpe import BytePairEncodingTokenizer
 from sonnet_corpus.dataset_text import load_bpe_encoded_splits, load_encoded_splits
 from sonnet_model.normalization import NormalizationType
 from sonnet_model.positional_encoding import PositionEncodingType
-from sonnet_model.transformer import CausalTransformerLanguageModel
+from sonnet_model.transformer import CausalTransformerLanguageModel, FeedForwardType
 from sonnet_training.steps import train_next_token_model
 
 
@@ -37,6 +37,7 @@ class TransformerTrainingConfig:
     normalization_eps: float = 1e-5
     position_encoding_type: PositionEncodingType = "learned_absolute"
     rope_theta: float = 10_000.0
+    feed_forward_type: FeedForwardType = "relu"
 
 
 def resolve_device(device: str) -> torch.device:
@@ -135,6 +136,7 @@ def train_transformer_run(
         normalization_eps=config.normalization_eps,
         position_encoding_type=config.position_encoding_type,
         rope_theta=config.rope_theta,
+        feed_forward_type=config.feed_forward_type,
     ).to(device)
     optimizer = torch.optim.AdamW(
         model.parameters(),

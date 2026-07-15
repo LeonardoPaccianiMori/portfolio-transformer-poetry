@@ -70,6 +70,7 @@ def load_transformer_from_checkpoint(
             "learned_absolute",
         ),
         rope_theta=float(model_config.get("rope_theta", 10_000.0)),
+        feed_forward_type=model_config.get("feed_forward_type", "relu"),
     )
     checkpoint = torch.load(
         checkpoint_path,
