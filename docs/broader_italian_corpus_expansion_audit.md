@@ -73,7 +73,10 @@ only a local inspection report with provenance and short samples. It batches
 revision lookups and uses a six-second request interval with visible backoff on
 rate limits.
 
-The source remains `audit_then_include`. A complete local probe must be
-inspected for text boundaries, wrapper removal, completeness, and attribution
-before changing that status. Do not activate the other four candidates until
-this gating inspection succeeds.
+The completed local probe verified 55 unique pages, revision provenance, clean
+start/end samples, and absence of the checked wrapper markers. Therefore
+`ws_galileo_saggiatore` is activated as `include_probe` for
+`expanded_italian_1200_1800_v1` only. Its committed snapshot is
+[`data/metadata/wikisource_snapshots/ws_galileo_saggiatore.json`](../data/metadata/wikisource_snapshots/ws_galileo_saggiatore.json).
+The other four candidates remain `audit_then_include` until they pass the same
+source-specific inspection gate.

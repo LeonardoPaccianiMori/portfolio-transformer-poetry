@@ -5,6 +5,10 @@ import pytest
 
 from sonnet_corpus.gutenberg import FetchedGutenbergText
 from sonnet_corpus.liber_liber import FetchedLiberLiberText
+from sonnet_corpus.italian_wikisource import (
+    FetchedItalianWikisourceWork,
+    WikisourcePageRevision,
+)
 from sonnet_corpus.pretraining_build import (
     PretrainingBuildConfig,
     build_pretraining_corpus,
@@ -82,10 +86,44 @@ def make_liber_liber_row(**overrides):
     return PretrainingSourceRow(**values)
 
 
+def make_wikisource_row(**overrides):
+    values = {
+        "source_id": "ws_galileo_saggiatore",
+        "title": "Il Saggiatore",
+        "author": "Galileo Galilei",
+        "source_archive": "Italian Wikisource",
+        "source_collection": "Italian Wikisource",
+        "landing_page_url": "https://it.wikisource.org/wiki/Il_Saggiatore",
+        "download_url": "",
+        "ebook_id": "",
+        "language": "Italian",
+        "period_bucket": "tier_d_post_1600",
+        "approx_date": "1623",
+        "genre": "scientific essay",
+        "text_kind": "prose",
+        "inclusion_status": "include_probe",
+        "public_domain_status": "Underlying work is public domain.",
+        "license_notes": "Retain Wikisource attribution and license metadata.",
+        "edition_notes": "Favaro edition.",
+        "source_release_date": "",
+        "source_last_updated": "",
+        "expected_clean_text_path": "data/local/pretraining/expanded/sources/ws_galileo_saggiatore.txt",
+        "token_count_report_path": "",
+        "split": "",
+        "boilerplate_strategy": "render pinned revisions",
+        "mixed_text_strategy": "",
+        "cleaning_notes": "Preserve spelling.",
+        "audit_notes": "Activated only for expanded corpus.",
+    }
+    values.update(overrides)
+    return PretrainingSourceRow(**values)
+
+
 def test_select_pretraining_build_rows_keeps_only_active_supported_prose():
     rows = [
         make_row(source_id="active_pg"),
         make_liber_liber_row(source_id="active_ll"),
+        make_wikisource_row(source_id="active_ws"),
         make_row(
             source_id="mixed",
             text_kind="mixed",
@@ -97,7 +135,64 @@ def test_select_pretraining_build_rows_keeps_only_active_supported_prose():
 
     selected = select_pretraining_build_rows(rows)
 
-    assert [row.source_id for row in selected] == ["active_pg", "active_ll"]
+    assert [row.source_id for row in selected] == ["active_pg", "active_ll", "active_ws"]
+
+
+def test_build_pretraining_corpus_uses_committed_wikisource_snapshot(tmp_path: Path):
+    manifest_path = tmp_path / "manifest.csv"
+    snapshot_dir = tmp_path / "snapshots"
+    snapshot_dir.mkdir()
+    snapshot_dir.joinpath("ws_galileo_saggiatore.json").write_text(
+        json.dumps(
+            {
+                "source_id": "ws_galileo_saggiatore",
+                "landing_page_url": "https://it.wikisource.org/wiki/Il_Saggiatore",
+                "title": "Il Saggiatore",
+                "root_revision": {
+                    "title": "Il Saggiatore",
+                    "revision_id": 100,
+                    "revision_timestamp": "2026-07-15T10:00:00Z",
+                },
+                "page_revisions": [
+                    {
+                        "title": "Il Saggiatore/1",
+                        "revision_id": 101,
+                        "revision_timestamp": "2026-07-15T10:01:00Z",
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    write_pretraining_manifest([make_wikisource_row()], manifest_path)
+
+    def fake_fetch_wikisource(snapshot, request_delay, session=None, progress=None):
+        assert snapshot.root_revision.revision_id == 100
+        return FetchedItalianWikisourceWork(
+            landing_page_url=snapshot.landing_page_url,
+            title=snapshot.title,
+            root_revision=snapshot.root_revision,
+            page_revisions=snapshot.page_revisions,
+            text="Corpo Wikisource verificato. " * 20,
+            raw_html_character_count=1000,
+        )
+
+    processed_dir = tmp_path / "processed"
+    report = build_pretraining_corpus(
+        PretrainingBuildConfig(
+            manifest_path=manifest_path,
+            processed_dir=processed_dir,
+            report_path=tmp_path / "report.json",
+            temp_dir=tmp_path / "temp",
+            wikisource_snapshot_dir=snapshot_dir,
+            request_delay_seconds=0,
+            min_character_count=20,
+        ),
+        fetch_italian_wikisource=fake_fetch_wikisource,
+    )
+
+    assert report.selected_rows == 1
+    assert "Corpo Wikisource" in (processed_dir / "sources/ws_galileo_saggiatore.txt").read_text(encoding="utf-8")
 
 
 def test_build_pretraining_corpus_writes_processed_files_report_and_cleans_temp(

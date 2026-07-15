@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import re
+import json
 from collections.abc import Callable
 from dataclasses import dataclass
+from pathlib import Path
 from time import monotonic, sleep
 
 import requests
@@ -34,6 +36,17 @@ class FetchedItalianWikisourceWork:
     page_revisions: list[WikisourcePageRevision]
     text: str
     raw_html_character_count: int
+
+
+@dataclass(frozen=True)
+class WikisourceWorkSnapshot:
+    """Committed revision list for one audited Wikisource work."""
+
+    source_id: str
+    landing_page_url: str
+    title: str
+    root_revision: WikisourcePageRevision
+    page_revisions: list[WikisourcePageRevision]
 
 
 ProgressCallback = Callable[[str], None]
@@ -140,6 +153,80 @@ def fetch_italian_wikisource_work(
         root_revision=root_revision,
         page_revisions=page_revisions,
         text="\n\n".join(text_parts).strip() + "\n",
+        raw_html_character_count=raw_html_character_count,
+    )
+
+
+def read_wikisource_work_snapshot(path: Path) -> WikisourceWorkSnapshot:
+    """Read and validate a committed revision snapshot."""
+
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    root = payload["root_revision"]
+    pages = payload["page_revisions"]
+    snapshot = WikisourceWorkSnapshot(
+        source_id=str(payload["source_id"]),
+        landing_page_url=str(payload["landing_page_url"]),
+        title=str(payload["title"]),
+        root_revision=WikisourcePageRevision(**root),
+        page_revisions=[WikisourcePageRevision(**page) for page in pages],
+    )
+    if not snapshot.page_revisions:
+        raise ValueError(f"Wikisource snapshot has no pages: {snapshot.source_id}")
+    return snapshot
+
+
+def fetch_pinned_italian_wikisource_work(
+    snapshot: WikisourceWorkSnapshot,
+    *,
+    request_delay: float = 6.0,
+    session: requests.Session | None = None,
+    progress: ProgressCallback | None = None,
+) -> FetchedItalianWikisourceWork:
+    """Render exactly the revisions declared by a committed work snapshot."""
+
+    http = session or requests.Session()
+    if session is None:
+        http.headers.update({"User-Agent": USER_AGENT})
+    limiter = WikisourceRateLimiter(request_delay)
+    _write_progress(progress, f"rendering pinned root revision: {snapshot.title}")
+    root_html = _fetch_rendered_revision(
+        snapshot.root_revision,
+        http=http,
+        limiter=limiter,
+        retries=5,
+        progress=progress,
+    )
+    actual_titles = extract_ordered_subpage_titles(root_html, snapshot.title)
+    expected_titles = [revision.title for revision in snapshot.page_revisions]
+    if actual_titles != expected_titles:
+        raise ValueError("Wikisource root page no longer matches committed page snapshot")
+
+    parts: list[str] = []
+    raw_html_character_count = len(root_html)
+    for index, revision in enumerate(snapshot.page_revisions, start=1):
+        _write_progress(
+            progress,
+            f"rendering pinned page {index}/{len(snapshot.page_revisions)}: {revision.title}",
+        )
+        page_html = _fetch_rendered_revision(
+            revision,
+            http=http,
+            limiter=limiter,
+            retries=5,
+            progress=progress,
+        )
+        page_text = extract_wikisource_prose_text(page_html)
+        if not page_text:
+            raise ValueError(f"empty primary text after cleaning: {revision.title}")
+        parts.append(f"## {revision.title}\n\n{page_text}")
+        raw_html_character_count += len(page_html)
+
+    return FetchedItalianWikisourceWork(
+        landing_page_url=snapshot.landing_page_url,
+        title=snapshot.title,
+        root_revision=snapshot.root_revision,
+        page_revisions=snapshot.page_revisions,
+        text="\n\n".join(parts).strip() + "\n",
         raw_html_character_count=raw_html_character_count,
     )
 

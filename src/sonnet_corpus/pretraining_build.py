@@ -24,6 +24,11 @@ from .liber_liber import (
     LiberLiberRateLimiter,
     fetch_liber_liber_text,
 )
+from .italian_wikisource import (
+    FetchedItalianWikisourceWork,
+    fetch_pinned_italian_wikisource_work,
+    read_wikisource_work_snapshot,
+)
 from .pretraining_cleaning import clean_pretraining_text, validate_cleaned_text
 from .pretraining_manifest import PretrainingSourceRow, read_pretraining_manifest
 from .pretraining_probe import count_whitespace_words
@@ -31,6 +36,8 @@ from .pretraining_probe import count_whitespace_words
 
 FetchGutenbergText = Callable[..., FetchedGutenbergText]
 FetchLiberLiberText = Callable[..., FetchedLiberLiberText]
+FetchItalianWikisourceWork = Callable[..., FetchedItalianWikisourceWork]
+ProgressCallback = Callable[[str], None]
 
 
 @dataclass(frozen=True)
@@ -43,6 +50,8 @@ class PretrainingBuildConfig:
     temp_dir: Path = Path("data/interim/pretraining_build")
     corpus_version: str = "broader_prose_v1"
     request_delay_seconds: float = 1.0
+    wikisource_snapshot_dir: Path = Path("data/metadata/wikisource_snapshots")
+    wikisource_request_delay_seconds: float = 6.0
     min_character_count: int = 200
 
 
@@ -95,7 +104,7 @@ def select_pretraining_build_rows(
         for row in rows
         if row.inclusion_status == "include_probe"
         and row.text_kind == "prose"
-        and row.source_archive in {"Project Gutenberg", "Liber Liber"}
+        and row.source_archive in {"Project Gutenberg", "Liber Liber", "Italian Wikisource"}
     ]
 
 
@@ -104,7 +113,9 @@ def build_pretraining_corpus(
     *,
     fetch_gutenberg: FetchGutenbergText = fetch_gutenberg_text,
     fetch_liber_liber: FetchLiberLiberText = fetch_liber_liber_text,
+    fetch_italian_wikisource: FetchItalianWikisourceWork = fetch_pinned_italian_wikisource_work,
     session: requests.Session | None = None,
+    progress: ProgressCallback | None = None,
 ) -> PretrainingBuildReport:
     """Fetch, clean, validate, and write the broader Italian pretraining corpus."""
 
@@ -131,7 +142,8 @@ def build_pretraining_corpus(
     try:
         built_sources: list[BuiltPretrainingSource] = []
         combined_parts: list[str] = []
-        for row in selected_rows:
+        for index, row in enumerate(selected_rows, start=1):
+            _write_progress(progress, f"building source {index}/{len(selected_rows)}: {row.source_id}")
             if row.source_archive == "Project Gutenberg":
                 gutenberg_limiter.wait()
                 raw_text, fetched_url = _fetch_gutenberg_source(
@@ -145,6 +157,15 @@ def build_pretraining_corpus(
                     row,
                     fetch_liber_liber=fetch_liber_liber,
                     session=session,
+                )
+            elif row.source_archive == "Italian Wikisource":
+                raw_text, fetched_url = _fetch_italian_wikisource_source(
+                    row,
+                    snapshot_dir=config.wikisource_snapshot_dir,
+                    request_delay=config.wikisource_request_delay_seconds,
+                    fetch_work=fetch_italian_wikisource,
+                    session=session,
+                    progress=progress,
                 )
             else:
                 raise ValueError(f"unsupported source archive: {row.source_archive}")
@@ -230,6 +251,30 @@ def _fetch_liber_liber_source(
         session=session,
     )
     return fetched.text, fetched.archive_url
+
+
+def _fetch_italian_wikisource_source(
+    row: PretrainingSourceRow,
+    *,
+    snapshot_dir: Path,
+    request_delay: float,
+    fetch_work: FetchItalianWikisourceWork,
+    session: requests.Session | None,
+    progress: ProgressCallback | None,
+) -> tuple[str, str]:
+    snapshot_path = snapshot_dir / f"{row.source_id}.json"
+    if not snapshot_path.is_file():
+        raise ValueError(f"missing committed Wikisource snapshot: {snapshot_path}")
+    snapshot = read_wikisource_work_snapshot(snapshot_path)
+    if snapshot.source_id != row.source_id or snapshot.title != row.title:
+        raise ValueError(f"Wikisource snapshot does not match manifest row: {row.source_id}")
+    fetched = fetch_work(
+        snapshot,
+        request_delay=request_delay,
+        session=session,
+        progress=progress,
+    )
+    return fetched.text, f"{row.landing_page_url}?oldid={snapshot.root_revision.revision_id}"
 
 
 def _prepare_temp_tree(
@@ -352,3 +397,8 @@ def _portable_path(path: Path) -> str:
         return str(path.resolve().relative_to(Path.cwd().resolve()))
     except ValueError:
         return str(path)
+
+
+def _write_progress(progress: ProgressCallback | None, message: str) -> None:
+    if progress is not None:
+        progress(message)

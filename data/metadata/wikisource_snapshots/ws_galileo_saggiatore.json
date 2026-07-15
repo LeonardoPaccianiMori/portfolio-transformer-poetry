@@ -1,0 +1,287 @@
+{
+  "source_id": "ws_galileo_saggiatore",
+  "landing_page_url": "https://it.wikisource.org/wiki/Il_Saggiatore",
+  "title": "Il Saggiatore",
+  "root_revision": {
+    "title": "Il Saggiatore",
+    "revision_id": 3702765,
+    "revision_timestamp": "2026-04-24T23:25:08Z"
+  },
+  "page_revisions": [
+    {
+      "title": "Il Saggiatore/Dedica",
+      "revision_id": 3702819,
+      "revision_timestamp": "2026-04-24T23:25:49Z"
+    },
+    {
+      "title": "Il Saggiatore/Prefazione",
+      "revision_id": 3702820,
+      "revision_timestamp": "2026-04-24T23:25:50Z"
+    },
+    {
+      "title": "Il Saggiatore/1",
+      "revision_id": 3702766,
+      "revision_timestamp": "2026-04-24T23:25:09Z"
+    },
+    {
+      "title": "Il Saggiatore/2",
+      "revision_id": 3702777,
+      "revision_timestamp": "2026-04-24T23:25:18Z"
+    },
+    {
+      "title": "Il Saggiatore/3",
+      "revision_id": 3702788,
+      "revision_timestamp": "2026-04-24T23:25:26Z"
+    },
+    {
+      "title": "Il Saggiatore/4",
+      "revision_id": 3702799,
+      "revision_timestamp": "2026-04-24T23:25:34Z"
+    },
+    {
+      "title": "Il Saggiatore/5",
+      "revision_id": 3702810,
+      "revision_timestamp": "2026-04-24T23:25:43Z"
+    },
+    {
+      "title": "Il Saggiatore/6",
+      "revision_id": 3702815,
+      "revision_timestamp": "2026-04-24T23:25:46Z"
+    },
+    {
+      "title": "Il Saggiatore/7",
+      "revision_id": 3702816,
+      "revision_timestamp": "2026-04-24T23:25:47Z"
+    },
+    {
+      "title": "Il Saggiatore/8",
+      "revision_id": 3702817,
+      "revision_timestamp": "2026-04-24T23:25:48Z"
+    },
+    {
+      "title": "Il Saggiatore/9",
+      "revision_id": 3702818,
+      "revision_timestamp": "2026-04-24T23:25:48Z"
+    },
+    {
+      "title": "Il Saggiatore/10",
+      "revision_id": 3702767,
+      "revision_timestamp": "2026-04-24T23:25:10Z"
+    },
+    {
+      "title": "Il Saggiatore/11",
+      "revision_id": 3702768,
+      "revision_timestamp": "2026-04-24T23:25:10Z"
+    },
+    {
+      "title": "Il Saggiatore/12",
+      "revision_id": 3702769,
+      "revision_timestamp": "2026-04-24T23:25:11Z"
+    },
+    {
+      "title": "Il Saggiatore/13",
+      "revision_id": 3702770,
+      "revision_timestamp": "2026-04-24T23:25:12Z"
+    },
+    {
+      "title": "Il Saggiatore/14",
+      "revision_id": 3702771,
+      "revision_timestamp": "2026-04-24T23:25:13Z"
+    },
+    {
+      "title": "Il Saggiatore/15",
+      "revision_id": 3702772,
+      "revision_timestamp": "2026-04-24T23:25:14Z"
+    },
+    {
+      "title": "Il Saggiatore/16",
+      "revision_id": 3702773,
+      "revision_timestamp": "2026-04-24T23:25:15Z"
+    },
+    {
+      "title": "Il Saggiatore/17",
+      "revision_id": 3702774,
+      "revision_timestamp": "2026-04-24T23:25:15Z"
+    },
+    {
+      "title": "Il Saggiatore/18",
+      "revision_id": 3702775,
+      "revision_timestamp": "2026-04-24T23:25:16Z"
+    },
+    {
+      "title": "Il Saggiatore/19",
+      "revision_id": 3702776,
+      "revision_timestamp": "2026-04-24T23:25:17Z"
+    },
+    {
+      "title": "Il Saggiatore/20",
+      "revision_id": 3702778,
+      "revision_timestamp": "2026-04-24T23:25:18Z"
+    },
+    {
+      "title": "Il Saggiatore/21",
+      "revision_id": 3702779,
+      "revision_timestamp": "2026-04-24T23:25:19Z"
+    },
+    {
+      "title": "Il Saggiatore/22",
+      "revision_id": 3702780,
+      "revision_timestamp": "2026-04-24T23:25:20Z"
+    },
+    {
+      "title": "Il Saggiatore/23",
+      "revision_id": 3702781,
+      "revision_timestamp": "2026-04-24T23:25:21Z"
+    },
+    {
+      "title": "Il Saggiatore/24",
+      "revision_id": 3702782,
+      "revision_timestamp": "2026-04-24T23:25:22Z"
+    },
+    {
+      "title": "Il Saggiatore/25",
+      "revision_id": 3702783,
+      "revision_timestamp": "2026-04-24T23:25:22Z"
+    },
+    {
+      "title": "Il Saggiatore/26",
+      "revision_id": 3702784,
+      "revision_timestamp": "2026-04-24T23:25:23Z"
+    },
+    {
+      "title": "Il Saggiatore/27",
+      "revision_id": 3702785,
+      "revision_timestamp": "2026-04-24T23:25:24Z"
+    },
+    {
+      "title": "Il Saggiatore/28",
+      "revision_id": 3702786,
+      "revision_timestamp": "2026-04-24T23:25:25Z"
+    },
+    {
+      "title": "Il Saggiatore/29",
+      "revision_id": 3702787,
+      "revision_timestamp": "2026-04-24T23:25:25Z"
+    },
+    {
+      "title": "Il Saggiatore/30",
+      "revision_id": 3702789,
+      "revision_timestamp": "2026-04-24T23:25:27Z"
+    },
+    {
+      "title": "Il Saggiatore/31",
+      "revision_id": 3702790,
+      "revision_timestamp": "2026-04-24T23:25:28Z"
+    },
+    {
+      "title": "Il Saggiatore/32",
+      "revision_id": 3702791,
+      "revision_timestamp": "2026-04-24T23:25:29Z"
+    },
+    {
+      "title": "Il Saggiatore/33",
+      "revision_id": 3702792,
+      "revision_timestamp": "2026-04-24T23:25:29Z"
+    },
+    {
+      "title": "Il Saggiatore/34",
+      "revision_id": 3702793,
+      "revision_timestamp": "2026-04-24T23:25:30Z"
+    },
+    {
+      "title": "Il Saggiatore/35",
+      "revision_id": 3702794,
+      "revision_timestamp": "2026-04-24T23:25:31Z"
+    },
+    {
+      "title": "Il Saggiatore/36",
+      "revision_id": 3702795,
+      "revision_timestamp": "2026-04-24T23:25:31Z"
+    },
+    {
+      "title": "Il Saggiatore/37",
+      "revision_id": 3702796,
+      "revision_timestamp": "2026-04-24T23:25:32Z"
+    },
+    {
+      "title": "Il Saggiatore/38",
+      "revision_id": 3702797,
+      "revision_timestamp": "2026-04-24T23:25:33Z"
+    },
+    {
+      "title": "Il Saggiatore/39",
+      "revision_id": 3702798,
+      "revision_timestamp": "2026-04-24T23:25:34Z"
+    },
+    {
+      "title": "Il Saggiatore/40",
+      "revision_id": 3702800,
+      "revision_timestamp": "2026-04-24T23:25:35Z"
+    },
+    {
+      "title": "Il Saggiatore/41",
+      "revision_id": 3702801,
+      "revision_timestamp": "2026-04-24T23:25:36Z"
+    },
+    {
+      "title": "Il Saggiatore/42",
+      "revision_id": 3702802,
+      "revision_timestamp": "2026-04-24T23:25:37Z"
+    },
+    {
+      "title": "Il Saggiatore/43",
+      "revision_id": 3702803,
+      "revision_timestamp": "2026-04-24T23:25:37Z"
+    },
+    {
+      "title": "Il Saggiatore/44",
+      "revision_id": 3702804,
+      "revision_timestamp": "2026-04-24T23:25:38Z"
+    },
+    {
+      "title": "Il Saggiatore/45",
+      "revision_id": 3702805,
+      "revision_timestamp": "2026-04-24T23:25:39Z"
+    },
+    {
+      "title": "Il Saggiatore/46",
+      "revision_id": 3702806,
+      "revision_timestamp": "2026-04-24T23:25:39Z"
+    },
+    {
+      "title": "Il Saggiatore/47",
+      "revision_id": 3702807,
+      "revision_timestamp": "2026-04-24T23:25:40Z"
+    },
+    {
+      "title": "Il Saggiatore/48",
+      "revision_id": 3702808,
+      "revision_timestamp": "2026-04-24T23:25:41Z"
+    },
+    {
+      "title": "Il Saggiatore/49",
+      "revision_id": 3702809,
+      "revision_timestamp": "2026-04-24T23:25:42Z"
+    },
+    {
+      "title": "Il Saggiatore/50",
+      "revision_id": 3702811,
+      "revision_timestamp": "2026-04-24T23:25:43Z"
+    },
+    {
+      "title": "Il Saggiatore/51",
+      "revision_id": 3702812,
+      "revision_timestamp": "2026-04-24T23:25:44Z"
+    },
+    {
+      "title": "Il Saggiatore/52",
+      "revision_id": 3702813,
+      "revision_timestamp": "2026-04-24T23:25:45Z"
+    },
+    {
+      "title": "Il Saggiatore/53",
+      "revision_id": 3702814,
+      "revision_timestamp": "2026-04-24T23:25:45Z"
+    }
+  ]
+}

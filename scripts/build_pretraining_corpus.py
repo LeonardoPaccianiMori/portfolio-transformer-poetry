@@ -44,7 +44,14 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--corpus-version", default="broader_prose_v1")
     parser.add_argument("--request-delay-seconds", type=float, default=1.0)
+    parser.add_argument(
+        "--wikisource-snapshot-dir",
+        type=Path,
+        default=ROOT / "data/metadata/wikisource_snapshots",
+    )
+    parser.add_argument("--wikisource-request-delay-seconds", type=float, default=6.0)
     parser.add_argument("--min-character-count", type=int, default=200)
+    parser.add_argument("--quiet", action="store_true", help="Hide progress output.")
     return parser.parse_args()
 
 
@@ -57,9 +64,14 @@ def main() -> None:
         temp_dir=args.temp_dir,
         corpus_version=args.corpus_version,
         request_delay_seconds=args.request_delay_seconds,
+        wikisource_snapshot_dir=args.wikisource_snapshot_dir,
+        wikisource_request_delay_seconds=args.wikisource_request_delay_seconds,
         min_character_count=args.min_character_count,
     )
-    report = build_pretraining_corpus(config)
+    report = build_pretraining_corpus(
+        config,
+        progress=None if args.quiet else lambda message: print(f"build | {message}", flush=True),
+    )
     print(
         "Built "
         f"{report.selected_rows} sources, "

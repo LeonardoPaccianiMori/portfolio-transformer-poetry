@@ -191,7 +191,7 @@ def test_starter_broader_prose_manifest_rows_are_valid():
     assert rows_by_id["ll_cellini_vita"].split == "excluded"
 
 
-def test_wikisource_expansion_candidates_remain_audited_not_active_sources():
+def test_only_audited_wikisource_source_is_active_for_the_expanded_corpus():
     path = Path("data/metadata/broader_prose_sources_manifest.csv")
 
     with path.open(encoding="utf-8", newline="") as handle:
@@ -212,5 +212,7 @@ def test_wikisource_expansion_candidates_remain_audited_not_active_sources():
     for source_id in candidate_ids:
         row = rows_by_id[source_id]
         assert row.source_archive == "Italian Wikisource"
-        assert row.inclusion_status == "audit_then_include"
         assert row.period_bucket == "tier_d_post_1600"
+    assert rows_by_id["ws_galileo_saggiatore"].inclusion_status == "include_probe"
+    for source_id in candidate_ids - {"ws_galileo_saggiatore"}:
+        assert rows_by_id[source_id].inclusion_status == "audit_then_include"
