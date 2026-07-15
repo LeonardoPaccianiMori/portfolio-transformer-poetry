@@ -64,9 +64,16 @@ and more varied without changing the historical identity of the vintage corpus.
 
 ## Next Implementation Checkpoint
 
-Implement a small Italian-Wikisource source adapter and tests. It must fetch a
-single manifest-approved work through a documented export or dump route, record
-the page revision/date, strip known wrapper text, and reject pages that do not
-meet the expected title or content-boundary checks. Start with *Il Saggiatore*,
-which is one self-contained work with clear provenance. Do not activate the
-other four candidates until that adapter and an inspected local probe succeed.
+Italian-Wikisource adapter status: implemented for an audit-only probe of
+*Il Saggiatore*. The root page is an index, not one self-contained text: it
+lists `Dedica`, `Prefazione`, and 53 numbered primary-text subpages. The adapter
+therefore records the root revision and every included subpage revision, checks
+the expected first and last subpages, strips known website wrappers, and writes
+only a local inspection report with provenance and short samples. It batches
+revision lookups and uses a six-second request interval with visible backoff on
+rate limits.
+
+The source remains `audit_then_include`. A complete local probe must be
+inspected for text boundaries, wrapper removal, completeness, and attribution
+before changing that status. Do not activate the other four candidates until
+this gating inspection succeeds.
