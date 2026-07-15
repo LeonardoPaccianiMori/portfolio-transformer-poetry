@@ -24,13 +24,26 @@ class WorkBoundaries:
 
     first_subpage: str
     last_subpage: str
+    selected_subpage_titles: tuple[str, ...] = ()
 
 
 WORK_BOUNDARIES = {
     "ws_galileo_saggiatore": WorkBoundaries(
         first_subpage="Il Saggiatore/Dedica",
         last_subpage="Il Saggiatore/53",
-    )
+    ),
+    "ws_galileo_dialogo": WorkBoundaries(
+        first_subpage="Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano/Dedica",
+        last_subpage="Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano/Giornata quarta",
+        selected_subpage_titles=(
+            "Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano/Dedica",
+            "Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano/Al discreto lettore",
+            "Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano/Giornata prima",
+            "Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano/Giornata seconda",
+            "Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano/Giornata terza",
+            "Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano/Giornata quarta",
+        ),
+    ),
 }
 
 
@@ -134,6 +147,7 @@ def _probe_row(
             expected_title=row.title,
             expected_first_subpage=boundaries.first_subpage,
             expected_last_subpage=boundaries.last_subpage,
+            selected_subpage_titles=list(boundaries.selected_subpage_titles) or None,
             request_delay=request_delay,
             session=session,
             progress=progress,

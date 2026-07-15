@@ -25,13 +25,13 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--source-id",
-        default="ws_galileo_saggiatore",
+        default="ws_galileo_dialogo",
         help="One audit-only Italian Wikisource source ID.",
     )
     parser.add_argument(
         "--report",
         type=Path,
-        default=ROOT / "data/local/pretraining/wikisource/ws_galileo_saggiatore_probe.json",
+        default=ROOT / "data/local/pretraining/wikisource/ws_galileo_dialogo_probe.json",
         help="Local JSON inspection report path.",
     )
     parser.add_argument(
