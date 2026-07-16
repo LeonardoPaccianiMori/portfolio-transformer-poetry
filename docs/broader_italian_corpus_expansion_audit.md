@@ -147,3 +147,11 @@ corpus without capping Ramusio: the excess is considered acceptable for this
 quality-focused parent-model comparison. The audit remains part of the corpus
 provenance record; the next step is fitting the new tokenizer on the unchanged
 expanded corpus.
+
+The subsequent Sidrac editorial-content audit found that boundary trimming
+alone is insufficient. The candidate primary span, from the opening Sidrac
+sentence through the manuscript colophon, contains 743,692 characters but also
+3,132 numbered note markers and 1,566 standalone editorial-note lines. The
+project must decide between excluding this 848,639-character source or building
+and manually validating a substantially more complex source-specific
+apparatus-removal pipeline before encoding the corpus.
