@@ -137,3 +137,10 @@ The local `expanded_italian_1200_1800_v1` build completed on 2026-07-16 with
 units. The activated Vico source contributes 943,187 cleaned characters and
 150,584 units. The builder deleted its raw and interim workspace after
 publishing the processed local corpus and build report.
+
+The completed local balance audit found one concentration violation: Giovan
+Battista Ramusio's *Navigazioni e viaggi* contributes 27.03 percent of cleaned
+characters and 27.33 percent of whitespace-delimited units. It exceeds the
+recorded 15-percent work and 20-percent author caps. Every other work and
+author is below both thresholds. The next corpus step is a deterministic,
+provenance-preserving cap of that source before fitting the new tokenizer.
