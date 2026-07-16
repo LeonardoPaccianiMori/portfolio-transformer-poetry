@@ -93,3 +93,12 @@ starts at `Titolo` and intentionally has no hard-coded final page, so the
 complete current primary-text hierarchy can be inspected rather than silently
 truncated. It remains `audit_then_include` until that local revision-pinned
 probe confirms the selected page list and cleaned samples.
+
+The successful 27-page Vico probe retained 418,315 cleaned characters but
+revealed editorial material in its end sample, including bracketed variant
+markers and `Si veda` reference lines. The source therefore remains
+`audit_then_include`. The project provides
+`scripts/audit_italian_wikisource_editorial_markers.py`, which writes a local,
+revision-pinned audit report with aggregate counts and bounded page-level
+contexts for candidate bracketed text and `Si veda` references. This report is
+an inspection artifact only; it does not alter source text or activate Vico.

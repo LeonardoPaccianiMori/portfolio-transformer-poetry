@@ -9,6 +9,8 @@ from sonnet_corpus.italian_wikisource import (
 )
 from sonnet_corpus.italian_wikisource_probe import (
     WORK_BOUNDARIES,
+    audit_italian_wikisource_editorial_markers,
+    find_editorial_markers,
     probe_italian_wikisource_source,
     select_italian_wikisource_probe_row,
 )
@@ -189,3 +191,76 @@ def test_vico_probe_uses_its_explicit_root_page_title(tmp_path: Path):
     )
 
     assert report["result"]["status"] == "ok"
+
+
+def test_find_editorial_markers_counts_candidate_patterns_by_page():
+    text = (
+        "## La scienza nuova - Volume I/Libro I\n\n"
+        "Testo principale. [Nota redazionale.]\n"
+        "2 Si veda p. 300, nota 3.\n"
+    )
+
+    summary = find_editorial_markers(text, max_samples_per_marker=2)
+
+    assert summary["counts"] == {
+        "bracketed_text": 1,
+        "si_veda_reference": 1,
+    }
+    assert summary["samples"] == [
+        {
+            "marker_type": "bracketed_text",
+            "page_title": "La scienza nuova - Volume I/Libro I",
+            "matched_text": "[Nota redazionale.]",
+            "context": "Testo principale. [Nota redazionale.] 2 Si veda p. 300, nota 3.",
+        },
+        {
+            "marker_type": "si_veda_reference",
+            "page_title": "La scienza nuova - Volume I/Libro I",
+            "matched_text": "2 Si veda p. 300, nota 3.",
+            "context": "Testo principale. [Nota redazionale.] 2 Si veda p. 300, nota 3.",
+        },
+    ]
+
+
+def test_editorial_marker_audit_writes_bounded_contexts_without_full_text(tmp_path: Path):
+    manifest_path = tmp_path / "manifest.csv"
+    report_path = tmp_path / "marker_audit.json"
+    write_pretraining_manifest([make_row()], manifest_path)
+
+    def fake_fetch_work(*args, **kwargs):
+        return FetchedItalianWikisourceWork(
+            landing_page_url=args[0],
+            title="Il Saggiatore",
+            root_revision=WikisourcePageRevision(
+                title="Il Saggiatore",
+                revision_id=100,
+                revision_timestamp="2026-07-16T10:00:00Z",
+            ),
+            page_revisions=[
+                WikisourcePageRevision(
+                    title="Il Saggiatore/Dedica",
+                    revision_id=101,
+                    revision_timestamp="2026-07-16T10:01:00Z",
+                )
+            ],
+            text="## Il Saggiatore/Dedica\n\nTesto [nota].\nSi veda p. 3.\n",
+            raw_html_character_count=500,
+        )
+
+    report = audit_italian_wikisource_editorial_markers(
+        manifest_path=manifest_path,
+        source_id="ws_galileo_saggiatore",
+        report_path=report_path,
+        request_delay=0,
+        max_samples_per_marker=1,
+        fetch_work=fake_fetch_work,
+    )
+
+    assert report["result"]["status"] == "ok"
+    assert report["result"]["marker_summary"]["counts"] == {
+        "bracketed_text": 1,
+        "si_veda_reference": 1,
+    }
+    saved = json.loads(report_path.read_text(encoding="utf-8"))
+    assert saved["result"]["marker_summary"]["samples"][0]["page_title"] == "Il Saggiatore/Dedica"
+    assert "text" not in saved["result"]

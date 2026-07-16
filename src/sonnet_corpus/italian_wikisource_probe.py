@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import re
+from collections import Counter
 from collections.abc import Callable
 from dataclasses import asdict, dataclass
 from datetime import UTC, datetime
@@ -16,6 +17,11 @@ from .pretraining_manifest import PretrainingSourceRow, read_pretraining_manifes
 
 
 FetchItalianWikisourceWork = Callable[..., FetchedItalianWikisourceWork]
+
+EDITORIAL_MARKER_PATTERNS = {
+    "bracketed_text": re.compile(r"\[[^\]\n]{1,240}\]"),
+    "si_veda_reference": re.compile(r"(?im)^(?:\d+\s+)?Si veda\b[^\n]*"),
+}
 
 
 @dataclass(frozen=True)
@@ -124,6 +130,80 @@ def probe_italian_wikisource_source(
     return report
 
 
+def audit_italian_wikisource_editorial_markers(
+    *,
+    manifest_path: Path,
+    source_id: str,
+    report_path: Path,
+    request_delay: float = 6.0,
+    max_samples_per_marker: int = 20,
+    fetch_work: FetchItalianWikisourceWork = fetch_italian_wikisource_work,
+    session: requests.Session | None = None,
+    progress: Callable[[str], None] | None = None,
+) -> dict[str, object]:
+    """Write a bounded, revision-pinned audit of candidate editorial markers."""
+
+    if max_samples_per_marker < 1:
+        raise ValueError("max_samples_per_marker must be at least one")
+
+    started_at = _utc_now()
+    rows = read_pretraining_manifest(manifest_path)
+    row = select_italian_wikisource_probe_row(rows, source_id)
+    boundaries = WORK_BOUNDARIES.get(row.source_id)
+    if boundaries is None:
+        raise ValueError(f"no recorded Wikisource boundaries for source: {row.source_id}")
+
+    _write_progress(progress, f"auditing candidate editorial markers: {row.source_id}")
+    try:
+        fetched = _fetch_row_work(
+            row=row,
+            boundaries=boundaries,
+            request_delay=request_delay,
+            fetch_work=fetch_work,
+            session=session,
+            progress=progress,
+        )
+        result: dict[str, object] = {
+            "status": "ok",
+            "error": "",
+            "root_revision": asdict(fetched.root_revision),
+            "page_count": len(fetched.page_revisions),
+            "page_revisions": [asdict(revision) for revision in fetched.page_revisions],
+            "cleaned_character_count": len(fetched.text),
+            "marker_summary": find_editorial_markers(
+                fetched.text,
+                max_samples_per_marker=max_samples_per_marker,
+            ),
+        }
+    except Exception as exc:
+        result = {
+            "status": "error",
+            "error": str(exc),
+            "root_revision": None,
+            "page_count": 0,
+            "page_revisions": [],
+            "cleaned_character_count": 0,
+            "marker_summary": {"counts": {}, "samples": []},
+        }
+
+    report = {
+        "started_at_utc": started_at,
+        "finished_at_utc": _utc_now(),
+        "manifest_path": _portable_path(manifest_path),
+        "source_id": source_id,
+        "activation_status": "audit_then_include",
+        "max_samples_per_marker": max_samples_per_marker,
+        "result": result,
+    }
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    report_path.write_text(
+        json.dumps(report, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    _write_progress(progress, f"wrote marker audit report: {report_path}")
+    return report
+
+
 def select_italian_wikisource_probe_row(
     rows: list[PretrainingSourceRow],
     source_id: str,
@@ -153,14 +233,11 @@ def _probe_row(
     progress: Callable[[str], None] | None,
 ) -> ItalianWikisourceProbeResult:
     try:
-        fetched = fetch_work(
-            row.landing_page_url,
-            expected_title=boundaries.root_page_title or row.title,
-            expected_first_subpage=boundaries.first_subpage,
-            expected_last_subpage=boundaries.last_subpage,
-            selected_subpage_titles=list(boundaries.selected_subpage_titles) or None,
-            excluded_subpage_prefixes=boundaries.excluded_subpage_prefixes,
+        fetched = _fetch_row_work(
+            row=row,
+            boundaries=boundaries,
             request_delay=request_delay,
+            fetch_work=fetch_work,
             session=session,
             progress=progress,
         )
@@ -204,6 +281,70 @@ def _probe_row(
         license_notes=row.license_notes,
         cleaning_notes=row.cleaning_notes,
     )
+
+
+def find_editorial_markers(
+    text: str,
+    *,
+    max_samples_per_marker: int,
+) -> dict[str, object]:
+    """Count candidate editorial markers and retain bounded page-level samples."""
+
+    counts: Counter[str] = Counter()
+    samples: list[dict[str, str]] = []
+    samples_per_marker: Counter[str] = Counter()
+    for page_title, page_text in _split_work_text_by_page(text):
+        for marker_type, pattern in EDITORIAL_MARKER_PATTERNS.items():
+            for match in pattern.finditer(page_text):
+                counts[marker_type] += 1
+                if samples_per_marker[marker_type] >= max_samples_per_marker:
+                    continue
+                samples_per_marker[marker_type] += 1
+                samples.append(
+                    {
+                        "marker_type": marker_type,
+                        "page_title": page_title,
+                        "matched_text": match.group(0),
+                        "context": _marker_context(page_text, match.start(), match.end()),
+                    }
+                )
+
+    return {"counts": dict(counts), "samples": samples}
+
+
+def _fetch_row_work(
+    *,
+    row: PretrainingSourceRow,
+    boundaries: WorkBoundaries,
+    request_delay: float,
+    fetch_work: FetchItalianWikisourceWork,
+    session: requests.Session | None,
+    progress: Callable[[str], None] | None,
+) -> FetchedItalianWikisourceWork:
+    return fetch_work(
+        row.landing_page_url,
+        expected_title=boundaries.root_page_title or row.title,
+        expected_first_subpage=boundaries.first_subpage,
+        expected_last_subpage=boundaries.last_subpage,
+        selected_subpage_titles=list(boundaries.selected_subpage_titles) or None,
+        excluded_subpage_prefixes=boundaries.excluded_subpage_prefixes,
+        request_delay=request_delay,
+        session=session,
+        progress=progress,
+    )
+
+
+def _split_work_text_by_page(text: str) -> list[tuple[str, str]]:
+    parts = re.split(r"^## (.+)\n\n", text, flags=re.MULTILINE)
+    if len(parts) < 3 or parts[0] != "":
+        raise ValueError("Wikisource work text does not use expected page headings")
+    return list(zip(parts[1::2], parts[2::2], strict=True))
+
+
+def _marker_context(text: str, start: int, end: int) -> str:
+    context_start = max(0, start - 120)
+    context_end = min(len(text), end + 120)
+    return re.sub(r"\s+", " ", text[context_start:context_end]).strip()
 
 
 def _utc_now() -> str:
