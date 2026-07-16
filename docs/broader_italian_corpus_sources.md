@@ -476,7 +476,7 @@ Initial prose-only Project Gutenberg candidates:
 
 | Priority | Author | Work | PG eBook | Approx. period | Genre | Inclusion note |
 | ---: | --- | --- | --- | --- | --- | --- |
-| 1 | Sidrac / anonymous tradition | *Il libro di Sidrach: testo inedito del secolo XIV* | 44549 | 14th c. text | encyclopedic / philosophical prose | Strong Tier A/B prose candidate; large plain text file; public domain in USA. |
+| 1 | Sidrac / anonymous tradition | *Il libro di Sidrach: testo inedito del secolo XIV* | 44549 | 14th c. text | encyclopedic / philosophical prose | Deferred from the active corpus after audit: the 1868 digital edition retains extensive editorial apparatus throughout the candidate primary span. |
 | 2 | Matteo Villani | *Cronica di Matteo Villani*, vols. 1-5 | 69898 and related author page | 14th c. | chronicle prose | Very strong old Italian prose candidate; include all volumes after verifying related eBook IDs. |
 | 3 | Jacopo Alighieri | *Chiose alla cantica dell'Inferno* | 30766 | early 14th c. text, later edition | commentary prose | Useful commentary prose; remove modern editor introduction if separable. |
 | 4 | Caterina da Siena | *Libro della divina dottrina: Dialogo della divina provvidenza* | 26961 | late 14th c. | mystical/spiritual prose | Strong Tier B prose; source mentions Biblioteca Italiana images, so keep provenance. |

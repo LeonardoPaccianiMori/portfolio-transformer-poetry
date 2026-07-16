@@ -44,7 +44,7 @@ Required metadata fields:
 
 | Priority | Status | Author | Work | URL | Period bucket | Genre | Notes |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
-| 1 | include_probe | Sidrac / anonymous tradition | *Il libro di Sidrach: testo inedito del secolo XIV* | https://www.gutenberg.org/ebooks/44549 | Tier A/B | encyclopedic / philosophical prose | Strong old-prose candidate. Landing page states Italian text and public domain in USA. |
+| 1 | defer | Sidrac / anonymous tradition | *Il libro di Sidrach: testo inedito del secolo XIV* | https://www.gutenberg.org/ebooks/44549 | Tier A/B | encyclopedic / philosophical prose | Deferred from the active corpus: the 1868 edition contains extensive editorial apparatus throughout the candidate primary text. |
 | 2 | include_probe | Matteo Villani | *Cronica di Matteo Villani*, vols. 1-5 | https://www.gutenberg.org/ebooks/author/55483 | Tier A | chronicle prose | All five Italian volumes are verified: eBooks 69898-69902, same 1825-1826 Moutier edition, public domain in the USA. |
 | 3 | include_probe | Jacopo Alighieri | *Chiose alla cantica dell'Inferno di Dante Alighieri* | https://www.gutenberg.org/ebooks/30766 | Tier A/B text, later edition | commentary prose | Include only primary chiose/commentary text; remove modern editor introduction where separable. |
 | 4 | include_probe | Caterina da Siena | *Libro della divina dottrina: Dialogo della divina provvidenza* | https://www.gutenberg.org/ebooks/26961 | Tier B | mystical / spiritual prose | Strong late-14th-century prose candidate. Keep Biblioteca Italiana provenance note from PG page. |

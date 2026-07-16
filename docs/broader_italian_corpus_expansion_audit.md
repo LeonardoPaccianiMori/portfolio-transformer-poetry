@@ -155,3 +155,10 @@ sentence through the manuscript colophon, contains 743,692 characters but also
 project must decide between excluding this 848,639-character source or building
 and manually validating a substantially more complex source-specific
 apparatus-removal pipeline before encoding the corpus.
+
+The project decision is to defer Sidrac from the active expanded corpus. Its
+848,639 characters are about 1.9 percent of the pre-decision corpus, so the
+quality risk from modern editorial contamination outweighs the loss of this
+single source. Its manifest row remains as `defer` with `split=excluded`,
+preserving provenance and allowing a future source-specific extraction only
+after separate audit and validation.
