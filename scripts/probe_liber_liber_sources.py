@@ -47,18 +47,26 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
+
+    def progress(message: str) -> None:
+        if not args.quiet:
+            print(f"probe | {message}", flush=True)
+
     report = probe_liber_liber_sources(
         manifest_path=args.manifest,
         report_path=args.report,
         attribution_path=args.attribution,
         request_delay=args.request_delay,
+        progress=progress,
     )
 
     if not args.quiet:
         print(
-            f"probed {report['selected_rows']} Liber Liber rows; "
-            f"successful: {report['successful_rows']}; "
-            f"cleaned characters: {report['total_cleaned_characters']}"
+            "probe | complete "
+            f"sources={report['selected_rows']} "
+            f"successful={report['successful_rows']} "
+            f"cleaned_characters={report['total_cleaned_characters']}",
+            flush=True,
         )
 
 

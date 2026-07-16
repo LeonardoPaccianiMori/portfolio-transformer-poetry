@@ -69,6 +69,7 @@ def probe_liber_liber_sources(
     request_delay: float = 1.0,
     fetch_text: FetchLiberLiberText = fetch_liber_liber_text,
     session: requests.Session | None = None,
+    progress: Callable[[str], None] | None = None,
 ) -> dict[str, object]:
     """Probe active Liber Liber prose rows and write reports."""
 
@@ -78,7 +79,8 @@ def probe_liber_liber_sources(
     rate_limiter = LiberLiberRateLimiter(request_delay=request_delay)
     results: list[LiberLiberProbeResult] = []
 
-    for row in probe_rows:
+    for index, row in enumerate(probe_rows, start=1):
+        _write_progress(progress, f"probing source {index}/{len(probe_rows)}: {row.source_id}")
         rate_limiter.wait()
         results.append(
             _probe_liber_liber_row(

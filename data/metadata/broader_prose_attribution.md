@@ -237,3 +237,13 @@ primary-text spelling and punctuation are otherwise preserved.
 - License: Liber Liber digital edition license: CC BY-NC-SA 4.0; attribution, non-commercial use, and share-alike apply; https://creativecommons.org/licenses/by-nc-sa/4.0/
 - Edition and contributors: Einaudi 1978-1988 six-volume edition edited by Marica Milanesi; digitization and revision Claudio Paganelli; publication Marco Calvo.
 - Planned changes: Exclude modern editorial matter; preserve the sixteenth-century Italian primary compilation.
+
+## Principj di scienza nuova
+
+- Author: Giambattista Vico
+- Source: [Liber Liber](https://liberliber.it/autori/autori-v/giambattista-vico/principj-di-scienza-nuova-dintorno-alla-comune-natura-delle-nazioni-in-questa-terza-impressione-dal-medesimo-autore-in-un-gran-numero-di-luoghi-corretta-schiarita-e-notabilmente-accresciuta/)
+- Period: 1744
+- Genre: philosophical and historical prose
+- License: Liber Liber digital edition license: CC BY-NC-SA 4.0; attribution, non-commercial use, and share-alike apply; https://creativecommons.org/licenses/by-nc-sa/4.0/
+- Edition and contributors: G. B. Vico Opere edited by Paolo Rossi Classici Rizzoli Milan 1959; digitization and revision Claudio Paganelli; publication Redazione Liber Liber.
+- Planned changes: Preserve primary-text spelling punctuation and the historical bracketed timeline labels.

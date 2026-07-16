@@ -42,7 +42,7 @@ navigation, scan labels, and modern editorial text reproducibly.
 | `ws_galileo_saggiatore` | *Il Saggiatore* | Galileo Galilei | 1623 | Scientific argumentative prose and a new author. | The work page identifies Galileo, its 1623 date, subject, and CC BY-SA 3.0/GFDL rights metadata. [Source](https://it.wikisource.org/wiki/Il_Saggiatore) |
 | `ws_galileo_dialogo` | *Dialogo sopra i due massimi sistemi del mondo* | Galileo Galilei | 1632 | Long dialogic scientific prose. | The collection page identifies the work, Galileo, a 1897 Favaro edition, CC BY-SA 3.0/GFDL metadata, and a navigable contents list. Extract only the 1632 *Dialogo* sections. [Source](https://it.wikisource.org/wiki/Dialogo_sopra_i_due_massimi_sistemi_del_mondo_tolemaico_e_copernicano_%28raccolta%29) |
 | `ws_vico_scienza_nuova` | *La scienza nuova* | Giambattista Vico | 1744 | Adds eighteenth-century philosophical and historical prose. | **Deferred.** The 1911 Wikisource edition mixes variants and historical notes into the rendered prose. A 27-page revision-pinned audit found 124 bracketed markers and 23 `Si veda` references, so it is not suitable for generic cleaning. [Source](https://it.wikisource.org/wiki/La_scienza_nuova_-_Volume_I) |
-| `ll_vico_principj_scienza_nuova` | *Principj di scienza nuova* | Giambattista Vico | 1744 | Candidate replacement for the deferred annotated edition. | Liber Liber offers TXT+ZIP and identifies a CC BY-NC-SA 4.0 digital edition with Paolo Rossi / Rizzoli source-edition and Claudio Paganelli digitization/revision credits. It remains audit-only until cleaned samples are inspected. [Source](https://liberliber.it/autori/autori-v/giambattista-vico/principj-di-scienza-nuova-dintorno-alla-comune-natura-delle-nazioni-in-questa-terza-impressione-dal-medesimo-autore-in-un-gran-numero-di-luoghi-corretta-schiarita-e-notabilmente-accresciuta/) |
+| `ll_vico_principj_scienza_nuova` | *Principj di scienza nuova* | Giambattista Vico | 1744 | Adds eighteenth-century philosophical and historical prose through a cleaner edition. | **Activated.** Liber Liber's TXT ZIP is CC BY-NC-SA 4.0, carries Paolo Rossi / Rizzoli source-edition and Claudio Paganelli digitization/revision credits, and passed the cleaned-text audit. [Source](https://liberliber.it/autori/autori-v/giambattista-vico/principj-di-scienza-nuova-dintorno-alla-comune-natura-delle-nazioni-in-questa-terza-impressione-dal-medesimo-autore-in-un-gran-numero-di-luoghi-corretta-schiarita-e-notabilmente-accresciuta/) |
 | `ws_beccaria_delitti_pene` | *Dei delitti e delle pene* | Cesare Beccaria | 1764 | Adds compact Enlightenment legal prose. | Wikisource lists Italian editions and its work page identifies the original 1764 publication and CC BY-SA licensing. Build from the primary chapters only, excluding Voltaire material and later commentary. [Source](https://it.wikisource.org/wiki/Opera%3ADei_delitti_e_delle_pene) |
 | `ws_giannone_istoria_civile_vol1` | *Istoria civile del Regno di Napoli*, vol. 1 | Pietro Giannone | 1723; 1770 source edition | Large historical prose from a new author and region. | The Wikisource index offers TXT/EPUB/PDF/RTF exports for the public-domain 1770 scan. Audit every volume for completeness before adding more than volume 1. [Source](https://it.wikisource.org/wiki/Indice%3AGiannone_-_Istoria_civile_del_regno_di_Napoli%2C_1770%2C_Vol.1.djvu) |
 
@@ -57,9 +57,9 @@ and more varied without changing the historical identity of the vintage corpus.
 - The Wikisource *La scienza nuova* edition contains variants and historical
   notes embedded in the rendered text; it is deferred rather than cleaned with
   broad text-removal rules.
-- The Liber Liber Vico candidate has a separate CC BY-NC-SA 4.0 license layer.
-  Its downloadable text, wrapper removal, and samples require inspection before
-  it can become an active source.
+- The Liber Liber Vico source has a separate CC BY-NC-SA 4.0 license layer.
+  Its source-specific cleaning removes only one audited image placeholder and
+  retains historical bracketed timeline labels.
 - The Galileo collection contains related works and fragments; title-level
   scoping is required to avoid collecting unrelated texts.
 - Giannone is multi-volume. Treat each audited volume as a separate source row
@@ -124,3 +124,10 @@ timeline labels and must be retained; one front-matter placeholder,
 `[inserisci figura1]`, remains for a separate narrow cleaning decision. The
 candidate remains `audit_then_include` until that rule and activation are
 explicitly approved.
+
+That activation was approved on 2026-07-16. The corpus cleaner removes only the
+exact standalone `[inserisci figura1]` front-matter placeholder for
+`ll_vico_principj_scienza_nuova`; it retains every other bracketed span,
+including Vico's historical timeline labels. The source is `include_probe` for
+`expanded_italian_1200_1800_v1`, and the Liber Liber attribution report is
+regenerated as part of the activation checkpoint.

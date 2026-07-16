@@ -224,5 +224,6 @@ def test_wikisource_activation_and_vico_replacement_statuses_are_explicit():
 
     replacement = rows_by_id["ll_vico_principj_scienza_nuova"]
     assert replacement.source_archive == "Liber Liber"
-    assert replacement.inclusion_status == "audit_then_include"
+    assert replacement.inclusion_status == "include_probe"
     assert "CC BY-NC-SA 4.0" in replacement.license_notes
+    assert "[inserisci figura1]" in replacement.audit_notes

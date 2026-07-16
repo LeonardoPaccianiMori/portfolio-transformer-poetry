@@ -20,6 +20,15 @@ def test_clean_pretraining_text_rejects_empty_text():
         clean_pretraining_text(" \n\t ", source_id="empty")
 
 
+def test_clean_pretraining_text_removes_only_the_audited_vico_figure_placeholder():
+    cleaned = clean_pretraining_text(
+        "Titolo\n[inserisci figura1]\n[Conclusione]\n[inserisci figura2]\n",
+        source_id="ll_vico_principj_scienza_nuova",
+    )
+
+    assert cleaned == "Titolo\n[Conclusione]\n[inserisci figura2]\n"
+
+
 def test_validate_cleaned_text_rejects_too_short_extractions():
     with pytest.raises(ValueError, match="too short"):
         validate_cleaned_text("Breve.\n", source_id="short", min_character_count=20)

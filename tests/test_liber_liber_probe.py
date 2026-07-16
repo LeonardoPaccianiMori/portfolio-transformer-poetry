@@ -124,6 +124,35 @@ def test_probe_writes_measurements_and_attribution(tmp_path: Path):
     assert "digitization Marina Pianu" in attribution
 
 
+def test_probe_reports_per_source_progress(tmp_path: Path):
+    manifest_path = tmp_path / "manifest.csv"
+    report_path = tmp_path / "report.json"
+    attribution_path = tmp_path / "attribution.md"
+    write_pretraining_manifest([make_row()], manifest_path)
+    progress_messages = []
+
+    def fake_fetch_text(landing_page_url, title, session=None):
+        return FetchedLiberLiberText(
+            landing_page_url=landing_page_url,
+            download_page_url="https://liberliber.it/download/",
+            archive_url="https://media.test/novellino.zip",
+            archive_format="txt_zip",
+            raw_byte_count=123,
+            text="Il Novellino\nCorpo del testo.\n",
+        )
+
+    probe_liber_liber_sources(
+        manifest_path=manifest_path,
+        report_path=report_path,
+        attribution_path=attribution_path,
+        request_delay=0,
+        fetch_text=fake_fetch_text,
+        progress=progress_messages.append,
+    )
+
+    assert progress_messages == ["probing source 1/1: ll_novellino"]
+
+
 def test_probe_records_fetch_error_without_stopping_report(tmp_path: Path):
     manifest_path = tmp_path / "manifest.csv"
     report_path = tmp_path / "report.json"

@@ -5,6 +5,9 @@ from __future__ import annotations
 import re
 
 
+VICO_FIGURE_PLACEHOLDER_SOURCE_ID = "ll_vico_principj_scienza_nuova"
+
+
 def normalize_text_boundaries(text: str) -> str:
     """Normalize line endings and blank lines without changing source spelling."""
 
@@ -19,6 +22,13 @@ def clean_pretraining_text(text: str, *, source_id: str) -> str:
 
     if not text.strip():
         raise ValueError(f"cleaned text is empty for {source_id}")
+
+    if source_id == VICO_FIGURE_PLACEHOLDER_SOURCE_ID:
+        text = re.sub(
+            r"(?m)^[ \t]*\[inserisci figura1\][ \t]*\n?",
+            "",
+            text,
+        )
 
     return normalize_text_boundaries(text)
 
