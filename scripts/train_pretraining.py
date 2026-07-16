@@ -43,6 +43,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--train-steps", type=int, default=100)
     parser.add_argument("--eval-interval", type=int, default=25)
     parser.add_argument("--eval-batches", type=int, default=5)
+    parser.add_argument(
+        "--validation-mode",
+        choices=["random_batches", "sequential_windows"],
+        default="random_batches",
+    )
     parser.add_argument("--learning-rate", type=float, default=3e-4)
     parser.add_argument(
         "--learning-rate-schedule",
@@ -96,6 +101,7 @@ def main() -> None:
         train_steps=args.train_steps,
         eval_interval=args.eval_interval,
         eval_batches=args.eval_batches,
+        validation_mode=args.validation_mode,
         learning_rate=args.learning_rate,
         learning_rate_schedule=args.learning_rate_schedule,
         warmup_steps=args.warmup_steps,

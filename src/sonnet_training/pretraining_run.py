@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 from dataclasses import asdict, dataclass
 from pathlib import Path
+from typing import Literal
 
 import torch
 
@@ -18,8 +19,16 @@ from sonnet_training.learning_rate import (
     set_optimizer_learning_rate,
 )
 from sonnet_training.progress import TrainingProgressReporter
-from sonnet_training.steps import estimate_next_token_loss, train_next_token_step
+from sonnet_training.steps import (
+    estimate_next_token_loss,
+    estimate_next_token_loss_on_sequential_windows,
+    sequential_next_token_window_count,
+    train_next_token_step,
+)
 from sonnet_training.transformer_run import resolve_device, write_json, write_jsonl
+
+
+ValidationMode = Literal["random_batches", "sequential_windows"]
 
 
 @dataclass(frozen=True)
@@ -43,6 +52,7 @@ class PretrainingRunConfig:
     train_steps: int = 100
     eval_interval: int = 25
     eval_batches: int = 5
+    validation_mode: ValidationMode = "random_batches"
     learning_rate: float = 3e-4
     learning_rate_schedule: LearningRateSchedule = "constant"
     warmup_steps: int = 0
@@ -157,6 +167,10 @@ def train_pretraining_run(
             "vocab_size": tokenizer.vocab_size,
             "train_tokens": int(train_tokens.numel()),
             "validation_tokens": int(validation_tokens.numel()),
+            "validation_window_count": sequential_next_token_window_count(
+                validation_tokens,
+                config.context_length,
+            ),
             "parameter_count": count_parameters(model),
             "start_step": start_step,
             "completed_steps": config.train_steps,
@@ -240,12 +254,10 @@ def train_pretraining_steps(
             or step == config.train_steps
         )
         if should_evaluate:
-            validation_loss = estimate_next_token_loss(
+            validation_loss = estimate_pretraining_validation_loss(
                 model=model,
                 token_ids=validation_token_ids,
-                batch_size=config.batch_size,
-                context_length=config.context_length,
-                eval_batches=config.eval_batches,
+                config=config,
                 device=device,
             )
             row = {
@@ -303,6 +315,35 @@ def train_pretraining_steps(
     if best_validation_row is None:
         raise RuntimeError("pretraining run completed without a validation evaluation")
     return history, best_validation_row
+
+
+def estimate_pretraining_validation_loss(
+    *,
+    model: CausalTransformerLanguageModel,
+    token_ids: torch.Tensor,
+    config: PretrainingRunConfig,
+    device: torch.device,
+) -> float:
+    """Evaluate pretraining loss using the configured reproducible policy."""
+
+    if config.validation_mode == "random_batches":
+        return estimate_next_token_loss(
+            model=model,
+            token_ids=token_ids,
+            batch_size=config.batch_size,
+            context_length=config.context_length,
+            eval_batches=config.eval_batches,
+            device=device,
+        )
+    if config.validation_mode == "sequential_windows":
+        return estimate_next_token_loss_on_sequential_windows(
+            model=model,
+            token_ids=token_ids,
+            batch_size=config.batch_size,
+            context_length=config.context_length,
+            device=device,
+        )
+    raise ValueError("unsupported validation_mode")
 
 
 def save_pretraining_checkpoint(
@@ -433,6 +474,8 @@ def _validate_config(config: PretrainingRunConfig) -> None:
         raise ValueError("eval_interval must be greater than 0")
     if config.eval_batches <= 0:
         raise ValueError("eval_batches must be greater than 0")
+    if config.validation_mode not in {"random_batches", "sequential_windows"}:
+        raise ValueError("unsupported validation_mode")
     if config.learning_rate_schedule not in {"constant", "warmup_cosine"}:
         raise ValueError("unsupported learning_rate_schedule")
     if config.warmup_steps < 0 or config.warmup_steps > config.train_steps:

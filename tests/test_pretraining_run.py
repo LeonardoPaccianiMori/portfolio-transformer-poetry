@@ -4,6 +4,7 @@ from pathlib import Path
 import pytest
 import torch
 
+import sonnet_training.pretraining_run as pretraining_run
 from sonnet_corpus.bpe import BytePairEncodingTokenizer
 from sonnet_corpus.pretraining_tokenizer import train_weighted_pretoken_bpe_tokenizer
 from sonnet_model.transformer import CausalTransformerLanguageModel
@@ -168,6 +169,46 @@ def test_pretraining_warmup_cosine_schedule_is_recorded_in_history(tmp_path: Pat
     assert learning_rate_for_step(config, 2) == 1e-3
     assert learning_rate_for_step(config, 3) == 1e-4
     assert [row["learning_rate"] for row in history] == [5e-4, 1e-3, 1e-4]
+
+
+def test_pretraining_run_uses_full_sequential_validation_when_requested(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    write_tiny_pretraining_artifacts(tmp_path)
+    calls = []
+
+    def fake_sequential_loss(**kwargs) -> float:
+        calls.append(kwargs)
+        return 2.5
+
+    monkeypatch.setattr(
+        pretraining_run,
+        "estimate_next_token_loss_on_sequential_windows",
+        fake_sequential_loss,
+    )
+    config = PretrainingRunConfig(
+        **{
+            **tiny_pretraining_config().__dict__,
+            "validation_mode": "sequential_windows",
+        }
+    )
+
+    result = train_pretraining_run(
+        repo_root=tmp_path,
+        output_dir=tmp_path / "runs" / "sequential_pretraining",
+        config=config,
+    )
+    saved_config = read_json(result["config_path"])
+    history = read_jsonl(result["log_path"])
+
+    assert len(calls) == config.train_steps
+    assert all(call["batch_size"] == config.batch_size for call in calls)
+    assert saved_config["validation_mode"] == "sequential_windows"
+    assert saved_config["validation_window_count"] == (
+        saved_config["validation_tokens"] - 1
+    ) // config.context_length
+    assert all(row["validation_loss"] == 2.5 for row in history)
 
 
 def test_train_pretraining_run_supports_rope_and_records_its_configuration(
