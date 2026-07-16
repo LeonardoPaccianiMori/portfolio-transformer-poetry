@@ -12,6 +12,11 @@ from sonnet_corpus.bpe import BytePairEncodingTokenizer
 from sonnet_model.normalization import NormalizationType
 from sonnet_model.positional_encoding import PositionEncodingType
 from sonnet_model.transformer import CausalTransformerLanguageModel, FeedForwardType
+from sonnet_training.learning_rate import (
+    LearningRateSchedule,
+    learning_rate_for_step,
+    set_optimizer_learning_rate,
+)
 from sonnet_training.progress import TrainingProgressReporter
 from sonnet_training.steps import estimate_next_token_loss, train_next_token_step
 from sonnet_training.transformer_run import resolve_device, write_json, write_jsonl
@@ -21,17 +26,27 @@ from sonnet_training.transformer_run import resolve_device, write_json, write_js
 class PretrainingRunConfig:
     """Configuration for a broader-corpus pretraining run."""
 
-    train_tokens_path: str = "data/local/pretraining/encoded/bpe_8000_train.pt"
-    validation_tokens_path: str = (
-        "data/local/pretraining/encoded/bpe_8000_validation.pt"
+    train_tokens_path: str = (
+        "data/local/pretraining/expanded_italian_1200_1800_v1/encoded/"
+        "bpe_8000_train.pt"
     )
-    tokenizer_path: str = "data/local/pretraining/tokenizers/bpe_8000.json"
+    validation_tokens_path: str = (
+        "data/local/pretraining/expanded_italian_1200_1800_v1/encoded/"
+        "bpe_8000_validation.pt"
+    )
+    tokenizer_path: str = (
+        "data/local/pretraining/expanded_italian_1200_1800_v1/tokenizers/"
+        "bpe_8000.json"
+    )
     batch_size: int = 8
     context_length: int = 512
     train_steps: int = 100
     eval_interval: int = 25
     eval_batches: int = 5
     learning_rate: float = 3e-4
+    learning_rate_schedule: LearningRateSchedule = "constant"
+    warmup_steps: int = 0
+    min_learning_rate: float = 0.0
     seed: int = 1337
     prompt: str = "Nel "
     max_new_tokens: int = 300
@@ -100,7 +115,14 @@ def train_pretraining_run(
                 "resume checkpoint step must be less than train_steps"
             )
 
-    history = train_pretraining_steps(
+    output_dir.mkdir(parents=True, exist_ok=True)
+    prior_history = _read_history(output_dir / "loss_history.jsonl")
+    initial_best_validation_row = _best_validation_row(
+        prior_history,
+        through_step=start_step,
+    )
+
+    history, best_validation_row = train_pretraining_steps(
         model=model,
         optimizer=optimizer,
         train_token_ids=train_tokens,
@@ -110,6 +132,7 @@ def train_pretraining_run(
         output_dir=output_dir,
         tokenizer=tokenizer,
         start_step=start_step,
+        initial_best_validation_row=initial_best_validation_row,
     )
 
     generated_text = _generate_sample(
@@ -120,7 +143,6 @@ def train_pretraining_run(
         device=device,
     )
 
-    output_dir.mkdir(parents=True, exist_ok=True)
     config_path = output_dir / "config.json"
     log_path = output_dir / "loss_history.jsonl"
     tokenizer_output_path = output_dir / "tokenizer.json"
@@ -138,6 +160,8 @@ def train_pretraining_run(
             "parameter_count": count_parameters(model),
             "start_step": start_step,
             "completed_steps": config.train_steps,
+            "best_validation_step": int(best_validation_row["step"]),
+            "best_validation_loss": float(best_validation_row["validation_loss"]),
         },
     )
     saved_history = merge_existing_history(
@@ -155,6 +179,7 @@ def train_pretraining_run(
         config=config,
         tokenizer=tokenizer,
         step=config.train_steps,
+        best_validation_row=best_validation_row,
     )
 
     return {
@@ -164,6 +189,7 @@ def train_pretraining_run(
         "sample_path": sample_path,
         "checkpoint_path": checkpoint_path,
         "checkpoint_dir": output_dir / "checkpoints",
+        "best_checkpoint_path": output_dir / "best_validation.pt",
         "history": saved_history,
     }
 
@@ -179,12 +205,16 @@ def train_pretraining_steps(
     output_dir: Path,
     tokenizer: BytePairEncodingTokenizer,
     start_step: int,
-) -> list[dict[str, float | int]]:
+    initial_best_validation_row: dict[str, float | int] | None = None,
+) -> tuple[list[dict[str, float | int]], dict[str, float | int]]:
     """Train from start_step to config.train_steps with resumable checkpoints."""
 
     history: list[dict[str, float | int]] = []
+    best_validation_row = initial_best_validation_row
     if start_step >= config.train_steps:
-        return history
+        if best_validation_row is None:
+            raise ValueError("resumed run has no recorded validation evaluation")
+        return history, best_validation_row
     progress = TrainingProgressReporter(
         total_steps=config.train_steps,
         progress_interval=config.progress_interval,
@@ -193,6 +223,8 @@ def train_pretraining_steps(
     progress.write_start(label="pretraining", device=str(device))
 
     for step in range(start_step + 1, config.train_steps + 1):
+        current_learning_rate = learning_rate_for_step(config, step)
+        set_optimizer_learning_rate(optimizer, current_learning_rate)
         train_loss = train_next_token_step(
             model=model,
             optimizer=optimizer,
@@ -216,11 +248,31 @@ def train_pretraining_steps(
                 eval_batches=config.eval_batches,
                 device=device,
             )
-            history.append({
+            row = {
                 "step": step,
                 "train_loss": train_loss,
                 "validation_loss": validation_loss,
-            })
+                "learning_rate": current_learning_rate,
+            }
+            history.append(row)
+            best_validation_updated = (
+                best_validation_row is None
+                or row["validation_loss"] < best_validation_row["validation_loss"]
+            )
+            if best_validation_updated:
+                best_validation_row = row
+                save_pretraining_checkpoint(
+                    checkpoint_path=output_dir / "best_validation.pt",
+                    model=model,
+                    optimizer=optimizer,
+                    config=config,
+                    tokenizer=tokenizer,
+                    step=step,
+                    best_validation_row=best_validation_row,
+                )
+        else:
+            validation_loss = None
+            best_validation_updated = False
 
         checkpoint_written = False
         if config.checkpoint_interval and step % config.checkpoint_interval == 0:
@@ -231,6 +283,7 @@ def train_pretraining_steps(
                 config=config,
                 tokenizer=tokenizer,
                 step=step,
+                best_validation_row=best_validation_row,
             )
             checkpoint_written = True
 
@@ -241,11 +294,15 @@ def train_pretraining_steps(
             progress.write_progress(
                 step=step,
                 train_loss=train_loss,
-                validation_loss=(validation_loss if should_evaluate else None),
+                validation_loss=validation_loss,
+                learning_rate=current_learning_rate,
                 checkpoint_written=checkpoint_written,
+                best_validation=best_validation_updated,
             )
 
-    return history
+    if best_validation_row is None:
+        raise RuntimeError("pretraining run completed without a validation evaluation")
+    return history, best_validation_row
 
 
 def save_pretraining_checkpoint(
@@ -256,6 +313,7 @@ def save_pretraining_checkpoint(
     config: PretrainingRunConfig,
     tokenizer: BytePairEncodingTokenizer,
     step: int,
+    best_validation_row: dict[str, float | int] | None = None,
 ) -> None:
     """Save model and optimizer state for later resume/fine-tuning."""
 
@@ -268,6 +326,7 @@ def save_pretraining_checkpoint(
             "config": asdict(config),
             "vocab_size": tokenizer.vocab_size,
             "parameter_count": count_parameters(model),
+            "best_validation_row": best_validation_row,
         },
         checkpoint_path,
     )
@@ -305,17 +364,34 @@ def merge_existing_history(
     if not log_path.is_file():
         return new_history
 
-    previous_history = [
-        json.loads(line)
-        for line in log_path.read_text(encoding="utf-8").splitlines()
-        if line.strip()
-    ]
+    previous_history = _read_history(log_path)
     preserved_history = [
         row
         for row in previous_history
         if int(row["step"]) <= start_step
     ]
     return [*preserved_history, *new_history]
+
+
+def _read_history(log_path: Path) -> list[dict[str, float | int]]:
+    if not log_path.is_file():
+        return []
+    return [
+        json.loads(line)
+        for line in log_path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+
+
+def _best_validation_row(
+    history: list[dict[str, float | int]],
+    *,
+    through_step: int,
+) -> dict[str, float | int] | None:
+    eligible_rows = [row for row in history if int(row["step"]) <= through_step]
+    if not eligible_rows:
+        return None
+    return min(eligible_rows, key=lambda row: float(row["validation_loss"]))
 
 
 def load_token_tensor(path: Path) -> torch.Tensor:
@@ -357,6 +433,14 @@ def _validate_config(config: PretrainingRunConfig) -> None:
         raise ValueError("eval_interval must be greater than 0")
     if config.eval_batches <= 0:
         raise ValueError("eval_batches must be greater than 0")
+    if config.learning_rate_schedule not in {"constant", "warmup_cosine"}:
+        raise ValueError("unsupported learning_rate_schedule")
+    if config.warmup_steps < 0 or config.warmup_steps > config.train_steps:
+        raise ValueError("warmup_steps must be between 0 and train_steps")
+    if config.min_learning_rate < 0:
+        raise ValueError("min_learning_rate must be greater than or equal to 0")
+    if config.min_learning_rate > config.learning_rate:
+        raise ValueError("min_learning_rate must not exceed learning_rate")
     if config.checkpoint_interval < 0:
         raise ValueError("checkpoint_interval must be greater than or equal to 0")
     if config.progress_interval <= 0:

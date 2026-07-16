@@ -10,6 +10,7 @@ from sonnet_model.transformer import CausalTransformerLanguageModel
 from sonnet_training.pretraining_run import (
     PretrainingRunConfig,
     count_parameters,
+    learning_rate_for_step,
     load_pretraining_checkpoint,
     load_token_tensor,
     merge_existing_history,
@@ -113,12 +114,14 @@ def test_train_pretraining_run_writes_reproducible_artifacts(tmp_path: Path):
     assert result["tokenizer_path"].is_file()
     assert result["sample_path"].is_file()
     assert result["checkpoint_path"].is_file()
+    assert result["best_checkpoint_path"].is_file()
 
     saved_config = read_json(result["config_path"])
     loss_history = read_jsonl(result["log_path"])
     saved_tokenizer = read_json(result["tokenizer_path"])
     generated_sample = result["sample_path"].read_text(encoding="utf-8")
     checkpoint = torch.load(result["checkpoint_path"], map_location="cpu")
+    best_checkpoint = torch.load(result["best_checkpoint_path"], map_location="cpu")
 
     assert saved_config["resolved_device"] == "cpu"
     assert saved_config["vocab_size"] == 50
@@ -136,6 +139,35 @@ def test_train_pretraining_run_writes_reproducible_artifacts(tmp_path: Path):
     assert "optimizer_state_dict" in checkpoint
     assert checkpoint["parameter_count"] == saved_config["parameter_count"]
     assert checkpoint["step"] == config.train_steps
+    best_history_row = min(loss_history, key=lambda row: row["validation_loss"])
+    assert saved_config["best_validation_step"] == best_history_row["step"]
+    assert saved_config["best_validation_loss"] == best_history_row["validation_loss"]
+    assert best_checkpoint["step"] == best_history_row["step"]
+    assert best_checkpoint["best_validation_row"] == best_history_row
+
+
+def test_pretraining_warmup_cosine_schedule_is_recorded_in_history(tmp_path: Path):
+    write_tiny_pretraining_artifacts(tmp_path)
+    config = PretrainingRunConfig(
+        **{
+            **tiny_pretraining_config().__dict__,
+            "learning_rate_schedule": "warmup_cosine",
+            "warmup_steps": 2,
+            "min_learning_rate": 1e-4,
+        }
+    )
+
+    result = train_pretraining_run(
+        repo_root=tmp_path,
+        output_dir=tmp_path / "runs" / "scheduled_pretraining",
+        config=config,
+    )
+    history = read_jsonl(result["log_path"])
+
+    assert learning_rate_for_step(config, 1) == 5e-4
+    assert learning_rate_for_step(config, 2) == 1e-3
+    assert learning_rate_for_step(config, 3) == 1e-4
+    assert [row["learning_rate"] for row in history] == [5e-4, 1e-3, 1e-4]
 
 
 def test_train_pretraining_run_supports_rope_and_records_its_configuration(

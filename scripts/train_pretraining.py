@@ -16,19 +16,22 @@ from sonnet_training.pretraining_run import PretrainingRunConfig
 from sonnet_training.pretraining_run import train_pretraining_run
 
 
+CORPUS_DIR = "data/local/pretraining/expanded_italian_1200_1800_v1"
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--train-tokens-path",
-        default="data/local/pretraining/encoded/bpe_8000_train.pt",
+        default=f"{CORPUS_DIR}/encoded/bpe_8000_train.pt",
     )
     parser.add_argument(
         "--validation-tokens-path",
-        default="data/local/pretraining/encoded/bpe_8000_validation.pt",
+        default=f"{CORPUS_DIR}/encoded/bpe_8000_validation.pt",
     )
     parser.add_argument(
         "--tokenizer-path",
-        default="data/local/pretraining/tokenizers/bpe_8000.json",
+        default=f"{CORPUS_DIR}/tokenizers/bpe_8000.json",
     )
     parser.add_argument(
         "--output-dir",
@@ -41,6 +44,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--eval-interval", type=int, default=25)
     parser.add_argument("--eval-batches", type=int, default=5)
     parser.add_argument("--learning-rate", type=float, default=3e-4)
+    parser.add_argument(
+        "--learning-rate-schedule",
+        choices=["constant", "warmup_cosine"],
+        default="constant",
+    )
+    parser.add_argument("--warmup-steps", type=int, default=0)
+    parser.add_argument("--min-learning-rate", type=float, default=0.0)
     parser.add_argument("--seed", type=int, default=1337)
     parser.add_argument("--prompt", default="Nel ")
     parser.add_argument("--max-new-tokens", type=int, default=300)
@@ -87,6 +97,9 @@ def main() -> None:
         eval_interval=args.eval_interval,
         eval_batches=args.eval_batches,
         learning_rate=args.learning_rate,
+        learning_rate_schedule=args.learning_rate_schedule,
+        warmup_steps=args.warmup_steps,
+        min_learning_rate=args.min_learning_rate,
         seed=args.seed,
         prompt=args.prompt,
         max_new_tokens=args.max_new_tokens,
@@ -118,6 +131,7 @@ def main() -> None:
     print(f"wrote log: {result['log_path']}")
     print(f"wrote tokenizer: {result['tokenizer_path']}")
     print(f"wrote sample: {result['sample_path']}")
+    print(f"wrote best checkpoint: {result['best_checkpoint_path']}")
     print(f"wrote checkpoint: {result['checkpoint_path']}")
     print(
         "final losses: "

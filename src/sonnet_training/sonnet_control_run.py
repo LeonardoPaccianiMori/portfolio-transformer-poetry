@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import math
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Literal
@@ -14,6 +13,11 @@ from sonnet_corpus.bpe import BytePairEncodingTokenizer
 from sonnet_corpus.dataset_text import load_pretraining_bpe_encoded_splits
 from sonnet_model.transformer import CausalTransformerLanguageModel
 from sonnet_training.finetuning_run import generate_finetuning_sample, load_parent_for_finetuning
+from sonnet_training.learning_rate import (
+    LearningRateSchedule,
+    learning_rate_for_step,
+    set_optimizer_learning_rate,
+)
 from sonnet_training.pretraining_run import count_parameters
 from sonnet_training.progress import TrainingProgressReporter
 from sonnet_training.rmsnorm_conversion import (
@@ -29,7 +33,6 @@ from sonnet_training.transformer_run import resolve_device, write_json, write_js
 
 
 InitializationMode = Literal["pretrained", "random", "layernorm_to_rmsnorm"]
-LearningRateSchedule = Literal["constant", "warmup_cosine"]
 ValidationMode = Literal["random_batches", "sequential_windows"]
 ModelArchitecture = dict[str, int | float | str | bool]
 MODEL_ARCHITECTURE_KEYS = (
@@ -526,36 +529,6 @@ def build_run_metadata(
         "best_validation_step": int(best_validation_row["step"]),
         "best_validation_loss": float(best_validation_row["validation_loss"]),
     }
-
-
-def learning_rate_for_step(config: SonnetControlRunConfig, step: int) -> float:
-    """Return the configured learning rate for one one-indexed training step."""
-    if step <= 0 or step > config.train_steps:
-        raise ValueError("step must be between 1 and train_steps")
-    if config.learning_rate_schedule == "constant":
-        return config.learning_rate
-
-    if config.learning_rate_schedule == "warmup_cosine":
-        if config.warmup_steps and step <= config.warmup_steps:
-            return config.learning_rate * step / config.warmup_steps
-
-        decay_steps = config.train_steps - config.warmup_steps
-        decay_progress = (step - config.warmup_steps) / decay_steps
-        cosine_factor = 0.5 * (1.0 + math.cos(math.pi * decay_progress))
-        return config.min_learning_rate + cosine_factor * (
-            config.learning_rate - config.min_learning_rate
-        )
-
-    raise ValueError("unsupported learning_rate_schedule")
-
-
-def set_optimizer_learning_rate(
-    optimizer: torch.optim.Optimizer,
-    learning_rate: float,
-) -> None:
-    """Apply the current schedule value to every AdamW parameter group."""
-    for parameter_group in optimizer.param_groups:
-        parameter_group["lr"] = learning_rate
 
 
 def _validate_tokenizer_architecture(
