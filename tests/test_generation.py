@@ -752,6 +752,7 @@ def test_generate_for_prompts_writes_outputs_and_metadata(tmp_path):
     output_dir = tmp_path / "outputs"
     write_tiny_run(run_dir)
 
+    progress_messages = []
     metadata = generate_for_prompts(
         run_dir=run_dir,
         prompts=[
@@ -768,6 +769,7 @@ def test_generate_for_prompts_writes_outputs_and_metadata(tmp_path):
         max_new_tokens=3,
         seed=123,
         device=torch.device("cpu"),
+        progress=progress_messages.append,
     )
 
     metadata_path = output_dir / "metadata.json"
@@ -785,6 +787,9 @@ def test_generate_for_prompts_writes_outputs_and_metadata(tmp_path):
     assert metadata["stop_text"] is None
     assert metadata["target_lines"] is None
     assert len(metadata["generated_files"]) == 2
+    assert f"loading tokenizer from {run_dir / 'tokenizer.json'}" in progress_messages
+    assert "generating prompt 1/2: amor" in progress_messages
+    assert f"wrote prompt 2/2: {second_output}" in progress_messages
 
 
 def test_generate_for_prompts_supports_bpe_tokenizer(tmp_path):

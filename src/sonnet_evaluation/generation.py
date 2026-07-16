@@ -1,3 +1,4 @@
+from collections.abc import Callable
 import json
 from pathlib import Path
 from typing import Any
@@ -336,10 +337,13 @@ def generate_for_prompts(
     suppress_stop_text_until_target_lines: bool = False,
     checkpoint_path: Path | None = None,
     model_config_path: Path | None = None,
+    progress: Callable[[str], None] | None = None,
 ) -> dict[str, Any]:
+    _report_progress(progress, f"loading tokenizer from {run_dir / 'tokenizer.json'}")
     tokenizer = load_tokenizer(run_dir / "tokenizer.json")
     checkpoint_path = checkpoint_path or run_dir / "model.pt"
     model_config_path = model_config_path or run_dir / "config.json"
+    _report_progress(progress, f"loading checkpoint from {checkpoint_path}")
     model = load_transformer_from_checkpoint(
         checkpoint_path=checkpoint_path,
         config_path=model_config_path,
@@ -349,7 +353,12 @@ def generate_for_prompts(
 
     generated_files = []
 
+    total_prompts = len(prompts)
     for prompt_index, prompt in enumerate(prompts):
+        _report_progress(
+            progress,
+            f"generating prompt {prompt_index + 1}/{total_prompts}: {prompt['id']}",
+        )
         generation_result = generate_text_result(
             model=model,
             tokenizer=tokenizer,
@@ -374,6 +383,10 @@ def generate_for_prompts(
             "stop_reason": generation_result["stop_reason"],
             "generated_new_tokens": generation_result["generated_new_tokens"],
         })
+        _report_progress(
+            progress,
+            f"wrote prompt {prompt_index + 1}/{total_prompts}: {output_path}",
+        )
 
     metadata = {
         "run_dir": str(run_dir),
@@ -397,3 +410,11 @@ def generate_for_prompts(
     )
 
     return metadata
+
+
+def _report_progress(
+    progress: Callable[[str], None] | None,
+    message: str,
+) -> None:
+    if progress is not None:
+        progress(message)

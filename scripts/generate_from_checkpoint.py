@@ -82,6 +82,7 @@ def main() -> None:
         ),
         checkpoint_path=args.checkpoint_path,
         model_config_path=args.model_config_path,
+        progress=lambda message: print(f"generation | {message}", flush=True),
     )
 
     print(f"wrote output directory: {args.output_dir}")
