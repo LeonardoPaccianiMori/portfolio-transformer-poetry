@@ -74,8 +74,16 @@ def summarize_pretraining_run(
         "completed_steps": config["completed_steps"],
         "eval_interval": config["eval_interval"],
         "eval_batches": config["eval_batches"],
+        "validation_mode": config.get("validation_mode", "random_batches"),
+        "validation_window_count": config.get(
+            "validation_window_count",
+            (int(config["validation_tokens"]) - 1) // int(config["context_length"]),
+        ),
         "checkpoint_interval": config["checkpoint_interval"],
         "learning_rate": config["learning_rate"],
+        "learning_rate_schedule": config.get("learning_rate_schedule", "constant"),
+        "warmup_steps": config.get("warmup_steps", 0),
+        "min_learning_rate": config.get("min_learning_rate", 0.0),
         "embedding_dim": config["embedding_dim"],
         "num_layers": config["num_layers"],
         "num_heads": config["num_heads"],
@@ -110,6 +118,7 @@ def summarize_pretraining_run(
 
 
 def _configuration_table(summary: dict[str, Any]) -> str:
+    evaluation = _format_evaluation_policy(summary)
     rows = [
         ("Device", summary["resolved_device"]),
         ("Vocabulary size", f"{summary['vocab_size']:,}"),
@@ -119,7 +128,10 @@ def _configuration_table(summary: dict[str, Any]) -> str:
         ("Batch size", summary["batch_size"]),
         ("Completed steps", f"{summary['completed_steps']:,}"),
         ("Learning rate", f"{summary['learning_rate']:.1e}"),
-        ("Evaluation", f"every {summary['eval_interval']:,} steps; {summary['eval_batches']} batches"),
+        ("Learning-rate schedule", summary["learning_rate_schedule"]),
+        ("Warmup steps", f"{summary['warmup_steps']:,}"),
+        ("Minimum learning rate", f"{summary['min_learning_rate']:.1e}"),
+        ("Evaluation", evaluation),
         ("Interval checkpoints", f"every {summary['checkpoint_interval']:,} steps"),
         ("Parameters", f"{summary['parameter_count']:,}"),
         ("Embedding dimension", summary["embedding_dim"]),
@@ -139,7 +151,32 @@ def _configuration_table(summary: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
+def _format_evaluation_policy(summary: dict[str, Any]) -> str:
+    if summary["validation_mode"] == "sequential_windows":
+        return (
+            f"every {summary['eval_interval']:,} steps; all "
+            f"{summary['validation_window_count']:,} sequential windows"
+        )
+    return (
+        f"every {summary['eval_interval']:,} steps; "
+        f"{summary['eval_batches']} random batches"
+    )
+
+
 def _loss_history_table(history: list[dict[str, Any]]) -> str:
+    includes_learning_rate = all("learning_rate" in row for row in history)
+    if includes_learning_rate:
+        lines = [
+            "| Step | Training loss | Validation loss | Learning rate |",
+            "| ---: | ---: | ---: | ---: |",
+        ]
+        lines.extend(
+            "| {step:,} | {train_loss:.4f} | {validation_loss:.4f} | "
+            "{learning_rate:.2e} |".format(**row)
+            for row in history
+        )
+        return "\n".join(lines)
+
     lines = [
         "| Step | Training loss | Validation loss |",
         "| ---: | ---: | ---: |",
@@ -191,17 +228,40 @@ def build_pretraining_markdown_report(summary: dict[str, Any]) -> str:
         "## Final Sample Excerpt\n\n```text\n"
         + summary["sample_excerpt"]
         + "\n```",
-        "## Interpretation\n\n"
-        + (
-            "The loss fell substantially from the first recorded evaluation, and the "
-            "sample has learned historical Italian prose-like texture. It is not "
-            "sonnet-specialized: that is the intended role of the next fine-tuning "
-            "stage. The best validation value is a noisy estimate because each "
-            "evaluation used only a small random batch sample; it should guide, not "
-            "replace, later controlled evaluation."
-        ),
+        "## Interpretation\n\n" + _interpretation(summary),
         "## Full Loss History\n\n" + _loss_history_table(summary["loss_history"]),
     ]) + "\n"
+
+
+def _interpretation(summary: dict[str, Any]) -> str:
+    opening = (
+        "The loss fell substantially from the first recorded evaluation, and the "
+        "sample has learned historical Italian prose-like texture. It is not "
+        "sonnet-specialized: that is the intended role of the next fine-tuning stage. "
+    )
+    if summary["validation_mode"] == "sequential_windows":
+        validation_note = (
+            opening
+            + "Each validation result covers the complete fixed holdout through "
+            "non-overlapping sequential windows, so the best-validation checkpoint "
+            "is a deterministic selection within this run."
+        )
+    else:
+        validation_note = (
+            opening
+            + "The best validation value is a noisy estimate because each evaluation "
+            "used only a small random batch sample; it should guide, not replace, "
+            "later controlled evaluation."
+        )
+
+    if summary["best_validation_step"] == summary["completed_steps"]:
+        return validation_note
+    return (
+        validation_note
+        + " Validation was lower at step "
+        f"{summary['best_validation_step']:,} than at the final step, so downstream "
+        "generation and fine-tuning should use `best_validation.pt`, not `model.pt`."
+    )
 
 
 def write_pretraining_markdown_report(run_dir: Path, output_path: Path) -> dict[str, Any]:

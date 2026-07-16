@@ -103,6 +103,9 @@ def test_summarize_pretraining_run_extracts_losses_configuration_and_artifacts(t
     assert summary["best_validation_loss"] == 2.0
     assert summary["best_validation_step"] == 10_000
     assert summary["best_validation_train_loss"] == 2.2
+    assert summary["validation_mode"] == "random_batches"
+    assert summary["validation_window_count"] == 19
+    assert summary["learning_rate_schedule"] == "constant"
     assert summary["interval_checkpoint_count"] == 2
     assert summary["loss_records"] == 3
     assert summary["sample_excerpt"] == "Nel monte\ndi San Benedetto"
@@ -138,7 +141,31 @@ def test_markdown_report_includes_summary_sample_and_full_history(tmp_path):
     assert "| Normalization | layer_norm |" in report
     assert "| Position encoding | learned_absolute |" in report
     assert "| Feed-forward type | relu |" in report
+    assert "| Evaluation | every 1,000 steps; 5 random batches |" in report
     assert "| 20,000 | 1.8000 | 2.1000 |" in report
+
+
+def test_pretraining_report_describes_deterministic_sequential_validation(tmp_path):
+    run_dir = tmp_path / "pretraining_run"
+    write_fake_pretraining_run(run_dir)
+    config_path = run_dir / "config.json"
+    config = json.loads(config_path.read_text(encoding="utf-8"))
+    config.update({
+        "validation_mode": "sequential_windows",
+        "validation_window_count": 19,
+        "learning_rate_schedule": "warmup_cosine",
+        "warmup_steps": 500,
+        "min_learning_rate": 3e-5,
+    })
+    write_json(config_path, config)
+
+    report = build_pretraining_markdown_report(summarize_pretraining_run(run_dir))
+
+    assert "| Learning-rate schedule | warmup_cosine |" in report
+    assert "| Warmup steps | 500 |" in report
+    assert "| Evaluation | every 1,000 steps; all 19 sequential windows |" in report
+    assert "deterministic selection within this run" in report
+    assert "should use `best_validation.pt`, not `model.pt`" in report
 
 
 def test_summarize_pretraining_run_reads_explicit_rms_norm_configuration(tmp_path):
