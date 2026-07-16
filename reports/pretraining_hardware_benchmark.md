@@ -9,8 +9,8 @@ local hardware using the current BPE-encoded broader Italian corpus.
 - CUDA available: `True`
 - Vocabulary size: `8000`
 - Context length: `512`
-- Warmup steps: `3`
-- Timed steps: `20`
+- Warmup steps: `10`
+- Timed steps: `100`
 - Evaluation batches: `1`
 - Learning rate: `0.0003`
 
@@ -18,10 +18,11 @@ local hardware using the current BPE-encoded broader Italian corpus.
 
 | Candidate | Status | Params | Batch | Seconds/Step | Tokens/Sec | Peak CUDA MiB | Train Loss | Validation Loss |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| small | ok | 8,969,536 | 8 | 0.1000 | 40944.5170 | 1365.6851 | 5.1962 | 5.1059 |
-| medium | ok | 20,535,872 | 4 | 0.0963 | 21275.4380 | 1155.0044 | 4.7810 | 4.5908 |
-| larger | ok | 33,669,952 | 2 | 0.0762 | 13439.2360 | 1002.1670 | 4.9230 | 4.5541 |
-| upper | ok | 59,792,960 | 1 | 0.0778 | 6577.7616 | 1357.4014 | 4.5085 | 4.6495 |
+| small | ok | 8,969,536 | 8 | 0.1008 | 40652.7616 | 1365.6851 | 4.2735 | 4.8703 |
+| medium | ok | 20,535,872 | 4 | 0.0973 | 21046.5999 | 1155.0044 | 4.2817 | 4.5554 |
+| larger | ok | 33,669,952 | 2 | 0.0775 | 13215.0749 | 1002.1670 | 4.1357 | 5.3311 |
+| upper | ok | 59,792,960 | 1 | 0.0854 | 5994.3443 | 1357.4014 | 4.6548 | 4.4406 |
+| max | ok | 97,717,568 | 1 | 0.1252 | 4087.8556 | 2121.2881 | 4.7353 | 4.5719 |
 
 ## Interpretation
 
