@@ -40,6 +40,27 @@ class LiberLiberProbeResult:
     cleaning_notes: str
 
 
+@dataclass(frozen=True)
+class LiberLiberCandidateProbeResult:
+    """One audit-only Liber Liber source with bounded cleaned-text samples."""
+
+    source_id: str
+    title: str
+    author: str
+    landing_page_url: str
+    status: str
+    error: str
+    archive_format: str
+    archive_url: str
+    raw_byte_count: int
+    cleaned_character_count: int
+    cleaned_word_count: int
+    first_characters: str
+    last_characters: str
+    license_notes: str
+    cleaning_notes: str
+
+
 def probe_liber_liber_sources(
     *,
     manifest_path: Path,
@@ -91,6 +112,44 @@ def probe_liber_liber_sources(
     return report
 
 
+def probe_liber_liber_source(
+    *,
+    manifest_path: Path,
+    source_id: str,
+    report_path: Path,
+    fetch_text: FetchLiberLiberText = fetch_liber_liber_text,
+    session: requests.Session | None = None,
+    progress: Callable[[str], None] | None = None,
+) -> dict[str, object]:
+    """Probe one audit-only Liber Liber prose source without activating it."""
+
+    started_at = _utc_now()
+    rows = read_pretraining_manifest(manifest_path)
+    row = select_liber_liber_candidate_probe_row(rows, source_id)
+    _write_progress(progress, f"probing source: {row.source_id}")
+    _write_progress(progress, "discovering download and extracting cleaned text")
+    result = _probe_liber_liber_candidate_row(
+        row=row,
+        fetch_text=fetch_text,
+        session=session,
+    )
+    report = {
+        "started_at_utc": started_at,
+        "finished_at_utc": _utc_now(),
+        "manifest_path": _portable_path(manifest_path),
+        "source_id": source_id,
+        "activation_status": "audit_then_include",
+        "result": asdict(result),
+    }
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    report_path.write_text(
+        json.dumps(report, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    _write_progress(progress, f"wrote inspection report: {report_path}")
+    return report
+
+
 def select_liber_liber_probe_rows(
     rows: list[PretrainingSourceRow],
 ) -> list[PretrainingSourceRow]:
@@ -103,6 +162,25 @@ def select_liber_liber_probe_rows(
         and row.inclusion_status == "include_probe"
         and row.text_kind == "prose"
     ]
+
+
+def select_liber_liber_candidate_probe_row(
+    rows: list[PretrainingSourceRow],
+    source_id: str,
+) -> PretrainingSourceRow:
+    """Return one prose candidate that remains explicitly audit-only."""
+
+    matching = [row for row in rows if row.source_id == source_id]
+    if len(matching) != 1:
+        raise ValueError(f"expected exactly one manifest row for source: {source_id}")
+    row = matching[0]
+    if row.source_archive != "Liber Liber":
+        raise ValueError(f"source is not a Liber Liber row: {source_id}")
+    if row.inclusion_status != "audit_then_include":
+        raise ValueError(f"source is not audit-only: {source_id}")
+    if row.text_kind != "prose":
+        raise ValueError(f"source is not prose: {source_id}")
+    return row
 
 
 def write_liber_liber_attribution(
@@ -190,6 +268,56 @@ def _probe_liber_liber_row(
     )
 
 
+def _probe_liber_liber_candidate_row(
+    *,
+    row: PretrainingSourceRow,
+    fetch_text: FetchLiberLiberText,
+    session: requests.Session | None,
+) -> LiberLiberCandidateProbeResult:
+    try:
+        fetched = fetch_text(
+            row.landing_page_url,
+            title=row.title,
+            session=session,
+        )
+    except Exception as exc:
+        return LiberLiberCandidateProbeResult(
+            source_id=row.source_id,
+            title=row.title,
+            author=row.author,
+            landing_page_url=row.landing_page_url,
+            status="error",
+            error=str(exc),
+            archive_format="",
+            archive_url="",
+            raw_byte_count=0,
+            cleaned_character_count=0,
+            cleaned_word_count=0,
+            first_characters="",
+            last_characters="",
+            license_notes=row.license_notes,
+            cleaning_notes=row.cleaning_notes,
+        )
+
+    return LiberLiberCandidateProbeResult(
+        source_id=row.source_id,
+        title=row.title,
+        author=row.author,
+        landing_page_url=row.landing_page_url,
+        status="ok",
+        error="",
+        archive_format=fetched.archive_format,
+        archive_url=fetched.archive_url,
+        raw_byte_count=fetched.raw_byte_count,
+        cleaned_character_count=len(fetched.text),
+        cleaned_word_count=len(re.findall(r"\S+", fetched.text)),
+        first_characters=fetched.text[:240],
+        last_characters=fetched.text[-240:],
+        license_notes=row.license_notes,
+        cleaning_notes=row.cleaning_notes,
+    )
+
+
 def _utc_now() -> str:
     return datetime.now(UTC).replace(microsecond=0).isoformat()
 
@@ -199,3 +327,8 @@ def _portable_path(path: Path) -> str:
         return str(path.resolve().relative_to(Path.cwd().resolve()))
     except ValueError:
         return str(path)
+
+
+def _write_progress(progress: Callable[[str], None] | None, message: str) -> None:
+    if progress is not None:
+        progress(message)

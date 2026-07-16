@@ -1,9 +1,13 @@
 import json
 from pathlib import Path
 
+import pytest
+
 from sonnet_corpus.liber_liber import FetchedLiberLiberText
 from sonnet_corpus.liber_liber_probe import (
+    probe_liber_liber_source,
     probe_liber_liber_sources,
+    select_liber_liber_candidate_probe_row,
     select_liber_liber_probe_rows,
     write_liber_liber_attribution,
 )
@@ -72,6 +76,18 @@ def test_select_liber_liber_probe_rows_skips_conditional_mixed_work():
     assert [row.source_id for row in selected] == ["active"]
 
 
+def test_select_liber_liber_candidate_probe_row_requires_an_audit_only_prose_row():
+    candidate = select_liber_liber_candidate_probe_row(
+        [make_row(source_id="candidate", inclusion_status="audit_then_include")],
+        "candidate",
+    )
+
+    assert candidate.source_id == "candidate"
+
+    with pytest.raises(ValueError, match="not audit-only"):
+        select_liber_liber_candidate_probe_row([make_row()], "ll_novellino")
+
+
 def test_probe_writes_measurements_and_attribution(tmp_path: Path):
     manifest_path = tmp_path / "manifest.csv"
     report_path = tmp_path / "report.json"
@@ -128,6 +144,42 @@ def test_probe_records_fetch_error_without_stopping_report(tmp_path: Path):
     assert report["successful_rows"] == 0
     assert report["error_rows"] == 1
     assert report["results"][0]["error"] == "source unavailable"
+
+
+def test_candidate_probe_writes_cleaned_samples_without_full_text(tmp_path: Path):
+    manifest_path = tmp_path / "manifest.csv"
+    report_path = tmp_path / "candidate.json"
+    write_pretraining_manifest(
+        [make_row(source_id="candidate", inclusion_status="audit_then_include")],
+        manifest_path,
+    )
+    progress_messages = []
+
+    def fake_fetch_text(landing_page_url, title, session=None):
+        return FetchedLiberLiberText(
+            landing_page_url=landing_page_url,
+            download_page_url="https://liberliber.it/download/",
+            archive_url="https://media.test/candidate.zip",
+            archive_format="txt_zip",
+            raw_byte_count=123,
+            text="Il Novellino\nCorpo del testo.\n",
+        )
+
+    report = probe_liber_liber_source(
+        manifest_path=manifest_path,
+        source_id="candidate",
+        report_path=report_path,
+        fetch_text=fake_fetch_text,
+        progress=progress_messages.append,
+    )
+
+    assert report["activation_status"] == "audit_then_include"
+    assert report["result"]["status"] == "ok"
+    assert report["result"]["first_characters"] == "Il Novellino\nCorpo del testo.\n"
+    assert "probing source: candidate" in progress_messages
+    saved = json.loads(report_path.read_text(encoding="utf-8"))
+    assert saved["result"]["archive_url"] == "https://media.test/candidate.zip"
+    assert "text" not in saved["result"]
 
 
 def test_write_attribution_uses_only_rows_passed_by_caller(tmp_path: Path):

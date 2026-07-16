@@ -191,7 +191,7 @@ def test_starter_broader_prose_manifest_rows_are_valid():
     assert rows_by_id["ll_cellini_vita"].split == "excluded"
 
 
-def test_only_audited_wikisource_source_is_active_for_the_expanded_corpus():
+def test_wikisource_activation_and_vico_replacement_statuses_are_explicit():
     path = Path("data/metadata/broader_prose_sources_manifest.csv")
 
     with path.open(encoding="utf-8", newline="") as handle:
@@ -215,5 +215,14 @@ def test_only_audited_wikisource_source_is_active_for_the_expanded_corpus():
         assert row.period_bucket == "tier_d_post_1600"
     assert rows_by_id["ws_galileo_saggiatore"].inclusion_status == "include_probe"
     assert rows_by_id["ws_galileo_dialogo"].inclusion_status == "include_probe"
-    for source_id in candidate_ids - {"ws_galileo_saggiatore", "ws_galileo_dialogo"}:
+    for source_id in {
+        "ws_beccaria_delitti_pene",
+        "ws_giannone_istoria_civile_vol1",
+    }:
         assert rows_by_id[source_id].inclusion_status == "audit_then_include"
+    assert rows_by_id["ws_vico_scienza_nuova"].inclusion_status == "defer"
+
+    replacement = rows_by_id["ll_vico_principj_scienza_nuova"]
+    assert replacement.source_archive == "Liber Liber"
+    assert replacement.inclusion_status == "audit_then_include"
+    assert "CC BY-NC-SA 4.0" in replacement.license_notes
