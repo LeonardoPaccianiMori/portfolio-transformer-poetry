@@ -142,5 +142,8 @@ The completed local balance audit found one concentration violation: Giovan
 Battista Ramusio's *Navigazioni e viaggi* contributes 27.03 percent of cleaned
 characters and 27.33 percent of whitespace-delimited units. It exceeds the
 recorded 15-percent work and 20-percent author caps. Every other work and
-author is below both thresholds. The next corpus step is a deterministic,
-provenance-preserving cap of that source before fitting the new tokenizer.
+author is below both thresholds. The project decision is to retain the full
+corpus without capping Ramusio: the excess is considered acceptable for this
+quality-focused parent-model comparison. The audit remains part of the corpus
+provenance record; the next step is fitting the new tokenizer on the unchanged
+expanded corpus.
