@@ -11,6 +11,43 @@ from sonnet_corpus.pretraining_tokenizer import (
     train_pretraining_bpe_tokenizer,
     train_weighted_pretoken_bpe_tokenizer,
 )
+from sonnet_corpus.pretraining_manifest import (
+    PretrainingSourceRow,
+    write_pretraining_manifest,
+)
+
+
+def make_pretraining_row(**overrides) -> PretrainingSourceRow:
+    values = {
+        "source_id": "source_a",
+        "title": "Work A",
+        "author": "Author A",
+        "source_archive": "Project Gutenberg",
+        "source_collection": "Project Gutenberg Italian",
+        "landing_page_url": "https://example.test/a",
+        "download_url": "",
+        "ebook_id": "1",
+        "language": "Italian",
+        "period_bucket": "tier_a_pre_1375",
+        "approx_date": "XIV secolo",
+        "genre": "prose",
+        "text_kind": "prose",
+        "inclusion_status": "include_probe",
+        "public_domain_status": "public domain",
+        "license_notes": "test",
+        "edition_notes": "",
+        "source_release_date": "",
+        "source_last_updated": "",
+        "expected_clean_text_path": "",
+        "token_count_report_path": "",
+        "split": "",
+        "boilerplate_strategy": "strip Project Gutenberg header and footer",
+        "mixed_text_strategy": "",
+        "cleaning_notes": "",
+        "audit_notes": "",
+    }
+    values.update(overrides)
+    return PretrainingSourceRow(**values)
 
 
 def test_weighted_pretoken_bpe_tokenizer_round_trips_text():
@@ -104,6 +141,58 @@ def test_train_pretraining_bpe_tokenizer_writes_tokenizer_and_report(tmp_path: P
     saved = json.loads(report_path.read_text(encoding="utf-8"))
     assert saved["tokenizer_path"].endswith("tokenizer.json")
     assert saved["special_tokens"] == ["<|endoftext|>"]
+
+
+def test_train_pretraining_bpe_tokenizer_stratifies_a_source_sample(tmp_path: Path):
+    source_dir = tmp_path / "processed" / "sources"
+    source_dir.mkdir(parents=True)
+    source_a = ("amor virtute memoria ") * 20
+    source_b = ("cronica novella istoria ") * 20
+    (source_dir / "source_a.txt").write_text(source_a, encoding="utf-8")
+    (source_dir / "source_b.txt").write_text(source_b, encoding="utf-8")
+    corpus_path = tmp_path / "processed" / "corpus.txt"
+    corpus_path.write_text(f"{source_a}\n{source_b}", encoding="utf-8")
+    manifest_path = tmp_path / "manifest.csv"
+    write_pretraining_manifest(
+        [
+            make_pretraining_row(),
+            make_pretraining_row(
+                source_id="source_b",
+                title="Work B",
+                author="Author B",
+                landing_page_url="https://example.test/b",
+                ebook_id="2",
+            ),
+        ],
+        manifest_path,
+    )
+    messages: list[str] = []
+
+    report = train_pretraining_bpe_tokenizer(
+        PretrainingTokenizerConfig(
+            corpus_path=corpus_path,
+            tokenizer_path=tmp_path / "tokenizer.json",
+            report_path=tmp_path / "report.json",
+            build_report_path=tmp_path / "build_report.json",
+            vocab_size=80,
+            training_character_limit=120,
+            manifest_path=manifest_path,
+            source_dir=source_dir,
+            minimum_source_characters=40,
+            merge_progress_interval=10,
+        ),
+        progress=messages.append,
+    )
+
+    assert report["sampling_strategy"] == "stratified_sources"
+    assert [item["source_id"] for item in report["sample_sources"]] == [
+        "source_a",
+        "source_b",
+    ]
+    assert sum(item["allocated_character_count"] for item in report["sample_sources"]) == 120
+    assert all(item["sampled_character_count"] > 0 for item in report["sample_sources"])
+    assert any(message.startswith("BPE merges:") for message in messages)
+    assert any(message.startswith("token count cache entries:") for message in messages)
 
 
 def test_train_pretraining_bpe_tokenizer_rejects_missing_corpus(tmp_path: Path):
