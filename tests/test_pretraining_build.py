@@ -11,6 +11,8 @@ from sonnet_corpus.italian_wikisource import (
 )
 from sonnet_corpus.pretraining_build import (
     PretrainingBuildConfig,
+    _acquire_build_lock,
+    _release_build_lock,
     build_pretraining_corpus,
     select_pretraining_build_rows,
 )
@@ -302,6 +304,29 @@ def test_build_pretraining_corpus_fails_without_publishing_partial_processed_fil
     assert not processed_dir.exists()
     assert not report_path.exists()
     assert temp_dir.exists()
+
+
+def test_build_pretraining_corpus_rejects_a_concurrent_use_of_its_temp_directory(
+    tmp_path: Path,
+):
+    manifest_path = tmp_path / "manifest.csv"
+    temp_dir = tmp_path / "temp"
+    write_pretraining_manifest([make_row()], manifest_path)
+    lock_handle = _acquire_build_lock(temp_dir)
+
+    try:
+        with pytest.raises(RuntimeError, match="another pretraining corpus build"):
+            build_pretraining_corpus(
+                PretrainingBuildConfig(
+                    manifest_path=manifest_path,
+                    processed_dir=tmp_path / "processed",
+                    report_path=tmp_path / "build_report.json",
+                    temp_dir=temp_dir,
+                    request_delay_seconds=0,
+                )
+            )
+    finally:
+        _release_build_lock(lock_handle)
 
 
 def test_build_pretraining_corpus_rejects_manifest_with_no_selected_rows(

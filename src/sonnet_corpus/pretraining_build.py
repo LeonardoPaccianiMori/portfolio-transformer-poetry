@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import fcntl
 import json
 import re
 import shutil
@@ -135,7 +136,12 @@ def build_pretraining_corpus(
 
     _validate_deletable_directory(temp_root, label="temp_dir")
     _validate_deletable_directory(config.processed_dir, label="processed_dir")
-    _prepare_temp_tree(temp_root, raw_dir, interim_dir, staged_sources_dir)
+    lock_handle = _acquire_build_lock(temp_root)
+    try:
+        _prepare_temp_tree(temp_root, raw_dir, interim_dir, staged_sources_dir)
+    except Exception:
+        _release_build_lock(lock_handle)
+        raise
     gutenberg_limiter = GutenbergRateLimiter(config.request_delay_seconds)
     liber_liber_limiter = LiberLiberRateLimiter(config.request_delay_seconds)
 
@@ -222,9 +228,13 @@ def build_pretraining_corpus(
             report_path=config.report_path,
         )
     except Exception:
+        _release_build_lock(lock_handle)
         raise
     else:
-        shutil.rmtree(temp_root)
+        try:
+            shutil.rmtree(temp_root)
+        finally:
+            _release_build_lock(lock_handle)
 
     return report
 
@@ -288,6 +298,28 @@ def _prepare_temp_tree(
     raw_dir.mkdir(parents=True)
     interim_dir.mkdir(parents=True)
     staged_sources_dir.mkdir(parents=True)
+
+
+def _acquire_build_lock(temp_root: Path):
+    """Prevent concurrent builders from deleting the same temporary tree."""
+
+    lock_path = temp_root.parent / f".{temp_root.name}.lock"
+    lock_path.parent.mkdir(parents=True, exist_ok=True)
+    handle = lock_path.open("a+", encoding="utf-8")
+    try:
+        fcntl.flock(handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError as exc:
+        handle.close()
+        raise RuntimeError(
+            "another pretraining corpus build is already using temp_dir: "
+            f"{temp_root}"
+        ) from exc
+    return handle
+
+
+def _release_build_lock(handle) -> None:
+    fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
+    handle.close()
 
 
 def _make_report(
