@@ -53,6 +53,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--training-character-limit", type=int, default=1_000_000)
     parser.add_argument("--minimum-source-characters", type=int, default=10_000)
     parser.add_argument("--merge-progress-interval", type=int, default=500)
+    parser.add_argument(
+        "--training-checkpoint-path",
+        type=Path,
+        default=ROOT
+        / "data/local/pretraining/expanded_italian_1200_1800_v1/tokenizers/bpe_8000_training_state.json",
+    )
+    parser.add_argument("--max-merges-per-run", type=int)
     return parser.parse_args()
 
 
@@ -70,13 +77,24 @@ def main() -> None:
         source_dir=args.source_dir,
         minimum_source_characters=args.minimum_source_characters,
         merge_progress_interval=args.merge_progress_interval,
+        training_checkpoint_path=args.training_checkpoint_path,
+        max_merges_per_run=args.max_merges_per_run,
     )
     report = train_pretraining_bpe_tokenizer(
         config,
         progress=lambda message: print(f"tokenizer | {message}", flush=True),
     )
-    print(f"tokenizer | wrote tokenizer: {args.tokenizer_path}", flush=True)
     print(f"tokenizer | wrote report: {args.report_path}", flush=True)
+    if report["status"] == "incomplete":
+        print(
+            "tokenizer | checkpointed "
+            f"vocabulary={report['actual_vocab_size']}/{report['target_vocab_size']} "
+            f"merges={report['merge_count']}",
+            flush=True,
+        )
+        return
+
+    print(f"tokenizer | wrote tokenizer: {args.tokenizer_path}", flush=True)
     print(
         "tokenizer | corpus tokens: "
         f"{report['token_count']} "

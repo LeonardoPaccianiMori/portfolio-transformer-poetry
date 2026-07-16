@@ -195,6 +195,36 @@ def test_train_pretraining_bpe_tokenizer_stratifies_a_source_sample(tmp_path: Pa
     assert any(message.startswith("token count cache entries:") for message in messages)
 
 
+def test_train_pretraining_bpe_tokenizer_resumes_merge_checkpoints(tmp_path: Path):
+    corpus_path = tmp_path / "corpus.txt"
+    corpus_path.write_text(("amor virtute memoria cronica novella\n") * 20, encoding="utf-8")
+    tokenizer_path = tmp_path / "tokenizer.json"
+    checkpoint_path = tmp_path / "training_state.json"
+    config = PretrainingTokenizerConfig(
+        corpus_path=corpus_path,
+        tokenizer_path=tokenizer_path,
+        report_path=tmp_path / "report.json",
+        build_report_path=tmp_path / "build_report.json",
+        vocab_size=40,
+        training_character_limit=400,
+        training_checkpoint_path=checkpoint_path,
+        max_merges_per_run=2,
+    )
+
+    report = train_pretraining_bpe_tokenizer(config)
+    assert report["status"] == "incomplete"
+    assert checkpoint_path.is_file()
+    assert not tokenizer_path.exists()
+
+    while report["status"] == "incomplete":
+        report = train_pretraining_bpe_tokenizer(config)
+
+    assert report["status"] == "complete"
+    assert report["actual_vocab_size"] == 40
+    assert tokenizer_path.is_file()
+    assert not checkpoint_path.exists()
+
+
 def test_train_pretraining_bpe_tokenizer_rejects_missing_corpus(tmp_path: Path):
     with pytest.raises(FileNotFoundError, match="corpus file does not exist"):
         train_pretraining_bpe_tokenizer(

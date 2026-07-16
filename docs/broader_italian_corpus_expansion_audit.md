@@ -162,3 +162,11 @@ quality risk from modern editorial contamination outweighs the loss of this
 single source. Its manifest row remains as `defer` with `split=excluded`,
 preserving provenance and allowing a future source-specific extraction only
 after separate audit and validation.
+
+After the approved Sidrac deferral, the local `expanded_italian_1200_1800_v1`
+rebuild contains 33 sources, 43,418,117 cleaned characters, and 7,352,381
+whitespace-delimited units. Its replacement tokenizer has 8,000 vocabulary
+items and 7,843 merges. It was trained from a deterministic, stratified
+998,144-character sample covering every active source; its exact full-corpus
+count is 17,294,376 BPE tokens, all round-trip checks pass, and the boundary
+warning count is zero.

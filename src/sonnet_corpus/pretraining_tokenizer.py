@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import re
+from hashlib import sha256
 from collections import Counter
 from collections.abc import Callable
 from dataclasses import dataclass
@@ -49,6 +50,8 @@ class PretrainingTokenizerConfig:
     source_dir: Path | None = None
     minimum_source_characters: int = 0
     merge_progress_interval: int = 500
+    training_checkpoint_path: Path | None = None
+    max_merges_per_run: int | None = None
 
 
 def train_pretraining_bpe_tokenizer(
@@ -69,14 +72,36 @@ def train_pretraining_bpe_tokenizer(
         raise ValueError("training text sample is empty")
 
     _write_progress(progress, "training BPE merges")
-    tokenizer = train_weighted_pretoken_bpe_tokenizer(
+    tokenizer, merge_count, completed = _train_or_resume_weighted_bpe_tokenizer(
         training_text=training_text,
         base_text=text,
         vocab_size=config.vocab_size,
         special_tokens=list(config.special_tokens),
         progress=progress,
         progress_interval=config.merge_progress_interval,
+        checkpoint_path=config.training_checkpoint_path,
+        max_merges_per_run=config.max_merges_per_run,
     )
+    if not completed:
+        report = {
+            "status": "incomplete",
+            "started_at_utc": started_at,
+            "finished_at_utc": _utc_now(),
+            "corpus_path": _portable_path(config.corpus_path),
+            "tokenizer_path": _portable_path(config.tokenizer_path),
+            "target_vocab_size": config.vocab_size,
+            "actual_vocab_size": tokenizer.vocab_size,
+            "merge_count": merge_count,
+            "training_character_limit": config.training_character_limit,
+            "training_character_count": len(training_text),
+            "sampling_strategy": sampling_strategy,
+            "minimum_source_characters": config.minimum_source_characters,
+            "sample_sources": sample_sources,
+            "checkpoint_path": _portable_path(config.training_checkpoint_path),
+        }
+        _write_json_report(report, config.report_path)
+        return report
+
     _write_progress(progress, "counting BPE tokens across the full corpus")
     token_count = count_bpe_tokens_by_pretoken(text, tokenizer, progress=progress)
     _write_progress(progress, "checking tokenizer round trips")
@@ -89,7 +114,8 @@ def train_pretraining_bpe_tokenizer(
         "build_report_path": _portable_path(config.build_report_path),
         "target_vocab_size": config.vocab_size,
         "actual_vocab_size": tokenizer.vocab_size,
-        "merge_count": len(tokenizer.merges),
+        "merge_count": merge_count,
+        "status": "complete",
         "special_tokens": list(config.special_tokens),
         "corpus_character_count": len(text),
         "training_character_limit": config.training_character_limit,
@@ -109,11 +135,9 @@ def train_pretraining_bpe_tokenizer(
     _write_progress(progress, "writing tokenizer and report")
     config.tokenizer_path.parent.mkdir(parents=True, exist_ok=True)
     tokenizer.save(config.tokenizer_path)
-    config.report_path.parent.mkdir(parents=True, exist_ok=True)
-    config.report_path.write_text(
-        json.dumps(report, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
-    )
+    _write_json_report(report, config.report_path)
+    if config.training_checkpoint_path is not None:
+        config.training_checkpoint_path.unlink(missing_ok=True)
     return report
 
 
@@ -309,6 +333,166 @@ def _validate_source_files(source_dir: Path, rows: list[PretrainingSourceRow]) -
         if unexpected_ids:
             details.append(f"unexpected={','.join(unexpected_ids)}")
         raise ValueError("processed source files do not match active manifest rows: " + "; ".join(details))
+
+
+def _train_or_resume_weighted_bpe_tokenizer(
+    *,
+    training_text: str,
+    base_text: str,
+    vocab_size: int,
+    special_tokens: list[str],
+    progress: ProgressCallback | None,
+    progress_interval: int,
+    checkpoint_path: Path | None,
+    max_merges_per_run: int | None,
+) -> tuple[BytePairEncodingTokenizer, int, bool]:
+    if max_merges_per_run is None:
+        tokenizer = train_weighted_pretoken_bpe_tokenizer(
+            training_text=training_text,
+            base_text=base_text,
+            vocab_size=vocab_size,
+            special_tokens=special_tokens,
+            progress=progress,
+            progress_interval=progress_interval,
+        )
+        return tokenizer, len(tokenizer.merges), True
+    if checkpoint_path is None:
+        raise ValueError("training_checkpoint_path is required with max_merges_per_run")
+    if max_merges_per_run <= 0:
+        raise ValueError("max_merges_per_run must be greater than 0")
+
+    state = _load_or_create_bpe_state(
+        checkpoint_path=checkpoint_path,
+        training_text=training_text,
+        base_text=base_text,
+        vocab_size=vocab_size,
+        special_tokens=special_tokens,
+    )
+    completed = _advance_bpe_state(
+        state,
+        vocab_size=vocab_size,
+        special_tokens=special_tokens,
+        max_merges=max_merges_per_run,
+        progress=progress,
+        progress_interval=progress_interval,
+    )
+    tokenizer = BytePairEncodingTokenizer(
+        token_to_id={token: index for index, token in enumerate(state["vocabulary_tokens"])},
+        merges=[tuple(pair) for pair in state["merges"]],
+        special_tokens=special_tokens,
+    )
+    if not completed:
+        _write_bpe_state(state, checkpoint_path)
+        _write_progress(
+            progress,
+            "BPE checkpoint saved: "
+            f"vocabulary={tokenizer.vocab_size}/{vocab_size} "
+            f"merges={len(tokenizer.merges)}",
+        )
+    return tokenizer, len(tokenizer.merges), completed
+
+
+def _load_or_create_bpe_state(
+    *,
+    checkpoint_path: Path,
+    training_text: str,
+    base_text: str,
+    vocab_size: int,
+    special_tokens: list[str],
+) -> dict[str, Any]:
+    training_text_sha256 = sha256(training_text.encode("utf-8")).hexdigest()
+    if checkpoint_path.is_file():
+        state = json.loads(checkpoint_path.read_text(encoding="utf-8"))
+        expected = {
+            "training_text_sha256": training_text_sha256,
+            "target_vocab_size": vocab_size,
+            "special_tokens": special_tokens,
+        }
+        actual = {key: state.get(key) for key in expected}
+        if actual != expected:
+            raise ValueError("BPE checkpoint does not match the requested tokenizer configuration")
+        return state
+
+    vocabulary_tokens = build_base_vocabulary(texts=[base_text], special_tokens=special_tokens)
+    if vocab_size < len(vocabulary_tokens):
+        raise ValueError("vocab_size must be at least the base vocabulary size")
+    sequence_counts = _count_initial_pretoken_sequences(training_text)
+    return {
+        "training_text_sha256": training_text_sha256,
+        "target_vocab_size": vocab_size,
+        "special_tokens": special_tokens,
+        "vocabulary_tokens": vocabulary_tokens,
+        "merges": [],
+        "sequence_counts": [
+            {"tokens": list(sequence), "count": count}
+            for sequence, count in sequence_counts.items()
+        ],
+    }
+
+
+def _advance_bpe_state(
+    state: dict[str, Any],
+    *,
+    vocab_size: int,
+    special_tokens: list[str],
+    max_merges: int,
+    progress: ProgressCallback | None,
+    progress_interval: int,
+) -> bool:
+    vocabulary_tokens = list(state["vocabulary_tokens"])
+    vocabulary_set = set(vocabulary_tokens)
+    merges = [tuple(pair) for pair in state["merges"]]
+    sequence_counts = Counter({
+        tuple(item["tokens"]): int(item["count"])
+        for item in state["sequence_counts"]
+    })
+    _write_progress(
+        progress,
+        "BPE resumed state: "
+        f"vocabulary={len(vocabulary_tokens)}/{vocab_size} "
+        f"unique_pretokens={len(sequence_counts)}",
+    )
+
+    merges_this_run = 0
+    while len(vocabulary_tokens) < vocab_size and merges_this_run < max_merges:
+        pair_counts = _weighted_pair_counts(sequence_counts)
+        best_pair = choose_best_pair(pair_counts)
+        if best_pair is None or "".join(best_pair) in special_tokens:
+            break
+        merged_token = "".join(best_pair)
+        sequence_counts = _merge_sequence_counts(
+            sequence_counts=sequence_counts,
+            pair=best_pair,
+            merged_token=merged_token,
+        )
+        merges.append(best_pair)
+        if merged_token not in vocabulary_set:
+            vocabulary_tokens.append(merged_token)
+            vocabulary_set.add(merged_token)
+        merges_this_run += 1
+        if len(merges) % progress_interval == 0 or len(vocabulary_tokens) == vocab_size:
+            _write_progress(
+                progress,
+                "BPE merges: "
+                f"vocabulary={len(vocabulary_tokens)}/{vocab_size} "
+                f"merges={len(merges)}",
+            )
+
+    state["vocabulary_tokens"] = vocabulary_tokens
+    state["merges"] = [list(pair) for pair in merges]
+    state["sequence_counts"] = [
+        {"tokens": list(sequence), "count": count}
+        for sequence, count in sequence_counts.items()
+    ]
+    return len(vocabulary_tokens) == vocab_size
+
+
+def _write_bpe_state(state: dict[str, Any], checkpoint_path: Path) -> None:
+    checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
+    checkpoint_path.write_text(
+        json.dumps(state, ensure_ascii=False, separators=(",", ":")),
+        encoding="utf-8",
+    )
 
 
 def train_weighted_pretoken_bpe_tokenizer(
@@ -575,6 +759,14 @@ def _portable_path(path: Path) -> str:
         return str(path.resolve().relative_to(Path.cwd().resolve()))
     except ValueError:
         return str(path)
+
+
+def _write_json_report(report: dict[str, Any], path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps(report, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
 
 
 def _write_progress(progress: ProgressCallback | None, message: str) -> None:
