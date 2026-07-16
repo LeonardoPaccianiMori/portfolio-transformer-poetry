@@ -131,3 +131,9 @@ exact standalone `[inserisci figura1]` front-matter placeholder for
 including Vico's historical timeline labels. The source is `include_probe` for
 `expanded_italian_1200_1800_v1`, and the Liber Liber attribution report is
 regenerated as part of the activation checkpoint.
+
+The local `expanded_italian_1200_1800_v1` build completed on 2026-07-16 with
+34 sources, 44,266,756 cleaned characters, and 7,496,860 whitespace-delimited
+units. The activated Vico source contributes 943,187 cleaned characters and
+150,584 units. The builder deleted its raw and interim workspace after
+publishing the processed local corpus and build report.
