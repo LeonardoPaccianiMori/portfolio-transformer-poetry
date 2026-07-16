@@ -13,7 +13,7 @@ from typing import Any
 import torch
 
 from sonnet_corpus.bpe import BytePairEncodingTokenizer
-from sonnet_model.transformer import CausalTransformerLanguageModel
+from sonnet_model.transformer import CausalTransformerLanguageModel, FeedForwardType
 from sonnet_training.pretraining_run import count_parameters, load_token_tensor
 from sonnet_training.steps import estimate_next_token_loss, train_next_token_step
 from sonnet_training.transformer_run import resolve_device
@@ -30,6 +30,7 @@ class PretrainingModelCandidate:
     head_dim: int
     feed_forward_dim: int
     batch_size: int
+    feed_forward_type: FeedForwardType = "relu"
 
 
 @dataclass(frozen=True)
@@ -59,10 +60,11 @@ class PretrainingBenchmarkConfig:
     learning_rate: float = 3e-4
     seed: int = 1337
     device: str = "auto"
+    candidate_set_name: str = "baseline_relu"
 
 
 def default_pretraining_candidates() -> list[PretrainingModelCandidate]:
-    """Return the quality-focused parent-model benchmark candidate set."""
+    """Return the original ReLU hardware benchmark candidate set."""
 
     return [
         PretrainingModelCandidate(
@@ -111,6 +113,55 @@ def default_pretraining_candidates() -> list[PretrainingModelCandidate]:
             batch_size=1,
         ),
     ]
+
+
+def quality_swiglu_pretraining_candidates() -> list[PretrainingModelCandidate]:
+    """Return the approved SwiGLU candidates for long parent-model runs."""
+
+    return [
+        PretrainingModelCandidate(
+            name="larger",
+            embedding_dim=512,
+            num_layers=8,
+            num_heads=8,
+            head_dim=64,
+            feed_forward_dim=1365,
+            batch_size=2,
+            feed_forward_type="swiglu",
+        ),
+        PretrainingModelCandidate(
+            name="upper",
+            embedding_dim=640,
+            num_layers=10,
+            num_heads=10,
+            head_dim=64,
+            feed_forward_dim=1707,
+            batch_size=1,
+            feed_forward_type="swiglu",
+        ),
+        PretrainingModelCandidate(
+            name="max",
+            embedding_dim=768,
+            num_layers=12,
+            num_heads=12,
+            head_dim=64,
+            feed_forward_dim=2048,
+            batch_size=1,
+            feed_forward_type="swiglu",
+        ),
+    ]
+
+
+def pretraining_candidates_for_set(
+    candidate_set_name: str,
+) -> list[PretrainingModelCandidate]:
+    """Return one named, reproducible pretraining benchmark candidate set."""
+
+    if candidate_set_name == "baseline_relu":
+        return default_pretraining_candidates()
+    if candidate_set_name == "quality_swiglu":
+        return quality_swiglu_pretraining_candidates()
+    raise ValueError("unsupported candidate_set_name")
 
 
 def benchmark_pretraining_candidates(
@@ -171,6 +222,7 @@ def benchmark_pretraining_candidates(
         "benchmark_steps": config.benchmark_steps,
         "eval_batches": config.eval_batches,
         "learning_rate": config.learning_rate,
+        "candidate_set_name": config.candidate_set_name,
         "train_tokens": int(train_tokens.numel()),
         "validation_tokens": int(validation_tokens.numel()),
         "results": results,
@@ -210,6 +262,7 @@ def benchmark_one_candidate(
             head_dim=candidate.head_dim,
             feed_forward_dim=candidate.feed_forward_dim,
             max_context_length=config.context_length,
+            feed_forward_type=candidate.feed_forward_type,
         ).to(device)
         optimizer = torch.optim.AdamW(model.parameters(), lr=config.learning_rate)
         parameter_count = count_parameters(model)
@@ -427,6 +480,7 @@ def build_markdown_report(report: dict[str, Any]) -> str:
         f"- Timed steps: `{report['benchmark_steps']}`",
         f"- Evaluation batches: `{report['eval_batches']}`",
         f"- Learning rate: `{report['learning_rate']}`",
+        f"- Candidate set: `{report.get('candidate_set_name', 'custom')}`",
         "",
         "## Results",
         "",

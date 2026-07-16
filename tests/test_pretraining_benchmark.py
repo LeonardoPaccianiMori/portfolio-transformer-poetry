@@ -13,6 +13,8 @@ from sonnet_training.pretraining_benchmark import (
     benchmark_pretraining_candidates,
     build_markdown_report,
     default_pretraining_candidates,
+    pretraining_candidates_for_set,
+    quality_swiglu_pretraining_candidates,
 )
 
 
@@ -58,6 +60,19 @@ def tiny_candidate() -> PretrainingModelCandidate:
     )
 
 
+def tiny_swiglu_candidate() -> PretrainingModelCandidate:
+    return PretrainingModelCandidate(
+        name="tiny_swiglu",
+        embedding_dim=8,
+        num_layers=1,
+        num_heads=2,
+        head_dim=4,
+        feed_forward_dim=5,
+        batch_size=4,
+        feed_forward_type="swiglu",
+    )
+
+
 def test_default_pretraining_candidates_match_confirmed_names_and_batches():
     candidates = default_pretraining_candidates()
 
@@ -76,6 +91,21 @@ def test_default_pretraining_candidates_match_confirmed_names_and_batches():
     assert candidates[-1].num_heads == 12
     assert candidates[-1].head_dim == 64
     assert candidates[-1].feed_forward_dim == 3072
+
+
+def test_quality_swiglu_candidates_match_the_approved_long_run_architectures():
+    candidates = quality_swiglu_pretraining_candidates()
+
+    assert [candidate.name for candidate in candidates] == ["larger", "upper", "max"]
+    assert [candidate.feed_forward_dim for candidate in candidates] == [1365, 1707, 2048]
+    assert [candidate.batch_size for candidate in candidates] == [2, 1, 1]
+    assert all(candidate.feed_forward_type == "swiglu" for candidate in candidates)
+    assert pretraining_candidates_for_set("quality_swiglu") == candidates
+
+
+def test_pretraining_candidates_for_set_rejects_unknown_set():
+    with pytest.raises(ValueError, match="candidate_set_name"):
+        pretraining_candidates_for_set("unknown")
 
 
 def test_benchmark_pretraining_candidates_writes_reports(tmp_path: Path):
@@ -114,6 +144,7 @@ def test_benchmark_pretraining_candidates_writes_reports(tmp_path: Path):
     markdown = (tmp_path / markdown_report_path).read_text(encoding="utf-8")
     assert "# Pretraining Hardware Benchmark" in markdown
     assert "| tiny | ok |" in markdown
+    assert "Candidate set: `baseline_relu`" in markdown
     assert "resolved device: cpu" in progress_messages
     assert "candidate 1/1: tiny" in progress_messages
     assert "tiny: timed steps 2/2" in progress_messages
@@ -133,6 +164,27 @@ def test_benchmark_pretraining_candidates_rejects_invalid_step_count(tmp_path: P
             ),
             candidates=[tiny_candidate()],
         )
+
+
+def test_benchmark_pretraining_candidates_supports_swiglu_candidate(tmp_path: Path):
+    write_tiny_benchmark_artifacts(tmp_path)
+
+    report = benchmark_pretraining_candidates(
+        repo_root=tmp_path,
+        config=PretrainingBenchmarkConfig(
+            context_length=8,
+            warmup_steps=1,
+            benchmark_steps=1,
+            eval_batches=1,
+            device="cpu",
+            candidate_set_name="quality_swiglu",
+        ),
+        candidates=[tiny_swiglu_candidate()],
+    )
+
+    result = report["results"][0]
+    assert result["status"] == "ok"
+    assert result["candidate"]["feed_forward_type"] == "swiglu"
 
 
 def test_build_markdown_report_formats_error_rows():

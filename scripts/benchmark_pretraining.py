@@ -14,6 +14,7 @@ if str(SRC) not in sys.path:
 
 from sonnet_training.pretraining_benchmark import PretrainingBenchmarkConfig
 from sonnet_training.pretraining_benchmark import benchmark_pretraining_candidates
+from sonnet_training.pretraining_benchmark import pretraining_candidates_for_set
 
 
 CORPUS_DIR = Path("data/local/pretraining/expanded_italian_1200_1800_v1")
@@ -51,6 +52,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--benchmark-steps", type=int, default=100)
     parser.add_argument("--eval-batches", type=int, default=1)
     parser.add_argument("--learning-rate", type=float, default=3e-4)
+    parser.add_argument(
+        "--candidate-set",
+        choices=["baseline_relu", "quality_swiglu"],
+        default="quality_swiglu",
+    )
     parser.add_argument("--seed", type=int, default=1337)
     parser.add_argument("--device", default="auto")
     return parser.parse_args()
@@ -71,10 +77,12 @@ def main() -> None:
         learning_rate=args.learning_rate,
         seed=args.seed,
         device=args.device,
+        candidate_set_name=args.candidate_set,
     )
     report = benchmark_pretraining_candidates(
         repo_root=ROOT,
         config=config,
+        candidates=pretraining_candidates_for_set(args.candidate_set),
         progress=lambda message: print(f"benchmark | {message}", flush=True),
     )
     print(f"wrote JSON report: {args.json_report_path}")
