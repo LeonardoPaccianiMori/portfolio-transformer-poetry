@@ -21,22 +21,27 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--processed-sources-dir",
         type=Path,
-        default=ROOT / "data/local/pretraining/processed/sources",
+        default=ROOT / "data/local/pretraining/expanded_italian_1200_1800_v1/processed/sources",
+    )
+    parser.add_argument(
+        "--manifest-path",
+        type=Path,
+        default=ROOT / "data/metadata/broader_prose_sources_manifest.csv",
     )
     parser.add_argument(
         "--tokenizer-path",
         type=Path,
-        default=ROOT / "data/local/pretraining/tokenizers/bpe_8000.json",
+        default=ROOT / "data/local/pretraining/expanded_italian_1200_1800_v1/tokenizers/bpe_8000.json",
     )
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=ROOT / "data/local/pretraining/encoded",
+        default=ROOT / "data/local/pretraining/expanded_italian_1200_1800_v1/encoded",
     )
     parser.add_argument(
         "--report-path",
         type=Path,
-        default=ROOT / "data/local/pretraining/encoded/bpe_8000_report.json",
+        default=ROOT / "data/local/pretraining/expanded_italian_1200_1800_v1/encoded/bpe_8000_report.json",
     )
     parser.add_argument("--validation-fraction", type=float, default=0.01)
     parser.add_argument("--document-separator", default="<|endoftext|>")
@@ -52,16 +57,21 @@ def main() -> None:
         report_path=args.report_path,
         validation_fraction=args.validation_fraction,
         document_separator=args.document_separator,
+        manifest_path=args.manifest_path,
     )
-    report = build_pretraining_token_dataset(config)
-    print(f"wrote train tokens: {report['train_path']}")
-    print(f"wrote validation tokens: {report['validation_path']}")
-    print(f"wrote report: {args.report_path}")
+    report = build_pretraining_token_dataset(
+        config,
+        progress=lambda message: print(f"encode | {message}", flush=True),
+    )
+    print(f"encode | wrote train tokens: {report['train_path']}", flush=True)
+    print(f"encode | wrote validation tokens: {report['validation_path']}", flush=True)
+    print(f"encode | wrote report: {args.report_path}", flush=True)
     print(
-        "tokens: "
+        "encode | tokens: "
         f"train={report['train_tokens']}, "
         f"validation={report['validation_tokens']}, "
-        f"total={report['total_tokens']}"
+        f"total={report['total_tokens']}",
+        flush=True,
     )
 
 

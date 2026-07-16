@@ -170,3 +170,10 @@ items and 7,843 merges. It was trained from a deterministic, stratified
 998,144-character sample covering every active source; its exact full-corpus
 count is 17,294,376 BPE tokens, all round-trip checks pass, and the boundary
 warning count is zero.
+
+The corrected corpus was then encoded into local PyTorch tensors using the
+final 1 percent of each source's BPE tokens for validation and the preceding
+99 percent for training. `<|endoftext|>` separates source documents in both
+streams. The resulting 33-source dataset contains 17,121,479 training tokens
+and 172,961 validation tokens, both stored as one-dimensional `torch.int64`
+tensors. Sidrac is absent from the encoded-source report.

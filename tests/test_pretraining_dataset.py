@@ -10,7 +10,9 @@ from sonnet_corpus.pretraining_dataset import (
     list_processed_source_paths,
     load_pretraining_token_splits,
     split_source_token_ids,
+    validate_processed_source_manifest,
 )
+from sonnet_corpus.pretraining_manifest import PretrainingSourceRow, write_pretraining_manifest
 from sonnet_corpus.pretraining_tokenizer import train_weighted_pretoken_bpe_tokenizer
 
 
@@ -27,6 +29,39 @@ def write_tiny_tokenizer(path: Path) -> None:
         special_tokens=["<|endoftext|>"],
     )
     tokenizer.save(path)
+
+
+def make_pretraining_row(**overrides) -> PretrainingSourceRow:
+    values = {
+        "source_id": "a_source",
+        "title": "Work A",
+        "author": "Author A",
+        "source_archive": "Project Gutenberg",
+        "source_collection": "Project Gutenberg Italian",
+        "landing_page_url": "https://example.test/a",
+        "download_url": "",
+        "ebook_id": "1",
+        "language": "Italian",
+        "period_bucket": "tier_a_pre_1375",
+        "approx_date": "XIV secolo",
+        "genre": "prose",
+        "text_kind": "prose",
+        "inclusion_status": "include_probe",
+        "public_domain_status": "public domain",
+        "license_notes": "test",
+        "edition_notes": "",
+        "source_release_date": "",
+        "source_last_updated": "",
+        "expected_clean_text_path": "",
+        "token_count_report_path": "",
+        "split": "",
+        "boilerplate_strategy": "strip Project Gutenberg header and footer",
+        "mixed_text_strategy": "",
+        "cleaning_notes": "",
+        "audit_notes": "",
+    }
+    values.update(overrides)
+    return PretrainingSourceRow(**values)
 
 
 def test_list_processed_source_paths_returns_sorted_text_files(tmp_path: Path):
@@ -76,6 +111,15 @@ def test_split_source_token_ids_rejects_invalid_fraction():
         )
 
 
+def test_validate_processed_source_manifest_rejects_stale_source_files(tmp_path: Path):
+    manifest_path = tmp_path / "manifest.csv"
+    write_pretraining_manifest([make_pretraining_row()], manifest_path)
+    source_paths = [tmp_path / "stale_source.txt"]
+
+    with pytest.raises(ValueError, match="missing=a_source; unexpected=stale_source"):
+        validate_processed_source_manifest(source_paths, manifest_path)
+
+
 def test_build_pretraining_token_dataset_writes_tensors_and_report(tmp_path: Path):
     sources_dir = tmp_path / "sources"
     tokenizer_path = tmp_path / "tokenizer.json"
@@ -119,6 +163,7 @@ def test_build_pretraining_token_dataset_writes_tensors_and_report(tmp_path: Pat
 
     saved_report = json.loads(report_path.read_text(encoding="utf-8"))
     assert saved_report["source_count"] == 2
+    assert saved_report["split_policy"] == "final_token_fraction_per_source"
     assert saved_report["document_separator"] == "<|endoftext|>"
     assert saved_report["sources"][0]["source_id"] == "a_source"
     assert saved_report["sources"][1]["source_id"] == "b_source"

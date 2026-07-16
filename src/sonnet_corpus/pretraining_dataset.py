@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
@@ -12,6 +13,11 @@ import torch
 
 from .bpe import BytePairEncodingTokenizer
 from .pretraining_tokenizer import encode_text_by_pretoken
+from .pretraining_build import select_pretraining_build_rows
+from .pretraining_manifest import read_pretraining_manifest
+
+
+ProgressCallback = Callable[[str], None]
 
 
 @dataclass(frozen=True)
@@ -26,16 +32,21 @@ class PretrainingDatasetConfig:
     document_separator: str = "<|endoftext|>"
     train_filename: str = "bpe_8000_train.pt"
     validation_filename: str = "bpe_8000_validation.pt"
+    manifest_path: Path | None = None
 
 
 def build_pretraining_token_dataset(
     config: PretrainingDatasetConfig,
+    *,
+    progress: ProgressCallback | None = None,
 ) -> dict[str, Any]:
     """Encode processed broader-corpus sources and save train/validation tensors."""
 
     started_at = _utc_now()
     _validate_validation_fraction(config.validation_fraction)
     source_paths = list_processed_source_paths(config.processed_sources_dir)
+    if config.manifest_path is not None:
+        validate_processed_source_manifest(source_paths, config.manifest_path)
     tokenizer = BytePairEncodingTokenizer.load(config.tokenizer_path)
     separator_ids = tokenizer.encode(config.document_separator)
     if len(separator_ids) != 1:
@@ -47,6 +58,10 @@ def build_pretraining_token_dataset(
     validation_token_ids: list[int] = []
     source_reports: list[dict[str, Any]] = []
     for source_index, source_path in enumerate(source_paths):
+        _write_progress(
+            progress,
+            f"encoding source {source_index + 1}/{len(source_paths)}: {source_path.stem}",
+        )
         text = _read_non_empty_source(source_path)
         token_ids = encode_text_by_pretoken(text, tokenizer)
         train_ids, validation_ids = split_source_token_ids(
@@ -72,6 +87,7 @@ def build_pretraining_token_dataset(
     validation_tensor = torch.tensor(validation_token_ids, dtype=torch.long)
     train_path = config.output_dir / config.train_filename
     validation_path = config.output_dir / config.validation_filename
+    _write_progress(progress, "writing train and validation tensors")
     config.output_dir.mkdir(parents=True, exist_ok=True)
     torch.save(train_tensor, train_path)
     torch.save(validation_tensor, validation_path)
@@ -85,7 +101,11 @@ def build_pretraining_token_dataset(
         "train_path": _portable_path(train_path),
         "validation_path": _portable_path(validation_path),
         "validation_fraction": config.validation_fraction,
+        "split_policy": "final_token_fraction_per_source",
         "document_separator": config.document_separator,
+        "manifest_path": (
+            _portable_path(config.manifest_path) if config.manifest_path is not None else ""
+        ),
         "source_count": len(source_paths),
         "train_tokens": int(train_tensor.numel()),
         "validation_tokens": int(validation_tensor.numel()),
@@ -131,6 +151,26 @@ def list_processed_source_paths(processed_sources_dir: Path) -> list[Path]:
             f"processed sources directory has no .txt files: {processed_sources_dir}"
         )
     return source_paths
+
+
+def validate_processed_source_manifest(
+    source_paths: list[Path],
+    manifest_path: Path,
+) -> None:
+    """Require local source files to match active manifest rows exactly."""
+
+    rows = select_pretraining_build_rows(read_pretraining_manifest(manifest_path))
+    expected_ids = {row.source_id for row in rows}
+    actual_ids = {path.stem for path in source_paths}
+    missing_ids = sorted(expected_ids - actual_ids)
+    unexpected_ids = sorted(actual_ids - expected_ids)
+    if missing_ids or unexpected_ids:
+        details = []
+        if missing_ids:
+            details.append(f"missing={','.join(missing_ids)}")
+        if unexpected_ids:
+            details.append(f"unexpected={','.join(unexpected_ids)}")
+        raise ValueError("processed source files do not match active manifest rows: " + "; ".join(details))
 
 
 def split_source_token_ids(
@@ -181,3 +221,8 @@ def _portable_path(path: Path) -> str:
         return str(path.resolve().relative_to(Path.cwd().resolve()))
     except ValueError:
         return str(path)
+
+
+def _write_progress(progress: ProgressCallback | None, message: str) -> None:
+    if progress is not None:
+        progress(message)
