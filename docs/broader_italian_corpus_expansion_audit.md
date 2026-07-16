@@ -87,8 +87,9 @@ gate.
 Vico audit scope on 2026-07-15: the bibliographic work title is *La scienza
 nuova*, while its relevant Wikisource root index is `La scienza nuova - Volume
 I`. The probe records that distinction explicitly, excludes the two editorial
-branches `Dedica dell'editore` and `Introduzione dell'editore`, and starts at
-`Titolo`. It intentionally has no hard-coded final page, so the complete current
-primary-text hierarchy can be inspected rather than silently truncated. It
-remains `audit_then_include` until that local revision-pinned probe confirms the
-selected page list and cleaned samples.
+branches `Dedica dell'editore` and `Introduzione dell'editore`, and excludes the
+image-only `Illustrazione` frontispiece because it has no transcribed text. It
+starts at `Titolo` and intentionally has no hard-coded final page, so the
+complete current primary-text hierarchy can be inspected rather than silently
+truncated. It remains `audit_then_include` until that local revision-pinned
+probe confirms the selected page list and cleaned samples.

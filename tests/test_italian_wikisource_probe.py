@@ -143,6 +143,7 @@ def test_vico_probe_uses_exclusions_and_a_dynamic_final_boundary():
     assert boundaries.excluded_subpage_prefixes == (
         "La scienza nuova - Volume I/Dedica dell'editore",
         "La scienza nuova - Volume I/Introduzione dell'editore",
+        "La scienza nuova - Volume I/Illustrazione",
     )
 
 

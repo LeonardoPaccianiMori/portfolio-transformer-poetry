@@ -51,6 +51,7 @@ WORK_BOUNDARIES = {
         excluded_subpage_prefixes=(
             "La scienza nuova - Volume I/Dedica dell'editore",
             "La scienza nuova - Volume I/Introduzione dell'editore",
+            "La scienza nuova - Volume I/Illustrazione",
         ),
         root_page_title="La scienza nuova - Volume I",
     ),
