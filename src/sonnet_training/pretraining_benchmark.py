@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import time
+from collections.abc import Callable
 from dataclasses import asdict, dataclass
 from datetime import UTC, datetime
 from pathlib import Path
@@ -35,18 +36,25 @@ class PretrainingModelCandidate:
 class PretrainingBenchmarkConfig:
     """Configuration for benchmarking broader-pretraining candidates."""
 
-    train_tokens_path: Path = Path("data/local/pretraining/encoded/bpe_8000_train.pt")
-    validation_tokens_path: Path = Path(
-        "data/local/pretraining/encoded/bpe_8000_validation.pt"
+    train_tokens_path: Path = Path(
+        "data/local/pretraining/expanded_italian_1200_1800_v1/encoded/"
+        "bpe_8000_train.pt"
     )
-    tokenizer_path: Path = Path("data/local/pretraining/tokenizers/bpe_8000.json")
+    validation_tokens_path: Path = Path(
+        "data/local/pretraining/expanded_italian_1200_1800_v1/encoded/"
+        "bpe_8000_validation.pt"
+    )
+    tokenizer_path: Path = Path(
+        "data/local/pretraining/expanded_italian_1200_1800_v1/tokenizers/"
+        "bpe_8000.json"
+    )
     json_report_path: Path = Path(
         "data/local/pretraining/benchmarks/pretraining_benchmark.json"
     )
     markdown_report_path: Path = Path("reports/pretraining_hardware_benchmark.md")
     context_length: int = 512
-    warmup_steps: int = 3
-    benchmark_steps: int = 20
+    warmup_steps: int = 10
+    benchmark_steps: int = 100
     eval_batches: int = 1
     learning_rate: float = 3e-4
     seed: int = 1337
@@ -54,7 +62,7 @@ class PretrainingBenchmarkConfig:
 
 
 def default_pretraining_candidates() -> list[PretrainingModelCandidate]:
-    """Return the confirmed first benchmark candidate set."""
+    """Return the quality-focused parent-model benchmark candidate set."""
 
     return [
         PretrainingModelCandidate(
@@ -93,6 +101,15 @@ def default_pretraining_candidates() -> list[PretrainingModelCandidate]:
             feed_forward_dim=2560,
             batch_size=1,
         ),
+        PretrainingModelCandidate(
+            name="max",
+            embedding_dim=768,
+            num_layers=12,
+            num_heads=12,
+            head_dim=64,
+            feed_forward_dim=3072,
+            batch_size=1,
+        ),
     ]
 
 
@@ -101,6 +118,7 @@ def benchmark_pretraining_candidates(
     repo_root: Path,
     config: PretrainingBenchmarkConfig,
     candidates: list[PretrainingModelCandidate] | None = None,
+    progress: Callable[[str], None] | None = None,
 ) -> dict[str, Any]:
     """Benchmark candidate architectures and write JSON/Markdown reports."""
 
@@ -108,22 +126,38 @@ def benchmark_pretraining_candidates(
     started_at = _utc_now()
     selected_candidates = candidates or default_pretraining_candidates()
     device = resolve_device(config.device)
+    _report_progress(progress, f"resolved device: {device}")
+    _report_progress(progress, f"loading tokenizer: {config.tokenizer_path}")
     tokenizer = BytePairEncodingTokenizer.load(repo_root / config.tokenizer_path)
+    _report_progress(progress, f"loading train tokens: {config.train_tokens_path}")
     train_tokens = load_token_tensor(repo_root / config.train_tokens_path)
+    _report_progress(
+        progress,
+        f"loading validation tokens: {config.validation_tokens_path}",
+    )
     validation_tokens = load_token_tensor(repo_root / config.validation_tokens_path)
 
     results = []
+    total_candidates = len(selected_candidates)
     for index, candidate in enumerate(selected_candidates):
+        _report_progress(
+            progress,
+            f"candidate {index + 1}/{total_candidates}: {candidate.name}",
+        )
         torch.manual_seed(config.seed + index)
-        results.append(
-            benchmark_one_candidate(
-                candidate=candidate,
-                config=config,
-                tokenizer=tokenizer,
-                train_tokens=train_tokens,
-                validation_tokens=validation_tokens,
-                device=device,
-            )
+        result = benchmark_one_candidate(
+            candidate=candidate,
+            config=config,
+            tokenizer=tokenizer,
+            train_tokens=train_tokens,
+            validation_tokens=validation_tokens,
+            device=device,
+            progress=progress,
+        )
+        results.append(result)
+        _report_progress(
+            progress,
+            f"candidate {candidate.name}: {result['status']}",
         )
 
     report = {
@@ -141,8 +175,14 @@ def benchmark_pretraining_candidates(
         "validation_tokens": int(validation_tokens.numel()),
         "results": results,
     }
+    _report_progress(progress, f"writing JSON report: {config.json_report_path}")
     _write_json(repo_root / config.json_report_path, report)
+    _report_progress(
+        progress,
+        f"writing Markdown report: {config.markdown_report_path}",
+    )
     _write_markdown(repo_root / config.markdown_report_path, report)
+    _report_progress(progress, "complete")
     return report
 
 
@@ -154,6 +194,7 @@ def benchmark_one_candidate(
     train_tokens: torch.Tensor,
     validation_tokens: torch.Tensor,
     device: torch.device,
+    progress: Callable[[str], None] | None = None,
 ) -> dict[str, Any]:
     """Benchmark one candidate and return a serializable result row."""
 
@@ -173,7 +214,12 @@ def benchmark_one_candidate(
         optimizer = torch.optim.AdamW(model.parameters(), lr=config.learning_rate)
         parameter_count = count_parameters(model)
 
-        for _ in range(config.warmup_steps):
+        if config.warmup_steps:
+            _report_progress(
+                progress,
+                f"{candidate.name}: warm-up 0/{config.warmup_steps}",
+            )
+        for step in range(config.warmup_steps):
             train_next_token_step(
                 model=model,
                 optimizer=optimizer,
@@ -182,11 +228,22 @@ def benchmark_one_candidate(
                 context_length=config.context_length,
                 device=device,
             )
+            _report_step_progress(
+                progress,
+                candidate.name,
+                "warm-up",
+                step + 1,
+                config.warmup_steps,
+            )
 
         _synchronize_if_cuda(device)
         started = time.perf_counter()
         last_train_loss = 0.0
-        for _ in range(config.benchmark_steps):
+        _report_progress(
+            progress,
+            f"{candidate.name}: timed steps 0/{config.benchmark_steps}",
+        )
+        for step in range(config.benchmark_steps):
             last_train_loss = train_next_token_step(
                 model=model,
                 optimizer=optimizer,
@@ -195,9 +252,17 @@ def benchmark_one_candidate(
                 context_length=config.context_length,
                 device=device,
             )
+            _report_step_progress(
+                progress,
+                candidate.name,
+                "timed steps",
+                step + 1,
+                config.benchmark_steps,
+            )
         _synchronize_if_cuda(device)
         elapsed_seconds = time.perf_counter() - started
 
+        _report_progress(progress, f"{candidate.name}: evaluating")
         validation_loss = estimate_next_token_loss(
             model=model,
             token_ids=validation_tokens,
@@ -253,6 +318,31 @@ def _validate_config(config: PretrainingBenchmarkConfig) -> None:
         raise ValueError("benchmark_steps must be greater than 0")
     if config.eval_batches <= 0:
         raise ValueError("eval_batches must be greater than 0")
+
+
+def _report_step_progress(
+    progress: Callable[[str], None] | None,
+    candidate_name: str,
+    phase: str,
+    completed_steps: int,
+    total_steps: int,
+) -> None:
+    """Report quarter-step progress without flooding the terminal."""
+
+    interval = max(1, total_steps // 4)
+    if completed_steps == total_steps or completed_steps % interval == 0:
+        _report_progress(
+            progress,
+            f"{candidate_name}: {phase} {completed_steps}/{total_steps}",
+        )
+
+
+def _report_progress(
+    progress: Callable[[str], None] | None,
+    message: str,
+) -> None:
+    if progress is not None:
+        progress(message)
 
 
 def _synchronize_if_cuda(device: torch.device) -> None:

@@ -16,22 +16,25 @@ from sonnet_training.pretraining_benchmark import PretrainingBenchmarkConfig
 from sonnet_training.pretraining_benchmark import benchmark_pretraining_candidates
 
 
+CORPUS_DIR = Path("data/local/pretraining/expanded_italian_1200_1800_v1")
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--train-tokens-path",
         type=Path,
-        default=Path("data/local/pretraining/encoded/bpe_8000_train.pt"),
+        default=CORPUS_DIR / "encoded" / "bpe_8000_train.pt",
     )
     parser.add_argument(
         "--validation-tokens-path",
         type=Path,
-        default=Path("data/local/pretraining/encoded/bpe_8000_validation.pt"),
+        default=CORPUS_DIR / "encoded" / "bpe_8000_validation.pt",
     )
     parser.add_argument(
         "--tokenizer-path",
         type=Path,
-        default=Path("data/local/pretraining/tokenizers/bpe_8000.json"),
+        default=CORPUS_DIR / "tokenizers" / "bpe_8000.json",
     )
     parser.add_argument(
         "--json-report-path",
@@ -44,8 +47,8 @@ def parse_args() -> argparse.Namespace:
         default=Path("reports/pretraining_hardware_benchmark.md"),
     )
     parser.add_argument("--context-length", type=int, default=512)
-    parser.add_argument("--warmup-steps", type=int, default=3)
-    parser.add_argument("--benchmark-steps", type=int, default=20)
+    parser.add_argument("--warmup-steps", type=int, default=10)
+    parser.add_argument("--benchmark-steps", type=int, default=100)
     parser.add_argument("--eval-batches", type=int, default=1)
     parser.add_argument("--learning-rate", type=float, default=3e-4)
     parser.add_argument("--seed", type=int, default=1337)
@@ -72,6 +75,7 @@ def main() -> None:
     report = benchmark_pretraining_candidates(
         repo_root=ROOT,
         config=config,
+        progress=lambda message: print(f"benchmark | {message}", flush=True),
     )
     print(f"wrote JSON report: {args.json_report_path}")
     print(f"wrote Markdown report: {args.markdown_report_path}")

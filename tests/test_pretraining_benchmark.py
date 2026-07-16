@@ -17,8 +17,15 @@ from sonnet_training.pretraining_benchmark import (
 
 
 def write_tiny_benchmark_artifacts(repo_root: Path) -> None:
-    encoded_dir = repo_root / "data" / "local" / "pretraining" / "encoded"
-    tokenizer_dir = repo_root / "data" / "local" / "pretraining" / "tokenizers"
+    corpus_dir = (
+        repo_root
+        / "data"
+        / "local"
+        / "pretraining"
+        / "expanded_italian_1200_1800_v1"
+    )
+    encoded_dir = corpus_dir / "encoded"
+    tokenizer_dir = corpus_dir / "tokenizers"
     encoded_dir.mkdir(parents=True)
     tokenizer_dir.mkdir(parents=True)
     text = "amor antico memoria cronica virtute novella lingua storia\n"
@@ -59,10 +66,16 @@ def test_default_pretraining_candidates_match_confirmed_names_and_batches():
         "medium",
         "larger",
         "upper",
+        "max",
     ]
-    assert [candidate.batch_size for candidate in candidates] == [8, 4, 2, 1]
+    assert [candidate.batch_size for candidate in candidates] == [8, 4, 2, 1, 1]
     assert candidates[0].embedding_dim == 256
-    assert candidates[-1].num_layers == 10
+    assert candidates[-2].num_layers == 10
+    assert candidates[-1].embedding_dim == 768
+    assert candidates[-1].num_layers == 12
+    assert candidates[-1].num_heads == 12
+    assert candidates[-1].head_dim == 64
+    assert candidates[-1].feed_forward_dim == 3072
 
 
 def test_benchmark_pretraining_candidates_writes_reports(tmp_path: Path):
@@ -70,6 +83,7 @@ def test_benchmark_pretraining_candidates_writes_reports(tmp_path: Path):
     json_report_path = Path("data/local/pretraining/benchmarks/benchmark.json")
     markdown_report_path = Path("reports/pretraining_hardware_benchmark.md")
 
+    progress_messages = []
     report = benchmark_pretraining_candidates(
         repo_root=tmp_path,
         config=PretrainingBenchmarkConfig(
@@ -82,6 +96,7 @@ def test_benchmark_pretraining_candidates_writes_reports(tmp_path: Path):
             device="cpu",
         ),
         candidates=[tiny_candidate()],
+        progress=progress_messages.append,
     )
 
     result = report["results"][0]
@@ -99,6 +114,10 @@ def test_benchmark_pretraining_candidates_writes_reports(tmp_path: Path):
     markdown = (tmp_path / markdown_report_path).read_text(encoding="utf-8")
     assert "# Pretraining Hardware Benchmark" in markdown
     assert "| tiny | ok |" in markdown
+    assert "resolved device: cpu" in progress_messages
+    assert "candidate 1/1: tiny" in progress_messages
+    assert "tiny: timed steps 2/2" in progress_messages
+    assert "complete" in progress_messages
 
 
 def test_benchmark_pretraining_candidates_rejects_invalid_step_count(tmp_path: Path):
