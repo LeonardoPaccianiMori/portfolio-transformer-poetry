@@ -26,6 +26,7 @@ class WorkBoundaries:
     last_subpage: str = ""
     selected_subpage_titles: tuple[str, ...] = ()
     excluded_subpage_prefixes: tuple[str, ...] = ()
+    root_page_title: str = ""
 
 
 WORK_BOUNDARIES = {
@@ -51,6 +52,7 @@ WORK_BOUNDARIES = {
             "La scienza nuova - Volume I/Dedica dell'editore",
             "La scienza nuova - Volume I/Introduzione dell'editore",
         ),
+        root_page_title="La scienza nuova - Volume I",
     ),
 }
 
@@ -152,7 +154,7 @@ def _probe_row(
     try:
         fetched = fetch_work(
             row.landing_page_url,
-            expected_title=row.title,
+            expected_title=boundaries.root_page_title or row.title,
             expected_first_subpage=boundaries.first_subpage,
             expected_last_subpage=boundaries.last_subpage,
             selected_subpage_titles=list(boundaries.selected_subpage_titles) or None,

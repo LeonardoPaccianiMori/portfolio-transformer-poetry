@@ -137,9 +137,54 @@ def test_probe_records_fetch_error_and_keeps_source_audit_only(tmp_path: Path):
 def test_vico_probe_uses_exclusions_and_a_dynamic_final_boundary():
     boundaries = WORK_BOUNDARIES["ws_vico_scienza_nuova"]
 
+    assert boundaries.root_page_title == "La scienza nuova - Volume I"
     assert boundaries.first_subpage == "La scienza nuova - Volume I/Titolo"
     assert boundaries.last_subpage == ""
     assert boundaries.excluded_subpage_prefixes == (
         "La scienza nuova - Volume I/Dedica dell'editore",
         "La scienza nuova - Volume I/Introduzione dell'editore",
     )
+
+
+def test_vico_probe_uses_its_explicit_root_page_title(tmp_path: Path):
+    manifest_path = tmp_path / "manifest.csv"
+    report_path = tmp_path / "probe.json"
+    row = make_row(
+        source_id="ws_vico_scienza_nuova",
+        title="La scienza nuova",
+        author="Giambattista Vico",
+        landing_page_url="https://it.wikisource.org/wiki/La_scienza_nuova_-_Volume_I",
+    )
+    write_pretraining_manifest([row], manifest_path)
+
+    def fake_fetch_work(*args, **kwargs):
+        assert kwargs["expected_title"] == "La scienza nuova - Volume I"
+        assert kwargs["expected_first_subpage"] == "La scienza nuova - Volume I/Titolo"
+        return FetchedItalianWikisourceWork(
+            landing_page_url=args[0],
+            title=kwargs["expected_title"],
+            root_revision=WikisourcePageRevision(
+                title=kwargs["expected_title"],
+                revision_id=100,
+                revision_timestamp="2026-07-16T10:00:00Z",
+            ),
+            page_revisions=[
+                WikisourcePageRevision(
+                    title="La scienza nuova - Volume I/Titolo",
+                    revision_id=101,
+                    revision_timestamp="2026-07-16T10:01:00Z",
+                )
+            ],
+            text="## La scienza nuova - Volume I/Titolo\n\nCorpo primario.\n",
+            raw_html_character_count=500,
+        )
+
+    report = probe_italian_wikisource_source(
+        manifest_path=manifest_path,
+        source_id="ws_vico_scienza_nuova",
+        report_path=report_path,
+        request_delay=0,
+        fetch_work=fake_fetch_work,
+    )
+
+    assert report["result"]["status"] == "ok"
