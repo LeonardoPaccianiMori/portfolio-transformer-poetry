@@ -1,12 +1,13 @@
 import json
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 from sonnet_evaluation.metrics import resolve_generated_path
 
 
 RATING_PLACEHOLDER = "TODO: low / medium / high"
 NOTES_PLACEHOLDER = "TODO"
+ReviewContext = Literal["sonnet", "pretraining_prose"]
 
 
 def read_generation_metadata(generation_dir: Path) -> dict[str, Any]:
@@ -53,18 +54,18 @@ def fenced_text_block(text: str) -> str:
     return f"```text\n{safe_text.rstrip()}\n```"
 
 
-def markdown_review_section(review: dict[str, Any]) -> str:
+def markdown_review_section(
+    review: dict[str, Any],
+    review_context: ReviewContext = "sonnet",
+) -> str:
+    review_fields = _review_fields(review_context)
     return "\n\n".join([
         f"## Prompt: {markdown_heading_text(review['prompt_id'])}",
         f"- Prompt text: `{review['prompt_text']}`",
         f"- Seed: `{review['seed']}`",
         f"- Generated file: `{review['path']}`",
         "### Human Review",
-        f"- Sonnet-like structure: {RATING_PLACEHOLDER}",
-        f"- Language/style plausibility: {RATING_PLACEHOLDER}",
-        f"- Coherence: {RATING_PLACEHOLDER}",
-        f"- Repetition problems: {RATING_PLACEHOLDER}",
-        f"- Memorization concern: {RATING_PLACEHOLDER}",
+        *[f"- {field}: {RATING_PLACEHOLDER}" for field in review_fields],
         f"- Strongest failure mode: {NOTES_PLACEHOLDER}",
         f"- Notes: {NOTES_PLACEHOLDER}",
         "### Generated Text",
@@ -75,18 +76,23 @@ def markdown_review_section(review: dict[str, Any]) -> str:
 def build_qualitative_review_report(
     generation_dir: Path,
     reviews: list[dict[str, Any]],
+    review_context: ReviewContext = "sonnet",
 ) -> str:
+    _review_fields(review_context)
     sections = [
         "# Qualitative Generation Review",
         f"Generation directory: `{generation_dir}`",
         "## Review Instructions",
         "- Fill in each `TODO` field after reading the generated text.",
         "- Use `low`, `medium`, or `high` consistently within this report.",
-        "- Judge the generated text as model output, not as a polished poem.",
+        f"- {_review_instruction(review_context)}",
         "- Keep weak and failed samples in the report.",
     ]
 
-    sections.extend(markdown_review_section(review) for review in reviews)
+    sections.extend(
+        markdown_review_section(review, review_context=review_context)
+        for review in reviews
+    )
     sections.append("")
 
     return "\n\n".join(sections)
@@ -95,14 +101,47 @@ def build_qualitative_review_report(
 def write_qualitative_review_report(
     generation_dir: Path,
     output_path: Path,
+    review_context: ReviewContext = "sonnet",
 ) -> list[dict[str, Any]]:
     reviews = load_generated_reviews(generation_dir)
     report = build_qualitative_review_report(
         generation_dir=generation_dir,
         reviews=reviews,
+        review_context=review_context,
     )
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(report, encoding="utf-8")
 
     return reviews
+
+
+def _review_fields(review_context: ReviewContext) -> tuple[str, ...]:
+    if review_context == "sonnet":
+        return (
+            "Sonnet-like structure",
+            "Language/style plausibility",
+            "Coherence",
+            "Repetition problems",
+            "Memorization concern",
+        )
+    if review_context == "pretraining_prose":
+        return (
+            "Historical-language/style plausibility",
+            "Local sentence coherence",
+            "Global prose continuity",
+            "Repetition problems",
+            "Memorization concern",
+        )
+    raise ValueError("unsupported review_context")
+
+
+def _review_instruction(review_context: ReviewContext) -> str:
+    if review_context == "sonnet":
+        return "Judge the generated text as model output, not as a polished poem."
+    if review_context == "pretraining_prose":
+        return (
+            "Judge the generated text as an unspecialized historical-prose parent "
+            "model, not as a sonnet."
+        )
+    raise ValueError("unsupported review_context")

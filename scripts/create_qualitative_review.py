@@ -23,6 +23,11 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=ROOT / "reports" / "qualitative_review.md",
     )
+    parser.add_argument(
+        "--review-context",
+        choices=["sonnet", "pretraining_prose"],
+        default="sonnet",
+    )
     return parser.parse_args()
 
 
@@ -31,6 +36,7 @@ def main() -> None:
     reviews = write_qualitative_review_report(
         generation_dir=args.generation_dir,
         output_path=args.output,
+        review_context=args.review_context,
     )
 
     print(f"wrote report: {args.output}")

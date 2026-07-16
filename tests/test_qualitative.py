@@ -128,6 +128,36 @@ def test_build_qualitative_review_report_contains_instructions_and_sections():
     assert "Keep weak and failed samples" in report
 
 
+def test_pretraining_prose_review_context_uses_prose_quality_fields():
+    report = build_qualitative_review_report(
+        generation_dir=Path("outputs/generations/run"),
+        reviews=[
+            {
+                "prompt_id": "amor",
+                "prompt_text": "Amor",
+                "path": "outputs/amor.txt",
+                "seed": 1337,
+                "generated_text": "Amor\n",
+            },
+        ],
+        review_context="pretraining_prose",
+    )
+
+    assert "Historical-language/style plausibility" in report
+    assert "Global prose continuity" in report
+    assert "Sonnet-like structure" not in report
+    assert "not as a sonnet" in report
+
+
+def test_qualitative_review_rejects_unknown_context():
+    with pytest.raises(ValueError, match="review_context"):
+        build_qualitative_review_report(
+            generation_dir=Path("outputs/generations/run"),
+            reviews=[],
+            review_context="unknown",  # type: ignore[arg-type]
+        )
+
+
 def test_write_qualitative_review_report_writes_markdown(tmp_path):
     generation_dir = tmp_path / "generation"
     output_path = tmp_path / "reports" / "qualitative_review.md"
