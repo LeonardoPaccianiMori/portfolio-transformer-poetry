@@ -5,6 +5,7 @@ from sonnet_corpus.italian_wikisource import (
     extract_ordered_subpage_titles,
     extract_wikisource_prose_text,
     fetch_italian_wikisource_work,
+    select_explicit_page_titles,
     select_work_subpage_titles,
     validate_work_boundaries,
 )
@@ -141,6 +142,32 @@ def test_select_work_subpage_titles_rejects_an_empty_filtered_scope():
             ["La scienza nuova - Volume I/Dedica dell'editore"],
             selected_titles=None,
             excluded_prefixes=("La scienza nuova - Volume I/Dedica dell'editore",),
+        )
+
+
+def test_select_explicit_page_titles_accepts_non_subpage_index_links_in_order():
+    html = """
+    <div class="mw-parser-output">
+      <ul>
+        <li><a title="Opera:Alla Sera">Alla Sera</a></li>
+        <li><a title="Opera:A Zacinto">A Zacinto</a></li>
+      </ul>
+    </div>
+    """
+
+    selected = select_explicit_page_titles(
+        html,
+        ["Opera:Alla Sera", "Opera:A Zacinto"],
+    )
+
+    assert selected == ["Opera:Alla Sera", "Opera:A Zacinto"]
+
+
+def test_select_explicit_page_titles_rejects_a_missing_index_link():
+    with pytest.raises(ValueError, match="missing explicit pages"):
+        select_explicit_page_titles(
+            '<div class="mw-parser-output"><a title="Opera:Alla Sera">x</a></div>',
+            ["Opera:A Zacinto"],
         )
 
 

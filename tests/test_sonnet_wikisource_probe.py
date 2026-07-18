@@ -188,7 +188,21 @@ def test_duplicate_normalization_is_case_and_whitespace_insensitive():
 def test_foscolo_probe_uses_the_verified_collection_root_title():
     expectation = SONNET_COLLECTION_EXPECTATIONS["ws_foscolo_sonetti"]
 
-    assert expectation.root_page_title == "Sonetti (Foscolo)"
+    assert expectation.root_page_title == "Opera:Sonetti (Foscolo)"
+    assert expectation.explicit_page_titles == (
+        "Opera:Alla Sera",
+        "Opera:Non son chi fui; perì di noi gran parte",
+        "Opera:Te nudrice alle Muse, ospite e Dea",
+        "Opera:Perchè taccia il rumor di mia catena",
+        "Opera:Così gl'interi giorni in lungo, incerto",
+        "Opera:Meritamente, però ch'io potei",
+        "Opera:Solcata ho fronte, occhi incavati intenti",
+        "Opera:E tu ne' carmi avrai perenne vita",
+        "Opera:A Zacinto",
+        "Opera:In morte del fratello Giovanni",
+        "Opera:Alla Musa (Foscolo)",
+        "Opera:Che stai? già il secol l'orma ultima lascia",
+    )
 
 
 def test_candidate_status_prioritizes_empty_then_form_then_duplicates():

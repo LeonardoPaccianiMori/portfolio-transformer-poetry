@@ -46,6 +46,7 @@ class SonnetCollectionExpectation:
     root_page_title: str
     expected_first_subpage: str = ""
     expected_last_subpage: str = ""
+    explicit_page_titles: tuple[str, ...] = ()
 
 
 SONNET_COLLECTION_EXPECTATIONS = {
@@ -53,7 +54,21 @@ SONNET_COLLECTION_EXPECTATIONS = {
         root_page_title="Rime varie (Alfieri, 1912)",
     ),
     "ws_foscolo_sonetti": SonnetCollectionExpectation(
-        root_page_title="Sonetti (Foscolo)",
+        root_page_title="Opera:Sonetti (Foscolo)",
+        explicit_page_titles=(
+            "Opera:Alla Sera",
+            "Opera:Non son chi fui; perì di noi gran parte",
+            "Opera:Te nudrice alle Muse, ospite e Dea",
+            "Opera:Perchè taccia il rumor di mia catena",
+            "Opera:Così gl'interi giorni in lungo, incerto",
+            "Opera:Meritamente, però ch'io potei",
+            "Opera:Solcata ho fronte, occhi incavati intenti",
+            "Opera:E tu ne' carmi avrai perenne vita",
+            "Opera:A Zacinto",
+            "Opera:In morte del fratello Giovanni",
+            "Opera:Alla Musa (Foscolo)",
+            "Opera:Che stai? già il secol l'orma ultima lascia",
+        ),
     ),
 }
 
@@ -96,6 +111,7 @@ def probe_sonnet_wikisource_source(
         expected_title=expectation.root_page_title,
         expected_first_subpage=expectation.expected_first_subpage,
         expected_last_subpage=expectation.expected_last_subpage,
+        explicit_page_titles=list(expectation.explicit_page_titles) or None,
         request_delay=request_delay,
         progress=progress,
     )

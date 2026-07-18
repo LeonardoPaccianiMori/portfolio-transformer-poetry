@@ -148,6 +148,7 @@ def fetch_italian_wikisource_page_collection(
     expected_first_subpage: str = "",
     expected_last_subpage: str = "",
     selected_subpage_titles: list[str] | None = None,
+    explicit_page_titles: list[str] | None = None,
     excluded_subpage_prefixes: tuple[str, ...] = (),
     request_delay: float = 1.0,
     retries: int = 5,
@@ -185,20 +186,23 @@ def fetch_italian_wikisource_page_collection(
         retries=retries,
         progress=progress,
     )
-    subpage_titles = select_work_subpage_titles(
-        extract_ordered_subpage_titles(root_html, expected_title),
-        selected_subpage_titles,
-        excluded_subpage_prefixes,
-    )
-    validate_work_boundaries(
-        subpage_titles,
-        expected_first_subpage=expected_first_subpage,
-        expected_last_subpage=expected_last_subpage,
-    )
+    if explicit_page_titles is not None:
+        selected_titles = select_explicit_page_titles(root_html, explicit_page_titles)
+    else:
+        selected_titles = select_work_subpage_titles(
+            extract_ordered_subpage_titles(root_html, expected_title),
+            selected_subpage_titles,
+            excluded_subpage_prefixes,
+        )
+        validate_work_boundaries(
+            selected_titles,
+            expected_first_subpage=expected_first_subpage,
+            expected_last_subpage=expected_last_subpage,
+        )
 
-    _write_progress(progress, f"resolving revisions for {len(subpage_titles)} primary pages")
+    _write_progress(progress, f"resolving revisions for {len(selected_titles)} primary pages")
     page_revisions = _fetch_page_revisions(
-        subpage_titles,
+        selected_titles,
         http=http,
         limiter=limiter,
         retries=retries,
@@ -358,6 +362,27 @@ def extract_ordered_subpage_titles(root_html: str, root_title: str) -> list[str]
         seen.add(title)
         titles.append(title)
     return titles
+
+
+def select_explicit_page_titles(root_html: str, explicit_page_titles: list[str]) -> list[str]:
+    """Validate an ordered source-approved page list linked from a root index."""
+
+    if not explicit_page_titles:
+        raise ValueError("explicit Wikisource page selection is empty")
+    soup = BeautifulSoup(root_html, "html.parser")
+    root = soup.select_one(".mw-parser-output") or soup
+    linked_titles = {
+        _normalize_title(link["title"])
+        for link in root.select("a[title]")
+        if link.find_parent(class_="ws-noexport") is None
+    }
+    normalized_titles = [_normalize_title(title) for title in explicit_page_titles]
+    if len(set(normalized_titles)) != len(normalized_titles):
+        raise ValueError("explicit Wikisource page selection contains duplicates")
+    missing_titles = [title for title in normalized_titles if title not in linked_titles]
+    if missing_titles:
+        raise ValueError(f"Wikisource root page is missing explicit pages: {missing_titles}")
+    return normalized_titles
 
 
 def validate_work_boundaries(
