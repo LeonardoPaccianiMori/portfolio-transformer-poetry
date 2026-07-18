@@ -5,6 +5,8 @@ from sonnet_corpus.italian_wikisource import (
     extract_ordered_subpage_titles,
     extract_wikisource_prose_text,
     fetch_italian_wikisource_work,
+    fetch_italian_wikisource_page_collection,
+    select_edition_page_title,
     select_explicit_page_titles,
     select_work_subpage_titles,
     validate_work_boundaries,
@@ -169,6 +171,91 @@ def test_select_explicit_page_titles_rejects_a_missing_index_link():
             '<div class="mw-parser-output"><a title="Opera:Alla Sera">x</a></div>',
             ["Opera:A Zacinto"],
         )
+
+
+def test_select_edition_page_title_returns_the_single_matching_primary_text_link():
+    html = """
+    <div class="mw-parser-output">
+      <a title="Opera:Alla Sera">work record</a>
+      <a title="Alla Sera (1803)">1803 edition</a>
+      <a title="Alla Sera (1835)">1835 edition</a>
+    </div>
+    """
+
+    assert select_edition_page_title(html, "(1835)") == "Alla Sera (1835)"
+
+
+def test_select_edition_page_title_allows_a_colon_inside_a_poem_title():
+    html = """
+    <div class="mw-parser-output">
+      <a title="Opera:Non son chi fui">work record</a>
+      <a title="Non son chi fui: perì di noi gran parte (1835)">edition</a>
+    </div>
+    """
+
+    assert (
+        select_edition_page_title(html, "(1835)")
+        == "Non son chi fui: perì di noi gran parte (1835)"
+    )
+
+
+def test_select_edition_page_title_accepts_a_source_name_before_the_edition_year():
+    html = """
+    <div class="mw-parser-output">
+      <a title="Indice:Opere scelte di Ugo Foscolo II.djvu">source scan</a>
+      <a title="Alla Musa (Foscolo 1835)">edition</a>
+    </div>
+    """
+
+    assert select_edition_page_title(html, "1835)") == "Alla Musa (Foscolo 1835)"
+
+
+def test_select_edition_page_title_rejects_missing_or_ambiguous_matches():
+    with pytest.raises(ValueError, match="exactly one Wikisource edition page"):
+        select_edition_page_title(
+            '<div class="mw-parser-output"><a title="Alla Sera (1803)">x</a></div>',
+            "(1835)",
+        )
+
+    with pytest.raises(ValueError, match="exactly one Wikisource edition page"):
+        select_edition_page_title(
+            """
+            <div class="mw-parser-output">
+              <a title="Alla Sera (1835)">first</a>
+              <a title="Alla Sera, alternate (1835)">second</a>
+            </div>
+            """,
+            "(1835)",
+        )
+
+
+def test_fetch_collection_follows_a_bibliographic_record_to_its_selected_edition():
+    root_title = "Opera:Sonetti (Foscolo)"
+    record_title = "Opera:Alla Sera"
+    edition_title = "Alla Sera (1835)"
+    revisions = {
+        root_title: (100, "2026-07-15T10:00:00Z"),
+        record_title: (101, "2026-07-15T10:01:00Z"),
+        edition_title: (102, "2026-07-15T10:02:00Z"),
+    }
+    rendered_html = {
+        100: f'<div class="mw-parser-output"><a title="{record_title}">Alla Sera</a></div>',
+        101: f'<div class="mw-parser-output"><a title="{edition_title}">edition</a></div>',
+        102: '<div class="mw-parser-output"><div class="poem">Actual poem text.</div></div>',
+    }
+
+    collection = fetch_italian_wikisource_page_collection(
+        "https://it.wikisource.org/wiki/Sonetti_(Foscolo)",
+        expected_title=root_title,
+        explicit_page_titles=[record_title],
+        edition_page_title_suffix="(1835)",
+        request_delay=0,
+        session=FakeSession(revisions, rendered_html),
+    )
+
+    assert [page.revision.title for page in collection.pages] == [edition_title]
+    assert collection.pages[0].source_record_revision is not None
+    assert collection.pages[0].source_record_revision.title == record_title
 
 
 def test_extract_wikisource_prose_text_removes_site_wrappers():

@@ -44,6 +44,7 @@ class FetchedItalianWikisourcePage:
 
     revision: WikisourcePageRevision
     html: str
+    source_record_revision: WikisourcePageRevision | None = None
 
 
 @dataclass(frozen=True)
@@ -149,6 +150,7 @@ def fetch_italian_wikisource_page_collection(
     expected_last_subpage: str = "",
     selected_subpage_titles: list[str] | None = None,
     explicit_page_titles: list[str] | None = None,
+    edition_page_title_suffix: str | None = None,
     excluded_subpage_prefixes: tuple[str, ...] = (),
     request_delay: float = 1.0,
     retries: int = 5,
@@ -201,16 +203,42 @@ def fetch_italian_wikisource_page_collection(
         )
 
     _write_progress(progress, f"resolving revisions for {len(selected_titles)} primary pages")
-    page_revisions = _fetch_page_revisions(
+    selected_revisions = _fetch_page_revisions(
         selected_titles,
         http=http,
         limiter=limiter,
         retries=retries,
         progress=progress,
     )
+    source_record_revisions: list[WikisourcePageRevision | None]
+    if edition_page_title_suffix is None:
+        page_revisions = selected_revisions
+        source_record_revisions = [None] * len(page_revisions)
+    else:
+        edition_titles = _resolve_edition_page_titles(
+            selected_revisions,
+            edition_page_title_suffix=edition_page_title_suffix,
+            http=http,
+            limiter=limiter,
+            retries=retries,
+            progress=progress,
+        )
+        _write_progress(progress, f"resolving revisions for {len(edition_titles)} edition pages")
+        page_revisions = _fetch_page_revisions(
+            edition_titles,
+            http=http,
+            limiter=limiter,
+            retries=retries,
+            progress=progress,
+        )
+        source_record_revisions = list(selected_revisions)
+
     pages: list[FetchedItalianWikisourcePage] = []
     total_pages = len(page_revisions)
-    for index, page_revision in enumerate(page_revisions, start=1):
+    for index, (page_revision, source_record_revision) in enumerate(
+        zip(page_revisions, source_record_revisions, strict=True),
+        start=1,
+    ):
         _write_progress(
             progress,
             f"fetching page {index}/{total_pages}: {page_revision.title}",
@@ -225,6 +253,7 @@ def fetch_italian_wikisource_page_collection(
                     retries=retries,
                     progress=progress,
                 ),
+                source_record_revision=source_record_revision,
             )
         )
 
@@ -385,6 +414,37 @@ def select_explicit_page_titles(root_html: str, explicit_page_titles: list[str])
     return normalized_titles
 
 
+def select_edition_page_title(record_html: str, edition_title_suffix: str) -> str:
+    """Select exactly one primary-text edition linked by a work-record page.
+
+    Wikisource ``Opera:`` pages are bibliographic records, not the text itself.
+    A source can therefore declare a stable edition suffix, such as ``1835)``,
+    and this function verifies that exactly one linked primary-text page uses
+    that suffix. The strict one-match rule prevents silently changing editions.
+    """
+
+    normalized_suffix = _normalize_title(edition_title_suffix)
+    if not normalized_suffix:
+        raise ValueError("Wikisource edition title suffix is empty")
+    soup = BeautifulSoup(record_html, "html.parser")
+    root = soup.select_one(".mw-parser-output") or soup
+    matching_titles: list[str] = []
+    for link in root.select("a[title]"):
+        if link.find_parent(class_="ws-noexport") is not None:
+            continue
+        title = _normalize_title(link["title"])
+        if _is_non_text_namespace_title(title) or not title.endswith(normalized_suffix):
+            continue
+        if title not in matching_titles:
+            matching_titles.append(title)
+    if len(matching_titles) != 1:
+        raise ValueError(
+            "expected exactly one Wikisource edition page matching "
+            f"{normalized_suffix!r}, found {matching_titles}"
+        )
+    return matching_titles[0]
+
+
 def validate_work_boundaries(
     subpage_titles: list[str],
     *,
@@ -448,6 +508,39 @@ def extract_wikisource_prose_text(html: str) -> str:
 
     lines = [_normalize_text_line(line) for line in root.get_text("\n").splitlines()]
     return "\n".join(line for line in lines if line)
+
+
+def _resolve_edition_page_titles(
+    record_revisions: list[WikisourcePageRevision],
+    *,
+    edition_page_title_suffix: str,
+    http: requests.Session,
+    limiter: WikisourceRateLimiter,
+    retries: int,
+    progress: ProgressCallback | None,
+) -> list[str]:
+    """Resolve one approved primary-text edition from each work record."""
+
+    edition_titles: list[str] = []
+    total_records = len(record_revisions)
+    for index, record_revision in enumerate(record_revisions, start=1):
+        _write_progress(
+            progress,
+            f"resolving edition {index}/{total_records}: {record_revision.title}",
+        )
+        record_html = _fetch_rendered_revision(
+            record_revision,
+            http=http,
+            limiter=limiter,
+            retries=retries,
+            progress=progress,
+        )
+        edition_titles.append(
+            select_edition_page_title(record_html, edition_page_title_suffix)
+        )
+    if len(set(edition_titles)) != len(edition_titles):
+        raise ValueError("Wikisource edition selection resolved duplicate text pages")
+    return edition_titles
 
 
 def _fetch_page_revision(
@@ -620,6 +713,24 @@ def _api_get(
 
 def _normalize_title(title: str) -> str:
     return " ".join(title.replace("_", " ").split())
+
+
+def _is_non_text_namespace_title(title: str) -> bool:
+    """Return whether a MediaWiki title is from a non-primary-text namespace."""
+
+    return title.startswith(
+        (
+            "Opera:",
+            "Autore:",
+            "Categoria:",
+            "File:",
+            "Aiuto:",
+            "Indice:",
+            "Pagina:",
+            "Template:",
+            "Wikisource:",
+        )
+    )
 
 
 def _sleep_with_progress(delay_seconds: float, progress: ProgressCallback | None) -> None:

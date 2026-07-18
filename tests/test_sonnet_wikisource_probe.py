@@ -203,6 +203,55 @@ def test_foscolo_probe_uses_the_verified_collection_root_title():
         "Opera:Alla Musa (Foscolo)",
         "Opera:Che stai? già il secol l'orma ultima lascia",
     )
+    assert expectation.edition_page_title_suffix == "1835)"
+
+
+def test_probe_records_bibliographic_record_provenance_for_an_edition_page(tmp_path: Path):
+    source_manifest_path = tmp_path / "sources.csv"
+    active_manifest_path = tmp_path / "active.csv"
+    report_path = tmp_path / "probe.json"
+    write_source_manifest(source_manifest_path)
+    write_active_manifest(tmp_path, active_manifest_path, "existing line\n")
+    edition_lines = "\n".join(f"Edition line {index}" for index in range(1, 15))
+    record_revision = WikisourcePageRevision(
+        title="Opera:Example",
+        revision_id=101,
+        revision_timestamp="2026-07-18T10:01:00Z",
+    )
+    collection = FetchedItalianWikisourcePageCollection(
+        landing_page_url="https://example.test/root",
+        title="Root",
+        root_revision=WikisourcePageRevision("Root", 100, "2026-07-18T10:00:00Z"),
+        root_html="<div class='mw-parser-output'></div>",
+        pages=[
+            FetchedItalianWikisourcePage(
+                revision=WikisourcePageRevision(
+                    title="Example (1835)",
+                    revision_id=102,
+                    revision_timestamp="2026-07-18T10:02:00Z",
+                ),
+                html=f"<div class='mw-parser-output'><div class='poem'>{edition_lines}</div></div>",
+                source_record_revision=record_revision,
+            )
+        ],
+    )
+
+    report = probe_sonnet_wikisource_source(
+        source_manifest_path=source_manifest_path,
+        active_poems_manifest_path=active_manifest_path,
+        repo_root=tmp_path,
+        source_id="ws_alfieri_rime_1912",
+        report_path=report_path,
+        request_delay=0,
+        fetch_collection=lambda *args, **kwargs: collection,
+    )
+
+    assert report["candidates"][0]["source_record"] == {
+        "page_title": "Opera:Example",
+        "page_url": "https://it.wikisource.org/wiki/Opera:Example",
+        "revision_id": 101,
+        "revision_timestamp": "2026-07-18T10:01:00Z",
+    }
 
 
 def test_candidate_status_prioritizes_empty_then_form_then_duplicates():

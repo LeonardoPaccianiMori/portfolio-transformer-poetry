@@ -47,6 +47,7 @@ class SonnetCollectionExpectation:
     expected_first_subpage: str = ""
     expected_last_subpage: str = ""
     explicit_page_titles: tuple[str, ...] = ()
+    edition_page_title_suffix: str = ""
 
 
 SONNET_COLLECTION_EXPECTATIONS = {
@@ -69,6 +70,7 @@ SONNET_COLLECTION_EXPECTATIONS = {
             "Opera:Alla Musa (Foscolo)",
             "Opera:Che stai? già il secol l'orma ultima lascia",
         ),
+        edition_page_title_suffix="1835)",
     ),
 }
 
@@ -112,6 +114,7 @@ def probe_sonnet_wikisource_source(
         expected_first_subpage=expectation.expected_first_subpage,
         expected_last_subpage=expectation.expected_last_subpage,
         explicit_page_titles=list(expectation.explicit_page_titles) or None,
+        edition_page_title_suffix=expectation.edition_page_title_suffix or None,
         request_delay=request_delay,
         progress=progress,
     )
@@ -127,25 +130,31 @@ def probe_sonnet_wikisource_source(
             line_count_clean=line_count_clean,
             duplicate_ids=duplicate_ids,
         )
-        candidates.append(
-            {
-                "page_title": page.revision.title,
-                "page_url": url_from_title(page.revision.title),
-                "revision_id": page.revision.revision_id,
-                "revision_timestamp": page.revision.revision_timestamp,
-                "raw_character_count": len(raw_text),
-                "cleaned_character_count": len(cleaned_text.strip()),
-                "line_count_raw": count_poem_lines(raw_text),
-                "line_count_clean": line_count_clean,
-                "status": status,
-                "exact_active_duplicate_poem_ids": duplicate_ids,
-                "cleaned_text_sha256": hashlib.sha256(
-                    cleaned_text.encode("utf-8")
-                ).hexdigest(),
-                "first_characters": bounded_sample(cleaned_text, from_end=False),
-                "last_characters": bounded_sample(cleaned_text, from_end=True),
+        candidate: dict[str, object] = {
+            "page_title": page.revision.title,
+            "page_url": url_from_title(page.revision.title),
+            "revision_id": page.revision.revision_id,
+            "revision_timestamp": page.revision.revision_timestamp,
+            "raw_character_count": len(raw_text),
+            "cleaned_character_count": len(cleaned_text.strip()),
+            "line_count_raw": count_poem_lines(raw_text),
+            "line_count_clean": line_count_clean,
+            "status": status,
+            "exact_active_duplicate_poem_ids": duplicate_ids,
+            "cleaned_text_sha256": hashlib.sha256(
+                cleaned_text.encode("utf-8")
+            ).hexdigest(),
+            "first_characters": bounded_sample(cleaned_text, from_end=False),
+            "last_characters": bounded_sample(cleaned_text, from_end=True),
+        }
+        if page.source_record_revision is not None:
+            candidate["source_record"] = {
+                "page_title": page.source_record_revision.title,
+                "page_url": url_from_title(page.source_record_revision.title),
+                "revision_id": page.source_record_revision.revision_id,
+                "revision_timestamp": page.source_record_revision.revision_timestamp,
             }
-        )
+        candidates.append(candidate)
 
     status_counts = Counter(str(candidate["status"]) for candidate in candidates)
     report = {
@@ -154,6 +163,7 @@ def probe_sonnet_wikisource_source(
         "active_poems_manifest_path": portable_path(active_poems_manifest_path, repo_root),
         "source": asdict(source),
         "activation_status": "audit_then_include",
+        "edition_page_title_suffix": expectation.edition_page_title_suffix or None,
         "root_revision": asdict(collection.root_revision),
         "page_count": len(candidates),
         "candidate_status_counts": dict(sorted(status_counts.items())),

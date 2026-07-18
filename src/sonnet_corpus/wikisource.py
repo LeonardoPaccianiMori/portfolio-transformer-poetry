@@ -220,7 +220,17 @@ def extract_poem_text(html: str) -> str:
 
     poem_nodes = root.select(".poem")
     if poem_nodes:
-        return "\n".join(node.get_text("\n", strip=True) for node in poem_nodes).strip()
+        poem_texts: list[str] = []
+        for node in poem_nodes:
+            # Wikisource often wraps initials, links, and line numbers in spans.
+            # Only <br> marks a poetic line break; inline markup must stay joined.
+            for line_number in node.select(".numeroriga"):
+                line_number.decompose()
+            for line_break in node.select("br"):
+                line_break.replace_with("\n")
+            lines = [line.strip() for line in node.get_text().splitlines() if line.strip()]
+            poem_texts.append("\n".join(lines))
+        return "\n".join(poem_texts).strip()
 
     lines: list[str] = []
     for element in root.find_all(["p", "div"], recursive=True):
