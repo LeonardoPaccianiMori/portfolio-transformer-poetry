@@ -1,6 +1,7 @@
 import pytest
 
 from sonnet_corpus.italian_wikisource import (
+    _sleep_with_progress,
     extract_ordered_subpage_titles,
     extract_wikisource_prose_text,
     fetch_italian_wikisource_work,
@@ -266,3 +267,17 @@ def test_fetch_work_retries_a_rate_limited_request():
 
     assert fetched.root_revision.revision_id == 100
     assert len(session.calls) == 6
+
+
+def test_rate_limit_cooldown_emits_heartbeats(monkeypatch):
+    sleeps = []
+    messages = []
+    monkeypatch.setattr("sonnet_corpus.italian_wikisource.sleep", sleeps.append)
+
+    _sleep_with_progress(25, messages.append)
+
+    assert sleeps == [10.0, 10.0, 5.0]
+    assert messages == [
+        "rate-limit cooldown remaining: 15 seconds",
+        "rate-limit cooldown remaining: 5 seconds",
+    ]

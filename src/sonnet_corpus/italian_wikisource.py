@@ -39,6 +39,25 @@ class FetchedItalianWikisourceWork:
 
 
 @dataclass(frozen=True)
+class FetchedItalianWikisourcePage:
+    """One revision-pinned page and its rendered HTML, retained only in memory."""
+
+    revision: WikisourcePageRevision
+    html: str
+
+
+@dataclass(frozen=True)
+class FetchedItalianWikisourcePageCollection:
+    """A root collection page and its ordered rendered primary-text pages."""
+
+    landing_page_url: str
+    title: str
+    root_revision: WikisourcePageRevision
+    root_html: str
+    pages: list[FetchedItalianWikisourcePage]
+
+
+@dataclass(frozen=True)
 class WikisourceWorkSnapshot:
     """Committed revision list for one audited Wikisource work."""
 
@@ -90,6 +109,59 @@ def fetch_italian_wikisource_work(
     building remain separate decisions.
     """
 
+    collection = fetch_italian_wikisource_page_collection(
+        landing_page_url,
+        expected_title=expected_title,
+        expected_first_subpage=expected_first_subpage,
+        expected_last_subpage=expected_last_subpage,
+        selected_subpage_titles=selected_subpage_titles,
+        excluded_subpage_prefixes=excluded_subpage_prefixes,
+        request_delay=request_delay,
+        retries=retries,
+        session=session,
+        progress=progress,
+    )
+    text_parts: list[str] = []
+    raw_html_character_count = len(collection.root_html)
+    for page in collection.pages:
+        page_text = extract_wikisource_prose_text(page.html)
+        if page_text == "":
+            raise ValueError(f"empty primary text after cleaning: {page.revision.title}")
+
+        text_parts.append(f"## {page.revision.title}\n\n{page_text}")
+        raw_html_character_count += len(page.html)
+
+    return FetchedItalianWikisourceWork(
+        landing_page_url=landing_page_url,
+        title=expected_title,
+        root_revision=collection.root_revision,
+        page_revisions=[page.revision for page in collection.pages],
+        text="\n\n".join(text_parts).strip() + "\n",
+        raw_html_character_count=raw_html_character_count,
+    )
+
+
+def fetch_italian_wikisource_page_collection(
+    landing_page_url: str,
+    *,
+    expected_title: str,
+    expected_first_subpage: str = "",
+    expected_last_subpage: str = "",
+    selected_subpage_titles: list[str] | None = None,
+    excluded_subpage_prefixes: tuple[str, ...] = (),
+    request_delay: float = 1.0,
+    retries: int = 5,
+    session: requests.Session | None = None,
+    progress: ProgressCallback | None = None,
+) -> FetchedItalianWikisourcePageCollection:
+    """Fetch an indexed collection as individually revision-pinned pages.
+
+    This is deliberately lower level than :func:`fetch_italian_wikisource_work`.
+    It keeps each rendered page separate in memory so callers can apply a
+    source-appropriate extraction rule, such as poem line counting. It never
+    writes raw HTML to disk.
+    """
+
     http = session or requests.Session()
     if session is None:
         http.headers.update({"User-Agent": USER_AGENT})
@@ -132,35 +204,32 @@ def fetch_italian_wikisource_work(
         retries=retries,
         progress=progress,
     )
-    text_parts: list[str] = []
-    raw_html_character_count = len(root_html)
-    total_pages = len(subpage_titles)
+    pages: list[FetchedItalianWikisourcePage] = []
+    total_pages = len(page_revisions)
     for index, page_revision in enumerate(page_revisions, start=1):
         _write_progress(
             progress,
             f"fetching page {index}/{total_pages}: {page_revision.title}",
         )
-        page_html = _fetch_rendered_revision(
-            page_revision,
-            http=http,
-            limiter=limiter,
-            retries=retries,
-            progress=progress,
+        pages.append(
+            FetchedItalianWikisourcePage(
+                revision=page_revision,
+                html=_fetch_rendered_revision(
+                    page_revision,
+                    http=http,
+                    limiter=limiter,
+                    retries=retries,
+                    progress=progress,
+                ),
+            )
         )
-        page_text = extract_wikisource_prose_text(page_html)
-        if page_text == "":
-            raise ValueError(f"empty primary text after cleaning: {page_revision.title}")
 
-        text_parts.append(f"## {page_revision.title}\n\n{page_text}")
-        raw_html_character_count += len(page_html)
-
-    return FetchedItalianWikisourceWork(
+    return FetchedItalianWikisourcePageCollection(
         landing_page_url=landing_page_url,
         title=expected_title,
         root_revision=root_revision,
-        page_revisions=page_revisions,
-        text="\n\n".join(text_parts).strip() + "\n",
-        raw_html_character_count=raw_html_character_count,
+        root_html=root_html,
+        pages=pages,
     )
 
 
@@ -277,7 +346,7 @@ def validate_work_boundaries(
 
     if not subpage_titles:
         raise ValueError("Wikisource root page does not contain primary-text subpages")
-    if subpage_titles[0] != expected_first_subpage:
+    if expected_first_subpage and subpage_titles[0] != expected_first_subpage:
         raise ValueError(
             "unexpected first Wikisource subpage: "
             f"expected {expected_first_subpage!r}, got {subpage_titles[0]!r}"
@@ -484,7 +553,7 @@ def _api_get(
             progress,
             f"rate limited; waiting {delay_seconds:g} seconds before retry {attempt + 1}/{retries}",
         )
-        sleep(delay_seconds)
+        _sleep_with_progress(delay_seconds, progress)
     if response is None:
         raise RuntimeError("Wikisource API request was not attempted")
     response.raise_for_status()
@@ -498,6 +567,18 @@ def _api_get(
 
 def _normalize_title(title: str) -> str:
     return " ".join(title.replace("_", " ").split())
+
+
+def _sleep_with_progress(delay_seconds: float, progress: ProgressCallback | None) -> None:
+    """Sleep through an API cooldown while keeping long-running scripts observable."""
+
+    remaining = delay_seconds
+    while remaining > 0:
+        interval = min(10.0, remaining)
+        sleep(interval)
+        remaining -= interval
+        if remaining > 0:
+            _write_progress(progress, f"rate-limit cooldown remaining: {remaining:g} seconds")
 
 
 def request_backoff_seconds(request_delay: float, attempt: int) -> float:
