@@ -31,14 +31,13 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--source-id",
-        default="ws_alfieri_rime_1912",
+        default="ws_foscolo_sonetti",
         help="One core Italian-Wikisource source awaiting audit.",
     )
     parser.add_argument(
         "--report",
         type=Path,
-        default=ROOT / "data/local/sonnet_audits/ws_alfieri_rime_1912_probe.json",
-        help="Local JSON inspection report path.",
+        help="Local JSON inspection report path; defaults from --source-id.",
     )
     parser.add_argument(
         "--request-delay",
@@ -52,6 +51,9 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
+    report_path = args.report or (
+        ROOT / "data/local/sonnet_audits" / f"{args.source_id}_probe.json"
+    )
 
     def progress(message: str) -> None:
         if not args.quiet:
@@ -62,7 +64,7 @@ def main() -> None:
         active_poems_manifest_path=args.active_poems_manifest,
         repo_root=ROOT,
         source_id=args.source_id,
-        report_path=args.report,
+        report_path=report_path,
         request_delay=args.request_delay,
         progress=progress,
     )

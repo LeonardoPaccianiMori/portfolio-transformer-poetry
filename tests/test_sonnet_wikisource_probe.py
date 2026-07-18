@@ -11,6 +11,7 @@ from sonnet_corpus.italian_wikisource import (
     WikisourcePageRevision,
 )
 from sonnet_corpus.sonnet_wikisource_probe import (
+    SONNET_COLLECTION_EXPECTATIONS,
     candidate_status,
     normalize_poem_for_duplicate_check,
     probe_sonnet_wikisource_source,
@@ -182,6 +183,12 @@ def test_probe_records_line_counts_duplicates_and_bounded_samples_without_full_t
 
 def test_duplicate_normalization_is_case_and_whitespace_insensitive():
     assert normalize_poem_for_duplicate_check("A  line\nB line\n") == "a line b line"
+
+
+def test_foscolo_probe_uses_the_verified_collection_root_title():
+    expectation = SONNET_COLLECTION_EXPECTATIONS["ws_foscolo_sonetti"]
+
+    assert expectation.root_page_title == "Sonetti (Foscolo)"
 
 
 def test_candidate_status_prioritizes_empty_then_form_then_duplicates():

@@ -52,6 +52,9 @@ SONNET_COLLECTION_EXPECTATIONS = {
     "ws_alfieri_rime_1912": SonnetCollectionExpectation(
         root_page_title="Rime varie (Alfieri, 1912)",
     ),
+    "ws_foscolo_sonetti": SonnetCollectionExpectation(
+        root_page_title="Sonetti (Foscolo)",
+    ),
 }
 
 
