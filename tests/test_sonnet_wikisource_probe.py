@@ -125,14 +125,17 @@ def test_select_source_requires_a_core_italian_wikisource_audit_candidate(tmp_pa
         )
 
 
-def test_committed_source_manifest_preserves_the_alfieri_url_and_role():
+def test_committed_source_manifest_preserves_the_activated_alfieri_record():
     manifest_path = Path("data/metadata/sonnet_expansion_sources_manifest.csv")
 
-    source = select_sonnet_wikisource_source(
-        read_sonnet_source_manifest(manifest_path), "ws_alfieri_rime_1912"
+    source = next(
+        row
+        for row in read_sonnet_source_manifest(manifest_path)
+        if row.source_id == "ws_alfieri_rime_1912"
     )
 
     assert source.role == "core_standard_italian"
+    assert source.status == "activated"
     assert source.landing_page_url.endswith("Rime_varie_(Alfieri,_1912)")
 
 

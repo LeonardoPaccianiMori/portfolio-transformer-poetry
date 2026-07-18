@@ -176,6 +176,7 @@ def build_sonnets_expanded_v2(
             json.dumps(report, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
         )
+        delete_temporary_workspaces(repo_root)
         _write_progress(progress, f"wrote versioned corpus: {output_dataset_id}")
         return report
     except Exception:
@@ -375,6 +376,13 @@ def write_attribution(
         "Each poem's exact page URL and revision are recorded in the versioned manifest.",
     ]
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def delete_temporary_workspaces(repo_root: Path) -> None:
+    """Remove temporary corpus workspaces after a successful versioned build."""
+
+    for path in (repo_root / "data" / "raw", repo_root / "data" / "interim"):
+        shutil.rmtree(path, ignore_errors=True)
 
 
 def portable_path(path: Path, repo_root: Path) -> str:

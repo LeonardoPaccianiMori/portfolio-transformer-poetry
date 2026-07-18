@@ -1,0 +1,15 @@
+{
+  "dataset_id": "sonnets_expanded_v2",
+  "started_at_utc": "2026-07-18T13:04:31+00:00",
+  "finished_at_utc": "2026-07-18T13:09:02+00:00",
+  "base_manifest_path": "data/metadata/poems_manifest.csv",
+  "snapshot_path": "data/metadata/wikisource_snapshots/ws_alfieri_rime_1912.json",
+  "base_poem_count": 921,
+  "added_poem_count": 45,
+  "total_poem_count": 966,
+  "split_counts": {
+    "train": 772,
+    "validation": 98,
+    "test": 96
+  }
+}

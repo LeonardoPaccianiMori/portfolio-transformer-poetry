@@ -145,6 +145,9 @@ def test_versioned_build_copies_only_active_base_poems_and_adds_pinned_alfieri(t
         snapshot_path=snapshot_path,
         source_id="ws_alfieri_rime_1912",
     )
+    temporary_dir = tmp_path / "data/interim"
+    temporary_dir.mkdir(parents=True)
+    (temporary_dir / "temporary.txt").write_text("temporary", encoding="utf-8")
 
     report = build_sonnets_expanded_v2(
         repo_root=tmp_path,
@@ -167,3 +170,4 @@ def test_versioned_build_copies_only_active_base_poems_and_adds_pinned_alfieri(t
     assert (tmp_path / rows[1].clean_text_path).read_text(encoding="utf-8").count("\n") == 14
     assert rows[1].include_in_core_pre_petrarch is False
     assert rows[1].include_in_expanded_with_petrarch is True
+    assert not temporary_dir.exists()

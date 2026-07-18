@@ -54,7 +54,7 @@ The machine-readable counterpart is
 
 | Source ID | Candidate | Role | Status | Evidence and decision |
 | --- | --- | --- | --- | --- |
-| `ws_alfieri_rime_1912` | Vittorio Alfieri, *Rime varie* (1912 edition) | Core | `audit_then_include` | Italian Wikisource currently exposes 195 subpages under the selected 1912 root. Audit the pages individually for 14 cleaned poetic lines. Exclude the parallel 1903 edition to prevent duplicate poems. [Source](https://it.wikisource.org/wiki/Rime_varie_(Alfieri,_1912)) |
+| `ws_alfieri_rime_1912` | Vittorio Alfieri, *Rime varie* (1912 edition) | Core | `activated` | The 195-page revision-pinned audit retained 45 exact 14-line sonnets and excluded 150 other-form or multi-poem pages. No retained poem is an exact duplicate of the active v1 corpus. The parallel 1903 edition is excluded to prevent duplicate poems. [Source](https://it.wikisource.org/wiki/Rime_varie_(Alfieri,_1912)) |
 | `ws_foscolo_sonetti` | Ugo Foscolo, *Sonetti* | Core | `audit_then_include` | A compact, standard-Italian collection appropriate for a clean source-specific probe. Its exact eligible count is intentionally unknown until the page-level audit. [Source](https://it.wikisource.org/wiki/Sonetti_(Foscolo)) |
 | `ws_varchi_infermita` | Benedetto Varchi, *Sonetti per la infermità di Benedetto Varchi* | Core | `audit_then_include` | A Renaissance candidate with an explicit sonnet title. The audit must confirm that the root is a primary-text collection and not commentary. [Source](https://it.wikisource.org/wiki/Sonetti_per_la_infermit%C3%A0_di_Benedetto_Varchi) |
 | `ws_belli_sonetti_romaneschi` | Giuseppe Gioachino Belli, *Sonetti romaneschi* | Auxiliary dialectal | `audit_only_auxiliary` | The author page identifies the collection but also identifies Belli as a dialect writer. Its 2,042-text author catalogue makes it potentially valuable, but Romanesco would strongly change the primary corpus's language distribution. It is excluded from core training and retained for a separate controlled experiment only. [Author page](https://it.wikisource.org/wiki/Autore:Giuseppe_Gioachino_Belli) [Collection](https://it.wikisource.org/wiki/Sonetti_romaneschi) |
@@ -93,10 +93,13 @@ rules, not a broad normalization pass that could remove historical text.
 
 ## Next Scheduled Checkpoint
 
-Implement and run a revision-pinned, audit-only Wikisource sonnet probe for
-`ws_alfieri_rime_1912`. It will enumerate the 195 selected-edition subpages,
-capture provenance, render cleaned candidate text without publishing it as
-training data, measure cleaned line counts, and report duplicate candidates.
-Completion is a reviewed local inspection report plus focused tests. Only then
-will the project decide whether to activate Alfieri as the first expansion
-source.
+The first activated expansion source is `ws_alfieri_rime_1912`. Its local
+inspection report ran from 2026-07-18T11:16:11+00:00 to
+2026-07-18T11:36:13+00:00 and inspected 195 pages. It retained 45 exact
+14-line candidates, excluded 150 pages, and found no exact v1 duplicate. The
+versioned builder copied the 921 active v1 poems and re-fetched only the 45
+committed source revisions. The resulting `sonnets_expanded_v2` dataset has
+966 processed poems with 772 train, 98 validation, and 96 test poems.
+
+The next scheduled source audit is `ws_foscolo_sonetti`, using the same
+revision-pinned, audit-only process before any activation decision.
