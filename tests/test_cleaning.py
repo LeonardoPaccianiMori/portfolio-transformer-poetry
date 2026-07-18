@@ -28,3 +28,11 @@ def test_clean_poem_text_preserves_line_boundaries():
     assert count_poem_lines(cleaned) == 14
     assert cleaned.splitlines()[0] == "line 1"
     assert cleaned.splitlines()[-1] == "line 14"
+
+
+def test_clean_poem_text_removes_isolated_rendered_brackets_but_keeps_bracketed_text():
+    raw = "prima riga\n[\n]\nseconda [Antéo] riga\n"
+
+    cleaned = clean_poem_text(raw)
+
+    assert cleaned.splitlines() == ["prima riga", "seconda [Antéo] riga"]

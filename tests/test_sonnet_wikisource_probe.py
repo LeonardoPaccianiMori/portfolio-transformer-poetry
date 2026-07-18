@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 
 import pytest
+import sonnet_corpus.sonnet_wikisource_probe as probe_module
 
 from sonnet_corpus.italian_wikisource import (
     FetchedItalianWikisourcePage,
@@ -184,3 +185,26 @@ def test_candidate_status_prioritizes_empty_then_form_then_duplicates():
     assert candidate_status(raw_text="", line_count_clean=14, duplicate_ids=[]) == "empty_after_extraction"
     assert candidate_status(raw_text="text", line_count_clean=13, duplicate_ids=["old"]) == "not_14_cleaned_lines"
     assert candidate_status(raw_text="text", line_count_clean=14, duplicate_ids=["old"]) == "exact_duplicate_active_corpus"
+
+
+def test_probe_records_the_start_time_before_network_fetching(tmp_path: Path, monkeypatch):
+    source_manifest_path = tmp_path / "sources.csv"
+    active_manifest_path = tmp_path / "active.csv"
+    report_path = tmp_path / "probe.json"
+    write_source_manifest(source_manifest_path)
+    write_active_manifest(tmp_path, active_manifest_path, "existing line\n")
+    timestamps = iter(["2026-07-18T10:00:00+00:00", "2026-07-18T10:05:00+00:00"])
+    monkeypatch.setattr(probe_module, "utc_now", lambda: next(timestamps))
+
+    report = probe_sonnet_wikisource_source(
+        source_manifest_path=source_manifest_path,
+        active_poems_manifest_path=active_manifest_path,
+        repo_root=tmp_path,
+        source_id="ws_alfieri_rime_1912",
+        report_path=report_path,
+        request_delay=0,
+        fetch_collection=lambda *args, **kwargs: make_collection(),
+    )
+
+    assert report["started_at_utc"] == "2026-07-18T10:00:00+00:00"
+    assert report["finished_at_utc"] == "2026-07-18T10:05:00+00:00"

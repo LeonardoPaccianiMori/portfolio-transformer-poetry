@@ -78,6 +78,7 @@ def probe_sonnet_wikisource_source(
     if expectation is None:
         raise ValueError(f"no sonnet collection expectation for source: {source.source_id}")
 
+    started_at = utc_now()
     _write_progress(progress, f"probing source: {source.source_id}")
     active_texts = read_active_poem_texts(active_poems_manifest_path, repo_root)
     active_poem_count = sum(len(poem_ids) for poem_ids in active_texts.values())
@@ -129,7 +130,7 @@ def probe_sonnet_wikisource_source(
 
     status_counts = Counter(str(candidate["status"]) for candidate in candidates)
     report = {
-        "started_at_utc": utc_now(),
+        "started_at_utc": started_at,
         "source_manifest_path": portable_path(source_manifest_path, repo_root),
         "active_poems_manifest_path": portable_path(active_poems_manifest_path, repo_root),
         "source": asdict(source),

@@ -7,6 +7,7 @@ import re
 
 _EDITORIAL_BRACKET_RE = re.compile(r"\[([A-Za-zÀ-ÖØ-öø-ÿ])\]")
 _LINE_MARKER_RE = re.compile(r"^\s*\d{1,3}\s*$")
+_ISOLATED_BRACKET_LINE_RE = re.compile(r"^\s*[\[\]]\s*$")
 
 
 def remove_editorial_brackets(text: str) -> str:
@@ -37,6 +38,8 @@ def clean_poem_text(text: str) -> str:
         if not line:
             continue
         if _LINE_MARKER_RE.match(line):
+            continue
+        if _ISOLATED_BRACKET_LINE_RE.match(line):
             continue
         cleaned_lines.append(line)
 
