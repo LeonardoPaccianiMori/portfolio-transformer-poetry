@@ -1,0 +1,79 @@
+{
+  "runs": [
+    {
+      "id": "larger_swiglu",
+      "run_dir": "runs/pretraining_quality_swiglu_larger_200k_001",
+      "selected_checkpoint_id": "best",
+      "checkpoints": [
+        {
+          "id": "before",
+          "checkpoint_path": "runs/pretraining_quality_swiglu_larger_200k_001/checkpoints/step_100000.pt",
+          "step": 100000,
+          "validation_loss": 2.503512796379338
+        },
+        {
+          "id": "best",
+          "checkpoint_path": "runs/pretraining_quality_swiglu_larger_200k_001/best_validation.pt",
+          "step": 110000,
+          "validation_loss": 2.500115402374494
+        },
+        {
+          "id": "after",
+          "checkpoint_path": "runs/pretraining_quality_swiglu_larger_200k_001/checkpoints/step_125000.pt",
+          "step": 125000,
+          "validation_loss": 2.502891145757115
+        }
+      ]
+    },
+    {
+      "id": "upper_swiglu",
+      "run_dir": "runs/pretraining_quality_swiglu_upper_400k_001",
+      "selected_checkpoint_id": "best",
+      "checkpoints": [
+        {
+          "id": "before",
+          "checkpoint_path": "runs/pretraining_quality_swiglu_upper_400k_001/checkpoints/step_175000.pt",
+          "step": 175000,
+          "validation_loss": 2.507416838354456
+        },
+        {
+          "id": "best",
+          "checkpoint_path": "runs/pretraining_quality_swiglu_upper_400k_001/best_validation.pt",
+          "step": 180000,
+          "validation_loss": 2.498342739368405
+        },
+        {
+          "id": "after",
+          "checkpoint_path": "runs/pretraining_quality_swiglu_upper_400k_001/checkpoints/step_200000.pt",
+          "step": 200000,
+          "validation_loss": 2.5114777852236694
+        }
+      ]
+    },
+    {
+      "id": "max_swiglu",
+      "run_dir": "runs/pretraining_quality_swiglu_max_400k_001",
+      "selected_checkpoint_id": "best",
+      "checkpoints": [
+        {
+          "id": "before",
+          "checkpoint_path": "runs/pretraining_quality_swiglu_max_400k_001/checkpoints/step_175000.pt",
+          "step": 175000,
+          "validation_loss": 2.520591851158029
+        },
+        {
+          "id": "best",
+          "checkpoint_path": "runs/pretraining_quality_swiglu_max_400k_001/best_validation.pt",
+          "step": 180000,
+          "validation_loss": 2.516361493738893
+        },
+        {
+          "id": "after",
+          "checkpoint_path": "runs/pretraining_quality_swiglu_max_400k_001/checkpoints/step_200000.pt",
+          "step": 200000,
+          "validation_loss": 2.523073269280906
+        }
+      ]
+    }
+  ]
+}
