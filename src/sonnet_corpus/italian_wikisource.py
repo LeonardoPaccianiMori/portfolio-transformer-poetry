@@ -263,6 +263,40 @@ def fetch_pinned_italian_wikisource_work(
 ) -> FetchedItalianWikisourceWork:
     """Render exactly the revisions declared by a committed work snapshot."""
 
+    collection = fetch_pinned_italian_wikisource_page_collection(
+        snapshot,
+        request_delay=request_delay,
+        session=session,
+        progress=progress,
+    )
+    parts: list[str] = []
+    raw_html_character_count = len(collection.root_html)
+    for page in collection.pages:
+        page_text = extract_wikisource_prose_text(page.html)
+        if not page_text:
+            raise ValueError(f"empty primary text after cleaning: {page.revision.title}")
+        parts.append(f"## {page.revision.title}\n\n{page_text}")
+        raw_html_character_count += len(page.html)
+
+    return FetchedItalianWikisourceWork(
+        landing_page_url=snapshot.landing_page_url,
+        title=snapshot.title,
+        root_revision=snapshot.root_revision,
+        page_revisions=snapshot.page_revisions,
+        text="\n\n".join(parts).strip() + "\n",
+        raw_html_character_count=raw_html_character_count,
+    )
+
+
+def fetch_pinned_italian_wikisource_page_collection(
+    snapshot: WikisourceWorkSnapshot,
+    *,
+    request_delay: float = 6.0,
+    session: requests.Session | None = None,
+    progress: ProgressCallback | None = None,
+) -> FetchedItalianWikisourcePageCollection:
+    """Render a committed page snapshot while retaining each page separately."""
+
     http = session or requests.Session()
     if session is None:
         http.headers.update({"User-Agent": USER_AGENT})
@@ -284,8 +318,7 @@ def fetch_pinned_italian_wikisource_work(
         if missing_titles:
             raise ValueError(f"Wikisource root page is missing committed subpages: {missing_titles}")
 
-    parts: list[str] = []
-    raw_html_character_count = len(root_html)
+    pages: list[FetchedItalianWikisourcePage] = []
     for index, revision in enumerate(snapshot.page_revisions, start=1):
         _write_progress(
             progress,
@@ -298,19 +331,14 @@ def fetch_pinned_italian_wikisource_work(
             retries=5,
             progress=progress,
         )
-        page_text = extract_wikisource_prose_text(page_html)
-        if not page_text:
-            raise ValueError(f"empty primary text after cleaning: {revision.title}")
-        parts.append(f"## {revision.title}\n\n{page_text}")
-        raw_html_character_count += len(page_html)
+        pages.append(FetchedItalianWikisourcePage(revision=revision, html=page_html))
 
-    return FetchedItalianWikisourceWork(
+    return FetchedItalianWikisourcePageCollection(
         landing_page_url=snapshot.landing_page_url,
         title=snapshot.title,
         root_revision=snapshot.root_revision,
-        page_revisions=snapshot.page_revisions,
-        text="\n\n".join(parts).strip() + "\n",
-        raw_html_character_count=raw_html_character_count,
+        root_html=root_html,
+        pages=pages,
     )
 
 
