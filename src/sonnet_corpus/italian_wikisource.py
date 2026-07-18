@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 import json
 from collections.abc import Callable
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from time import monotonic, sleep
 
@@ -68,6 +68,8 @@ class WikisourceWorkSnapshot:
     scope: str
     root_revision: WikisourcePageRevision
     page_revisions: list[WikisourcePageRevision]
+    source_record_revisions: list[WikisourcePageRevision] = field(default_factory=list)
+    edition_page_title_suffix: str = ""
 
 
 ProgressCallback = Callable[[str], None]
@@ -279,11 +281,27 @@ def read_wikisource_work_snapshot(path: Path) -> WikisourceWorkSnapshot:
         scope=str(payload.get("scope", "all_root_subpages")),
         root_revision=WikisourcePageRevision(**root),
         page_revisions=[WikisourcePageRevision(**page) for page in pages],
+        source_record_revisions=[
+            WikisourcePageRevision(**record)
+            for record in payload.get("source_record_revisions", [])
+        ],
+        edition_page_title_suffix=str(payload.get("edition_page_title_suffix", "")),
     )
     if not snapshot.page_revisions:
         raise ValueError(f"Wikisource snapshot has no pages: {snapshot.source_id}")
-    if snapshot.scope not in {"all_root_subpages", "explicit_subpages"}:
+    if snapshot.scope not in {
+        "all_root_subpages",
+        "explicit_subpages",
+        "explicit_edition_pages",
+    }:
         raise ValueError(f"invalid Wikisource snapshot scope: {snapshot.scope}")
+    if snapshot.scope == "explicit_edition_pages":
+        if len(snapshot.source_record_revisions) != len(snapshot.page_revisions):
+            raise ValueError("edition-page snapshot has mismatched record and page counts")
+        if not snapshot.edition_page_title_suffix:
+            raise ValueError("edition-page snapshot has no edition title suffix")
+    elif snapshot.source_record_revisions or snapshot.edition_page_title_suffix:
+        raise ValueError("non-edition snapshot contains edition-page fields")
     return snapshot
 
 
@@ -350,9 +368,41 @@ def fetch_pinned_italian_wikisource_page_collection(
         missing_titles = [title for title in expected_titles if title not in actual_titles]
         if missing_titles:
             raise ValueError(f"Wikisource root page is missing committed subpages: {missing_titles}")
+    source_record_revisions: list[WikisourcePageRevision | None] = [None] * len(expected_titles)
+    if snapshot.scope == "explicit_edition_pages":
+        record_titles = [revision.title for revision in snapshot.source_record_revisions]
+        select_explicit_page_titles(root_html, record_titles)
+        for index, (record_revision, expected_page_title) in enumerate(
+            zip(snapshot.source_record_revisions, expected_titles, strict=True),
+            start=1,
+        ):
+            _write_progress(
+                progress,
+                f"validating pinned record {index}/{len(record_titles)}: {record_revision.title}",
+            )
+            record_html = _fetch_rendered_revision(
+                record_revision,
+                http=http,
+                limiter=limiter,
+                retries=5,
+                progress=progress,
+            )
+            selected_title = select_edition_page_title(
+                record_html,
+                snapshot.edition_page_title_suffix,
+            )
+            if selected_title != expected_page_title:
+                raise ValueError(
+                    "pinned record no longer resolves to its committed edition page: "
+                    f"expected {expected_page_title!r}, got {selected_title!r}"
+                )
+        source_record_revisions = list(snapshot.source_record_revisions)
 
     pages: list[FetchedItalianWikisourcePage] = []
-    for index, revision in enumerate(snapshot.page_revisions, start=1):
+    for index, (revision, source_record_revision) in enumerate(
+        zip(snapshot.page_revisions, source_record_revisions, strict=True),
+        start=1,
+    ):
         _write_progress(
             progress,
             f"rendering pinned page {index}/{len(snapshot.page_revisions)}: {revision.title}",
@@ -364,7 +414,13 @@ def fetch_pinned_italian_wikisource_page_collection(
             retries=5,
             progress=progress,
         )
-        pages.append(FetchedItalianWikisourcePage(revision=revision, html=page_html))
+        pages.append(
+            FetchedItalianWikisourcePage(
+                revision=revision,
+                html=page_html,
+                source_record_revision=source_record_revision,
+            )
+        )
 
     return FetchedItalianWikisourcePageCollection(
         landing_page_url=snapshot.landing_page_url,

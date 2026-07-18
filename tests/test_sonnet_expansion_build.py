@@ -8,6 +8,7 @@ from sonnet_corpus.italian_wikisource import (
 )
 from sonnet_corpus.manifest import ManifestRow, write_manifest
 from sonnet_corpus.sonnet_expansion_build import (
+    build_sonnets_expanded,
     build_sonnets_expanded_v2,
     create_sonnet_source_snapshot,
     read_manifest_rows,
@@ -107,6 +108,63 @@ def make_collection() -> FetchedItalianWikisourcePageCollection:
     )
 
 
+def write_foscolo_audit_report(path: Path) -> None:
+    payload = {
+        "source": {
+            "source_id": "ws_foscolo_sonetti",
+            "landing_page_url": "https://it.wikisource.org/wiki/Sonetti_(Foscolo)",
+        },
+        "activation_status": "audit_then_include",
+        "edition_page_title_suffix": "1835)",
+        "root_revision": {
+            "title": "Opera:Sonetti (Foscolo)",
+            "revision_id": 200,
+            "revision_timestamp": "2026-07-18T10:00:00Z",
+        },
+        "page_count": 1,
+        "started_at_utc": "2026-07-18T10:00:00+00:00",
+        "finished_at_utc": "2026-07-18T10:01:00+00:00",
+        "candidates": [
+            {
+                "page_title": "Alla Sera (1835)",
+                "revision_id": 202,
+                "revision_timestamp": "2026-07-18T10:02:00Z",
+                "status": "eligible_14_lines",
+                "line_count_clean": 14,
+                "exact_active_duplicate_poem_ids": [],
+                "source_record": {
+                    "page_title": "Opera:Alla Sera",
+                    "revision_id": 201,
+                    "revision_timestamp": "2026-07-18T10:01:00Z",
+                },
+            }
+        ],
+    }
+    path.write_text(json.dumps(payload), encoding="utf-8")
+
+
+def make_foscolo_collection() -> FetchedItalianWikisourcePageCollection:
+    poem = "\n".join(f"Foscolo line {index}" for index in range(1, 15))
+    record = WikisourcePageRevision("Opera:Alla Sera", 201, "2026-07-18T10:01:00Z")
+    return FetchedItalianWikisourcePageCollection(
+        landing_page_url="https://it.wikisource.org/wiki/Sonetti_(Foscolo)",
+        title="Opera:Sonetti (Foscolo)",
+        root_revision=WikisourcePageRevision(
+            "Opera:Sonetti (Foscolo)", 200, "2026-07-18T10:00:00Z"
+        ),
+        root_html="<div class='mw-parser-output'></div>",
+        pages=[
+            FetchedItalianWikisourcePage(
+                revision=WikisourcePageRevision(
+                    "Alla Sera (1835)", 202, "2026-07-18T10:02:00Z"
+                ),
+                html=f"<div class='mw-parser-output'><div class='poem'>{poem}</div></div>",
+                source_record_revision=record,
+            )
+        ],
+    )
+
+
 def test_snapshot_keeps_only_reviewed_eligible_non_duplicate_pages(tmp_path: Path):
     audit_path = tmp_path / "audit.json"
     snapshot_path = tmp_path / "snapshot.json"
@@ -171,3 +229,46 @@ def test_versioned_build_copies_only_active_base_poems_and_adds_pinned_alfieri(t
     assert rows[1].include_in_core_pre_petrarch is False
     assert rows[1].include_in_expanded_with_petrarch is True
     assert not temporary_dir.exists()
+
+
+def test_versioned_build_supports_an_edition_page_snapshot_for_foscolo(tmp_path: Path):
+    base_manifest_path = tmp_path / "data/metadata/sonnets_expanded_v2_manifest.csv"
+    base_poem_path = tmp_path / "data/processed/sonnets_expanded_v2/poems/base.txt"
+    base_poem_path.parent.mkdir(parents=True)
+    base_poem_path.write_text("base line\n", encoding="utf-8")
+    write_manifest(
+        [
+            make_manifest_row(
+                "base_active",
+                include=True,
+                clean_text_path="data/processed/sonnets_expanded_v2/poems/base.txt",
+            )
+        ],
+        base_manifest_path,
+    )
+    audit_path = tmp_path / "audit.json"
+    snapshot_path = tmp_path / "data/metadata/wikisource_snapshots/ws_foscolo_sonetti.json"
+    write_foscolo_audit_report(audit_path)
+    snapshot = create_sonnet_source_snapshot(
+        audit_report_path=audit_path,
+        snapshot_path=snapshot_path,
+        source_id="ws_foscolo_sonetti",
+    )
+
+    report = build_sonnets_expanded(
+        repo_root=tmp_path,
+        base_manifest_path=base_manifest_path,
+        snapshot_path=snapshot_path,
+        output_dataset_id="sonnets_expanded_v3",
+        request_delay=0,
+        fetch_collection=lambda *args, **kwargs: make_foscolo_collection(),
+    )
+
+    rows = read_manifest_rows(tmp_path / "data/metadata/sonnets_expanded_v3_manifest.csv")
+    assert snapshot["scope"] == "explicit_edition_pages"
+    assert snapshot["source_record_revisions"][0]["title"] == "Opera:Alla Sera"
+    assert report["base_poem_count"] == 1
+    assert report["added_poem_count"] == 1
+    assert [row.poem_id for row in rows] == ["base_active", "foscolo_alla_sera_1835"]
+    assert rows[1].source_edition.startswith("Opere scelte di Ugo Foscolo II")
+    assert rows[1].source_revision_id == "202"

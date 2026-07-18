@@ -1,0 +1,152 @@
+{
+  "source_id": "ws_foscolo_sonetti",
+  "landing_page_url": "https://it.wikisource.org/wiki/Sonetti_(Foscolo)",
+  "title": "Opera:Sonetti (Foscolo)",
+  "scope": "explicit_edition_pages",
+  "root_revision": {
+    "title": "Opera:Sonetti (Foscolo)",
+    "revision_id": 3631981,
+    "revision_timestamp": "2026-02-12T23:09:16Z"
+  },
+  "page_revisions": [
+    {
+      "title": "Alla Sera (1835)",
+      "revision_id": 3671214,
+      "revision_timestamp": "2026-04-24T15:13:02Z"
+    },
+    {
+      "title": "Non son chi fui: perì di noi gran parte (1835)",
+      "revision_id": 3732382,
+      "revision_timestamp": "2026-04-25T13:04:32Z"
+    },
+    {
+      "title": "Te nudrice alle Muse, ospite e Dea (1835)",
+      "revision_id": 3763608,
+      "revision_timestamp": "2026-04-25T23:31:06Z"
+    },
+    {
+      "title": "Perchè taccia il rumor di mia catena (1835)",
+      "revision_id": 3742844,
+      "revision_timestamp": "2026-04-25T18:04:02Z"
+    },
+    {
+      "title": "Così gl'interi giorni in lungo, incerto (1835)",
+      "revision_id": 3680640,
+      "revision_timestamp": "2026-04-24T17:37:21Z"
+    },
+    {
+      "title": "Meritamente, però ch'io potei (1835)",
+      "revision_id": 3730590,
+      "revision_timestamp": "2026-04-25T12:37:01Z"
+    },
+    {
+      "title": "Solcata ho fronte (1835)",
+      "revision_id": 3759406,
+      "revision_timestamp": "2026-04-25T22:24:06Z"
+    },
+    {
+      "title": "E tu ne' carmi avrai perenne vita (1835)",
+      "revision_id": 3687696,
+      "revision_timestamp": "2026-04-24T19:56:56Z"
+    },
+    {
+      "title": "A Zacinto (1835)",
+      "revision_id": 3669685,
+      "revision_timestamp": "2026-04-24T14:28:16Z"
+    },
+    {
+      "title": "In morte del fratello Giovanni (1835)",
+      "revision_id": 3709097,
+      "revision_timestamp": "2026-04-25T00:52:58Z"
+    },
+    {
+      "title": "Alla Musa (Foscolo 1835)",
+      "revision_id": 3671207,
+      "revision_timestamp": "2026-04-24T15:12:56Z"
+    },
+    {
+      "title": "Che stai? già il secol l'orma ultima lascia (1835)",
+      "revision_id": 3677797,
+      "revision_timestamp": "2026-04-24T16:53:05Z"
+    }
+  ],
+  "source_record_revisions": [
+    {
+      "title": "Opera:Alla Sera",
+      "revision_id": 3629016,
+      "revision_timestamp": "2026-02-06T19:15:00Z"
+    },
+    {
+      "title": "Opera:Non son chi fui; perì di noi gran parte",
+      "revision_id": 3629455,
+      "revision_timestamp": "2026-02-07T16:56:06Z"
+    },
+    {
+      "title": "Opera:Te nudrice alle Muse, ospite e Dea",
+      "revision_id": 3629510,
+      "revision_timestamp": "2026-02-07T18:36:25Z"
+    },
+    {
+      "title": "Opera:Perchè taccia il rumor di mia catena",
+      "revision_id": 3629485,
+      "revision_timestamp": "2026-02-07T17:48:02Z"
+    },
+    {
+      "title": "Opera:Così gl'interi giorni in lungo, incerto",
+      "revision_id": 3629475,
+      "revision_timestamp": "2026-02-07T17:28:56Z"
+    },
+    {
+      "title": "Opera:Meritamente, però ch'io potei",
+      "revision_id": 3629482,
+      "revision_timestamp": "2026-02-07T17:38:49Z"
+    },
+    {
+      "title": "Opera:Solcata ho fronte, occhi incavati intenti",
+      "revision_id": 3773077,
+      "revision_timestamp": "2026-04-27T15:14:02Z"
+    },
+    {
+      "title": "Opera:E tu ne' carmi avrai perenne vita",
+      "revision_id": 3629471,
+      "revision_timestamp": "2026-02-07T17:20:00Z"
+    },
+    {
+      "title": "Opera:A Zacinto",
+      "revision_id": 3628828,
+      "revision_timestamp": "2026-02-06T11:39:59Z"
+    },
+    {
+      "title": "Opera:In morte del fratello Giovanni",
+      "revision_id": 3629371,
+      "revision_timestamp": "2026-02-07T15:58:27Z"
+    },
+    {
+      "title": "Opera:Alla Musa (Foscolo)",
+      "revision_id": 3629439,
+      "revision_timestamp": "2026-02-07T16:43:00Z"
+    },
+    {
+      "title": "Opera:Che stai? già il secol l'orma ultima lascia",
+      "revision_id": 3629456,
+      "revision_timestamp": "2026-02-07T17:00:28Z"
+    }
+  ],
+  "edition_page_title_suffix": "1835)",
+  "source_metadata": {
+    "source_id": "ws_foscolo_sonetti",
+    "author": "Ugo Foscolo",
+    "source_archive": "Italian Wikisource",
+    "source_collection": "Sonetti (Foscolo)",
+    "source_edition": "Opere scelte di Ugo Foscolo II, Poligrafica Fiesolana, 1835; curated by Giuseppe Caleffi.",
+    "license_notes": "CC BY-SA 3.0 / GFDL metadata on Italian Wikisource; retain page URL, author Ugo Foscolo, editor Giuseppe Caleffi, source scan, license links, and share-alike notice.",
+    "period": "XIX secolo",
+    "poem_id_prefix": "foscolo"
+  },
+  "audit_report": {
+    "page_count": 12,
+    "eligible_sonnet_count": 12,
+    "started_at_utc": "2026-07-18T14:44:03+00:00",
+    "finished_at_utc": "2026-07-18T14:46:45+00:00"
+  }
+}

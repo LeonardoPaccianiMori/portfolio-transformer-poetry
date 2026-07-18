@@ -130,7 +130,11 @@ def write_manifest(rows: list[ManifestRow], path: Path) -> None:
         row.validate()
 
     with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=MANIFEST_FIELDS)
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=MANIFEST_FIELDS,
+            lineterminator="\n",
+        )
         writer.writeheader()
         for row in rows:
             writer.writerow(asdict(row))

@@ -37,17 +37,31 @@ class ActivatedSourceMetadata:
     source_edition: str
     license_notes: str
     period: str
+    poem_id_prefix: str = ""
 
 
-ALFIERI_METADATA = ActivatedSourceMetadata(
-    source_id="ws_alfieri_rime_1912",
-    author="Vittorio Alfieri",
-    source_archive="Italian Wikisource",
-    source_collection="Rime varie (Alfieri, 1912)",
-    source_edition="Rime scelte, Sansoni, 1912",
-    license_notes="CC BY-SA / GFDL metadata on Italian Wikisource; retain page URL, author, source edition, and license metadata.",
-    period="XVIII secolo",
-)
+ACTIVATED_SOURCE_METADATA = {
+    "ws_alfieri_rime_1912": ActivatedSourceMetadata(
+        source_id="ws_alfieri_rime_1912",
+        author="Vittorio Alfieri",
+        source_archive="Italian Wikisource",
+        source_collection="Rime varie (Alfieri, 1912)",
+        source_edition="Rime scelte, Sansoni, 1912",
+        license_notes="CC BY-SA / GFDL metadata on Italian Wikisource; retain page URL, author, source edition, and license metadata.",
+        period="XVIII secolo",
+        poem_id_prefix="alfieri",
+    ),
+    "ws_foscolo_sonetti": ActivatedSourceMetadata(
+        source_id="ws_foscolo_sonetti",
+        author="Ugo Foscolo",
+        source_archive="Italian Wikisource",
+        source_collection="Sonetti (Foscolo)",
+        source_edition="Opere scelte di Ugo Foscolo II, Poligrafica Fiesolana, 1835; curated by Giuseppe Caleffi.",
+        license_notes="CC BY-SA 3.0 / GFDL metadata on Italian Wikisource; retain page URL, author Ugo Foscolo, editor Giuseppe Caleffi, source scan, license links, and share-alike notice.",
+        period="XIX secolo",
+        poem_id_prefix="foscolo",
+    ),
+}
 
 
 def create_sonnet_source_snapshot(
@@ -75,11 +89,21 @@ def create_sonnet_source_snapshot(
         raise ValueError("audit report has no eligible non-duplicate sonnets")
 
     root = report["root_revision"]
+    metadata = ACTIVATED_SOURCE_METADATA.get(source_id)
+    if metadata is None:
+        raise ValueError(f"no activation metadata configured for source: {source_id}")
+    source_records = [candidate.get("source_record") for candidate in eligible]
+    uses_edition_records = any(source_records)
+    if uses_edition_records and not all(isinstance(record, dict) for record in source_records):
+        raise ValueError("edition-page audit has incomplete bibliographic-record provenance")
+    if uses_edition_records and not report.get("edition_page_title_suffix"):
+        raise ValueError("edition-page audit has no approved edition title suffix")
+
     payload = {
         "source_id": source_id,
         "landing_page_url": report["source"]["landing_page_url"],
         "title": root["title"],
-        "scope": "explicit_subpages",
+        "scope": "explicit_edition_pages" if uses_edition_records else "explicit_subpages",
         "root_revision": root,
         "page_revisions": [
             {
@@ -89,7 +113,23 @@ def create_sonnet_source_snapshot(
             }
             for candidate in eligible
         ],
-        "source_metadata": asdict(ALFIERI_METADATA),
+        "source_record_revisions": (
+            [
+                {
+                    "title": record["page_title"],
+                    "revision_id": record["revision_id"],
+                    "revision_timestamp": record["revision_timestamp"],
+                }
+                for record in source_records
+                if isinstance(record, dict)
+            ]
+            if uses_edition_records
+            else []
+        ),
+        "edition_page_title_suffix": (
+            report["edition_page_title_suffix"] if uses_edition_records else ""
+        ),
+        "source_metadata": asdict(metadata),
         "audit_report": {
             "page_count": report["page_count"],
             "eligible_sonnet_count": len(eligible),
@@ -105,7 +145,7 @@ def create_sonnet_source_snapshot(
     return payload
 
 
-def build_sonnets_expanded_v2(
+def build_sonnets_expanded(
     *,
     repo_root: Path,
     base_manifest_path: Path,
@@ -115,7 +155,7 @@ def build_sonnets_expanded_v2(
     fetch_collection: FetchPinnedCollection = fetch_pinned_italian_wikisource_page_collection,
     progress: Callable[[str], None] | None = None,
 ) -> dict[str, object]:
-    """Create a new versioned corpus from v1 plus a verified Alfieri source."""
+    """Create a new versioned corpus from an active base plus one pinned source."""
 
     snapshot_payload = json.loads(snapshot_path.read_text(encoding="utf-8"))
     snapshot = read_snapshot(snapshot_payload)
@@ -142,7 +182,7 @@ def build_sonnets_expanded_v2(
         output_poems_dir.mkdir(parents=True)
         copied_rows = copy_base_rows(base_rows, repo_root, output_poems_dir)
 
-        _write_progress(progress, f"rendering {len(snapshot.page_revisions)} approved pinned Alfieri pages")
+        _write_progress(progress, f"rendering {len(snapshot.page_revisions)} approved pinned source pages")
         collection = fetch_collection(
             snapshot,
             request_delay=request_delay,
@@ -151,16 +191,16 @@ def build_sonnets_expanded_v2(
         if [page.revision for page in collection.pages] != snapshot.page_revisions:
             raise ValueError("pinned fetch returned a page sequence different from the snapshot")
 
-        alfieri_rows = build_alfieri_rows(
+        source_rows = build_source_rows(
             collection=collection,
             metadata=metadata,
             output_poems_dir=output_poems_dir,
             repo_root=repo_root,
             duplicate_index=duplicate_index,
         )
-        combined_rows = copied_rows + alfieri_rows
+        combined_rows = copied_rows + source_rows
         write_manifest(combined_rows, output_manifest_path)
-        write_attribution(output_attribution_path, metadata, snapshot, alfieri_rows)
+        write_attribution(output_attribution_path, output_dataset_id, metadata, snapshot, source_rows)
         report = {
             "dataset_id": output_dataset_id,
             "started_at_utc": started_at,
@@ -168,7 +208,7 @@ def build_sonnets_expanded_v2(
             "base_manifest_path": portable_path(base_manifest_path, repo_root),
             "snapshot_path": portable_path(snapshot_path, repo_root),
             "base_poem_count": len(copied_rows),
-            "added_poem_count": len(alfieri_rows),
+            "added_poem_count": len(source_rows),
             "total_poem_count": len(combined_rows),
             "split_counts": split_counts(combined_rows),
         }
@@ -187,6 +227,29 @@ def build_sonnets_expanded_v2(
         raise
 
 
+def build_sonnets_expanded_v2(
+    *,
+    repo_root: Path,
+    base_manifest_path: Path,
+    snapshot_path: Path,
+    output_dataset_id: str = "sonnets_expanded_v2",
+    request_delay: float = 6.0,
+    fetch_collection: FetchPinnedCollection = fetch_pinned_italian_wikisource_page_collection,
+    progress: Callable[[str], None] | None = None,
+) -> dict[str, object]:
+    """Backward-compatible v2 entry point for the original Alfieri build."""
+
+    return build_sonnets_expanded(
+        repo_root=repo_root,
+        base_manifest_path=base_manifest_path,
+        snapshot_path=snapshot_path,
+        output_dataset_id=output_dataset_id,
+        request_delay=request_delay,
+        fetch_collection=fetch_collection,
+        progress=progress,
+    )
+
+
 def read_snapshot(payload: dict[str, object]) -> WikisourceWorkSnapshot:
     """Validate the pinned source fields needed for an immutable rebuild."""
 
@@ -201,9 +264,21 @@ def read_snapshot(payload: dict[str, object]) -> WikisourceWorkSnapshot:
         scope=str(payload["scope"]),
         root_revision=WikisourcePageRevision(**root),
         page_revisions=[WikisourcePageRevision(**page) for page in pages],
+        source_record_revisions=[
+            WikisourcePageRevision(**record)
+            for record in payload.get("source_record_revisions", [])
+        ],
+        edition_page_title_suffix=str(payload.get("edition_page_title_suffix", "")),
     )
-    if snapshot.scope != "explicit_subpages" or not snapshot.page_revisions:
+    if snapshot.scope not in {"explicit_subpages", "explicit_edition_pages"}:
         raise ValueError("sonnet source snapshot must declare explicit eligible pages")
+    if not snapshot.page_revisions:
+        raise ValueError("sonnet source snapshot has no eligible pages")
+    if snapshot.scope == "explicit_edition_pages":
+        if len(snapshot.source_record_revisions) != len(snapshot.page_revisions):
+            raise ValueError("edition-page snapshot has mismatched record and page counts")
+        if not snapshot.edition_page_title_suffix:
+            raise ValueError("edition-page snapshot has no edition title suffix")
     return snapshot
 
 
@@ -248,7 +323,7 @@ def copy_base_rows(
     return copied
 
 
-def build_alfieri_rows(
+def build_source_rows(
     *,
     collection: FetchedItalianWikisourcePageCollection,
     metadata: ActivatedSourceMetadata,
@@ -256,32 +331,30 @@ def build_alfieri_rows(
     repo_root: Path,
     duplicate_index: dict[str, list[str]],
 ) -> list[ManifestRow]:
-    """Revalidate and publish only the pre-approved Alfieri sonnet revisions."""
+    """Revalidate and publish only the pre-approved source sonnet revisions."""
 
     rows: list[ManifestRow] = []
     for page in collection.pages:
         extracted = extract_poem_text(page.html)
         cleaned = clean_poem_text(extracted)
         if count_poem_lines(cleaned) != 14:
-            raise ValueError(f"pinned Alfieri page is no longer a 14-line sonnet: {page.revision.title}")
+            raise ValueError(f"pinned source page is no longer a 14-line sonnet: {page.revision.title}")
         normalized = normalize_for_duplicate_check(cleaned)
         if duplicate_index.get(normalized):
             raise ValueError(
-                "pinned Alfieri page duplicates an existing poem: "
+                "pinned source page duplicates an existing poem: "
                 f"{page.revision.title} -> {duplicate_index[normalized]}"
             )
-        poem_id = alfieri_poem_id(page.revision.title)
+        poem_id = source_poem_id(metadata, page.revision.title)
         if any(row.poem_id == poem_id for row in rows):
-            raise ValueError(f"duplicate Alfieri poem ID: {poem_id}")
+            raise ValueError(f"duplicate source poem ID: {poem_id}")
         destination = output_poems_dir / f"{poem_id}.txt"
         destination.write_text(cleaned, encoding="utf-8")
         duplicate_index[normalized] = [poem_id]
         rows.append(
             ManifestRow(
                 poem_id=poem_id,
-                title_or_first_line=page.revision.title.removeprefix(
-                    f"{metadata.source_collection}/"
-                ),
+                title_or_first_line=source_title(metadata, page.revision.title),
                 author=metadata.author,
                 displayed_author=metadata.author,
                 source_archive=metadata.source_archive,
@@ -309,7 +382,7 @@ def build_alfieri_rows(
                 split_expanded_with_petrarch=assign_split(poem_id),
                 editorial_brackets_removed=True,
                 line_markers_removed=True,
-                cleaning_notes="Removed isolated rendered bracket lines and displayed line markers; preserved spelling, punctuation, and verse line breaks.",
+                cleaning_notes="Removed isolated rendered bracket lines and displayed line markers; joined inline Wikisource markup; preserved spelling, punctuation, and verse line breaks.",
                 audit_notes=f"Activated from revision-pinned source snapshot: {metadata.source_id}",
             )
         )
@@ -330,15 +403,22 @@ def normalize_for_duplicate_check(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip().casefold()
 
 
-def alfieri_poem_id(page_title: str) -> str:
-    """Create a stable filesystem-safe ID from the revision-pinned page title."""
+def source_poem_id(metadata: ActivatedSourceMetadata, page_title: str) -> str:
+    """Create a stable filesystem-safe ID from an activated source page title."""
 
     suffix = page_title.rsplit("/", maxsplit=1)[-1]
     ascii_suffix = unicodedata.normalize("NFKD", suffix).encode("ascii", "ignore").decode()
     slug = re.sub(r"[^a-z0-9]+", "_", ascii_suffix.casefold()).strip("_")
     if not slug:
-        raise ValueError(f"could not derive Alfieri poem ID: {page_title}")
-    return f"alfieri_{slug}"
+        raise ValueError(f"could not derive source poem ID: {page_title}")
+    prefix = metadata.poem_id_prefix or metadata.source_id.removeprefix("ws_").split("_", maxsplit=1)[0]
+    return f"{prefix}_{slug}"
+
+
+def source_title(metadata: ActivatedSourceMetadata, page_title: str) -> str:
+    """Present a source page title without a collection-subpage prefix when present."""
+
+    return page_title.removeprefix(f"{metadata.source_collection}/")
 
 
 def split_counts(rows: list[ManifestRow]) -> dict[str, int]:
@@ -351,6 +431,7 @@ def split_counts(rows: list[ManifestRow]) -> dict[str, int]:
 
 def write_attribution(
     path: Path,
+    output_dataset_id: str,
     metadata: ActivatedSourceMetadata,
     snapshot: WikisourceWorkSnapshot,
     rows: list[ManifestRow],
@@ -358,9 +439,9 @@ def write_attribution(
     """Write source-specific public attribution for the activated addition."""
 
     lines = [
-        "# Sonnets Expanded V2 Attribution",
+        f"# {output_dataset_id.replace('_', ' ').title()} Attribution",
         "",
-        f"This dataset version contains the v1 corpus plus {len(rows)} activated Vittorio Alfieri sonnets.",
+        f"This dataset version contains its declared base corpus plus {len(rows)} activated {metadata.author} sonnets.",
         "",
         "## Added Source",
         "",
@@ -372,9 +453,20 @@ def write_attribution(
         f"- Reuse metadata: {metadata.license_notes}",
         f"- Root revision: {snapshot.root_revision.revision_id} ({snapshot.root_revision.revision_timestamp})",
         f"- Activated revisions: {len(snapshot.page_revisions)}",
+        f"- Snapshot scope: {snapshot.scope}",
         "",
         "Each poem's exact page URL and revision are recorded in the versioned manifest.",
     ]
+    if snapshot.scope == "explicit_edition_pages":
+        lines.extend(
+            [
+                "",
+                "## Edition Resolution",
+                "",
+                "Each poem also records its bibliographic `Opera:` record in the committed snapshot.",
+                f"- Approved edition selector: page title ending in `{snapshot.edition_page_title_suffix}`",
+            ]
+        )
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 

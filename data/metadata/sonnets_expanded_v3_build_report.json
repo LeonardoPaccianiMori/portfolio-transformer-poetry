@@ -1,0 +1,15 @@
+{
+  "dataset_id": "sonnets_expanded_v3",
+  "started_at_utc": "2026-07-18T14:55:43+00:00",
+  "finished_at_utc": "2026-07-18T14:58:08+00:00",
+  "base_manifest_path": "data/metadata/sonnets_expanded_v2_manifest.csv",
+  "snapshot_path": "data/metadata/wikisource_snapshots/ws_foscolo_sonetti.json",
+  "base_poem_count": 966,
+  "added_poem_count": 12,
+  "total_poem_count": 978,
+  "split_counts": {
+    "train": 783,
+    "validation": 98,
+    "test": 97
+  }
+}

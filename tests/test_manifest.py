@@ -59,6 +59,7 @@ def test_write_manifest_outputs_required_header(tmp_path: Path):
     assert "poem_id,title_or_first_line,author" in text
     assert "split_core_pre_petrarch" in text
     assert "split_expanded_with_petrarch" in text
+    assert "\r" not in text
 
 
 def test_validate_processed_files_checks_included_rows(tmp_path: Path):

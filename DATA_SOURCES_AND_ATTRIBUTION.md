@@ -15,6 +15,7 @@ The full source-level records live in committed machine-readable manifests:
 | --- | --- | --- |
 | Classical Italian sonnets | [`data/metadata/poems_manifest.csv`](data/metadata/poems_manifest.csv) | [`data/metadata/attribution_summary.md`](data/metadata/attribution_summary.md) and [`docs/data_attribution.md`](docs/data_attribution.md) |
 | Classical Italian sonnets, expanded v2 | [`data/metadata/sonnets_expanded_v2_manifest.csv`](data/metadata/sonnets_expanded_v2_manifest.csv) | [`data/metadata/sonnets_expanded_v2_attribution.md`](data/metadata/sonnets_expanded_v2_attribution.md) and the committed [`Alfieri revision snapshot`](data/metadata/wikisource_snapshots/ws_alfieri_rime_1912.json) |
+| Classical Italian sonnets, expanded v3 | [`data/metadata/sonnets_expanded_v3_manifest.csv`](data/metadata/sonnets_expanded_v3_manifest.csv) | [`data/metadata/sonnets_expanded_v3_attribution.md`](data/metadata/sonnets_expanded_v3_attribution.md) and the committed [`Foscolo edition snapshot`](data/metadata/wikisource_snapshots/ws_foscolo_sonetti.json) |
 | Broader Italian prose, including inactive audited candidates | [`data/metadata/broader_prose_sources_manifest.csv`](data/metadata/broader_prose_sources_manifest.csv) | [`data/metadata/broader_prose_attribution.md`](data/metadata/broader_prose_attribution.md) and [`docs/broader_italian_corpus_expansion_audit.md`](docs/broader_italian_corpus_expansion_audit.md) |
 
 Each manifest row records the work, author, archive, source URL, rights or

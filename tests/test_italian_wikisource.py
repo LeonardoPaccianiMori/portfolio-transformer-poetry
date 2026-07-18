@@ -6,10 +6,13 @@ from sonnet_corpus.italian_wikisource import (
     extract_wikisource_prose_text,
     fetch_italian_wikisource_work,
     fetch_italian_wikisource_page_collection,
+    fetch_pinned_italian_wikisource_page_collection,
     select_edition_page_title,
     select_explicit_page_titles,
     select_work_subpage_titles,
     validate_work_boundaries,
+    WikisourcePageRevision,
+    WikisourceWorkSnapshot,
 )
 
 
@@ -254,6 +257,44 @@ def test_fetch_collection_follows_a_bibliographic_record_to_its_selected_edition
     )
 
     assert [page.revision.title for page in collection.pages] == [edition_title]
+    assert collection.pages[0].source_record_revision is not None
+    assert collection.pages[0].source_record_revision.title == record_title
+
+
+def test_fetch_pinned_collection_validates_a_record_to_edition_snapshot():
+    root_title = "Opera:Sonetti (Foscolo)"
+    record_title = "Opera:Alla Sera"
+    edition_title = "Alla Sera (1835)"
+    revisions = {
+        root_title: (100, "2026-07-15T10:00:00Z"),
+        record_title: (101, "2026-07-15T10:01:00Z"),
+        edition_title: (102, "2026-07-15T10:02:00Z"),
+    }
+    rendered_html = {
+        100: f'<div class="mw-parser-output"><a title="{record_title}">Alla Sera</a></div>',
+        101: f'<div class="mw-parser-output"><a title="{edition_title}">edition</a></div>',
+        102: '<div class="mw-parser-output"><div class="poem">Pinned poem text.</div></div>',
+    }
+    snapshot = WikisourceWorkSnapshot(
+        source_id="ws_foscolo_sonetti",
+        landing_page_url="https://it.wikisource.org/wiki/Sonetti_(Foscolo)",
+        title=root_title,
+        scope="explicit_edition_pages",
+        root_revision=WikisourcePageRevision(root_title, 100, "2026-07-15T10:00:00Z"),
+        page_revisions=[WikisourcePageRevision(edition_title, 102, "2026-07-15T10:02:00Z")],
+        source_record_revisions=[
+            WikisourcePageRevision(record_title, 101, "2026-07-15T10:01:00Z")
+        ],
+        edition_page_title_suffix="1835)",
+    )
+
+    collection = fetch_pinned_italian_wikisource_page_collection(
+        snapshot,
+        request_delay=0,
+        session=FakeSession(revisions, rendered_html),
+    )
+
+    assert collection.pages[0].revision.title == edition_title
     assert collection.pages[0].source_record_revision is not None
     assert collection.pages[0].source_record_revision.title == record_title
 
