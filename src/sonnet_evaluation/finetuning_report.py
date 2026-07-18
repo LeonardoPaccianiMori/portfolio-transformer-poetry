@@ -33,6 +33,15 @@ def build_finetuning_markdown_report(summary: dict[str, Any]) -> str:
     selection = summary["selection"]
     first_row = summary["first_row"]
     final_row = summary["final_row"]
+    parent_vocab_size = _parent_vocab_size(config)
+    added_vocabulary = _added_vocabulary_description(config, parent_vocab_size)
+    evaluation_description = _evaluation_description(config)
+    selection_description = _selection_description(selection)
+    selected_validation_loss = (
+        f"{selection['best_validation_loss']:.4f}"
+        if selection["exact_best_checkpoint_available"]
+        else "not measured at this exact step"
+    )
     history_rows = [
         "| Step | Training loss | Validation loss |",
         "| ---: | ---: | ---: |",
@@ -53,28 +62,23 @@ def build_finetuning_markdown_report(summary: dict[str, Any]) -> str:
             "| Setting | Value |",
             "| --- | --- |",
             f"| Parent checkpoint step | {config['parent_checkpoint_step']:,} |",
-            f"| Parent vocabulary | {config['parent_vocab_size']:,} |",
+            f"| Parent vocabulary | {parent_vocab_size:,} |",
             f"| Fine-tuning vocabulary | {config['vocab_size']:,} |",
-            f"| Added literal tokens | {', '.join(config['added_token_strings'])} |",
+            f"| Added vocabulary entries | {added_vocabulary} |",
             f"| Context length | {config['context_length']} |",
             f"| Batch size | {config['batch_size']} |",
             f"| Learning rate | {config['learning_rate']:.1e} |",
             f"| Train steps | {config['completed_steps']:,} |",
-            f"| Evaluation | every {config['eval_interval']:,} steps; {config['eval_batches']} batches |",
+            f"| Evaluation | {evaluation_description} |",
         ]),
         "## Checkpoint Selection\n\n"
         + "\n".join([
             "| Measurement | Step | Validation loss |",
             "| --- | ---: | ---: |",
             f"| Best recorded validation | {selection['best_validation_step']:,} | {selection['best_validation_loss']:.4f} |",
-            f"| Selected saved checkpoint | {selection['selected_checkpoint_step']:,} | not measured at this exact step |",
+            f"| Selected saved checkpoint | {selection['selected_checkpoint_step']:,} | {selected_validation_loss} |",
         ])
-        + "\n\n"
-        + (
-            "The selected checkpoint is the latest interval checkpoint at or before "
-            "the best validation measurement. It is selected for evaluation because "
-            "the final checkpoint is strongly overfit."
-        ),
+        + "\n\n" + selection_description,
         "## Overfitting Evidence\n\n"
         + "\n".join([
             "| Measurement | Step | Training loss | Validation loss |",
@@ -84,6 +88,52 @@ def build_finetuning_markdown_report(summary: dict[str, Any]) -> str:
         ]),
         "## Full Loss History\n\n" + "\n".join(history_rows),
     ]) + "\n"
+
+
+def _parent_vocab_size(config: dict[str, Any]) -> int:
+    if "parent_vocab_size" in config:
+        return int(config["parent_vocab_size"])
+    source_architecture = config.get("source_model_architecture", {})
+    if "vocab_size" in source_architecture:
+        return int(source_architecture["vocab_size"])
+    return int(config["vocab_size"])
+
+
+def _added_vocabulary_description(
+    config: dict[str, Any],
+    parent_vocab_size: int,
+) -> str:
+    literal_tokens = config.get("added_token_strings")
+    if literal_tokens is not None:
+        return ", ".join(literal_tokens)
+    added_count = int(config["vocab_size"]) - parent_vocab_size
+    return f"{added_count} (literal strings not recorded)"
+
+
+def _evaluation_description(config: dict[str, Any]) -> str:
+    if config.get("validation_mode") == "sequential_windows":
+        return (
+            f"every {config['eval_interval']:,} steps; "
+            f"all {config['validation_window_count']:,} fixed sequential windows"
+        )
+    return (
+        f"every {config['eval_interval']:,} steps; "
+        f"{config['eval_batches']} random batches"
+    )
+
+
+def _selection_description(selection: dict[str, Any]) -> str:
+    if selection["exact_best_checkpoint_available"]:
+        return (
+            "The selected saved checkpoint is the exact checkpoint from the best "
+            "recorded validation step. It is selected for evaluation instead of the "
+            "final checkpoint because validation worsened after the best step."
+        )
+    return (
+        "The selected checkpoint is the latest interval checkpoint at or before "
+        "the best validation measurement. It is selected for evaluation because "
+        "the final checkpoint is strongly overfit."
+    )
 
 
 def write_finetuning_markdown_report(

@@ -183,6 +183,56 @@ def test_build_finetuning_markdown_report_uses_loaded_summary(tmp_path):
     assert "latest interval checkpoint at or before" in report
 
 
+def test_finetuning_report_supports_control_run_metadata(tmp_path):
+    run_dir = tmp_path / "runs" / "control"
+    run_dir.mkdir(parents=True)
+    write_json(
+        run_dir / "config.json",
+        {
+            "parent_checkpoint_step": 100,
+            "vocab_size": 52,
+            "context_length": 8,
+            "batch_size": 2,
+            "learning_rate": 3e-5,
+            "completed_steps": 500,
+            "eval_interval": 250,
+            "eval_batches": 5,
+            "validation_mode": "sequential_windows",
+            "validation_window_count": 4,
+            "source_model_architecture": {"vocab_size": 50},
+        },
+    )
+    (run_dir / "loss_history.jsonl").write_text(
+        "\n".join([
+            json.dumps({"step": 1, "train_loss": 3.0, "validation_loss": 3.2}),
+            json.dumps({"step": 250, "train_loss": 2.0, "validation_loss": 2.0}),
+            json.dumps({"step": 500, "train_loss": 1.0, "validation_loss": 3.0}),
+        ])
+        + "\n",
+        encoding="utf-8",
+    )
+    selection_path = run_dir / "selected_checkpoint.json"
+    write_json(
+        selection_path,
+        {
+            "best_validation_step": 250,
+            "best_validation_loss": 2.0,
+            "selected_checkpoint_step": 250,
+            "exact_best_checkpoint_available": True,
+        },
+    )
+
+    report = build_finetuning_markdown_report(
+        summarize_finetuning_run(run_dir, selection_path)
+    )
+
+    assert "| Parent vocabulary | 50 |" in report
+    assert "| Added vocabulary entries | 2 (literal strings not recorded) |" in report
+    assert "all 4 fixed sequential windows" in report
+    assert "exact checkpoint from the best" in report
+    assert "| Selected saved checkpoint | 250 | 2.0000 |" in report
+
+
 def test_selection_prefers_exact_best_validation_checkpoint_and_direct_architecture(tmp_path):
     run_dir = tmp_path / "runs" / "control"
     run_dir.mkdir(parents=True)
