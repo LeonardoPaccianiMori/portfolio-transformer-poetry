@@ -16,6 +16,7 @@ from .cleaning import clean_poem_text, count_poem_lines
 from .italian_wikisource import (
     FetchedItalianWikisourcePageCollection,
     fetch_italian_wikisource_page_collection,
+    fetch_italian_wikisource_two_level_page_collection,
 )
 from .wikisource import extract_poem_text, url_from_title
 
@@ -48,6 +49,10 @@ class SonnetCollectionExpectation:
     expected_last_subpage: str = ""
     explicit_page_titles: tuple[str, ...] = ()
     edition_page_title_suffix: str = ""
+    excluded_subpage_prefixes: tuple[str, ...] = ()
+    index_page_titles: tuple[str, ...] = ()
+    retain_text_samples: bool = True
+    audit_status: str = "audit_then_include"
 
 
 SONNET_COLLECTION_EXPECTATIONS = {
@@ -71,6 +76,53 @@ SONNET_COLLECTION_EXPECTATIONS = {
             "Opera:Che stai? già il secol l'orma ultima lascia",
         ),
         edition_page_title_suffix="1835)",
+    ),
+    "ws_varchi_infermita": SonnetCollectionExpectation(
+        root_page_title="Sonetti per la infermità, e guarigione di Cosimo I dei Medici",
+        expected_first_subpage=(
+            "Sonetti per la infermità, e guarigione di Cosimo I dei Medici/Sonetto I"
+        ),
+        expected_last_subpage=(
+            "Sonetti per la infermità, e guarigione di Cosimo I dei Medici/Sonetto XXXIII"
+        ),
+        excluded_subpage_prefixes=(
+            "Sonetti per la infermità, e guarigione di Cosimo I dei Medici/Avviso dell'editore",
+            "Sonetti per la infermità, e guarigione di Cosimo I dei Medici/Dedica",
+        ),
+    ),
+    "ws_belli_sonetti_romaneschi": SonnetCollectionExpectation(
+        root_page_title="Sonetti romaneschi",
+        index_page_titles=(
+            "Sonetti romaneschi/Sonetti apocrifi",
+            "Sonetti romaneschi/Sonetti dal 1818 al 1829",
+            "Sonetti romaneschi/Sonetti dal 1828 al 1847",
+            "Sonetti romaneschi/Sonetti del 1830",
+            "Sonetti romaneschi/Sonetti del 1831",
+            "Sonetti romaneschi/Sonetti del 1832",
+            "Sonetti romaneschi/Sonetti del 1833",
+            "Sonetti romaneschi/Sonetti del 1834",
+            "Sonetti romaneschi/Sonetti del 1835",
+            "Sonetti romaneschi/Sonetti del 1836",
+            "Sonetti romaneschi/Sonetti del 1837",
+            "Sonetti romaneschi/Sonetti del 1838",
+            "Sonetti romaneschi/Sonetti del 1839-1942",
+            "Sonetti romaneschi/Sonetti del 1843",
+            "Sonetti romaneschi/Sonetti del 1844",
+            "Sonetti romaneschi/Sonetti del 1845",
+            "Sonetti romaneschi/Sonetti del 1846",
+            "Sonetti romaneschi/Sonetti del 1847 e 1849",
+            "Sonetti romaneschi/Sonetti italiani",
+            "Sonetti romaneschi/Sonetti senza data I",
+            "Sonetti romaneschi/Sonetti senza data II",
+        ),
+        audit_status="audit_only_auxiliary",
+    ),
+    "ws_aretino_sonetti_lussuriosi_1792": SonnetCollectionExpectation(
+        root_page_title="Sonetti lussuriosi (edizione 1792)",
+        expected_first_subpage="Sonetti lussuriosi (edizione 1792)/I",
+        expected_last_subpage="Sonetti lussuriosi (edizione 1792)/XXVI",
+        retain_text_samples=False,
+        audit_status="audit_only_explicit_content",
     ),
 }
 
@@ -108,16 +160,26 @@ def probe_sonnet_wikisource_source(
         f"{active_poem_count} active poems across {len(active_texts)} "
         "exact-text fingerprints for duplicate checks",
     )
-    collection = fetch_collection(
-        source.landing_page_url,
-        expected_title=expectation.root_page_title,
-        expected_first_subpage=expectation.expected_first_subpage,
-        expected_last_subpage=expectation.expected_last_subpage,
-        explicit_page_titles=list(expectation.explicit_page_titles) or None,
-        edition_page_title_suffix=expectation.edition_page_title_suffix or None,
-        request_delay=request_delay,
-        progress=progress,
-    )
+    if expectation.index_page_titles:
+        collection = fetch_italian_wikisource_two_level_page_collection(
+            source.landing_page_url,
+            expected_title=expectation.root_page_title,
+            index_page_titles=list(expectation.index_page_titles),
+            request_delay=request_delay,
+            progress=progress,
+        )
+    else:
+        collection = fetch_collection(
+            source.landing_page_url,
+            expected_title=expectation.root_page_title,
+            expected_first_subpage=expectation.expected_first_subpage,
+            expected_last_subpage=expectation.expected_last_subpage,
+            explicit_page_titles=list(expectation.explicit_page_titles) or None,
+            edition_page_title_suffix=expectation.edition_page_title_suffix or None,
+            excluded_subpage_prefixes=expectation.excluded_subpage_prefixes,
+            request_delay=request_delay,
+            progress=progress,
+        )
 
     candidates: list[dict[str, object]] = []
     for page in collection.pages:
@@ -144,9 +206,10 @@ def probe_sonnet_wikisource_source(
             "cleaned_text_sha256": hashlib.sha256(
                 cleaned_text.encode("utf-8")
             ).hexdigest(),
-            "first_characters": bounded_sample(cleaned_text, from_end=False),
-            "last_characters": bounded_sample(cleaned_text, from_end=True),
         }
+        if expectation.retain_text_samples:
+            candidate["first_characters"] = bounded_sample(cleaned_text, from_end=False)
+            candidate["last_characters"] = bounded_sample(cleaned_text, from_end=True)
         if page.source_record_revision is not None:
             candidate["source_record"] = {
                 "page_title": page.source_record_revision.title,
@@ -162,9 +225,10 @@ def probe_sonnet_wikisource_source(
         "source_manifest_path": portable_path(source_manifest_path, repo_root),
         "active_poems_manifest_path": portable_path(active_poems_manifest_path, repo_root),
         "source": asdict(source),
-        "activation_status": "audit_then_include",
+        "activation_status": source.status,
         "edition_page_title_suffix": expectation.edition_page_title_suffix or None,
         "root_revision": asdict(collection.root_revision),
+        "index_revisions": [asdict(revision) for revision in collection.index_revisions],
         "page_count": len(candidates),
         "candidate_status_counts": dict(sorted(status_counts.items())),
         "candidates": candidates,
@@ -204,7 +268,7 @@ def read_sonnet_source_manifest(path: Path) -> list[SonnetWikisourceSource]:
 def select_sonnet_wikisource_source(
     rows: list[SonnetWikisourceSource], source_id: str
 ) -> SonnetWikisourceSource:
-    """Select exactly one core Italian-Wikisource source still awaiting audit."""
+    """Select exactly one Italian-Wikisource source approved for auditing."""
 
     matches = [row for row in rows if row.source_id == source_id]
     if len(matches) != 1:
@@ -212,10 +276,11 @@ def select_sonnet_wikisource_source(
     source = matches[0]
     if source.source_archive != "Italian Wikisource":
         raise ValueError(f"source is not Italian Wikisource: {source_id}")
-    if source.role != "core_standard_italian":
-        raise ValueError(f"source is not a core standard-Italian candidate: {source_id}")
-    if source.status != "audit_then_include":
-        raise ValueError(f"source is not awaiting audit: {source_id}")
+    expectation = SONNET_COLLECTION_EXPECTATIONS.get(source_id)
+    if expectation is None:
+        raise ValueError(f"no sonnet collection expectation for source: {source_id}")
+    if source.status != expectation.audit_status:
+        raise ValueError(f"source is not approved for this audit: {source_id}")
     return source
 
 

@@ -26,13 +26,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--active-poems-manifest",
         type=Path,
-        default=ROOT / "data/metadata/poems_manifest.csv",
+        default=ROOT / "data/metadata/sonnets_expanded_v3_manifest.csv",
         help="Active processed-poem manifest used for duplicate checks.",
     )
     parser.add_argument(
         "--source-id",
         default="ws_foscolo_sonetti",
-        help="One core Italian-Wikisource source awaiting audit.",
+        help="One Italian-Wikisource source approved for audit.",
     )
     parser.add_argument(
         "--report",
@@ -75,7 +75,7 @@ def main() -> None:
             f"pages={report['page_count']} "
             f"eligible_14_lines={counts.get('eligible_14_lines', 0)} "
             f"duplicates={counts.get('exact_duplicate_active_corpus', 0)} "
-            "activation_status=audit_then_include",
+            f"activation_status={report['activation_status']}",
             flush=True,
         )
 

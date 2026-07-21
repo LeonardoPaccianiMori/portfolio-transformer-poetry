@@ -56,6 +56,7 @@ class FetchedItalianWikisourcePageCollection:
     root_revision: WikisourcePageRevision
     root_html: str
     pages: list[FetchedItalianWikisourcePage]
+    index_revisions: list[WikisourcePageRevision] = field(default_factory=list)
 
 
 @dataclass(frozen=True)
@@ -265,6 +266,119 @@ def fetch_italian_wikisource_page_collection(
         root_revision=root_revision,
         root_html=root_html,
         pages=pages,
+    )
+
+
+def fetch_italian_wikisource_two_level_page_collection(
+    landing_page_url: str,
+    *,
+    expected_title: str,
+    index_page_titles: list[str],
+    request_delay: float = 1.0,
+    retries: int = 5,
+    session: requests.Session | None = None,
+    progress: ProgressCallback | None = None,
+) -> FetchedItalianWikisourcePageCollection:
+    """Fetch a collection whose root links to indexes that link to poem pages.
+
+    The root's approved index pages are explicit because a collection page can
+    also link to introductions, glossaries, and correction lists. Every index
+    and leaf page is revision-pinned before leaf pages are rendered.
+    """
+
+    http = session or requests.Session()
+    if session is None:
+        http.headers.update({"User-Agent": USER_AGENT})
+    if retries < 1:
+        raise ValueError("retries must be at least one")
+    limiter = WikisourceRateLimiter(request_delay)
+
+    _write_progress(progress, f"resolving root page: {expected_title}")
+    root_revision = _fetch_page_revision(
+        expected_title,
+        expected_title=expected_title,
+        http=http,
+        limiter=limiter,
+        retries=retries,
+        progress=progress,
+    )
+    root_html = _fetch_rendered_revision(
+        root_revision,
+        http=http,
+        limiter=limiter,
+        retries=retries,
+        progress=progress,
+    )
+    selected_index_titles = select_explicit_page_titles(root_html, index_page_titles)
+    _write_progress(
+        progress,
+        f"resolving revisions for {len(selected_index_titles)} collection indexes",
+    )
+    index_revisions = _fetch_page_revisions(
+        selected_index_titles,
+        http=http,
+        limiter=limiter,
+        retries=retries,
+        progress=progress,
+    )
+
+    leaf_titles: list[str] = []
+    seen_leaf_titles: set[str] = set()
+    for index, index_revision in enumerate(index_revisions, start=1):
+        _write_progress(
+            progress,
+            f"resolving poem links from index {index}/{len(index_revisions)}: "
+            f"{index_revision.title}",
+        )
+        index_html = _fetch_rendered_revision(
+            index_revision,
+            http=http,
+            limiter=limiter,
+            retries=retries,
+            progress=progress,
+        )
+        for title in extract_ordered_subpage_titles(index_html, index_revision.title):
+            if title in seen_leaf_titles:
+                continue
+            seen_leaf_titles.add(title)
+            leaf_titles.append(title)
+    if not leaf_titles:
+        raise ValueError("Wikisource collection indexes selected no poem pages")
+
+    _write_progress(progress, f"resolving revisions for {len(leaf_titles)} poem pages")
+    page_revisions = _fetch_page_revisions(
+        leaf_titles,
+        http=http,
+        limiter=limiter,
+        retries=retries,
+        progress=progress,
+    )
+    pages: list[FetchedItalianWikisourcePage] = []
+    for index, page_revision in enumerate(page_revisions, start=1):
+        _write_progress(
+            progress,
+            f"fetching page {index}/{len(page_revisions)}: {page_revision.title}",
+        )
+        pages.append(
+            FetchedItalianWikisourcePage(
+                revision=page_revision,
+                html=_fetch_rendered_revision(
+                    page_revision,
+                    http=http,
+                    limiter=limiter,
+                    retries=retries,
+                    progress=progress,
+                ),
+            )
+        )
+
+    return FetchedItalianWikisourcePageCollection(
+        landing_page_url=landing_page_url,
+        title=expected_title,
+        root_revision=root_revision,
+        root_html=root_html,
+        pages=pages,
+        index_revisions=index_revisions,
     )
 
 

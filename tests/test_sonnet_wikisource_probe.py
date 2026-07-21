@@ -120,7 +120,7 @@ def test_select_source_requires_a_core_italian_wikisource_audit_candidate(tmp_pa
     assert source.author == "Vittorio Alfieri"
 
     write_source_manifest(manifest_path, status="audit_only_auxiliary")
-    with pytest.raises(ValueError, match="not awaiting audit"):
+    with pytest.raises(ValueError, match="not approved for this audit"):
         select_sonnet_wikisource_source(
             read_sonnet_source_manifest(manifest_path), "ws_alfieri_rime_1912"
         )
@@ -138,6 +138,19 @@ def test_committed_source_manifest_preserves_the_activated_alfieri_record():
     assert source.role == "core_standard_italian"
     assert source.status == "activated"
     assert source.landing_page_url.endswith("Rime_varie_(Alfieri,_1912)")
+
+
+def test_committed_source_manifest_keeps_varchi_url_and_status_in_their_columns():
+    manifest_path = Path("data/metadata/sonnet_expansion_sources_manifest.csv")
+
+    source = next(
+        row
+        for row in read_sonnet_source_manifest(manifest_path)
+        if row.source_id == "ws_varchi_infermita"
+    )
+
+    assert source.status == "audit_then_include"
+    assert source.landing_page_url.endswith("Cosimo_I_dei_Medici")
 
 
 def test_probe_records_line_counts_duplicates_and_bounded_samples_without_full_text(tmp_path: Path):
@@ -206,6 +219,19 @@ def test_foscolo_probe_uses_the_verified_collection_root_title():
     assert expectation.edition_page_title_suffix == "1835)"
 
 
+def test_remaining_source_expectations_record_the_verified_traversal_and_audit_policy():
+    varchi = SONNET_COLLECTION_EXPECTATIONS["ws_varchi_infermita"]
+    belli = SONNET_COLLECTION_EXPECTATIONS["ws_belli_sonetti_romaneschi"]
+    aretino = SONNET_COLLECTION_EXPECTATIONS["ws_aretino_sonetti_lussuriosi_1792"]
+
+    assert varchi.root_page_title.endswith("Cosimo I dei Medici")
+    assert varchi.expected_last_subpage.endswith("Sonetto XXXIII")
+    assert len(belli.index_page_titles) == 21
+    assert belli.audit_status == "audit_only_auxiliary"
+    assert aretino.retain_text_samples is False
+    assert aretino.audit_status == "audit_only_explicit_content"
+
+
 def test_probe_records_bibliographic_record_provenance_for_an_edition_page(tmp_path: Path):
     source_manifest_path = tmp_path / "sources.csv"
     active_manifest_path = tmp_path / "active.csv"
@@ -258,6 +284,50 @@ def test_candidate_status_prioritizes_empty_then_form_then_duplicates():
     assert candidate_status(raw_text="", line_count_clean=14, duplicate_ids=[]) == "empty_after_extraction"
     assert candidate_status(raw_text="text", line_count_clean=13, duplicate_ids=["old"]) == "not_14_cleaned_lines"
     assert candidate_status(raw_text="text", line_count_clean=14, duplicate_ids=["old"]) == "exact_duplicate_active_corpus"
+
+
+def test_explicit_content_audit_omits_text_samples(tmp_path: Path):
+    source_manifest_path = tmp_path / "sources.csv"
+    active_manifest_path = tmp_path / "active.csv"
+    report_path = tmp_path / "probe.json"
+    write_source_manifest(source_manifest_path, status="audit_only_explicit_content")
+    rows = list(csv.DictReader(source_manifest_path.open(encoding="utf-8")))
+    rows[0]["source_id"] = "ws_aretino_sonetti_lussuriosi_1792"
+    rows[0]["title"] = "Sonetti lussuriosi (1792 edition)"
+    rows[0]["landing_page_url"] = "https://example.test/aretino"
+    with source_manifest_path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=rows[0].keys())
+        writer.writeheader()
+        writer.writerows(rows)
+    write_active_manifest(tmp_path, active_manifest_path, "existing line\n")
+    poem_lines = "\n".join(f"Private line {index}" for index in range(1, 15))
+    collection = FetchedItalianWikisourcePageCollection(
+        landing_page_url="https://example.test/aretino",
+        title="Sonetti lussuriosi (edizione 1792)",
+        root_revision=WikisourcePageRevision("Root", 100, "2026-07-20T10:00:00Z"),
+        root_html="<div class='mw-parser-output'></div>",
+        pages=[
+            FetchedItalianWikisourcePage(
+                revision=WikisourcePageRevision("Aretino/I", 101, "2026-07-20T10:01:00Z"),
+                html=f"<div class='mw-parser-output'><div class='poem'>{poem_lines}</div></div>",
+            )
+        ],
+    )
+
+    report = probe_sonnet_wikisource_source(
+        source_manifest_path=source_manifest_path,
+        active_poems_manifest_path=active_manifest_path,
+        repo_root=tmp_path,
+        source_id="ws_aretino_sonetti_lussuriosi_1792",
+        report_path=report_path,
+        request_delay=0,
+        fetch_collection=lambda *args, **kwargs: collection,
+    )
+
+    assert report["activation_status"] == "audit_only_explicit_content"
+    assert "first_characters" not in report["candidates"][0]
+    assert "last_characters" not in report["candidates"][0]
+    assert "Private line 1" not in report_path.read_text(encoding="utf-8")
 
 
 def test_probe_records_the_start_time_before_network_fetching(tmp_path: Path, monkeypatch):

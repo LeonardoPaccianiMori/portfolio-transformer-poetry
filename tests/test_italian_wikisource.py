@@ -6,6 +6,7 @@ from sonnet_corpus.italian_wikisource import (
     extract_wikisource_prose_text,
     fetch_italian_wikisource_work,
     fetch_italian_wikisource_page_collection,
+    fetch_italian_wikisource_two_level_page_collection,
     fetch_pinned_italian_wikisource_page_collection,
     select_edition_page_title,
     select_explicit_page_titles,
@@ -259,6 +260,58 @@ def test_fetch_collection_follows_a_bibliographic_record_to_its_selected_edition
     assert [page.revision.title for page in collection.pages] == [edition_title]
     assert collection.pages[0].source_record_revision is not None
     assert collection.pages[0].source_record_revision.title == record_title
+
+
+def test_fetch_two_level_collection_pins_indexes_and_leaf_pages_in_source_order():
+    root_title = "Sonetti romaneschi"
+    first_index = "Sonetti romaneschi/1818"
+    second_index = "Sonetti romaneschi/1819"
+    first_leaf = "Sonetti romaneschi/1818/Uno"
+    second_leaf = "Sonetti romaneschi/1818/Due"
+    third_leaf = "Sonetti romaneschi/1819/Tre"
+    revisions = {
+        root_title: (100, "2026-07-20T10:00:00Z"),
+        first_index: (101, "2026-07-20T10:01:00Z"),
+        second_index: (102, "2026-07-20T10:02:00Z"),
+        first_leaf: (103, "2026-07-20T10:03:00Z"),
+        second_leaf: (104, "2026-07-20T10:04:00Z"),
+        third_leaf: (105, "2026-07-20T10:05:00Z"),
+    }
+    rendered_html = {
+        100: (
+            f'<div class="mw-parser-output"><a title="{first_index}">first</a>'
+            f'<a title="{second_index}">second</a></div>'
+        ),
+        101: (
+            f'<div class="mw-parser-output"><a title="{first_leaf}">one</a>'
+            f'<a title="{second_leaf}">two</a></div>'
+        ),
+        102: (
+            f'<div class="mw-parser-output"><a title="{second_leaf}">two again</a>'
+            f'<a title="{third_leaf}">three</a></div>'
+        ),
+        103: '<div class="mw-parser-output"><div class="poem">One</div></div>',
+        104: '<div class="mw-parser-output"><div class="poem">Two</div></div>',
+        105: '<div class="mw-parser-output"><div class="poem">Three</div></div>',
+    }
+
+    collection = fetch_italian_wikisource_two_level_page_collection(
+        "https://example.test/sonetti-romaneschi",
+        expected_title=root_title,
+        index_page_titles=[first_index, second_index],
+        request_delay=0,
+        session=FakeSession(revisions, rendered_html),
+    )
+
+    assert [revision.title for revision in collection.index_revisions] == [
+        first_index,
+        second_index,
+    ]
+    assert [page.revision.title for page in collection.pages] == [
+        first_leaf,
+        second_leaf,
+        third_leaf,
+    ]
 
 
 def test_fetch_pinned_collection_validates_a_record_to_edition_snapshot():
