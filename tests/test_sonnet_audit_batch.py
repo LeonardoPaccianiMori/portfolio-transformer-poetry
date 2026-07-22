@@ -4,6 +4,10 @@ from pathlib import Path
 import sonnet_corpus.sonnet_audit_batch as batch_module
 
 
+def test_default_batch_excludes_the_core_incompatible_belli_collection():
+    assert "ws_belli_sonetti_romaneschi" not in batch_module.REMAINING_SOURCE_AUDIT_IDS
+
+
 def test_batch_writes_a_summary_and_continues_after_a_source_error(
     tmp_path: Path, monkeypatch
 ):

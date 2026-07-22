@@ -13,7 +13,6 @@ from .sonnet_wikisource_probe import probe_sonnet_wikisource_source
 
 REMAINING_SOURCE_AUDIT_IDS = (
     "ws_varchi_infermita",
-    "ws_belli_sonetti_romaneschi",
     "ws_aretino_sonetti_lussuriosi_1792",
 )
 

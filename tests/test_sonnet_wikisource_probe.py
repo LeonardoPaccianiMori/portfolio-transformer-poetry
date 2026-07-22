@@ -153,6 +153,21 @@ def test_committed_source_manifest_keeps_varchi_url_and_status_in_their_columns(
     assert source.landing_page_url.endswith("Cosimo_I_dei_Medici")
 
 
+def test_committed_source_manifest_excludes_belli_from_core_auditing():
+    manifest_path = Path("data/metadata/sonnet_expansion_sources_manifest.csv")
+
+    source = next(
+        row
+        for row in read_sonnet_source_manifest(manifest_path)
+        if row.source_id == "ws_belli_sonetti_romaneschi"
+    )
+
+    assert source.role == "auxiliary_dialectal"
+    assert source.status == "excluded_from_core_language_variety"
+    with pytest.raises(ValueError, match="not approved for this audit"):
+        select_sonnet_wikisource_source([source], source.source_id)
+
+
 def test_probe_records_line_counts_duplicates_and_bounded_samples_without_full_text(tmp_path: Path):
     source_manifest_path = tmp_path / "sources.csv"
     active_manifest_path = tmp_path / "active.csv"

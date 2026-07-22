@@ -2,8 +2,8 @@
 
 ## Purpose and Decision Boundary
 
-The active sonnet corpus contains 921 included poems from eight source
-collections. Its author distribution is concentrated: Francesco Petrarca
+The active `sonnets_expanded_v3` corpus contains 978 included poems. Its author
+distribution is concentrated: Francesco Petrarca
 contributes 313 poems and Guittone d'Arezzo contributes 210. This is useful
 historical material, but it is too small and too concentrated to be the final
 fine-tuning corpus for a model intended to generate convincing Italian
@@ -40,7 +40,9 @@ alone will make a 33.7M-parameter model coherent.
 | Folgore da San Gimignano | 36 |
 | Giacomo da Lentini | 24 |
 | Other displayed correspondence authors | 5 |
-| **Total** | **921** |
+| Vittorio Alfieri | 45 |
+| Ugo Foscolo | 12 |
+| **Total** | **978** |
 
 The existing corpus uses Italian Wikisource pages with source URL, edition
 notes, and license notes stored for every poem in
@@ -55,13 +57,28 @@ The machine-readable counterpart is
 | Source ID | Candidate | Role | Status | Evidence and decision |
 | --- | --- | --- | --- | --- |
 | `ws_alfieri_rime_1912` | Vittorio Alfieri, *Rime varie* (1912 edition) | Core | `activated` | The 195-page revision-pinned audit retained 45 exact 14-line sonnets and excluded 150 other-form or multi-poem pages. No retained poem is an exact duplicate of the active v1 corpus. The parallel 1903 edition is excluded to prevent duplicate poems. [Source](https://it.wikisource.org/wiki/Rime_varie_(Alfieri,_1912)) |
-| `ws_foscolo_sonetti` | Ugo Foscolo, *Sonetti* | Core | `audit_then_include` | A compact, standard-Italian collection appropriate for a clean source-specific probe. Its exact eligible count is intentionally unknown until the page-level audit. [Source](https://it.wikisource.org/wiki/Sonetti_(Foscolo)) |
-| `ws_varchi_infermita` | Benedetto Varchi, *Sonetti per la infermità, e guarigione di Cosimo I dei Medici* | Core | `audit_then_include` | A Renaissance candidate with an explicit sonnet title. Its former manifest title was corrected against the canonical Wikisource work page before audit. [Source](https://it.wikisource.org/wiki/Sonetti_per_la_infermit%C3%A0,_e_guarigione_di_Cosimo_I_dei_Medici) |
-| `ws_belli_sonetti_romaneschi` | Giuseppe Gioachino Belli, *Sonetti romaneschi* | Auxiliary dialectal | `audit_only_auxiliary` | The author page identifies the collection but also identifies Belli as a dialect writer. Its 2,042-text author catalogue makes it potentially valuable, but Romanesco would strongly change the primary corpus's language distribution. It is excluded from core training and retained for a separate controlled experiment only. [Author page](https://it.wikisource.org/wiki/Autore:Giuseppe_Gioachino_Belli) [Collection](https://it.wikisource.org/wiki/Sonetti_romaneschi) |
-| `ws_aretino_sonetti_lussuriosi_1792` | Pietro Aretino, *Sonetti lussuriosi* (1792 edition) | Undecided | `audit_only_explicit_content` | The user authorized a metadata-and-form audit only. It cannot enter any corpus without a separate activation decision; its audit report retains no text samples. [Source](https://it.wikisource.org/wiki/Sonetti_lussuriosi_(edizione_1792)) |
+| `ws_foscolo_sonetti` | Ugo Foscolo, *Sonetti* | Core | `activated` | The revision-pinned 1835-edition audit retained all 12 exact 14-line pages, which are active in `sonnets_expanded_v3`. [Source](https://it.wikisource.org/wiki/Sonetti_(Foscolo)) |
+| `ws_varchi_infermita` | Benedetto Varchi, *Sonetti per la infermità, e guarigione di Cosimo I dei Medici* | Core | `audit_then_include` | The revision-pinned audit found 33 exact 14-line candidates and no exact duplicates in the active v3 corpus. Activation remains a separate versioned-build decision. [Source](https://it.wikisource.org/wiki/Sonetti_per_la_infermit%C3%A0,_e_guarigione_di_Cosimo_I_dei_Medici) |
+| `ws_belli_sonetti_romaneschi` | Giuseppe Gioachino Belli, *Sonetti romaneschi* | Auxiliary dialectal | `excluded_from_core_language_variety` | The approximately 2,042 Romanesco texts would form about 68% of a combined 3,020-poem v3-plus-Belli corpus, making dialectal language the dominant fine-tuning distribution. The page-level audit was stopped and the source is excluded from core training. It can be reconsidered only as a separately approved dialect-conditioned experiment. [Author page](https://it.wikisource.org/wiki/Autore:Giuseppe_Gioachino_Belli) [Collection](https://it.wikisource.org/wiki/Sonetti_romaneschi) |
+| `ws_aretino_sonetti_lussuriosi_1792` | Pietro Aretino, *Sonetti lussuriosi* (1792 edition) | Excluded from strict corpus | `audit_only_explicit_content` | All 26 audited pages failed the project's exact 14-line gate. They remain excluded, and the local audit report contains hashes and metadata but no text samples. [Source](https://it.wikisource.org/wiki/Sonetti_lussuriosi_(edizione_1792)) |
 | `biblioteca_italiana_tei_poetry` | Biblioteca Italiana TEI poetry collections | Core candidate | `blocked_pending_terms_and_access` | Biblioteca Italiana reports downloadable XML-TEI texts and broad literary coverage, which could allow high-quality poem segmentation. Direct access and the exact reuse terms for a chosen source must be confirmed before ingestion. [Library description](https://bibliodlcm.web.uniroma1.it/it/biblioteca-italiana) |
 | `ws_category_sonetti` | Italian Wikisource `Categoria:Sonetti` | Discovery only | `discovery_only` | The category has thousands of pages but mixes authors, editions, periods, dialects, and non-standard variants. It is an index for named-source discovery, never a bulk-download source. [Category](https://it.wikisource.org/wiki/Categoria:Sonetti) |
 | `project_gutenberg_italian_sonnets` | Project Gutenberg Italian poetry records | Excluded for this expansion | `not_prioritized` | The initial audit did not identify a material new collection of original Italian sonnets. The Petrarch result is a translation collection, so it does not add target-language data. |
+
+## Pre-Audit Composition Gate
+
+Before downloading individual texts, every candidate must pass a metadata-level
+composition review. Record its language variety, period, register, form,
+content, expected document count, estimated character or token contribution,
+projected corpus share, author concentration, and expected audit runtime. Then
+classify it as core, auxiliary for a concrete conditioned experiment, or
+excluded.
+
+Only core-compatible candidates proceed to a full page-level audit by default.
+Auxiliary data requires an explicitly approved experiment and remains physically
+and logically separate from the core corpus. Excluded sources receive no bulk
+retrieval. This prevents a large accessible collection from silently redefining
+the model's target language or style.
 
 ## Required Activation Checks
 
@@ -101,5 +118,7 @@ versioned builder copied the 921 active v1 poems and re-fetched only the 45
 committed source revisions. The resulting `sonnets_expanded_v2` dataset has
 966 processed poems with 772 train, 98 validation, and 96 test poems.
 
-The next scheduled source audit is `ws_foscolo_sonetti`, using the same
-revision-pinned, audit-only process before any activation decision.
+The next scheduled corpus checkpoint is a versioned core build that adds the
+33 eligible Varchi sonnets to `sonnets_expanded_v3`. Belli is excluded from
+that build because Romanesco would dominate the resulting corpus. Aretino is
+excluded because none of its 26 audited pages passes the exact 14-line gate.
