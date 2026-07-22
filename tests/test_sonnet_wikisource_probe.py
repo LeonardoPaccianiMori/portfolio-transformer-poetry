@@ -227,6 +227,7 @@ def test_remaining_source_expectations_record_the_verified_traversal_and_audit_p
     assert varchi.root_page_title.endswith("Cosimo I dei Medici")
     assert varchi.expected_last_subpage.endswith("Sonetto XXXIII")
     assert len(belli.index_page_titles) == 21
+    assert belli.two_level_leaf_link_mode == "direct_text_links"
     assert belli.audit_status == "audit_only_auxiliary"
     assert aretino.retain_text_samples is False
     assert aretino.audit_status == "audit_only_explicit_content"

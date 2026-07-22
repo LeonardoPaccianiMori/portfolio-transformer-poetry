@@ -274,6 +274,7 @@ def fetch_italian_wikisource_two_level_page_collection(
     *,
     expected_title: str,
     index_page_titles: list[str],
+    leaf_link_mode: str = "nested_subpages",
     request_delay: float = 1.0,
     retries: int = 5,
     session: requests.Session | None = None,
@@ -282,8 +283,9 @@ def fetch_italian_wikisource_two_level_page_collection(
     """Fetch a collection whose root links to indexes that link to poem pages.
 
     The root's approved index pages are explicit because a collection page can
-    also link to introductions, glossaries, and correction lists. Every index
-    and leaf page is revision-pinned before leaf pages are rendered.
+    also link to introductions, glossaries, and correction lists. Indexes can
+    point either to nested poem subpages or directly to standalone poem pages.
+    Every index and leaf page is revision-pinned before leaf pages are rendered.
     """
 
     http = session or requests.Session()
@@ -291,6 +293,8 @@ def fetch_italian_wikisource_two_level_page_collection(
         http.headers.update({"User-Agent": USER_AGENT})
     if retries < 1:
         raise ValueError("retries must be at least one")
+    if leaf_link_mode not in {"nested_subpages", "direct_text_links"}:
+        raise ValueError(f"unsupported two-level leaf link mode: {leaf_link_mode}")
     limiter = WikisourceRateLimiter(request_delay)
 
     _write_progress(progress, f"resolving root page: {expected_title}")
@@ -337,7 +341,17 @@ def fetch_italian_wikisource_two_level_page_collection(
             retries=retries,
             progress=progress,
         )
-        for title in extract_ordered_subpage_titles(index_html, index_revision.title):
+        if leaf_link_mode == "nested_subpages":
+            discovered_leaf_titles = extract_ordered_subpage_titles(
+                index_html,
+                index_revision.title,
+            )
+        else:
+            discovered_leaf_titles = extract_ordered_direct_text_link_titles(
+                index_html,
+                collection_root_title=expected_title,
+            )
+        for title in discovered_leaf_titles:
             if title in seen_leaf_titles:
                 continue
             seen_leaf_titles.add(title)
@@ -557,6 +571,39 @@ def extract_ordered_subpage_titles(root_html: str, root_title: str) -> list[str]
             continue
         title = _normalize_title(link["title"])
         if not title.startswith(prefix) or title in seen:
+            continue
+        seen.add(title)
+        titles.append(title)
+    return titles
+
+
+def extract_ordered_direct_text_link_titles(
+    index_html: str,
+    *,
+    collection_root_title: str,
+) -> list[str]:
+    """Return visible direct-text links while excluding collection navigation.
+
+    Some Wikisource indexes use standalone page titles for poems, so the title
+    is not a subpage of either the collection or index. The collection root and
+    all of its subpages are navigation in this layout; namespaces are not poem
+    text either. The caller still supplies an explicit approved index list.
+    """
+
+    soup = BeautifulSoup(index_html, "html.parser")
+    normalized_root = _normalize_title(collection_root_title)
+    titles: list[str] = []
+    seen: set[str] = set()
+    for link in soup.select(".mw-parser-output a[title]"):
+        if link.find_parent(class_="ws-noexport") is not None:
+            continue
+        title = _normalize_title(link["title"])
+        if (
+            title == normalized_root
+            or title.startswith(f"{normalized_root}/")
+            or _is_non_text_namespace_title(title)
+            or title in seen
+        ):
             continue
         seen.add(title)
         titles.append(title)

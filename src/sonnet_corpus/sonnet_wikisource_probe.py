@@ -51,6 +51,7 @@ class SonnetCollectionExpectation:
     edition_page_title_suffix: str = ""
     excluded_subpage_prefixes: tuple[str, ...] = ()
     index_page_titles: tuple[str, ...] = ()
+    two_level_leaf_link_mode: str = "nested_subpages"
     retain_text_samples: bool = True
     audit_status: str = "audit_then_include"
 
@@ -115,6 +116,7 @@ SONNET_COLLECTION_EXPECTATIONS = {
             "Sonetti romaneschi/Sonetti senza data I",
             "Sonetti romaneschi/Sonetti senza data II",
         ),
+        two_level_leaf_link_mode="direct_text_links",
         audit_status="audit_only_auxiliary",
     ),
     "ws_aretino_sonetti_lussuriosi_1792": SonnetCollectionExpectation(
@@ -165,6 +167,7 @@ def probe_sonnet_wikisource_source(
             source.landing_page_url,
             expected_title=expectation.root_page_title,
             index_page_titles=list(expectation.index_page_titles),
+            leaf_link_mode=expectation.two_level_leaf_link_mode,
             request_delay=request_delay,
             progress=progress,
         )

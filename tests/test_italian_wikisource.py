@@ -2,6 +2,7 @@ import pytest
 
 from sonnet_corpus.italian_wikisource import (
     _sleep_with_progress,
+    extract_ordered_direct_text_link_titles,
     extract_ordered_subpage_titles,
     extract_wikisource_prose_text,
     fetch_italian_wikisource_work,
@@ -101,6 +102,24 @@ def test_extract_ordered_subpage_titles_uses_visible_work_order():
         "Il Saggiatore/Dedica",
         "Il Saggiatore/1",
     ]
+
+
+def test_extract_ordered_direct_text_link_titles_excludes_collection_navigation():
+    html = """
+    <div class="mw-parser-output">
+      <a title="Sonetti romaneschi">root</a>
+      <a title="Sonetti romaneschi/Sonetti del 1830">next index</a>
+      <a title="A Pippo de R...">poem one</a>
+      <a title="Pio Ottavo">poem two</a>
+      <a title="Autore:Giuseppe Gioachino Belli">author</a>
+      <div class="ws-noexport"><a title="Excluded poem">excluded</a></div>
+    </div>
+    """
+
+    assert extract_ordered_direct_text_link_titles(
+        html,
+        collection_root_title="Sonetti romaneschi",
+    ) == ["A Pippo de R...", "Pio Ottavo"]
 
 
 def test_validate_work_boundaries_rejects_unexpected_last_page():
@@ -266,9 +285,9 @@ def test_fetch_two_level_collection_pins_indexes_and_leaf_pages_in_source_order(
     root_title = "Sonetti romaneschi"
     first_index = "Sonetti romaneschi/1818"
     second_index = "Sonetti romaneschi/1819"
-    first_leaf = "Sonetti romaneschi/1818/Uno"
-    second_leaf = "Sonetti romaneschi/1818/Due"
-    third_leaf = "Sonetti romaneschi/1819/Tre"
+    first_leaf = "Uno"
+    second_leaf = "Due"
+    third_leaf = "Tre"
     revisions = {
         root_title: (100, "2026-07-20T10:00:00Z"),
         first_index: (101, "2026-07-20T10:01:00Z"),
@@ -284,11 +303,13 @@ def test_fetch_two_level_collection_pins_indexes_and_leaf_pages_in_source_order(
         ),
         101: (
             f'<div class="mw-parser-output"><a title="{first_leaf}">one</a>'
-            f'<a title="{second_leaf}">two</a></div>'
+            f'<a title="{second_leaf}">two</a>'
+            f'<a title="{root_title}">root</a></div>'
         ),
         102: (
             f'<div class="mw-parser-output"><a title="{second_leaf}">two again</a>'
-            f'<a title="{third_leaf}">three</a></div>'
+            f'<a title="{third_leaf}">three</a>'
+            f'<a title="{first_index}">previous index</a></div>'
         ),
         103: '<div class="mw-parser-output"><div class="poem">One</div></div>',
         104: '<div class="mw-parser-output"><div class="poem">Two</div></div>',
@@ -299,6 +320,7 @@ def test_fetch_two_level_collection_pins_indexes_and_leaf_pages_in_source_order(
         "https://example.test/sonetti-romaneschi",
         expected_title=root_title,
         index_page_titles=[first_index, second_index],
+        leaf_link_mode="direct_text_links",
         request_delay=0,
         session=FakeSession(revisions, rendered_html),
     )
