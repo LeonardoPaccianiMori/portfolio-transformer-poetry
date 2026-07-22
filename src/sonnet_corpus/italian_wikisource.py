@@ -154,7 +154,9 @@ def fetch_italian_wikisource_page_collection(
     selected_subpage_titles: list[str] | None = None,
     explicit_page_titles: list[str] | None = None,
     edition_page_title_suffix: str | None = None,
+    included_subpage_prefixes: tuple[str, ...] = (),
     excluded_subpage_prefixes: tuple[str, ...] = (),
+    direct_text_links: bool = False,
     request_delay: float = 1.0,
     retries: int = 5,
     session: requests.Session | None = None,
@@ -193,11 +195,19 @@ def fetch_italian_wikisource_page_collection(
     )
     if explicit_page_titles is not None:
         selected_titles = select_explicit_page_titles(root_html, explicit_page_titles)
+    elif direct_text_links:
+        selected_titles = extract_ordered_direct_text_link_titles(
+            root_html,
+            collection_root_title=expected_title,
+        )
+        if not selected_titles:
+            raise ValueError("Wikisource root page contains no direct text links")
     else:
         selected_titles = select_work_subpage_titles(
             extract_ordered_subpage_titles(root_html, expected_title),
             selected_subpage_titles,
             excluded_subpage_prefixes,
+            included_subpage_prefixes,
         )
         validate_work_boundaries(
             selected_titles,
@@ -692,14 +702,21 @@ def select_work_subpage_titles(
     discovered_titles: list[str],
     selected_titles: list[str] | None,
     excluded_prefixes: tuple[str, ...] = (),
+    included_prefixes: tuple[str, ...] = (),
 ) -> list[str]:
-    """Select all non-excluded pages or an explicit approved ordered subset."""
+    """Select an approved prefix scope or an explicit ordered subset."""
 
     if selected_titles is None:
         selected_titles = [
             title
             for title in discovered_titles
-            if not any(title.startswith(prefix) for prefix in excluded_prefixes)
+            if (
+                (
+                    not included_prefixes
+                    or any(title.startswith(prefix) for prefix in included_prefixes)
+                )
+                and not any(title.startswith(prefix) for prefix in excluded_prefixes)
+            )
         ]
         if not selected_titles:
             raise ValueError("Wikisource scope selected no primary-text subpages")

@@ -25,7 +25,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--active-poems-manifest",
         type=Path,
-        default=ROOT / "data/metadata/sonnets_expanded_v3_manifest.csv",
+        default=ROOT / "data/metadata/sonnets_expanded_v4_manifest.csv",
     )
     parser.add_argument(
         "--reports-directory",

@@ -26,12 +26,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--active-poems-manifest",
         type=Path,
-        default=ROOT / "data/metadata/sonnets_expanded_v3_manifest.csv",
+        default=ROOT / "data/metadata/sonnets_expanded_v4_manifest.csv",
         help="Active processed-poem manifest used for duplicate checks.",
     )
     parser.add_argument(
         "--source-id",
-        default="ws_foscolo_sonetti",
+        default="ws_andreini_rime_1601",
         help="One Italian-Wikisource source approved for audit.",
     )
     parser.add_argument(
@@ -73,6 +73,7 @@ def main() -> None:
         print(
             "sonnet-probe | complete "
             f"pages={report['page_count']} "
+            f"candidates={report['candidate_count']} "
             f"eligible_14_lines={counts.get('eligible_14_lines', 0)} "
             f"duplicates={counts.get('exact_duplicate_active_corpus', 0)} "
             f"activation_status={report['activation_status']}",

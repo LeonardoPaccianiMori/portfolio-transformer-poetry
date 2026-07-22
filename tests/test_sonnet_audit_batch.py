@@ -4,15 +4,22 @@ from pathlib import Path
 import sonnet_corpus.sonnet_audit_batch as batch_module
 
 
-def test_default_batch_excludes_the_core_incompatible_belli_collection():
-    assert "ws_belli_sonetti_romaneschi" not in batch_module.REMAINING_SOURCE_AUDIT_IDS
+def test_default_batch_contains_only_the_approved_core_cohort():
+    assert batch_module.CORE_COHORT_AUDIT_IDS == (
+        "ws_andreini_rime_1601",
+        "ws_colonna_rime_1760",
+        "ws_stampa_rime_1913",
+        "ws_ariosto_rime_varie_1857",
+        "ws_sannazaro_rime_disperse",
+    )
+    assert "ws_belli_sonetti_romaneschi" not in batch_module.CORE_COHORT_AUDIT_IDS
 
 
 def test_batch_writes_a_summary_and_continues_after_a_source_error(
     tmp_path: Path, monkeypatch
 ):
     source_ids = ("first", "second", "third")
-    monkeypatch.setattr(batch_module, "REMAINING_SOURCE_AUDIT_IDS", source_ids)
+    monkeypatch.setattr(batch_module, "CORE_COHORT_AUDIT_IDS", source_ids)
 
     def fake_probe(**kwargs):
         if kwargs["source_id"] == "second":
@@ -20,6 +27,7 @@ def test_batch_writes_a_summary_and_continues_after_a_source_error(
         return {
             "activation_status": "audit_then_include",
             "page_count": 3,
+            "candidate_count": 3,
             "candidate_status_counts": {"eligible_14_lines": 3},
         }
 

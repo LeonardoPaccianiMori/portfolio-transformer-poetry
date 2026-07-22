@@ -161,6 +161,55 @@ def test_select_work_subpage_titles_excludes_editorial_subtrees():
     ]
 
 
+def test_select_work_subpage_titles_can_limit_a_collection_to_approved_prefixes():
+    discovered_titles = [
+        "Rime (Andreini)/Frontespizio",
+        "Rime (Andreini)/Sonetto I",
+        "Rime (Andreini)/Sonetti CLXXI-CLXXII",
+        "Rime (Andreini)/Canzone I",
+    ]
+
+    selected = select_work_subpage_titles(
+        discovered_titles,
+        selected_titles=None,
+        included_prefixes=("Rime (Andreini)/Sonetto", "Rime (Andreini)/Sonetti"),
+    )
+
+    assert selected == [
+        "Rime (Andreini)/Sonetto I",
+        "Rime (Andreini)/Sonetti CLXXI-CLXXII",
+    ]
+
+
+def test_fetch_collection_can_select_direct_root_text_links():
+    root_title = "Rime disperse"
+    first_poem = "I: Mai non vo' più cantar"
+    second_poem = "II: Epitafio"
+    revisions = {
+        root_title: (100, "2026-07-22T10:00:00Z"),
+        first_poem: (101, "2026-07-22T10:01:00Z"),
+        second_poem: (102, "2026-07-22T10:02:00Z"),
+    }
+    rendered_html = {
+        100: (
+            f'<div class="mw-parser-output"><a title="{first_poem}">first</a>'
+            f'<a title="{second_poem}">second</a></div>'
+        ),
+        101: '<div class="mw-parser-output"><div class="poem">First poem.</div></div>',
+        102: '<div class="mw-parser-output"><div class="poem">Second poem.</div></div>',
+    }
+
+    collection = fetch_italian_wikisource_page_collection(
+        "https://example.test/rime-disperse",
+        expected_title=root_title,
+        direct_text_links=True,
+        request_delay=0,
+        session=FakeSession(revisions, rendered_html),
+    )
+
+    assert [page.revision.title for page in collection.pages] == [first_poem, second_poem]
+
+
 def test_select_work_subpage_titles_rejects_an_empty_filtered_scope():
     with pytest.raises(ValueError, match="selected no primary-text subpages"):
         select_work_subpage_titles(

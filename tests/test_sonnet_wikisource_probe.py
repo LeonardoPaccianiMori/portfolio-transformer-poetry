@@ -13,6 +13,7 @@ from sonnet_corpus.italian_wikisource import (
 from sonnet_corpus.sonnet_wikisource_probe import (
     SONNET_COLLECTION_EXPECTATIONS,
     candidate_status,
+    extract_sonnet_candidate_segments,
     normalize_poem_for_duplicate_check,
     probe_sonnet_wikisource_source,
     read_sonnet_source_manifest,
@@ -246,6 +247,63 @@ def test_remaining_source_expectations_record_the_verified_traversal_and_audit_p
     assert belli.audit_status == "audit_only_auxiliary"
     assert aretino.retain_text_samples is False
     assert aretino.audit_status == "audit_only_explicit_content"
+
+
+def test_core_cohort_expectations_record_bounded_audit_scopes():
+    andreini = SONNET_COLLECTION_EXPECTATIONS["ws_andreini_rime_1601"]
+    colonna = SONNET_COLLECTION_EXPECTATIONS["ws_colonna_rime_1760"]
+    stampa = SONNET_COLLECTION_EXPECTATIONS["ws_stampa_rime_1913"]
+    ariosto = SONNET_COLLECTION_EXPECTATIONS["ws_ariosto_rime_varie_1857"]
+    sannazaro = SONNET_COLLECTION_EXPECTATIONS["ws_sannazaro_rime_disperse"]
+
+    assert andreini.root_page_title == "Rime (Andreini)"
+    assert andreini.included_subpage_prefixes == (
+        "Rime (Andreini)/Sonetto",
+        "Rime (Andreini)/Sonetti",
+    )
+    assert colonna.included_subpage_prefixes == ("Rime (Vittoria Colonna)/Sonetto",)
+    assert stampa.root_page_title == "Rime (Stampa)"
+    assert ariosto.included_subpage_prefixes == (
+        "Opere minori (Ariosto)/Rime varie/Sonetto",
+    )
+    assert sannazaro.root_page_title == "Rime disperse"
+    assert sannazaro.direct_root_text_links is True
+
+
+def test_andreini_paired_page_split_uses_printed_sonnet_headings_only():
+    first_lines = "<br>".join(f"First line {index}" for index in range(1, 15))
+    second_first_half = "<br>".join(f"Second line {index}" for index in range(1, 8))
+    second_last_half = "<br>".join(f"Second line {index}" for index in range(8, 15))
+    html = f"""
+    <div class="mw-parser-output">
+      <div class="prp-pages-output">
+        <div class="centertext">SONETTO CLXXI.</div>
+        <div class="poem">{first_lines}</div>
+        <div class="centertext">Risposta.</div>
+        <div class="centertext">SONETTO CLXXII.</div>
+        <div class="poem">{second_first_half}</div>
+        <div class="prp-pagebreak"></div>
+        <div class="poem">{second_last_half}</div>
+      </div>
+    </div>
+    """
+
+    segments = extract_sonnet_candidate_segments(
+        source_id="ws_andreini_rime_1601",
+        page_title="Rime (Andreini)/Sonetti CLXXI-CLXXII",
+        html=html,
+    )
+
+    assert [(segment.index, segment.label) for segment in segments] == [
+        (1, "SONETTO CLXXI"),
+        (2, "SONETTO CLXXII"),
+    ]
+    assert segments[0].raw_text.splitlines() == [
+        f"First line {index}" for index in range(1, 15)
+    ]
+    assert segments[1].raw_text.splitlines() == [
+        f"Second line {index}" for index in range(1, 15)
+    ]
 
 
 def test_probe_records_bibliographic_record_provenance_for_an_edition_page(tmp_path: Path):

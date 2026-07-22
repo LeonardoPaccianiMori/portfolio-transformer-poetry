@@ -11,9 +11,12 @@ from collections.abc import Callable
 from .sonnet_wikisource_probe import probe_sonnet_wikisource_source
 
 
-REMAINING_SOURCE_AUDIT_IDS = (
-    "ws_varchi_infermita",
-    "ws_aretino_sonetti_lussuriosi_1792",
+CORE_COHORT_AUDIT_IDS = (
+    "ws_andreini_rime_1601",
+    "ws_colonna_rime_1760",
+    "ws_stampa_rime_1913",
+    "ws_ariosto_rime_varie_1857",
+    "ws_sannazaro_rime_disperse",
 )
 
 
@@ -36,12 +39,12 @@ def run_remaining_sonnet_source_audits(
     started_at = utc_now()
     results: list[dict[str, object]] = []
     reports_directory.mkdir(parents=True, exist_ok=True)
-    for index, source_id in enumerate(REMAINING_SOURCE_AUDIT_IDS, start=1):
+    for index, source_id in enumerate(CORE_COHORT_AUDIT_IDS, start=1):
         report_path = reports_directory / f"{source_id}_probe.json"
         started = monotonic()
         _write_progress(
             progress,
-            f"starting source {index}/{len(REMAINING_SOURCE_AUDIT_IDS)}: {source_id}",
+            f"starting source {index}/{len(CORE_COHORT_AUDIT_IDS)}: {source_id}",
         )
         try:
             report = probe_sonnet_wikisource_source(
@@ -67,6 +70,7 @@ def run_remaining_sonnet_source_audits(
                 "status": "ok",
                 "activation_status": report["activation_status"],
                 "page_count": report["page_count"],
+                "candidate_count": report["candidate_count"],
                 "candidate_status_counts": report["candidate_status_counts"],
                 "report_path": portable_path(report_path, repo_root),
                 "elapsed_seconds": round(monotonic() - started, 1),
@@ -74,13 +78,14 @@ def run_remaining_sonnet_source_audits(
             _write_progress(
                 progress,
                 f"source complete: {source_id} pages={report['page_count']} "
+                f"candidates={report['candidate_count']} "
                 f"elapsed={outcome['elapsed_seconds']:.1f}s",
             )
         results.append(outcome)
 
     summary = {
         "started_at_utc": started_at,
-        "source_ids": list(REMAINING_SOURCE_AUDIT_IDS),
+        "source_ids": list(CORE_COHORT_AUDIT_IDS),
         "request_delay_seconds": request_delay,
         "results": results,
         "finished_at_utc": utc_now(),

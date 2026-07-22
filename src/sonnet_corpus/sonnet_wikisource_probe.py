@@ -12,6 +12,8 @@ from dataclasses import asdict, dataclass
 from datetime import UTC, datetime
 from pathlib import Path
 
+from bs4 import BeautifulSoup, Tag
+
 from .cleaning import clean_poem_text, count_poem_lines
 from .italian_wikisource import (
     FetchedItalianWikisourcePageCollection,
@@ -49,7 +51,9 @@ class SonnetCollectionExpectation:
     expected_last_subpage: str = ""
     explicit_page_titles: tuple[str, ...] = ()
     edition_page_title_suffix: str = ""
+    included_subpage_prefixes: tuple[str, ...] = ()
     excluded_subpage_prefixes: tuple[str, ...] = ()
+    direct_root_text_links: bool = False
     index_page_titles: tuple[str, ...] = ()
     two_level_leaf_link_mode: str = "nested_subpages"
     retain_text_samples: bool = True
@@ -90,6 +94,28 @@ SONNET_COLLECTION_EXPECTATIONS = {
             "Sonetti per la infermità, e guarigione di Cosimo I dei Medici/Avviso dell'editore",
             "Sonetti per la infermità, e guarigione di Cosimo I dei Medici/Dedica",
         ),
+    ),
+    "ws_andreini_rime_1601": SonnetCollectionExpectation(
+        root_page_title="Rime (Andreini)",
+        included_subpage_prefixes=(
+            "Rime (Andreini)/Sonetto",
+            "Rime (Andreini)/Sonetti",
+        ),
+    ),
+    "ws_colonna_rime_1760": SonnetCollectionExpectation(
+        root_page_title="Rime (Vittoria Colonna)",
+        included_subpage_prefixes=("Rime (Vittoria Colonna)/Sonetto",),
+    ),
+    "ws_stampa_rime_1913": SonnetCollectionExpectation(
+        root_page_title="Rime (Stampa)",
+    ),
+    "ws_ariosto_rime_varie_1857": SonnetCollectionExpectation(
+        root_page_title="Opere minori (Ariosto)/Rime varie",
+        included_subpage_prefixes=("Opere minori (Ariosto)/Rime varie/Sonetto",),
+    ),
+    "ws_sannazaro_rime_disperse": SonnetCollectionExpectation(
+        root_page_title="Rime disperse",
+        direct_root_text_links=True,
     ),
     "ws_belli_sonetti_romaneschi": SonnetCollectionExpectation(
         root_page_title="Sonetti romaneschi",
@@ -179,48 +205,61 @@ def probe_sonnet_wikisource_source(
             expected_last_subpage=expectation.expected_last_subpage,
             explicit_page_titles=list(expectation.explicit_page_titles) or None,
             edition_page_title_suffix=expectation.edition_page_title_suffix or None,
+            included_subpage_prefixes=expectation.included_subpage_prefixes,
             excluded_subpage_prefixes=expectation.excluded_subpage_prefixes,
+            direct_text_links=expectation.direct_root_text_links,
             request_delay=request_delay,
             progress=progress,
         )
 
     candidates: list[dict[str, object]] = []
     for page in collection.pages:
-        raw_text = extract_poem_text(page.html)
-        cleaned_text = clean_poem_text(raw_text)
-        duplicate_ids = active_texts.get(normalize_poem_for_duplicate_check(cleaned_text), [])
-        line_count_clean = count_poem_lines(cleaned_text)
-        status = candidate_status(
-            raw_text=raw_text,
-            line_count_clean=line_count_clean,
-            duplicate_ids=duplicate_ids,
+        segments = extract_sonnet_candidate_segments(
+            source_id=source.source_id,
+            page_title=page.revision.title,
+            html=page.html,
         )
-        candidate: dict[str, object] = {
-            "page_title": page.revision.title,
-            "page_url": url_from_title(page.revision.title),
-            "revision_id": page.revision.revision_id,
-            "revision_timestamp": page.revision.revision_timestamp,
-            "raw_character_count": len(raw_text),
-            "cleaned_character_count": len(cleaned_text.strip()),
-            "line_count_raw": count_poem_lines(raw_text),
-            "line_count_clean": line_count_clean,
-            "status": status,
-            "exact_active_duplicate_poem_ids": duplicate_ids,
-            "cleaned_text_sha256": hashlib.sha256(
-                cleaned_text.encode("utf-8")
-            ).hexdigest(),
-        }
-        if expectation.retain_text_samples:
-            candidate["first_characters"] = bounded_sample(cleaned_text, from_end=False)
-            candidate["last_characters"] = bounded_sample(cleaned_text, from_end=True)
-        if page.source_record_revision is not None:
-            candidate["source_record"] = {
-                "page_title": page.source_record_revision.title,
-                "page_url": url_from_title(page.source_record_revision.title),
-                "revision_id": page.source_record_revision.revision_id,
-                "revision_timestamp": page.source_record_revision.revision_timestamp,
+        for segment in segments:
+            cleaned_text = clean_poem_text(segment.raw_text)
+            duplicate_ids = active_texts.get(
+                normalize_poem_for_duplicate_check(cleaned_text), []
+            )
+            line_count_clean = count_poem_lines(cleaned_text)
+            status = candidate_status(
+                raw_text=segment.raw_text,
+                line_count_clean=line_count_clean,
+                duplicate_ids=duplicate_ids,
+            )
+            candidate: dict[str, object] = {
+                "page_title": page.revision.title,
+                "page_url": url_from_title(page.revision.title),
+                "revision_id": page.revision.revision_id,
+                "revision_timestamp": page.revision.revision_timestamp,
+                "segment_index": segment.index,
+                "segment_label": segment.label,
+                "raw_character_count": len(segment.raw_text),
+                "cleaned_character_count": len(cleaned_text.strip()),
+                "line_count_raw": count_poem_lines(segment.raw_text),
+                "line_count_clean": line_count_clean,
+                "status": status,
+                "exact_active_duplicate_poem_ids": duplicate_ids,
+                "cleaned_text_sha256": hashlib.sha256(
+                    cleaned_text.encode("utf-8")
+                ).hexdigest(),
             }
-        candidates.append(candidate)
+            if expectation.retain_text_samples:
+                candidate["first_characters"] = bounded_sample(
+                    cleaned_text, from_end=False
+                )
+                candidate["last_characters"] = bounded_sample(cleaned_text, from_end=True)
+            if page.source_record_revision is not None:
+                candidate["source_record"] = {
+                    "page_title": page.source_record_revision.title,
+                    "page_url": url_from_title(page.source_record_revision.title),
+                    "revision_id": page.source_record_revision.revision_id,
+                    "revision_timestamp": page.source_record_revision.revision_timestamp,
+                }
+            candidates.append(candidate)
 
     status_counts = Counter(str(candidate["status"]) for candidate in candidates)
     report = {
@@ -232,7 +271,8 @@ def probe_sonnet_wikisource_source(
         "edition_page_title_suffix": expectation.edition_page_title_suffix or None,
         "root_revision": asdict(collection.root_revision),
         "index_revisions": [asdict(revision) for revision in collection.index_revisions],
-        "page_count": len(candidates),
+        "page_count": len(collection.pages),
+        "candidate_count": len(candidates),
         "candidate_status_counts": dict(sorted(status_counts.items())),
         "candidates": candidates,
         "finished_at_utc": utc_now(),
@@ -244,6 +284,89 @@ def probe_sonnet_wikisource_source(
     )
     _write_progress(progress, f"wrote inspection report: {report_path}")
     return report
+
+
+@dataclass(frozen=True)
+class SonnetCandidateSegment:
+    """One candidate poem extracted from an audited Wikisource page."""
+
+    index: int
+    label: str
+    raw_text: str
+
+
+def extract_sonnet_candidate_segments(
+    *, source_id: str, page_title: str, html: str
+) -> list[SonnetCandidateSegment]:
+    """Return page text, splitting only Andreini pages with two printed sonnets."""
+
+    if (
+        source_id == "ws_andreini_rime_1601"
+        and is_andreini_paired_sonnet_page(page_title)
+    ):
+        return extract_andreini_paired_sonnet_segments(html)
+    return [
+        SonnetCandidateSegment(index=1, label="", raw_text=extract_poem_text(html))
+    ]
+
+
+def is_andreini_paired_sonnet_page(page_title: str) -> bool:
+    """Identify paired Andreini index pages without guessing text boundaries."""
+
+    return re.search(r"/Sonetti [IVXLCDM]+-[IVXLCDM]+$", page_title) is not None
+
+
+def extract_andreini_paired_sonnet_segments(html: str) -> list[SonnetCandidateSegment]:
+    """Split an Andreini paired page at its printed ``SONETTO`` headings only."""
+
+    soup = BeautifulSoup(html, "html.parser")
+    root = soup.select_one(".mw-parser-output")
+    page_output = root.select_one(".prp-pages-output") if root is not None else None
+    if page_output is None:
+        raise ValueError("paired Andreini page is missing its scan-page output")
+
+    segments: list[SonnetCandidateSegment] = []
+    label = ""
+    poem_blocks: list[str] = []
+    for element in page_output.find_all(recursive=False):
+        if not isinstance(element, Tag):
+            continue
+        if "centertext" in element.get("class", []):
+            heading = " ".join(element.get_text(" ", strip=True).split())
+            if re.fullmatch(r"SONETTO\s+[IVXLCDM]+\.", heading):
+                if label:
+                    segments.append(
+                        SonnetCandidateSegment(
+                            index=len(segments) + 1,
+                            label=label,
+                            raw_text=extract_poem_text(
+                                "<div class='mw-parser-output'>"
+                                + "".join(poem_blocks)
+                                + "</div>"
+                            ),
+                        )
+                    )
+                label = heading.removesuffix(".")
+                poem_blocks = []
+                continue
+        if "poem" in element.get("class", []) and label:
+            poem_blocks.append(str(element))
+
+    if label:
+        segments.append(
+            SonnetCandidateSegment(
+                index=len(segments) + 1,
+                label=label,
+                raw_text=extract_poem_text(
+                    "<div class='mw-parser-output'>"
+                    + "".join(poem_blocks)
+                    + "</div>"
+                ),
+            )
+        )
+    if len(segments) != 2 or any(not segment.raw_text for segment in segments):
+        raise ValueError("paired Andreini page did not yield exactly two headed poems")
+    return segments
 
 
 def read_sonnet_source_manifest(path: Path) -> list[SonnetWikisourceSource]:
