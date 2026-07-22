@@ -61,6 +61,24 @@ ACTIVATED_SOURCE_METADATA = {
         period="XIX secolo",
         poem_id_prefix="foscolo",
     ),
+    "ws_varchi_infermita": ActivatedSourceMetadata(
+        source_id="ws_varchi_infermita",
+        author="Benedetto Varchi",
+        source_archive="Italian Wikisource",
+        source_collection="Sonetti per la infermità, e guarigione di Cosimo I dei Medici",
+        source_edition=(
+            "Sonetti di mess. Benedetto Varchi per la infermità, e guarigione "
+            "di Cosimo I dei Medici, Firenze, per il Magheri, 1821; original "
+            "sonnets dated 1563."
+        ),
+        license_notes=(
+            "CC BY-SA 3.0 / GFDL metadata on Italian Wikisource; retain page "
+            "URL, author Benedetto Varchi, source scan Indice:Varchi - "
+            "Sonetti.pdf, license links, and share-alike notice."
+        ),
+        period="XVI secolo",
+        poem_id_prefix="varchi",
+    ),
 }
 
 
@@ -164,12 +182,28 @@ def build_sonnets_expanded(
         raise ValueError("snapshot metadata source ID does not match page snapshot")
 
     output_root = repo_root / "data" / "processed" / output_dataset_id
-    output_poems_dir = output_root / "poems"
     output_manifest_path = repo_root / "data" / "metadata" / f"{output_dataset_id}_manifest.csv"
     output_report_path = repo_root / "data" / "metadata" / f"{output_dataset_id}_build_report.json"
     output_attribution_path = repo_root / "data" / "metadata" / f"{output_dataset_id}_attribution.md"
-    if output_root.exists() or output_manifest_path.exists():
-        raise FileExistsError(f"versioned corpus already exists: {output_dataset_id}")
+    output_paths = (
+        output_root,
+        output_manifest_path,
+        output_report_path,
+        output_attribution_path,
+    )
+    prepare_output_destination(output_dataset_id, output_paths)
+    staging_root = repo_root / "data" / "interim" / f"{output_dataset_id}_build"
+    staging_poems_dir = staging_root / "poems"
+    staging_manifest_path = repo_root / "data" / "interim" / f"{output_dataset_id}_manifest.csv"
+    staging_report_path = repo_root / "data" / "interim" / f"{output_dataset_id}_build_report.json"
+    staging_attribution_path = repo_root / "data" / "interim" / f"{output_dataset_id}_attribution.md"
+    staging_paths = (
+        staging_root,
+        staging_manifest_path,
+        staging_report_path,
+        staging_attribution_path,
+    )
+    cleanup_paths(staging_paths)
 
     base_rows = [row for row in read_manifest_rows(base_manifest_path) if row.include_in_training]
     if not base_rows:
@@ -179,8 +213,8 @@ def build_sonnets_expanded(
 
     try:
         _write_progress(progress, f"copying {len(base_rows)} base processed poems")
-        output_poems_dir.mkdir(parents=True)
-        copied_rows = copy_base_rows(base_rows, repo_root, output_poems_dir)
+        staging_poems_dir.mkdir(parents=True)
+        copied_rows = copy_base_rows(base_rows, repo_root, staging_poems_dir)
 
         _write_progress(progress, f"rendering {len(snapshot.page_revisions)} approved pinned source pages")
         collection = fetch_collection(
@@ -194,13 +228,25 @@ def build_sonnets_expanded(
         source_rows = build_source_rows(
             collection=collection,
             metadata=metadata,
-            output_poems_dir=output_poems_dir,
+            output_poems_dir=staging_poems_dir,
             repo_root=repo_root,
             duplicate_index=duplicate_index,
         )
-        combined_rows = copied_rows + source_rows
-        write_manifest(combined_rows, output_manifest_path)
-        write_attribution(output_attribution_path, output_dataset_id, metadata, snapshot, source_rows)
+        combined_rows = retarget_clean_text_paths(
+            copied_rows + source_rows,
+            old_root=staging_root,
+            new_root=output_root,
+            repo_root=repo_root,
+        )
+        published_source_rows = combined_rows[len(copied_rows) :]
+        write_manifest(combined_rows, staging_manifest_path)
+        write_attribution(
+            staging_attribution_path,
+            output_dataset_id,
+            metadata,
+            snapshot,
+            published_source_rows,
+        )
         report = {
             "dataset_id": output_dataset_id,
             "started_at_utc": started_at,
@@ -212,18 +258,21 @@ def build_sonnets_expanded(
             "total_poem_count": len(combined_rows),
             "split_counts": split_counts(combined_rows),
         }
-        output_report_path.write_text(
+        staging_report_path.write_text(
             json.dumps(report, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
         )
+        output_root.parent.mkdir(parents=True, exist_ok=True)
+        staging_root.replace(output_root)
+        staging_manifest_path.replace(output_manifest_path)
+        staging_report_path.replace(output_report_path)
+        staging_attribution_path.replace(output_attribution_path)
         delete_temporary_workspaces(repo_root)
         _write_progress(progress, f"wrote versioned corpus: {output_dataset_id}")
         return report
     except Exception:
-        shutil.rmtree(output_root, ignore_errors=True)
-        output_manifest_path.unlink(missing_ok=True)
-        output_report_path.unlink(missing_ok=True)
-        output_attribution_path.unlink(missing_ok=True)
+        cleanup_paths(output_paths)
+        cleanup_paths(staging_paths)
         raise
 
 
@@ -321,6 +370,54 @@ def copy_base_rows(
             )
         )
     return copied
+
+
+def retarget_clean_text_paths(
+    rows: list[ManifestRow],
+    *,
+    old_root: Path,
+    new_root: Path,
+    repo_root: Path,
+) -> list[ManifestRow]:
+    """Retarget staged text paths to their final published corpus directory."""
+
+    old_relative_root = old_root.relative_to(repo_root)
+    new_relative_root = new_root.relative_to(repo_root)
+    retargeted: list[ManifestRow] = []
+    for row in rows:
+        old_path = Path(row.clean_text_path)
+        try:
+            suffix = old_path.relative_to(old_relative_root)
+        except ValueError as error:
+            raise ValueError(
+                "staged manifest row does not point inside the staged corpus: "
+                f"{row.clean_text_path}"
+            ) from error
+        retargeted.append(
+            replace(row, clean_text_path=str(new_relative_root / suffix))
+        )
+    return retargeted
+
+
+def prepare_output_destination(output_dataset_id: str, paths: tuple[Path, ...]) -> None:
+    """Reject a completed dataset and remove only an incomplete prior attempt."""
+
+    existing_paths = [path for path in paths if path.exists()]
+    if not existing_paths:
+        return
+    if len(existing_paths) == len(paths):
+        raise FileExistsError(f"versioned corpus already exists: {output_dataset_id}")
+    cleanup_paths(paths)
+
+
+def cleanup_paths(paths: tuple[Path, ...]) -> None:
+    """Remove explicit failed-build paths without touching other project data."""
+
+    for path in paths:
+        if path.is_dir():
+            shutil.rmtree(path, ignore_errors=True)
+        else:
+            path.unlink(missing_ok=True)
 
 
 def build_source_rows(

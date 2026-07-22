@@ -8,6 +8,7 @@ from sonnet_corpus.italian_wikisource import (
 )
 from sonnet_corpus.manifest import ManifestRow, write_manifest
 from sonnet_corpus.sonnet_expansion_build import (
+    ACTIVATED_SOURCE_METADATA,
     build_sonnets_expanded,
     build_sonnets_expanded_v2,
     create_sonnet_source_snapshot,
@@ -181,6 +182,16 @@ def test_snapshot_keeps_only_reviewed_eligible_non_duplicate_pages(tmp_path: Pat
     assert snapshot["audit_report"]["eligible_sonnet_count"] == 1
 
 
+def test_varchi_activation_metadata_records_the_audited_edition_and_license():
+    metadata = ACTIVATED_SOURCE_METADATA["ws_varchi_infermita"]
+
+    assert metadata.author == "Benedetto Varchi"
+    assert metadata.source_edition.endswith("original sonnets dated 1563.")
+    assert "Firenze, per il Magheri, 1821" in metadata.source_edition
+    assert metadata.license_notes.startswith("CC BY-SA 3.0 / GFDL")
+    assert metadata.poem_id_prefix == "varchi"
+
+
 def test_versioned_build_copies_only_active_base_poems_and_adds_pinned_alfieri(tmp_path: Path):
     base_manifest_path = tmp_path / "data/metadata/poems_manifest.csv"
     base_poem_path = tmp_path / "data/processed/poems/base.txt"
@@ -229,6 +240,47 @@ def test_versioned_build_copies_only_active_base_poems_and_adds_pinned_alfieri(t
     assert rows[1].include_in_core_pre_petrarch is False
     assert rows[1].include_in_expanded_with_petrarch is True
     assert not temporary_dir.exists()
+
+
+def test_versioned_build_recovers_an_incomplete_prior_attempt(tmp_path: Path):
+    base_manifest_path = tmp_path / "data/metadata/poems_manifest.csv"
+    base_poem_path = tmp_path / "data/processed/poems/base.txt"
+    base_poem_path.parent.mkdir(parents=True)
+    base_poem_path.write_text("base line\n", encoding="utf-8")
+    write_manifest(
+        [
+            make_manifest_row(
+                "base_active",
+                include=True,
+                clean_text_path="data/processed/poems/base.txt",
+            )
+        ],
+        base_manifest_path,
+    )
+    incomplete_path = tmp_path / "data/processed/sonnets_expanded_v2/poems/partial.txt"
+    incomplete_path.parent.mkdir(parents=True)
+    incomplete_path.write_text("partial", encoding="utf-8")
+    audit_path = tmp_path / "audit.json"
+    snapshot_path = tmp_path / "data/metadata/wikisource_snapshots/ws_alfieri_rime_1912.json"
+    write_audit_report(audit_path)
+    create_sonnet_source_snapshot(
+        audit_report_path=audit_path,
+        snapshot_path=snapshot_path,
+        source_id="ws_alfieri_rime_1912",
+    )
+
+    build_sonnets_expanded_v2(
+        repo_root=tmp_path,
+        base_manifest_path=base_manifest_path,
+        snapshot_path=snapshot_path,
+        request_delay=0,
+        fetch_collection=lambda *args, **kwargs: make_collection(),
+    )
+
+    assert not (tmp_path / "data/processed/sonnets_expanded_v2/poems/partial.txt").exists()
+    rows = read_manifest_rows(tmp_path / "data/metadata/sonnets_expanded_v2_manifest.csv")
+    assert all("sonnets_expanded_v2_build" not in row.clean_text_path for row in rows)
+    assert all((tmp_path / row.clean_text_path).is_file() for row in rows)
 
 
 def test_versioned_build_supports_an_edition_page_snapshot_for_foscolo(tmp_path: Path):

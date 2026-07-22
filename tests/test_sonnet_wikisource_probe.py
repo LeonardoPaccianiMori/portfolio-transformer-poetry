@@ -140,7 +140,7 @@ def test_committed_source_manifest_preserves_the_activated_alfieri_record():
     assert source.landing_page_url.endswith("Rime_varie_(Alfieri,_1912)")
 
 
-def test_committed_source_manifest_keeps_varchi_url_and_status_in_their_columns():
+def test_committed_source_manifest_records_the_activated_varchi_source():
     manifest_path = Path("data/metadata/sonnet_expansion_sources_manifest.csv")
 
     source = next(
@@ -149,7 +149,7 @@ def test_committed_source_manifest_keeps_varchi_url_and_status_in_their_columns(
         if row.source_id == "ws_varchi_infermita"
     )
 
-    assert source.status == "audit_then_include"
+    assert source.status == "activated"
     assert source.landing_page_url.endswith("Cosimo_I_dei_Medici")
 
 

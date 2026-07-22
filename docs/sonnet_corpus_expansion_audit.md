@@ -2,7 +2,7 @@
 
 ## Purpose and Decision Boundary
 
-The active `sonnets_expanded_v3` corpus contains 978 included poems. Its author
+The active `sonnets_expanded_v4` corpus contains 1,011 included poems. Its author
 distribution is concentrated: Francesco Petrarca
 contributes 313 poems and Guittone d'Arezzo contributes 210. This is useful
 historical material, but it is too small and too concentrated to be the final
@@ -42,7 +42,8 @@ alone will make a 33.7M-parameter model coherent.
 | Other displayed correspondence authors | 5 |
 | Vittorio Alfieri | 45 |
 | Ugo Foscolo | 12 |
-| **Total** | **978** |
+| Benedetto Varchi | 33 |
+| **Total** | **1,011** |
 
 The existing corpus uses Italian Wikisource pages with source URL, edition
 notes, and license notes stored for every poem in
@@ -58,7 +59,7 @@ The machine-readable counterpart is
 | --- | --- | --- | --- | --- |
 | `ws_alfieri_rime_1912` | Vittorio Alfieri, *Rime varie* (1912 edition) | Core | `activated` | The 195-page revision-pinned audit retained 45 exact 14-line sonnets and excluded 150 other-form or multi-poem pages. No retained poem is an exact duplicate of the active v1 corpus. The parallel 1903 edition is excluded to prevent duplicate poems. [Source](https://it.wikisource.org/wiki/Rime_varie_(Alfieri,_1912)) |
 | `ws_foscolo_sonetti` | Ugo Foscolo, *Sonetti* | Core | `activated` | The revision-pinned 1835-edition audit retained all 12 exact 14-line pages, which are active in `sonnets_expanded_v3`. [Source](https://it.wikisource.org/wiki/Sonetti_(Foscolo)) |
-| `ws_varchi_infermita` | Benedetto Varchi, *Sonetti per la infermità, e guarigione di Cosimo I dei Medici* | Core | `audit_then_include` | The revision-pinned audit found 33 exact 14-line candidates and no exact duplicates in the active v3 corpus. Activation remains a separate versioned-build decision. [Source](https://it.wikisource.org/wiki/Sonetti_per_la_infermit%C3%A0,_e_guarigione_di_Cosimo_I_dei_Medici) |
+| `ws_varchi_infermita` | Benedetto Varchi, *Sonetti per la infermità, e guarigione di Cosimo I dei Medici* | Core | `activated` | The revision-pinned audit retained 33 exact 14-line, non-duplicate poems. The 1821 Magheri edition is active in `sonnets_expanded_v4`, with root and page revisions recorded in the committed snapshot. [Source](https://it.wikisource.org/wiki/Sonetti_per_la_infermit%C3%A0,_e_guarigione_di_Cosimo_I_dei_Medici) |
 | `ws_belli_sonetti_romaneschi` | Giuseppe Gioachino Belli, *Sonetti romaneschi* | Auxiliary dialectal | `excluded_from_core_language_variety` | The approximately 2,042 Romanesco texts would form about 68% of a combined 3,020-poem v3-plus-Belli corpus, making dialectal language the dominant fine-tuning distribution. The page-level audit was stopped and the source is excluded from core training. It can be reconsidered only as a separately approved dialect-conditioned experiment. [Author page](https://it.wikisource.org/wiki/Autore:Giuseppe_Gioachino_Belli) [Collection](https://it.wikisource.org/wiki/Sonetti_romaneschi) |
 | `ws_aretino_sonetti_lussuriosi_1792` | Pietro Aretino, *Sonetti lussuriosi* (1792 edition) | Excluded from strict corpus | `audit_only_explicit_content` | All 26 audited pages failed the project's exact 14-line gate. They remain excluded, and the local audit report contains hashes and metadata but no text samples. [Source](https://it.wikisource.org/wiki/Sonetti_lussuriosi_(edizione_1792)) |
 | `biblioteca_italiana_tei_poetry` | Biblioteca Italiana TEI poetry collections | Core candidate | `blocked_pending_terms_and_access` | Biblioteca Italiana reports downloadable XML-TEI texts and broad literary coverage, which could allow high-quality poem segmentation. Direct access and the exact reuse terms for a chosen source must be confirmed before ingestion. [Library description](https://bibliodlcm.web.uniroma1.it/it/biblioteca-italiana) |
@@ -118,7 +119,8 @@ versioned builder copied the 921 active v1 poems and re-fetched only the 45
 committed source revisions. The resulting `sonnets_expanded_v2` dataset has
 966 processed poems with 772 train, 98 validation, and 96 test poems.
 
-The next scheduled corpus checkpoint is a versioned core build that adds the
-33 eligible Varchi sonnets to `sonnets_expanded_v3`. Belli is excluded from
-that build because Romanesco would dominate the resulting corpus. Aretino is
-excluded because none of its 26 audited pages passes the exact 14-line gate.
+The Varchi activation completed in `sonnets_expanded_v4`: it contains 1,011
+poems split into 809 train, 103 validation, and 99 test poems. Belli remains
+excluded because Romanesco would dominate a combined core corpus. Aretino
+remains excluded because none of its 26 audited pages passes the exact 14-line
+gate.
