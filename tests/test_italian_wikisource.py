@@ -181,6 +181,29 @@ def test_select_work_subpage_titles_can_limit_a_collection_to_approved_prefixes(
     ]
 
 
+def test_select_work_subpage_titles_can_include_a_nested_approved_subtree():
+    discovered_titles = [
+        "Rime (Vittoria Colonna)/Sonetto I",
+        "Rime (Vittoria Colonna)/Sonetti spirituali",
+        "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto I",
+        "Rime (Vittoria Colonna)/Canzone I",
+    ]
+
+    selected = select_work_subpage_titles(
+        discovered_titles,
+        selected_titles=None,
+        included_prefixes=(
+            "Rime (Vittoria Colonna)/Sonetto",
+            "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto",
+        ),
+    )
+
+    assert selected == [
+        "Rime (Vittoria Colonna)/Sonetto I",
+        "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto I",
+    ]
+
+
 def test_fetch_collection_can_select_direct_root_text_links():
     root_title = "Rime disperse"
     first_poem = "I: Mai non vo' più cantar"

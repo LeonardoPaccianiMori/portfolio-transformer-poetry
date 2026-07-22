@@ -261,7 +261,10 @@ def test_core_cohort_expectations_record_bounded_audit_scopes():
         "Rime (Andreini)/Sonetto",
         "Rime (Andreini)/Sonetti",
     )
-    assert colonna.included_subpage_prefixes == ("Rime (Vittoria Colonna)/Sonetto",)
+    assert colonna.included_subpage_prefixes == (
+        "Rime (Vittoria Colonna)/Sonetto",
+        "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto",
+    )
     assert stampa.root_page_title == "Rime (Stampa)"
     assert ariosto.included_subpage_prefixes == (
         "Opere minori (Ariosto)/Rime varie/Sonetto",

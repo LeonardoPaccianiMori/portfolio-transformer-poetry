@@ -104,7 +104,10 @@ SONNET_COLLECTION_EXPECTATIONS = {
     ),
     "ws_colonna_rime_1760": SonnetCollectionExpectation(
         root_page_title="Rime (Vittoria Colonna)",
-        included_subpage_prefixes=("Rime (Vittoria Colonna)/Sonetto",),
+        included_subpage_prefixes=(
+            "Rime (Vittoria Colonna)/Sonetto",
+            "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto",
+        ),
     ),
     "ws_stampa_rime_1913": SonnetCollectionExpectation(
         root_page_title="Rime (Stampa)",
