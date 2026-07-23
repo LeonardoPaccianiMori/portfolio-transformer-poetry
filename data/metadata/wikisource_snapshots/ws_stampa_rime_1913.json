@@ -1,0 +1,3701 @@
+{
+  "source_id": "ws_stampa_rime_1913",
+  "landing_page_url": "https://it.wikisource.org/wiki/Rime_(Stampa)",
+  "title": "Rime (Stampa)",
+  "scope": "explicit_subpages",
+  "root_revision": {
+    "title": "Rime (Stampa)",
+    "revision_id": 3752669,
+    "revision_timestamp": "2026-04-25T20:39:59Z"
+  },
+  "page_revisions": [
+    {
+      "title": "Rime (Stampa)/Rime d'amore/I",
+      "revision_id": 3752820,
+      "revision_timestamp": "2026-04-25T20:41:50Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/II",
+      "revision_id": 3752821,
+      "revision_timestamp": "2026-04-25T20:41:51Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/III",
+      "revision_id": 3752822,
+      "revision_timestamp": "2026-04-25T20:41:51Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/IV",
+      "revision_id": 3752823,
+      "revision_timestamp": "2026-04-25T20:41:52Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/V",
+      "revision_id": 3752865,
+      "revision_timestamp": "2026-04-25T20:42:27Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/VI",
+      "revision_id": 3752866,
+      "revision_timestamp": "2026-04-25T20:42:28Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/VII",
+      "revision_id": 3752867,
+      "revision_timestamp": "2026-04-25T20:42:28Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/VIII",
+      "revision_id": 3752868,
+      "revision_timestamp": "2026-04-25T20:42:29Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/IX",
+      "revision_id": 3752824,
+      "revision_timestamp": "2026-04-25T20:41:53Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/X",
+      "revision_id": 3752869,
+      "revision_timestamp": "2026-04-25T20:42:30Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XI",
+      "revision_id": 3752880,
+      "revision_timestamp": "2026-04-25T20:42:38Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XII",
+      "revision_id": 3752881,
+      "revision_timestamp": "2026-04-25T20:42:39Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XIII",
+      "revision_id": 3752882,
+      "revision_timestamp": "2026-04-25T20:42:40Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XIV",
+      "revision_id": 3752883,
+      "revision_timestamp": "2026-04-25T20:42:40Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XV",
+      "revision_id": 3752895,
+      "revision_timestamp": "2026-04-25T20:42:49Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XVI",
+      "revision_id": 3752896,
+      "revision_timestamp": "2026-04-25T20:42:49Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XVII",
+      "revision_id": 3752897,
+      "revision_timestamp": "2026-04-25T20:42:50Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XVIII",
+      "revision_id": 3752898,
+      "revision_timestamp": "2026-04-25T20:42:51Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XIX",
+      "revision_id": 3752884,
+      "revision_timestamp": "2026-04-25T20:42:41Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XX",
+      "revision_id": 3752899,
+      "revision_timestamp": "2026-04-25T20:42:51Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XXI",
+      "revision_id": 3752900,
+      "revision_timestamp": "2026-04-25T20:42:52Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XXII",
+      "revision_id": 3752901,
+      "revision_timestamp": "2026-04-25T20:42:53Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XXIII",
+      "revision_id": 3752902,
+      "revision_timestamp": "2026-04-25T20:42:53Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XXIV",
+      "revision_id": 3752903,
+      "revision_timestamp": "2026-04-25T20:42:54Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XXV",
+      "revision_id": 3752905,
+      "revision_timestamp": "2026-04-25T20:42:56Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XXVI",
+      "revision_id": 3752906,
+      "revision_timestamp": "2026-04-25T20:42:56Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XXVII",
+      "revision_id": 3752907,
+      "revision_timestamp": "2026-04-25T20:42:57Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XXVIII",
+      "revision_id": 3752908,
+      "revision_timestamp": "2026-04-25T20:42:58Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XXIX",
+      "revision_id": 3752904,
+      "revision_timestamp": "2026-04-25T20:42:55Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XXX",
+      "revision_id": 3752909,
+      "revision_timestamp": "2026-04-25T20:42:58Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XXXI",
+      "revision_id": 3752910,
+      "revision_timestamp": "2026-04-25T20:42:59Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XXXII",
+      "revision_id": 3752911,
+      "revision_timestamp": "2026-04-25T20:43:00Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XXXIII",
+      "revision_id": 3752912,
+      "revision_timestamp": "2026-04-25T20:43:01Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XXXIV",
+      "revision_id": 3752913,
+      "revision_timestamp": "2026-04-25T20:43:01Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XXXV",
+      "revision_id": 3752915,
+      "revision_timestamp": "2026-04-25T20:43:03Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XXXVI",
+      "revision_id": 3752916,
+      "revision_timestamp": "2026-04-25T20:43:03Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XXXVII",
+      "revision_id": 3752917,
+      "revision_timestamp": "2026-04-25T20:43:04Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XXXVIII",
+      "revision_id": 3752918,
+      "revision_timestamp": "2026-04-25T20:43:04Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XXXIX",
+      "revision_id": 3752914,
+      "revision_timestamp": "2026-04-25T20:43:02Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XL",
+      "revision_id": 3752885,
+      "revision_timestamp": "2026-04-25T20:42:42Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XLI",
+      "revision_id": 3752886,
+      "revision_timestamp": "2026-04-25T20:42:42Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XLII",
+      "revision_id": 3752887,
+      "revision_timestamp": "2026-04-25T20:42:43Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XLIII",
+      "revision_id": 3752888,
+      "revision_timestamp": "2026-04-25T20:42:44Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XLIV",
+      "revision_id": 3752889,
+      "revision_timestamp": "2026-04-25T20:42:44Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XLV",
+      "revision_id": 3752891,
+      "revision_timestamp": "2026-04-25T20:42:46Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XLVI",
+      "revision_id": 3752892,
+      "revision_timestamp": "2026-04-25T20:42:47Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XLVII",
+      "revision_id": 3752893,
+      "revision_timestamp": "2026-04-25T20:42:47Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XLVIII",
+      "revision_id": 3752894,
+      "revision_timestamp": "2026-04-25T20:42:48Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XLIX",
+      "revision_id": 3752890,
+      "revision_timestamp": "2026-04-25T20:42:45Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/L",
+      "revision_id": 3752825,
+      "revision_timestamp": "2026-04-25T20:41:54Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LI",
+      "revision_id": 3752826,
+      "revision_timestamp": "2026-04-25T20:41:54Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LII",
+      "revision_id": 3752827,
+      "revision_timestamp": "2026-04-25T20:41:55Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LIII",
+      "revision_id": 3752828,
+      "revision_timestamp": "2026-04-25T20:41:57Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LIV",
+      "revision_id": 3752829,
+      "revision_timestamp": "2026-04-25T20:41:58Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LV",
+      "revision_id": 3752831,
+      "revision_timestamp": "2026-04-25T20:42:00Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LVI",
+      "revision_id": 3752832,
+      "revision_timestamp": "2026-04-25T20:42:01Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LVII",
+      "revision_id": 3752833,
+      "revision_timestamp": "2026-04-25T20:42:02Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LVIII",
+      "revision_id": 3752834,
+      "revision_timestamp": "2026-04-25T20:42:03Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LIX",
+      "revision_id": 3752830,
+      "revision_timestamp": "2026-04-25T20:41:59Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LX",
+      "revision_id": 3752835,
+      "revision_timestamp": "2026-04-25T20:42:04Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXI",
+      "revision_id": 3752836,
+      "revision_timestamp": "2026-04-25T20:42:05Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXII",
+      "revision_id": 3752837,
+      "revision_timestamp": "2026-04-25T20:42:06Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXIII",
+      "revision_id": 3752838,
+      "revision_timestamp": "2026-04-25T20:42:07Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXIV",
+      "revision_id": 3752839,
+      "revision_timestamp": "2026-04-25T20:42:08Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXV",
+      "revision_id": 3752841,
+      "revision_timestamp": "2026-04-25T20:42:09Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXVI",
+      "revision_id": 3752842,
+      "revision_timestamp": "2026-04-25T20:42:10Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXVII",
+      "revision_id": 3752843,
+      "revision_timestamp": "2026-04-25T20:42:10Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXIX",
+      "revision_id": 3752840,
+      "revision_timestamp": "2026-04-25T20:42:08Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXX",
+      "revision_id": 3752845,
+      "revision_timestamp": "2026-04-25T20:42:12Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXXI",
+      "revision_id": 3752846,
+      "revision_timestamp": "2026-04-25T20:42:13Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXXII",
+      "revision_id": 3752847,
+      "revision_timestamp": "2026-04-25T20:42:14Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXXIII",
+      "revision_id": 3752848,
+      "revision_timestamp": "2026-04-25T20:42:14Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXXIV",
+      "revision_id": 3752849,
+      "revision_timestamp": "2026-04-25T20:42:15Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXXV",
+      "revision_id": 3752851,
+      "revision_timestamp": "2026-04-25T20:42:17Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXXVI",
+      "revision_id": 3752852,
+      "revision_timestamp": "2026-04-25T20:42:17Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXXVII",
+      "revision_id": 3752853,
+      "revision_timestamp": "2026-04-25T20:42:18Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXXVIII",
+      "revision_id": 3752854,
+      "revision_timestamp": "2026-04-25T20:42:19Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXXIX",
+      "revision_id": 3752850,
+      "revision_timestamp": "2026-04-25T20:42:16Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXXX",
+      "revision_id": 3752855,
+      "revision_timestamp": "2026-04-25T20:42:20Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXXXI",
+      "revision_id": 3752856,
+      "revision_timestamp": "2026-04-25T20:42:20Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXXXII",
+      "revision_id": 3752857,
+      "revision_timestamp": "2026-04-25T20:42:21Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXXXIII",
+      "revision_id": 3752858,
+      "revision_timestamp": "2026-04-25T20:42:22Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXXXIV",
+      "revision_id": 3752859,
+      "revision_timestamp": "2026-04-25T20:42:22Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXXXV",
+      "revision_id": 3752861,
+      "revision_timestamp": "2026-04-25T20:42:24Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXXXVI",
+      "revision_id": 3752862,
+      "revision_timestamp": "2026-04-25T20:42:25Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXXXVII",
+      "revision_id": 3752863,
+      "revision_timestamp": "2026-04-25T20:42:25Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXXXVIII",
+      "revision_id": 3752864,
+      "revision_timestamp": "2026-04-25T20:42:26Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/LXXXIX",
+      "revision_id": 3752860,
+      "revision_timestamp": "2026-04-25T20:42:23Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XC",
+      "revision_id": 3752870,
+      "revision_timestamp": "2026-04-25T20:42:31Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XCI",
+      "revision_id": 3752871,
+      "revision_timestamp": "2026-04-25T20:42:31Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XCII",
+      "revision_id": 3752872,
+      "revision_timestamp": "2026-04-25T20:42:32Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XCIII",
+      "revision_id": 3752873,
+      "revision_timestamp": "2026-04-25T20:42:33Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XCIV",
+      "revision_id": 3752874,
+      "revision_timestamp": "2026-04-25T20:42:34Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XCVI",
+      "revision_id": 3752877,
+      "revision_timestamp": "2026-04-25T20:42:36Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XCVII",
+      "revision_id": 3752878,
+      "revision_timestamp": "2026-04-25T20:42:37Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XCVIII",
+      "revision_id": 3752879,
+      "revision_timestamp": "2026-04-25T20:42:38Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/XCIX",
+      "revision_id": 3752875,
+      "revision_timestamp": "2026-04-25T20:42:34Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/C",
+      "revision_id": 3752672,
+      "revision_timestamp": "2026-04-25T20:40:04Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CI",
+      "revision_id": 3752720,
+      "revision_timestamp": "2026-04-25T20:40:39Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CII",
+      "revision_id": 3752721,
+      "revision_timestamp": "2026-04-25T20:40:40Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CIII",
+      "revision_id": 3752722,
+      "revision_timestamp": "2026-04-25T20:40:40Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CIV",
+      "revision_id": 3752723,
+      "revision_timestamp": "2026-04-25T20:40:41Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CV",
+      "revision_id": 3752766,
+      "revision_timestamp": "2026-04-25T20:41:11Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CVI",
+      "revision_id": 3752767,
+      "revision_timestamp": "2026-04-25T20:41:11Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CVII",
+      "revision_id": 3752768,
+      "revision_timestamp": "2026-04-25T20:41:12Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CIX",
+      "revision_id": 3752724,
+      "revision_timestamp": "2026-04-25T20:40:41Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CX",
+      "revision_id": 3752770,
+      "revision_timestamp": "2026-04-25T20:41:14Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXI",
+      "revision_id": 3752781,
+      "revision_timestamp": "2026-04-25T20:41:21Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXII",
+      "revision_id": 3752782,
+      "revision_timestamp": "2026-04-25T20:41:22Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXIII",
+      "revision_id": 3752783,
+      "revision_timestamp": "2026-04-25T20:41:23Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXIV",
+      "revision_id": 3752784,
+      "revision_timestamp": "2026-04-25T20:41:23Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXV",
+      "revision_id": 3752796,
+      "revision_timestamp": "2026-04-25T20:41:32Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXVI",
+      "revision_id": 3752797,
+      "revision_timestamp": "2026-04-25T20:41:33Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXVII",
+      "revision_id": 3752798,
+      "revision_timestamp": "2026-04-25T20:41:34Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXVIII",
+      "revision_id": 3752799,
+      "revision_timestamp": "2026-04-25T20:41:34Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXIX",
+      "revision_id": 3752785,
+      "revision_timestamp": "2026-04-25T20:41:24Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXX",
+      "revision_id": 3752800,
+      "revision_timestamp": "2026-04-25T20:41:35Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXXI",
+      "revision_id": 3752801,
+      "revision_timestamp": "2026-04-25T20:41:36Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXXII",
+      "revision_id": 3752802,
+      "revision_timestamp": "2026-04-25T20:41:37Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXXIII",
+      "revision_id": 3752803,
+      "revision_timestamp": "2026-04-25T20:41:37Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXXIV",
+      "revision_id": 3752804,
+      "revision_timestamp": "2026-04-25T20:41:38Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXXV",
+      "revision_id": 3752806,
+      "revision_timestamp": "2026-04-25T20:41:39Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXXVI",
+      "revision_id": 3752807,
+      "revision_timestamp": "2026-04-25T20:41:40Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXXVII",
+      "revision_id": 3752808,
+      "revision_timestamp": "2026-04-25T20:41:41Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXXVIII",
+      "revision_id": 3752809,
+      "revision_timestamp": "2026-04-25T20:41:41Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXXIX",
+      "revision_id": 3752805,
+      "revision_timestamp": "2026-04-25T20:41:39Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXXX",
+      "revision_id": 3752810,
+      "revision_timestamp": "2026-04-25T20:41:42Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXXXI",
+      "revision_id": 3752811,
+      "revision_timestamp": "2026-04-25T20:41:43Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXXXII",
+      "revision_id": 3752812,
+      "revision_timestamp": "2026-04-25T20:41:44Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXXXIII",
+      "revision_id": 3752813,
+      "revision_timestamp": "2026-04-25T20:41:44Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXXXIV",
+      "revision_id": 3752814,
+      "revision_timestamp": "2026-04-25T20:41:45Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXXXV",
+      "revision_id": 3752816,
+      "revision_timestamp": "2026-04-25T20:41:47Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXXXVI",
+      "revision_id": 3752817,
+      "revision_timestamp": "2026-04-25T20:41:47Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXXXVII",
+      "revision_id": 3752818,
+      "revision_timestamp": "2026-04-25T20:41:48Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXXXVIII",
+      "revision_id": 3752819,
+      "revision_timestamp": "2026-04-25T20:41:49Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXXXIX",
+      "revision_id": 3752815,
+      "revision_timestamp": "2026-04-25T20:41:46Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXL",
+      "revision_id": 3752786,
+      "revision_timestamp": "2026-04-25T20:41:24Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXLI",
+      "revision_id": 3752787,
+      "revision_timestamp": "2026-04-25T20:41:25Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXLII",
+      "revision_id": 3752788,
+      "revision_timestamp": "2026-04-25T20:41:26Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXLIII",
+      "revision_id": 3752789,
+      "revision_timestamp": "2026-04-25T20:41:27Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXLIV",
+      "revision_id": 3752790,
+      "revision_timestamp": "2026-04-25T20:41:28Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXLV",
+      "revision_id": 3752792,
+      "revision_timestamp": "2026-04-25T20:41:29Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXLVI",
+      "revision_id": 3752793,
+      "revision_timestamp": "2026-04-25T20:41:30Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXLVII",
+      "revision_id": 3752794,
+      "revision_timestamp": "2026-04-25T20:41:31Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXLVIII",
+      "revision_id": 3752795,
+      "revision_timestamp": "2026-04-25T20:41:31Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXLIX",
+      "revision_id": 3752791,
+      "revision_timestamp": "2026-04-25T20:41:28Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CL",
+      "revision_id": 3752725,
+      "revision_timestamp": "2026-04-25T20:40:42Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLI",
+      "revision_id": 3752726,
+      "revision_timestamp": "2026-04-25T20:40:43Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLII",
+      "revision_id": 3752727,
+      "revision_timestamp": "2026-04-25T20:40:44Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLIII",
+      "revision_id": 3752728,
+      "revision_timestamp": "2026-04-25T20:40:44Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLIV",
+      "revision_id": 3752729,
+      "revision_timestamp": "2026-04-25T20:40:45Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLV",
+      "revision_id": 3752731,
+      "revision_timestamp": "2026-04-25T20:40:46Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLVI",
+      "revision_id": 3752732,
+      "revision_timestamp": "2026-04-25T20:40:47Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLVII",
+      "revision_id": 3752733,
+      "revision_timestamp": "2026-04-25T20:40:47Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLVIII",
+      "revision_id": 3752735,
+      "revision_timestamp": "2026-04-25T20:40:48Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLIX",
+      "revision_id": 3752730,
+      "revision_timestamp": "2026-04-25T20:40:46Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLX",
+      "revision_id": 3752736,
+      "revision_timestamp": "2026-04-25T20:40:49Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXI",
+      "revision_id": 3752737,
+      "revision_timestamp": "2026-04-25T20:40:49Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXII",
+      "revision_id": 3752738,
+      "revision_timestamp": "2026-04-25T20:40:50Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXIII",
+      "revision_id": 3752739,
+      "revision_timestamp": "2026-04-25T20:40:51Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXIV",
+      "revision_id": 3752740,
+      "revision_timestamp": "2026-04-25T20:40:52Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXV",
+      "revision_id": 3752742,
+      "revision_timestamp": "2026-04-25T20:40:53Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXVI",
+      "revision_id": 3752743,
+      "revision_timestamp": "2026-04-25T20:40:54Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXVII",
+      "revision_id": 3752744,
+      "revision_timestamp": "2026-04-25T20:40:55Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXVIII",
+      "revision_id": 3752745,
+      "revision_timestamp": "2026-04-25T20:40:55Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXIX",
+      "revision_id": 3752741,
+      "revision_timestamp": "2026-04-25T20:40:53Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXX",
+      "revision_id": 3752746,
+      "revision_timestamp": "2026-04-25T20:40:56Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXXI",
+      "revision_id": 3752747,
+      "revision_timestamp": "2026-04-25T20:40:57Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXXII",
+      "revision_id": 3752748,
+      "revision_timestamp": "2026-04-25T20:40:58Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXXIII",
+      "revision_id": 3752749,
+      "revision_timestamp": "2026-04-25T20:40:58Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXXIV",
+      "revision_id": 3752750,
+      "revision_timestamp": "2026-04-25T20:40:59Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXXV",
+      "revision_id": 3752752,
+      "revision_timestamp": "2026-04-25T20:41:01Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXXVI",
+      "revision_id": 3752753,
+      "revision_timestamp": "2026-04-25T20:41:02Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXXVII",
+      "revision_id": 3752754,
+      "revision_timestamp": "2026-04-25T20:41:02Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXXVIII",
+      "revision_id": 3752755,
+      "revision_timestamp": "2026-04-25T20:41:03Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXXIX",
+      "revision_id": 3752751,
+      "revision_timestamp": "2026-04-25T20:41:00Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXXX",
+      "revision_id": 3752756,
+      "revision_timestamp": "2026-04-25T20:41:04Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXXXI",
+      "revision_id": 3752757,
+      "revision_timestamp": "2026-04-25T20:41:04Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXXXII",
+      "revision_id": 3752758,
+      "revision_timestamp": "2026-04-25T20:41:05Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXXXIII",
+      "revision_id": 3752759,
+      "revision_timestamp": "2026-04-25T20:41:06Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXXXIV",
+      "revision_id": 3752760,
+      "revision_timestamp": "2026-04-25T20:41:06Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXXXV",
+      "revision_id": 3752762,
+      "revision_timestamp": "2026-04-25T20:41:08Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXXXVI",
+      "revision_id": 3752763,
+      "revision_timestamp": "2026-04-25T20:41:09Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXXXVII",
+      "revision_id": 3752764,
+      "revision_timestamp": "2026-04-25T20:41:09Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXXXVIII",
+      "revision_id": 3752765,
+      "revision_timestamp": "2026-04-25T20:41:10Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CLXXXIX",
+      "revision_id": 3752761,
+      "revision_timestamp": "2026-04-25T20:41:07Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXC",
+      "revision_id": 3752771,
+      "revision_timestamp": "2026-04-25T20:41:14Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXCI",
+      "revision_id": 3752772,
+      "revision_timestamp": "2026-04-25T20:41:15Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXCII",
+      "revision_id": 3752773,
+      "revision_timestamp": "2026-04-25T20:41:16Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXCIII",
+      "revision_id": 3752774,
+      "revision_timestamp": "2026-04-25T20:41:16Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXCIV",
+      "revision_id": 3752775,
+      "revision_timestamp": "2026-04-25T20:41:17Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXCV",
+      "revision_id": 3752777,
+      "revision_timestamp": "2026-04-25T20:41:18Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXCVI",
+      "revision_id": 3752778,
+      "revision_timestamp": "2026-04-25T20:41:19Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXCVII",
+      "revision_id": 3752779,
+      "revision_timestamp": "2026-04-25T20:41:20Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXCVIII",
+      "revision_id": 3752780,
+      "revision_timestamp": "2026-04-25T20:41:20Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CXCIX",
+      "revision_id": 3752776,
+      "revision_timestamp": "2026-04-25T20:41:18Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CC",
+      "revision_id": 3752673,
+      "revision_timestamp": "2026-04-25T20:40:05Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CCI",
+      "revision_id": 3752674,
+      "revision_timestamp": "2026-04-25T20:40:05Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CCII",
+      "revision_id": 3752675,
+      "revision_timestamp": "2026-04-25T20:40:06Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CCIII",
+      "revision_id": 3752676,
+      "revision_timestamp": "2026-04-25T20:40:07Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CCIV",
+      "revision_id": 3752677,
+      "revision_timestamp": "2026-04-25T20:40:08Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CCV",
+      "revision_id": 3752679,
+      "revision_timestamp": "2026-04-25T20:40:09Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CCVI",
+      "revision_id": 3752680,
+      "revision_timestamp": "2026-04-25T20:40:10Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CCVII",
+      "revision_id": 3752681,
+      "revision_timestamp": "2026-04-25T20:40:11Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CCVIII",
+      "revision_id": 3752682,
+      "revision_timestamp": "2026-04-25T20:40:12Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CCIX",
+      "revision_id": 3752678,
+      "revision_timestamp": "2026-04-25T20:40:09Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CCX",
+      "revision_id": 3752683,
+      "revision_timestamp": "2026-04-25T20:40:13Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CCXI",
+      "revision_id": 3752684,
+      "revision_timestamp": "2026-04-25T20:40:13Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CCXII",
+      "revision_id": 3752685,
+      "revision_timestamp": "2026-04-25T20:40:14Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CCXIII",
+      "revision_id": 3752686,
+      "revision_timestamp": "2026-04-25T20:40:15Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CCXIV",
+      "revision_id": 3752687,
+      "revision_timestamp": "2026-04-25T20:40:16Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CCXV",
+      "revision_id": 3752695,
+      "revision_timestamp": "2026-04-25T20:40:21Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CCXVI",
+      "revision_id": 3752696,
+      "revision_timestamp": "2026-04-25T20:40:22Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CCXVII",
+      "revision_id": 3752697,
+      "revision_timestamp": "2026-04-25T20:40:23Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CCXVIII",
+      "revision_id": 3752698,
+      "revision_timestamp": "2026-04-25T20:40:24Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CCXIX",
+      "revision_id": 3752688,
+      "revision_timestamp": "2026-04-25T20:40:16Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CCXX",
+      "revision_id": 3752699,
+      "revision_timestamp": "2026-04-25T20:40:25Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CCXXI",
+      "revision_id": 3752700,
+      "revision_timestamp": "2026-04-25T20:40:25Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CCXXXII",
+      "revision_id": 3752712,
+      "revision_timestamp": "2026-04-25T20:40:34Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime d'amore/CCXXXVIII",
+      "revision_id": 3752719,
+      "revision_timestamp": "2026-04-25T20:40:38Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCXLVI",
+      "revision_id": 3752983,
+      "revision_timestamp": "2026-04-25T20:43:52Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCXLVII",
+      "revision_id": 3752984,
+      "revision_timestamp": "2026-04-25T20:43:53Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCXLVIII",
+      "revision_id": 3752985,
+      "revision_timestamp": "2026-04-25T20:43:53Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCXLIX",
+      "revision_id": 3752982,
+      "revision_timestamp": "2026-04-25T20:43:51Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCL",
+      "revision_id": 3752932,
+      "revision_timestamp": "2026-04-25T20:43:15Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLI",
+      "revision_id": 3752933,
+      "revision_timestamp": "2026-04-25T20:43:16Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLII",
+      "revision_id": 3752934,
+      "revision_timestamp": "2026-04-25T20:43:16Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLIII",
+      "revision_id": 3752935,
+      "revision_timestamp": "2026-04-25T20:43:17Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLIV",
+      "revision_id": 3752936,
+      "revision_timestamp": "2026-04-25T20:43:18Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLV",
+      "revision_id": 3752938,
+      "revision_timestamp": "2026-04-25T20:43:19Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLVI",
+      "revision_id": 3752939,
+      "revision_timestamp": "2026-04-25T20:43:20Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLVII",
+      "revision_id": 3752940,
+      "revision_timestamp": "2026-04-25T20:43:21Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLVIII",
+      "revision_id": 3752941,
+      "revision_timestamp": "2026-04-25T20:43:22Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLIX",
+      "revision_id": 3752937,
+      "revision_timestamp": "2026-04-25T20:43:19Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLX",
+      "revision_id": 3752942,
+      "revision_timestamp": "2026-04-25T20:43:22Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXI",
+      "revision_id": 3752943,
+      "revision_timestamp": "2026-04-25T20:43:23Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXII",
+      "revision_id": 3752944,
+      "revision_timestamp": "2026-04-25T20:43:23Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXIII",
+      "revision_id": 3752945,
+      "revision_timestamp": "2026-04-25T20:43:24Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXIV",
+      "revision_id": 3752946,
+      "revision_timestamp": "2026-04-25T20:43:25Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXV",
+      "revision_id": 3752948,
+      "revision_timestamp": "2026-04-25T20:43:26Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXVI",
+      "revision_id": 3752949,
+      "revision_timestamp": "2026-04-25T20:43:27Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXVII",
+      "revision_id": 3752950,
+      "revision_timestamp": "2026-04-25T20:43:28Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXVIII",
+      "revision_id": 3752951,
+      "revision_timestamp": "2026-04-25T20:43:28Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXIX",
+      "revision_id": 3752947,
+      "revision_timestamp": "2026-04-25T20:43:25Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXX",
+      "revision_id": 3752952,
+      "revision_timestamp": "2026-04-25T20:43:29Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXXI",
+      "revision_id": 3752953,
+      "revision_timestamp": "2026-04-25T20:43:30Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXXII",
+      "revision_id": 3752954,
+      "revision_timestamp": "2026-04-25T20:43:30Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXXIII",
+      "revision_id": 3752955,
+      "revision_timestamp": "2026-04-25T20:43:31Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXXIV",
+      "revision_id": 3752956,
+      "revision_timestamp": "2026-04-25T20:43:31Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXXV",
+      "revision_id": 3752958,
+      "revision_timestamp": "2026-04-25T20:43:33Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXXVI",
+      "revision_id": 3752959,
+      "revision_timestamp": "2026-04-25T20:43:34Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXXVII",
+      "revision_id": 3752960,
+      "revision_timestamp": "2026-04-25T20:43:34Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXXVIII",
+      "revision_id": 3752961,
+      "revision_timestamp": "2026-04-25T20:43:35Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXXIX",
+      "revision_id": 3752957,
+      "revision_timestamp": "2026-04-25T20:43:32Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXXX",
+      "revision_id": 3752962,
+      "revision_timestamp": "2026-04-25T20:43:36Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXXXI",
+      "revision_id": 3752963,
+      "revision_timestamp": "2026-04-25T20:43:37Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXXXII",
+      "revision_id": 3752964,
+      "revision_timestamp": "2026-04-25T20:43:38Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXXXIII",
+      "revision_id": 3752965,
+      "revision_timestamp": "2026-04-25T20:43:38Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXXXIV",
+      "revision_id": 3752966,
+      "revision_timestamp": "2026-04-25T20:43:39Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXXXV",
+      "revision_id": 3752968,
+      "revision_timestamp": "2026-04-25T20:43:41Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXXXVI",
+      "revision_id": 3752969,
+      "revision_timestamp": "2026-04-25T20:43:41Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXXXVII",
+      "revision_id": 3752970,
+      "revision_timestamp": "2026-04-25T20:43:42Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXXXVIII",
+      "revision_id": 3752971,
+      "revision_timestamp": "2026-04-25T20:43:43Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCLXXXIX",
+      "revision_id": 3752967,
+      "revision_timestamp": "2026-04-25T20:43:40Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCXC",
+      "revision_id": 3752972,
+      "revision_timestamp": "2026-04-25T20:43:43Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCXCI",
+      "revision_id": 3752973,
+      "revision_timestamp": "2026-04-25T20:43:44Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCXCII",
+      "revision_id": 3752974,
+      "revision_timestamp": "2026-04-25T20:43:45Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCXCIII",
+      "revision_id": 3752975,
+      "revision_timestamp": "2026-04-25T20:43:46Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCXCIV",
+      "revision_id": 3752976,
+      "revision_timestamp": "2026-04-25T20:43:46Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCXCV",
+      "revision_id": 3752978,
+      "revision_timestamp": "2026-04-25T20:43:48Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCC",
+      "revision_id": 3752920,
+      "revision_timestamp": "2026-04-25T20:43:06Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCCI",
+      "revision_id": 3752921,
+      "revision_timestamp": "2026-04-25T20:43:07Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCCII",
+      "revision_id": 3752922,
+      "revision_timestamp": "2026-04-25T20:43:08Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCCIII",
+      "revision_id": 3752923,
+      "revision_timestamp": "2026-04-25T20:43:08Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCCIV",
+      "revision_id": 3752924,
+      "revision_timestamp": "2026-04-25T20:43:09Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCCV",
+      "revision_id": 3752926,
+      "revision_timestamp": "2026-04-25T20:43:10Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCCVI",
+      "revision_id": 3752927,
+      "revision_timestamp": "2026-04-25T20:43:11Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCCVII",
+      "revision_id": 3752928,
+      "revision_timestamp": "2026-04-25T20:43:12Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCCVIII",
+      "revision_id": 3752929,
+      "revision_timestamp": "2026-04-25T20:43:12Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCCIX",
+      "revision_id": 3752925,
+      "revision_timestamp": "2026-04-25T20:43:10Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCCX",
+      "revision_id": 3752930,
+      "revision_timestamp": "2026-04-25T20:43:13Z"
+    },
+    {
+      "title": "Rime (Stampa)/Rime varie/CCCXI",
+      "revision_id": 3752931,
+      "revision_timestamp": "2026-04-25T20:43:14Z"
+    }
+  ],
+  "eligible_candidates": [
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/I",
+      "revision_id": 3752820,
+      "revision_timestamp": "2026-04-25T20:41:50Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "eff30363a23d4a850b471f6648e0ab56fdabd72319558ff336a9d9c77488ecff"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/II",
+      "revision_id": 3752821,
+      "revision_timestamp": "2026-04-25T20:41:51Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "9a41eb4c8015b9b120a9331957ab945466ff93b2095456089d2abdb4083964be"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/III",
+      "revision_id": 3752822,
+      "revision_timestamp": "2026-04-25T20:41:51Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "bcaac5cf3261f5c83acd592a24a6aea80a020843f9e708e49c9137894cc7aa1f"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/IV",
+      "revision_id": 3752823,
+      "revision_timestamp": "2026-04-25T20:41:52Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "004699489038a343c751124fbc3c975d17e5d5d8558c3be46bedb92aee1b0842"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/V",
+      "revision_id": 3752865,
+      "revision_timestamp": "2026-04-25T20:42:27Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "40f00f6422b990d79e7eadad98cbb4581feaef15396f15d288a682eaad69169c"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/VI",
+      "revision_id": 3752866,
+      "revision_timestamp": "2026-04-25T20:42:28Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "db2869457dacd732d3f4c3cd6c1bfd3155d06046c8ab3428992660d348c01d74"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/VII",
+      "revision_id": 3752867,
+      "revision_timestamp": "2026-04-25T20:42:28Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3e065a38300b7ed99f87aa6adbda0071772123c5990ef6f7fed7e8fbfbb16e38"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/VIII",
+      "revision_id": 3752868,
+      "revision_timestamp": "2026-04-25T20:42:29Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e9f153c803a05c9d018a80f22d64fb3dfc9158a84f462d3073ced65551cc21b1"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/IX",
+      "revision_id": 3752824,
+      "revision_timestamp": "2026-04-25T20:41:53Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b0fefa2978f146c3e1f9658994f2390143617ad226f9a371fb025bed3476e7b1"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/X",
+      "revision_id": 3752869,
+      "revision_timestamp": "2026-04-25T20:42:30Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b1c08c5fe0a3d1e31f2bd63de63e8948a6d3b36615207f4020482e6e33d6a34c"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XI",
+      "revision_id": 3752880,
+      "revision_timestamp": "2026-04-25T20:42:38Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8d12519507caf1b8f8b0eaab627ea1f34fe9c1c4908959d2316455b50bacf7f2"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XII",
+      "revision_id": 3752881,
+      "revision_timestamp": "2026-04-25T20:42:39Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "711f0acfabdacdabb848c3c148113ea4ad0acc30c828a82fa9ca3c55c5c7e044"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XIII",
+      "revision_id": 3752882,
+      "revision_timestamp": "2026-04-25T20:42:40Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "9d3cc5b48dae488b6a807dea91e6552a9f4e59b5137242492a8d12f774887ded"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XIV",
+      "revision_id": 3752883,
+      "revision_timestamp": "2026-04-25T20:42:40Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f9019a6ce99c02f16094041721107e9c34dfb86f4a9512cd4aef342912111a36"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XV",
+      "revision_id": 3752895,
+      "revision_timestamp": "2026-04-25T20:42:49Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "05e84ea6b150357b3eeab5fb31a2c45688fab02d1d73b3b6ae985dba39982014"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XVI",
+      "revision_id": 3752896,
+      "revision_timestamp": "2026-04-25T20:42:49Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "eaafc1dea10142bb6dd6e505ad27c754b82b8171fb469b7621f511ce8511c69b"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XVII",
+      "revision_id": 3752897,
+      "revision_timestamp": "2026-04-25T20:42:50Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8fece5143eb5117191503d1b9b950ff5a6babda20455cabdf4e0441dab7473df"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XVIII",
+      "revision_id": 3752898,
+      "revision_timestamp": "2026-04-25T20:42:51Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "637199738458a8abba028641978d457a115571b304a9de4cc58327adcb8e857a"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XIX",
+      "revision_id": 3752884,
+      "revision_timestamp": "2026-04-25T20:42:41Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "eec29ed583cc6e2b6f80776fd0b0f6b5d9a5c9eb8158a75dc560d865709aeddb"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XX",
+      "revision_id": 3752899,
+      "revision_timestamp": "2026-04-25T20:42:51Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f38735493949f35509f4166d4d3cf6c8e458c5eee7e491f3495f54dc8775d1bf"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XXI",
+      "revision_id": 3752900,
+      "revision_timestamp": "2026-04-25T20:42:52Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "121fa6e3f56101f3193d243f977686aa73cb8ecaa280ce0952a62c994f78a3bc"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XXII",
+      "revision_id": 3752901,
+      "revision_timestamp": "2026-04-25T20:42:53Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4db9654670e2c6c346536f57f29599666f77887497a9530841d38a4618b4385c"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XXIII",
+      "revision_id": 3752902,
+      "revision_timestamp": "2026-04-25T20:42:53Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8435d3a46e6c271a1ce9180371414b31c05cc40c350678a306867ad5ec97a972"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XXIV",
+      "revision_id": 3752903,
+      "revision_timestamp": "2026-04-25T20:42:54Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3ed56655236727c6689138ba169a58e539b9f31c3da29ff251dd010c5a066103"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XXV",
+      "revision_id": 3752905,
+      "revision_timestamp": "2026-04-25T20:42:56Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ca7e4f59f365f753c7bba80641dc5de5daa36bfeae380c075bdd34ae1cb81c7a"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XXVI",
+      "revision_id": 3752906,
+      "revision_timestamp": "2026-04-25T20:42:56Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c305b6e42a8c1982382bd6be7f1745f44238f875df3e8ac6e36981fcd4c13871"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XXVII",
+      "revision_id": 3752907,
+      "revision_timestamp": "2026-04-25T20:42:57Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a258c89f3c9c42442004d91786d55aeb90abbd58c9c647ac1da34afb8bdf8f96"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XXVIII",
+      "revision_id": 3752908,
+      "revision_timestamp": "2026-04-25T20:42:58Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4ffac3bfe4c8d15a05a21815e3b75080ef6f388eb2e2330fa23010af9adc629e"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XXIX",
+      "revision_id": 3752904,
+      "revision_timestamp": "2026-04-25T20:42:55Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1782ded6150771743e7422d5172b1fde7c86a3276246330b8ceb084bcbede213"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XXX",
+      "revision_id": 3752909,
+      "revision_timestamp": "2026-04-25T20:42:58Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "0f90dc26bb59e02ad914e744b80a10fed2bbca6c24ba3e267c09c9dde720e0b6"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XXXI",
+      "revision_id": 3752910,
+      "revision_timestamp": "2026-04-25T20:42:59Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4a94605159b130211f73697531b360ec5c71ea4a80248b484964e4c1388fae85"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XXXII",
+      "revision_id": 3752911,
+      "revision_timestamp": "2026-04-25T20:43:00Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "0e214602044b93cd634252b05c8a28ada1e96864f1c41e97fa1731d4cd733b7f"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XXXIII",
+      "revision_id": 3752912,
+      "revision_timestamp": "2026-04-25T20:43:01Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "34d2e3bdc8878e46b94b00aaf5afea0469ed4d530054d8015311b283efcc1288"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XXXIV",
+      "revision_id": 3752913,
+      "revision_timestamp": "2026-04-25T20:43:01Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "242fd92a3e8957c9dad74eeaeb0f43b9130bb1cd14b3371b543d872628fb4002"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XXXV",
+      "revision_id": 3752915,
+      "revision_timestamp": "2026-04-25T20:43:03Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "abac0bb57376ed3eabbe1ef380be0463c0b0931f54ca25e0726beebafef79f75"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XXXVI",
+      "revision_id": 3752916,
+      "revision_timestamp": "2026-04-25T20:43:03Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "208733f9b5cad29a1d72d820c2c3d3e306eed114631b59c4a3d735c10b9bbd51"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XXXVII",
+      "revision_id": 3752917,
+      "revision_timestamp": "2026-04-25T20:43:04Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "796b07883be7b338cfbeff5615843d03a197e63bafaf94abf1e85e253380adb8"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XXXVIII",
+      "revision_id": 3752918,
+      "revision_timestamp": "2026-04-25T20:43:04Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "36d899082b7e5d5b1b0b263a5c72c0d408fbe64c4cd4cebae378c663711d9cc2"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XXXIX",
+      "revision_id": 3752914,
+      "revision_timestamp": "2026-04-25T20:43:02Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "348216c47b47c3c55934d419a5192374d7cbe2057bec446357aedae2b78f3573"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XL",
+      "revision_id": 3752885,
+      "revision_timestamp": "2026-04-25T20:42:42Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c2632050315dd91d3b043de74019b846e5c497ca381d302c28f78e722c8c8589"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XLI",
+      "revision_id": 3752886,
+      "revision_timestamp": "2026-04-25T20:42:42Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "0a30242056c8684c45709df9ff225dedccdf7b17811bd973130e83cae2a791e4"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XLII",
+      "revision_id": 3752887,
+      "revision_timestamp": "2026-04-25T20:42:43Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "fdbb65a9f8a664910d82e7fbaef1871916add086a3bab5605d1a4a170c67b75d"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XLIII",
+      "revision_id": 3752888,
+      "revision_timestamp": "2026-04-25T20:42:44Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "896c7e9a6ab516932709c7780f9127522275537192986f8ecb0af1b1eff010d7"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XLIV",
+      "revision_id": 3752889,
+      "revision_timestamp": "2026-04-25T20:42:44Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d1bee4ed17403052e35e43c6434919aa0c82ee8051d30f7ef588e6e5bfe78a31"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XLV",
+      "revision_id": 3752891,
+      "revision_timestamp": "2026-04-25T20:42:46Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6415cdc8cfac98be9475f0e65aefde3f449db734ec4f6e9b477592e3108a2b7b"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XLVI",
+      "revision_id": 3752892,
+      "revision_timestamp": "2026-04-25T20:42:47Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6a7a7bef24e03b746155ee797512a0b6ee57e92acef3074025a9f6569b63f4b7"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XLVII",
+      "revision_id": 3752893,
+      "revision_timestamp": "2026-04-25T20:42:47Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "572335d1c37fbb2a79e8bd8df57f5def5883412c7adfdda1458552ec0cd5165b"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XLVIII",
+      "revision_id": 3752894,
+      "revision_timestamp": "2026-04-25T20:42:48Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1409e42ec7208d7629ac3dcf359638b0b37a91712a7b28351c68a9052904430c"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XLIX",
+      "revision_id": 3752890,
+      "revision_timestamp": "2026-04-25T20:42:45Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "979bcb145498175340ad97c1fb21590b4ecd84485154ba66c4e51b842240b2bd"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/L",
+      "revision_id": 3752825,
+      "revision_timestamp": "2026-04-25T20:41:54Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "aee3eb4c051d5a110f51bb1939176e585bcdbbb2aeaac70e21d844f62f9239ae"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LI",
+      "revision_id": 3752826,
+      "revision_timestamp": "2026-04-25T20:41:54Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6b96dfe0b9d3fe2135af56e37d89432fcaaacb6b2801bb76cb13133df7499725"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LII",
+      "revision_id": 3752827,
+      "revision_timestamp": "2026-04-25T20:41:55Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6b15d8d4234d92730d3e19d4c636cc3dbbef4857f1ec1a559c0752ec271becf7"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LIII",
+      "revision_id": 3752828,
+      "revision_timestamp": "2026-04-25T20:41:57Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "86de0c5c266ceabc36dcc5aad57663b8e364d9ff133bd7defebddef0f37c808a"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LIV",
+      "revision_id": 3752829,
+      "revision_timestamp": "2026-04-25T20:41:58Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d29e92cbbee4fd7bf20af8f394279e9c897f62297cfbc4d874ad7419018017f4"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LV",
+      "revision_id": 3752831,
+      "revision_timestamp": "2026-04-25T20:42:00Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3d9ea363edddc12212ca29a46410cdbbecc498b647af039d2c7b478cb59aee9a"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LVI",
+      "revision_id": 3752832,
+      "revision_timestamp": "2026-04-25T20:42:01Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f663003a17b0dadfc2eab1f193c18b107ace825179a15b1c99fddd49c64f9a64"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LVII",
+      "revision_id": 3752833,
+      "revision_timestamp": "2026-04-25T20:42:02Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e19008564e177f26f569928181646782101f9ded6599bc0e853b222fd0ad44e4"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LVIII",
+      "revision_id": 3752834,
+      "revision_timestamp": "2026-04-25T20:42:03Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "cd8783c8be7c7421e7d32eef70011a7736bd46481205fe3027db062782899974"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LIX",
+      "revision_id": 3752830,
+      "revision_timestamp": "2026-04-25T20:41:59Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2035a45026e9db3c1f6d66fb1ee2a4bc5873261958a08dbcea7b4dd8547f93d9"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LX",
+      "revision_id": 3752835,
+      "revision_timestamp": "2026-04-25T20:42:04Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "684c4a76a6bcfd350603fe5d7ac957da6e452f45af65c54b4cc586ed8e3214fb"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXI",
+      "revision_id": 3752836,
+      "revision_timestamp": "2026-04-25T20:42:05Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "137f75aa0e3bf89e0be7de6d93a68eeb18edf588ee027bdc1ac5836e10337ed0"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXII",
+      "revision_id": 3752837,
+      "revision_timestamp": "2026-04-25T20:42:06Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "20033d512538a109727f5ea82719b25855b8474906cb828c11bd5f658f8133de"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXIII",
+      "revision_id": 3752838,
+      "revision_timestamp": "2026-04-25T20:42:07Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "57bdfd8b47f0f7044bf28f5ce1128d2ac5184e89f221e81008745a303fbe57f2"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXIV",
+      "revision_id": 3752839,
+      "revision_timestamp": "2026-04-25T20:42:08Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f87cbf5777ebcf818a6fa102e4d6291937b6186bc99b12296aa041e5d180c268"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXV",
+      "revision_id": 3752841,
+      "revision_timestamp": "2026-04-25T20:42:09Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "bf7b86b39b5a53fef1b5c7d3cbb3ea0d5bede95fe7dcc16a6db3a05e17d4d745"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXVI",
+      "revision_id": 3752842,
+      "revision_timestamp": "2026-04-25T20:42:10Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "578d5f7823f63b184407843dbe755e28843cbd15b36c3dbcd5745df9cf039bea"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXVII",
+      "revision_id": 3752843,
+      "revision_timestamp": "2026-04-25T20:42:10Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5531a38596a19a9c0744b31bc6b2c958fa3573ff594a71688e0edb84406f8ada"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXIX",
+      "revision_id": 3752840,
+      "revision_timestamp": "2026-04-25T20:42:08Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4e79f6a39d52440487975f09f2a238ee3f1622b2eb7c91cfe7ad5a3861614d6e"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXX",
+      "revision_id": 3752845,
+      "revision_timestamp": "2026-04-25T20:42:12Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f955b5af8462cf4b410636ee7c4fdbb2518e825dc3106e2ae39a36fde22aa911"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXXI",
+      "revision_id": 3752846,
+      "revision_timestamp": "2026-04-25T20:42:13Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "eafdd1fdca2d2eb77501b72f5e01a16b3b3a20de2cdd07a9e41a083d06844bb0"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXXII",
+      "revision_id": 3752847,
+      "revision_timestamp": "2026-04-25T20:42:14Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1ed67a620d01aed2197bc000cc0119c0956a2bb93724f9d36c329384e77d45d7"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXXIII",
+      "revision_id": 3752848,
+      "revision_timestamp": "2026-04-25T20:42:14Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "69a9d888aedc178f2f01e4a0ed84d9704f0c91cdb9f825d557dbdc66e65e5db3"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXXIV",
+      "revision_id": 3752849,
+      "revision_timestamp": "2026-04-25T20:42:15Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "796b28b2a95c1fbfae1129cb8b4766aa5c1515ad4a92e0e33e0a6755bf32989c"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXXV",
+      "revision_id": 3752851,
+      "revision_timestamp": "2026-04-25T20:42:17Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7bb681d79f86989940c58304097b50804f7796d7a2a4c5d1aa156d8470933ac2"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXXVI",
+      "revision_id": 3752852,
+      "revision_timestamp": "2026-04-25T20:42:17Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "31b3c0d0357fa9bc09b7439a392b88ec9f3e67606df5914e395f49fbbf98d20b"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXXVII",
+      "revision_id": 3752853,
+      "revision_timestamp": "2026-04-25T20:42:18Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "33e04993bf9133b9c9a1fd93caba3218c0718095d22c873333b54a5492015a4b"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXXVIII",
+      "revision_id": 3752854,
+      "revision_timestamp": "2026-04-25T20:42:19Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "eceb5ee4a1fd378090d0b076d66c9eec517e8f1909f356eba8c2a03c4ebaf10e"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXXIX",
+      "revision_id": 3752850,
+      "revision_timestamp": "2026-04-25T20:42:16Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "760f01ad46dd90da6de96e681a50a2e9c90712971f8241ea2008fe02dd646c23"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXXX",
+      "revision_id": 3752855,
+      "revision_timestamp": "2026-04-25T20:42:20Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3e7c4fa3283e83efd94f09f95fddc79400ff283f3172735944ce3e6cbc1ba5a8"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXXXI",
+      "revision_id": 3752856,
+      "revision_timestamp": "2026-04-25T20:42:20Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "fb79adcea58818dada48db009c01d0b3ea8156b58a7b9e928cd951876bcb0d85"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXXXII",
+      "revision_id": 3752857,
+      "revision_timestamp": "2026-04-25T20:42:21Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "adaca80135acf2540c44d45fc44fbc3f49da80bc82ab85fafbe980280c9167e3"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXXXIII",
+      "revision_id": 3752858,
+      "revision_timestamp": "2026-04-25T20:42:22Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "fae7ae9919f8d974508e08a44f5a561ddad258f893e62e635fbecf187d99ef35"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXXXIV",
+      "revision_id": 3752859,
+      "revision_timestamp": "2026-04-25T20:42:22Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "56bdb10b4fc35c74337228451c64e350d0d9ac048a64219def32740c528e471e"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXXXV",
+      "revision_id": 3752861,
+      "revision_timestamp": "2026-04-25T20:42:24Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1e073d204178def1b0ccd42c92e7ec761b18cf4ca94fa6a88cd37585c0afeb3f"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXXXVI",
+      "revision_id": 3752862,
+      "revision_timestamp": "2026-04-25T20:42:25Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8841d00008981d98d171ee8a018105d71bf6afd25697ebc8f1e4c440913e9141"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXXXVII",
+      "revision_id": 3752863,
+      "revision_timestamp": "2026-04-25T20:42:25Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1074e7c7424fc2e64e565da068053d2b0380dd0772943c57a6d1d4a8c1cd4420"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXXXVIII",
+      "revision_id": 3752864,
+      "revision_timestamp": "2026-04-25T20:42:26Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "bbed1c42efc3bea108c139c3030884fd6f87a70f928800bd0aea468409073e74"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/LXXXIX",
+      "revision_id": 3752860,
+      "revision_timestamp": "2026-04-25T20:42:23Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "81fc5b41dbbfe0fe99799734a00b36750ff77405e4c095356d945f7d24432f66"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XC",
+      "revision_id": 3752870,
+      "revision_timestamp": "2026-04-25T20:42:31Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "eaa044504ca022dc28607086427aa262b712f284cf41984d972ae0bf4fd39c2a"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XCI",
+      "revision_id": 3752871,
+      "revision_timestamp": "2026-04-25T20:42:31Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "cb8f8bff8a714e1222fd1186f3bd8dfdc011e764f2310a3ce045600598695bac"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XCII",
+      "revision_id": 3752872,
+      "revision_timestamp": "2026-04-25T20:42:32Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3664b622bae38e66dc4263eb12921560d9980fa036c3957504091d799df591c7"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XCIII",
+      "revision_id": 3752873,
+      "revision_timestamp": "2026-04-25T20:42:33Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "66c6be3c6d16bfabf97dd97e2de0b5bfb0a7d8f7a240e0d69a5ebd1a54c94c7b"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XCIV",
+      "revision_id": 3752874,
+      "revision_timestamp": "2026-04-25T20:42:34Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7321258e7e57411f9d56d471a772d15909d44f9c4d0cba497a09bc1fc9e04a14"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XCVI",
+      "revision_id": 3752877,
+      "revision_timestamp": "2026-04-25T20:42:36Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3036ab797f1653da72b62e73ed4c76842193b735f4ef28085293b0a9a1af2487"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XCVII",
+      "revision_id": 3752878,
+      "revision_timestamp": "2026-04-25T20:42:37Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "79c3b74434c44d868a1d99841bbef6f0b7edd57532947afcd83e86940364432a"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XCVIII",
+      "revision_id": 3752879,
+      "revision_timestamp": "2026-04-25T20:42:38Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b61654985fe7632a6e4bdf024de0829849dd9b94325c3274ef6241105531e2ed"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/XCIX",
+      "revision_id": 3752875,
+      "revision_timestamp": "2026-04-25T20:42:34Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a4bb6e8e3f9fc2733639d0fb09b8dd6f5d5bcffc86c0f3cc7f5d96a005def4a6"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/C",
+      "revision_id": 3752672,
+      "revision_timestamp": "2026-04-25T20:40:04Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "07117678a3e045bb6880458d482f07b2234036a40cf6f1672219b2631afbbcef"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CI",
+      "revision_id": 3752720,
+      "revision_timestamp": "2026-04-25T20:40:39Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8f97c7949eca1cac8250a8e030ea0fc305430b01968eefc1dcb9844bbbda7bed"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CII",
+      "revision_id": 3752721,
+      "revision_timestamp": "2026-04-25T20:40:40Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d15396e5aa8322aac5bfe3779c180323c19f95803ffa85a9638df56fe9d43c47"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CIII",
+      "revision_id": 3752722,
+      "revision_timestamp": "2026-04-25T20:40:40Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "db5735c345d5f37ed32244f0eb1ab9053da9d28d3e34448052828b9ae9ea5473"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CIV",
+      "revision_id": 3752723,
+      "revision_timestamp": "2026-04-25T20:40:41Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d9fd4ddea4dd71bb4bbc8ff3ec903bd93c33d37b984ca0b964bc50318566fc84"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CV",
+      "revision_id": 3752766,
+      "revision_timestamp": "2026-04-25T20:41:11Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "fc62294204dc2b3ec6132fe1bed7495bf7fda334711358da47ffac2c4704be0b"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CVI",
+      "revision_id": 3752767,
+      "revision_timestamp": "2026-04-25T20:41:11Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1221d58037d3f9219290212167c771387d9de1c4d32d9dce5922671d08ca8d82"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CVII",
+      "revision_id": 3752768,
+      "revision_timestamp": "2026-04-25T20:41:12Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f1a9b19cddc379db3ddb2f3103e78e5a3c7768ddc92ca0199875ae0739183f57"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CIX",
+      "revision_id": 3752724,
+      "revision_timestamp": "2026-04-25T20:40:41Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b997413aa4862c6924c75e2ab8de068adc9215bde0884defbe1a6a5608041bcf"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CX",
+      "revision_id": 3752770,
+      "revision_timestamp": "2026-04-25T20:41:14Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8ad72a32411a9fee4e0a492b30db418b7248ba49950bf593411de9888c5645cb"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXI",
+      "revision_id": 3752781,
+      "revision_timestamp": "2026-04-25T20:41:21Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e64c4e53eb9cee30058b14df3efdb118feaee15339874e01c884d76b92ea5b4e"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXII",
+      "revision_id": 3752782,
+      "revision_timestamp": "2026-04-25T20:41:22Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3c21b6acafe9794652033c2002068b818c8625f664902389c745b11cf509ed5f"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXIII",
+      "revision_id": 3752783,
+      "revision_timestamp": "2026-04-25T20:41:23Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4c07f19e40ce73394cc68794adc768be9607b6ace91810050d8d8b045d0f46e1"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXIV",
+      "revision_id": 3752784,
+      "revision_timestamp": "2026-04-25T20:41:23Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5ea7c1002048edec904f5f4a8e6ac28442d2299c101af4de0d5e02a34460353b"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXV",
+      "revision_id": 3752796,
+      "revision_timestamp": "2026-04-25T20:41:32Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "639c77fb4c9322e295030234f57cc63b10327c082c46ddc64e86b427c7c62edf"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXVI",
+      "revision_id": 3752797,
+      "revision_timestamp": "2026-04-25T20:41:33Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "571f1d4453c40fbc4a85760cb767cb85b224f6897c9724f00872b4b49aa1e64d"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXVII",
+      "revision_id": 3752798,
+      "revision_timestamp": "2026-04-25T20:41:34Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f00601b0bfdfaa8cd835c337040060ebf9748ec62abb6562a3e63cabf3442cfa"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXVIII",
+      "revision_id": 3752799,
+      "revision_timestamp": "2026-04-25T20:41:34Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "439f60905d9be32543c2f3c643a3fc9f8181884c8a0663b36a181efeef4a0dfc"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXIX",
+      "revision_id": 3752785,
+      "revision_timestamp": "2026-04-25T20:41:24Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "67237937715897649dbeb2fbe647c3afa6f16c1d52dba9ee5a39a6bec26be719"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXX",
+      "revision_id": 3752800,
+      "revision_timestamp": "2026-04-25T20:41:35Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e416ffe16f1ef745bb13e81fff6a440bc0702b3d249d40094bed0030e33e5666"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXXI",
+      "revision_id": 3752801,
+      "revision_timestamp": "2026-04-25T20:41:36Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "af06bcaa56c1c5ff83f40b0bbbef406857cd0b8a59989975b228679594b66534"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXXII",
+      "revision_id": 3752802,
+      "revision_timestamp": "2026-04-25T20:41:37Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d1ccf4a3d49a03202a63bd3b6e34682bc1c235b888ac3476e9ba8950b82aa0de"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXXIII",
+      "revision_id": 3752803,
+      "revision_timestamp": "2026-04-25T20:41:37Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d0d3a373742062f6c8d0fc6f309ed05ce0cb79e92bc49a62ceb712834aec66d0"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXXIV",
+      "revision_id": 3752804,
+      "revision_timestamp": "2026-04-25T20:41:38Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c5b3cedc21e0923be5c3dc5b4e45c0698e7cc142d267c817bd39923be3cca539"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXXV",
+      "revision_id": 3752806,
+      "revision_timestamp": "2026-04-25T20:41:39Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "cecabde80432952b7f46bf1ef81b48e892fd13cf347bd1ac2820f36804c50c98"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXXVI",
+      "revision_id": 3752807,
+      "revision_timestamp": "2026-04-25T20:41:40Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "612a29723f9fd0a6cc942908cfb2c813ff8dad89eeade71855df4583dc4e2857"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXXVII",
+      "revision_id": 3752808,
+      "revision_timestamp": "2026-04-25T20:41:41Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "387fcc5620f755f3bc6b528093db65119814b5bd5bec5b48072c3db926aba712"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXXVIII",
+      "revision_id": 3752809,
+      "revision_timestamp": "2026-04-25T20:41:41Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d5e6c829153e6d80481d76b2c3e2c64a41f7bf61557d9a95a0392b4d2847ddd6"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXXIX",
+      "revision_id": 3752805,
+      "revision_timestamp": "2026-04-25T20:41:39Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1e873e983b1f01982566e53e849560315617cdef1a8149a7cad0fe8b96627052"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXXX",
+      "revision_id": 3752810,
+      "revision_timestamp": "2026-04-25T20:41:42Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f705520c992ad593c05d3171dd5ca829c836dbee1192b3b2ed33f0e9901e61a0"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXXXI",
+      "revision_id": 3752811,
+      "revision_timestamp": "2026-04-25T20:41:43Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f7c9a2c8f7b56621b6a53c5db7a90b0828b38b367595635a8f3599577ebde2f5"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXXXII",
+      "revision_id": 3752812,
+      "revision_timestamp": "2026-04-25T20:41:44Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "53c513bec602696b0fc8902d384215e72141d179e0a9c930083d0010cf2ca432"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXXXIII",
+      "revision_id": 3752813,
+      "revision_timestamp": "2026-04-25T20:41:44Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a6029af062a3fe2153c5b914ce73ea487bc751954825b03b1fea894d3be2d0e9"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXXXIV",
+      "revision_id": 3752814,
+      "revision_timestamp": "2026-04-25T20:41:45Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e07c71925b107e54f3428e25400cd6f082e5f4330036f80a2fc96abda4b2b6d2"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXXXV",
+      "revision_id": 3752816,
+      "revision_timestamp": "2026-04-25T20:41:47Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c419da4095eb2d98d0ce5512cc2e5f93d0418b2b22c986519f14a7ef53662ce9"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXXXVI",
+      "revision_id": 3752817,
+      "revision_timestamp": "2026-04-25T20:41:47Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b90c522cadeedbf34892bd76c3cc9c8430e9b7e79a52774ef2fba4396cd8cda9"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXXXVII",
+      "revision_id": 3752818,
+      "revision_timestamp": "2026-04-25T20:41:48Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "35f523ae3336a7d721c41d227090637ef96516ef902d85f58241f72f71594c95"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXXXVIII",
+      "revision_id": 3752819,
+      "revision_timestamp": "2026-04-25T20:41:49Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "82796e3417b9ad46e74d2d451a5947fa77b69a58e58151793a9bf88f5d5caa5a"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXXXIX",
+      "revision_id": 3752815,
+      "revision_timestamp": "2026-04-25T20:41:46Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "27970e9a7d5e266c43139f4c0b127927b9c5cdad9af4d5b4c4eeef7fdb2eb1c6"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXL",
+      "revision_id": 3752786,
+      "revision_timestamp": "2026-04-25T20:41:24Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "cf975560286b196d611baf25c91be740f7e2953693344643eb5cb801a556e2c9"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXLI",
+      "revision_id": 3752787,
+      "revision_timestamp": "2026-04-25T20:41:25Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1f443f9011fc67d598be412efaabe0b355607ba9f44be2e3ca96b0f5a820fcba"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXLII",
+      "revision_id": 3752788,
+      "revision_timestamp": "2026-04-25T20:41:26Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "16198886a886ebeb6d0305e8880c5a734c71e37ca6c02e54568038a875408c6b"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXLIII",
+      "revision_id": 3752789,
+      "revision_timestamp": "2026-04-25T20:41:27Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "877151f5fe329f26f1cd298c839a14ff4c777f1c82bacc1888e7d726c8c753d7"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXLIV",
+      "revision_id": 3752790,
+      "revision_timestamp": "2026-04-25T20:41:28Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "0c414646e762556051ab35b5c204e404d6ab1b2daa5b28756fdede16a9b42cbe"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXLV",
+      "revision_id": 3752792,
+      "revision_timestamp": "2026-04-25T20:41:29Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "16f8624015c4d4e2b0b0be137d4db83f035c6c9110cba809b3289d67c95ffaf7"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXLVI",
+      "revision_id": 3752793,
+      "revision_timestamp": "2026-04-25T20:41:30Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2c6cc0fe498eca250801847b8e7b582a637d480a100df68b28568c43b9d8c78d"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXLVII",
+      "revision_id": 3752794,
+      "revision_timestamp": "2026-04-25T20:41:31Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a515ffda7a8f1d595c730f07fc02692150e3b031e65fc0e439bc62e07831072e"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXLVIII",
+      "revision_id": 3752795,
+      "revision_timestamp": "2026-04-25T20:41:31Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a5ae06f7afaf3747423f3759805511ecbe3a7f840b7b193f25aed3b1075fede6"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXLIX",
+      "revision_id": 3752791,
+      "revision_timestamp": "2026-04-25T20:41:28Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c61c33f8aeffc34f5de7363793f49a746ecb01eb0fceb14261a30e0e12a5a6fb"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CL",
+      "revision_id": 3752725,
+      "revision_timestamp": "2026-04-25T20:40:42Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "04cf44cb2d3b9c21ba093e9654a8806ba1ed5b0a566894e41d00a7d6edba8c46"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLI",
+      "revision_id": 3752726,
+      "revision_timestamp": "2026-04-25T20:40:43Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1796be41928687a8cd74411d4187c43e946bc78328d1835029719d21118fa0d7"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLII",
+      "revision_id": 3752727,
+      "revision_timestamp": "2026-04-25T20:40:44Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "82ff38b5f10638ac4279c7b81626d31fe8966d209670d81fd86eee7769608b58"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLIII",
+      "revision_id": 3752728,
+      "revision_timestamp": "2026-04-25T20:40:44Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "515c68805dab3b6ea805ab74b2be9b3780602de42d39e8e301d989f12516add2"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLIV",
+      "revision_id": 3752729,
+      "revision_timestamp": "2026-04-25T20:40:45Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8a55e2db343341b3cbcace6bbc9b28e15c2d89d01e37c8db91b8b65a1b7039f4"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLV",
+      "revision_id": 3752731,
+      "revision_timestamp": "2026-04-25T20:40:46Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ebf2bbfb50a5355a5bb729fb415f3dcbff7ddb8cd06d80c8264b188671e44919"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLVI",
+      "revision_id": 3752732,
+      "revision_timestamp": "2026-04-25T20:40:47Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7beaffcd6015c3d812c56dbddc2628ca73bd220a62eeea9257c2d4fa467acf39"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLVII",
+      "revision_id": 3752733,
+      "revision_timestamp": "2026-04-25T20:40:47Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "144c1b8ae4e9570c422c86d18a5fd180420a9254589778ba89e10f50ff023fdb"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLVIII",
+      "revision_id": 3752735,
+      "revision_timestamp": "2026-04-25T20:40:48Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "27beb7a779463e05dce0459cae910b56aed2dbcba623f9974ff8df3f7c860e27"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLIX",
+      "revision_id": 3752730,
+      "revision_timestamp": "2026-04-25T20:40:46Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "249c55cb705aac32121d2e494008a48b8c5a63c0af86976a7c70ec970b32aa21"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLX",
+      "revision_id": 3752736,
+      "revision_timestamp": "2026-04-25T20:40:49Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8a44f6d9b6da7a4444e983717867b3553fcfb15dc86e1fc24d3e8fd71228432c"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXI",
+      "revision_id": 3752737,
+      "revision_timestamp": "2026-04-25T20:40:49Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b0c9ee3c578aadf10d04c31d0841eff99163cfcddc767ec360848e8e88abd555"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXII",
+      "revision_id": 3752738,
+      "revision_timestamp": "2026-04-25T20:40:50Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "bb3e584a78378f880bfb620c40cf9b097132af039a23cb7a6d8dea8ffe92df27"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXIII",
+      "revision_id": 3752739,
+      "revision_timestamp": "2026-04-25T20:40:51Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "bea6ad041952a96b211325db0955b54f89e1c0cb4a11fbb328c5cac819622b01"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXIV",
+      "revision_id": 3752740,
+      "revision_timestamp": "2026-04-25T20:40:52Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d31885dc8aebeb269548d0307d76efb7cd88c8721f60a31c1e641c159bdf6735"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXV",
+      "revision_id": 3752742,
+      "revision_timestamp": "2026-04-25T20:40:53Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ac774e50b9dc1fa457ce581c30dde758c444e7cb02fa2c9ff74741825ccaa28e"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXVI",
+      "revision_id": 3752743,
+      "revision_timestamp": "2026-04-25T20:40:54Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "620651a306954b1d63a13468709cf2847dc82e6732d1532d46df0696e8da2f57"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXVII",
+      "revision_id": 3752744,
+      "revision_timestamp": "2026-04-25T20:40:55Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "192b500f7838d08e127ee82ba210be2a2c2cd40247bb07c6cd1bf7a54223f701"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXVIII",
+      "revision_id": 3752745,
+      "revision_timestamp": "2026-04-25T20:40:55Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6110e79fc69c7b54582d4505a16a16cfed847f08cde56ce5f38bcf434e8e6396"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXIX",
+      "revision_id": 3752741,
+      "revision_timestamp": "2026-04-25T20:40:53Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6102fcaa0cba3185212317a6b3b26df9efef187c9ad795e9243e3a22ad6b0678"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXX",
+      "revision_id": 3752746,
+      "revision_timestamp": "2026-04-25T20:40:56Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ebd2607e6960242958c24009a33ddf0f57ca970727d3a012a3f50aa387e7f20f"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXXI",
+      "revision_id": 3752747,
+      "revision_timestamp": "2026-04-25T20:40:57Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5cae1048217282e175920fdae2bd9dd5d88daf393f01c6b754dc348a0410cf28"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXXII",
+      "revision_id": 3752748,
+      "revision_timestamp": "2026-04-25T20:40:58Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "be04056c6fab1789e2480ffd112f32cb0a995368acc34fd43f5fded5234503af"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXXIII",
+      "revision_id": 3752749,
+      "revision_timestamp": "2026-04-25T20:40:58Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3035c81033fa39e11008d4b5c59fc4b2e466cd83936af23a9df414f710cb8abd"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXXIV",
+      "revision_id": 3752750,
+      "revision_timestamp": "2026-04-25T20:40:59Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e3193e99b117acabbb7bb7211f0983b003f08bebab97439c7b08e4683f984d9c"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXXV",
+      "revision_id": 3752752,
+      "revision_timestamp": "2026-04-25T20:41:01Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6e083f4e7bb09cd6f2dffc5ca4239f0205c82760fdd52fd55943f38a3699d09d"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXXVI",
+      "revision_id": 3752753,
+      "revision_timestamp": "2026-04-25T20:41:02Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "849cd545b25be8880490ba0b914be6f5bfcad4e7b00de2749202c43a4c44f621"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXXVII",
+      "revision_id": 3752754,
+      "revision_timestamp": "2026-04-25T20:41:02Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b8b8b1704df0c8439f2ceb64df7a6746756dec7a82c56a6cfc0ad8d3ccd6e8ed"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXXVIII",
+      "revision_id": 3752755,
+      "revision_timestamp": "2026-04-25T20:41:03Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f42a33ee2c9e1885a0b1852eb767f315012e015100b3bba4d8084576af971dd8"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXXIX",
+      "revision_id": 3752751,
+      "revision_timestamp": "2026-04-25T20:41:00Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "956e261451576a8834910f1d326b9b0363929cb117bb83c8e45a7ae45aedf052"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXXX",
+      "revision_id": 3752756,
+      "revision_timestamp": "2026-04-25T20:41:04Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "cb0888f5663b359c2da6e7133c5aab4ff67194858c4cc52bb45b15b8c2fe7882"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXXXI",
+      "revision_id": 3752757,
+      "revision_timestamp": "2026-04-25T20:41:04Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "27e5a7f4d606be6631c2e8c9f1e014a9cc635b9046411ea28ae85992f2975265"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXXXII",
+      "revision_id": 3752758,
+      "revision_timestamp": "2026-04-25T20:41:05Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7e970f96b79bf47fd8720ebdcc601983308b8c89b14a7adca972c17eb0c856b9"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXXXIII",
+      "revision_id": 3752759,
+      "revision_timestamp": "2026-04-25T20:41:06Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e202a47252f8ee2d123765b0960f7d371e4939e2a87b44d2f81e99d226f011fc"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXXXIV",
+      "revision_id": 3752760,
+      "revision_timestamp": "2026-04-25T20:41:06Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2c728dbe3e9307eddfac31bed6d61dc3f4ad7c0c2e51e16d9876d1a7c158ac1c"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXXXV",
+      "revision_id": 3752762,
+      "revision_timestamp": "2026-04-25T20:41:08Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e17ccd7d2ad9fab033f5d3be26c6f0f052a4dee7181091ec5d4c9f2fedc5bc30"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXXXVI",
+      "revision_id": 3752763,
+      "revision_timestamp": "2026-04-25T20:41:09Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "888183f7fb0fc582e9f62d3c432854592c04547e92cdbde644daf08c43b22ab2"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXXXVII",
+      "revision_id": 3752764,
+      "revision_timestamp": "2026-04-25T20:41:09Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "47993bd38c21438d56cf6e0502c54dfeb352320f904c9040155a90e51671d507"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXXXVIII",
+      "revision_id": 3752765,
+      "revision_timestamp": "2026-04-25T20:41:10Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ef7ac478deb3806e9c893afc51c28d62ef0ac9af4bfebcb467d2a96baf7e6445"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CLXXXIX",
+      "revision_id": 3752761,
+      "revision_timestamp": "2026-04-25T20:41:07Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c75aeb45bcb9f0540be31b3838f2e3a8d05d5e318ddc35608ccf4600e751df23"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXC",
+      "revision_id": 3752771,
+      "revision_timestamp": "2026-04-25T20:41:14Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d9de6e039faf4c3b40b2229b40dcc32b0f6b900daf14445ae98da1ac74b18cad"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXCI",
+      "revision_id": 3752772,
+      "revision_timestamp": "2026-04-25T20:41:15Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "244e4211a66c1877dceaef81e95134b3a976e2ee1f0495e53dfd53fee50d5368"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXCII",
+      "revision_id": 3752773,
+      "revision_timestamp": "2026-04-25T20:41:16Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "0f7f6fe4d9dd897676ae66034e733f22b5a3ea8b67b4ae440645ed00fcaac737"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXCIII",
+      "revision_id": 3752774,
+      "revision_timestamp": "2026-04-25T20:41:16Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "657b2f9080abd4a2c67b2f09c71629afb7ea6295363dd2ada52ff52e56b6b944"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXCIV",
+      "revision_id": 3752775,
+      "revision_timestamp": "2026-04-25T20:41:17Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3666bb830bfa0270784c2321c3a3fdb63b0f94e17594de680a6465b1a005df54"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXCV",
+      "revision_id": 3752777,
+      "revision_timestamp": "2026-04-25T20:41:18Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a3fa0924fd52489183e350fb4fff26adfa9a3c8a01382d7f8803021e10308e70"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXCVI",
+      "revision_id": 3752778,
+      "revision_timestamp": "2026-04-25T20:41:19Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "12ff85b4343a0e9e2107e163d22c148af163ec0a7e1504e9b3218d8c85f4f5be"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXCVII",
+      "revision_id": 3752779,
+      "revision_timestamp": "2026-04-25T20:41:20Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5c481a61c8c21545399bb05053bafb13d8f9181f0f012ce35a8815eac497fdd9"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXCVIII",
+      "revision_id": 3752780,
+      "revision_timestamp": "2026-04-25T20:41:20Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f86ccef5d362a47a45b5d3f3185a2f46b98fedbc6222dcbf248477b438f16ed0"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CXCIX",
+      "revision_id": 3752776,
+      "revision_timestamp": "2026-04-25T20:41:18Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6ce14e729fed7c4fffa01468e0d508da5fb2c1f655614cef7eac528d73b3cdb8"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CC",
+      "revision_id": 3752673,
+      "revision_timestamp": "2026-04-25T20:40:05Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "39ad7590e859c18bcd77f489ad927f61acf004cd19463a93c67158feb5c8172a"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CCI",
+      "revision_id": 3752674,
+      "revision_timestamp": "2026-04-25T20:40:05Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "48423e7cd8a7f57e6584628bf0e4b00d4c1ce5629a9af636339463c49669f599"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CCII",
+      "revision_id": 3752675,
+      "revision_timestamp": "2026-04-25T20:40:06Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "65d71f5bbde872ffa98114703f2d1bc637cf5c4699a1c3c8f72c9c434ab9f748"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CCIII",
+      "revision_id": 3752676,
+      "revision_timestamp": "2026-04-25T20:40:07Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f13893806b13953fbf23e19b6dc2c6a03d7f489b36e52a707cdfbeae0344e890"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CCIV",
+      "revision_id": 3752677,
+      "revision_timestamp": "2026-04-25T20:40:08Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "03aeb94f52be3e969f16c984c6a5d887269fd5606078c678d7f66c8eae4b2cb3"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CCV",
+      "revision_id": 3752679,
+      "revision_timestamp": "2026-04-25T20:40:09Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "9eaa5fb900f9594e2a435698ac6b84e519753dce8b437e444af1b7fe88031910"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CCVI",
+      "revision_id": 3752680,
+      "revision_timestamp": "2026-04-25T20:40:10Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3c8eff1e22ada7506009062f3d3625bdaa40bc3afea66cd6b629d478cbdc6dc1"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CCVII",
+      "revision_id": 3752681,
+      "revision_timestamp": "2026-04-25T20:40:11Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "79f26138a914d6d5c7458c37f95f1df35bcda3aa51ca8343383edf2245560520"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CCVIII",
+      "revision_id": 3752682,
+      "revision_timestamp": "2026-04-25T20:40:12Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "33d2094b1e3f55af377c7692dbe1b8e093e29fe6695fc5ee06ff514f1984ef0d"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CCIX",
+      "revision_id": 3752678,
+      "revision_timestamp": "2026-04-25T20:40:09Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "fe0505d34a8d4cf8b182bc55ba8e218056f0008ca4bc796606d592affc5aeb30"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CCX",
+      "revision_id": 3752683,
+      "revision_timestamp": "2026-04-25T20:40:13Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "da101875895bd6a4f542429ec2b2b086ea0007a65cd56175cad4d31f144e1e14"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CCXI",
+      "revision_id": 3752684,
+      "revision_timestamp": "2026-04-25T20:40:13Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "cdd1cf18bc24dd0fd38caaf643b95b5067bb4f8db0a43b605785b86938332f21"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CCXII",
+      "revision_id": 3752685,
+      "revision_timestamp": "2026-04-25T20:40:14Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "9c941a630b034ed60ee33688355742cb5e3633510702edfffdcde1e9181a5e42"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CCXIII",
+      "revision_id": 3752686,
+      "revision_timestamp": "2026-04-25T20:40:15Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "89841268a3f33002f4e9c901ce2a848ed8e37765af3ce1923b2c139f2a8aed3c"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CCXIV",
+      "revision_id": 3752687,
+      "revision_timestamp": "2026-04-25T20:40:16Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "0f94b48dbe71ab45b0d5c120779a30b9a973fe2af40b3df83e03a56a6d58ff53"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CCXV",
+      "revision_id": 3752695,
+      "revision_timestamp": "2026-04-25T20:40:21Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "09357df4e7fc499405a8c504e0cdf0a24884d56c0532803b539992839c3e3013"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CCXVI",
+      "revision_id": 3752696,
+      "revision_timestamp": "2026-04-25T20:40:22Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "93b53834853c7b715aa7e9eb8d341fcf323806fbc4ffc28ec7defd5ab9d4d709"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CCXVII",
+      "revision_id": 3752697,
+      "revision_timestamp": "2026-04-25T20:40:23Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b2f531873e590dc6551aaa396058133adf10a18f00ce3aca3f30d669e93a4214"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CCXVIII",
+      "revision_id": 3752698,
+      "revision_timestamp": "2026-04-25T20:40:24Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "48f56c5babdcaf418c39079bb30998561f50ae9f72bc5eb12e5ac6db90f9e125"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CCXIX",
+      "revision_id": 3752688,
+      "revision_timestamp": "2026-04-25T20:40:16Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b5c0ac3e6c3819ad8ae8a0bdfd293d1f565e40fe6ba78ea5e72da197677f85f9"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CCXX",
+      "revision_id": 3752699,
+      "revision_timestamp": "2026-04-25T20:40:25Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "40e8f4db7c75049583137d0adf444f12ad13aa59614bd8a830461aac6a474386"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CCXXI",
+      "revision_id": 3752700,
+      "revision_timestamp": "2026-04-25T20:40:25Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4156834e2ac70ffde627ca789c365b76eb77dc751a43e1592a56944f3174d99b"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CCXXXII",
+      "revision_id": 3752712,
+      "revision_timestamp": "2026-04-25T20:40:34Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "edb02ab1456896a87fa848b1ed9a957753a64eea124119265dca27caf8c5ee1d"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime d'amore/CCXXXVIII",
+      "revision_id": 3752719,
+      "revision_timestamp": "2026-04-25T20:40:38Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "70b283d3fa718d303ba8dd594656f646efa494e997da60bb0cf34a48b685d944"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCXLVI",
+      "revision_id": 3752983,
+      "revision_timestamp": "2026-04-25T20:43:52Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "048f6132238819d5948e2417c1261c8c36baac6be25ba3d000be5865d775e733"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCXLVII",
+      "revision_id": 3752984,
+      "revision_timestamp": "2026-04-25T20:43:53Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e584e7f5f0ad6eb1caf4e3e1c364f243ea9da0b221cb9e5a70e9b6dea8bc4422"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCXLVIII",
+      "revision_id": 3752985,
+      "revision_timestamp": "2026-04-25T20:43:53Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3e70f910121bed56e2203322a699ae83c03da156007cd9f52b083d1260a954b4"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCXLIX",
+      "revision_id": 3752982,
+      "revision_timestamp": "2026-04-25T20:43:51Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "fe0ea1ecd61757dc4cf9b1bc24bd4bcf8b911e2110c927f0a58488728bcfa304"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCL",
+      "revision_id": 3752932,
+      "revision_timestamp": "2026-04-25T20:43:15Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3a8320bd4813f7ae0786d713e04f4597fdc8b480d5ef90ff0bbb00575f5e0b4a"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLI",
+      "revision_id": 3752933,
+      "revision_timestamp": "2026-04-25T20:43:16Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "51feb0f69828c18f9eba3a97caae2c1977d7c1182f3ed4536f63edbcf3162452"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLII",
+      "revision_id": 3752934,
+      "revision_timestamp": "2026-04-25T20:43:16Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ca1ac14015a953dafecb7350bca06d1fbe3fac58908508d993723506fbbf1fdf"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLIII",
+      "revision_id": 3752935,
+      "revision_timestamp": "2026-04-25T20:43:17Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ed7a23ca8881e9ec632832ff8cfd6d65a77788f4f1c15e98c7fd08727bccbf12"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLIV",
+      "revision_id": 3752936,
+      "revision_timestamp": "2026-04-25T20:43:18Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7813679688ec735e109520b076523432eec2a4d5b63e9517e49a11f58f139ae8"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLV",
+      "revision_id": 3752938,
+      "revision_timestamp": "2026-04-25T20:43:19Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e2acc2c8d1d7f72ee3c80db38f244b2c4b4175740b868d4668271478e7196c9b"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLVI",
+      "revision_id": 3752939,
+      "revision_timestamp": "2026-04-25T20:43:20Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "922821f032f8debba42eaa73099ec8657589d0344b66f48d583dfebc19736d88"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLVII",
+      "revision_id": 3752940,
+      "revision_timestamp": "2026-04-25T20:43:21Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "aa13d3ce3e8eb73ec9a2dd55f137b4c593155465c6477db7b26a2a482e014965"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLVIII",
+      "revision_id": 3752941,
+      "revision_timestamp": "2026-04-25T20:43:22Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8015612910e94e31783c23103c5044a1a3254514cc0415adf4b568764fba0ecb"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLIX",
+      "revision_id": 3752937,
+      "revision_timestamp": "2026-04-25T20:43:19Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3f1a1f24cb6fe88bfc3a82cc837a047c19594d300487e8573a7ad01780f2f1fa"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLX",
+      "revision_id": 3752942,
+      "revision_timestamp": "2026-04-25T20:43:22Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "fdd13a21a905befa0c98a3f4fc805f1475a05f1d493e982bc953d3bed3da0278"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXI",
+      "revision_id": 3752943,
+      "revision_timestamp": "2026-04-25T20:43:23Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2f9733c4a6d7314074201a1e3097e8ffae1c6c0084337e6ed6c54f064721b773"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXII",
+      "revision_id": 3752944,
+      "revision_timestamp": "2026-04-25T20:43:23Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "141d67b83ffaa529b6c634ac67ba4f67901fb5f9403851f529b668eaeb1170e3"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXIII",
+      "revision_id": 3752945,
+      "revision_timestamp": "2026-04-25T20:43:24Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7cf2e14b11d77327057c0bbb71c5b6a21afafc94b074a1f18bcebbb0be17d3f2"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXIV",
+      "revision_id": 3752946,
+      "revision_timestamp": "2026-04-25T20:43:25Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d3b86a07a1457a76779b95d66171fadbf5b9c96a0f43ec61b74e57a11b4708fc"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXV",
+      "revision_id": 3752948,
+      "revision_timestamp": "2026-04-25T20:43:26Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e18d7d00b017ccf94f44b6ba9d6e788a71e5100134e4cf2857fdc5920ca95046"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXVI",
+      "revision_id": 3752949,
+      "revision_timestamp": "2026-04-25T20:43:27Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8b2ef68c173aada5f36207a5dea55ffc9269620443c4b1ac5469aca5d6f812fa"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXVII",
+      "revision_id": 3752950,
+      "revision_timestamp": "2026-04-25T20:43:28Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4a1ccd3d85fa911506d0dc11eb46f56427402f48a0f741764a995a93c322f677"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXVIII",
+      "revision_id": 3752951,
+      "revision_timestamp": "2026-04-25T20:43:28Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d560a7251b569869653c340478a5c3503fa50f777bea3a52c8536f0af133c624"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXIX",
+      "revision_id": 3752947,
+      "revision_timestamp": "2026-04-25T20:43:25Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "41eb3b34833f66977dfb393132d1696e813d7139b4bcffe81e6b86e8053f029c"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXX",
+      "revision_id": 3752952,
+      "revision_timestamp": "2026-04-25T20:43:29Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8bff867b3af6caf000d34d0bf5285c02a062d5a0c4e82b3d0ba10707257cd3d3"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXXI",
+      "revision_id": 3752953,
+      "revision_timestamp": "2026-04-25T20:43:30Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7251f2a5c3dce42d7b55f475cd8ec69331cfce72a0000209badc2737fa4fd475"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXXII",
+      "revision_id": 3752954,
+      "revision_timestamp": "2026-04-25T20:43:30Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1d6208e598885a87a1d315f09989a52ec7432dc2aaccefa9ed0f9f73476ca3c2"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXXIII",
+      "revision_id": 3752955,
+      "revision_timestamp": "2026-04-25T20:43:31Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "cb2b4e676585e37d5f4ace2efa86a05c1c36d5f13baebe10098b96b6d6bb3af1"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXXIV",
+      "revision_id": 3752956,
+      "revision_timestamp": "2026-04-25T20:43:31Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "bf7f5918f10d4ae7f3fbdb187e3d2574e0edf4ea15d356fa472b55c9708e2363"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXXV",
+      "revision_id": 3752958,
+      "revision_timestamp": "2026-04-25T20:43:33Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "46f17edc2428a1b5d9ed87a1f69da71a2156464059865e4371f95f5d50b10331"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXXVI",
+      "revision_id": 3752959,
+      "revision_timestamp": "2026-04-25T20:43:34Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1084cab4b8ad9cc3c54512bc66218dcc19eadb975efd47f7437064293973d55c"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXXVII",
+      "revision_id": 3752960,
+      "revision_timestamp": "2026-04-25T20:43:34Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a04b1554d0e2646f8aff32765fd79d317f69d84617f2c353417f296c1c3f9c2b"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXXVIII",
+      "revision_id": 3752961,
+      "revision_timestamp": "2026-04-25T20:43:35Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "79d55289a153dbf3a723f96979126f3e790f7612dfa794991855dfe4d68e9130"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXXIX",
+      "revision_id": 3752957,
+      "revision_timestamp": "2026-04-25T20:43:32Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "0960f256bc3f31e852eb21bb0d4f64b2c5430479909f83b72078dfa425dbbe2c"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXXX",
+      "revision_id": 3752962,
+      "revision_timestamp": "2026-04-25T20:43:36Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "9e447d67f52a601a66001e5fe0e95e3899f0dd392cca5c4433393737ee602ec5"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXXXI",
+      "revision_id": 3752963,
+      "revision_timestamp": "2026-04-25T20:43:37Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "715319a96a7c3435ebaffe1ead3f1c12bf04373cf88aa08d6506edecd69a8325"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXXXII",
+      "revision_id": 3752964,
+      "revision_timestamp": "2026-04-25T20:43:38Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "64748ec41b078046b9f9d7f1c43e1907bfc6cea836d053ae3f0deb1d2493d830"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXXXIII",
+      "revision_id": 3752965,
+      "revision_timestamp": "2026-04-25T20:43:38Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "cc1c2542a96356025f00e602be58f270e836f595c50d53dc20c7078fb8e90e2d"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXXXIV",
+      "revision_id": 3752966,
+      "revision_timestamp": "2026-04-25T20:43:39Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5fc99615477a0e0c9adfb3344aff709ca84485d0f66616a4751d71b1f8ae22bf"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXXXV",
+      "revision_id": 3752968,
+      "revision_timestamp": "2026-04-25T20:43:41Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a69e5f205d43c695aac49e5e413289fd8fd5cdb732266d408000d07e225fc1bd"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXXXVI",
+      "revision_id": 3752969,
+      "revision_timestamp": "2026-04-25T20:43:41Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1918e1f5caa835415f77e054f4d126dda5621e92d9cdbb579936539f4991839d"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXXXVII",
+      "revision_id": 3752970,
+      "revision_timestamp": "2026-04-25T20:43:42Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8eb623a35c32803df5170a6998fcf5440a7be143ab9153afa5c4671da3295f29"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXXXVIII",
+      "revision_id": 3752971,
+      "revision_timestamp": "2026-04-25T20:43:43Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7ae7bd84e054d44520cef912b3cd8fe95bdfe86b507097d19fa1beb653ced407"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCLXXXIX",
+      "revision_id": 3752967,
+      "revision_timestamp": "2026-04-25T20:43:40Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ab9af9a787e04b6e1f84a37c5bc518b4cfa375f2fd99294c9d77387a18c50f92"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCXC",
+      "revision_id": 3752972,
+      "revision_timestamp": "2026-04-25T20:43:43Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "59921298be84c3ad3a473fda46bc21ce383b1aa89bdf55fd7bbc9538757ce8fa"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCXCI",
+      "revision_id": 3752973,
+      "revision_timestamp": "2026-04-25T20:43:44Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "0b97b96165c3219b435e669ad82877c8501b158580de4d8350600c674d4b8e02"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCXCII",
+      "revision_id": 3752974,
+      "revision_timestamp": "2026-04-25T20:43:45Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "0ad3fd19d5796507d87efb89c807b1f266d9d18ff9876dba6dbc41052fab7e79"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCXCIII",
+      "revision_id": 3752975,
+      "revision_timestamp": "2026-04-25T20:43:46Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "81ee6138d8108ec1aa1304589735c8eaa7a026fa1961864a8ff23b69ee1d5f34"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCXCIV",
+      "revision_id": 3752976,
+      "revision_timestamp": "2026-04-25T20:43:46Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ddabe43aafb7c5cc4cdb821ac9dc69b0f16029a9070c2ec74a8e9de9c2647c0c"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCXCV",
+      "revision_id": 3752978,
+      "revision_timestamp": "2026-04-25T20:43:48Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ad432d35e10a0cd1f7307309ac594ab90b54c6e7b0edaef337b2f2f9785fd7df"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCC",
+      "revision_id": 3752920,
+      "revision_timestamp": "2026-04-25T20:43:06Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "bd19bc482f6237abb2d0e629b36e2ceb3839cb5ab832c0070970fef37087cfa5"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCCI",
+      "revision_id": 3752921,
+      "revision_timestamp": "2026-04-25T20:43:07Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5e7fa7c8af6547a910ced1cd79b1b75f2d7402980a00200fd4fa75e76ce50190"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCCII",
+      "revision_id": 3752922,
+      "revision_timestamp": "2026-04-25T20:43:08Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ceb1ae6b130676d541bd8ec580046711371bfae8717f1c508c800e668c9d6548"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCCIII",
+      "revision_id": 3752923,
+      "revision_timestamp": "2026-04-25T20:43:08Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c6b5b8509534e88fea8610b07bb5bbff6fe5934d3b596cd5e1ebbbbac70d907f"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCCIV",
+      "revision_id": 3752924,
+      "revision_timestamp": "2026-04-25T20:43:09Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1b416dbfd5ba4a051116956e3fc98881cd85047c6db46bb2d5153c5d4c363cde"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCCV",
+      "revision_id": 3752926,
+      "revision_timestamp": "2026-04-25T20:43:10Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6ca624d68d5a6b99fc7443a5eabaacf7a06558a13af4f3387bf59c63b24f27a8"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCCVI",
+      "revision_id": 3752927,
+      "revision_timestamp": "2026-04-25T20:43:11Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d4036dbcabc4774f6330d95c3d61fa0d686fdd2f43c1c4cf5327abc203f29543"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCCVII",
+      "revision_id": 3752928,
+      "revision_timestamp": "2026-04-25T20:43:12Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c78ab3ff41703ff6ab8cd307555e6581c349cc1c97f490c8e809ef4b9c9d2b99"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCCVIII",
+      "revision_id": 3752929,
+      "revision_timestamp": "2026-04-25T20:43:12Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a15b3c5bf29ebcad1f7aa63d5937ad5f133e898fe8bb9567566bba6b1cfe7f54"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCCIX",
+      "revision_id": 3752925,
+      "revision_timestamp": "2026-04-25T20:43:10Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f80ae6c17162cc8215209fda6cace1453a10d3d81fceec37401f580e7ce5c5e7"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCCX",
+      "revision_id": 3752930,
+      "revision_timestamp": "2026-04-25T20:43:13Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e38f69e092ef99ad24b5b75b22cc89aea00950d493d302842c06720f1fd979af"
+    },
+    {
+      "page_title": "Rime (Stampa)/Rime varie/CCCXI",
+      "revision_id": 3752931,
+      "revision_timestamp": "2026-04-25T20:43:14Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2658849d9d205c1025dfd2fa2e23aee07a2f247ab7b201d401601a2d4189b1a5"
+    }
+  ],
+  "source_record_revisions": [],
+  "edition_page_title_suffix": "",
+  "source_metadata": {
+    "source_id": "ws_stampa_rime_1913",
+    "author": "Gaspara Stampa",
+    "source_archive": "Italian Wikisource",
+    "source_collection": "Rime (Stampa)",
+    "source_edition": "Gaspara Stampa - Veronica Franco, Rime, edited by Abdelkader Salza, Bari, Laterza, 1913; Gaspara Stampa section only.",
+    "license_notes": "Italian Wikisource CC BY-SA 3.0 / GFDL page metadata; retain page URL, author, source scan, editor, license links, and share-alike notice.",
+    "period": "XVI secolo",
+    "poem_id_prefix": "stampa",
+    "snapshot_scope": "explicit_subpages"
+  },
+  "audit_report": {
+    "page_count": 314,
+    "eligible_sonnet_count": 282,
+    "pinned_page_count": 282,
+    "started_at_utc": "2026-07-22T14:19:19+00:00",
+    "finished_at_utc": "2026-07-22T15:24:07+00:00"
+  }
+}

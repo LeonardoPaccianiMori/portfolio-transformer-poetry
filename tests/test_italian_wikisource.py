@@ -446,6 +446,47 @@ def test_fetch_pinned_collection_validates_a_record_to_edition_snapshot():
     assert collection.pages[0].source_record_revision.title == record_title
 
 
+def test_fetch_pinned_collection_accepts_explicit_standalone_root_links():
+    root_title = "Rime disperse"
+    poem_title = "Spargi di lauri, palme e mirti foglie"
+    revisions = {
+        root_title: (100, "2026-07-15T10:00:00Z"),
+        poem_title: (101, "2026-07-15T10:01:00Z"),
+    }
+    rendered_html = {
+        100: (
+            "<div class='mw-parser-output'>"
+            f"<a title='{poem_title}'>first poem</a></div>"
+        ),
+        101: (
+            "<div class='mw-parser-output'>"
+            "<div class='poem'>Pinned poem text.</div></div>"
+        ),
+    }
+    snapshot = WikisourceWorkSnapshot(
+        source_id="ws_sannazaro_rime_disperse",
+        landing_page_url="https://it.wikisource.org/wiki/Rime_disperse",
+        title=root_title,
+        scope="explicit_linked_pages",
+        root_revision=WikisourcePageRevision(
+            root_title, 100, "2026-07-15T10:00:00Z"
+        ),
+        page_revisions=[
+            WikisourcePageRevision(
+                poem_title, 101, "2026-07-15T10:01:00Z"
+            )
+        ],
+    )
+
+    collection = fetch_pinned_italian_wikisource_page_collection(
+        snapshot,
+        request_delay=0,
+        session=FakeSession(revisions, rendered_html),
+    )
+
+    assert collection.pages[0].revision.title == poem_title
+
+
 def test_extract_wikisource_prose_text_removes_site_wrappers():
     html = """
     <div class="mw-parser-output">

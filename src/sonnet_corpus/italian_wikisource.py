@@ -506,6 +506,8 @@ def fetch_pinned_italian_wikisource_page_collection(
         missing_titles = [title for title in expected_titles if title not in actual_titles]
         if missing_titles:
             raise ValueError(f"Wikisource root page is missing committed subpages: {missing_titles}")
+    if snapshot.scope == "explicit_linked_pages":
+        select_explicit_page_titles(root_html, expected_titles)
     source_record_revisions: list[WikisourcePageRevision | None] = [None] * len(expected_titles)
     if snapshot.scope == "explicit_edition_pages":
         record_titles = [revision.title for revision in snapshot.source_record_revisions]

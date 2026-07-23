@@ -1,0 +1,2548 @@
+{
+  "source_id": "ws_andreini_rime_1601",
+  "landing_page_url": "https://it.wikisource.org/wiki/Rime_(Andreini)",
+  "title": "Rime (Andreini)",
+  "scope": "explicit_subpages",
+  "root_revision": {
+    "title": "Rime (Andreini)",
+    "revision_id": 3750857,
+    "revision_timestamp": "2026-04-25T20:16:30Z"
+  },
+  "page_revisions": [
+    {
+      "title": "Rime (Andreini)/Sonetto I",
+      "revision_id": 3751127,
+      "revision_timestamp": "2026-04-25T20:20:00Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto II",
+      "revision_id": 3751128,
+      "revision_timestamp": "2026-04-25T20:20:00Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto III",
+      "revision_id": 3751129,
+      "revision_timestamp": "2026-04-25T20:20:01Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto IV",
+      "revision_id": 3751130,
+      "revision_timestamp": "2026-04-25T20:20:02Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto V",
+      "revision_id": 3751172,
+      "revision_timestamp": "2026-04-25T20:20:35Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto VI",
+      "revision_id": 3751173,
+      "revision_timestamp": "2026-04-25T20:20:36Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto VII",
+      "revision_id": 3751174,
+      "revision_timestamp": "2026-04-25T20:20:37Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto VIII",
+      "revision_id": 3751175,
+      "revision_timestamp": "2026-04-25T20:20:38Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto IX",
+      "revision_id": 3751131,
+      "revision_timestamp": "2026-04-25T20:20:03Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto X",
+      "revision_id": 3751176,
+      "revision_timestamp": "2026-04-25T20:20:39Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XI",
+      "revision_id": 3751187,
+      "revision_timestamp": "2026-04-25T20:20:48Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XII",
+      "revision_id": 3751188,
+      "revision_timestamp": "2026-04-25T20:20:49Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XIII",
+      "revision_id": 3751189,
+      "revision_timestamp": "2026-04-25T20:20:50Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XIV",
+      "revision_id": 3751190,
+      "revision_timestamp": "2026-04-25T20:20:50Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XV",
+      "revision_id": 3751202,
+      "revision_timestamp": "2026-04-25T20:21:00Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XVI",
+      "revision_id": 3751203,
+      "revision_timestamp": "2026-04-25T20:21:01Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XVII",
+      "revision_id": 3751204,
+      "revision_timestamp": "2026-04-25T20:21:02Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XVIII",
+      "revision_id": 3751205,
+      "revision_timestamp": "2026-04-25T20:21:03Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XIX",
+      "revision_id": 3751191,
+      "revision_timestamp": "2026-04-25T20:20:51Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XX",
+      "revision_id": 3751206,
+      "revision_timestamp": "2026-04-25T20:21:03Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XXI",
+      "revision_id": 3751207,
+      "revision_timestamp": "2026-04-25T20:21:04Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XXII",
+      "revision_id": 3751208,
+      "revision_timestamp": "2026-04-25T20:21:05Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XXIII",
+      "revision_id": 3751209,
+      "revision_timestamp": "2026-04-25T20:21:06Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XXIV",
+      "revision_id": 3751210,
+      "revision_timestamp": "2026-04-25T20:21:07Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XXV",
+      "revision_id": 3751212,
+      "revision_timestamp": "2026-04-25T20:21:08Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XXVI",
+      "revision_id": 3751213,
+      "revision_timestamp": "2026-04-25T20:21:09Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XXVII",
+      "revision_id": 3751214,
+      "revision_timestamp": "2026-04-25T20:21:10Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XXVIII",
+      "revision_id": 3751215,
+      "revision_timestamp": "2026-04-25T20:21:11Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XXIX",
+      "revision_id": 3751211,
+      "revision_timestamp": "2026-04-25T20:21:07Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XXX",
+      "revision_id": 3751216,
+      "revision_timestamp": "2026-04-25T20:21:11Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XXXI",
+      "revision_id": 3751217,
+      "revision_timestamp": "2026-04-25T20:21:12Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XXXII",
+      "revision_id": 3751218,
+      "revision_timestamp": "2026-04-25T20:21:13Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XXXIII",
+      "revision_id": 3751219,
+      "revision_timestamp": "2026-04-25T20:21:14Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XXXIV",
+      "revision_id": 3751220,
+      "revision_timestamp": "2026-04-25T20:21:15Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XXXV",
+      "revision_id": 3751222,
+      "revision_timestamp": "2026-04-25T20:21:16Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XXXVI",
+      "revision_id": 3751223,
+      "revision_timestamp": "2026-04-25T20:21:17Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XXXVII",
+      "revision_id": 3751224,
+      "revision_timestamp": "2026-04-25T20:21:18Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XXXVIII",
+      "revision_id": 3751225,
+      "revision_timestamp": "2026-04-25T20:21:19Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XXXIX",
+      "revision_id": 3751221,
+      "revision_timestamp": "2026-04-25T20:21:16Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XL",
+      "revision_id": 3751192,
+      "revision_timestamp": "2026-04-25T20:20:52Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XLI",
+      "revision_id": 3751193,
+      "revision_timestamp": "2026-04-25T20:20:53Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XLII",
+      "revision_id": 3751194,
+      "revision_timestamp": "2026-04-25T20:20:53Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XLIII",
+      "revision_id": 3751195,
+      "revision_timestamp": "2026-04-25T20:20:54Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XLIV",
+      "revision_id": 3751196,
+      "revision_timestamp": "2026-04-25T20:20:55Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XLV",
+      "revision_id": 3751198,
+      "revision_timestamp": "2026-04-25T20:20:56Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XLVI",
+      "revision_id": 3751199,
+      "revision_timestamp": "2026-04-25T20:20:57Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XLVII",
+      "revision_id": 3751200,
+      "revision_timestamp": "2026-04-25T20:20:58Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XLVIII",
+      "revision_id": 3751201,
+      "revision_timestamp": "2026-04-25T20:20:59Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XLIX",
+      "revision_id": 3751197,
+      "revision_timestamp": "2026-04-25T20:20:56Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto L",
+      "revision_id": 3751132,
+      "revision_timestamp": "2026-04-25T20:20:04Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LI",
+      "revision_id": 3751133,
+      "revision_timestamp": "2026-04-25T20:20:04Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LII",
+      "revision_id": 3751134,
+      "revision_timestamp": "2026-04-25T20:20:05Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LIII",
+      "revision_id": 3751135,
+      "revision_timestamp": "2026-04-25T20:20:06Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LIV",
+      "revision_id": 3751136,
+      "revision_timestamp": "2026-04-25T20:20:06Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LV",
+      "revision_id": 3751138,
+      "revision_timestamp": "2026-04-25T20:20:08Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LVI",
+      "revision_id": 3751139,
+      "revision_timestamp": "2026-04-25T20:20:09Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LVII",
+      "revision_id": 3751140,
+      "revision_timestamp": "2026-04-25T20:20:09Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LVIII",
+      "revision_id": 3751141,
+      "revision_timestamp": "2026-04-25T20:20:10Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LIX",
+      "revision_id": 3751137,
+      "revision_timestamp": "2026-04-25T20:20:07Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LX",
+      "revision_id": 3751142,
+      "revision_timestamp": "2026-04-25T20:20:11Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXI",
+      "revision_id": 3751143,
+      "revision_timestamp": "2026-04-25T20:20:12Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXII",
+      "revision_id": 3751144,
+      "revision_timestamp": "2026-04-25T20:20:13Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXIII",
+      "revision_id": 3751145,
+      "revision_timestamp": "2026-04-25T20:20:13Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXIV",
+      "revision_id": 3751146,
+      "revision_timestamp": "2026-04-25T20:20:14Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXV",
+      "revision_id": 3751148,
+      "revision_timestamp": "2026-04-25T20:20:16Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXVI",
+      "revision_id": 3751149,
+      "revision_timestamp": "2026-04-25T20:20:17Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXVII",
+      "revision_id": 3751150,
+      "revision_timestamp": "2026-04-25T20:20:18Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXVIII",
+      "revision_id": 3751151,
+      "revision_timestamp": "2026-04-25T20:20:18Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXIX",
+      "revision_id": 3751147,
+      "revision_timestamp": "2026-04-25T20:20:15Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXX",
+      "revision_id": 3751152,
+      "revision_timestamp": "2026-04-25T20:20:19Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXXI",
+      "revision_id": 3751153,
+      "revision_timestamp": "2026-04-25T20:20:20Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXXII",
+      "revision_id": 3751154,
+      "revision_timestamp": "2026-04-25T20:20:21Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXXIII",
+      "revision_id": 3751155,
+      "revision_timestamp": "2026-04-25T20:20:22Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXXIV",
+      "revision_id": 3751156,
+      "revision_timestamp": "2026-04-25T20:20:23Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXXV",
+      "revision_id": 3751158,
+      "revision_timestamp": "2026-04-25T20:20:24Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXXVI",
+      "revision_id": 3751159,
+      "revision_timestamp": "2026-04-25T20:20:25Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXXVII",
+      "revision_id": 3751160,
+      "revision_timestamp": "2026-04-25T20:20:26Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXXVIII",
+      "revision_id": 3751161,
+      "revision_timestamp": "2026-04-25T20:20:27Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXXIX",
+      "revision_id": 3751157,
+      "revision_timestamp": "2026-04-25T20:20:23Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXXX",
+      "revision_id": 3751162,
+      "revision_timestamp": "2026-04-25T20:20:27Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXXXI",
+      "revision_id": 3751163,
+      "revision_timestamp": "2026-04-25T20:20:28Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXXXII",
+      "revision_id": 3751164,
+      "revision_timestamp": "2026-04-25T20:20:29Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXXXIII",
+      "revision_id": 3751165,
+      "revision_timestamp": "2026-04-25T20:20:30Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXXXIV",
+      "revision_id": 3751166,
+      "revision_timestamp": "2026-04-25T20:20:31Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXXXV",
+      "revision_id": 3751168,
+      "revision_timestamp": "2026-04-25T20:20:32Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXXXVI",
+      "revision_id": 3751169,
+      "revision_timestamp": "2026-04-25T20:20:33Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXXXVII",
+      "revision_id": 3751170,
+      "revision_timestamp": "2026-04-25T20:20:34Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXXXVIII",
+      "revision_id": 3751171,
+      "revision_timestamp": "2026-04-25T20:20:34Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto LXXXIX",
+      "revision_id": 3751167,
+      "revision_timestamp": "2026-04-25T20:20:31Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XC",
+      "revision_id": 3751177,
+      "revision_timestamp": "2026-04-25T20:20:39Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XCI",
+      "revision_id": 3751178,
+      "revision_timestamp": "2026-04-25T20:20:40Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XCII",
+      "revision_id": 3751179,
+      "revision_timestamp": "2026-04-25T20:20:41Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XCIII",
+      "revision_id": 3751180,
+      "revision_timestamp": "2026-04-25T20:20:42Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XCIV",
+      "revision_id": 3751181,
+      "revision_timestamp": "2026-04-25T20:20:43Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XCV",
+      "revision_id": 3751183,
+      "revision_timestamp": "2026-04-25T20:20:44Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XCVI",
+      "revision_id": 3751184,
+      "revision_timestamp": "2026-04-25T20:20:45Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XCVII",
+      "revision_id": 3751185,
+      "revision_timestamp": "2026-04-25T20:20:46Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XCVIII",
+      "revision_id": 3751186,
+      "revision_timestamp": "2026-04-25T20:20:47Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto XCIX",
+      "revision_id": 3751182,
+      "revision_timestamp": "2026-04-25T20:20:44Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto C",
+      "revision_id": 3751042,
+      "revision_timestamp": "2026-04-25T20:18:55Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CI",
+      "revision_id": 3751043,
+      "revision_timestamp": "2026-04-25T20:18:56Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CII",
+      "revision_id": 3751044,
+      "revision_timestamp": "2026-04-25T20:18:57Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CIII",
+      "revision_id": 3751045,
+      "revision_timestamp": "2026-04-25T20:18:58Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CIV",
+      "revision_id": 3751046,
+      "revision_timestamp": "2026-04-25T20:18:59Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CV",
+      "revision_id": 3751074,
+      "revision_timestamp": "2026-04-25T20:19:21Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CVI",
+      "revision_id": 3751075,
+      "revision_timestamp": "2026-04-25T20:19:22Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CVII",
+      "revision_id": 3751076,
+      "revision_timestamp": "2026-04-25T20:19:22Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CVIII",
+      "revision_id": 3751077,
+      "revision_timestamp": "2026-04-25T20:19:23Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CIX",
+      "revision_id": 3751047,
+      "revision_timestamp": "2026-04-25T20:18:59Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CX",
+      "revision_id": 3751078,
+      "revision_timestamp": "2026-04-25T20:19:24Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXI",
+      "revision_id": 3751086,
+      "revision_timestamp": "2026-04-25T20:19:29Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXII",
+      "revision_id": 3751087,
+      "revision_timestamp": "2026-04-25T20:19:30Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXIII",
+      "revision_id": 3751088,
+      "revision_timestamp": "2026-04-25T20:19:31Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXIV",
+      "revision_id": 3751089,
+      "revision_timestamp": "2026-04-25T20:19:31Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXV",
+      "revision_id": 3751101,
+      "revision_timestamp": "2026-04-25T20:19:41Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXVI",
+      "revision_id": 3751102,
+      "revision_timestamp": "2026-04-25T20:19:41Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXVII",
+      "revision_id": 3751103,
+      "revision_timestamp": "2026-04-25T20:19:42Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXVIII",
+      "revision_id": 3751104,
+      "revision_timestamp": "2026-04-25T20:19:43Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXIX",
+      "revision_id": 3751090,
+      "revision_timestamp": "2026-04-25T20:19:32Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXX",
+      "revision_id": 3751105,
+      "revision_timestamp": "2026-04-25T20:19:44Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXXI",
+      "revision_id": 3751106,
+      "revision_timestamp": "2026-04-25T20:19:44Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXXII",
+      "revision_id": 3751108,
+      "revision_timestamp": "2026-04-25T20:19:45Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXXIII",
+      "revision_id": 3751109,
+      "revision_timestamp": "2026-04-25T20:19:46Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXXIV",
+      "revision_id": 3751110,
+      "revision_timestamp": "2026-04-25T20:19:47Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXXV",
+      "revision_id": 3751112,
+      "revision_timestamp": "2026-04-25T20:19:48Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXXVI",
+      "revision_id": 3751113,
+      "revision_timestamp": "2026-04-25T20:19:49Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXXVII",
+      "revision_id": 3751114,
+      "revision_timestamp": "2026-04-25T20:19:50Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXXVIII",
+      "revision_id": 3751115,
+      "revision_timestamp": "2026-04-25T20:19:51Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXXIX",
+      "revision_id": 3751111,
+      "revision_timestamp": "2026-04-25T20:19:48Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXXX",
+      "revision_id": 3751116,
+      "revision_timestamp": "2026-04-25T20:19:52Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXXXI",
+      "revision_id": 3751117,
+      "revision_timestamp": "2026-04-25T20:19:52Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXXXII",
+      "revision_id": 3751118,
+      "revision_timestamp": "2026-04-25T20:19:53Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXXXIII",
+      "revision_id": 3751119,
+      "revision_timestamp": "2026-04-25T20:19:54Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXXXIV",
+      "revision_id": 3751120,
+      "revision_timestamp": "2026-04-25T20:19:55Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXXXV",
+      "revision_id": 3751122,
+      "revision_timestamp": "2026-04-25T20:19:56Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXXXVI",
+      "revision_id": 3751124,
+      "revision_timestamp": "2026-04-25T20:19:57Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXXXVII",
+      "revision_id": 3751125,
+      "revision_timestamp": "2026-04-25T20:19:58Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXXXVIII",
+      "revision_id": 3751126,
+      "revision_timestamp": "2026-04-25T20:19:59Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXXXIX",
+      "revision_id": 3751121,
+      "revision_timestamp": "2026-04-25T20:19:56Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXL",
+      "revision_id": 3751091,
+      "revision_timestamp": "2026-04-25T20:19:33Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXLI",
+      "revision_id": 3751092,
+      "revision_timestamp": "2026-04-25T20:19:34Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXLII",
+      "revision_id": 3751093,
+      "revision_timestamp": "2026-04-25T20:19:35Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXLIII",
+      "revision_id": 3751094,
+      "revision_timestamp": "2026-04-25T20:19:36Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXLIV",
+      "revision_id": 3751095,
+      "revision_timestamp": "2026-04-25T20:19:36Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXLV",
+      "revision_id": 3751097,
+      "revision_timestamp": "2026-04-25T20:19:38Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXLVI",
+      "revision_id": 3751098,
+      "revision_timestamp": "2026-04-25T20:19:38Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXLVII",
+      "revision_id": 3751099,
+      "revision_timestamp": "2026-04-25T20:19:39Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXLVIII",
+      "revision_id": 3751100,
+      "revision_timestamp": "2026-04-25T20:19:40Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXLIX",
+      "revision_id": 3751096,
+      "revision_timestamp": "2026-04-25T20:19:37Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CL",
+      "revision_id": 3751048,
+      "revision_timestamp": "2026-04-25T20:19:00Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLI",
+      "revision_id": 3751049,
+      "revision_timestamp": "2026-04-25T20:19:01Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLII",
+      "revision_id": 3751050,
+      "revision_timestamp": "2026-04-25T20:19:02Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLIII",
+      "revision_id": 3751051,
+      "revision_timestamp": "2026-04-25T20:19:03Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLIV",
+      "revision_id": 3751052,
+      "revision_timestamp": "2026-04-25T20:19:03Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLV",
+      "revision_id": 3751054,
+      "revision_timestamp": "2026-04-25T20:19:05Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLVI",
+      "revision_id": 3751055,
+      "revision_timestamp": "2026-04-25T20:19:06Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLVII",
+      "revision_id": 3751056,
+      "revision_timestamp": "2026-04-25T20:19:06Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLVIII",
+      "revision_id": 3751057,
+      "revision_timestamp": "2026-04-25T20:19:07Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLIX",
+      "revision_id": 3751053,
+      "revision_timestamp": "2026-04-25T20:19:04Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLX",
+      "revision_id": 3751058,
+      "revision_timestamp": "2026-04-25T20:19:08Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLXI",
+      "revision_id": 3751059,
+      "revision_timestamp": "2026-04-25T20:19:09Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLXII",
+      "revision_id": 3751060,
+      "revision_timestamp": "2026-04-25T20:19:09Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLXIII",
+      "revision_id": 3751061,
+      "revision_timestamp": "2026-04-25T20:19:10Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLXIV",
+      "revision_id": 3751062,
+      "revision_timestamp": "2026-04-25T20:19:11Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLXV",
+      "revision_id": 3751064,
+      "revision_timestamp": "2026-04-25T20:19:12Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLXVI",
+      "revision_id": 3751065,
+      "revision_timestamp": "2026-04-25T20:19:13Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLXVII",
+      "revision_id": 3751066,
+      "revision_timestamp": "2026-04-25T20:19:14Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLXVIII",
+      "revision_id": 3751067,
+      "revision_timestamp": "2026-04-25T20:19:15Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLXIX",
+      "revision_id": 3751063,
+      "revision_timestamp": "2026-04-25T20:19:12Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLXX",
+      "revision_id": 3751068,
+      "revision_timestamp": "2026-04-25T20:19:15Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetti CLXXI-CLXXII",
+      "revision_id": 3751035,
+      "revision_timestamp": "2026-04-25T20:18:50Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetti CLXXIII-CLXXIV",
+      "revision_id": 3751036,
+      "revision_timestamp": "2026-04-25T20:18:50Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetti CLXXV-CLXXVI",
+      "revision_id": 3751038,
+      "revision_timestamp": "2026-04-25T20:18:52Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetti CLXXVII-CLXXVIII",
+      "revision_id": 3751039,
+      "revision_timestamp": "2026-04-25T20:18:53Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetti CLXXIX-CLXXX",
+      "revision_id": 3751037,
+      "revision_timestamp": "2026-04-25T20:18:51Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetti CLXXXI-CLXXXII",
+      "revision_id": 3751040,
+      "revision_timestamp": "2026-04-25T20:18:54Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetti CLXXXIII-CLXXXIV",
+      "revision_id": 3751041,
+      "revision_timestamp": "2026-04-25T20:18:54Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLXXXV",
+      "revision_id": 3751070,
+      "revision_timestamp": "2026-04-25T20:19:17Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLXXXVI",
+      "revision_id": 3751071,
+      "revision_timestamp": "2026-04-25T20:19:18Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLXXXVII",
+      "revision_id": 3751072,
+      "revision_timestamp": "2026-04-25T20:19:18Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLXXXVIII",
+      "revision_id": 3751073,
+      "revision_timestamp": "2026-04-25T20:19:20Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CLXXXIX",
+      "revision_id": 3751069,
+      "revision_timestamp": "2026-04-25T20:19:16Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXC",
+      "revision_id": 3751079,
+      "revision_timestamp": "2026-04-25T20:19:25Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXCI",
+      "revision_id": 3751080,
+      "revision_timestamp": "2026-04-25T20:19:25Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXCII",
+      "revision_id": 3751081,
+      "revision_timestamp": "2026-04-25T20:19:26Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXCIII",
+      "revision_id": 3751082,
+      "revision_timestamp": "2026-04-25T20:19:27Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXCIV",
+      "revision_id": 3751083,
+      "revision_timestamp": "2026-04-25T20:19:27Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXCV",
+      "revision_id": 3751084,
+      "revision_timestamp": "2026-04-25T20:19:28Z"
+    },
+    {
+      "title": "Rime (Andreini)/Sonetto CXCVI",
+      "revision_id": 3751085,
+      "revision_timestamp": "2026-04-25T20:19:29Z"
+    }
+  ],
+  "eligible_candidates": [
+    {
+      "page_title": "Rime (Andreini)/Sonetto I",
+      "revision_id": 3751127,
+      "revision_timestamp": "2026-04-25T20:20:00Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f3ff712577a0c0e88cf1b9ad11db6fb77608a5a8411483bc988e2c7dee1e14ba"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto II",
+      "revision_id": 3751128,
+      "revision_timestamp": "2026-04-25T20:20:00Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ead2e46f938815b0a10ecada2f5a5cd6eed1d4a7dabf93fff031bd341df3809e"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto III",
+      "revision_id": 3751129,
+      "revision_timestamp": "2026-04-25T20:20:01Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b51171f67f7aeae78fb145dcaeb7390a4dd8adacfa719ae21db503b039fce2fc"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto IV",
+      "revision_id": 3751130,
+      "revision_timestamp": "2026-04-25T20:20:02Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "97508cfbed7206d2cf399e0aead811418b02a7404b00811d6b12e8ee6e4838bd"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto V",
+      "revision_id": 3751172,
+      "revision_timestamp": "2026-04-25T20:20:35Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "28187f393d081a2b7fbe55a1d01e97f51c73ee9ff639369c0746a20aac6bfa0e"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto VI",
+      "revision_id": 3751173,
+      "revision_timestamp": "2026-04-25T20:20:36Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c3d395650a9f12516d568e59ab7f8933a95b3d124a1f846094a928ad5fdf2b67"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto VII",
+      "revision_id": 3751174,
+      "revision_timestamp": "2026-04-25T20:20:37Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "fa5fe7df502411077cd6ca39e31b7ce8c8c0465641f6b7673a40a7872f48413f"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto VIII",
+      "revision_id": 3751175,
+      "revision_timestamp": "2026-04-25T20:20:38Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8db395392e63fafc71e66bb9c83974e35c5352da095ae973b54e9b7a9ee3247b"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto IX",
+      "revision_id": 3751131,
+      "revision_timestamp": "2026-04-25T20:20:03Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "86b11d41e43752ec1bead61c454d94021ed0611a5ec4ffabe0f3be5c878b0ade"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto X",
+      "revision_id": 3751176,
+      "revision_timestamp": "2026-04-25T20:20:39Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "117d68b3b1d833c6175735717b6b62c96cd474a1e805c588ed3b46faf50f10cd"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XI",
+      "revision_id": 3751187,
+      "revision_timestamp": "2026-04-25T20:20:48Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3509a239a89ff59de4fe40a1a8bc30beb609ab40449afc375c6a89427ac3a1be"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XII",
+      "revision_id": 3751188,
+      "revision_timestamp": "2026-04-25T20:20:49Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "941898b7f7d7dd4385fd4e6d023117a65212f4d4707c6294cb3b8a0b48d4e221"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XIII",
+      "revision_id": 3751189,
+      "revision_timestamp": "2026-04-25T20:20:50Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8d05f8f66ba4970370a75511681ebffc43967c0cc97e9a07c8b19679eee72339"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XIV",
+      "revision_id": 3751190,
+      "revision_timestamp": "2026-04-25T20:20:50Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c880246b888ed9ef96a6b1c953976dff29c76ad23cd15073ecd812d639dc35e5"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XV",
+      "revision_id": 3751202,
+      "revision_timestamp": "2026-04-25T20:21:00Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d8c7c701ff39941a6181d393aea8daa5145945f95b2a339ab204c51ebeac3b30"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XVI",
+      "revision_id": 3751203,
+      "revision_timestamp": "2026-04-25T20:21:01Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "564be7eff78b0ef34c7a8e1ef4e5e92a82c9ea7cbc43bdb752e0e19d86e8cfd6"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XVII",
+      "revision_id": 3751204,
+      "revision_timestamp": "2026-04-25T20:21:02Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1068d0fae829b8f51eab187aee5014dc16821cfb8713748452d4a28298ca11c4"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XVIII",
+      "revision_id": 3751205,
+      "revision_timestamp": "2026-04-25T20:21:03Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "9c20112d9c02f0d7dadd5d7253e143de1703a637c24d38628bd29ab849bfd6e1"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XIX",
+      "revision_id": 3751191,
+      "revision_timestamp": "2026-04-25T20:20:51Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2786ef35eddb844c9ef999123b08eb19bab29a6f830241885087fef976229f1a"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XX",
+      "revision_id": 3751206,
+      "revision_timestamp": "2026-04-25T20:21:03Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "86e00cc001905bfb0fa685b162092050d306395b5788211bb87d62298e1e965b"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XXI",
+      "revision_id": 3751207,
+      "revision_timestamp": "2026-04-25T20:21:04Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "74868446dd9106bcc7c564a3cad537c5e24f2639f021f87300b799b128ca4cf4"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XXII",
+      "revision_id": 3751208,
+      "revision_timestamp": "2026-04-25T20:21:05Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4685810c0750cf7434039a489ec33d750e16cebae460484f62c522193512d9fd"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XXIII",
+      "revision_id": 3751209,
+      "revision_timestamp": "2026-04-25T20:21:06Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "0ba8bfff27454097ca769f1047865ef203b513882c5d92f8a75b050483891b7a"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XXIV",
+      "revision_id": 3751210,
+      "revision_timestamp": "2026-04-25T20:21:07Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "94426acd7e434e02f6c8f9cef1b6b0725c7ee0a2498379c5c12eb5252464abf9"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XXV",
+      "revision_id": 3751212,
+      "revision_timestamp": "2026-04-25T20:21:08Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ed1ff88adaddf6d11a1c1e36857b5dd7a25447c883358cff09b6897452d31abf"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XXVI",
+      "revision_id": 3751213,
+      "revision_timestamp": "2026-04-25T20:21:09Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "804edccb5cbaa30bb076afcbf7515a56f4c49530d4e7020fab6f1c39cd070c82"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XXVII",
+      "revision_id": 3751214,
+      "revision_timestamp": "2026-04-25T20:21:10Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "eec5246bdf10f1188e9fa85a58270c328cdc76131771635da73b7c50345088f0"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XXVIII",
+      "revision_id": 3751215,
+      "revision_timestamp": "2026-04-25T20:21:11Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d67c58782ca8291ac817243494e0b61d7060dfb71ba438d5f9cf8f17484706bf"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XXIX",
+      "revision_id": 3751211,
+      "revision_timestamp": "2026-04-25T20:21:07Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5df67ddf62ae6e55cdd68b0c13d549c340f4162cbb558bc92949f890af686296"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XXX",
+      "revision_id": 3751216,
+      "revision_timestamp": "2026-04-25T20:21:11Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c887e82eacf9e5fcfc19348dfba3120d6cad07f317a46dd19de5f19fc071e71d"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XXXI",
+      "revision_id": 3751217,
+      "revision_timestamp": "2026-04-25T20:21:12Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1d22bbd3e51bc70c557b35925da48ced42ca5463fb8ea7ac3695b0861edde5ee"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XXXII",
+      "revision_id": 3751218,
+      "revision_timestamp": "2026-04-25T20:21:13Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4effe6e90e234da288e43a8da03747f61febc5b975d48a083eadee5ea16a6881"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XXXIII",
+      "revision_id": 3751219,
+      "revision_timestamp": "2026-04-25T20:21:14Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5a8d1219351ab4b88eb217ea49ecd6daf3a2dad6db867c27cfcc2a25d7fc5855"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XXXIV",
+      "revision_id": 3751220,
+      "revision_timestamp": "2026-04-25T20:21:15Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2e9e32a7318558ffa234227104fdf3d55290f6a704dac509099d9be78217a9d2"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XXXV",
+      "revision_id": 3751222,
+      "revision_timestamp": "2026-04-25T20:21:16Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "296fd70af478f0cfc41e326cd43e7d9ca7f5f2a2f2dbd2d2b930bde5cab5e553"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XXXVI",
+      "revision_id": 3751223,
+      "revision_timestamp": "2026-04-25T20:21:17Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b2401d477b690412efd93268606b9db61b4c63ae07af6c2a37129a0acb38e92c"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XXXVII",
+      "revision_id": 3751224,
+      "revision_timestamp": "2026-04-25T20:21:18Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c133a339ece6475a77010388a80021d766a3e82ab047e6fee9054ee7fd697838"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XXXVIII",
+      "revision_id": 3751225,
+      "revision_timestamp": "2026-04-25T20:21:19Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e359b25136fa483ba12bf2bfe40765859ed4cbdc90cda67003f38ad4e4280405"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XXXIX",
+      "revision_id": 3751221,
+      "revision_timestamp": "2026-04-25T20:21:16Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4f61b1377f138a90c57fc5073c3503da7903f00af5028a75180d986eeb213c0a"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XL",
+      "revision_id": 3751192,
+      "revision_timestamp": "2026-04-25T20:20:52Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6c14c5888a7133aaddd40a23921e2f07564bc7faa5cc3c5896d015f919c942d7"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XLI",
+      "revision_id": 3751193,
+      "revision_timestamp": "2026-04-25T20:20:53Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5593160bc18101e17b8e99e08644aeeaad1211c1f18e1e5278557e9792c7dd3c"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XLII",
+      "revision_id": 3751194,
+      "revision_timestamp": "2026-04-25T20:20:53Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "0c1b102eab3a9218b2257c8fa764e0a02392dcd483702d40a09311d390404920"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XLIII",
+      "revision_id": 3751195,
+      "revision_timestamp": "2026-04-25T20:20:54Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "560d0f24e97088b43ebdeb86854e85121a7912acf6e3ba64d3f850977b71bcf8"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XLIV",
+      "revision_id": 3751196,
+      "revision_timestamp": "2026-04-25T20:20:55Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5c77a37b8adaa0a93724e9014bf7f496ba4052b0225e495024ec90b1daae7a0d"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XLV",
+      "revision_id": 3751198,
+      "revision_timestamp": "2026-04-25T20:20:56Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "33384a12b668a99812989377db58e6df54d908876426a0b463d276b757afcc13"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XLVI",
+      "revision_id": 3751199,
+      "revision_timestamp": "2026-04-25T20:20:57Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2326b4de53c955af76dbe621808e6253ffe277d76a5d9d8d3d9a1af734019ad8"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XLVII",
+      "revision_id": 3751200,
+      "revision_timestamp": "2026-04-25T20:20:58Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "53fd35d1357c5e819a4a8b89d24a4e53125999c581714081902de25511dee749"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XLVIII",
+      "revision_id": 3751201,
+      "revision_timestamp": "2026-04-25T20:20:59Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d5828ebeb26591e2de52f17ab6856fb8de628de39dd572fb6554abab49269640"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XLIX",
+      "revision_id": 3751197,
+      "revision_timestamp": "2026-04-25T20:20:56Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "22c7c434612425e7dc496e65d37eda9db120cf68f1013101280f212b01d932ab"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto L",
+      "revision_id": 3751132,
+      "revision_timestamp": "2026-04-25T20:20:04Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "aa3f1a47ca08783f06face1f062527e1d967795ab5301b7c4b95a47e897c5320"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LI",
+      "revision_id": 3751133,
+      "revision_timestamp": "2026-04-25T20:20:04Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "394d3fa9852853834e5f1c541b075758e44baa731093e76b78d94949272e76f7"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LII",
+      "revision_id": 3751134,
+      "revision_timestamp": "2026-04-25T20:20:05Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4512e3ce86a76bdfddd343e826d2686e8f67b17b9eed1887b548751036894e58"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LIII",
+      "revision_id": 3751135,
+      "revision_timestamp": "2026-04-25T20:20:06Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f02c89698f1306528467146e79b9765e52b4d280159037f69033dc06bd9611cc"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LIV",
+      "revision_id": 3751136,
+      "revision_timestamp": "2026-04-25T20:20:06Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "44861f03505d29bda5bb7e9eab3c9a09e7c5010895e20c87d5e27aae75ac26b9"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LV",
+      "revision_id": 3751138,
+      "revision_timestamp": "2026-04-25T20:20:08Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3a6a6e1e936aeb59631c98289cdbfdde1a696079f1ed06a0b6a0b0f156dc8e06"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LVI",
+      "revision_id": 3751139,
+      "revision_timestamp": "2026-04-25T20:20:09Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "89f4751475c1ca0d5df741cd5a0069f27b54af8cba42fb98577cd22d150ed57e"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LVII",
+      "revision_id": 3751140,
+      "revision_timestamp": "2026-04-25T20:20:09Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "20d90c21e1a3a41f1189e551b9cd7336767b4ed85d73b09f78c4c8ae8e6b73f6"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LVIII",
+      "revision_id": 3751141,
+      "revision_timestamp": "2026-04-25T20:20:10Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c75fb1be4a9ccbb21dd79fd10c6815e5cb32487cad12751e305692ff9d94e277"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LIX",
+      "revision_id": 3751137,
+      "revision_timestamp": "2026-04-25T20:20:07Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2cec06b843b8e1468fa586a5f36b3477f62b62c013c16108a7417aa60a42a885"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LX",
+      "revision_id": 3751142,
+      "revision_timestamp": "2026-04-25T20:20:11Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "9479302074a9e1f69449f789968b5e9fc688c780b0a9e594e1e6fccded67429a"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXI",
+      "revision_id": 3751143,
+      "revision_timestamp": "2026-04-25T20:20:12Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ffa08be3c7e6b338a63ecbf5cd1119089b017cb03bfd3688bdae6ef6bf4d4aa8"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXII",
+      "revision_id": 3751144,
+      "revision_timestamp": "2026-04-25T20:20:13Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "922da9551983985dedd5a5800a6ba45f81bf314b210ebac9d4a4523659588ed4"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXIII",
+      "revision_id": 3751145,
+      "revision_timestamp": "2026-04-25T20:20:13Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4fdd660a628200c2742b7a6c814262a14b89790d4817dc3ab334bf19664691dc"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXIV",
+      "revision_id": 3751146,
+      "revision_timestamp": "2026-04-25T20:20:14Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7cee55ee3bc664f4697c93379e022c993012a3a6add07aa700ba2e40bf1055a8"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXV",
+      "revision_id": 3751148,
+      "revision_timestamp": "2026-04-25T20:20:16Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "fadde765e463e54dc5a1403dae042ea94b8530466bc17f8f18ad78823b3275ec"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXVI",
+      "revision_id": 3751149,
+      "revision_timestamp": "2026-04-25T20:20:17Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ca1e2004d3d1eacbe8feb0b3ef6eae2d2d9f0708ed8b8b01421c1adb87fe2a1d"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXVII",
+      "revision_id": 3751150,
+      "revision_timestamp": "2026-04-25T20:20:18Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e638d3be1aa88515edcc9410f6995333a9d435856bbf72bf2a6ce73e1ba53953"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXVIII",
+      "revision_id": 3751151,
+      "revision_timestamp": "2026-04-25T20:20:18Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "121eb29f2d8c9a62c08bae4bc4b493075476eeb3c1c0c639543d108cea1c8585"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXIX",
+      "revision_id": 3751147,
+      "revision_timestamp": "2026-04-25T20:20:15Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "02ff0e0ab5590b6d9421b9dfb58d6b92a0e5ac639a8cde7eb079c2ccb66167d5"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXX",
+      "revision_id": 3751152,
+      "revision_timestamp": "2026-04-25T20:20:19Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "482878ebf947aa9f81fe0347214a2e6ec7ec84197af6ad4c76d87e509abd5577"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXXI",
+      "revision_id": 3751153,
+      "revision_timestamp": "2026-04-25T20:20:20Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "292cd1a0e2408d5be7922ece614ca289d4dd5072a502271254287edacfa89a59"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXXII",
+      "revision_id": 3751154,
+      "revision_timestamp": "2026-04-25T20:20:21Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c42d675ef8a23ddf33a535f7fe2f064bc2afa90f0ace5b8683cb40c118089441"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXXIII",
+      "revision_id": 3751155,
+      "revision_timestamp": "2026-04-25T20:20:22Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "bb2afaf3c35b39ba70ed27735114fce383d7a1758cf780186338e340aefb26d7"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXXIV",
+      "revision_id": 3751156,
+      "revision_timestamp": "2026-04-25T20:20:23Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "62402dff0c06a41cf222252a3ca574520aba35a6702092612ce572475e78ed48"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXXV",
+      "revision_id": 3751158,
+      "revision_timestamp": "2026-04-25T20:20:24Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "157b37383adc7d5d96f5bf1784087f359e2a3c3b77fb4673296a65e540c5b317"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXXVI",
+      "revision_id": 3751159,
+      "revision_timestamp": "2026-04-25T20:20:25Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "96da34d90a25391cdc7d5f8d7d599e4fe9b5d31630a80dca48ff25085a38c98c"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXXVII",
+      "revision_id": 3751160,
+      "revision_timestamp": "2026-04-25T20:20:26Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5ac425420bb1cb4aaf54ba4d24f0027dd274f3c611260a59ab0773f18ecaecc0"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXXVIII",
+      "revision_id": 3751161,
+      "revision_timestamp": "2026-04-25T20:20:27Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5ffefbb0a2053f311eda9ef7dd5d2bde308cac63c9522fc663ce7abc7a453865"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXXIX",
+      "revision_id": 3751157,
+      "revision_timestamp": "2026-04-25T20:20:23Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e1ce094423fc5e42c4f2158062963ebab68acf765004728491c4972f905016ef"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXXX",
+      "revision_id": 3751162,
+      "revision_timestamp": "2026-04-25T20:20:27Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ffa056a56cb09160d04c7270da3d093aedb0aecf51d546377d8fabcfe51d5585"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXXXI",
+      "revision_id": 3751163,
+      "revision_timestamp": "2026-04-25T20:20:28Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "129963865d86741543320f7500a75d95b42d2a07a16f029aaf1ce0f44ed65258"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXXXII",
+      "revision_id": 3751164,
+      "revision_timestamp": "2026-04-25T20:20:29Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "96e36a8eeda6b5e3845be0b6e1bfabf2ca70f50ee028316a881e636a3fd22be7"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXXXIII",
+      "revision_id": 3751165,
+      "revision_timestamp": "2026-04-25T20:20:30Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "01a2bdf6af4352b8df1ca05c7b5e079879fa6682f0ec5c5eb2d0b434d44f8de7"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXXXIV",
+      "revision_id": 3751166,
+      "revision_timestamp": "2026-04-25T20:20:31Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a01976f841421dbfffb6765e43e4f2ed8113ec8c541a1438d1f92dba6cf4b41f"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXXXV",
+      "revision_id": 3751168,
+      "revision_timestamp": "2026-04-25T20:20:32Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3e3eaffd46af2fd183fcd48a093635fdbbd1c363bd5027fe5fa24e99b2af993f"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXXXVI",
+      "revision_id": 3751169,
+      "revision_timestamp": "2026-04-25T20:20:33Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "44ab7a2dd611a1628cceb460dd48bb4c88923a178e3650b80f3adcdcee47d4d6"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXXXVII",
+      "revision_id": 3751170,
+      "revision_timestamp": "2026-04-25T20:20:34Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1de05196f593ff17fe42f77d180497f62f3db875e0688c8925a7b9198b74350b"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXXXVIII",
+      "revision_id": 3751171,
+      "revision_timestamp": "2026-04-25T20:20:34Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "abb8e10c2dc34c01f8392010669420c28a6a5b837075328a4bb3c030cc1b9cf0"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto LXXXIX",
+      "revision_id": 3751167,
+      "revision_timestamp": "2026-04-25T20:20:31Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3dc605f425ac2cb30f80f5dbe102d3455b20d4a816215fdf80806d9fb31fd5da"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XC",
+      "revision_id": 3751177,
+      "revision_timestamp": "2026-04-25T20:20:39Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d011b0ac6acd7e7996eae576140e6ee98b8358bf91db16f9175944eaeff7dfe1"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XCI",
+      "revision_id": 3751178,
+      "revision_timestamp": "2026-04-25T20:20:40Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e6525e860bbfe38de1fac0d29d74a588f103e8fe146acef81fec2c52a9f72fa7"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XCII",
+      "revision_id": 3751179,
+      "revision_timestamp": "2026-04-25T20:20:41Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5b74f3830aea6fe305f8e2b0f5830581f96401f4ca78658738102172714b9228"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XCIII",
+      "revision_id": 3751180,
+      "revision_timestamp": "2026-04-25T20:20:42Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6e074489875e8217d65a7cb934d4c004a5759db69dd22d90d67d94dd0e25d1cf"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XCIV",
+      "revision_id": 3751181,
+      "revision_timestamp": "2026-04-25T20:20:43Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d0d508ffb9305c912600de45b8812ba75a2a63b22ed54734a10e3be3b308fa36"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XCV",
+      "revision_id": 3751183,
+      "revision_timestamp": "2026-04-25T20:20:44Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "edb9da96ae126cdea080bb1b42b958ef02ee929ba36df29d9f1d69bc90efa2fe"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XCVI",
+      "revision_id": 3751184,
+      "revision_timestamp": "2026-04-25T20:20:45Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d6855cbf33726516998c39f1d97128649caa3de2d3b1c803558e9314a359ef60"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XCVII",
+      "revision_id": 3751185,
+      "revision_timestamp": "2026-04-25T20:20:46Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8616ded0762b9b277bfd01e7752875892ef42a32259235a60c638d500fb3fc3e"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XCVIII",
+      "revision_id": 3751186,
+      "revision_timestamp": "2026-04-25T20:20:47Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8c9b5898267562d74b7931095c7f01a5561a2ae853b29a63f56cf687c4f6c2d0"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto XCIX",
+      "revision_id": 3751182,
+      "revision_timestamp": "2026-04-25T20:20:44Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5f3007225e020951c9a9cc93ca6fa187e89d088fa34d826d9c3d18849aef47ff"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto C",
+      "revision_id": 3751042,
+      "revision_timestamp": "2026-04-25T20:18:55Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "df8fa91f431a2fe05907f6f6d4a235662346dceb40a5e5718673a834bb3c4da9"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CI",
+      "revision_id": 3751043,
+      "revision_timestamp": "2026-04-25T20:18:56Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "71f5300e5369f5df73d00db235ac6792751ea03a86e3253fb2bb634483a093dc"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CII",
+      "revision_id": 3751044,
+      "revision_timestamp": "2026-04-25T20:18:57Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7084b40670b395b687969850546815640281fd58eec95c13ffd2640f880dcdc5"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CIII",
+      "revision_id": 3751045,
+      "revision_timestamp": "2026-04-25T20:18:58Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c673326fa1860043f9a48d11d3a82cd309df6978f07c72904b990703ce3cd8c9"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CIV",
+      "revision_id": 3751046,
+      "revision_timestamp": "2026-04-25T20:18:59Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "dc775fae4d3b1f46c9bbd422cd54e648e72ea7371c82f14812ece35aa785a4c0"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CV",
+      "revision_id": 3751074,
+      "revision_timestamp": "2026-04-25T20:19:21Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f153c3844bb51014bd0b488702fcb2fb063c53e91fee734c5759ed283f59244e"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CVI",
+      "revision_id": 3751075,
+      "revision_timestamp": "2026-04-25T20:19:22Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b13de5f30030529997b99c29bd8092f7dddba64070ece01efd021a022785423a"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CVII",
+      "revision_id": 3751076,
+      "revision_timestamp": "2026-04-25T20:19:22Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "bf98cb9fc3fb50888a06914771eef067354c4d6b77ce826a36a0aa5d8d28ad08"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CVIII",
+      "revision_id": 3751077,
+      "revision_timestamp": "2026-04-25T20:19:23Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6fec55f5e0a0115b74716b2b32858ef876996a91943d7481ffced8c60614313d"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CIX",
+      "revision_id": 3751047,
+      "revision_timestamp": "2026-04-25T20:18:59Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ce600be1dba68bee105343979a16f15fab637cadc6a9193cd6541aab7ea48694"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CX",
+      "revision_id": 3751078,
+      "revision_timestamp": "2026-04-25T20:19:24Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2a8ec55e61316f898fb15fb1fc36726751ef71c35e0fb5197a1f1e4cceb12b98"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXI",
+      "revision_id": 3751086,
+      "revision_timestamp": "2026-04-25T20:19:29Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "84ddd4b51e7ae5169084a452f8c9bd201d0631bda17bf51a624f704813af9167"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXII",
+      "revision_id": 3751087,
+      "revision_timestamp": "2026-04-25T20:19:30Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "02eb36b2a353e4a9a22f1c705e05720e88c238aba9cf4cc336b18cc8dace8db1"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXIII",
+      "revision_id": 3751088,
+      "revision_timestamp": "2026-04-25T20:19:31Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "9ee553eca45e527961c18b4537ac2cc48eaff0e54a9b5d557a5cf4f85247f9a9"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXIV",
+      "revision_id": 3751089,
+      "revision_timestamp": "2026-04-25T20:19:31Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "84aa85de00c1aa3c75479a7dec1dbdb936d2d3323f11acb134a1423dc5312812"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXV",
+      "revision_id": 3751101,
+      "revision_timestamp": "2026-04-25T20:19:41Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "470c0cbf0af60e2e96213793aa4e4a7f19636c99c524572f5bfb0dddef4f2b4d"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXVI",
+      "revision_id": 3751102,
+      "revision_timestamp": "2026-04-25T20:19:41Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "50f729b3457efd145e815556c4c43ff0f673744edc9f4c46bb5654f08c902cbd"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXVII",
+      "revision_id": 3751103,
+      "revision_timestamp": "2026-04-25T20:19:42Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "564a762a638dcfea9ce26be88a205db1c06d0558c7ba99b9044b144955d1c74b"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXVIII",
+      "revision_id": 3751104,
+      "revision_timestamp": "2026-04-25T20:19:43Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b4a9646e3d785901625c447679f2d9a29c63223d732115f5bb36763561c3d682"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXIX",
+      "revision_id": 3751090,
+      "revision_timestamp": "2026-04-25T20:19:32Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "142f7955b9089ff6b8b75a3903c77ddee5c33238bdb4b863a872f7639651d1c7"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXX",
+      "revision_id": 3751105,
+      "revision_timestamp": "2026-04-25T20:19:44Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "11dae089d786cdf0f88cde2f2beccc42d8ceb39a2ded1c99639e17c998783f01"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXXI",
+      "revision_id": 3751106,
+      "revision_timestamp": "2026-04-25T20:19:44Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6153523e32c1411eee7be5d9332c71519934241b1a8f26311dbd68a7ea9cee38"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXXII",
+      "revision_id": 3751108,
+      "revision_timestamp": "2026-04-25T20:19:45Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "bf303cc915b7c450bb4f3a445f4de6dfd70f285181161351631627d591ced10b"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXXIII",
+      "revision_id": 3751109,
+      "revision_timestamp": "2026-04-25T20:19:46Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "63f376484413ea193c9ef0f34d92df3833786ce10a59b753cac7f5c302aa9598"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXXIV",
+      "revision_id": 3751110,
+      "revision_timestamp": "2026-04-25T20:19:47Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7e8b9a72c20afe5a4e93e89815cf096c254aefa84bd3c57044154d1eb569f955"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXXV",
+      "revision_id": 3751112,
+      "revision_timestamp": "2026-04-25T20:19:48Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e6799ca44027763559cea63dcb551da8ab1d74e8d2d40407d76fd71206f5a3eb"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXXVI",
+      "revision_id": 3751113,
+      "revision_timestamp": "2026-04-25T20:19:49Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ef465c3e80a0651ef4af6d116c22ded77c084b30c9dc586214533d2a4ee92d46"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXXVII",
+      "revision_id": 3751114,
+      "revision_timestamp": "2026-04-25T20:19:50Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ec1cce501de38f4c0d71bde7b2b0e2f95ac230365480a917aeb655d5c4409f79"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXXVIII",
+      "revision_id": 3751115,
+      "revision_timestamp": "2026-04-25T20:19:51Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "fba26559002d226b32fce31c928def93bb55ab291eec39ff501e49147b8e8a48"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXXIX",
+      "revision_id": 3751111,
+      "revision_timestamp": "2026-04-25T20:19:48Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "306900f429b33a4df893bcc48879198dc0b7aaca8b07666f52111f68b565ff21"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXXX",
+      "revision_id": 3751116,
+      "revision_timestamp": "2026-04-25T20:19:52Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "68768a656054ddfb4b831628e83d858badddf562f7f639eab75e32aee0f2379a"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXXXI",
+      "revision_id": 3751117,
+      "revision_timestamp": "2026-04-25T20:19:52Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1f806f7cd1d04622b478e039d3c71a7b910819111a179aca95c756240e703a8e"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXXXII",
+      "revision_id": 3751118,
+      "revision_timestamp": "2026-04-25T20:19:53Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6053a35f3577d3f08cf1b23f21506527ec1c139a1b65b51c9b8255bae80a6392"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXXXIII",
+      "revision_id": 3751119,
+      "revision_timestamp": "2026-04-25T20:19:54Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "07eb3f4acafad9ed529c620767047d0410be1a48042f9411b26bf13d65037fa5"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXXXIV",
+      "revision_id": 3751120,
+      "revision_timestamp": "2026-04-25T20:19:55Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8cf93cdb1a4d7826eeed21cde97c809dc2cfcd47705115556e86bf98f09209dd"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXXXV",
+      "revision_id": 3751122,
+      "revision_timestamp": "2026-04-25T20:19:56Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1fb6bd65581b465b942f794c5407d6b392afc9e25091f69199398be61764e8b2"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXXXVI",
+      "revision_id": 3751124,
+      "revision_timestamp": "2026-04-25T20:19:57Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "27b58fba6ce08acc85430f0047809ca416ac910532ac466296c27d664c8c6ee6"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXXXVII",
+      "revision_id": 3751125,
+      "revision_timestamp": "2026-04-25T20:19:58Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1f1548aa67339a0fd5aef49013d4510d0cd0697bb3a7572a0e139bf3c3bdee24"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXXXVIII",
+      "revision_id": 3751126,
+      "revision_timestamp": "2026-04-25T20:19:59Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1ea50003fcdab01dc9bf9a3a86dc7f754934cdd0c2b11c6ec93ca00e6b41f0ce"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXXXIX",
+      "revision_id": 3751121,
+      "revision_timestamp": "2026-04-25T20:19:56Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "408a6ab38a0946441a8601e08304dc3ad68909eabb147e19cb71d2a72ab2c03d"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXL",
+      "revision_id": 3751091,
+      "revision_timestamp": "2026-04-25T20:19:33Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "678022014be30a804c9a97798f6d2d690d1d30ea3949baeecc6a43d11a9ced65"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXLI",
+      "revision_id": 3751092,
+      "revision_timestamp": "2026-04-25T20:19:34Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3c74d57eaa9cef093fc01439ac90d6133c8089452a7e975595508fd654156ea7"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXLII",
+      "revision_id": 3751093,
+      "revision_timestamp": "2026-04-25T20:19:35Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "cf8db32f179904db32ca8b77f1b04ba1187a918d464e38a8bbe60b1647701d93"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXLIII",
+      "revision_id": 3751094,
+      "revision_timestamp": "2026-04-25T20:19:36Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "609bdaaaf7aa5bb40945b80bcc3303f0a5dbf6f2ada3ae77caba5ce0f6e09cce"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXLIV",
+      "revision_id": 3751095,
+      "revision_timestamp": "2026-04-25T20:19:36Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c98870432f8b106e6f48e86cfb9677282d4760a9c8142159fe67824790b9a78f"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXLV",
+      "revision_id": 3751097,
+      "revision_timestamp": "2026-04-25T20:19:38Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d92154740055b36d523e768d839bb9ed728edffc13d56ab3b495cab92986ab03"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXLVI",
+      "revision_id": 3751098,
+      "revision_timestamp": "2026-04-25T20:19:38Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a56150b58aa87d394a917df8250140ac599dceec64a2b4c02814547415981b89"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXLVII",
+      "revision_id": 3751099,
+      "revision_timestamp": "2026-04-25T20:19:39Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "87c290cdf659d10da0e0571b435beff793582ba7833bb581452988c0a2f33076"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXLVIII",
+      "revision_id": 3751100,
+      "revision_timestamp": "2026-04-25T20:19:40Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "54b82f31984b6c9b3fe6c02b5fb082a4b2316b066231c4df4f67c21581f69f3e"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXLIX",
+      "revision_id": 3751096,
+      "revision_timestamp": "2026-04-25T20:19:37Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "379c4b5914bcfecc3d8dfa6da52d4d6f9e73fc257103bf1552b3737c764d0ccc"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CL",
+      "revision_id": 3751048,
+      "revision_timestamp": "2026-04-25T20:19:00Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "41ffd98506c015c9909fae62bcb686dadbca330712567a74eaec0756ff166b44"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLI",
+      "revision_id": 3751049,
+      "revision_timestamp": "2026-04-25T20:19:01Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4af87fbcb42e0f94f9f526781be3182fb5dbec6e318a4ae2b43905fb0008027c"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLII",
+      "revision_id": 3751050,
+      "revision_timestamp": "2026-04-25T20:19:02Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b5529a2a2c655a25832d4128f1784b55baa685b40c5a3ea0b6c7e08f41a9f1a4"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLIII",
+      "revision_id": 3751051,
+      "revision_timestamp": "2026-04-25T20:19:03Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b8acfc5c75c08b16e5d15b7787e2f5a4c21f6a2af65ad4f8f56c216f859346ac"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLIV",
+      "revision_id": 3751052,
+      "revision_timestamp": "2026-04-25T20:19:03Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "502adc66f39993a490b947ccce0237cd49c743ac556a0984b0ad255d410f3fea"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLV",
+      "revision_id": 3751054,
+      "revision_timestamp": "2026-04-25T20:19:05Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4d830c33a81392dd01193f9c4dc3abff44320df4c5ee63ff5d6afebb2ee57a4e"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLVI",
+      "revision_id": 3751055,
+      "revision_timestamp": "2026-04-25T20:19:06Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "940c914378375c9a58ac637a0c514096006e3ba24095ba61c3898affbb0abb89"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLVII",
+      "revision_id": 3751056,
+      "revision_timestamp": "2026-04-25T20:19:06Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "503952fa54ad4dd005e554b740c0f4ec56d227f065234dd991e76272b0974b5f"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLVIII",
+      "revision_id": 3751057,
+      "revision_timestamp": "2026-04-25T20:19:07Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "fb2f9eb500b13dd31e458d0454a0cb37687ab6ca5754ec285a6a2a1c12cb18c5"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLIX",
+      "revision_id": 3751053,
+      "revision_timestamp": "2026-04-25T20:19:04Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "66a57e72dbe5d7b98343d7faa1ab445efd5c6e2e8bb7995839488c33dc7113bc"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLX",
+      "revision_id": 3751058,
+      "revision_timestamp": "2026-04-25T20:19:08Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f8d7ff529fc43356409e77da41a8dd306411758e7e115e3146633cba1e03a6fa"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLXI",
+      "revision_id": 3751059,
+      "revision_timestamp": "2026-04-25T20:19:09Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "42b52f19148a27eb3a367a5be4ff8aeee954e2b0271e75ae9aa1fc512e86fa91"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLXII",
+      "revision_id": 3751060,
+      "revision_timestamp": "2026-04-25T20:19:09Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "bb80e6703ec368b2b34b4736594c758ab30fc8d52ae1b66840fa3d2c41502e13"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLXIII",
+      "revision_id": 3751061,
+      "revision_timestamp": "2026-04-25T20:19:10Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a2842629bbb6ba7c83dcb63f3f27713d448f34806aceca04842b23562786e037"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLXIV",
+      "revision_id": 3751062,
+      "revision_timestamp": "2026-04-25T20:19:11Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2be9a1fedd85bfe318a9300a25708160019fd28231869ce4553c9f3dbf174353"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLXV",
+      "revision_id": 3751064,
+      "revision_timestamp": "2026-04-25T20:19:12Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1d326e84ce0a2688d0e1ec2fbe8d48c4fb44b4773a447a8d6010866255c21315"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLXVI",
+      "revision_id": 3751065,
+      "revision_timestamp": "2026-04-25T20:19:13Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "02afce0f02ce7514fec32f0d9c2e6ee4c7f93f7d26d727eb099eb72af8eb3944"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLXVII",
+      "revision_id": 3751066,
+      "revision_timestamp": "2026-04-25T20:19:14Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "36ded9588a98bc4df46d9f64afbd73cff020a5695be7fb212e34838f6fb0ce47"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLXVIII",
+      "revision_id": 3751067,
+      "revision_timestamp": "2026-04-25T20:19:15Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8c6d09bdd505fe23f18b8e66ccea281cf136b7e9569ce557579d4f14581ed046"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLXIX",
+      "revision_id": 3751063,
+      "revision_timestamp": "2026-04-25T20:19:12Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4b5acdd81747c4bfa2c065cc49b0ec36447b5aab8d0bba2271ed9d3232c2fd1a"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLXX",
+      "revision_id": 3751068,
+      "revision_timestamp": "2026-04-25T20:19:15Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "31ecd9f032da77360b935336083080510bf740b191774c665e39b2428ebb6911"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetti CLXXI-CLXXII",
+      "revision_id": 3751035,
+      "revision_timestamp": "2026-04-25T20:18:50Z",
+      "segment_index": 1,
+      "segment_label": "SONETTO CLXXI",
+      "cleaned_text_sha256": "d3fa1330a1bbb974fe789a4a6fed90b749caa4697f0739a6f54832c08ae60fa2"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetti CLXXI-CLXXII",
+      "revision_id": 3751035,
+      "revision_timestamp": "2026-04-25T20:18:50Z",
+      "segment_index": 2,
+      "segment_label": "SONETTO CLXXII",
+      "cleaned_text_sha256": "7db71a264437b3441c4af489c3bd3365ce8229dc18abdff98a671f567de79606"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetti CLXXIII-CLXXIV",
+      "revision_id": 3751036,
+      "revision_timestamp": "2026-04-25T20:18:50Z",
+      "segment_index": 1,
+      "segment_label": "SONETTO CLXXIII",
+      "cleaned_text_sha256": "5d9920c00fb9ccc6bc34f5d3661e4761960231146626a14db16cc48a47f1c7bf"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetti CLXXIII-CLXXIV",
+      "revision_id": 3751036,
+      "revision_timestamp": "2026-04-25T20:18:50Z",
+      "segment_index": 2,
+      "segment_label": "SONETTO CLXXIV",
+      "cleaned_text_sha256": "f383d4e4f0448469c108b5b302d56f7b34bd17234e4a53d0a30356d24dd8517e"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetti CLXXV-CLXXVI",
+      "revision_id": 3751038,
+      "revision_timestamp": "2026-04-25T20:18:52Z",
+      "segment_index": 1,
+      "segment_label": "SONETTO CLXXV",
+      "cleaned_text_sha256": "447c6e036664dc12c0cc333bea5ed0b9fe0ae45b060c948b06571ac80517f071"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetti CLXXV-CLXXVI",
+      "revision_id": 3751038,
+      "revision_timestamp": "2026-04-25T20:18:52Z",
+      "segment_index": 2,
+      "segment_label": "SONETTO CLXXVI",
+      "cleaned_text_sha256": "25b8d034c65cbfd39f80dff66f0976d554f3ded042a234c3f6f3643142729815"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetti CLXXVII-CLXXVIII",
+      "revision_id": 3751039,
+      "revision_timestamp": "2026-04-25T20:18:53Z",
+      "segment_index": 1,
+      "segment_label": "SONETTO CLXXVII",
+      "cleaned_text_sha256": "09a3960af6ae7c40b7228a6d196871774528564e26b2fb1e9756e72875a548cc"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetti CLXXVII-CLXXVIII",
+      "revision_id": 3751039,
+      "revision_timestamp": "2026-04-25T20:18:53Z",
+      "segment_index": 2,
+      "segment_label": "SONETTO CLXXVIII",
+      "cleaned_text_sha256": "39035d48ecff3ca2d666353f513a9880446d718c5a15ab69ae569dc00d742aae"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetti CLXXIX-CLXXX",
+      "revision_id": 3751037,
+      "revision_timestamp": "2026-04-25T20:18:51Z",
+      "segment_index": 1,
+      "segment_label": "SONETTO CLXXVIIII",
+      "cleaned_text_sha256": "37b2fecb0577922f7f9720f4f527ac9d075b514678f583a599c24f774e1d56d0"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetti CLXXIX-CLXXX",
+      "revision_id": 3751037,
+      "revision_timestamp": "2026-04-25T20:18:51Z",
+      "segment_index": 2,
+      "segment_label": "SONETTO CLXXX",
+      "cleaned_text_sha256": "870846bc78667dcc0573193370e895ff226f45caa3830a8bb43f475879c80e6b"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetti CLXXXI-CLXXXII",
+      "revision_id": 3751040,
+      "revision_timestamp": "2026-04-25T20:18:54Z",
+      "segment_index": 1,
+      "segment_label": "SONETTO CLXXXI",
+      "cleaned_text_sha256": "e4dc543bfd0cb0bf373f99edc3f6612a97ff5b8f938449a24a198a55fea0776a"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetti CLXXXI-CLXXXII",
+      "revision_id": 3751040,
+      "revision_timestamp": "2026-04-25T20:18:54Z",
+      "segment_index": 2,
+      "segment_label": "SONETTO CLXXXII",
+      "cleaned_text_sha256": "c0436657c2e5ad212d3239da66c49d87e57c0556f7f9caac83d7f4d0cca9c7ca"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetti CLXXXIII-CLXXXIV",
+      "revision_id": 3751041,
+      "revision_timestamp": "2026-04-25T20:18:54Z",
+      "segment_index": 1,
+      "segment_label": "SONETTO CLXXIII",
+      "cleaned_text_sha256": "8ac5f35aea3130dcc8708a723c96d419e4d990d435b841493a306421def8bb71"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetti CLXXXIII-CLXXXIV",
+      "revision_id": 3751041,
+      "revision_timestamp": "2026-04-25T20:18:54Z",
+      "segment_index": 2,
+      "segment_label": "SONETTO CLXXXIIII",
+      "cleaned_text_sha256": "7dc3c9df701c269623eea3b117ec9fcd667deda8bed72b7f5a042d4931743dc4"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLXXXV",
+      "revision_id": 3751070,
+      "revision_timestamp": "2026-04-25T20:19:17Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "24fd2ebdc323cacb158b0a4519d8795a586acfa2992cd055ef652b0eeb62f4ce"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLXXXVI",
+      "revision_id": 3751071,
+      "revision_timestamp": "2026-04-25T20:19:18Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "eba895f21c7ce6c25f2ce43cc85018d948f8bda4d41934373feaa9da3f5b50e9"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLXXXVII",
+      "revision_id": 3751072,
+      "revision_timestamp": "2026-04-25T20:19:18Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "996bbbabcd6b0a1ab1f9ac3db5a144592431d50820e3a70fb402b4dfc545350e"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLXXXVIII",
+      "revision_id": 3751073,
+      "revision_timestamp": "2026-04-25T20:19:20Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c0da0cad8b8febfde783cae29a14fff1b5d57d4a4e05d05464219c8ad450ac92"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CLXXXIX",
+      "revision_id": 3751069,
+      "revision_timestamp": "2026-04-25T20:19:16Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "0676a401e44385c08dc4fd69f42f6278084ad8328c01d1b6b54419b4b0ceee8f"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXC",
+      "revision_id": 3751079,
+      "revision_timestamp": "2026-04-25T20:19:25Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "bdda0a4961b140fe8171ae934e06ad98306a6b6021c61726307cc039369f35dd"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXCI",
+      "revision_id": 3751080,
+      "revision_timestamp": "2026-04-25T20:19:25Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "68745711d107710664cae3e03da278958086d4ec428527ff59066f21238749d6"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXCII",
+      "revision_id": 3751081,
+      "revision_timestamp": "2026-04-25T20:19:26Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "eef8fcab8e5627abbb943fc45eaf14dcff49919963efaf34c1517445a1fd1679"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXCIII",
+      "revision_id": 3751082,
+      "revision_timestamp": "2026-04-25T20:19:27Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7df108d8792f68c18f4c287dc91fb972a8dad3f81792d7d9804405be18928b8d"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXCIV",
+      "revision_id": 3751083,
+      "revision_timestamp": "2026-04-25T20:19:27Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "676caa8d37f56f9109de1fe720ab48cf6fa39ab1a0c267a44d66556d08fa1b63"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXCV",
+      "revision_id": 3751084,
+      "revision_timestamp": "2026-04-25T20:19:28Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b92c811ac9864dadd6cf5e9c027af26d3434f2ebb30f6ad448a6e259691a3697"
+    },
+    {
+      "page_title": "Rime (Andreini)/Sonetto CXCVI",
+      "revision_id": 3751085,
+      "revision_timestamp": "2026-04-25T20:19:29Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1210e50722ec434d2eb259fed75d9b0d52b83f7346d9b1364dbd6b7ac50afd77"
+    }
+  ],
+  "source_record_revisions": [],
+  "edition_page_title_suffix": "",
+  "source_metadata": {
+    "source_id": "ws_andreini_rime_1601",
+    "author": "Isabella Andreini",
+    "source_archive": "Italian Wikisource",
+    "source_collection": "Rime (Andreini)",
+    "source_edition": "Rime d'Isabella Andreini Padovana Comica Gelosa, Milano, Girolamo Bordone e Pietromartire Locarni, 1601.",
+    "license_notes": "Italian Wikisource CC BY-SA 3.0 / GFDL page metadata; retain page URL, author, linked public-domain 1601 scan, license links, and share-alike notice.",
+    "period": "XVII secolo",
+    "poem_id_prefix": "andreini",
+    "snapshot_scope": "explicit_subpages"
+  },
+  "audit_report": {
+    "page_count": 189,
+    "eligible_sonnet_count": 196,
+    "pinned_page_count": 189,
+    "started_at_utc": "2026-07-22T13:14:50+00:00",
+    "finished_at_utc": "2026-07-22T13:53:19+00:00"
+  }
+}

@@ -1,0 +1,308 @@
+{
+  "source_id": "ws_sannazaro_rime_disperse",
+  "landing_page_url": "https://it.wikisource.org/wiki/Rime_disperse",
+  "title": "Rime disperse",
+  "scope": "explicit_linked_pages",
+  "root_revision": {
+    "title": "Rime disperse",
+    "revision_id": 3825209,
+    "revision_timestamp": "2026-05-06T04:25:14Z"
+  },
+  "page_revisions": [
+    {
+      "title": "Spargi di lauri, palme e mirti foglie",
+      "revision_id": 3760410,
+      "revision_timestamp": "2026-04-25T22:38:51Z"
+    },
+    {
+      "title": "Del funesto arbor l'ombre oscure e spesse",
+      "revision_id": 3683235,
+      "revision_timestamp": "2026-04-24T18:43:24Z"
+    },
+    {
+      "title": "Famosi colli alteramente nati",
+      "revision_id": 3690637,
+      "revision_timestamp": "2026-04-24T20:38:08Z"
+    },
+    {
+      "title": "Perché, s'io sguardo el sguardo ognor me rendi",
+      "revision_id": 3742848,
+      "revision_timestamp": "2026-04-25T18:04:05Z"
+    },
+    {
+      "title": "Sonanti liti, e voi, rigidi scogli",
+      "revision_id": 3759501,
+      "revision_timestamp": "2026-04-25T22:25:28Z"
+    },
+    {
+      "title": "Limpido fonte, che sovente ascolti",
+      "revision_id": 3816879,
+      "revision_timestamp": "2026-05-06T02:00:28Z"
+    },
+    {
+      "title": "Or che a te el viver più diletta",
+      "revision_id": 3736228,
+      "revision_timestamp": "2026-04-25T14:02:07Z"
+    },
+    {
+      "title": "Presago di sì rara e degna sòrte",
+      "revision_id": 3746995,
+      "revision_timestamp": "2026-04-25T19:19:11Z"
+    },
+    {
+      "title": "Quand'i begli occhi suoi madonna e 'l volto",
+      "revision_id": 3823636,
+      "revision_timestamp": "2026-05-06T03:57:44Z"
+    },
+    {
+      "title": "Ahi, belle membra, che coperte siete",
+      "revision_id": 3794197,
+      "revision_timestamp": "2026-05-05T18:56:37Z"
+    },
+    {
+      "title": "Hai tolto agli occhi il suo beato obietto",
+      "revision_id": 3804085,
+      "revision_timestamp": "2026-05-05T22:03:56Z"
+    },
+    {
+      "title": "Vogli, Padre del ciel, che l'alma torni",
+      "revision_id": 3831376,
+      "revision_timestamp": "2026-05-06T06:24:11Z"
+    },
+    {
+      "title": "Giorni mal spesi e tempestose notti",
+      "revision_id": 3695756,
+      "revision_timestamp": "2026-04-24T21:46:15Z"
+    },
+    {
+      "title": "Madonna, se la cieca e misera alma",
+      "revision_id": 3817394,
+      "revision_timestamp": "2026-05-06T02:09:19Z"
+    },
+    {
+      "title": "False speranze ond'io predato fui",
+      "revision_id": 3801693,
+      "revision_timestamp": "2026-05-05T21:19:47Z"
+    },
+    {
+      "title": "Felici sassi e reverende mura",
+      "revision_id": 3691855,
+      "revision_timestamp": "2026-04-24T20:53:44Z"
+    },
+    {
+      "title": "Mirabil urna son, non d'opre tanto",
+      "revision_id": 3818355,
+      "revision_timestamp": "2026-05-06T02:27:01Z"
+    },
+    {
+      "title": "Se ben, quando stavamo ai campi liete",
+      "revision_id": 3758447,
+      "revision_timestamp": "2026-04-25T22:09:45Z"
+    },
+    {
+      "title": "Lasso, ch'io non so di chi biasmarmi",
+      "revision_id": 3813705,
+      "revision_timestamp": "2026-05-06T00:59:43Z"
+    },
+    {
+      "title": "Gli occhi soavi ove 'l mio cor sospira",
+      "revision_id": 3696495,
+      "revision_timestamp": "2026-04-24T21:57:06Z"
+    },
+    {
+      "title": "Il servo involto nel corporeo peso",
+      "revision_id": 3808700,
+      "revision_timestamp": "2026-05-05T23:26:28Z"
+    }
+  ],
+  "eligible_candidates": [
+    {
+      "page_title": "Spargi di lauri, palme e mirti foglie",
+      "revision_id": 3760410,
+      "revision_timestamp": "2026-04-25T22:38:51Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "855c42d701725b9700d6feb61481c07cea5b4bd18d7e3aeaacc5c1c24bb5e573"
+    },
+    {
+      "page_title": "Del funesto arbor l'ombre oscure e spesse",
+      "revision_id": 3683235,
+      "revision_timestamp": "2026-04-24T18:43:24Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "877767ec2ba029cf3b3615e1fe2895cb612e0c284319bd90f4a3700d84363d79"
+    },
+    {
+      "page_title": "Famosi colli alteramente nati",
+      "revision_id": 3690637,
+      "revision_timestamp": "2026-04-24T20:38:08Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4e68f3bc38b1224497ac40afda465047b943dd9cab138b490f81a20a918fa3d1"
+    },
+    {
+      "page_title": "Perché, s'io sguardo el sguardo ognor me rendi",
+      "revision_id": 3742848,
+      "revision_timestamp": "2026-04-25T18:04:05Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c90f600f8b8fd6ef74a76b240ec3ee5cdd68b20e1a6bfd6be54a88ac1ce0eb6c"
+    },
+    {
+      "page_title": "Sonanti liti, e voi, rigidi scogli",
+      "revision_id": 3759501,
+      "revision_timestamp": "2026-04-25T22:25:28Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "04ee9fc2ace90196d37308ce2c42f82e1db61e8e5b4c4e82b287f37278e8268e"
+    },
+    {
+      "page_title": "Limpido fonte, che sovente ascolti",
+      "revision_id": 3816879,
+      "revision_timestamp": "2026-05-06T02:00:28Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3c426863773e66d04c58e048c3e721494e1a4ecddee717d2c607a8b8113285a0"
+    },
+    {
+      "page_title": "Or che a te el viver più diletta",
+      "revision_id": 3736228,
+      "revision_timestamp": "2026-04-25T14:02:07Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7485222249ae881beb3cb4bbd19700ac81e17dfc0d9fe466982e29dbb7591977"
+    },
+    {
+      "page_title": "Presago di sì rara e degna sòrte",
+      "revision_id": 3746995,
+      "revision_timestamp": "2026-04-25T19:19:11Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "20ebefda2bd6d7616742ed03caab0e3e26d739a29a469103d7a9621a7f7768c7"
+    },
+    {
+      "page_title": "Quand'i begli occhi suoi madonna e 'l volto",
+      "revision_id": 3823636,
+      "revision_timestamp": "2026-05-06T03:57:44Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c8e2bf4ca9339244283914204493ae31c93dfa2a23fd5c167651ac57e40811ce"
+    },
+    {
+      "page_title": "Ahi, belle membra, che coperte siete",
+      "revision_id": 3794197,
+      "revision_timestamp": "2026-05-05T18:56:37Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "fae9b17038735882460baecad26217947c85171baefdc84e3e09b518881a1dc0"
+    },
+    {
+      "page_title": "Hai tolto agli occhi il suo beato obietto",
+      "revision_id": 3804085,
+      "revision_timestamp": "2026-05-05T22:03:56Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "bcdfaa6cd53a5f907b605695bdc60007152b4494dc57bebf6f670ee620f92c3d"
+    },
+    {
+      "page_title": "Vogli, Padre del ciel, che l'alma torni",
+      "revision_id": 3831376,
+      "revision_timestamp": "2026-05-06T06:24:11Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "64df40d253b4288b9fec66bf9cf7872bd9bdd7479d14df7f35eb6dc5d9be99c1"
+    },
+    {
+      "page_title": "Giorni mal spesi e tempestose notti",
+      "revision_id": 3695756,
+      "revision_timestamp": "2026-04-24T21:46:15Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "040c251605ebb0bdc91b86a76c2b1701b108d8fbf5e697e42bc5a32177cefc1c"
+    },
+    {
+      "page_title": "Madonna, se la cieca e misera alma",
+      "revision_id": 3817394,
+      "revision_timestamp": "2026-05-06T02:09:19Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5c216cd8a95c9208a591b20267e5480fa9437aa9374cc095ebd18ac27966ae89"
+    },
+    {
+      "page_title": "False speranze ond'io predato fui",
+      "revision_id": 3801693,
+      "revision_timestamp": "2026-05-05T21:19:47Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2fb023bc9299de33a9ccd853f208040f162c4c17dfa35e78e7ae7a8ebb743d08"
+    },
+    {
+      "page_title": "Felici sassi e reverende mura",
+      "revision_id": 3691855,
+      "revision_timestamp": "2026-04-24T20:53:44Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "97e484f83c1c63a425a4774908a84679a3542d6ab554df25062a8c51ffdce7d2"
+    },
+    {
+      "page_title": "Mirabil urna son, non d'opre tanto",
+      "revision_id": 3818355,
+      "revision_timestamp": "2026-05-06T02:27:01Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1319b135ebfb7a1bcc132b677337997d48ce6834c3e82f017b297f3eebe798e8"
+    },
+    {
+      "page_title": "Se ben, quando stavamo ai campi liete",
+      "revision_id": 3758447,
+      "revision_timestamp": "2026-04-25T22:09:45Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a5198018b45a932d7a225b048bfd067c0b1a44daa158ab01297ac292c2f3cd6c"
+    },
+    {
+      "page_title": "Lasso, ch'io non so di chi biasmarmi",
+      "revision_id": 3813705,
+      "revision_timestamp": "2026-05-06T00:59:43Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f2dd9a305c00b0087f2aefe1ecf1900620c797d7acda4cea603b5033f521db17"
+    },
+    {
+      "page_title": "Gli occhi soavi ove 'l mio cor sospira",
+      "revision_id": 3696495,
+      "revision_timestamp": "2026-04-24T21:57:06Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "21d018020ac7244a9c3d38d2f4145c23804518845385bc3be2e7773f1f3e8917"
+    },
+    {
+      "page_title": "Il servo involto nel corporeo peso",
+      "revision_id": 3808700,
+      "revision_timestamp": "2026-05-05T23:26:28Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "96d0bf9be03f8a130998a9e2b73fae78b34bf4d627369c214e9a42f969918ff0"
+    }
+  ],
+  "source_record_revisions": [],
+  "edition_page_title_suffix": "",
+  "source_metadata": {
+    "source_id": "ws_sannazaro_rime_disperse",
+    "author": "Jacopo Sannazaro",
+    "source_archive": "Italian Wikisource",
+    "source_collection": "Rime disperse",
+    "source_edition": "Opere volgari di Jacopo Sannazaro, edited by Alfredo Mauro, Bari, Laterza, 1961.",
+    "license_notes": "Italian Wikisource CC BY-SA 3.0 / GFDL page metadata; retain page URL, author, source edition, editor, license links, and share-alike notice.",
+    "period": "XVI secolo",
+    "poem_id_prefix": "sannazaro",
+    "snapshot_scope": "explicit_linked_pages"
+  },
+  "audit_report": {
+    "page_count": 37,
+    "eligible_sonnet_count": 21,
+    "pinned_page_count": 21,
+    "started_at_utc": "2026-07-22T15:31:13+00:00",
+    "finished_at_utc": "2026-07-22T15:37:07+00:00"
+  }
+}

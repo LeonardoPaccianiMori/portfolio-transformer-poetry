@@ -10,6 +10,7 @@ from sonnet_corpus.manifest import ManifestRow, write_manifest
 from sonnet_corpus.sonnet_expansion_build import (
     ACTIVATED_SOURCE_METADATA,
     build_sonnets_expanded,
+    build_sonnets_expanded_from_snapshots,
     build_sonnets_expanded_v2,
     create_sonnet_source_snapshot,
     read_manifest_rows,
@@ -182,6 +183,58 @@ def test_snapshot_keeps_only_reviewed_eligible_non_duplicate_pages(tmp_path: Pat
     assert snapshot["audit_report"]["eligible_sonnet_count"] == 1
 
 
+def test_snapshot_pins_a_shared_page_once_but_keeps_both_poem_segments(
+    tmp_path: Path,
+):
+    audit_path = tmp_path / "audit.json"
+    snapshot_path = tmp_path / "snapshot.json"
+    page_title = "Rime (Andreini)/Sonetti CLXXI-CLXXII"
+    payload = {
+        "source": {
+            "source_id": "ws_andreini_rime_1601",
+            "landing_page_url": "https://it.wikisource.org/wiki/Rime_(Andreini)",
+        },
+        "activation_status": "audit_then_include",
+        "root_revision": {
+            "title": "Rime (Andreini)",
+            "revision_id": 300,
+            "revision_timestamp": "2026-07-18T10:00:00Z",
+        },
+        "page_count": 1,
+        "started_at_utc": "2026-07-18T10:00:00+00:00",
+        "finished_at_utc": "2026-07-18T10:01:00+00:00",
+        "candidates": [
+            {
+                "page_title": page_title,
+                "revision_id": 301,
+                "revision_timestamp": "2026-07-18T10:01:00Z",
+                "segment_index": segment_index,
+                "segment_label": f"SONETTO CLXX{segment_index}",
+                "cleaned_text_sha256": f"hash-{segment_index}",
+                "status": "eligible_14_lines",
+                "line_count_clean": 14,
+                "exact_active_duplicate_poem_ids": [],
+            }
+            for segment_index in (1, 2)
+        ],
+    }
+    audit_path.write_text(json.dumps(payload), encoding="utf-8")
+
+    snapshot = create_sonnet_source_snapshot(
+        audit_report_path=audit_path,
+        snapshot_path=snapshot_path,
+        source_id="ws_andreini_rime_1601",
+    )
+
+    assert len(snapshot["page_revisions"]) == 1
+    assert len(snapshot["eligible_candidates"]) == 2
+    assert snapshot["audit_report"]["pinned_page_count"] == 1
+    assert [
+        candidate["segment_index"]
+        for candidate in snapshot["eligible_candidates"]
+    ] == [1, 2]
+
+
 def test_varchi_activation_metadata_records_the_audited_edition_and_license():
     metadata = ACTIVATED_SOURCE_METADATA["ws_varchi_infermita"]
 
@@ -324,3 +377,213 @@ def test_versioned_build_supports_an_edition_page_snapshot_for_foscolo(tmp_path:
     assert [row.poem_id for row in rows] == ["base_active", "foscolo_alla_sera_1835"]
     assert rows[1].source_edition.startswith("Opere scelte di Ugo Foscolo II")
     assert rows[1].source_revision_id == "202"
+
+
+def test_multi_source_build_splits_paired_pages_and_keeps_nested_ids_unique(
+    tmp_path: Path,
+):
+    base_manifest_path = tmp_path / "data/metadata/sonnets_expanded_v4_manifest.csv"
+    base_poem_path = tmp_path / "data/processed/sonnets_expanded_v4/poems/base.txt"
+    base_poem_path.parent.mkdir(parents=True)
+    base_poem_path.write_text("base line\n", encoding="utf-8")
+    write_manifest(
+        [
+            make_manifest_row(
+                "base_active",
+                include=True,
+                clean_text_path=(
+                    "data/processed/sonnets_expanded_v4/poems/base.txt"
+                ),
+            )
+        ],
+        base_manifest_path,
+    )
+
+    snapshot_dir = tmp_path / "data/metadata/wikisource_snapshots"
+    snapshot_dir.mkdir(parents=True)
+    andreini_path = snapshot_dir / "ws_andreini_rime_1601.json"
+    colonna_path = snapshot_dir / "ws_colonna_rime_1760.json"
+    andreini_page = "Rime (Andreini)/Sonetti CLXXI-CLXXII"
+    colonna_pages = [
+        "Rime (Vittoria Colonna)/Sonetto I",
+        "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto I",
+    ]
+
+    write_source_snapshot(
+        andreini_path,
+        source_id="ws_andreini_rime_1601",
+        root_title="Rime (Andreini)",
+        page_titles=[andreini_page],
+        candidates=[
+            {
+                "page_title": andreini_page,
+                "revision_id": 301,
+                "revision_timestamp": "2026-07-18T10:01:00Z",
+                "segment_index": 1,
+                "segment_label": "SONETTO CLXXI",
+                "cleaned_text_sha256": "",
+            },
+            {
+                "page_title": andreini_page,
+                "revision_id": 301,
+                "revision_timestamp": "2026-07-18T10:01:00Z",
+                "segment_index": 2,
+                "segment_label": "SONETTO CLXXII",
+                "cleaned_text_sha256": "",
+            },
+        ],
+    )
+    write_source_snapshot(
+        colonna_path,
+        source_id="ws_colonna_rime_1760",
+        root_title="Rime (Vittoria Colonna)",
+        page_titles=colonna_pages,
+        candidates=[
+            {
+                "page_title": page_title,
+                "revision_id": 301 + index,
+                "revision_timestamp": "2026-07-18T10:01:00Z",
+                "segment_index": 1,
+                "segment_label": "",
+                "cleaned_text_sha256": "",
+            }
+            for index, page_title in enumerate(colonna_pages)
+        ],
+    )
+
+    collections = {
+        "ws_andreini_rime_1601": make_andreini_paired_collection(
+            andreini_page
+        ),
+        "ws_colonna_rime_1760": make_colonna_nested_collection(
+            colonna_pages
+        ),
+    }
+    report = build_sonnets_expanded_from_snapshots(
+        repo_root=tmp_path,
+        base_manifest_path=base_manifest_path,
+        snapshot_paths=[andreini_path, colonna_path],
+        output_dataset_id="sonnets_expanded_v5",
+        request_delay=0,
+        fetch_collection=lambda snapshot, **kwargs: collections[
+            snapshot.source_id
+        ],
+    )
+
+    rows = read_manifest_rows(
+        tmp_path / "data/metadata/sonnets_expanded_v5_manifest.csv"
+    )
+    assert report["added_poem_count"] == 4
+    assert [row.poem_id for row in rows] == [
+        "base_active",
+        "andreini_sonetti_clxxi_clxxii_sonetto_clxxi",
+        "andreini_sonetti_clxxi_clxxii_sonetto_clxxii",
+        "colonna_sonetto_i",
+        "colonna_sonetti_spirituali_sonetto_i",
+    ]
+    assert [source["added_poem_count"] for source in report["sources"]] == [
+        2,
+        2,
+    ]
+    assert all((tmp_path / row.clean_text_path).is_file() for row in rows)
+
+
+def write_source_snapshot(
+    path: Path,
+    *,
+    source_id: str,
+    root_title: str,
+    page_titles: list[str],
+    candidates: list[dict[str, object]],
+) -> None:
+    page_revisions = [
+        {
+            "title": page_title,
+            "revision_id": 301 + index,
+            "revision_timestamp": "2026-07-18T10:01:00Z",
+        }
+        for index, page_title in enumerate(page_titles)
+    ]
+    payload = {
+        "source_id": source_id,
+        "landing_page_url": f"https://example.test/{source_id}",
+        "title": root_title,
+        "scope": "explicit_subpages",
+        "root_revision": {
+            "title": root_title,
+            "revision_id": 300,
+            "revision_timestamp": "2026-07-18T10:00:00Z",
+        },
+        "page_revisions": page_revisions,
+        "source_record_revisions": [],
+        "edition_page_title_suffix": "",
+        "source_metadata": {
+            field: getattr(ACTIVATED_SOURCE_METADATA[source_id], field)
+            for field in ACTIVATED_SOURCE_METADATA[source_id].__dataclass_fields__
+        },
+        "eligible_candidates": candidates,
+    }
+    path.write_text(json.dumps(payload), encoding="utf-8")
+
+
+def make_andreini_paired_collection(
+    page_title: str,
+) -> FetchedItalianWikisourcePageCollection:
+    poem_one = "\n".join(f"Andreini one {index}" for index in range(1, 15))
+    poem_two = "\n".join(f"Andreini two {index}" for index in range(1, 15))
+    html = (
+        "<div class='mw-parser-output'><div class='prp-pages-output'>"
+        "<div class='centertext'>SONETTO CLXXI.</div>"
+        f"<div class='poem'>{poem_one}</div>"
+        "<div class='centertext'>SONETTO CLXXII.</div>"
+        f"<div class='poem'>{poem_two}</div>"
+        "</div></div>"
+    )
+    return FetchedItalianWikisourcePageCollection(
+        landing_page_url="https://example.test/andreini",
+        title="Rime (Andreini)",
+        root_revision=WikisourcePageRevision(
+            "Rime (Andreini)", 300, "2026-07-18T10:00:00Z"
+        ),
+        root_html="<div class='mw-parser-output'></div>",
+        pages=[
+            FetchedItalianWikisourcePage(
+                revision=WikisourcePageRevision(
+                    page_title, 301, "2026-07-18T10:01:00Z"
+                ),
+                html=html,
+            )
+        ],
+    )
+
+
+def make_colonna_nested_collection(
+    page_titles: list[str],
+) -> FetchedItalianWikisourcePageCollection:
+    pages = []
+    for index, page_title in enumerate(page_titles):
+        poem = "\n".join(
+            f"Colonna poem {index} line {line}" for line in range(1, 15)
+        )
+        pages.append(
+            FetchedItalianWikisourcePage(
+                revision=WikisourcePageRevision(
+                    page_title,
+                    301 + index,
+                    "2026-07-18T10:01:00Z",
+                ),
+                html=(
+                    "<div class='mw-parser-output'>"
+                    f"<div class='poem'>{poem}</div></div>"
+                ),
+            )
+        )
+    return FetchedItalianWikisourcePageCollection(
+        landing_page_url="https://example.test/colonna",
+        title="Rime (Vittoria Colonna)",
+        root_revision=WikisourcePageRevision(
+            "Rime (Vittoria Colonna)", 300, "2026-07-18T10:00:00Z"
+        ),
+        root_html="<div class='mw-parser-output'></div>",
+        pages=pages,
+    )

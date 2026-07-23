@@ -7,7 +7,7 @@ def read_csv(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
-def test_audit_results_match_the_pending_core_source_manifest_records():
+def test_audit_results_match_the_activated_core_source_manifest_records():
     audit_rows = read_csv(Path("data/metadata/sonnet_expansion_audit_results.csv"))
     manifest_rows = read_csv(Path("data/metadata/sonnet_expansion_sources_manifest.csv"))
     manifest_by_source = {row["source_id"]: row for row in manifest_rows}
@@ -21,8 +21,8 @@ def test_audit_results_match_the_pending_core_source_manifest_records():
     ]
     for row in audit_rows:
         manifest = manifest_by_source[row["source_id"]]
-        assert manifest["status"] == "audit_then_include"
-        assert row["activation_decision"] == "pending_user_activation"
+        assert manifest["status"] == "activated"
+        assert row["activation_decision"] == "activated_in_sonnets_expanded_v5"
         assert int(row["scoped_page_count"]) == int(manifest["known_subpage_count"])
         assert int(row["candidate_count"]) == (
             int(row["eligible_14_line_count"]) + int(row["non_14_line_count"])

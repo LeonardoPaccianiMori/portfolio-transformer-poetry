@@ -1,0 +1,63 @@
+{
+  "dataset_id": "sonnets_expanded_v5",
+  "started_at_utc": "2026-07-23T08:41:07+00:00",
+  "finished_at_utc": "2026-07-23T10:07:14+00:00",
+  "base_manifest_path": "data/metadata/sonnets_expanded_v4_manifest.csv",
+  "snapshot_paths": [
+    "data/metadata/wikisource_snapshots/ws_andreini_rime_1601.json",
+    "data/metadata/wikisource_snapshots/ws_colonna_rime_1760.json",
+    "data/metadata/wikisource_snapshots/ws_stampa_rime_1913.json",
+    "data/metadata/wikisource_snapshots/ws_ariosto_rime_varie_1857.json",
+    "data/metadata/wikisource_snapshots/ws_sannazaro_rime_disperse.json"
+  ],
+  "base_poem_count": 1011,
+  "added_poem_count": 864,
+  "total_poem_count": 1875,
+  "split_counts": {
+    "train": 1486,
+    "validation": 191,
+    "test": 198
+  },
+  "sources": [
+    {
+      "source_id": "ws_andreini_rime_1601",
+      "snapshot_path": "data/metadata/wikisource_snapshots/ws_andreini_rime_1601.json",
+      "pinned_page_count": 189,
+      "added_poem_count": 196,
+      "root_revision_id": 3750857,
+      "root_revision_timestamp": "2026-04-25T20:16:30Z"
+    },
+    {
+      "source_id": "ws_colonna_rime_1760",
+      "snapshot_path": "data/metadata/wikisource_snapshots/ws_colonna_rime_1760.json",
+      "pinned_page_count": 336,
+      "added_poem_count": 336,
+      "root_revision_id": 3753140,
+      "root_revision_timestamp": "2026-04-25T20:45:50Z"
+    },
+    {
+      "source_id": "ws_stampa_rime_1913",
+      "snapshot_path": "data/metadata/wikisource_snapshots/ws_stampa_rime_1913.json",
+      "pinned_page_count": 282,
+      "added_poem_count": 282,
+      "root_revision_id": 3752669,
+      "root_revision_timestamp": "2026-04-25T20:39:59Z"
+    },
+    {
+      "source_id": "ws_ariosto_rime_varie_1857",
+      "snapshot_path": "data/metadata/wikisource_snapshots/ws_ariosto_rime_varie_1857.json",
+      "pinned_page_count": 29,
+      "added_poem_count": 29,
+      "root_revision_id": 3820630,
+      "root_revision_timestamp": "2026-05-06T03:06:45Z"
+    },
+    {
+      "source_id": "ws_sannazaro_rime_disperse",
+      "snapshot_path": "data/metadata/wikisource_snapshots/ws_sannazaro_rime_disperse.json",
+      "pinned_page_count": 21,
+      "added_poem_count": 21,
+      "root_revision_id": 3825209,
+      "root_revision_timestamp": "2026-05-06T04:25:14Z"
+    }
+  ]
+}

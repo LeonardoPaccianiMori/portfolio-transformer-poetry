@@ -1,0 +1,4403 @@
+{
+  "source_id": "ws_colonna_rime_1760",
+  "landing_page_url": "https://it.wikisource.org/wiki/Rime_(Vittoria_Colonna)",
+  "title": "Rime (Vittoria Colonna)",
+  "scope": "explicit_subpages",
+  "root_revision": {
+    "title": "Rime (Vittoria Colonna)",
+    "revision_id": 3753140,
+    "revision_timestamp": "2026-04-25T20:45:50Z"
+  },
+  "page_revisions": [
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto I",
+      "revision_id": 3753388,
+      "revision_timestamp": "2026-04-25T20:49:03Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto II",
+      "revision_id": 3753389,
+      "revision_timestamp": "2026-04-25T20:49:03Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto III",
+      "revision_id": 3753390,
+      "revision_timestamp": "2026-04-25T20:49:04Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto IV",
+      "revision_id": 3753391,
+      "revision_timestamp": "2026-04-25T20:49:05Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto V",
+      "revision_id": 3753433,
+      "revision_timestamp": "2026-04-25T20:49:37Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto VI",
+      "revision_id": 3753434,
+      "revision_timestamp": "2026-04-25T20:49:38Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto VII",
+      "revision_id": 3753435,
+      "revision_timestamp": "2026-04-25T20:49:38Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto VIII",
+      "revision_id": 3753436,
+      "revision_timestamp": "2026-04-25T20:49:39Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto IX",
+      "revision_id": 3753392,
+      "revision_timestamp": "2026-04-25T20:49:06Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto X",
+      "revision_id": 3753437,
+      "revision_timestamp": "2026-04-25T20:49:40Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XI",
+      "revision_id": 3753448,
+      "revision_timestamp": "2026-04-25T20:49:49Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XII",
+      "revision_id": 3753449,
+      "revision_timestamp": "2026-04-25T20:49:49Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XIII",
+      "revision_id": 3753450,
+      "revision_timestamp": "2026-04-25T20:49:50Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XIV",
+      "revision_id": 3753451,
+      "revision_timestamp": "2026-04-25T20:49:51Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XV",
+      "revision_id": 3753463,
+      "revision_timestamp": "2026-04-25T20:50:00Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XVI",
+      "revision_id": 3753464,
+      "revision_timestamp": "2026-04-25T20:50:01Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XVII",
+      "revision_id": 3753465,
+      "revision_timestamp": "2026-04-25T20:50:02Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XVIII",
+      "revision_id": 3753466,
+      "revision_timestamp": "2026-04-25T20:50:02Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XIX",
+      "revision_id": 3753452,
+      "revision_timestamp": "2026-04-25T20:49:51Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XX",
+      "revision_id": 3753467,
+      "revision_timestamp": "2026-04-25T20:50:03Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XXI",
+      "revision_id": 3753468,
+      "revision_timestamp": "2026-04-25T20:50:04Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XXII",
+      "revision_id": 3824835,
+      "revision_timestamp": "2026-05-06T04:19:38Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XXIII",
+      "revision_id": 3753470,
+      "revision_timestamp": "2026-04-25T20:50:06Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XXIV",
+      "revision_id": 3753471,
+      "revision_timestamp": "2026-04-25T20:50:07Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XXV",
+      "revision_id": 3753473,
+      "revision_timestamp": "2026-04-25T20:50:09Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XXVI",
+      "revision_id": 3753474,
+      "revision_timestamp": "2026-04-25T20:50:09Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XXVII",
+      "revision_id": 3753475,
+      "revision_timestamp": "2026-04-25T20:50:10Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XXVIII",
+      "revision_id": 3753476,
+      "revision_timestamp": "2026-04-25T20:50:11Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XXIX",
+      "revision_id": 3753472,
+      "revision_timestamp": "2026-04-25T20:50:08Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XXX",
+      "revision_id": 3753477,
+      "revision_timestamp": "2026-04-25T20:50:12Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XXXI",
+      "revision_id": 3753478,
+      "revision_timestamp": "2026-04-25T20:50:13Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XXXII",
+      "revision_id": 3753479,
+      "revision_timestamp": "2026-04-25T20:50:14Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XXXIII",
+      "revision_id": 3753480,
+      "revision_timestamp": "2026-04-25T20:50:15Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XXXIV",
+      "revision_id": 3753481,
+      "revision_timestamp": "2026-04-25T20:50:15Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XXXV",
+      "revision_id": 3753483,
+      "revision_timestamp": "2026-04-25T20:50:17Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XXXVI",
+      "revision_id": 3753484,
+      "revision_timestamp": "2026-04-25T20:50:18Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XXXVII",
+      "revision_id": 3753485,
+      "revision_timestamp": "2026-04-25T20:50:19Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XXXVIII",
+      "revision_id": 3753486,
+      "revision_timestamp": "2026-04-25T20:50:19Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XXXIX",
+      "revision_id": 3753482,
+      "revision_timestamp": "2026-04-25T20:50:16Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XL",
+      "revision_id": 3753453,
+      "revision_timestamp": "2026-04-25T20:49:52Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XLI",
+      "revision_id": 3753454,
+      "revision_timestamp": "2026-04-25T20:49:53Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XLII",
+      "revision_id": 3753455,
+      "revision_timestamp": "2026-04-25T20:49:54Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XLIII",
+      "revision_id": 3753456,
+      "revision_timestamp": "2026-04-25T20:49:55Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XLIV",
+      "revision_id": 3753457,
+      "revision_timestamp": "2026-04-25T20:49:56Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XLV",
+      "revision_id": 3753459,
+      "revision_timestamp": "2026-04-25T20:49:57Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XLVI",
+      "revision_id": 3753460,
+      "revision_timestamp": "2026-04-25T20:49:58Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XLVII",
+      "revision_id": 3753461,
+      "revision_timestamp": "2026-04-25T20:49:59Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XLVIII",
+      "revision_id": 3753462,
+      "revision_timestamp": "2026-04-25T20:49:59Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XLIX",
+      "revision_id": 3753458,
+      "revision_timestamp": "2026-04-25T20:49:56Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto L",
+      "revision_id": 3753393,
+      "revision_timestamp": "2026-04-25T20:49:06Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LI",
+      "revision_id": 3753394,
+      "revision_timestamp": "2026-04-25T20:49:07Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LII",
+      "revision_id": 3753395,
+      "revision_timestamp": "2026-04-25T20:49:08Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LIII",
+      "revision_id": 3753396,
+      "revision_timestamp": "2026-04-25T20:49:09Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LIV",
+      "revision_id": 3753397,
+      "revision_timestamp": "2026-04-25T20:49:10Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LV",
+      "revision_id": 3753399,
+      "revision_timestamp": "2026-04-25T20:49:11Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LVI",
+      "revision_id": 3753400,
+      "revision_timestamp": "2026-04-25T20:49:12Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LVII",
+      "revision_id": 3753401,
+      "revision_timestamp": "2026-04-25T20:49:13Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LVIII",
+      "revision_id": 3753402,
+      "revision_timestamp": "2026-04-25T20:49:13Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LIX",
+      "revision_id": 3753398,
+      "revision_timestamp": "2026-04-25T20:49:10Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LX",
+      "revision_id": 3753403,
+      "revision_timestamp": "2026-04-25T20:49:14Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXI",
+      "revision_id": 3753404,
+      "revision_timestamp": "2026-04-25T20:49:15Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXII",
+      "revision_id": 3753405,
+      "revision_timestamp": "2026-04-25T20:49:16Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXIII",
+      "revision_id": 3753406,
+      "revision_timestamp": "2026-04-25T20:49:17Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXIV",
+      "revision_id": 3753407,
+      "revision_timestamp": "2026-04-25T20:49:17Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXV",
+      "revision_id": 3753409,
+      "revision_timestamp": "2026-04-25T20:49:19Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXVI",
+      "revision_id": 3753410,
+      "revision_timestamp": "2026-04-25T20:49:20Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXVII",
+      "revision_id": 3753411,
+      "revision_timestamp": "2026-04-25T20:49:20Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXVIII",
+      "revision_id": 3753412,
+      "revision_timestamp": "2026-04-25T20:49:21Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXIX",
+      "revision_id": 3753408,
+      "revision_timestamp": "2026-04-25T20:49:18Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXX",
+      "revision_id": 3753413,
+      "revision_timestamp": "2026-04-25T20:49:22Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXXI",
+      "revision_id": 3753414,
+      "revision_timestamp": "2026-04-25T20:49:23Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXXII",
+      "revision_id": 3753415,
+      "revision_timestamp": "2026-04-25T20:49:24Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXXIII",
+      "revision_id": 3753416,
+      "revision_timestamp": "2026-04-25T20:49:24Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXXIV",
+      "revision_id": 3753417,
+      "revision_timestamp": "2026-04-25T20:49:25Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXXV",
+      "revision_id": 3753419,
+      "revision_timestamp": "2026-04-25T20:49:26Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXXVI",
+      "revision_id": 3753420,
+      "revision_timestamp": "2026-04-25T20:49:27Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXXVII",
+      "revision_id": 3753421,
+      "revision_timestamp": "2026-04-25T20:49:28Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXXVIII",
+      "revision_id": 3753422,
+      "revision_timestamp": "2026-04-25T20:49:29Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXXIX",
+      "revision_id": 3753418,
+      "revision_timestamp": "2026-04-25T20:49:26Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXXX",
+      "revision_id": 3753423,
+      "revision_timestamp": "2026-04-25T20:49:29Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXXXI",
+      "revision_id": 3753424,
+      "revision_timestamp": "2026-04-25T20:49:30Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXXXII",
+      "revision_id": 3753425,
+      "revision_timestamp": "2026-04-25T20:49:31Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXXXIII",
+      "revision_id": 3753426,
+      "revision_timestamp": "2026-04-25T20:49:32Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXXXIV",
+      "revision_id": 3753427,
+      "revision_timestamp": "2026-04-25T20:49:32Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXXXV",
+      "revision_id": 3753429,
+      "revision_timestamp": "2026-04-25T20:49:34Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXXXVI",
+      "revision_id": 3753430,
+      "revision_timestamp": "2026-04-25T20:49:35Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXXXVII",
+      "revision_id": 3753431,
+      "revision_timestamp": "2026-04-25T20:49:36Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXXXVIII",
+      "revision_id": 3753432,
+      "revision_timestamp": "2026-04-25T20:49:36Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto LXXXIX",
+      "revision_id": 3753428,
+      "revision_timestamp": "2026-04-25T20:49:33Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XC",
+      "revision_id": 3753438,
+      "revision_timestamp": "2026-04-25T20:49:41Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XCI",
+      "revision_id": 3753439,
+      "revision_timestamp": "2026-04-25T20:49:41Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XCII",
+      "revision_id": 3753440,
+      "revision_timestamp": "2026-04-25T20:49:42Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XCIII",
+      "revision_id": 3753441,
+      "revision_timestamp": "2026-04-25T20:49:43Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XCIV",
+      "revision_id": 3753442,
+      "revision_timestamp": "2026-04-25T20:49:44Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XCV",
+      "revision_id": 3753444,
+      "revision_timestamp": "2026-04-25T20:49:45Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XCVI",
+      "revision_id": 3753445,
+      "revision_timestamp": "2026-04-25T20:49:46Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XCVII",
+      "revision_id": 3753446,
+      "revision_timestamp": "2026-04-25T20:49:47Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XCVIII",
+      "revision_id": 3753447,
+      "revision_timestamp": "2026-04-25T20:49:48Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto XCIX",
+      "revision_id": 3753443,
+      "revision_timestamp": "2026-04-25T20:49:44Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto C",
+      "revision_id": 3753362,
+      "revision_timestamp": "2026-04-25T20:48:43Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CI",
+      "revision_id": 3753363,
+      "revision_timestamp": "2026-04-25T20:48:43Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CII",
+      "revision_id": 3753364,
+      "revision_timestamp": "2026-04-25T20:48:44Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CIII",
+      "revision_id": 3753365,
+      "revision_timestamp": "2026-04-25T20:48:45Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CIV",
+      "revision_id": 3753366,
+      "revision_timestamp": "2026-04-25T20:48:46Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CV",
+      "revision_id": 3753368,
+      "revision_timestamp": "2026-04-25T20:48:47Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CVI",
+      "revision_id": 3753369,
+      "revision_timestamp": "2026-04-25T20:48:48Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CVII",
+      "revision_id": 3753370,
+      "revision_timestamp": "2026-04-25T20:48:49Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CVIII",
+      "revision_id": 3753371,
+      "revision_timestamp": "2026-04-25T20:48:50Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CIX",
+      "revision_id": 3753367,
+      "revision_timestamp": "2026-04-25T20:48:46Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CX",
+      "revision_id": 3753372,
+      "revision_timestamp": "2026-04-25T20:48:50Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CXI",
+      "revision_id": 3753373,
+      "revision_timestamp": "2026-04-25T20:48:51Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CXII",
+      "revision_id": 3753374,
+      "revision_timestamp": "2026-04-25T20:48:52Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CXIII",
+      "revision_id": 3753375,
+      "revision_timestamp": "2026-04-25T20:48:52Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CXIV",
+      "revision_id": 3753376,
+      "revision_timestamp": "2026-04-25T20:48:53Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CXV",
+      "revision_id": 3753378,
+      "revision_timestamp": "2026-04-25T20:48:55Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CXVI",
+      "revision_id": 3753379,
+      "revision_timestamp": "2026-04-25T20:48:56Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CXVII",
+      "revision_id": 3753380,
+      "revision_timestamp": "2026-04-25T20:48:56Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CXVIII",
+      "revision_id": 3753381,
+      "revision_timestamp": "2026-04-25T20:48:57Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CXIX",
+      "revision_id": 3753377,
+      "revision_timestamp": "2026-04-25T20:48:54Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CXX",
+      "revision_id": 3753382,
+      "revision_timestamp": "2026-04-25T20:48:58Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CXXI",
+      "revision_id": 3753383,
+      "revision_timestamp": "2026-04-25T20:48:59Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CXXII",
+      "revision_id": 3753384,
+      "revision_timestamp": "2026-04-25T20:49:00Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CXXIII",
+      "revision_id": 3753385,
+      "revision_timestamp": "2026-04-25T20:49:00Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CXXIV",
+      "revision_id": 3753386,
+      "revision_timestamp": "2026-04-25T20:49:01Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetto CXXV",
+      "revision_id": 3753387,
+      "revision_timestamp": "2026-04-25T20:49:02Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto I",
+      "revision_id": 3753262,
+      "revision_timestamp": "2026-04-25T20:47:27Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto II",
+      "revision_id": 3753263,
+      "revision_timestamp": "2026-04-25T20:47:28Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto III",
+      "revision_id": 3753264,
+      "revision_timestamp": "2026-04-25T20:47:28Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto IV",
+      "revision_id": 3753265,
+      "revision_timestamp": "2026-04-25T20:47:29Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto V",
+      "revision_id": 3753307,
+      "revision_timestamp": "2026-04-25T20:48:00Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto VI",
+      "revision_id": 3753308,
+      "revision_timestamp": "2026-04-25T20:48:01Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto VII",
+      "revision_id": 3753309,
+      "revision_timestamp": "2026-04-25T20:48:02Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto VIII",
+      "revision_id": 3753310,
+      "revision_timestamp": "2026-04-25T20:48:03Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto IX",
+      "revision_id": 3753266,
+      "revision_timestamp": "2026-04-25T20:47:30Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto X",
+      "revision_id": 3753311,
+      "revision_timestamp": "2026-04-25T20:48:03Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XI",
+      "revision_id": 3753323,
+      "revision_timestamp": "2026-04-25T20:48:13Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XII",
+      "revision_id": 3753324,
+      "revision_timestamp": "2026-04-25T20:48:14Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XIII",
+      "revision_id": 3753325,
+      "revision_timestamp": "2026-04-25T20:48:15Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XIV",
+      "revision_id": 3753326,
+      "revision_timestamp": "2026-04-25T20:48:15Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XV",
+      "revision_id": 3753338,
+      "revision_timestamp": "2026-04-25T20:48:25Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XVI",
+      "revision_id": 3753339,
+      "revision_timestamp": "2026-04-25T20:48:26Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XVII",
+      "revision_id": 3753340,
+      "revision_timestamp": "2026-04-25T20:48:26Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XVIII",
+      "revision_id": 3753341,
+      "revision_timestamp": "2026-04-25T20:48:27Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XIX",
+      "revision_id": 3753327,
+      "revision_timestamp": "2026-04-25T20:48:16Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XX",
+      "revision_id": 3753342,
+      "revision_timestamp": "2026-04-25T20:48:28Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXI",
+      "revision_id": 3753343,
+      "revision_timestamp": "2026-04-25T20:48:29Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXII",
+      "revision_id": 3753344,
+      "revision_timestamp": "2026-04-25T20:48:29Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXIII",
+      "revision_id": 3753345,
+      "revision_timestamp": "2026-04-25T20:48:30Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXIV",
+      "revision_id": 3753346,
+      "revision_timestamp": "2026-04-25T20:48:31Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXV",
+      "revision_id": 3753348,
+      "revision_timestamp": "2026-04-25T20:48:32Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXVI",
+      "revision_id": 3753349,
+      "revision_timestamp": "2026-04-25T20:48:33Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXVII",
+      "revision_id": 3753350,
+      "revision_timestamp": "2026-04-25T20:48:34Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXVIII",
+      "revision_id": 3753351,
+      "revision_timestamp": "2026-04-25T20:48:34Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXIX",
+      "revision_id": 3753347,
+      "revision_timestamp": "2026-04-25T20:48:31Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXX",
+      "revision_id": 3753352,
+      "revision_timestamp": "2026-04-25T20:48:35Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXXI",
+      "revision_id": 3753353,
+      "revision_timestamp": "2026-04-25T20:48:36Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXXII",
+      "revision_id": 3753354,
+      "revision_timestamp": "2026-04-25T20:48:37Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXXIII",
+      "revision_id": 3753355,
+      "revision_timestamp": "2026-04-25T20:48:37Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXXIV",
+      "revision_id": 3753356,
+      "revision_timestamp": "2026-04-25T20:48:38Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXXV",
+      "revision_id": 3753358,
+      "revision_timestamp": "2026-04-25T20:48:39Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXXVI",
+      "revision_id": 3753359,
+      "revision_timestamp": "2026-04-25T20:48:40Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXXVII",
+      "revision_id": 3753360,
+      "revision_timestamp": "2026-04-25T20:48:41Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXXVIII",
+      "revision_id": 3753361,
+      "revision_timestamp": "2026-04-25T20:48:42Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXXIX",
+      "revision_id": 3753357,
+      "revision_timestamp": "2026-04-25T20:48:39Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XL",
+      "revision_id": 3753328,
+      "revision_timestamp": "2026-04-25T20:48:17Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XLI",
+      "revision_id": 3753329,
+      "revision_timestamp": "2026-04-25T20:48:18Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XLII",
+      "revision_id": 3753330,
+      "revision_timestamp": "2026-04-25T20:48:18Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XLIII",
+      "revision_id": 3753331,
+      "revision_timestamp": "2026-04-25T20:48:19Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XLIV",
+      "revision_id": 3753332,
+      "revision_timestamp": "2026-04-25T20:48:20Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XLV",
+      "revision_id": 3753334,
+      "revision_timestamp": "2026-04-25T20:48:22Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XLVI",
+      "revision_id": 3753335,
+      "revision_timestamp": "2026-04-25T20:48:22Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XLVII",
+      "revision_id": 3753336,
+      "revision_timestamp": "2026-04-25T20:48:23Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XLVIII",
+      "revision_id": 3753337,
+      "revision_timestamp": "2026-04-25T20:48:24Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XLIX",
+      "revision_id": 3753333,
+      "revision_timestamp": "2026-04-25T20:48:21Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto L",
+      "revision_id": 3753267,
+      "revision_timestamp": "2026-04-25T20:47:30Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LI",
+      "revision_id": 3753268,
+      "revision_timestamp": "2026-04-25T20:47:31Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LII",
+      "revision_id": 3753269,
+      "revision_timestamp": "2026-04-25T20:47:32Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LIII",
+      "revision_id": 3753270,
+      "revision_timestamp": "2026-04-25T20:47:33Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LIV",
+      "revision_id": 3753271,
+      "revision_timestamp": "2026-04-25T20:47:33Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LV",
+      "revision_id": 3753273,
+      "revision_timestamp": "2026-04-25T20:47:35Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LVI",
+      "revision_id": 3753274,
+      "revision_timestamp": "2026-04-25T20:47:36Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LVII",
+      "revision_id": 3753275,
+      "revision_timestamp": "2026-04-25T20:47:37Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LVIII",
+      "revision_id": 3753276,
+      "revision_timestamp": "2026-04-25T20:47:37Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LIX",
+      "revision_id": 3753272,
+      "revision_timestamp": "2026-04-25T20:47:34Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LX",
+      "revision_id": 3753277,
+      "revision_timestamp": "2026-04-25T20:47:38Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXI",
+      "revision_id": 3753278,
+      "revision_timestamp": "2026-04-25T20:47:39Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXII",
+      "revision_id": 3753279,
+      "revision_timestamp": "2026-04-25T20:47:39Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXIII",
+      "revision_id": 3753280,
+      "revision_timestamp": "2026-04-25T20:47:40Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXIV",
+      "revision_id": 3753281,
+      "revision_timestamp": "2026-04-25T20:47:41Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXV",
+      "revision_id": 3753283,
+      "revision_timestamp": "2026-04-25T20:47:43Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXVI",
+      "revision_id": 3753284,
+      "revision_timestamp": "2026-04-25T20:47:43Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXVII",
+      "revision_id": 3753285,
+      "revision_timestamp": "2026-04-25T20:47:44Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXVIII",
+      "revision_id": 3753286,
+      "revision_timestamp": "2026-04-25T20:47:45Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXIX",
+      "revision_id": 3753282,
+      "revision_timestamp": "2026-04-25T20:47:42Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXX",
+      "revision_id": 3753287,
+      "revision_timestamp": "2026-04-25T20:47:46Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXI",
+      "revision_id": 3753288,
+      "revision_timestamp": "2026-04-25T20:47:46Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXII",
+      "revision_id": 3753289,
+      "revision_timestamp": "2026-04-25T20:47:47Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXIII",
+      "revision_id": 3753290,
+      "revision_timestamp": "2026-04-25T20:47:48Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXIV",
+      "revision_id": 3753291,
+      "revision_timestamp": "2026-04-25T20:47:48Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXV",
+      "revision_id": 3753293,
+      "revision_timestamp": "2026-04-25T20:47:50Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXVI",
+      "revision_id": 3753294,
+      "revision_timestamp": "2026-04-25T20:47:50Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXVII",
+      "revision_id": 3753295,
+      "revision_timestamp": "2026-04-25T20:47:51Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXVIII",
+      "revision_id": 3753296,
+      "revision_timestamp": "2026-04-25T20:47:52Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXIX",
+      "revision_id": 3753292,
+      "revision_timestamp": "2026-04-25T20:47:49Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXX",
+      "revision_id": 3753297,
+      "revision_timestamp": "2026-04-25T20:47:53Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXXI",
+      "revision_id": 3753298,
+      "revision_timestamp": "2026-04-25T20:47:53Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXXII",
+      "revision_id": 3753299,
+      "revision_timestamp": "2026-04-25T20:47:54Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXXIII",
+      "revision_id": 3753300,
+      "revision_timestamp": "2026-04-25T20:47:55Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXXIV",
+      "revision_id": 3753301,
+      "revision_timestamp": "2026-04-25T20:47:56Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXXV",
+      "revision_id": 3753303,
+      "revision_timestamp": "2026-04-25T20:47:57Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXXVI",
+      "revision_id": 3753304,
+      "revision_timestamp": "2026-04-25T20:47:58Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXXVII",
+      "revision_id": 3753305,
+      "revision_timestamp": "2026-04-25T20:47:59Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXXVIII",
+      "revision_id": 3753306,
+      "revision_timestamp": "2026-04-25T20:48:00Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXXIX",
+      "revision_id": 3753302,
+      "revision_timestamp": "2026-04-25T20:47:57Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XC",
+      "revision_id": 3753312,
+      "revision_timestamp": "2026-04-25T20:48:04Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XCI",
+      "revision_id": 3753313,
+      "revision_timestamp": "2026-04-25T20:48:05Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XCII",
+      "revision_id": 3753314,
+      "revision_timestamp": "2026-04-25T20:48:06Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XCIII",
+      "revision_id": 3753315,
+      "revision_timestamp": "2026-04-25T20:48:07Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XCIV",
+      "revision_id": 3753316,
+      "revision_timestamp": "2026-04-25T20:48:08Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XCV",
+      "revision_id": 3753318,
+      "revision_timestamp": "2026-04-25T20:48:09Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XCVI",
+      "revision_id": 3753319,
+      "revision_timestamp": "2026-04-25T20:48:10Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XCVII",
+      "revision_id": 3753320,
+      "revision_timestamp": "2026-04-25T20:48:10Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XCVIII",
+      "revision_id": 3753322,
+      "revision_timestamp": "2026-04-25T20:48:12Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XCIX",
+      "revision_id": 3753317,
+      "revision_timestamp": "2026-04-25T20:48:08Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto C",
+      "revision_id": 3753149,
+      "revision_timestamp": "2026-04-25T20:46:02Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CI",
+      "revision_id": 3753163,
+      "revision_timestamp": "2026-04-25T20:46:12Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CII",
+      "revision_id": 3753164,
+      "revision_timestamp": "2026-04-25T20:46:13Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CIII",
+      "revision_id": 3753165,
+      "revision_timestamp": "2026-04-25T20:46:14Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CIV",
+      "revision_id": 3753166,
+      "revision_timestamp": "2026-04-25T20:46:15Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CV",
+      "revision_id": 3753208,
+      "revision_timestamp": "2026-04-25T20:46:47Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CVI",
+      "revision_id": 3753209,
+      "revision_timestamp": "2026-04-25T20:46:47Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CVII",
+      "revision_id": 3753210,
+      "revision_timestamp": "2026-04-25T20:46:48Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CVIII",
+      "revision_id": 3753211,
+      "revision_timestamp": "2026-04-25T20:46:49Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CIX",
+      "revision_id": 3753167,
+      "revision_timestamp": "2026-04-25T20:46:16Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CX",
+      "revision_id": 3753212,
+      "revision_timestamp": "2026-04-25T20:46:49Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXI",
+      "revision_id": 3753223,
+      "revision_timestamp": "2026-04-25T20:46:58Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXII",
+      "revision_id": 3753224,
+      "revision_timestamp": "2026-04-25T20:46:59Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXIII",
+      "revision_id": 3753225,
+      "revision_timestamp": "2026-04-25T20:47:00Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXIV",
+      "revision_id": 3753226,
+      "revision_timestamp": "2026-04-25T20:47:01Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXV",
+      "revision_id": 3753238,
+      "revision_timestamp": "2026-04-25T20:47:09Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXVI",
+      "revision_id": 3753239,
+      "revision_timestamp": "2026-04-25T20:47:10Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXVII",
+      "revision_id": 3753240,
+      "revision_timestamp": "2026-04-25T20:47:11Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXVIII",
+      "revision_id": 3753241,
+      "revision_timestamp": "2026-04-25T20:47:11Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXIX",
+      "revision_id": 3753227,
+      "revision_timestamp": "2026-04-25T20:47:02Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXX",
+      "revision_id": 3753242,
+      "revision_timestamp": "2026-04-25T20:47:12Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXI",
+      "revision_id": 3753243,
+      "revision_timestamp": "2026-04-25T20:47:13Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXII",
+      "revision_id": 3753244,
+      "revision_timestamp": "2026-04-25T20:47:13Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXIII",
+      "revision_id": 3753245,
+      "revision_timestamp": "2026-04-25T20:47:14Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXIV",
+      "revision_id": 3753246,
+      "revision_timestamp": "2026-04-25T20:47:15Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXV",
+      "revision_id": 3753248,
+      "revision_timestamp": "2026-04-25T20:47:17Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXVI",
+      "revision_id": 3753249,
+      "revision_timestamp": "2026-04-25T20:47:17Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXVII",
+      "revision_id": 3753250,
+      "revision_timestamp": "2026-04-25T20:47:18Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXVIII",
+      "revision_id": 3753251,
+      "revision_timestamp": "2026-04-25T20:47:19Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXIX",
+      "revision_id": 3753247,
+      "revision_timestamp": "2026-04-25T20:47:16Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXX",
+      "revision_id": 3753252,
+      "revision_timestamp": "2026-04-25T20:47:19Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXXI",
+      "revision_id": 3753253,
+      "revision_timestamp": "2026-04-25T20:47:20Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXXII",
+      "revision_id": 3753254,
+      "revision_timestamp": "2026-04-25T20:47:21Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXXIII",
+      "revision_id": 3753255,
+      "revision_timestamp": "2026-04-25T20:47:22Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXXIV",
+      "revision_id": 3753256,
+      "revision_timestamp": "2026-04-25T20:47:22Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXXV",
+      "revision_id": 3753258,
+      "revision_timestamp": "2026-04-25T20:47:24Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXXVI",
+      "revision_id": 3753259,
+      "revision_timestamp": "2026-04-25T20:47:25Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXXVII",
+      "revision_id": 3753260,
+      "revision_timestamp": "2026-04-25T20:47:25Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXXVIII",
+      "revision_id": 3753261,
+      "revision_timestamp": "2026-04-25T20:47:26Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXXIX",
+      "revision_id": 3753257,
+      "revision_timestamp": "2026-04-25T20:47:23Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXL",
+      "revision_id": 3753228,
+      "revision_timestamp": "2026-04-25T20:47:02Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXLI",
+      "revision_id": 3753229,
+      "revision_timestamp": "2026-04-25T20:47:03Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXLII",
+      "revision_id": 3753230,
+      "revision_timestamp": "2026-04-25T20:47:04Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXLIII",
+      "revision_id": 3753231,
+      "revision_timestamp": "2026-04-25T20:47:04Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXLIV",
+      "revision_id": 3753232,
+      "revision_timestamp": "2026-04-25T20:47:05Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXLV",
+      "revision_id": 3753234,
+      "revision_timestamp": "2026-04-25T20:47:07Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXLVI",
+      "revision_id": 3753235,
+      "revision_timestamp": "2026-04-25T20:47:08Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXLVII",
+      "revision_id": 3753236,
+      "revision_timestamp": "2026-04-25T20:47:08Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXLVIII",
+      "revision_id": 3753237,
+      "revision_timestamp": "2026-04-25T20:47:09Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXLIX",
+      "revision_id": 3753233,
+      "revision_timestamp": "2026-04-25T20:47:06Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CL",
+      "revision_id": 3753168,
+      "revision_timestamp": "2026-04-25T20:46:16Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLI",
+      "revision_id": 3753169,
+      "revision_timestamp": "2026-04-25T20:46:17Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLII",
+      "revision_id": 3753170,
+      "revision_timestamp": "2026-04-25T20:46:18Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLIII",
+      "revision_id": 3753171,
+      "revision_timestamp": "2026-04-25T20:46:18Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLIV",
+      "revision_id": 3753172,
+      "revision_timestamp": "2026-04-25T20:46:19Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLV",
+      "revision_id": 3753174,
+      "revision_timestamp": "2026-04-25T20:46:21Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLVI",
+      "revision_id": 3753175,
+      "revision_timestamp": "2026-04-25T20:46:21Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLVII",
+      "revision_id": 3753176,
+      "revision_timestamp": "2026-04-25T20:46:22Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLVIII",
+      "revision_id": 3753177,
+      "revision_timestamp": "2026-04-25T20:46:23Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLIX",
+      "revision_id": 3753173,
+      "revision_timestamp": "2026-04-25T20:46:20Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLX",
+      "revision_id": 3753178,
+      "revision_timestamp": "2026-04-25T20:46:24Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXI",
+      "revision_id": 3753179,
+      "revision_timestamp": "2026-04-25T20:46:24Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXII",
+      "revision_id": 3753180,
+      "revision_timestamp": "2026-04-25T20:46:25Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXIII",
+      "revision_id": 3753181,
+      "revision_timestamp": "2026-04-25T20:46:26Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXIV",
+      "revision_id": 3753182,
+      "revision_timestamp": "2026-04-25T20:46:27Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXV",
+      "revision_id": 3753184,
+      "revision_timestamp": "2026-04-25T20:46:28Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXVI",
+      "revision_id": 3753185,
+      "revision_timestamp": "2026-04-25T20:46:29Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXVII",
+      "revision_id": 3753186,
+      "revision_timestamp": "2026-04-25T20:46:30Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXVIII",
+      "revision_id": 3753187,
+      "revision_timestamp": "2026-04-25T20:46:31Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXIX",
+      "revision_id": 3753183,
+      "revision_timestamp": "2026-04-25T20:46:27Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXX",
+      "revision_id": 3753188,
+      "revision_timestamp": "2026-04-25T20:46:31Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXI",
+      "revision_id": 3753189,
+      "revision_timestamp": "2026-04-25T20:46:32Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXII",
+      "revision_id": 3753190,
+      "revision_timestamp": "2026-04-25T20:46:33Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXIII",
+      "revision_id": 3753191,
+      "revision_timestamp": "2026-04-25T20:46:34Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXIV",
+      "revision_id": 3753192,
+      "revision_timestamp": "2026-04-25T20:46:35Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXV",
+      "revision_id": 3753194,
+      "revision_timestamp": "2026-04-25T20:46:36Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXVI",
+      "revision_id": 3753195,
+      "revision_timestamp": "2026-04-25T20:46:37Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXVII",
+      "revision_id": 3753196,
+      "revision_timestamp": "2026-04-25T20:46:37Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXVIII",
+      "revision_id": 3753197,
+      "revision_timestamp": "2026-04-25T20:46:38Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXIX",
+      "revision_id": 3753193,
+      "revision_timestamp": "2026-04-25T20:46:35Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXX",
+      "revision_id": 3753198,
+      "revision_timestamp": "2026-04-25T20:46:39Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXXI",
+      "revision_id": 3753199,
+      "revision_timestamp": "2026-04-25T20:46:40Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXXII",
+      "revision_id": 3753200,
+      "revision_timestamp": "2026-04-25T20:46:41Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXXIII",
+      "revision_id": 3753201,
+      "revision_timestamp": "2026-04-25T20:46:41Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXXIV",
+      "revision_id": 3753202,
+      "revision_timestamp": "2026-04-25T20:46:42Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXXV",
+      "revision_id": 3753204,
+      "revision_timestamp": "2026-04-25T20:46:44Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXXVI",
+      "revision_id": 3753205,
+      "revision_timestamp": "2026-04-25T20:46:44Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXXVII",
+      "revision_id": 3753206,
+      "revision_timestamp": "2026-04-25T20:46:45Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXXVIII",
+      "revision_id": 3753207,
+      "revision_timestamp": "2026-04-25T20:46:46Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXXIX",
+      "revision_id": 3753203,
+      "revision_timestamp": "2026-04-25T20:46:43Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXC",
+      "revision_id": 3753213,
+      "revision_timestamp": "2026-04-25T20:46:50Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXCI",
+      "revision_id": 3753214,
+      "revision_timestamp": "2026-04-25T20:46:51Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXCII",
+      "revision_id": 3753215,
+      "revision_timestamp": "2026-04-25T20:46:52Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXCIII",
+      "revision_id": 3753216,
+      "revision_timestamp": "2026-04-25T20:46:52Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXCIV",
+      "revision_id": 3753217,
+      "revision_timestamp": "2026-04-25T20:46:53Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXCV",
+      "revision_id": 3753219,
+      "revision_timestamp": "2026-04-25T20:46:55Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXCVI",
+      "revision_id": 3753220,
+      "revision_timestamp": "2026-04-25T20:46:56Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXCVII",
+      "revision_id": 3753221,
+      "revision_timestamp": "2026-04-25T20:46:56Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXCVIII",
+      "revision_id": 3753222,
+      "revision_timestamp": "2026-04-25T20:46:57Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXCIX",
+      "revision_id": 3753218,
+      "revision_timestamp": "2026-04-25T20:46:54Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CC",
+      "revision_id": 3753150,
+      "revision_timestamp": "2026-04-25T20:46:03Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CCI",
+      "revision_id": 3753151,
+      "revision_timestamp": "2026-04-25T20:46:04Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CCII",
+      "revision_id": 3753152,
+      "revision_timestamp": "2026-04-25T20:46:04Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CCIII",
+      "revision_id": 3753153,
+      "revision_timestamp": "2026-04-25T20:46:05Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CCIV",
+      "revision_id": 3753154,
+      "revision_timestamp": "2026-04-25T20:46:06Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CCV",
+      "revision_id": 3753156,
+      "revision_timestamp": "2026-04-25T20:46:07Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CCVI",
+      "revision_id": 3753157,
+      "revision_timestamp": "2026-04-25T20:46:08Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CCVII",
+      "revision_id": 3753158,
+      "revision_timestamp": "2026-04-25T20:46:09Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CCVIII",
+      "revision_id": 3753159,
+      "revision_timestamp": "2026-04-25T20:46:09Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CCIX",
+      "revision_id": 3753155,
+      "revision_timestamp": "2026-04-25T20:46:06Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CCX",
+      "revision_id": 3753160,
+      "revision_timestamp": "2026-04-25T20:46:10Z"
+    },
+    {
+      "title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CCXI",
+      "revision_id": 3753161,
+      "revision_timestamp": "2026-04-25T20:46:11Z"
+    }
+  ],
+  "eligible_candidates": [
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto I",
+      "revision_id": 3753388,
+      "revision_timestamp": "2026-04-25T20:49:03Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6b695e887820904a74928b9bf754d18dda41dfb6299a493ab45053ff95d997ac"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto II",
+      "revision_id": 3753389,
+      "revision_timestamp": "2026-04-25T20:49:03Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "777542111e50db426c3391d81a9c48d209fdbbeeeae48229ff91f505bec60cb6"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto III",
+      "revision_id": 3753390,
+      "revision_timestamp": "2026-04-25T20:49:04Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1f98fc366c509399eac4f71505109199c3c5fa85ed651e72fa59dc665b650ab7"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto IV",
+      "revision_id": 3753391,
+      "revision_timestamp": "2026-04-25T20:49:05Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "9f2f26513a81a55be70c8ecf20470f7686ce1730a718e2844e25736f18c153c1"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto V",
+      "revision_id": 3753433,
+      "revision_timestamp": "2026-04-25T20:49:37Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "018575091bf74ca6430ee98e071009adb110862a13f689001454bbec5a6fad6a"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto VI",
+      "revision_id": 3753434,
+      "revision_timestamp": "2026-04-25T20:49:38Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e8bc889ccb8d286bcdc7c69fa53c7f7f6b2af8d4fb1a601dfc39aa175ec89133"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto VII",
+      "revision_id": 3753435,
+      "revision_timestamp": "2026-04-25T20:49:38Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5c21bd503007994b5192f9f2c0e01dd5c522d824378e5f1e4c2e6fdbda4e809e"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto VIII",
+      "revision_id": 3753436,
+      "revision_timestamp": "2026-04-25T20:49:39Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "329cde5b61ed604ab4b0dd33a91b1e51d4295641d6bcb395f4e7921fdee356ff"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto IX",
+      "revision_id": 3753392,
+      "revision_timestamp": "2026-04-25T20:49:06Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "46a907284111f0e4b6437fba26d2d4d077446b12eb4533c8f62b49bb0d530b48"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto X",
+      "revision_id": 3753437,
+      "revision_timestamp": "2026-04-25T20:49:40Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "983ae297a47919b90e5a1b312e722dd3bbec1117e7f9f17b37074e922f8875d5"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XI",
+      "revision_id": 3753448,
+      "revision_timestamp": "2026-04-25T20:49:49Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1f7887e2e98eebc3c5bee32940aa47a40d82d7c8ba2e922e9b0c846f23a30bd3"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XII",
+      "revision_id": 3753449,
+      "revision_timestamp": "2026-04-25T20:49:49Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "79ddf68e29905b0b3c46c3011830c0aa584a0bd396808d99355e35c4b73a1c9e"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XIII",
+      "revision_id": 3753450,
+      "revision_timestamp": "2026-04-25T20:49:50Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3c6012d20c8a07f01791fa42efffd82528583550f3054666280fd11b70592163"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XIV",
+      "revision_id": 3753451,
+      "revision_timestamp": "2026-04-25T20:49:51Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1db6d10f79f724f8315fe68581b03379da4177c73ffa93f23f5b4df9378df250"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XV",
+      "revision_id": 3753463,
+      "revision_timestamp": "2026-04-25T20:50:00Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e4ce1bb313b689fb59701d3803ac5db47d93d1117b7e97d31de107f9320feb02"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XVI",
+      "revision_id": 3753464,
+      "revision_timestamp": "2026-04-25T20:50:01Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "0b0a4a8fbd2d9be389993b22b49dbe9e38e5cad5ba3e5250fda1b14ad5e4e98e"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XVII",
+      "revision_id": 3753465,
+      "revision_timestamp": "2026-04-25T20:50:02Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b5c4f1a94ddab82fff249f830236564068be2b235170004aaf1ce4cc3c93fc82"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XVIII",
+      "revision_id": 3753466,
+      "revision_timestamp": "2026-04-25T20:50:02Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "dff2762436f4acbd5e36e36980ae135c00e27def1d5ee418b842f0a10442220b"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XIX",
+      "revision_id": 3753452,
+      "revision_timestamp": "2026-04-25T20:49:51Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1f94a0f67ca5a1e686066b1aee6bfb1081bc34f9d0853f308b1afa8dd2dab40a"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XX",
+      "revision_id": 3753467,
+      "revision_timestamp": "2026-04-25T20:50:03Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2e7fa901e2d58e2074d7017b37209cf06e92806e06eb0a007f8844156aba34a8"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XXI",
+      "revision_id": 3753468,
+      "revision_timestamp": "2026-04-25T20:50:04Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e217111324ea45b8d7bb26a86389dcfc856efe36b45b48b83820e70d30f594be"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XXII",
+      "revision_id": 3824835,
+      "revision_timestamp": "2026-05-06T04:19:38Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "016cb42544b38191c467d58b44204b85581f40c0ae8982f777a4bceab1037cb6"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XXIII",
+      "revision_id": 3753470,
+      "revision_timestamp": "2026-04-25T20:50:06Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7b1c8511a5f6590cbe1b3558ee9caa47dc49ed63e594c41cd6ccb99261e1259f"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XXIV",
+      "revision_id": 3753471,
+      "revision_timestamp": "2026-04-25T20:50:07Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "37531cd4e9a7d6145f6b36e70552bb65a77d4a6bafaf3873a5daa8944851ff3a"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XXV",
+      "revision_id": 3753473,
+      "revision_timestamp": "2026-04-25T20:50:09Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "fa6da357830ce8b1b9e2af49000dbe071a86cd39cfd9f2e1acf5317f63e2adc6"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XXVI",
+      "revision_id": 3753474,
+      "revision_timestamp": "2026-04-25T20:50:09Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "00c57e20434bc5350b2f1196e1e0c77c6e3dcf63a0d1fa375e46d205f12e3bed"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XXVII",
+      "revision_id": 3753475,
+      "revision_timestamp": "2026-04-25T20:50:10Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6487fc2b35c8c5b03f0475b82d0272d61fafdd9f7805bb731dffb8bfa4a802d8"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XXVIII",
+      "revision_id": 3753476,
+      "revision_timestamp": "2026-04-25T20:50:11Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "be4b4f880d258e0babf77df0904fcc4dd27bad0dfb7931a297434082428498fd"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XXIX",
+      "revision_id": 3753472,
+      "revision_timestamp": "2026-04-25T20:50:08Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "70991aea4d0d9887564fc51ecfb20707f9531a384808185ca1acfc390c6484f0"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XXX",
+      "revision_id": 3753477,
+      "revision_timestamp": "2026-04-25T20:50:12Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8ae61bbced8f20b8780d6b10eac8a7c579eb87bebd39856ea76fda951d9f722e"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XXXI",
+      "revision_id": 3753478,
+      "revision_timestamp": "2026-04-25T20:50:13Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "bd17628488dc6f6d8469267a8399f7cf0bb6c968bcd0852a6af4c5d14200268a"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XXXII",
+      "revision_id": 3753479,
+      "revision_timestamp": "2026-04-25T20:50:14Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8561b1a6b5edf578a276a6a595d02c4fd44810514d64f3213207ac3d67882bba"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XXXIII",
+      "revision_id": 3753480,
+      "revision_timestamp": "2026-04-25T20:50:15Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "36a21ea5a78c199082bca27e6d14b448be67acb7012e520656598156fd4d9816"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XXXIV",
+      "revision_id": 3753481,
+      "revision_timestamp": "2026-04-25T20:50:15Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a557706eb5d5baed897d613193cc8e6fc13c588a48c6b7e04b78f36c9f348d46"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XXXV",
+      "revision_id": 3753483,
+      "revision_timestamp": "2026-04-25T20:50:17Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "bf425e29c2f3609299a61352681999a0b26c930b1002f3e80262f5cabf273473"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XXXVI",
+      "revision_id": 3753484,
+      "revision_timestamp": "2026-04-25T20:50:18Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "747269f2a2e414fe3b7b2cb4af221cdce9482cdf8380708a1d855f65e62433c2"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XXXVII",
+      "revision_id": 3753485,
+      "revision_timestamp": "2026-04-25T20:50:19Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "20691c9dd61646f2110ccaeac33fa1b1ac64f8d23e25eb6a4c20f1e7aad957cc"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XXXVIII",
+      "revision_id": 3753486,
+      "revision_timestamp": "2026-04-25T20:50:19Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2bc37040c5cd2f1c9c42b77ba2493fc42095c2bc18c78e7fcce4c07f26e15fb2"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XXXIX",
+      "revision_id": 3753482,
+      "revision_timestamp": "2026-04-25T20:50:16Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4a6785e3f3ed08e2d35cd61857e9b8a5a760421ab4f66f62db68d95fa0178faf"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XL",
+      "revision_id": 3753453,
+      "revision_timestamp": "2026-04-25T20:49:52Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2bc47e6c9d28570f53e2a151aa70c0371ba2807f5eece4c9df7df43860c147ae"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XLI",
+      "revision_id": 3753454,
+      "revision_timestamp": "2026-04-25T20:49:53Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5274eea9b9b030d07c50a8ab660cc97e1cdf8773e571d5290732359e28b11173"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XLII",
+      "revision_id": 3753455,
+      "revision_timestamp": "2026-04-25T20:49:54Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8c1288cf0665ce356a38239505883e9a250a804bbf15683dd8e07ff49f43def2"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XLIII",
+      "revision_id": 3753456,
+      "revision_timestamp": "2026-04-25T20:49:55Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d083a1f4e4200a6d32eddd2fec8ce68211bc5eaa4a707f251133082cc8509659"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XLIV",
+      "revision_id": 3753457,
+      "revision_timestamp": "2026-04-25T20:49:56Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "0a69ac9ca9ae679ede725b70b9a6222799b420d47810eb2a49a3eed585f745e4"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XLV",
+      "revision_id": 3753459,
+      "revision_timestamp": "2026-04-25T20:49:57Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "958f318a9f1e05ab2e63bb18e2601f5bdbd0ac3b3e1685852d6bb33f8fe29a8c"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XLVI",
+      "revision_id": 3753460,
+      "revision_timestamp": "2026-04-25T20:49:58Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "978c1ea9e2b264421292150be0b03ae658dd6b353b8559e56359b54e18d58ae1"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XLVII",
+      "revision_id": 3753461,
+      "revision_timestamp": "2026-04-25T20:49:59Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2de9914c75b6c2ec745cecd28cd86fedf50fd71b10bb3afb52af1b497b5f5eaf"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XLVIII",
+      "revision_id": 3753462,
+      "revision_timestamp": "2026-04-25T20:49:59Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c1902f92a29f1856f7dfae59cf30816415558e6ad2fdb70ec1da495875ee81f1"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XLIX",
+      "revision_id": 3753458,
+      "revision_timestamp": "2026-04-25T20:49:56Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7fba7c1502a3eef81294ce77fbe28a6e1534b2fc20635f49ee20b0473ccee5c9"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto L",
+      "revision_id": 3753393,
+      "revision_timestamp": "2026-04-25T20:49:06Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ee97cf8395b47c868ee238d4ba749429c7a7ad4e5a057d4738f68f80a85f519c"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LI",
+      "revision_id": 3753394,
+      "revision_timestamp": "2026-04-25T20:49:07Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b1079e96171ace3baa2038f08d42cf20721f63bd0826bb1e900e231a45dcbe24"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LII",
+      "revision_id": 3753395,
+      "revision_timestamp": "2026-04-25T20:49:08Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "483c3d08a32c66ddaddae5980a38a477dbdb6efa2c8ec25f46d2736d9b6345c0"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LIII",
+      "revision_id": 3753396,
+      "revision_timestamp": "2026-04-25T20:49:09Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "cdc25ddfa1a4f08679d4fbb37c89a46496b7a8c3216ea59d44c97b30dd680b7b"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LIV",
+      "revision_id": 3753397,
+      "revision_timestamp": "2026-04-25T20:49:10Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d1c773583df0c7af73a4a3757d6902c266ff91b0f31b3b2a78be6eaeb1e88a9a"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LV",
+      "revision_id": 3753399,
+      "revision_timestamp": "2026-04-25T20:49:11Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "15ccf7cf757c97225bcd599b8abfda2efb669aba45873c51fdfa0070b55b764b"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LVI",
+      "revision_id": 3753400,
+      "revision_timestamp": "2026-04-25T20:49:12Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "62e5df1244bd4b0cae6f8d8bb320a4cb9c55a34bebf18321bf18a42cb7f600f1"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LVII",
+      "revision_id": 3753401,
+      "revision_timestamp": "2026-04-25T20:49:13Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "fc770115bc8088769b754319850a5dc190228793a45fb91287bf0084d8e74d9c"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LVIII",
+      "revision_id": 3753402,
+      "revision_timestamp": "2026-04-25T20:49:13Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2ef3877e31e97bd4b091e38f48aacb58b9abec6f9a3144cb8704789df4a56c12"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LIX",
+      "revision_id": 3753398,
+      "revision_timestamp": "2026-04-25T20:49:10Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "51e1f9bd01eed59eb5822516bd77958940edb88960e83880a46ef9be661b375f"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LX",
+      "revision_id": 3753403,
+      "revision_timestamp": "2026-04-25T20:49:14Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a2577f8e8f5228ea452ac841ae169c6640c84c98f00e9894f3454fb7ce464acb"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXI",
+      "revision_id": 3753404,
+      "revision_timestamp": "2026-04-25T20:49:15Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ded7e850c50914cc6ee529b113ca6f912f41d697ceafa9c4a525eb70150389b3"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXII",
+      "revision_id": 3753405,
+      "revision_timestamp": "2026-04-25T20:49:16Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7e37e284a127bce44c1a4853540e486fa491a9e73e0b662f1d7250c155850d50"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXIII",
+      "revision_id": 3753406,
+      "revision_timestamp": "2026-04-25T20:49:17Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "9fdfb75d3235ca8d3b230ba044b05b1191d3ae17d1ec127685c5a474ae1259cc"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXIV",
+      "revision_id": 3753407,
+      "revision_timestamp": "2026-04-25T20:49:17Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3346606152238328613f9439349e86f7e02af2c3ebc5c42bcd7fa229875a91f7"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXV",
+      "revision_id": 3753409,
+      "revision_timestamp": "2026-04-25T20:49:19Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "79afbd3bed3daa8c70e16f77fe519aee90e1b758d23822895cd402dd4b198036"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXVI",
+      "revision_id": 3753410,
+      "revision_timestamp": "2026-04-25T20:49:20Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1708f27f1aefbd2df9183e8151514a0e2618321e7e189a499d0707aa45839dae"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXVII",
+      "revision_id": 3753411,
+      "revision_timestamp": "2026-04-25T20:49:20Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "27f544568387ac28ece3cb5897c3f6a53143a4ece0b8997b8a4d869f6e6221d6"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXVIII",
+      "revision_id": 3753412,
+      "revision_timestamp": "2026-04-25T20:49:21Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "82833a0e0009d49e6dd592fdeb8f85f5c04eaa1e5881d6ee9b5fe8fc512fa44c"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXIX",
+      "revision_id": 3753408,
+      "revision_timestamp": "2026-04-25T20:49:18Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "25ad25b23bbf00948ba14aed28b60a642801e31ea380619f4638839028ccc429"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXX",
+      "revision_id": 3753413,
+      "revision_timestamp": "2026-04-25T20:49:22Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5fad3d63f96240358572038418e00ee540ccd0ef1a421ecc13154c85a214740d"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXXI",
+      "revision_id": 3753414,
+      "revision_timestamp": "2026-04-25T20:49:23Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "45de681f7a41a08df1960a659d27636b59a892b741bfe0c61481623808edc1fd"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXXII",
+      "revision_id": 3753415,
+      "revision_timestamp": "2026-04-25T20:49:24Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6ed04bf3c99ebefdf235c661319a0a77ae536558310e5cf0322fcd25cbd4fc94"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXXIII",
+      "revision_id": 3753416,
+      "revision_timestamp": "2026-04-25T20:49:24Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "64795a858c45048d3b0414238051b33883297546cf2b7166d75256f6fa20ebeb"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXXIV",
+      "revision_id": 3753417,
+      "revision_timestamp": "2026-04-25T20:49:25Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "555b764e2eb8ca032e267f458f9156180ab6c364934a27805d2ccde2fcefcd89"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXXV",
+      "revision_id": 3753419,
+      "revision_timestamp": "2026-04-25T20:49:26Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "98517070ef19960becee4d89641da917f0bba04d2d72f094ac6096718ced2334"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXXVI",
+      "revision_id": 3753420,
+      "revision_timestamp": "2026-04-25T20:49:27Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c03f3df9ab0b01a4ae64c135633c865487ed51f6e49096d0a642d00e403f1995"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXXVII",
+      "revision_id": 3753421,
+      "revision_timestamp": "2026-04-25T20:49:28Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a1e80832d32d47b8470402b47910a54c0890d02d5c659b7c517628a095880f75"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXXVIII",
+      "revision_id": 3753422,
+      "revision_timestamp": "2026-04-25T20:49:29Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8013f266bface42c2b2e93d88981cd1e501781c663b53ec9f5e536f1e5a18443"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXXIX",
+      "revision_id": 3753418,
+      "revision_timestamp": "2026-04-25T20:49:26Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8b517293ff62edbef7b84a2d7f715013aba3a56633515be46b6e500e739496ac"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXXX",
+      "revision_id": 3753423,
+      "revision_timestamp": "2026-04-25T20:49:29Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "910bfbd6a2416439aa63dafcec02b157088a1e3e6c6616245f28f518bf08d1d9"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXXXI",
+      "revision_id": 3753424,
+      "revision_timestamp": "2026-04-25T20:49:30Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f2da103507e5a79ea3411eba71b93a0f9d3d365ffa1601e0f74c85b01437759e"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXXXII",
+      "revision_id": 3753425,
+      "revision_timestamp": "2026-04-25T20:49:31Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "002016e827cf45dbb270d855c318113e077d39b8bffd67e5a9ee25a18bd76028"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXXXIII",
+      "revision_id": 3753426,
+      "revision_timestamp": "2026-04-25T20:49:32Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e53a65550d7a734f10369f22d5fd1d61df137168777b6a51829c49fc764dab04"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXXXIV",
+      "revision_id": 3753427,
+      "revision_timestamp": "2026-04-25T20:49:32Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "46084ef44f59c613e73397d53d5084831d5c885296136e90b210df73f717e00e"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXXXV",
+      "revision_id": 3753429,
+      "revision_timestamp": "2026-04-25T20:49:34Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b33cf877f2f2f97a6ed2eb87cc8797a0c55a57c63e806a5d28e138cd724f955f"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXXXVI",
+      "revision_id": 3753430,
+      "revision_timestamp": "2026-04-25T20:49:35Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "06dcd5a326bcad57c812bfd073639fd7c2c164d44a54194ec057f58e18c8027f"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXXXVII",
+      "revision_id": 3753431,
+      "revision_timestamp": "2026-04-25T20:49:36Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2b84268db0a5a111e247c03f39e53881eab63b3c46e3f42baea9c25b044a8401"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXXXVIII",
+      "revision_id": 3753432,
+      "revision_timestamp": "2026-04-25T20:49:36Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f2dc6ed70581c0be58ac1ec66937814cb7cacaa21f8cd63a4451feadf107bcc8"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto LXXXIX",
+      "revision_id": 3753428,
+      "revision_timestamp": "2026-04-25T20:49:33Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "aedcf066108a0d6d009ac92c1267490885d476fab9099fbcc0f8e8cd5e30d516"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XC",
+      "revision_id": 3753438,
+      "revision_timestamp": "2026-04-25T20:49:41Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "416f63d29d5897b17458ac13ac1915929b495fd5ad623469107e89076195f2bd"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XCI",
+      "revision_id": 3753439,
+      "revision_timestamp": "2026-04-25T20:49:41Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1e00a286735767ebe7c5fac7155a3bd6e8291ce18b92afc4d572a4da22bacd26"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XCII",
+      "revision_id": 3753440,
+      "revision_timestamp": "2026-04-25T20:49:42Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "149cc3f6e7721c7245419ad75c9f706442be93d19e57e7afcd7fcd0b81a3f477"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XCIII",
+      "revision_id": 3753441,
+      "revision_timestamp": "2026-04-25T20:49:43Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b3694c456e93b064d9193044c836faf3c96d0fccd99bbf029b0624b231a00bf5"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XCIV",
+      "revision_id": 3753442,
+      "revision_timestamp": "2026-04-25T20:49:44Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "63dd3ccd933733f3ed0468b6d4f58b563017b1fe830bc0029defa14cdea5dc49"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XCV",
+      "revision_id": 3753444,
+      "revision_timestamp": "2026-04-25T20:49:45Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1a8274be4236ce69915d73f82dce71e45b5c93ccddbb87e51ab5d78e02860413"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XCVI",
+      "revision_id": 3753445,
+      "revision_timestamp": "2026-04-25T20:49:46Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "19a8cf0516154439da820c06a89e39ee81fbe1fee573dfc5c796b686dd56fb3f"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XCVII",
+      "revision_id": 3753446,
+      "revision_timestamp": "2026-04-25T20:49:47Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f285d009c4183d1f495b4994604830c2579cc47406c943afb295e207d8dc340e"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XCVIII",
+      "revision_id": 3753447,
+      "revision_timestamp": "2026-04-25T20:49:48Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "83672fd48032ac58a710dd0edfb1f89bfe2bde591e9f4085d50801fa51f1f501"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto XCIX",
+      "revision_id": 3753443,
+      "revision_timestamp": "2026-04-25T20:49:44Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "586114f6c2d9bad01ec6c2c8919dc8659152bc3a3890e3e1999357962e6267c0"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto C",
+      "revision_id": 3753362,
+      "revision_timestamp": "2026-04-25T20:48:43Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3bc9148d7b81a0c15e04193b2fb6409e3a8db43ec31cb53686ff7c517fc0fd6d"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CI",
+      "revision_id": 3753363,
+      "revision_timestamp": "2026-04-25T20:48:43Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c4de3cfa174e79dabb3b3ec5d436e29f8c718cc05a97f56fb08a0dcb42d50caa"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CII",
+      "revision_id": 3753364,
+      "revision_timestamp": "2026-04-25T20:48:44Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e0c206ea8035d9976da1f4c7ce2698ee91ea7e4ca38e9635f25ad5064991f4f3"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CIII",
+      "revision_id": 3753365,
+      "revision_timestamp": "2026-04-25T20:48:45Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3fafd91d08ddd4d76ddca9a63abd5eee3a9d5d715c4a662a74015daaa0cdf347"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CIV",
+      "revision_id": 3753366,
+      "revision_timestamp": "2026-04-25T20:48:46Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "fa21d309b5f2a23a5d8ca358468b82964151b88b6a7d54bd9ea8572f70485ddf"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CV",
+      "revision_id": 3753368,
+      "revision_timestamp": "2026-04-25T20:48:47Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3e3305189f2516001ed1238f2fa7fe7a92c235ec201e2d47a39def8777740c0d"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CVI",
+      "revision_id": 3753369,
+      "revision_timestamp": "2026-04-25T20:48:48Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5fcb5b5940494ff0d4720cd9a46ebf8a202d46b06d685145a7c24da2b74e76b4"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CVII",
+      "revision_id": 3753370,
+      "revision_timestamp": "2026-04-25T20:48:49Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "fe7c9071a1f708d671069445ed65620161129d4494ba041b8c38bfa317b760bc"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CVIII",
+      "revision_id": 3753371,
+      "revision_timestamp": "2026-04-25T20:48:50Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5bfb4f42f191c3eff283ebecca6fbae5478f5c11c2d705dd26be43e5665c7d22"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CIX",
+      "revision_id": 3753367,
+      "revision_timestamp": "2026-04-25T20:48:46Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "0e8c29decd23b20edf8a6440a7613ee93c3e687f728d252aa30e8104e4e9bc3f"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CX",
+      "revision_id": 3753372,
+      "revision_timestamp": "2026-04-25T20:48:50Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8eb80097ebd2f345213b04d2ecd5a18728ea42bd654d964d35f98b95309e3e9a"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CXI",
+      "revision_id": 3753373,
+      "revision_timestamp": "2026-04-25T20:48:51Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "9fee5ee8d629374425a17df870cca6ef67c25405dabba60ba0ead436c2c7d21b"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CXII",
+      "revision_id": 3753374,
+      "revision_timestamp": "2026-04-25T20:48:52Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f283b6c375f74c4f64b5f0d65d5e5a211a67779320724b1bbe49f78adcda7e4f"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CXIII",
+      "revision_id": 3753375,
+      "revision_timestamp": "2026-04-25T20:48:52Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7c65945b68bda02f93df9cd7399456821ce1295325e616a17d5a913304d263eb"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CXIV",
+      "revision_id": 3753376,
+      "revision_timestamp": "2026-04-25T20:48:53Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3bebabb168dc5d7996ed8c4c0f4320c444c94beab4009ac876ae2eb7f0b5ffb1"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CXV",
+      "revision_id": 3753378,
+      "revision_timestamp": "2026-04-25T20:48:55Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "00e6292bb8e63ed792ca776abc3330b0ba4455a300492a5060dc9d6fa13efcf5"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CXVI",
+      "revision_id": 3753379,
+      "revision_timestamp": "2026-04-25T20:48:56Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a02a15787e83a30bc62d71bddc4e6b7cff39908c4b0112dea3911ec614149cb0"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CXVII",
+      "revision_id": 3753380,
+      "revision_timestamp": "2026-04-25T20:48:56Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "06d54746cd4504656493b8ee6641f1a5c0f53604d78cd1ab8d21826f686e8657"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CXVIII",
+      "revision_id": 3753381,
+      "revision_timestamp": "2026-04-25T20:48:57Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "49ffacdf2ca632ee9205b924387b2b6d7873665a92a81e16d353787011896f9b"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CXIX",
+      "revision_id": 3753377,
+      "revision_timestamp": "2026-04-25T20:48:54Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ce3d3e06db29fc901be233b0aca6a421bcdf9669e36c1f4aa22133e19a01d8c9"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CXX",
+      "revision_id": 3753382,
+      "revision_timestamp": "2026-04-25T20:48:58Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6ce8954de46a00bf076cd8f689cad6bb1528112831916ce4a8ad07fd2f06a2a0"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CXXI",
+      "revision_id": 3753383,
+      "revision_timestamp": "2026-04-25T20:48:59Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6a13d47edb28159cdb376cd037de1a096c489d92c823de31f67db018acc2e180"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CXXII",
+      "revision_id": 3753384,
+      "revision_timestamp": "2026-04-25T20:49:00Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "688a8988c20163adf56bb81623055198382b339db93b218072d2c8480699dda4"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CXXIII",
+      "revision_id": 3753385,
+      "revision_timestamp": "2026-04-25T20:49:00Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e1f3897c9ff538dd258903edc89b53cb55387c5f080718ccbe10fa9006a9bd59"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CXXIV",
+      "revision_id": 3753386,
+      "revision_timestamp": "2026-04-25T20:49:01Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "29c3c66dec80b7a0fbbbd7be209f499f277e09408d5a8846d93009877c06e803"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetto CXXV",
+      "revision_id": 3753387,
+      "revision_timestamp": "2026-04-25T20:49:02Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "cbe65d51ede1cb597c94a96fde04757f2e475710deb79d639e6905f1fa4dd112"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto I",
+      "revision_id": 3753262,
+      "revision_timestamp": "2026-04-25T20:47:27Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "aa7d3448d3edcafd8259daf967d9d5e3eab60d9b06353172298a1207df0e69c9"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto II",
+      "revision_id": 3753263,
+      "revision_timestamp": "2026-04-25T20:47:28Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6ae08297c109bd44d32e1f5d8cc184c68babb3810cd031fc25e6d89d49185f56"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto III",
+      "revision_id": 3753264,
+      "revision_timestamp": "2026-04-25T20:47:28Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b2b594d522dddab3b7abb49880585c98c5f68086dbfa42cea1c7789569af935a"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto IV",
+      "revision_id": 3753265,
+      "revision_timestamp": "2026-04-25T20:47:29Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "576280f478b6684d2f8fa0b85c046fb415ed0e8f43f9e6dbf70cd2f7768bdf72"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto V",
+      "revision_id": 3753307,
+      "revision_timestamp": "2026-04-25T20:48:00Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c80aed4c3950e660c2a068524e87cec571064c5cbe03d4414d1784d4731437c8"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto VI",
+      "revision_id": 3753308,
+      "revision_timestamp": "2026-04-25T20:48:01Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b417509a099ac08d737276335b97f18818c277f320bce67ccfc70f18d79f4ba8"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto VII",
+      "revision_id": 3753309,
+      "revision_timestamp": "2026-04-25T20:48:02Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "96df3091a1e65b39d0bacb8d8a65152912ff34a6d0d175373279baeb14462b62"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto VIII",
+      "revision_id": 3753310,
+      "revision_timestamp": "2026-04-25T20:48:03Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d74538288c5ba09fbd70ecdb56ef4e8b37e69c97bbab93733f12c7d2a2994902"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto IX",
+      "revision_id": 3753266,
+      "revision_timestamp": "2026-04-25T20:47:30Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "be296af17b9ebea7566562bbb32eff026814b4ade063b1e34320d30915813ecc"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto X",
+      "revision_id": 3753311,
+      "revision_timestamp": "2026-04-25T20:48:03Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7e54cabfe76784d1c95be41b985741f931db22d244013d71488c5be5babb5f7a"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XI",
+      "revision_id": 3753323,
+      "revision_timestamp": "2026-04-25T20:48:13Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4595ca473e79c1d47d9321c9226e1a6866abfe36459fdd2156cb4d3e915b9deb"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XII",
+      "revision_id": 3753324,
+      "revision_timestamp": "2026-04-25T20:48:14Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5a7517ad64d73ef0a95657e1e9da5560b6ab0de1731e8e5675cd43489d67fe53"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XIII",
+      "revision_id": 3753325,
+      "revision_timestamp": "2026-04-25T20:48:15Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "59292acf60e4889f15168c342d43b95adadb83b73c0e28feb5ccb0e67de5185c"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XIV",
+      "revision_id": 3753326,
+      "revision_timestamp": "2026-04-25T20:48:15Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6767aa724b92616428d5227e5c4ad2ff6b3187d8f5e52b645f543261af9c2a82"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XV",
+      "revision_id": 3753338,
+      "revision_timestamp": "2026-04-25T20:48:25Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "9975a6bbd1dc27aed1a0f0781641d2b402241b7bc125ea01a12d8e022c6b50cc"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XVI",
+      "revision_id": 3753339,
+      "revision_timestamp": "2026-04-25T20:48:26Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "fe3cafab3a4db07a4e3294c7c540741c4b04de95c5cb0e2564ded0fbfeea8b9d"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XVII",
+      "revision_id": 3753340,
+      "revision_timestamp": "2026-04-25T20:48:26Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "41987773a0ae7e2065c3b9e3c4636f62538b98a715ac850e9c6bfc3c0cc33c47"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XVIII",
+      "revision_id": 3753341,
+      "revision_timestamp": "2026-04-25T20:48:27Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b2101bcc7b2dbf01238d460ad7989329bcae32efc1d2c2e8ab5f70405b60e437"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XIX",
+      "revision_id": 3753327,
+      "revision_timestamp": "2026-04-25T20:48:16Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e1f1440469a65f27d9c9bd4b5ad361b26d32722f1a55a0c972ff24ef2239cb70"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XX",
+      "revision_id": 3753342,
+      "revision_timestamp": "2026-04-25T20:48:28Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "dbe056f45d50a067ca8d5b68433be596bf96181f383d63ef4164e7d1442bc261"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXI",
+      "revision_id": 3753343,
+      "revision_timestamp": "2026-04-25T20:48:29Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e480763730675056dc30efd062332ec6813c9a7e106cfae9c1059abb8185b042"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXII",
+      "revision_id": 3753344,
+      "revision_timestamp": "2026-04-25T20:48:29Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5b19c293701e18d0d0913e91a61eff6e0e23640c1d260b21b1fda283deef94b1"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXIII",
+      "revision_id": 3753345,
+      "revision_timestamp": "2026-04-25T20:48:30Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a0e3eb9c385c9b5b695c6895034e97f434db47040a39cf5fc5cd1e9d2271be63"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXIV",
+      "revision_id": 3753346,
+      "revision_timestamp": "2026-04-25T20:48:31Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4fe109a07a9f993a7b05052b3e714f625612644e7b8d83bd23673a2643c679a4"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXV",
+      "revision_id": 3753348,
+      "revision_timestamp": "2026-04-25T20:48:32Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c39625b7aa51502bc02e7bca82058ecc11630864a50e184126193416c7cf672e"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXVI",
+      "revision_id": 3753349,
+      "revision_timestamp": "2026-04-25T20:48:33Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b31ad91f644f6c5a180a84e4a30e298fa73888f065948d10aebbda21ba6bfc53"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXVII",
+      "revision_id": 3753350,
+      "revision_timestamp": "2026-04-25T20:48:34Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "449cae9562cede5028359b07c639995b0bdb78974cb68842858406f4946b0abf"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXVIII",
+      "revision_id": 3753351,
+      "revision_timestamp": "2026-04-25T20:48:34Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d866d1baafe2085b0fa07f0cd0cc9cc3de13e11ac456270305740679ac28eb95"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXIX",
+      "revision_id": 3753347,
+      "revision_timestamp": "2026-04-25T20:48:31Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1a55d1eaa59933c751176f365c7b3e1c4bf19e278d33572442e38af335b39b2e"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXX",
+      "revision_id": 3753352,
+      "revision_timestamp": "2026-04-25T20:48:35Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "eb693f57e72a81bb84f1cfe909179a830fed6b09c33ea7fe8c778b481abe2ed9"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXXI",
+      "revision_id": 3753353,
+      "revision_timestamp": "2026-04-25T20:48:36Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "9b95521eba329b3328a552f37985a8ab59735327f57c222b8328264c60b0a53e"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXXII",
+      "revision_id": 3753354,
+      "revision_timestamp": "2026-04-25T20:48:37Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6df659d0f857f66e21b7920c478873decffb630d2978eb9e876bbddae380652b"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXXIII",
+      "revision_id": 3753355,
+      "revision_timestamp": "2026-04-25T20:48:37Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "9d221120719238027f1559362d9cee79a422b3251137fb5ffe277f705b6f9a23"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXXIV",
+      "revision_id": 3753356,
+      "revision_timestamp": "2026-04-25T20:48:38Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3e8e8d9dd6c02838c62ff0064c0fac4f04e98bca80c9d9928b2b6b75ca6d689a"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXXV",
+      "revision_id": 3753358,
+      "revision_timestamp": "2026-04-25T20:48:39Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b965035ae7b88500da2de83b5a3975e185202373f7981c7c71c305678ec71693"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXXVI",
+      "revision_id": 3753359,
+      "revision_timestamp": "2026-04-25T20:48:40Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e7704062d4e867b5a581a2e4a9d6a28dd008e6350fdde2c8e25034098ec1769b"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXXVII",
+      "revision_id": 3753360,
+      "revision_timestamp": "2026-04-25T20:48:41Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8368bf8cecec2641871b2b048183c0b723f66222a68c2387317a0fd8fff422c2"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXXVIII",
+      "revision_id": 3753361,
+      "revision_timestamp": "2026-04-25T20:48:42Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2f77b4e29c831ba8bcf6e6c96436941018811e9735e3fcdec5b6ef0c9a45726a"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XXXIX",
+      "revision_id": 3753357,
+      "revision_timestamp": "2026-04-25T20:48:39Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ff3c0081e02f7addd575994d3bbe81408ef662860bfdb4a72ab91e1bd3ba8b56"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XL",
+      "revision_id": 3753328,
+      "revision_timestamp": "2026-04-25T20:48:17Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6ecedb92b68f1fd6b0b9deea92b0d424f688b22e0bafb360f389f44af6b7405e"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XLI",
+      "revision_id": 3753329,
+      "revision_timestamp": "2026-04-25T20:48:18Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5176b919239465a1b31d02e68a60ddf2ed755b9e6c10f78c7dfd5df739c61b6c"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XLII",
+      "revision_id": 3753330,
+      "revision_timestamp": "2026-04-25T20:48:18Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d40a8ef02d753b1e727a764123805621b3c25d845916dda76362f4d6250bb87e"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XLIII",
+      "revision_id": 3753331,
+      "revision_timestamp": "2026-04-25T20:48:19Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "46be3ae5a59b3177ef012a237e2a4fa240480b5f9c73a27d55b0a8d5e093a66d"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XLIV",
+      "revision_id": 3753332,
+      "revision_timestamp": "2026-04-25T20:48:20Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7a93ec644882e44745efc300c87dd86cd3af617e971225c000e16924daf5a4dc"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XLV",
+      "revision_id": 3753334,
+      "revision_timestamp": "2026-04-25T20:48:22Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "85e3496ff931de1c3755e33f23e2a93a664ecfe89820e0aa8c589f55b2902193"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XLVI",
+      "revision_id": 3753335,
+      "revision_timestamp": "2026-04-25T20:48:22Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a2d9f7674b5400f29d7953c0de6a2c2b394f2ca662d2b01c720ecbc0800e2aba"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XLVII",
+      "revision_id": 3753336,
+      "revision_timestamp": "2026-04-25T20:48:23Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a9beb3779c79b9dba6143a77aea79be059ae32cc8d04fc0602312847c684b123"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XLVIII",
+      "revision_id": 3753337,
+      "revision_timestamp": "2026-04-25T20:48:24Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "75d22c1e4dfa95912bda74dd29b0b90959837b4caa4370a81f6a7467e503c8ef"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XLIX",
+      "revision_id": 3753333,
+      "revision_timestamp": "2026-04-25T20:48:21Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "fafcb8c8ccf1c17b2b6c916940f52b560142c7a6cbf7b2af231cd6344cf34815"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto L",
+      "revision_id": 3753267,
+      "revision_timestamp": "2026-04-25T20:47:30Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "64dbb5a0adbe6ea7ad05e749addabd00286954eeecb66e6d0c8da6fdec08baee"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LI",
+      "revision_id": 3753268,
+      "revision_timestamp": "2026-04-25T20:47:31Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "26eda1fc2dfd0411f77d9266561dfd63aafa8b66781601fd456b15c2b50ca068"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LII",
+      "revision_id": 3753269,
+      "revision_timestamp": "2026-04-25T20:47:32Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "0ef33a35170953158d6aeaa4d8be2f813d413898f7df571544cbc19ef698924f"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LIII",
+      "revision_id": 3753270,
+      "revision_timestamp": "2026-04-25T20:47:33Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "98de5bd8319dfb2f9a5ceafe3991f95da87f3323a817fcf9a380a7636f6c0dd3"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LIV",
+      "revision_id": 3753271,
+      "revision_timestamp": "2026-04-25T20:47:33Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6fe12ab7bf4ada910eccbd57ebab806e722e1320ea2a7c9d0ceeb9d3e5720b24"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LV",
+      "revision_id": 3753273,
+      "revision_timestamp": "2026-04-25T20:47:35Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "950b2be68b557ffcf0c4fa73f2d4cff5c7aaa9ac8ab21a1c928a15f11b80b3fd"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LVI",
+      "revision_id": 3753274,
+      "revision_timestamp": "2026-04-25T20:47:36Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "fbcb5c513a71a25bb4a07fbafbb4e382159b3c30638a8662ba0191c71ca61f8d"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LVII",
+      "revision_id": 3753275,
+      "revision_timestamp": "2026-04-25T20:47:37Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3618126393a8791430304a5c61b2f754b17858582e7b50f41a874438c814ddeb"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LVIII",
+      "revision_id": 3753276,
+      "revision_timestamp": "2026-04-25T20:47:37Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "0b555a6ac9220229dd8042d27cfe2539c0c566c643da370a212988af173647fb"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LIX",
+      "revision_id": 3753272,
+      "revision_timestamp": "2026-04-25T20:47:34Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ad76b6443d84ea0fa7b6b373185c3badfd8cd7c690eece3e5ca0f4466f327083"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LX",
+      "revision_id": 3753277,
+      "revision_timestamp": "2026-04-25T20:47:38Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6d03fcc587646985e4ac1eb095af804b04869ed44966d940d98283cb3673cd6d"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXI",
+      "revision_id": 3753278,
+      "revision_timestamp": "2026-04-25T20:47:39Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c6e8fc554f5a837e8a04ef42ac578b1c07c83a1025bce9a53a9122c54093139e"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXII",
+      "revision_id": 3753279,
+      "revision_timestamp": "2026-04-25T20:47:39Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7e4186d4bc537fd7cda3a152c589322389e231294e8e1b29fccedb0a665edc56"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXIII",
+      "revision_id": 3753280,
+      "revision_timestamp": "2026-04-25T20:47:40Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "29cb28cbd89723107c10f11d238e442bd06cd719827a0768742775b39abda879"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXIV",
+      "revision_id": 3753281,
+      "revision_timestamp": "2026-04-25T20:47:41Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "33d1a78127eba99aa3524c8750cd637c50e2a5c40c5734cca92a72ec5e5c5e1c"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXV",
+      "revision_id": 3753283,
+      "revision_timestamp": "2026-04-25T20:47:43Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ab674321e34bcfee62bb43a0303f6396401efce55bcdbb04e95ab901be72afb2"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXVI",
+      "revision_id": 3753284,
+      "revision_timestamp": "2026-04-25T20:47:43Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8c82a938afe586c353483507e4ef6ef51c85217642652bb605e4f06ae882c132"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXVII",
+      "revision_id": 3753285,
+      "revision_timestamp": "2026-04-25T20:47:44Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "44c953e02688d335b0fe7fc823486fa96198c14883e8b68c8d557135a7f11699"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXVIII",
+      "revision_id": 3753286,
+      "revision_timestamp": "2026-04-25T20:47:45Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "af0fa2f3ee7f20e53ed8624a2c4f3070995103d24808a1d456a564c0b1c03534"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXIX",
+      "revision_id": 3753282,
+      "revision_timestamp": "2026-04-25T20:47:42Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "eb99c1988a11dd66b402e3719e4f22338edc9a2ef8200869fb52a1d448062015"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXX",
+      "revision_id": 3753287,
+      "revision_timestamp": "2026-04-25T20:47:46Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "760850160d5311276f1b3d0210f16fa07e277b5c29805006d225c4107c2b34de"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXI",
+      "revision_id": 3753288,
+      "revision_timestamp": "2026-04-25T20:47:46Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7262ca90d254663ad2c0e8c8ef660f458ea1f46b0aba3926061368dd345c9a71"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXII",
+      "revision_id": 3753289,
+      "revision_timestamp": "2026-04-25T20:47:47Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "0bacea21cbc106a556fcb598e85f324e2aebf080027af6d101e445fcc6cccdf5"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXIII",
+      "revision_id": 3753290,
+      "revision_timestamp": "2026-04-25T20:47:48Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "def82a8867d161c4ff9e082ba70329f5200e2ba5756e5543bc4eb96c1b4ea07b"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXIV",
+      "revision_id": 3753291,
+      "revision_timestamp": "2026-04-25T20:47:48Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8ee853d66c4d46fe5f5275b253be0a5fc82dd608610c3961eeb0eefcbc02aebb"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXV",
+      "revision_id": 3753293,
+      "revision_timestamp": "2026-04-25T20:47:50Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7e36cf512b6b65ecdf8e6c8d422a7a2bfbe651de84e9d8880313d2db3d98d92c"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXVI",
+      "revision_id": 3753294,
+      "revision_timestamp": "2026-04-25T20:47:50Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e3dcea73ffc0683d2fdf5aded68ce21a9d8536afb742dc97450d2dda347ad6c4"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXVII",
+      "revision_id": 3753295,
+      "revision_timestamp": "2026-04-25T20:47:51Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7563491becb7a260e7cdfa741267fd9cbd386e0028c4fa822b29a15682b3c2cc"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXVIII",
+      "revision_id": 3753296,
+      "revision_timestamp": "2026-04-25T20:47:52Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c2113b20f05e6bb64aadfc995630952a7c2e18c13b88fdccd59ca19426a0bdb1"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXIX",
+      "revision_id": 3753292,
+      "revision_timestamp": "2026-04-25T20:47:49Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c3de7d9fbe3b692e6a5f43abcca7382284a585d20536677cd0609fbd36c1e366"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXX",
+      "revision_id": 3753297,
+      "revision_timestamp": "2026-04-25T20:47:53Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7ed9ddb1154e28894591b9e1cba1fa4cc9532754b3a2944052a1f2cda8754b48"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXXI",
+      "revision_id": 3753298,
+      "revision_timestamp": "2026-04-25T20:47:53Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8fbfdc85730e1360b0e585ada1cba2d63d97f38deb6b9a703e1b8760f56facfd"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXXII",
+      "revision_id": 3753299,
+      "revision_timestamp": "2026-04-25T20:47:54Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d96ad51c8581ec528590d1e8d4a8329d3034696951d3db53a112b6c58d92f959"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXXIII",
+      "revision_id": 3753300,
+      "revision_timestamp": "2026-04-25T20:47:55Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7964924cc417cd36864de785e010fe1392278cef84c62a0b767844828b8f5145"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXXIV",
+      "revision_id": 3753301,
+      "revision_timestamp": "2026-04-25T20:47:56Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ee7792e183b9365d364216b9386225e30e83b5514b99bfd09366d04558ec4d06"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXXV",
+      "revision_id": 3753303,
+      "revision_timestamp": "2026-04-25T20:47:57Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "44ac39a5117716458f4a2eb10c1e3444a9ae688caf7295a03114ab22b3256980"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXXVI",
+      "revision_id": 3753304,
+      "revision_timestamp": "2026-04-25T20:47:58Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7e8b9179124ebeb42c192e810ed5ac06b02fb3e692e7f72f0c986edcf462d2d0"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXXVII",
+      "revision_id": 3753305,
+      "revision_timestamp": "2026-04-25T20:47:59Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "868924dbd05b09db6068c4a98e440f2822d8c5cfcbddafe4bfa061f0a0916d95"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXXVIII",
+      "revision_id": 3753306,
+      "revision_timestamp": "2026-04-25T20:48:00Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4427e665aaaff0b2715a35ac14670f491cdff5934c9bf656c495a90a6cb1c030"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto LXXXIX",
+      "revision_id": 3753302,
+      "revision_timestamp": "2026-04-25T20:47:57Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "0b0e49dfe58b0883142135eff25720deb68e8e696ad74e837b69c25cc31af44d"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XC",
+      "revision_id": 3753312,
+      "revision_timestamp": "2026-04-25T20:48:04Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "9a90858a9dec049edcbb406ab0684b43916f8a4a3d2cb721ee26052e38cbc3a6"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XCI",
+      "revision_id": 3753313,
+      "revision_timestamp": "2026-04-25T20:48:05Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8b3b65b7663c68bfcf17d2072aebcfbfeabd7bfdad63920c3a61b8ecfb4510bd"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XCII",
+      "revision_id": 3753314,
+      "revision_timestamp": "2026-04-25T20:48:06Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b8c68ffcca01eb4650ed7c48ee08dd32305ea0afed967bcdbc1738ceeb09ad72"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XCIII",
+      "revision_id": 3753315,
+      "revision_timestamp": "2026-04-25T20:48:07Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5d2ecf2ad19238fd4cc962822275817495b00ecede7dbb2d194c03830e06a89e"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XCIV",
+      "revision_id": 3753316,
+      "revision_timestamp": "2026-04-25T20:48:08Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "38a30b0c3b83f5b537aed2b6756bd37ddc1521d14f2932733b0afcd5e4bccfa7"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XCV",
+      "revision_id": 3753318,
+      "revision_timestamp": "2026-04-25T20:48:09Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "26ec55fb2a87121899884b83f95066f1c8ca65b4af391093c05d2a9a33bbcf4a"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XCVI",
+      "revision_id": 3753319,
+      "revision_timestamp": "2026-04-25T20:48:10Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3c442c0c54d3cd8b1134831b2245ef9e781aed24e38503f0c9fedf0baa0385ed"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XCVII",
+      "revision_id": 3753320,
+      "revision_timestamp": "2026-04-25T20:48:10Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "71a9aabfe0bfed342887f6baf3c3316544e79e02b1bb0d6f292259bb0d466bc7"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XCVIII",
+      "revision_id": 3753322,
+      "revision_timestamp": "2026-04-25T20:48:12Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "dd9fc6926172da88d1456c8ce00b960e940b7bed0b79c262fb3c756434dcb039"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto XCIX",
+      "revision_id": 3753317,
+      "revision_timestamp": "2026-04-25T20:48:08Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d0cf2ab56638cd9313ca040f862a8a705ef273156bf6f3a16e9e9bec18f935e2"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto C",
+      "revision_id": 3753149,
+      "revision_timestamp": "2026-04-25T20:46:02Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "70fa2573477a3a3828d3d4a059192ed9c00d6dcc0390070fdec13353452dbadf"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CI",
+      "revision_id": 3753163,
+      "revision_timestamp": "2026-04-25T20:46:12Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4aff0fdbf7f00b234d18e8e278448158731810e1fcb02d2ae943f2f92e28ecdd"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CII",
+      "revision_id": 3753164,
+      "revision_timestamp": "2026-04-25T20:46:13Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7c1bc2af4ddf8532c585ca233668446aa01518884ce533274a263d86f28cccba"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CIII",
+      "revision_id": 3753165,
+      "revision_timestamp": "2026-04-25T20:46:14Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "05d063cf6b330c7d62d26f9ed3827823f2217218de80afd88788dc05fced08e5"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CIV",
+      "revision_id": 3753166,
+      "revision_timestamp": "2026-04-25T20:46:15Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "fb6a0c94d224316a95f32a76f94b324cddf1afd44799092a142be9dd2b8c4161"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CV",
+      "revision_id": 3753208,
+      "revision_timestamp": "2026-04-25T20:46:47Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "abb71baae0c0a0f4143748922d6143e5e8cf970ae59ad07a635123b956d73d77"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CVI",
+      "revision_id": 3753209,
+      "revision_timestamp": "2026-04-25T20:46:47Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6bbab6df8caead07dfff3060a0c874d1f9296aad160ba268f67a4511c15f5e5d"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CVII",
+      "revision_id": 3753210,
+      "revision_timestamp": "2026-04-25T20:46:48Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c718079a3cb2dc9873f03d68c97ba4d6fa576121484d330d2bdd536683c209b9"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CVIII",
+      "revision_id": 3753211,
+      "revision_timestamp": "2026-04-25T20:46:49Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7862d484ec2eb0c461a801bfba5bf45358ea7ce9d339aec09125da1b20de960c"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CIX",
+      "revision_id": 3753167,
+      "revision_timestamp": "2026-04-25T20:46:16Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "7f980995d75310769489e73acaadef6d9441eed9c0b462bb86e8458dc7f0fcec"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CX",
+      "revision_id": 3753212,
+      "revision_timestamp": "2026-04-25T20:46:49Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4780c97a2d46aba8e6b6e86d0285f42795a891210c315940b329df8a54e6e74d"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXI",
+      "revision_id": 3753223,
+      "revision_timestamp": "2026-04-25T20:46:58Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "82b4b00bfc5d09f4e3163f7ad9f8d5e4c3baedc2730e42ab8f489d60c7671c76"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXII",
+      "revision_id": 3753224,
+      "revision_timestamp": "2026-04-25T20:46:59Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "9766dca43683a78ff77d400b2e7cd0dc561200f718f8fe9176d47e830ab58dfc"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXIII",
+      "revision_id": 3753225,
+      "revision_timestamp": "2026-04-25T20:47:00Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "14f06c2105f40e420d6c71441d28e0d2e83193c7eee6266f0edc4680b045a64b"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXIV",
+      "revision_id": 3753226,
+      "revision_timestamp": "2026-04-25T20:47:01Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "69c063b29f05c36ca112730190f004eac0af9c6c7db9c701ed4b2733ae2bfbfe"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXV",
+      "revision_id": 3753238,
+      "revision_timestamp": "2026-04-25T20:47:09Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "042b90f9709d45e3324d7bb8a548e317a1d2ac75758295adc210ab83cdb1363f"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXVI",
+      "revision_id": 3753239,
+      "revision_timestamp": "2026-04-25T20:47:10Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "83ec78baea947da32e7827de568efa440a8d85cec5882c5e3b932f168e87a045"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXVII",
+      "revision_id": 3753240,
+      "revision_timestamp": "2026-04-25T20:47:11Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "08d176bfce0f0be76d30124d811548fa762f63a5e67ba13242219ebda32799e1"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXVIII",
+      "revision_id": 3753241,
+      "revision_timestamp": "2026-04-25T20:47:11Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "660ab2664b1c0794e4b6090e654c959f974770e21be5cceb0a8c7f949c7692bc"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXIX",
+      "revision_id": 3753227,
+      "revision_timestamp": "2026-04-25T20:47:02Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "323fbe2e2e6d5120ba98042e92223c253a4b0231dee62e0c5bd013597a6ba5e2"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXX",
+      "revision_id": 3753242,
+      "revision_timestamp": "2026-04-25T20:47:12Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c31a865dacbce24498611dcfb102a3bca08a6f016543164a90f467db616890cc"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXI",
+      "revision_id": 3753243,
+      "revision_timestamp": "2026-04-25T20:47:13Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a05052e79f3fa73477722228979e784005a418d474cb41df328c0c3cfd87fbd9"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXII",
+      "revision_id": 3753244,
+      "revision_timestamp": "2026-04-25T20:47:13Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "98144c631e39823f8cd0f3ddc36cd969afba72106d73934431d52e39b50cdac9"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXIII",
+      "revision_id": 3753245,
+      "revision_timestamp": "2026-04-25T20:47:14Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ff49185474b8e984941c4695255a1f55cf1d64390b1beaa13be7f495a6b988cb"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXIV",
+      "revision_id": 3753246,
+      "revision_timestamp": "2026-04-25T20:47:15Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a2cc08c5af3acb05a565b6c2c03c1ac0d30a5ed6d27a3bd2460cdfa18fe772d2"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXV",
+      "revision_id": 3753248,
+      "revision_timestamp": "2026-04-25T20:47:17Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "177e81b169d789c7e636d5a43a9c044d3fbfb74c00687ef88e573b36bac76db4"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXVI",
+      "revision_id": 3753249,
+      "revision_timestamp": "2026-04-25T20:47:17Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ea67f6e6ab7fef082fb319637a8dd7cf873b725bcf5af1b124be27f6517bd63d"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXVII",
+      "revision_id": 3753250,
+      "revision_timestamp": "2026-04-25T20:47:18Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "751091853e169280e3e752e983477e504703aa747d8b9483acb7e2946d512d95"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXVIII",
+      "revision_id": 3753251,
+      "revision_timestamp": "2026-04-25T20:47:19Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2024513a508458a7c9f9b2bec8cedcad16065dabc106d28e0ffc2217251638ad"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXIX",
+      "revision_id": 3753247,
+      "revision_timestamp": "2026-04-25T20:47:16Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3b908b1cf7c8820a2f172ba3f3a09a11f919cfa23ae72752da38add3d128feb5"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXX",
+      "revision_id": 3753252,
+      "revision_timestamp": "2026-04-25T20:47:19Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "02ea74aef2a507ca14bff5b65d8f78416f0c2376c0ff0544e7039b56c4c9f301"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXXI",
+      "revision_id": 3753253,
+      "revision_timestamp": "2026-04-25T20:47:20Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3d95230370cae6077aaec05bc3476c381b1941585f5b9a00320c04807c81f84f"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXXII",
+      "revision_id": 3753254,
+      "revision_timestamp": "2026-04-25T20:47:21Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d4c36b776430044a8d6d3998d4b480dbcd14c6368aad4ac0f879f7c47abae7a9"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXXIII",
+      "revision_id": 3753255,
+      "revision_timestamp": "2026-04-25T20:47:22Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e735d2ca911f67c1935a9b3f6174d2ed14044a98f85d54a36736dfcb67056c61"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXXIV",
+      "revision_id": 3753256,
+      "revision_timestamp": "2026-04-25T20:47:22Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3978dd372c7cc07253d638f5abda5af22fe7ce8102d853f34078f4a9fa6af040"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXXV",
+      "revision_id": 3753258,
+      "revision_timestamp": "2026-04-25T20:47:24Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c67f810bc529a48409a42c72e3ad3c09aa2cafa27b2ae4d3e21d0075a5905c56"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXXVI",
+      "revision_id": 3753259,
+      "revision_timestamp": "2026-04-25T20:47:25Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "56e63934b32ed3d28c3f9a8ed32508ce2128ea86a33db3a7e19577805cbf8773"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXXVII",
+      "revision_id": 3753260,
+      "revision_timestamp": "2026-04-25T20:47:25Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "55b7b87e3780d5549fd4397be62617db24a8a5333e9038b746f1707383b71a39"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXXVIII",
+      "revision_id": 3753261,
+      "revision_timestamp": "2026-04-25T20:47:26Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3238ef7653a293884cb5c1449b5609323343409500381a42031bb95894fa7b8f"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXXXIX",
+      "revision_id": 3753257,
+      "revision_timestamp": "2026-04-25T20:47:23Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2659d3517808d3966c31ec287a79d481497a8cd646207706f0279d52197464c0"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXL",
+      "revision_id": 3753228,
+      "revision_timestamp": "2026-04-25T20:47:02Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "0c49e54b0027cfd47c5cb58a602eb8e90dccc8c9175dad441569cd776d32a6c6"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXLI",
+      "revision_id": 3753229,
+      "revision_timestamp": "2026-04-25T20:47:03Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5c8ae54f64e4ad49e3cee935711c2fa9807f735ef19859cac9628bbcc57688fa"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXLII",
+      "revision_id": 3753230,
+      "revision_timestamp": "2026-04-25T20:47:04Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5636c38be8cf4b9cf6e47bbd07ab1f534304e0f2342881d39aae5628135a8fe4"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXLIII",
+      "revision_id": 3753231,
+      "revision_timestamp": "2026-04-25T20:47:04Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ca592927f5791cf01f4d2ad9bfabb64098e461c840ea366755ac1f4a5717932b"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXLIV",
+      "revision_id": 3753232,
+      "revision_timestamp": "2026-04-25T20:47:05Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c8c5f74b38ce7a941c4ba6a1435e69c459a15bb77d3817806aedd89447c522e8"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXLV",
+      "revision_id": 3753234,
+      "revision_timestamp": "2026-04-25T20:47:07Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d08999b0f17b71a7c7a85ff41a5726defdc205b35b4831deb01d6cea86b6167e"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXLVI",
+      "revision_id": 3753235,
+      "revision_timestamp": "2026-04-25T20:47:08Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d410d36aebb438414d157d5e966c805000e8355d3d8d187d5789b0c245edbdf3"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXLVII",
+      "revision_id": 3753236,
+      "revision_timestamp": "2026-04-25T20:47:08Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d91ec3932245228a6ce6624ca5d6ea77a8c317d058bf33582cf6df3bcf20daf0"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXLVIII",
+      "revision_id": 3753237,
+      "revision_timestamp": "2026-04-25T20:47:09Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "0506e07db37c42968d3f246e5890af3a2b960b23c4ed838b6b72f6bd54964d3a"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXLIX",
+      "revision_id": 3753233,
+      "revision_timestamp": "2026-04-25T20:47:06Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2817b539b0ebd0d65939c24723491d445ea475593f98839397c7e9f4669e2371"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CL",
+      "revision_id": 3753168,
+      "revision_timestamp": "2026-04-25T20:46:16Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "238c3ada04856f359e28c81b70c5eed87d95f6046c50b70f9bc02edadd30c58f"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLI",
+      "revision_id": 3753169,
+      "revision_timestamp": "2026-04-25T20:46:17Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3330f938f7aca14b4dcb8a9004af9c2b7fb6bd0715caa37a6ed5e9b8212946af"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLII",
+      "revision_id": 3753170,
+      "revision_timestamp": "2026-04-25T20:46:18Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5476cd2e83e3e36da3cac09869569926096adb46cfaada2e00907f3116fa6909"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLIII",
+      "revision_id": 3753171,
+      "revision_timestamp": "2026-04-25T20:46:18Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "eb59e31ab8cab4e731d2072d8c4f636a42ac185289720fa8194585e231d35a29"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLIV",
+      "revision_id": 3753172,
+      "revision_timestamp": "2026-04-25T20:46:19Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "87854df6e15456c27f49c9a151c963591d6c209d0b2a70a422c54f5050491fcf"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLV",
+      "revision_id": 3753174,
+      "revision_timestamp": "2026-04-25T20:46:21Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "1f6316b8d66095fae25f383c9cbc9e5a65b0b5b667ab74afb3ff81b2a3476e45"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLVI",
+      "revision_id": 3753175,
+      "revision_timestamp": "2026-04-25T20:46:21Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d3841bae0e3c713cee8bbd9c6f66d6bc77615bef267a11f6a471145ff524b74b"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLVII",
+      "revision_id": 3753176,
+      "revision_timestamp": "2026-04-25T20:46:22Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "51c7cf0074283da8cfea806cf2585d7596de2ef87519dcf91a8f45698ae7fb55"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLVIII",
+      "revision_id": 3753177,
+      "revision_timestamp": "2026-04-25T20:46:23Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "5ee6360eef9525498a849bbb9bb88bf808ec1fd2164fdf42ddaa49e1a81ea7b7"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLIX",
+      "revision_id": 3753173,
+      "revision_timestamp": "2026-04-25T20:46:20Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4264f215a5133e17983fc9ed7f0dab0bdf6ce084ef4ca63ca724b36e62cbddbe"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLX",
+      "revision_id": 3753178,
+      "revision_timestamp": "2026-04-25T20:46:24Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ca6d9803be51aefddb2516a02bcb78d43ca2d9dcd7c7bb4cb4899e1ae4f1658d"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXI",
+      "revision_id": 3753179,
+      "revision_timestamp": "2026-04-25T20:46:24Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "9ed8ef2fff33feda99cac345ea1e82c1747b12e75be77c02d2b21c6541ffdeec"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXII",
+      "revision_id": 3753180,
+      "revision_timestamp": "2026-04-25T20:46:25Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "c5ab8a562fb452979cf9f956402121c2e3a89f269623449130908ebabbd4fcb8"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXIII",
+      "revision_id": 3753181,
+      "revision_timestamp": "2026-04-25T20:46:26Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "951b27fb03a26135e98259705bf3de6ee7b5bba099b6aea164b7f3ab5f51eebf"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXIV",
+      "revision_id": 3753182,
+      "revision_timestamp": "2026-04-25T20:46:27Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ed1da68bab3772152f92deebdba54d1f11139e8b820537bde6de6a13dce7c841"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXV",
+      "revision_id": 3753184,
+      "revision_timestamp": "2026-04-25T20:46:28Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "37bd21da3e390a3e13b051ec82869caabd21c81ed54ddf92bf5e4c181a9040b0"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXVI",
+      "revision_id": 3753185,
+      "revision_timestamp": "2026-04-25T20:46:29Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "d942555a99c313af67f6c393d7201b30a2644c508b4247d635f74e20702683bc"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXVII",
+      "revision_id": 3753186,
+      "revision_timestamp": "2026-04-25T20:46:30Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "e06084e32fa70bc5abf645848a2b24ff1e0cf59cd1e2014e83144caa8b0af04b"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXVIII",
+      "revision_id": 3753187,
+      "revision_timestamp": "2026-04-25T20:46:31Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4ecc21af2012295b1438dced915f19b0a940d1cd0c2b44e1fc90ffdf6ca70892"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXIX",
+      "revision_id": 3753183,
+      "revision_timestamp": "2026-04-25T20:46:27Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4f326268916809f42c5763fa8acd3470625d8a5120a99aef45a41a925894d851"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXX",
+      "revision_id": 3753188,
+      "revision_timestamp": "2026-04-25T20:46:31Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f13b5103146a013d54fb099ee772bdcc3ec37ecf0019aebd49428581d7699f0e"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXI",
+      "revision_id": 3753189,
+      "revision_timestamp": "2026-04-25T20:46:32Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "989c80f4509f8e578994bd9786130369f6567fe61c48b002114dae37f4aa7bef"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXII",
+      "revision_id": 3753190,
+      "revision_timestamp": "2026-04-25T20:46:33Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4309b0086769d88ea79f2071b703157762f750ea9077895911a5125698a9337c"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXIII",
+      "revision_id": 3753191,
+      "revision_timestamp": "2026-04-25T20:46:34Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "eaf192365d75b451f255534f27213d5885f4aac39bdc762d047e3980fd7f3f61"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXIV",
+      "revision_id": 3753192,
+      "revision_timestamp": "2026-04-25T20:46:35Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "904054443e054b8f7fdfdc218a6424aada1706352574bda2a2955245238f801a"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXV",
+      "revision_id": 3753194,
+      "revision_timestamp": "2026-04-25T20:46:36Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3720a302d16892075e692fd0fd113347c45042c893af3f7400813dbff5ac1f42"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXVI",
+      "revision_id": 3753195,
+      "revision_timestamp": "2026-04-25T20:46:37Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "abf10e7c8ca730f39401945ae39afbb955bc6bcaf7107c4aa5859c8584191836"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXVII",
+      "revision_id": 3753196,
+      "revision_timestamp": "2026-04-25T20:46:37Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "67ab518bf69271d64a6cef15360a359e2a0146c4ee8d0b606c6236223dafb778"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXVIII",
+      "revision_id": 3753197,
+      "revision_timestamp": "2026-04-25T20:46:38Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "41221b9e17bcc28b0fa5c349dc40f642da64cd6e8ebd9406ddcc6fd30ab0a5b9"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXIX",
+      "revision_id": 3753193,
+      "revision_timestamp": "2026-04-25T20:46:35Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "9c6490b4a601b0674478c510820f86086d70245da8fd5a5e0f85434e2902dd3a"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXX",
+      "revision_id": 3753198,
+      "revision_timestamp": "2026-04-25T20:46:39Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2caddd383035fde1a5f80b43e4e1310a0b4167df27d441454684fbf920121297"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXXI",
+      "revision_id": 3753199,
+      "revision_timestamp": "2026-04-25T20:46:40Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "591fd475a28d6263f039aa569f73dcb4c0df922378405e48ba5d85f3b3362d90"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXXII",
+      "revision_id": 3753200,
+      "revision_timestamp": "2026-04-25T20:46:41Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6800f858a40c5d0934a078268289ba0593002779a4a8a5dc275f215b56224fb5"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXXIII",
+      "revision_id": 3753201,
+      "revision_timestamp": "2026-04-25T20:46:41Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "00fce317a8e34d6547941c4ec9162a8cae42f40c9a1574704c3494ea4d700ac6"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXXIV",
+      "revision_id": 3753202,
+      "revision_timestamp": "2026-04-25T20:46:42Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8153bab4305a9d0076c871d2bbcea0c30bda4022e2d2eeccefaad98a4b0b5f3c"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXXV",
+      "revision_id": 3753204,
+      "revision_timestamp": "2026-04-25T20:46:44Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6f11f2898b60cd5c3877bd257af7b197cb9215e33de6865af4d6ef5b9495132e"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXXVI",
+      "revision_id": 3753205,
+      "revision_timestamp": "2026-04-25T20:46:44Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "413b436d89c990d74625fc3da4e75ef447d9d1e3eafe4120a2decd1cd4834e3d"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXXVII",
+      "revision_id": 3753206,
+      "revision_timestamp": "2026-04-25T20:46:45Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "ad1c8e01b1d6a6f172f8ba5f9d056a756e394c5d77a58f042f2854a4eca0872e"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXXVIII",
+      "revision_id": 3753207,
+      "revision_timestamp": "2026-04-25T20:46:46Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "987460c13c768490deb4c7970d2ba8e53efb695175168ed2bee17ca44ddf86ee"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CLXXXIX",
+      "revision_id": 3753203,
+      "revision_timestamp": "2026-04-25T20:46:43Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "405b3e81c6fbd9332ff5dc0f9b5ed1adcb84483d175f01dc8fd0d8ce77945449"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXC",
+      "revision_id": 3753213,
+      "revision_timestamp": "2026-04-25T20:46:50Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "65949a7bdf168dcd47af095b3bb5e0dcd6b8c9839ad5abb0728fe4c8dccc1033"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXCI",
+      "revision_id": 3753214,
+      "revision_timestamp": "2026-04-25T20:46:51Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2a820734fb81d5d7606a08cd673cc5c2ac74e643caeab9e11f056643c7bd9281"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXCII",
+      "revision_id": 3753215,
+      "revision_timestamp": "2026-04-25T20:46:52Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "518aebc6c95549356b5d759abcdffd217737557e2033800bef059de5154307c2"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXCIII",
+      "revision_id": 3753216,
+      "revision_timestamp": "2026-04-25T20:46:52Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "de532dc1b9de4193963cec7ff28a863a29642215b7b53a8e80ef0241f06efa79"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXCIV",
+      "revision_id": 3753217,
+      "revision_timestamp": "2026-04-25T20:46:53Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "702666264ffc45c4445b4f2e7c73a38d657ad67a8379c2302efee4bcb8922699"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXCV",
+      "revision_id": 3753219,
+      "revision_timestamp": "2026-04-25T20:46:55Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "b6a5839063b03f71e178a1b323427dda58c95528d9447ed9544fa18e66699381"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXCVI",
+      "revision_id": 3753220,
+      "revision_timestamp": "2026-04-25T20:46:56Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "9c016db620e67b0ee0bf49b686f33342511426f1f464686b5ba9d0d8ef80c5ad"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXCVII",
+      "revision_id": 3753221,
+      "revision_timestamp": "2026-04-25T20:46:56Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "3ea1590352b0d807a23e351a0bc196d9b5eee3850bc708af6af93b79c7c385e4"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXCVIII",
+      "revision_id": 3753222,
+      "revision_timestamp": "2026-04-25T20:46:57Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a41673bb9427911c4cee1c3b72e76739e024485fb1706637b468a93719ac8f08"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CXCIX",
+      "revision_id": 3753218,
+      "revision_timestamp": "2026-04-25T20:46:54Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "f3e0418e8baf907700ed6e470c8d4ef77ac0385a6dec06158dd8e4fb996342fb"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CC",
+      "revision_id": 3753150,
+      "revision_timestamp": "2026-04-25T20:46:03Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2f2362fba3b0a5e01bfaee667136502918220944d506c1c613f5af6bbeefea89"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CCI",
+      "revision_id": 3753151,
+      "revision_timestamp": "2026-04-25T20:46:04Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "4d68975b2676de2bc3615d26820034e1f5823894e57059d061a553290ef8263b"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CCII",
+      "revision_id": 3753152,
+      "revision_timestamp": "2026-04-25T20:46:04Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2e016f3346ea0ecb2be95f2c0283fdcc63d631307f1949378eb9c4c19b334daa"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CCIII",
+      "revision_id": 3753153,
+      "revision_timestamp": "2026-04-25T20:46:05Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "8aedaf4eefe317dc922c1093715890f86a14726f501703e41f70abeec21f34e3"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CCIV",
+      "revision_id": 3753154,
+      "revision_timestamp": "2026-04-25T20:46:06Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "973cb27de4171d92d2197a8752ab24080756ed14a199a3f267be3cd00f943f72"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CCV",
+      "revision_id": 3753156,
+      "revision_timestamp": "2026-04-25T20:46:07Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2f65674c6779d88a46a544e4c4a7738666967786ad6de0ca9a4e607e6f8d23bf"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CCVI",
+      "revision_id": 3753157,
+      "revision_timestamp": "2026-04-25T20:46:08Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "2b8b45724c48d4a9b8eb703bc0471a6fbf143479ba04fc1e6593b06a83035e4d"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CCVII",
+      "revision_id": 3753158,
+      "revision_timestamp": "2026-04-25T20:46:09Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "09f229382cfe798abf5ac85be1a21e1545e9193e1e73a0532ff05355c55b46d5"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CCVIII",
+      "revision_id": 3753159,
+      "revision_timestamp": "2026-04-25T20:46:09Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "fc1e62ad547dcde176232e6cb9c1c80542b131c025ced420f9977d105c84b6f3"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CCIX",
+      "revision_id": 3753155,
+      "revision_timestamp": "2026-04-25T20:46:06Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "a875eb719e90b1866d9627817d4a30aebf2075bf31d2360c8a19eaaa7b7febf0"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CCX",
+      "revision_id": 3753160,
+      "revision_timestamp": "2026-04-25T20:46:10Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "6c3726fecb04bdfa0ad321d50f75b5307744b0bc361e4366f22cc92d0cc53189"
+    },
+    {
+      "page_title": "Rime (Vittoria Colonna)/Sonetti spirituali/Sonetto CCXI",
+      "revision_id": 3753161,
+      "revision_timestamp": "2026-04-25T20:46:11Z",
+      "segment_index": 1,
+      "segment_label": "",
+      "cleaned_text_sha256": "48a142add877af51d221e1a5b26b7263ac02798cae9a05bccaafec4043a94710"
+    }
+  ],
+  "source_record_revisions": [],
+  "edition_page_title_suffix": "",
+  "source_metadata": {
+    "source_id": "ws_colonna_rime_1760",
+    "author": "Vittoria Colonna",
+    "source_archive": "Italian Wikisource",
+    "source_collection": "Rime (Vittoria Colonna)",
+    "source_edition": "Rime di Vittoria Colonna, Bergamo, Pietro Lancellotti, 1760.",
+    "license_notes": "Italian Wikisource CC BY-SA 3.0 / GFDL page metadata; retain page URL, author, source scan, license links, and share-alike notice.",
+    "period": "XVI secolo",
+    "poem_id_prefix": "colonna",
+    "snapshot_scope": "explicit_subpages"
+  },
+  "audit_report": {
+    "page_count": 337,
+    "eligible_sonnet_count": 336,
+    "pinned_page_count": 336,
+    "started_at_utc": "2026-07-22T16:08:00+00:00",
+    "finished_at_utc": "2026-07-22T17:13:55+00:00"
+  }
+}

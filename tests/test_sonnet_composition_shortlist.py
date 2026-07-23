@@ -103,10 +103,19 @@ def test_passed_core_candidates_are_standard_italian_and_ready_for_full_audit():
 def test_source_manifest_cannot_approve_or_audit_a_source_without_a_matching_gate_record():
     shortlist_by_id = {row["source_id"]: row for row in read_csv(SHORTLIST_PATH)}
     source_rows = read_csv(SOURCE_MANIFEST_PATH)
+    legacy_activated_sources = {
+        "ws_alfieri_rime_1912",
+        "ws_foscolo_sonetti",
+        "ws_varchi_infermita",
+    }
     gate_required_rows = [
         row
         for row in source_rows
         if row["status"] in {"composition_gate_passed", "audit_then_include"}
+        or (
+            row["status"] == "activated"
+            and row["source_id"] not in legacy_activated_sources
+        )
     ]
 
     assert gate_required_rows
