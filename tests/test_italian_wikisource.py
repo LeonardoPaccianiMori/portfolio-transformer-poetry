@@ -3,6 +3,7 @@ import pytest
 from sonnet_corpus.italian_wikisource import (
     _sleep_with_progress,
     extract_ordered_direct_text_link_titles,
+    extract_ordered_page_namespace_link_titles,
     extract_ordered_subpage_titles,
     extract_wikisource_prose_text,
     fetch_italian_wikisource_work,
@@ -122,6 +123,25 @@ def test_extract_ordered_direct_text_link_titles_excludes_collection_navigation(
     ) == ["A Pippo de R...", "Pio Ottavo"]
 
 
+def test_extract_ordered_page_namespace_link_titles_limits_selection_to_one_index():
+    html = """
+    <div class="mw-parser-output">
+      <a title="Pagina:Giannone Vol.1.djvu/i">first</a>
+      <a title="Pagina:Giannone Vol.1.djvu/1">second</a>
+      <a title="Pagina:Giannone Vol.2.djvu/1">other volume</a>
+      <a title="Indice:Giannone Vol.1.djvu">index</a>
+    </div>
+    """
+
+    assert extract_ordered_page_namespace_link_titles(
+        html,
+        index_title="Indice:Giannone Vol.1.djvu",
+    ) == [
+        "Pagina:Giannone Vol.1.djvu/i",
+        "Pagina:Giannone Vol.1.djvu/1",
+    ]
+
+
 def test_validate_work_boundaries_rejects_unexpected_last_page():
     with pytest.raises(ValueError, match="unexpected last Wikisource subpage"):
         validate_work_boundaries(
@@ -231,6 +251,40 @@ def test_fetch_collection_can_select_direct_root_text_links():
     )
 
     assert [page.revision.title for page in collection.pages] == [first_poem, second_poem]
+
+
+def test_fetch_collection_recursively_selects_leaf_text_pages():
+    root_title = "Istoria"
+    first_book = "Istoria/Libro primo"
+    chapter_one = "Istoria/Libro primo/Capitolo I"
+    chapter_two = "Istoria/Libro primo/Capitolo II"
+    revisions = {
+        root_title: (100, "2026-07-23T10:00:00Z"),
+        first_book: (101, "2026-07-23T10:01:00Z"),
+        chapter_one: (102, "2026-07-23T10:02:00Z"),
+        chapter_two: (103, "2026-07-23T10:03:00Z"),
+    }
+    rendered_html = {
+        100: f'<div class="mw-parser-output"><a title="{first_book}">book</a></div>',
+        101: (
+            '<div class="mw-parser-output">'
+            f'<a title="{chapter_one}">one</a>'
+            f'<a title="{chapter_two}">two</a></div>'
+        ),
+        102: '<div class="mw-parser-output">First chapter.</div>',
+        103: '<div class="mw-parser-output">Second chapter.</div>',
+    }
+
+    collection = fetch_italian_wikisource_page_collection(
+        "https://example.test/istoria",
+        expected_title=root_title,
+        expected_first_subpage=first_book,
+        recursive_subpages=True,
+        request_delay=0,
+        session=FakeSession(revisions, rendered_html),
+    )
+
+    assert [page.revision.title for page in collection.pages] == [chapter_one, chapter_two]
 
 
 def test_select_work_subpage_titles_rejects_an_empty_filtered_scope():

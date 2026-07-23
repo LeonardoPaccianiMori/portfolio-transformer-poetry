@@ -11,6 +11,7 @@ from sonnet_corpus.italian_wikisource_probe import (
     WORK_BOUNDARIES,
     audit_italian_wikisource_editorial_markers,
     find_editorial_markers,
+    probe_italian_wikisource_sources,
     probe_italian_wikisource_source,
     select_italian_wikisource_probe_row,
 )
@@ -136,6 +137,57 @@ def test_probe_records_fetch_error_and_keeps_source_audit_only(tmp_path: Path):
     assert report["result"]["page_count"] == 0
 
 
+def test_batch_probe_continues_after_one_source_error_and_reports_markers(tmp_path: Path):
+    manifest_path = tmp_path / "manifest.csv"
+    report_path = tmp_path / "batch.json"
+    second_row = make_row(
+        source_id="ws_galileo_dialogo",
+        title="Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano",
+    )
+    write_pretraining_manifest([make_row(), second_row], manifest_path)
+
+    def fake_fetch_work(*args, **kwargs):
+        if kwargs["expected_title"] == "Il Saggiatore":
+            raise ConnectionError("network unavailable")
+        return FetchedItalianWikisourceWork(
+            landing_page_url=args[0],
+            title=kwargs["expected_title"],
+            root_revision=WikisourcePageRevision(
+                title=kwargs["expected_title"],
+                revision_id=100,
+                revision_timestamp="2026-07-23T10:00:00Z",
+            ),
+            page_revisions=[
+                WikisourcePageRevision(
+                    title="Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano/Dedica",
+                    revision_id=101,
+                    revision_timestamp="2026-07-23T10:01:00Z",
+                )
+            ],
+            text=(
+                "## Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano/Dedica\n\n"
+                "Testo [nota].\nSi veda p. 3.\n"
+            ),
+            raw_html_character_count=500,
+        )
+
+    report = probe_italian_wikisource_sources(
+        manifest_path=manifest_path,
+        source_ids=["ws_galileo_saggiatore", "ws_galileo_dialogo"],
+        report_path=report_path,
+        request_delay=0,
+        fetch_work=fake_fetch_work,
+    )
+
+    assert report["activation_status"] == "audit_then_include"
+    assert report["successful_sources"] == 1
+    assert report["error_sources"] == 1
+    assert report["results"][1]["marker_summary"]["counts"] == {
+        "bracketed_text": 1,
+        "si_veda_reference": 1,
+    }
+
+
 def test_vico_probe_uses_exclusions_and_a_dynamic_final_boundary():
     boundaries = WORK_BOUNDARIES["ws_vico_scienza_nuova"]
 
@@ -147,6 +199,13 @@ def test_vico_probe_uses_exclusions_and_a_dynamic_final_boundary():
         "La scienza nuova - Volume I/Introduzione dell'editore",
         "La scienza nuova - Volume I/Illustrazione",
     )
+
+
+def test_beccaria_probe_uses_the_primary_work_hierarchy():
+    boundaries = WORK_BOUNDARIES["ws_beccaria_delitti_pene"]
+
+    assert boundaries.first_subpage == "Dei delitti e delle pene/A chi legge"
+    assert boundaries.last_subpage == ""
 
 
 def test_vico_probe_uses_its_explicit_root_page_title(tmp_path: Path):

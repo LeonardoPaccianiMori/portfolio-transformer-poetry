@@ -24,6 +24,12 @@ def parse_args() -> argparse.Namespace:
         help="Broader prose source manifest CSV.",
     )
     parser.add_argument(
+        "--max-samples-per-marker",
+        type=int,
+        default=10,
+        help="Maximum retained contexts for each editorial-marker type.",
+    )
+    parser.add_argument(
         "--source-id",
         default="ws_vico_scienza_nuova",
         help="One audit-only Italian Wikisource source ID.",
@@ -56,6 +62,7 @@ def main() -> None:
         source_id=args.source_id,
         report_path=args.report,
         request_delay=args.request_delay,
+        max_samples_per_marker=args.max_samples_per_marker,
         progress=progress,
     )
     result = report["result"]

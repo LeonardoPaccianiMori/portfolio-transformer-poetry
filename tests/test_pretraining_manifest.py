@@ -206,6 +206,15 @@ def test_wikisource_activation_and_vico_replacement_statuses_are_explicit():
         "ws_vico_scienza_nuova",
         "ws_beccaria_delitti_pene",
         "ws_giannone_istoria_civile_vol1",
+        "ws_giannone_istoria_civile_vol2",
+        "ws_giannone_istoria_civile_vol3",
+        "ws_giannone_istoria_civile_vol4",
+        "ws_giannone_istoria_civile_vol5",
+        "ws_sarpi_istoria_concilio",
+        "ws_verri_storia_milano",
+        "ws_verri_osservazioni_tortura",
+        "ws_verri_meditazioni_economia",
+        "ws_verri_discorso_piacere",
     }
 
     assert candidate_ids <= rows_by_id.keys()
@@ -218,6 +227,15 @@ def test_wikisource_activation_and_vico_replacement_statuses_are_explicit():
     for source_id in {
         "ws_beccaria_delitti_pene",
         "ws_giannone_istoria_civile_vol1",
+        "ws_giannone_istoria_civile_vol2",
+        "ws_giannone_istoria_civile_vol3",
+        "ws_giannone_istoria_civile_vol4",
+        "ws_giannone_istoria_civile_vol5",
+        "ws_sarpi_istoria_concilio",
+        "ws_verri_storia_milano",
+        "ws_verri_osservazioni_tortura",
+        "ws_verri_meditazioni_economia",
+        "ws_verri_discorso_piacere",
     }:
         assert rows_by_id[source_id].inclusion_status == "audit_then_include"
     assert rows_by_id["ws_vico_scienza_nuova"].inclusion_status == "defer"

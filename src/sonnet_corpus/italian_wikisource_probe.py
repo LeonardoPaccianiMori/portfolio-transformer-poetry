@@ -28,11 +28,13 @@ EDITORIAL_MARKER_PATTERNS = {
 class WorkBoundaries:
     """Recorded stable boundaries and selection rules for one audited work."""
 
-    first_subpage: str
+    first_subpage: str = ""
     last_subpage: str = ""
     selected_subpage_titles: tuple[str, ...] = ()
     excluded_subpage_prefixes: tuple[str, ...] = ()
     root_page_title: str = ""
+    page_namespace_links: bool = False
+    recursive_subpages: bool = False
 
 
 WORK_BOUNDARIES = {
@@ -52,6 +54,9 @@ WORK_BOUNDARIES = {
             "Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano/Giornata quarta",
         ),
     ),
+    "ws_beccaria_delitti_pene": WorkBoundaries(
+        first_subpage="Dei delitti e delle pene/A chi legge",
+    ),
     "ws_vico_scienza_nuova": WorkBoundaries(
         first_subpage="La scienza nuova - Volume I/Titolo",
         excluded_subpage_prefixes=(
@@ -60,6 +65,46 @@ WORK_BOUNDARIES = {
             "La scienza nuova - Volume I/Illustrazione",
         ),
         root_page_title="La scienza nuova - Volume I",
+    ),
+    "ws_giannone_istoria_civile_vol1": WorkBoundaries(
+        first_subpage="Pagina:Giannone - Istoria civile del regno di Napoli, 1770, Vol.1.djvu/i",
+        last_subpage="Pagina:Giannone - Istoria civile del regno di Napoli, 1770, Vol.1.djvu/552",
+        root_page_title="Indice:Giannone - Istoria civile del regno di Napoli, 1770, Vol.1.djvu",
+        page_namespace_links=True,
+    ),
+    "ws_giannone_istoria_civile_vol2": WorkBoundaries(
+        root_page_title="Indice:Giannone - Istoria civile del regno di Napoli, 1770, Vol.2.djvu",
+        page_namespace_links=True,
+    ),
+    "ws_giannone_istoria_civile_vol3": WorkBoundaries(
+        root_page_title="Indice:Giannone - Istoria civile del regno di Napoli, 1770, Vol.3.djvu",
+        page_namespace_links=True,
+    ),
+    "ws_giannone_istoria_civile_vol4": WorkBoundaries(
+        root_page_title="Indice:Giannone - Istoria civile del regno di Napoli, 1770, Vol.4.djvu",
+        page_namespace_links=True,
+    ),
+    "ws_giannone_istoria_civile_vol5": WorkBoundaries(
+        first_subpage="Pagina:Giannone - Istoria civile del regno di Napoli, 1770, Vol.5.djvu/i",
+        last_subpage="Pagina:Giannone - Istoria civile del regno di Napoli, 1770, Vol.5.djvu/679",
+        root_page_title="Indice:Giannone - Istoria civile del regno di Napoli, 1770, Vol.5.djvu",
+        page_namespace_links=True,
+    ),
+    "ws_sarpi_istoria_concilio": WorkBoundaries(
+        first_subpage="Istoria del Concilio tridentino/Libro primo",
+        recursive_subpages=True,
+    ),
+    "ws_verri_storia_milano": WorkBoundaries(
+        first_subpage="Storia di Milano/Dedicatoria",
+    ),
+    "ws_verri_osservazioni_tortura": WorkBoundaries(
+        first_subpage="Osservazioni sulla tortura/I",
+    ),
+    "ws_verri_meditazioni_economia": WorkBoundaries(
+        first_subpage="Meditazioni sulla economia politica/I",
+    ),
+    "ws_verri_discorso_piacere": WorkBoundaries(
+        first_subpage="Discorso sull'indole del piacere e del dolore/I",
     ),
 }
 
@@ -83,6 +128,7 @@ class ItalianWikisourceProbeResult:
     last_characters: str
     license_notes: str
     cleaning_notes: str
+    marker_summary: dict[str, object]
 
 
 def probe_italian_wikisource_source(
@@ -91,12 +137,15 @@ def probe_italian_wikisource_source(
     source_id: str,
     report_path: Path,
     request_delay: float = 6.0,
+    max_samples_per_marker: int = 10,
     fetch_work: FetchItalianWikisourceWork = fetch_italian_wikisource_work,
     session: requests.Session | None = None,
     progress: Callable[[str], None] | None = None,
 ) -> dict[str, object]:
     """Fetch one audited work and write provenance for manual inspection."""
 
+    if max_samples_per_marker < 1:
+        raise ValueError("max_samples_per_marker must be at least one")
     started_at = _utc_now()
     rows = read_pretraining_manifest(manifest_path)
     row = select_italian_wikisource_probe_row(rows, source_id)
@@ -112,6 +161,7 @@ def probe_italian_wikisource_source(
         fetch_work=fetch_work,
         session=session,
         progress=progress,
+        max_samples_per_marker=max_samples_per_marker,
     )
     report = {
         "started_at_utc": started_at,
@@ -127,6 +177,71 @@ def probe_italian_wikisource_source(
         encoding="utf-8",
     )
     _write_progress(progress, f"wrote inspection report: {report_path}")
+    return report
+
+
+def probe_italian_wikisource_sources(
+    *,
+    manifest_path: Path,
+    source_ids: list[str],
+    report_path: Path,
+    request_delay: float = 6.0,
+    max_samples_per_marker: int = 10,
+    fetch_work: FetchItalianWikisourceWork = fetch_italian_wikisource_work,
+    session: requests.Session | None = None,
+    progress: Callable[[str], None] | None = None,
+) -> dict[str, object]:
+    """Audit several declared Wikisource candidates without changing activation."""
+
+    if not source_ids:
+        raise ValueError("source_ids must not be empty")
+    if len(set(source_ids)) != len(source_ids):
+        raise ValueError("source_ids must not contain duplicates")
+    if max_samples_per_marker < 1:
+        raise ValueError("max_samples_per_marker must be at least one")
+
+    started_at = _utc_now()
+    rows = read_pretraining_manifest(manifest_path)
+    results: list[ItalianWikisourceProbeResult] = []
+    for index, source_id in enumerate(source_ids, start=1):
+        _write_progress(progress, f"auditing source {index}/{len(source_ids)}: {source_id}")
+        row = select_italian_wikisource_probe_row(rows, source_id)
+        boundaries = WORK_BOUNDARIES.get(row.source_id)
+        if boundaries is None:
+            raise ValueError(f"no recorded Wikisource boundaries for source: {row.source_id}")
+        results.append(
+            _probe_row(
+                row=row,
+                boundaries=boundaries,
+                request_delay=request_delay,
+                fetch_work=fetch_work,
+                session=session,
+                progress=progress,
+                max_samples_per_marker=max_samples_per_marker,
+            )
+        )
+
+    report = {
+        "started_at_utc": started_at,
+        "finished_at_utc": _utc_now(),
+        "manifest_path": _portable_path(manifest_path),
+        "source_ids": source_ids,
+        "activation_status": "audit_then_include",
+        "max_samples_per_marker": max_samples_per_marker,
+        "successful_sources": sum(result.status == "ok" for result in results),
+        "error_sources": sum(result.status == "error" for result in results),
+        "total_cleaned_characters": sum(
+            result.cleaned_character_count for result in results
+        ),
+        "total_cleaned_words": sum(result.cleaned_word_count for result in results),
+        "results": [asdict(result) for result in results],
+    }
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    report_path.write_text(
+        json.dumps(report, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    _write_progress(progress, f"wrote batch inspection report: {report_path}")
     return report
 
 
@@ -231,6 +346,7 @@ def _probe_row(
     fetch_work: FetchItalianWikisourceWork,
     session: requests.Session | None,
     progress: Callable[[str], None] | None,
+    max_samples_per_marker: int,
 ) -> ItalianWikisourceProbeResult:
     try:
         fetched = _fetch_row_work(
@@ -260,6 +376,7 @@ def _probe_row(
             last_characters="",
             license_notes=row.license_notes,
             cleaning_notes=row.cleaning_notes,
+            marker_summary={"counts": {}, "samples": []},
         )
 
     return ItalianWikisourceProbeResult(
@@ -280,6 +397,10 @@ def _probe_row(
         last_characters=fetched.text[-240:],
         license_notes=row.license_notes,
         cleaning_notes=row.cleaning_notes,
+        marker_summary=find_editorial_markers(
+            fetched.text,
+            max_samples_per_marker=max_samples_per_marker,
+        ),
     )
 
 
@@ -328,6 +449,8 @@ def _fetch_row_work(
         expected_last_subpage=boundaries.last_subpage,
         selected_subpage_titles=list(boundaries.selected_subpage_titles) or None,
         excluded_subpage_prefixes=boundaries.excluded_subpage_prefixes,
+        page_namespace_links=boundaries.page_namespace_links,
+        recursive_subpages=boundaries.recursive_subpages,
         request_delay=request_delay,
         session=session,
         progress=progress,

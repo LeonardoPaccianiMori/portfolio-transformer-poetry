@@ -100,6 +100,8 @@ def fetch_italian_wikisource_work(
     expected_last_subpage: str,
     selected_subpage_titles: list[str] | None = None,
     excluded_subpage_prefixes: tuple[str, ...] = (),
+    page_namespace_links: bool = False,
+    recursive_subpages: bool = False,
     request_delay: float = 1.0,
     retries: int = 5,
     session: requests.Session | None = None,
@@ -120,6 +122,8 @@ def fetch_italian_wikisource_work(
         expected_last_subpage=expected_last_subpage,
         selected_subpage_titles=selected_subpage_titles,
         excluded_subpage_prefixes=excluded_subpage_prefixes,
+        page_namespace_links=page_namespace_links,
+        recursive_subpages=recursive_subpages,
         request_delay=request_delay,
         retries=retries,
         session=session,
@@ -157,6 +161,8 @@ def fetch_italian_wikisource_page_collection(
     included_subpage_prefixes: tuple[str, ...] = (),
     excluded_subpage_prefixes: tuple[str, ...] = (),
     direct_text_links: bool = False,
+    page_namespace_links: bool = False,
+    recursive_subpages: bool = False,
     request_delay: float = 1.0,
     retries: int = 5,
     session: requests.Session | None = None,
@@ -193,8 +199,30 @@ def fetch_italian_wikisource_page_collection(
         retries=retries,
         progress=progress,
     )
+    if page_namespace_links and (explicit_page_titles is not None or direct_text_links):
+        raise ValueError(
+            "page_namespace_links cannot be combined with explicit_page_titles "
+            "or direct_text_links"
+        )
+    if recursive_subpages and (
+        explicit_page_titles is not None or direct_text_links or page_namespace_links
+    ):
+        raise ValueError(
+            "recursive_subpages cannot be combined with explicit_page_titles, "
+            "direct_text_links, or page_namespace_links"
+        )
     if explicit_page_titles is not None:
         selected_titles = select_explicit_page_titles(root_html, explicit_page_titles)
+    elif page_namespace_links:
+        selected_titles = extract_ordered_page_namespace_link_titles(
+            root_html,
+            index_title=expected_title,
+        )
+        validate_work_boundaries(
+            selected_titles,
+            expected_first_subpage=expected_first_subpage,
+            expected_last_subpage=expected_last_subpage,
+        )
     elif direct_text_links:
         selected_titles = extract_ordered_direct_text_link_titles(
             root_html,
@@ -213,6 +241,24 @@ def fetch_italian_wikisource_page_collection(
             selected_titles,
             expected_first_subpage=expected_first_subpage,
             expected_last_subpage=expected_last_subpage,
+        )
+
+    if recursive_subpages:
+        pages = _fetch_recursive_leaf_pages(
+            selected_titles,
+            collection_root_title=expected_title,
+            excluded_subpage_prefixes=excluded_subpage_prefixes,
+            http=http,
+            limiter=limiter,
+            retries=retries,
+            progress=progress,
+        )
+        return FetchedItalianWikisourcePageCollection(
+            landing_page_url=landing_page_url,
+            title=expected_title,
+            root_revision=root_revision,
+            root_html=root_html,
+            pages=pages,
         )
 
     _write_progress(progress, f"resolving revisions for {len(selected_titles)} primary pages")
@@ -277,6 +323,64 @@ def fetch_italian_wikisource_page_collection(
         root_html=root_html,
         pages=pages,
     )
+
+
+def _fetch_recursive_leaf_pages(
+    initial_titles: list[str],
+    *,
+    collection_root_title: str,
+    excluded_subpage_prefixes: tuple[str, ...],
+    http: requests.Session,
+    limiter: WikisourceRateLimiter,
+    retries: int,
+    progress: ProgressCallback | None,
+) -> list[FetchedItalianWikisourcePage]:
+    """Resolve a root-to-index-to-leaf hierarchy and retain only text leaves."""
+
+    pending_titles = initial_titles
+    seen_titles: set[str] = set()
+    leaves: list[FetchedItalianWikisourcePage] = []
+    while pending_titles:
+        current_titles = [title for title in pending_titles if title not in seen_titles]
+        pending_titles = []
+        if not current_titles:
+            continue
+        _write_progress(
+            progress,
+            f"resolving revisions for {len(current_titles)} recursive candidates",
+        )
+        current_revisions = _fetch_page_revisions(
+            current_titles,
+            http=http,
+            limiter=limiter,
+            retries=retries,
+            progress=progress,
+        )
+        for revision in current_revisions:
+            seen_titles.add(revision.title)
+            _write_progress(progress, f"fetching recursive page: {revision.title}")
+            html = _fetch_rendered_revision(
+                revision,
+                http=http,
+                limiter=limiter,
+                retries=retries,
+                progress=progress,
+            )
+            child_titles = [
+                title
+                for title in extract_ordered_subpage_titles(html, collection_root_title)
+                if not any(
+                    title.startswith(prefix) for prefix in excluded_subpage_prefixes
+                )
+                and title not in seen_titles
+            ]
+            if child_titles:
+                pending_titles.extend(child_titles)
+                continue
+            leaves.append(FetchedItalianWikisourcePage(revision=revision, html=html))
+    if not leaves:
+        raise ValueError("Wikisource recursive scope selected no leaf text pages")
+    return leaves
 
 
 def fetch_italian_wikisource_two_level_page_collection(
@@ -619,6 +723,39 @@ def extract_ordered_direct_text_link_titles(
             continue
         seen.add(title)
         titles.append(title)
+    return titles
+
+
+def extract_ordered_page_namespace_link_titles(
+    index_html: str,
+    *,
+    index_title: str,
+) -> list[str]:
+    """Return ordered transcribed page links belonging to one scan index.
+
+    Scan-backed Wikisource volumes expose their text as ``Pagina:`` links from
+    an ``Indice:`` page rather than as ordinary subpages. Restricting the title
+    prefix to the declared index prevents unrelated page links from entering an
+    audit or a later extraction scope.
+    """
+
+    normalized_index_title = _normalize_title(index_title)
+    if not normalized_index_title.startswith("Indice:"):
+        raise ValueError("page-namespace selection requires an Indice: root title")
+    expected_prefix = f"Pagina:{normalized_index_title.removeprefix('Indice:')}/"
+    soup = BeautifulSoup(index_html, "html.parser")
+    titles: list[str] = []
+    seen: set[str] = set()
+    for link in soup.select(".mw-parser-output a[title]"):
+        if link.find_parent(class_="ws-noexport") is not None:
+            continue
+        title = _normalize_title(link["title"])
+        if not title.startswith(expected_prefix) or title in seen:
+            continue
+        seen.add(title)
+        titles.append(title)
+    if not titles:
+        raise ValueError("Wikisource index contains no transcribed Pagina: links")
     return titles
 
 
