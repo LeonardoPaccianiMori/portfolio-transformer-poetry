@@ -1,0 +1,6 @@
+source_id,root_revision_id,root_revision_timestamp,audit_started_at_utc,audit_finished_at_utc,scoped_page_count,candidate_count,eligible_14_line_count,non_14_line_count,exact_duplicate_active_count,scope_rule,activation_decision
+ws_andreini_rime_1601,3750857,2026-04-25T20:16:30Z,2026-07-22T13:14:50+00:00,2026-07-22T13:53:19+00:00,189,196,196,0,0,"Root pages prefixed Sonetto or Sonetti; seven paired pages split only at printed SONETTO headings",pending_user_activation
+ws_colonna_rime_1760,3753140,2026-04-25T20:45:50Z,2026-07-22T16:08:00+00:00,2026-07-22T17:13:55+00:00,337,337,336,1,0,"Secular Sonetto pages plus the Sonetti spirituali/Sonetto subtree",pending_user_activation
+ws_stampa_rime_1913,3752669,2026-04-25T20:39:59Z,2026-07-22T14:19:19+00:00,2026-07-22T15:24:07+00:00,314,314,282,32,0,"All pages under the Gaspara Stampa root work only; no Veronica Franco root work",pending_user_activation
+ws_ariosto_rime_varie_1857,3820630,2026-05-06T03:06:45Z,2026-07-22T15:24:07+00:00,2026-07-22T15:31:13+00:00,32,32,29,3,0,"Root pages prefixed Opere minori (Ariosto)/Rime varie/Sonetto",pending_user_activation
+ws_sannazaro_rime_disperse,3825209,2026-05-06T04:25:14Z,2026-07-22T15:31:13+00:00,2026-07-22T15:37:07+00:00,37,37,21,16,0,"Direct poem links from the Rime disperse root index",pending_user_activation

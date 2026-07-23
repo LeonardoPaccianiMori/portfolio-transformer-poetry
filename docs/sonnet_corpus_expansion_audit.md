@@ -60,11 +60,11 @@ The machine-readable counterpart is
 | `ws_alfieri_rime_1912` | Vittorio Alfieri, *Rime varie* (1912 edition) | Core | `activated` | The 195-page revision-pinned audit retained 45 exact 14-line sonnets and excluded 150 other-form or multi-poem pages. No retained poem is an exact duplicate of the active v1 corpus. The parallel 1903 edition is excluded to prevent duplicate poems. [Source](https://it.wikisource.org/wiki/Rime_varie_(Alfieri,_1912)) |
 | `ws_foscolo_sonetti` | Ugo Foscolo, *Sonetti* | Core | `activated` | The revision-pinned 1835-edition audit retained all 12 exact 14-line pages, which are active in `sonnets_expanded_v3`. [Source](https://it.wikisource.org/wiki/Sonetti_(Foscolo)) |
 | `ws_varchi_infermita` | Benedetto Varchi, *Sonetti per la infermità, e guarigione di Cosimo I dei Medici* | Core | `activated` | The revision-pinned audit retained 33 exact 14-line, non-duplicate poems. The 1821 Magheri edition is active in `sonnets_expanded_v4`, with root and page revisions recorded in the committed snapshot. [Source](https://it.wikisource.org/wiki/Sonetti_per_la_infermit%C3%A0,_e_guarigione_di_Cosimo_I_dei_Medici) |
-| `ws_andreini_rime_1601` | Isabella Andreini, *Rime* (1601) | Core | `audit_then_include` | 196 explicitly indexed sonnets, plus six paired-sonnet index entries. The source scan is public domain and the root is marked 100% proofread. The approved audit will split paired pages only at their printed `SONETTO` headings, before the 14-line gate. [Source](https://it.wikisource.org/wiki/Rime_(Andreini)) |
-| `ws_colonna_rime_1760` | Vittoria Colonna, *Rime* (1760 edition) | Core | `audit_then_include` | 212 explicitly indexed sonnet pages in a 100% proofread collection. Non-sonnet front matter and appendices are outside the audit scope. [Source](https://it.wikisource.org/wiki/Rime_(Vittoria_Colonna)) |
-| `ws_stampa_rime_1913` | Gaspara Stampa, *Rime* (1913 edition) | Core | `audit_then_include` | 311 indexed Stampa lyric items; the strict-sonnet yield is estimated at 250-285. The audit is limited to the Gaspara Stampa root work, not the wider shared Stampa-Franco volume, and retains only exact 14-line poems. [Source](https://it.wikisource.org/wiki/Rime_(Stampa)) |
-| `ws_ariosto_rime_varie_1857` | Ludovico Ariosto, *Opere minori - Rime varie* (1857) | Core | `audit_then_include` | 32 explicitly indexed sonnets in a 100% proofread collection; a small, low-risk author-diversity supplement. [Source](https://it.wikisource.org/wiki/Opere_minori_(Ariosto)/Rime_varie) |
-| `ws_sannazaro_rime_disperse` | Jacopo Sannazaro, *Rime disperse* | Core | `audit_then_include` | 36 lyric items, estimated to yield 25-32 strict sonnets. Form labels are absent, so only exact 14-line poems may enter. [Source](https://it.wikisource.org/wiki/Rime_disperse) |
+| `ws_andreini_rime_1601` | Isabella Andreini, *Rime* (1601) | Core | `audit_then_include` | Revision-pinned audit found 196 exact 14-line candidates from 189 pages. Seven paired pages were split only at printed `SONETTO` headings. [Source](https://it.wikisource.org/wiki/Rime_(Andreini)) |
+| `ws_colonna_rime_1760` | Vittoria Colonna, *Rime* (1760 edition) | Core | `audit_then_include` | Revision-pinned audit found 336 exact 14-line candidates from 337 scoped pages: secular sonnets plus `Sonetti spirituali`. The final spiritual page has 17 lines and is excluded. [Source](https://it.wikisource.org/wiki/Rime_(Vittoria_Colonna)) |
+| `ws_stampa_rime_1913` | Gaspara Stampa, *Rime* (1913 edition) | Core | `audit_then_include` | Revision-pinned audit found 282 exact 14-line candidates from 314 pages under the Gaspara Stampa root work only; 32 other forms are excluded. [Source](https://it.wikisource.org/wiki/Rime_(Stampa)) |
+| `ws_ariosto_rime_varie_1857` | Ludovico Ariosto, *Opere minori - Rime varie* (1857) | Core | `audit_then_include` | Revision-pinned audit found 29 exact 14-line candidates from 32 explicitly named sonnet pages; three longer labeled forms are excluded. [Source](https://it.wikisource.org/wiki/Opere_minori_(Ariosto)/Rime_varie) |
+| `ws_sannazaro_rime_disperse` | Jacopo Sannazaro, *Rime disperse* | Core | `audit_then_include` | Revision-pinned audit found 21 exact 14-line candidates among 37 direct-root lyric links. The remaining 16 are other forms. [Source](https://it.wikisource.org/wiki/Rime_disperse) |
 | `ws_belli_sonetti_romaneschi` | Giuseppe Gioachino Belli, *Sonetti romaneschi* | Auxiliary dialectal | `excluded_from_core_language_variety` | The approximately 2,042 Romanesco texts would form about 68% of a combined 3,020-poem v3-plus-Belli corpus, making dialectal language the dominant fine-tuning distribution. The page-level audit was stopped and the source is excluded from core training. It can be reconsidered only as a separately approved dialect-conditioned experiment. [Author page](https://it.wikisource.org/wiki/Autore:Giuseppe_Gioachino_Belli) [Collection](https://it.wikisource.org/wiki/Sonetti_romaneschi) |
 | `ws_aretino_sonetti_lussuriosi_1792` | Pietro Aretino, *Sonetti lussuriosi* (1792 edition) | Excluded from strict corpus | `audit_only_explicit_content` | All 26 audited pages failed the project's exact 14-line gate. They remain excluded, and the local audit report contains hashes and metadata but no text samples. [Source](https://it.wikisource.org/wiki/Sonetti_lussuriosi_(edizione_1792)) |
 | `biblioteca_italiana_tei_poetry` | Biblioteca Italiana TEI poetry collections | Core candidate | `blocked_pending_terms_and_access` | Biblioteca Italiana reports downloadable XML-TEI texts and broad literary coverage, which could allow high-quality poem segmentation. Direct access and the exact reuse terms for a chosen source must be confirmed before ingestion. [Library description](https://bibliodlcm.web.uniroma1.it/it/biblioteca-italiana) |
@@ -97,17 +97,15 @@ claims about final retained text. A regression test requires every source marked
 ### Passed Core Cohort
 
 The five passed sources are deliberately heterogeneous in author and source
-size. Their combined strict-sonnet estimate is 715-757 poems. If the full
-cohort passes page-level form, duplicate, and provenance checks, the resulting
-corpus would contain about 1,726-1,768 poems. Its largest new author, Gaspara
-Stampa, would represent approximately 14.5-16.1% of that combined corpus;
-none approaches the disruptive concentration seen in the excluded Belli
-collection.
+size. Their preliminary strict-sonnet estimate was 715-757 poems. The completed
+page-level audit found 864 eligible candidates. The larger result is primarily
+explained by the correction that added Colonna's 212-page `Sonetti spirituali`
+subtree to its 125 secular pages.
 
 The estimated serial audit time is 90-150 minutes at the established polite
 MediaWiki request rate. The main uncertainty is the source-specific page
 layout, particularly Andreini's paired-sonnet pages and Stampa's mixed forms.
-This estimate covers the audit, not later snapshot creation or corpus building.
+This estimate covered the audit, not later snapshot creation or corpus building.
 
 Pietro Bembo and Michelangelo Buonarroti are standard-Italian candidates but
 are deferred because the accessible collections are only 75% proofread and
@@ -115,6 +113,32 @@ need a dedicated form/edition review. Torquato Tasso's *Rime d'amore* is
 excluded from the current plan because its root is marked 25% complete and
 contains substantial critical commentary. These are documented in the shortlist
 so they cannot be accidentally treated as ready sources.
+
+## Consolidated Audit Results
+
+The committed summary is
+[`data/metadata/sonnet_expansion_audit_results.csv`](../data/metadata/sonnet_expansion_audit_results.csv).
+It contains the source-specific root revisions, audit timestamps, exact scope,
+line-count outcomes, and activation state. Local detailed reports contain only
+bounded samples, hashes, and revision metadata; they remain uncommitted because
+this phase does not activate or distribute any extracted poem text.
+
+| Source | Scoped pages | Candidates | Exact 14 lines | Other line counts | Exact v4 duplicates |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Isabella Andreini | 189 | 196 | 196 | 0 | 0 |
+| Vittoria Colonna | 337 | 337 | 336 | 1 | 0 |
+| Gaspara Stampa | 314 | 314 | 282 | 32 | 0 |
+| Ludovico Ariosto | 32 | 32 | 29 | 3 | 0 |
+| Jacopo Sannazaro | 37 | 37 | 21 | 16 | 0 |
+| **Total** | **909** | **916** | **864** | **52** | **0** |
+
+The strict form and duplicate gates therefore support, but do not themselves
+activate, all 864 candidates. Adding them to the active 1,011-poem V4 corpus
+would produce a projected 1,875-poem corpus. Vittoria Colonna would represent
+336 of those poems, approximately 17.9%; this is substantial but below the
+language-variety concentration risk that excluded the Romanesco Belli source.
+The next required decision is whether to activate all eligible candidates under
+the existing source-specific scope rules.
 
 ## Required Activation Checks
 
@@ -160,8 +184,8 @@ excluded because Romanesco would dominate a combined core corpus. Aretino
 remains excluded because none of its 26 audited pages passes the exact 14-line
 gate.
 
-The next decision is whether to run one consolidated page-level audit of the
-five composition-gate-passed sources. It is scheduled as one bounded job, with
-the 90-150 minute estimate above, a source-specific splitter for Andreini, and
-no corpus activation unless every normal form, duplicate, and provenance check
-is complete.
+The consolidated page-level audit is complete. The next decision is whether to
+activate all 864 eligible candidates into a new versioned processed corpus.
+Activation would build and commit poem text, revision snapshots, deterministic
+splits, source-attribution records, and a provenance report; it would not alter
+the existing V4 corpus or historical experiments.
