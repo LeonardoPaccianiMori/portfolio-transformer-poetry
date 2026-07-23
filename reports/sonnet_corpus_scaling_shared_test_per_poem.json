@@ -1,0 +1,827 @@
+{
+  "dataset": "expanded_with_petrarch",
+  "context_length": 512,
+  "shared_test_poem_count": 99,
+  "shared_test_poem_ids_sha256": "1ee6d307c861abcc614e67cb7d3491b3fb8bc4d33581d68b701cc90b9569cee3",
+  "tokenizer_sha256": "f62debf9411c9f7a743410b73c14a52f886e5189d5329d88b3cacf82bdf9e5eb",
+  "arms": {
+    "v4": {
+      "run_dir": "runs/sonnet_control_quality_swiglu_larger_v4_stable_eval_20k_001",
+      "manifest_path": "data/metadata/sonnets_expanded_v4_manifest.csv",
+      "manifest_sha256": "c4ec631417c14349de46987a70ab5385ff13bba5930c453a1e0e22525ab8a6b4",
+      "checkpoint_path": "/home/lpm/Desktop/portfolio-transformer-poetry/runs/sonnet_control_quality_swiglu_larger_v4_stable_eval_20k_001/best_validation.pt",
+      "selected_checkpoint_step": 1250,
+      "selected_validation_loss": 2.9862830340862274,
+      "target_token_count": 23738,
+      "negative_log_likelihood": 72739.47195529938,
+      "loss": 3.064262867777377,
+      "perplexity": 21.418667776502264
+    },
+    "v5": {
+      "run_dir": "runs/sonnet_control_quality_swiglu_larger_v5_stable_eval_20k_001",
+      "manifest_path": "data/metadata/sonnets_expanded_v5_manifest.csv",
+      "manifest_sha256": "d71abe5bbc048392b7579702124f25bd6dedb400a47a0c171e3f4e6e0aae6275",
+      "checkpoint_path": "/home/lpm/Desktop/portfolio-transformer-poetry/runs/sonnet_control_quality_swiglu_larger_v5_stable_eval_20k_001/best_validation.pt",
+      "selected_checkpoint_step": 2250,
+      "selected_validation_loss": 2.8999262694474104,
+      "target_token_count": 23738,
+      "negative_log_likelihood": 72047.07785868645,
+      "loss": 3.0350946945271904,
+      "perplexity": 20.802947731507665
+    }
+  },
+  "per_poem": [
+    {
+      "poem_id": "alfieri_clxxxii_desidera_che_la_morte_lo_colga_insieme_con_la_sua_donna",
+      "target_token_count": 257,
+      "v4_negative_log_likelihood": 959.3044183254242,
+      "v4_loss": 3.7327020168304443,
+      "v5_negative_log_likelihood": 921.4426186084747,
+      "v5_loss": 3.5853798389434814
+    },
+    {
+      "poem_id": "alfieri_ix_non_cessera_mai_di_amare_la_contessa",
+      "target_token_count": 268,
+      "v4_negative_log_likelihood": 897.8894929885864,
+      "v4_loss": 3.3503339290618896,
+      "v5_negative_log_likelihood": 848.822850227356,
+      "v5_loss": 3.1672494411468506
+    },
+    {
+      "poem_id": "alfieri_lxii_effetti_d_amore_collocato_in_degna_persona",
+      "target_token_count": 265,
+      "v4_negative_log_likelihood": 816.5809607505798,
+      "v4_loss": 3.081437587738037,
+      "v5_negative_log_likelihood": 775.2008044719696,
+      "v5_loss": 2.925286054611206
+    },
+    {
+      "poem_id": "alfieri_xc_gioisce_e_soffre_nell_avvicinarsi_alla_sua_donna",
+      "target_token_count": 250,
+      "v4_negative_log_likelihood": 885.1053714752197,
+      "v4_loss": 3.540421485900879,
+      "v5_negative_log_likelihood": 853.7399172782898,
+      "v5_loss": 3.414959669113159
+    },
+    {
+      "poem_id": "cavalcanti_amore_e_monna_lagia_e_guido_ed_io",
+      "target_token_count": 233,
+      "v4_negative_log_likelihood": 695.329710483551,
+      "v4_loss": 2.9842476844787598,
+      "v5_negative_log_likelihood": 699.4196918010712,
+      "v5_loss": 3.0018012523651123
+    },
+    {
+      "poem_id": "cavalcanti_farinata_degli_uberti_a_guido",
+      "target_token_count": 228,
+      "v4_negative_log_likelihood": 803.5375957489014,
+      "v4_loss": 3.524287700653076,
+      "v5_negative_log_likelihood": 794.7626781463623,
+      "v5_loss": 3.4858012199401855
+    },
+    {
+      "poem_id": "cavalcanti_una_figura_de_la_donna_mia",
+      "target_token_count": 225,
+      "v4_negative_log_likelihood": 769.7051525115967,
+      "v4_loss": 3.4209117889404297,
+      "v5_negative_log_likelihood": 774.3322312831879,
+      "v5_loss": 3.441476583480835
+    },
+    {
+      "poem_id": "cecco_cix_avvegna_ched_i_paghi_l_tu_mirare",
+      "target_token_count": 238,
+      "v4_negative_log_likelihood": 617.8001546859741,
+      "v4_loss": 2.595798969268799,
+      "v5_negative_log_likelihood": 622.782244682312,
+      "v5_loss": 2.616732120513916
+    },
+    {
+      "poem_id": "cecco_cxiii_quando_mie_donn_esce_la_man_del_letto",
+      "target_token_count": 230,
+      "v4_negative_log_likelihood": 791.1026239395142,
+      "v4_loss": 3.4395766258239746,
+      "v5_negative_log_likelihood": 792.8232216835022,
+      "v5_loss": 3.4470574855804443
+    },
+    {
+      "poem_id": "cecco_cxxi_i_son_venuto_di_schiatta_di_struzzo",
+      "target_token_count": 263,
+      "v4_negative_log_likelihood": 752.6282439231873,
+      "v4_loss": 2.8617043495178223,
+      "v5_negative_log_likelihood": 750.6102383136749,
+      "v5_loss": 2.8540313243865967
+    },
+    {
+      "poem_id": "cecco_lxii_i_sono_innamorato_ma_non_tanto",
+      "target_token_count": 230,
+      "v4_negative_log_likelihood": 707.2210574150085,
+      "v4_loss": 3.07487416267395,
+      "v5_negative_log_likelihood": 707.2184801101685,
+      "v5_loss": 3.0748629570007324
+    },
+    {
+      "poem_id": "cecco_lxiii_e_non_ha_tante_gocciole_nel_mare",
+      "target_token_count": 238,
+      "v4_negative_log_likelihood": 708.6931095123291,
+      "v4_loss": 2.9777021408081055,
+      "v5_negative_log_likelihood": 709.673752784729,
+      "v5_loss": 2.9818224906921387
+    },
+    {
+      "poem_id": "cecco_lxxix_per_ogni_oncia_di_carne_che_ho_addosso",
+      "target_token_count": 248,
+      "v4_negative_log_likelihood": 723.0745506286621,
+      "v4_loss": 2.915623188018799,
+      "v5_negative_log_likelihood": 722.1369018554688,
+      "v5_loss": 2.9118423461914062
+    },
+    {
+      "poem_id": "cecco_lxxviii_in_nessun_modo_mi_poss_acconciare",
+      "target_token_count": 238,
+      "v4_negative_log_likelihood": 685.1189150810242,
+      "v4_loss": 2.8786509037017822,
+      "v5_negative_log_likelihood": 687.1397824287415,
+      "v5_loss": 2.8871419429779053
+    },
+    {
+      "poem_id": "cecco_lxxxvi_s_i_fosse_foco_arderei_l_mondo",
+      "target_token_count": 238,
+      "v4_negative_log_likelihood": 728.0375776290894,
+      "v4_loss": 3.058981418609619,
+      "v5_negative_log_likelihood": 731.9686622619629,
+      "v5_loss": 3.075498580932617
+    },
+    {
+      "poem_id": "cecco_xc_i_potre_anzi_ritornare_in_ieri",
+      "target_token_count": 228,
+      "v4_negative_log_likelihood": 799.9896640777588,
+      "v4_loss": 3.5087265968322754,
+      "v5_negative_log_likelihood": 801.6028890609741,
+      "v5_loss": 3.5158021450042725
+    },
+    {
+      "poem_id": "cecco_xiv_chi_vol_vantaggio_aver_a_l_altre_genti",
+      "target_token_count": 225,
+      "v4_negative_log_likelihood": 718.1044399738312,
+      "v4_loss": 3.191575288772583,
+      "v5_negative_log_likelihood": 714.9807393550873,
+      "v5_loss": 3.177692174911499
+    },
+    {
+      "poem_id": "cecco_xliv_il_come_né_l_perché_ben_lo_sa_dio",
+      "target_token_count": 250,
+      "v4_negative_log_likelihood": 756.9482326507568,
+      "v4_loss": 3.0277929306030273,
+      "v5_negative_log_likelihood": 767.8355574607849,
+      "v5_loss": 3.0713422298431396
+    },
+    {
+      "poem_id": "cecco_xlviii_da_giuda_in_fuor_neuno_sciagurato",
+      "target_token_count": 239,
+      "v4_negative_log_likelihood": 732.5684621334076,
+      "v4_loss": 3.0651400089263916,
+      "v5_negative_log_likelihood": 725.8914206027985,
+      "v5_loss": 3.0372025966644287
+    },
+    {
+      "poem_id": "cecco_xxii_becchina_mia_cecco_nol_ti_confesso",
+      "target_token_count": 331,
+      "v4_negative_log_likelihood": 938.5347962379456,
+      "v4_loss": 2.8354525566101074,
+      "v5_negative_log_likelihood": 956.2838385105133,
+      "v5_loss": 2.8890750408172607
+    },
+    {
+      "poem_id": "cecco_xxvi_anima_mia_cuor_del_mi_corp_amore",
+      "target_token_count": 256,
+      "v4_negative_log_likelihood": 678.4937744140625,
+      "v4_loss": 2.6503663063049316,
+      "v5_negative_log_likelihood": 687.89892578125,
+      "v5_loss": 2.687105178833008
+    },
+    {
+      "poem_id": "cino_a_che_roma_superba_tante_leggi",
+      "target_token_count": 252,
+      "v4_negative_log_likelihood": 837.4134721755981,
+      "v4_loss": 3.3230693340301514,
+      "v5_negative_log_likelihood": 809.1366033554077,
+      "v5_loss": 3.210859537124634
+    },
+    {
+      "poem_id": "cino_cecco_io_ti_prego_per_virtù_di_quella",
+      "target_token_count": 250,
+      "v4_negative_log_likelihood": 763.3923292160034,
+      "v4_loss": 3.0535693168640137,
+      "v5_negative_log_likelihood": 757.2938203811646,
+      "v5_loss": 3.029175281524658
+    },
+    {
+      "poem_id": "cino_non_credo_che_n_madonna_sia_venuto",
+      "target_token_count": 226,
+      "v4_negative_log_likelihood": 631.292407989502,
+      "v4_loss": 2.7933292388916016,
+      "v5_negative_log_likelihood": 632.8966007232666,
+      "v5_loss": 2.8004274368286133
+    },
+    {
+      "poem_id": "cino_o_tu_amor_che_m_hai_fatto_martire",
+      "target_token_count": 244,
+      "v4_negative_log_likelihood": 712.5124797821045,
+      "v4_loss": 2.920133113861084,
+      "v5_negative_log_likelihood": 684.7295026779175,
+      "v5_loss": 2.8062684535980225
+    },
+    {
+      "poem_id": "cino_una_donna_mi_passa_per_la_mente",
+      "target_token_count": 209,
+      "v4_negative_log_likelihood": 574.4754395484924,
+      "v4_loss": 2.7486863136291504,
+      "v5_negative_log_likelihood": 562.5840818881989,
+      "v5_loss": 2.6917898654937744
+    },
+    {
+      "poem_id": "dante_cv_se_vedi_li_occhi_miei_di_pianger_vaghi",
+      "target_token_count": 250,
+      "v4_negative_log_likelihood": 744.2132830619812,
+      "v4_loss": 2.976853132247925,
+      "v5_negative_log_likelihood": 718.8427448272705,
+      "v5_loss": 2.875370979309082
+    },
+    {
+      "poem_id": "dante_cxii_cercando_di_trovar_minera_in_oro",
+      "target_token_count": 244,
+      "v4_negative_log_likelihood": 630.0805473327637,
+      "v4_loss": 2.5822973251342773,
+      "v5_negative_log_likelihood": 644.3378057479858,
+      "v5_loss": 2.640728712081909
+    },
+    {
+      "poem_id": "dante_cxiv_io_mi_credea_del_tutto_esser_partito",
+      "target_token_count": 222,
+      "v4_negative_log_likelihood": 642.6977763175964,
+      "v4_loss": 2.8950350284576416,
+      "v5_negative_log_likelihood": 632.2316637039185,
+      "v5_loss": 2.8478903770446777
+    },
+    {
+      "poem_id": "dante_iv_di_ciò_che_stato_sei_dimandatore",
+      "target_token_count": 218,
+      "v4_negative_log_likelihood": 738.7768306732178,
+      "v4_loss": 3.3888845443725586,
+      "v5_negative_log_likelihood": 732.4057564735413,
+      "v5_loss": 3.359659433364868
+    },
+    {
+      "poem_id": "dante_liii_s_io_fosse_quelli_che_d_amor_fu_degno",
+      "target_token_count": 217,
+      "v4_negative_log_likelihood": 520.7669608592987,
+      "v4_loss": 2.3998477458953857,
+      "v5_negative_log_likelihood": 535.8303463459015,
+      "v5_loss": 2.469264268875122
+    },
+    {
+      "poem_id": "dante_lxiv_poi_che_traesti_infino_al_ferro_l_arco",
+      "target_token_count": 235,
+      "v4_negative_log_likelihood": 801.9403350353241,
+      "v4_loss": 3.4125120639801025,
+      "v5_negative_log_likelihood": 794.5310318470001,
+      "v5_loss": 3.3809831142425537
+    },
+    {
+      "poem_id": "dante_lxix_di_donne_io_vidi_una_gentile_schiera",
+      "target_token_count": 230,
+      "v4_negative_log_likelihood": 703.6113500595093,
+      "v4_loss": 3.0591797828674316,
+      "v5_negative_log_likelihood": 693.5736799240112,
+      "v5_loss": 3.015537738800049
+    },
+    {
+      "poem_id": "dante_lxx_onde_venite_voi_così_pensose",
+      "target_token_count": 211,
+      "v4_negative_log_likelihood": 572.3986423015594,
+      "v4_loss": 2.71278977394104,
+      "v5_negative_log_likelihood": 569.6126782894135,
+      "v5_loss": 2.6995861530303955
+    },
+    {
+      "poem_id": "dante_lxxvi_va_rivesti_san_gal_prima_che_dichi",
+      "target_token_count": 242,
+      "v4_negative_log_likelihood": 772.6586494445801,
+      "v4_loss": 3.1928043365478516,
+      "v5_negative_log_likelihood": 780.0222668647766,
+      "v5_loss": 3.2232325077056885
+    },
+    {
+      "poem_id": "dante_xix_se_tu_colui_c_hai_trattato_sovente",
+      "target_token_count": 203,
+      "v4_negative_log_likelihood": 645.9933667182922,
+      "v4_loss": 3.1822333335876465,
+      "v5_negative_log_likelihood": 649.6489410400391,
+      "v5_loss": 3.2002410888671875
+    },
+    {
+      "poem_id": "dante_xliii_lo_vostro_fermo_dir_fino_ed_orrato",
+      "target_token_count": 234,
+      "v4_negative_log_likelihood": 752.5208659172058,
+      "v4_loss": 3.2159011363983154,
+      "v5_negative_log_likelihood": 754.270327091217,
+      "v5_loss": 3.2233774662017822
+    },
+    {
+      "poem_id": "dante_xxvi_venite_a_intender_li_sospiri_miei",
+      "target_token_count": 210,
+      "v4_negative_log_likelihood": 582.034900188446,
+      "v4_loss": 2.771594762802124,
+      "v5_negative_log_likelihood": 568.836350440979,
+      "v5_loss": 2.708744525909424
+    },
+    {
+      "poem_id": "dante_xxxviii_dante_allaghier_cecco_l_tu_servo_e_amico",
+      "target_token_count": 246,
+      "v4_negative_log_likelihood": 691.9432697296143,
+      "v4_loss": 2.812777519226074,
+      "v5_negative_log_likelihood": 683.0540113449097,
+      "v5_loss": 2.776642322540283
+    },
+    {
+      "poem_id": "folgore_029",
+      "target_token_count": 243,
+      "v4_negative_log_likelihood": 763.9073688983917,
+      "v4_loss": 3.1436517238616943,
+      "v5_negative_log_likelihood": 768.3364963531494,
+      "v5_loss": 3.1618785858154297
+    },
+    {
+      "poem_id": "folgore_033",
+      "target_token_count": 226,
+      "v4_negative_log_likelihood": 715.4354205131531,
+      "v4_loss": 3.1656434535980225,
+      "v5_negative_log_likelihood": 704.4054908752441,
+      "v5_loss": 3.1168384552001953
+    },
+    {
+      "poem_id": "folgore_036",
+      "target_token_count": 214,
+      "v4_negative_log_likelihood": 691.730474948883,
+      "v4_loss": 3.2323853969573975,
+      "v5_negative_log_likelihood": 691.1088790893555,
+      "v5_loss": 3.229480743408203
+    },
+    {
+      "poem_id": "folgore_040",
+      "target_token_count": 218,
+      "v4_negative_log_likelihood": 665.7800345420837,
+      "v4_loss": 3.054036855697632,
+      "v5_negative_log_likelihood": 670.3975677490234,
+      "v5_loss": 3.0752182006835938
+    },
+    {
+      "poem_id": "folgore_046",
+      "target_token_count": 201,
+      "v4_negative_log_likelihood": 601.0631790161133,
+      "v4_loss": 2.9903640747070312,
+      "v5_negative_log_likelihood": 568.1892178058624,
+      "v5_loss": 2.8268120288848877
+    },
+    {
+      "poem_id": "foscolo_te_nudrice_alle_muse_ospite_e_dea_1835",
+      "target_token_count": 257,
+      "v4_negative_log_likelihood": 911.7518351078033,
+      "v4_loss": 3.5476725101470947,
+      "v5_negative_log_likelihood": 858.5115323066711,
+      "v5_loss": 3.3405117988586426
+    },
+    {
+      "poem_id": "giacomo_guardando_basalisco_velenoso",
+      "target_token_count": 211,
+      "v4_negative_log_likelihood": 704.0590355396271,
+      "v4_loss": 3.3367726802825928,
+      "v5_negative_log_likelihood": 720.3940007686615,
+      "v5_loss": 3.414189577102661
+    },
+    {
+      "poem_id": "giacomo_madonna_à_n_sé_vertute_con_valore",
+      "target_token_count": 231,
+      "v4_negative_log_likelihood": 747.2004911899567,
+      "v4_loss": 3.2346341609954834,
+      "v5_negative_log_likelihood": 737.735960483551,
+      "v5_loss": 3.193662166595459
+    },
+    {
+      "poem_id": "guittone_ahi_como_ben_del_meo_stato_mi_pare",
+      "target_token_count": 260,
+      "v4_negative_log_likelihood": 815.7771015167236,
+      "v4_loss": 3.137604236602783,
+      "v5_negative_log_likelihood": 818.9051198959351,
+      "v5_loss": 3.149635076522827
+    },
+    {
+      "poem_id": "guittone_amor_merzé_per_deo_merzé_merzede",
+      "target_token_count": 241,
+      "v4_negative_log_likelihood": 738.5668740272522,
+      "v4_loss": 3.0645928382873535,
+      "v5_negative_log_likelihood": 740.5829911231995,
+      "v5_loss": 3.072958469390869
+    },
+    {
+      "poem_id": "guittone_d_animo_fievilezza_e_codardia",
+      "target_token_count": 248,
+      "v4_negative_log_likelihood": 833.0590724945068,
+      "v4_loss": 3.3591091632843018,
+      "v5_negative_log_likelihood": 840.9846229553223,
+      "v5_loss": 3.3910670280456543
+    },
+    {
+      "poem_id": "guittone_de_vizi_tutti_frati_e_vertù_dire",
+      "target_token_count": 221,
+      "v4_negative_log_likelihood": 788.6952042579651,
+      "v4_loss": 3.568756580352783,
+      "v5_negative_log_likelihood": 793.8888020515442,
+      "v5_loss": 3.592257022857666
+    },
+    {
+      "poem_id": "guittone_deo_che_ben_aggia_il_cor_meo_che_sì_bello",
+      "target_token_count": 253,
+      "v4_negative_log_likelihood": 722.9130163192749,
+      "v4_loss": 2.857363700866699,
+      "v5_negative_log_likelihood": 732.2585594654083,
+      "v5_loss": 2.8943026065826416
+    },
+    {
+      "poem_id": "guittone_deo_con_dimandi_ciò_che_t_ho_donato",
+      "target_token_count": 234,
+      "v4_negative_log_likelihood": 726.7690629959106,
+      "v4_loss": 3.1058506965637207,
+      "v5_negative_log_likelihood": 740.8889408111572,
+      "v5_loss": 3.166192054748535
+    },
+    {
+      "poem_id": "guittone_donna_lo_reo_fallire_mi_spaventa",
+      "target_token_count": 228,
+      "v4_negative_log_likelihood": 623.4132013320923,
+      "v4_loss": 2.7342684268951416,
+      "v5_negative_log_likelihood": 620.508885383606,
+      "v5_loss": 2.7215301990509033
+    },
+    {
+      "poem_id": "guittone_ed_en_ciascuna_volsi_conto_e_saggio",
+      "target_token_count": 229,
+      "v4_negative_log_likelihood": 747.9963409900665,
+      "v4_loss": 3.266359567642212,
+      "v5_negative_log_likelihood": 749.0269846916199,
+      "v5_loss": 3.270860195159912
+    },
+    {
+      "poem_id": "guittone_eo_t_aggio_inteso_e_te_responderaggio",
+      "target_token_count": 236,
+      "v4_negative_log_likelihood": 780.7711267471313,
+      "v4_loss": 3.30835223197937,
+      "v5_negative_log_likelihood": 785.9986486434937,
+      "v5_loss": 3.33050274848938
+    },
+    {
+      "poem_id": "guittone_grazie_e_merzé_voi_gentil_donna_orrata",
+      "target_token_count": 235,
+      "v4_negative_log_likelihood": 753.2240068912506,
+      "v4_loss": 3.2052085399627686,
+      "v5_negative_log_likelihood": 755.5691862106323,
+      "v5_loss": 3.2151880264282227
+    },
+    {
+      "poem_id": "guittone_ho_da_la_donna_mia_in_comandamento",
+      "target_token_count": 238,
+      "v4_negative_log_likelihood": 727.1659388542175,
+      "v4_loss": 3.05531907081604,
+      "v5_negative_log_likelihood": 735.1270689964294,
+      "v5_loss": 3.0887691974639893
+    },
+    {
+      "poem_id": "guittone_la_planeta_mi_pare_oscurata",
+      "target_token_count": 230,
+      "v4_negative_log_likelihood": 662.6839137077332,
+      "v4_loss": 2.8812344074249268,
+      "v5_negative_log_likelihood": 666.0170817375183,
+      "v5_loss": 2.895726442337036
+    },
+    {
+      "poem_id": "guittone_mastro_bandin_vostr_e_d_amor_mercede",
+      "target_token_count": 230,
+      "v4_negative_log_likelihood": 682.5456118583679,
+      "v4_loss": 2.9675896167755127,
+      "v5_negative_log_likelihood": 690.9593605995178,
+      "v5_loss": 3.004171133041382
+    },
+    {
+      "poem_id": "guittone_non_giustizia_cioè_falsezza_e_torto",
+      "target_token_count": 257,
+      "v4_negative_log_likelihood": 868.9334321022034,
+      "v4_loss": 3.381063938140869,
+      "v5_negative_log_likelihood": 883.4767763614655,
+      "v5_loss": 3.437652826309204
+    },
+    {
+      "poem_id": "guittone_o_grave_o_fellonesco_o_periglioso",
+      "target_token_count": 248,
+      "v4_negative_log_likelihood": 857.153003692627,
+      "v4_loss": 3.4562621116638184,
+      "v5_negative_log_likelihood": 857.4842376708984,
+      "v5_loss": 3.4575977325439453
+    },
+    {
+      "poem_id": "guittone_o_tracoitata_e_forsennata_gente",
+      "target_token_count": 221,
+      "v4_negative_log_likelihood": 842.2163233757019,
+      "v4_loss": 3.8109335899353027,
+      "v5_negative_log_likelihood": 832.5626850128174,
+      "v5_loss": 3.767251968383789
+    },
+    {
+      "poem_id": "guittone_se_deo_m_aiuti_amor_peccato_fate",
+      "target_token_count": 281,
+      "v4_negative_log_likelihood": 894.4401755332947,
+      "v4_loss": 3.183061122894287,
+      "v5_negative_log_likelihood": 874.3219935894012,
+      "v5_loss": 3.1114661693573
+    },
+    {
+      "poem_id": "guittone_sempre_poria_l_om_dir_en_esta_parte",
+      "target_token_count": 236,
+      "v4_negative_log_likelihood": 744.4006147384644,
+      "v4_loss": 3.1542398929595947,
+      "v5_negative_log_likelihood": 755.4671096801758,
+      "v5_loss": 3.201131820678711
+    },
+    {
+      "poem_id": "guittone_similemente_vole_ch_om_s_enfeggia",
+      "target_token_count": 231,
+      "v4_negative_log_likelihood": 718.0796928405762,
+      "v4_loss": 3.108570098876953,
+      "v5_negative_log_likelihood": 731.7413556575775,
+      "v5_loss": 3.1677114963531494
+    },
+    {
+      "poem_id": "guittone_tu_costante_e_sicuro_fondamento",
+      "target_token_count": 231,
+      "v4_negative_log_likelihood": 663.8475337028503,
+      "v4_loss": 2.8737988471984863,
+      "v5_negative_log_likelihood": 693.2798895835876,
+      "v5_loss": 3.001211643218994
+    },
+    {
+      "poem_id": "guittone_vizio_di_gola_tu_brutto_e_ontoso",
+      "target_token_count": 250,
+      "v4_negative_log_likelihood": 859.6103191375732,
+      "v4_loss": 3.438441276550293,
+      "v5_negative_log_likelihood": 855.9359908103943,
+      "v5_loss": 3.423743963241577
+    },
+    {
+      "poem_id": "guittone_è_soa_natura_e_so_poder_d_amore",
+      "target_token_count": 230,
+      "v4_negative_log_likelihood": 674.559805393219,
+      "v4_loss": 2.932868719100952,
+      "v5_negative_log_likelihood": 678.223032951355,
+      "v5_loss": 2.948795795440674
+    },
+    {
+      "poem_id": "petrarca_amor_natura_et_la_bella_alma_humile",
+      "target_token_count": 244,
+      "v4_negative_log_likelihood": 729.3333559036255,
+      "v4_loss": 2.9890711307525635,
+      "v5_negative_log_likelihood": 709.427098274231,
+      "v5_loss": 2.9074881076812744
+    },
+    {
+      "poem_id": "petrarca_arbor_victorïosa_trumphale",
+      "target_token_count": 237,
+      "v4_negative_log_likelihood": 756.9829173088074,
+      "v4_loss": 3.1940207481384277,
+      "v5_negative_log_likelihood": 739.1089653968811,
+      "v5_loss": 3.118603229522705
+    },
+    {
+      "poem_id": "petrarca_beato_in_sogno_et_di_languir_contento",
+      "target_token_count": 267,
+      "v4_negative_log_likelihood": 807.0869550704956,
+      "v4_loss": 3.0227975845336914,
+      "v5_negative_log_likelihood": 821.8752257823944,
+      "v5_loss": 3.0781843662261963
+    },
+    {
+      "poem_id": "petrarca_ben_sapeva_io_che_natural_consiglio",
+      "target_token_count": 253,
+      "v4_negative_log_likelihood": 757.8305780887604,
+      "v4_loss": 2.995377779006958,
+      "v5_negative_log_likelihood": 745.5777363777161,
+      "v5_loss": 2.9469475746154785
+    },
+    {
+      "poem_id": "petrarca_come_va_l_mondo_or_mi_diletta_et_piace",
+      "target_token_count": 238,
+      "v4_negative_log_likelihood": 698.9956245422363,
+      "v4_loss": 2.9369564056396484,
+      "v5_negative_log_likelihood": 672.0101170539856,
+      "v5_loss": 2.8235719203948975
+    },
+    {
+      "poem_id": "petrarca_dicesette_anni_à_già_rivolto_il_cielo",
+      "target_token_count": 256,
+      "v4_negative_log_likelihood": 751.3726806640625,
+      "v4_loss": 2.935049533843994,
+      "v5_negative_log_likelihood": 737.7772827148438,
+      "v5_loss": 2.8819425106048584
+    },
+    {
+      "poem_id": "petrarca_discolorato_ài_morte_il_piú_bel_volto",
+      "target_token_count": 254,
+      "v4_negative_log_likelihood": 705.5761184692383,
+      "v4_loss": 2.7778587341308594,
+      "v5_negative_log_likelihood": 683.447018623352,
+      "v5_loss": 2.6907362937927246
+    },
+    {
+      "poem_id": "petrarca_due_rose_fresche_et_colte_in_paradiso",
+      "target_token_count": 243,
+      "v4_negative_log_likelihood": 713.505672454834,
+      "v4_loss": 2.936237335205078,
+      "v5_negative_log_likelihood": 703.6782689094543,
+      "v5_loss": 2.8957953453063965
+    },
+    {
+      "poem_id": "petrarca_e_mi_par_d_or_in_hora_udire_il_messo",
+      "target_token_count": 237,
+      "v4_negative_log_likelihood": 678.9659571647644,
+      "v4_loss": 2.864835262298584,
+      "v5_negative_log_likelihood": 661.0982773303986,
+      "v5_loss": 2.7894442081451416
+    },
+    {
+      "poem_id": "petrarca_giunto_alexandro_a_la_famosa_tomba",
+      "target_token_count": 234,
+      "v4_negative_log_likelihood": 691.8020439147949,
+      "v4_loss": 2.956418991088867,
+      "v5_negative_log_likelihood": 686.3674893379211,
+      "v5_loss": 2.933194398880005
+    },
+    {
+      "poem_id": "petrarca_il_figliuol_di_latona_avea_già_nove",
+      "target_token_count": 225,
+      "v4_negative_log_likelihood": 678.5068273544312,
+      "v4_loss": 3.0155858993530273,
+      "v5_negative_log_likelihood": 670.8110332489014,
+      "v5_loss": 2.981382369995117
+    },
+    {
+      "poem_id": "petrarca_il_successor_di_karlo_che_la_chioma",
+      "target_token_count": 239,
+      "v4_negative_log_likelihood": 760.6645967960358,
+      "v4_loss": 3.182697057723999,
+      "v5_negative_log_likelihood": 758.1039378643036,
+      "v5_loss": 3.171983003616333
+    },
+    {
+      "poem_id": "petrarca_in_nobil_sangue_vita_humile_et_queta",
+      "target_token_count": 247,
+      "v4_negative_log_likelihood": 754.5967354774475,
+      "v4_loss": 3.0550475120544434,
+      "v5_negative_log_likelihood": 737.5867710113525,
+      "v5_loss": 2.9861812591552734
+    },
+    {
+      "poem_id": "petrarca_io_amai_sempre_et_amo_forte_anchora",
+      "target_token_count": 237,
+      "v4_negative_log_likelihood": 688.1952910423279,
+      "v4_loss": 2.903777599334717,
+      "v5_negative_log_likelihood": 671.8007583618164,
+      "v5_loss": 2.8346023559570312
+    },
+    {
+      "poem_id": "petrarca_l_arbor_gentil_che_forte_amai_molt_anni",
+      "target_token_count": 235,
+      "v4_negative_log_likelihood": 717.0258724689484,
+      "v4_loss": 3.0511739253997803,
+      "v5_negative_log_likelihood": 702.9323852062225,
+      "v5_loss": 2.991201639175415
+    },
+    {
+      "poem_id": "petrarca_l_ardente_nodo_ov_io_fui_d_ora_in_hora",
+      "target_token_count": 252,
+      "v4_negative_log_likelihood": 728.7392292022705,
+      "v4_loss": 2.891822338104248,
+      "v5_negative_log_likelihood": 725.0279359817505,
+      "v5_loss": 2.8770949840545654
+    },
+    {
+      "poem_id": "petrarca_l_aura_gentil_che_rasserena_i_poggi",
+      "target_token_count": 271,
+      "v4_negative_log_likelihood": 735.7068910598755,
+      "v4_loss": 2.714785575866699,
+      "v5_negative_log_likelihood": 721.4726688861847,
+      "v5_loss": 2.6622607707977295
+    },
+    {
+      "poem_id": "petrarca_l_aura_serena_che_fra_verdi_fronde",
+      "target_token_count": 246,
+      "v4_negative_log_likelihood": 747.5123076438904,
+      "v4_loss": 3.038667917251587,
+      "v5_negative_log_likelihood": 713.2537479400635,
+      "v5_loss": 2.8994054794311523
+    },
+    {
+      "poem_id": "petrarca_non_fur_ma_giove_et_cesare_sí_mossi",
+      "target_token_count": 246,
+      "v4_negative_log_likelihood": 770.5836052894592,
+      "v4_loss": 3.132453680038452,
+      "v5_negative_log_likelihood": 735.8286237716675,
+      "v5_loss": 2.991173267364502
+    },
+    {
+      "poem_id": "petrarca_persequendomi_amor_al_luogo_usato",
+      "target_token_count": 238,
+      "v4_negative_log_likelihood": 659.227765083313,
+      "v4_loss": 2.769864559173584,
+      "v5_negative_log_likelihood": 641.5534319877625,
+      "v5_loss": 2.6956026554107666
+    },
+    {
+      "poem_id": "petrarca_poco_era_ad_appressarsi_agli_occhi_miei",
+      "target_token_count": 260,
+      "v4_negative_log_likelihood": 782.5391244888306,
+      "v4_loss": 3.009765863418579,
+      "v5_negative_log_likelihood": 771.1071443557739,
+      "v5_loss": 2.965796709060669
+    },
+    {
+      "poem_id": "petrarca_poi_che_l_camin_m_è_chiuso_di_mercede",
+      "target_token_count": 262,
+      "v4_negative_log_likelihood": 771.5642466545105,
+      "v4_loss": 2.944901704788208,
+      "v5_negative_log_likelihood": 744.973361492157,
+      "v5_loss": 2.843409776687622
+    },
+    {
+      "poem_id": "petrarca_s_al_principio_risponde_il_fine_e_l_mezzo",
+      "target_token_count": 253,
+      "v4_negative_log_likelihood": 646.238762140274,
+      "v4_loss": 2.5543034076690674,
+      "v5_negative_log_likelihood": 649.0904457569122,
+      "v5_loss": 2.565574884414673
+    },
+    {
+      "poem_id": "petrarca_s_io_credesse_per_morte_essere_scarco",
+      "target_token_count": 240,
+      "v4_negative_log_likelihood": 679.5913124084473,
+      "v4_loss": 2.8316304683685303,
+      "v5_negative_log_likelihood": 654.0295600891113,
+      "v5_loss": 2.725123167037964
+    },
+    {
+      "poem_id": "petrarca_soleano_i_miei_penser_soavemente",
+      "target_token_count": 249,
+      "v4_negative_log_likelihood": 692.9958500862122,
+      "v4_loss": 2.783115863800049,
+      "v5_negative_log_likelihood": 675.5550620555878,
+      "v5_loss": 2.7130725383758545
+    },
+    {
+      "poem_id": "petrarca_tenemmi_amor_anni_ventuno_ardendo",
+      "target_token_count": 256,
+      "v4_negative_log_likelihood": 708.9853515625,
+      "v4_loss": 2.7694740295410156,
+      "v5_negative_log_likelihood": 688.0137939453125,
+      "v5_loss": 2.687553882598877
+    },
+    {
+      "poem_id": "petrarca_vinse_hanibàl_et_non_seppe_usar_poi",
+      "target_token_count": 226,
+      "v4_negative_log_likelihood": 716.1306138038635,
+      "v4_loss": 3.168719530105591,
+      "v5_negative_log_likelihood": 719.0899538993835,
+      "v5_loss": 3.181813955307007
+    },
+    {
+      "poem_id": "petrarca_vive_faville_uscian_de_duo_bei_lumi",
+      "target_token_count": 230,
+      "v4_negative_log_likelihood": 732.1565914154053,
+      "v4_loss": 3.1832895278930664,
+      "v5_negative_log_likelihood": 718.4238886833191,
+      "v5_loss": 3.123582124710083
+    },
+    {
+      "poem_id": "varchi_sonetto_iii",
+      "target_token_count": 241,
+      "v4_negative_log_likelihood": 786.7636103630066,
+      "v4_loss": 3.2645792961120605,
+      "v5_negative_log_likelihood": 735.5194849967957,
+      "v5_loss": 3.051948070526123
+    },
+    {
+      "poem_id": "varchi_sonetto_v",
+      "target_token_count": 232,
+      "v4_negative_log_likelihood": 678.0550441741943,
+      "v4_loss": 2.9226510524749756,
+      "v5_negative_log_likelihood": 649.8422603607178,
+      "v5_loss": 2.801044225692749
+    }
+  ]
+}
