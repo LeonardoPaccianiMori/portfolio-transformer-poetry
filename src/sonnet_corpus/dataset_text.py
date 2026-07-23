@@ -40,6 +40,27 @@ def read_manifest_rows(manifest_path: Path) -> list[dict[str, str]]:
         return list(reader)
 
 
+def validate_manifest_rows(
+    rows: list[dict[str, str]],
+    dataset: str,
+) -> None:
+    """Reject empty or structurally incompatible sonnet manifests."""
+    if not rows:
+        raise ValueError("sonnet manifest must contain at least one data row")
+
+    required_columns = {
+        "poem_id",
+        "clean_text_path",
+        dataset_include_column(dataset),
+        dataset_split_column(dataset),
+    }
+    missing_columns = sorted(required_columns - rows[0].keys())
+    if missing_columns:
+        raise ValueError(
+            "sonnet manifest is missing columns: " + ", ".join(missing_columns)
+        )
+
+
 def select_manifest_rows(
     rows: list[dict[str, str]],
     dataset: str,
@@ -324,6 +345,7 @@ def load_pretraining_bpe_encoded_splits(
     """Load sonnet splits encoded by the fixed broader-pretraining tokenizer."""
     tokenizer = BytePairEncodingTokenizer.load(tokenizer_path)
     rows = read_manifest_rows(manifest_path)
+    validate_manifest_rows(rows, dataset)
 
     split_texts: list[list[str]] = []
     for split in ("train", "validation", "test"):

@@ -1,4 +1,5 @@
 import csv
+import hashlib
 import json
 from pathlib import Path
 
@@ -312,6 +313,78 @@ def test_control_arms_write_matching_data_and_architecture_metadata(tmp_path):
     assert random_result["checkpoint_dir"].joinpath("step_2.pt").is_file()
     assert random_result["best_checkpoint_path"].is_file()
     assert best_checkpoint["step"] == random_config["best_validation_step"]
+
+
+def test_control_run_uses_explicit_manifest_and_records_its_hash(tmp_path):
+    write_control_inputs(tmp_path)
+    default_manifest = tmp_path / "data" / "metadata" / "poems_manifest.csv"
+    versioned_manifest = (
+        tmp_path / "data" / "metadata" / "sonnets_expanded_test_manifest.csv"
+    )
+    default_manifest.replace(versioned_manifest)
+    config = SonnetControlRunConfig(
+        **{
+            **tiny_control_config(tmp_path, "random").__dict__,
+            "manifest_path": (
+                "data/metadata/sonnets_expanded_test_manifest.csv"
+            ),
+        }
+    )
+
+    result = train_sonnet_control_run(
+        tmp_path,
+        tmp_path / "runs" / "versioned_manifest",
+        config,
+    )
+    run_metadata = json.loads(result["config_path"].read_text(encoding="utf-8"))
+    checkpoint = torch.load(result["best_checkpoint_path"], map_location="cpu")
+    expected_hash = hashlib.sha256(versioned_manifest.read_bytes()).hexdigest()
+
+    assert run_metadata["manifest_path"] == config.manifest_path
+    assert run_metadata["manifest_sha256"] == expected_hash
+    assert checkpoint["config"]["manifest_path"] == config.manifest_path
+    assert checkpoint["manifest_sha256"] == expected_hash
+
+
+def test_control_run_keeps_historical_manifest_as_default():
+    config = SonnetControlRunConfig()
+
+    assert config.manifest_path == "data/metadata/poems_manifest.csv"
+
+
+def test_control_run_rejects_missing_explicit_manifest_before_training(tmp_path):
+    config = SonnetControlRunConfig(
+        **{
+            **tiny_control_config(tmp_path, "random").__dict__,
+            "manifest_path": "data/metadata/missing.csv",
+        }
+    )
+
+    with pytest.raises(FileNotFoundError, match="sonnet manifest does not exist"):
+        train_sonnet_control_run(
+            tmp_path,
+            tmp_path / "runs" / "missing_manifest",
+            config,
+        )
+
+
+def test_control_run_rejects_invalid_manifest_before_training(tmp_path):
+    invalid_manifest = tmp_path / "data" / "metadata" / "invalid.csv"
+    invalid_manifest.parent.mkdir(parents=True)
+    invalid_manifest.write_text("poem_id\npoem\n", encoding="utf-8")
+    config = SonnetControlRunConfig(
+        **{
+            **tiny_control_config(tmp_path, "random").__dict__,
+            "manifest_path": "data/metadata/invalid.csv",
+        }
+    )
+
+    with pytest.raises(ValueError, match="sonnet manifest is missing columns"):
+        train_sonnet_control_run(
+            tmp_path,
+            tmp_path / "runs" / "invalid_manifest",
+            config,
+        )
 
 
 def test_control_run_uses_sequential_validation_and_records_its_coverage(tmp_path):

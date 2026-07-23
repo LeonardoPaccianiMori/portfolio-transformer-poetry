@@ -27,6 +27,11 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--dataset", default="expanded_with_petrarch")
     parser.add_argument(
+        "--manifest-path",
+        default="data/metadata/poems_manifest.csv",
+        help="Versioned sonnet manifest, relative to the repository root by default.",
+    )
+    parser.add_argument(
         "--model-architecture-path",
         default="runs/finetuning_larger_20k_001/selected_checkpoint.json",
     )
@@ -74,6 +79,7 @@ def main() -> None:
     config = SonnetControlRunConfig(
         initialization=args.initialization,
         dataset=args.dataset,
+        manifest_path=args.manifest_path,
         model_architecture_path=args.model_architecture_path,
         pretraining_tokenizer_path=args.pretraining_tokenizer_path,
         pretraining_checkpoint_path=args.pretraining_checkpoint_path,

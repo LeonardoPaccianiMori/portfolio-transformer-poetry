@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -10,7 +11,11 @@ from typing import Any, Literal
 import torch
 
 from sonnet_corpus.bpe import BytePairEncodingTokenizer
-from sonnet_corpus.dataset_text import load_pretraining_bpe_encoded_splits
+from sonnet_corpus.dataset_text import (
+    load_pretraining_bpe_encoded_splits,
+    read_manifest_rows,
+    validate_manifest_rows,
+)
 from sonnet_model.transformer import CausalTransformerLanguageModel
 from sonnet_training.finetuning_run import generate_finetuning_sample, load_parent_for_finetuning
 from sonnet_training.learning_rate import (
@@ -52,6 +57,7 @@ class SonnetControlRunConfig:
 
     initialization: InitializationMode = "random"
     dataset: str = "expanded_with_petrarch"
+    manifest_path: str = "data/metadata/poems_manifest.csv"
     model_architecture_path: str = (
         "runs/finetuning_larger_20k_001/selected_checkpoint.json"
     )
@@ -87,15 +93,22 @@ def train_sonnet_control_run(
     _validate_config(config)
     torch.manual_seed(config.seed)
     device = resolve_device(config.device)
+    manifest_path = _resolve_repo_path(repo_root, config.manifest_path)
+    if not manifest_path.is_file():
+        raise FileNotFoundError(f"sonnet manifest does not exist: {manifest_path}")
+    manifest_sha256 = hashlib.sha256(manifest_path.read_bytes()).hexdigest()
+    validate_manifest_rows(read_manifest_rows(manifest_path), config.dataset)
     source_model_architecture = load_model_architecture(
-        repo_root / config.model_architecture_path
+        _resolve_repo_path(repo_root, config.model_architecture_path)
     )
-    manifest_path = repo_root / "data" / "metadata" / "poems_manifest.csv"
     train_tokens, validation_tokens, _, tokenizer = load_pretraining_bpe_encoded_splits(
         manifest_path=manifest_path,
         repo_root=repo_root,
         dataset=config.dataset,
-        tokenizer_path=repo_root / config.pretraining_tokenizer_path,
+        tokenizer_path=_resolve_repo_path(
+            repo_root,
+            config.pretraining_tokenizer_path,
+        ),
     )
     model_architecture = target_model_architecture(
         initialization=config.initialization,
@@ -124,6 +137,7 @@ def train_sonnet_control_run(
         model_architecture=model_architecture,
         initialization_metadata=initialization_metadata,
         parent_checkpoint=parent_checkpoint,
+        manifest_sha256=manifest_sha256,
     )
     generated_text = generate_finetuning_sample(
         model=model,
@@ -150,6 +164,7 @@ def train_sonnet_control_run(
         source_model_architecture=source_model_architecture,
         initialization_metadata=initialization_metadata,
         parent_checkpoint=parent_checkpoint,
+        manifest_sha256=manifest_sha256,
         best_validation_row=best_validation_row,
         completed_steps=completed_steps,
         stop_reason=stop_reason,
@@ -167,6 +182,7 @@ def train_sonnet_control_run(
         model_architecture=model_architecture,
         initialization_metadata=initialization_metadata,
         parent_checkpoint=parent_checkpoint,
+        manifest_sha256=manifest_sha256,
         step=completed_steps,
         best_validation_row=best_validation_row,
         stop_reason=stop_reason,
@@ -252,7 +268,10 @@ def initialize_control_model(
 
     if config.initialization == "pretrained":
         model, optimizer, parent_checkpoint = load_parent_for_finetuning(
-            checkpoint_path=repo_root / config.pretraining_checkpoint_path,
+            checkpoint_path=_resolve_repo_path(
+                repo_root,
+                config.pretraining_checkpoint_path,
+            ),
             tokenizer=tokenizer,
             learning_rate=config.learning_rate,
             restore_optimizer_state=False,
@@ -264,7 +283,10 @@ def initialize_control_model(
     if config.initialization == "layernorm_to_rmsnorm":
         model, optimizer, parent_checkpoint, conversion_metadata = (
             initialize_rms_norm_conversion_from_parent(
-                checkpoint_path=repo_root / config.pretraining_checkpoint_path,
+                checkpoint_path=_resolve_repo_path(
+                    repo_root,
+                    config.pretraining_checkpoint_path,
+                ),
                 tokenizer=tokenizer,
                 learning_rate=config.learning_rate,
                 device=device,
@@ -291,6 +313,7 @@ def train_control_steps(
     model_architecture: ModelArchitecture,
     initialization_metadata: dict[str, Any] | None,
     parent_checkpoint: dict[str, Any] | None,
+    manifest_sha256: str,
 ) -> tuple[
     list[dict[str, float | int | None]],
     dict[str, float | int | None],
@@ -362,6 +385,7 @@ def train_control_steps(
                     model_architecture=model_architecture,
                     initialization_metadata=initialization_metadata,
                     parent_checkpoint=parent_checkpoint,
+                    manifest_sha256=manifest_sha256,
                     step=step,
                     best_validation_row=row,
                     stop_reason=None,
@@ -389,6 +413,7 @@ def train_control_steps(
                 model_architecture=model_architecture,
                 initialization_metadata=initialization_metadata,
                 parent_checkpoint=parent_checkpoint,
+                manifest_sha256=manifest_sha256,
                 step=step,
                 best_validation_row=best_validation_row,
                 stop_reason=None,
@@ -456,6 +481,7 @@ def save_control_checkpoint(
     model_architecture: ModelArchitecture,
     initialization_metadata: dict[str, Any] | None,
     parent_checkpoint: dict[str, Any] | None,
+    manifest_sha256: str,
     step: int,
     best_validation_row: dict[str, float | int | None] | None,
     stop_reason: str | None,
@@ -468,6 +494,7 @@ def save_control_checkpoint(
             "model_state_dict": model.state_dict(),
             "optimizer_state_dict": optimizer.state_dict(),
             "config": asdict(config),
+            "manifest_sha256": manifest_sha256,
             "initialization": config.initialization,
             "optimizer_state_restored": False,
             "vocab_size": tokenizer.vocab_size,
@@ -499,6 +526,7 @@ def build_run_metadata(
     source_model_architecture: ModelArchitecture,
     initialization_metadata: dict[str, Any] | None,
     parent_checkpoint: dict[str, Any] | None,
+    manifest_sha256: str,
     best_validation_row: dict[str, float | int | None],
     completed_steps: int,
     stop_reason: str,
@@ -506,6 +534,7 @@ def build_run_metadata(
     """Create reproducibility metadata shared by reports and selection tooling."""
     return {
         **asdict(config),
+        "manifest_sha256": manifest_sha256,
         "resolved_device": str(device),
         "optimizer_state_restored": False,
         "vocab_size": tokenizer.vocab_size,
@@ -537,6 +566,11 @@ def _validate_tokenizer_architecture(
 ) -> None:
     if tokenizer.vocab_size != model_architecture["vocab_size"]:
         raise ValueError("tokenizer vocabulary size does not match model architecture")
+
+
+def _resolve_repo_path(repo_root: Path, path_value: str) -> Path:
+    path = Path(path_value)
+    return path if path.is_absolute() else repo_root / path
 
 
 def _validate_model_architecture(
