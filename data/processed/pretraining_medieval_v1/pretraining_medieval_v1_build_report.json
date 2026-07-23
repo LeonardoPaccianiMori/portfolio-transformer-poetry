@@ -1,0 +1,170 @@
+{
+  "corpus_version": "pretraining_medieval_v1",
+  "started_at_utc": "2026-07-23T15:28:20+00:00",
+  "finished_at_utc": "2026-07-23T15:28:30+00:00",
+  "manifest_path": "data/metadata/broader_prose_sources_manifest.csv",
+  "processed_dir": "data/processed/pretraining_medieval_v1",
+  "combined_corpus_path": "data/processed/pretraining_medieval_v1/corpus.txt",
+  "selected_rows": 8,
+  "skipped_rows": 41,
+  "total_cleaned_characters": 7366570,
+  "total_cleaned_words": 1276885,
+  "source_archive_shares": {
+    "Liber Liber": {
+      "cleaned_character_count": 7366570,
+      "share": 1.0
+    }
+  },
+  "author_shares": {
+    "Anonymous / multiple traditions": {
+      "cleaned_character_count": 209278,
+      "share": 0.028409151070308163
+    },
+    "Dino Compagni": {
+      "cleaned_character_count": 221766,
+      "share": 0.030104376935262953
+    },
+    "Franco Sacchetti": {
+      "cleaned_character_count": 1037193,
+      "share": 0.14079727743033732
+    },
+    "Giovanni Boccaccio": {
+      "cleaned_character_count": 3184340,
+      "share": 0.43226902072470635
+    },
+    "Giovanni Villani": {
+      "cleaned_character_count": 2713993,
+      "share": 0.36842017383938525
+    }
+  },
+  "sources": [
+    {
+      "source_id": "ll_novellino",
+      "title": "Il Novellino",
+      "author": "Anonymous / multiple traditions",
+      "source_archive": "Liber Liber",
+      "landing_page_url": "https://liberliber.it/autori/autori-n/novellino/il-novellino/",
+      "fetched_url": "https://www.liberliber.eu/mediateca/libri/n/novellino/il_novellino/txt/il_nov_t.zip",
+      "processed_path": "data/processed/pretraining_medieval_v1/sources/ll_novellino.txt",
+      "raw_character_count": 217549,
+      "cleaned_character_count": 209278,
+      "cleaned_word_count": 36965,
+      "first_characters": "Il Novellino LE CIENTO NOVELLE ANTIKE LIBRO DI NOVELLE ET DI BEL PARLAR GENTILE LE CIENTO NOVELLE ANTIKE [1525] QUESTO LIBRO TRATTA D'ALQUANTI FIORI DI PARLARE, DI BELLE CORTESIE E DI BE' RISPOSI E DI BELLE VALENTIE E DONI, SECONDO CHE,",
+      "last_characters": "non li era saputo dire, e fece comandare che tutti li vecchi, che fossono rimasi, dovessono star sicuramente e che fossono onorati e serviti. E conobbe apertamente la sua follia, d'aver creduto alla moglie a seguire la sua mala volontade.",
+      "license_notes": "Liber Liber digital edition license: CC BY-NC-SA 4.0; attribution, non-commercial use, and share-alike apply; https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "cleaning_notes": "Preserve primary-text spelling and punctuation; exclude modern introduction and metadata."
+    },
+    {
+      "source_id": "ll_giovanni_villani_nuova_cronica",
+      "title": "Nuova cronica",
+      "author": "Giovanni Villani",
+      "source_archive": "Liber Liber",
+      "landing_page_url": "https://liberliber.it/autori/autori-v/giovanni-villani/nuova-cronica/",
+      "fetched_url": "https://www.liberliber.eu/mediateca/libri/v/villani/nuova_cronica/odt/villani_nuova_cronica.odt",
+      "processed_path": "data/processed/pretraining_medieval_v1/sources/ll_giovanni_villani_nuova_cronica.txt",
+      "raw_character_count": 2713993,
+      "cleaned_character_count": 2713993,
+      "cleaned_word_count": 468306,
+      "first_characters": "NUOVA CRONICA Giovanni Villani tomo primo LIBRO PRIMO Questo libro si chiama la Nuova cronica, nel quale si tratta di più cose passate, e spezialmente dell'origine e cominciamento della città di Firenze, poi di tutte le mutazioni ch'ha avut",
+      "last_characters": "vine e pericoli di tremuoti sono grandi segni e giudici di Dio, e non sanza gran cagione e premessione divina, e di quelli miracoli e segni che Gesù Cristo vangelizzando predisse a' suoi discepoli che dovieno apparire alla fine del secolo.",
+      "license_notes": "Liber Liber digital edition license: CC BY-NC-SA 4.0; attribution, non-commercial use, and share-alike apply; https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "cleaning_notes": "Preserve primary-text spelling and punctuation; exclude cover and modern metadata."
+    },
+    {
+      "source_id": "ll_dino_compagni_cronica",
+      "title": "Cronica delle cose occorrenti ne' tempi suoi",
+      "author": "Dino Compagni",
+      "source_archive": "Liber Liber",
+      "landing_page_url": "https://liberliber.it/autori/autori-c/dino-compagni/cronica-delle-cose-occorrenti-ne-tempi-suoi/",
+      "fetched_url": "https://www.liberliber.eu/mediateca/libri/c/compagni/cronica_delle_cose_occorrenti_ne_tempi_suoi/txt/cronica_.zip",
+      "processed_path": "data/processed/pretraining_medieval_v1/sources/ll_dino_compagni_cronica.txt",
+      "raw_character_count": 221766,
+      "cleaned_character_count": 221766,
+      "cleaned_word_count": 37152,
+      "first_characters": "Cronica delle cose occorrenti ne' tempi suoi Dino Compagni Proemio Quali cagioni ebbe l'Autore a scrivere, e quali occasioni: su quale soggetto, e con quali intendimenti. Le ricordanze dell'antiche istorie lungamente ànno stimolata la me",
+      "last_characters": "orrotto e viziato di mali costumi e falsi guadagni! Voi siete quelli che nel mondo avete messo ogni malo uso. Ora vi si ricomincia il mondo a rivolgere addosso: lo Imperadore con le sue forze vi farà prendere e rubare per mare e per terra.",
+      "license_notes": "Liber Liber digital edition license: CC BY-NC-SA 4.0; attribution, non-commercial use, and share-alike apply; https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "cleaning_notes": "Exclude modern introduction and notes where separable; preserve primary text."
+    },
+    {
+      "source_id": "ll_boccaccio_decameron_mondadori",
+      "title": "Decameron [Mondadori]",
+      "author": "Giovanni Boccaccio",
+      "source_archive": "Liber Liber",
+      "landing_page_url": "https://liberliber.it/autori/autori-b/giovanni-boccaccio/decameron-mondadori/",
+      "fetched_url": "https://www.liberliber.eu/mediateca/libri/b/boccaccio/decameron_branca/txt/boccaccio_decameron_branca.zip",
+      "processed_path": "data/processed/pretraining_medieval_v1/sources/ll_boccaccio_decameron_mondadori.txt",
+      "raw_character_count": 1511926,
+      "cleaned_character_count": 1511873,
+      "cleaned_word_count": 263789,
+      "first_characters": "DECAMERON COMINCIA IL LIBRO CHIAMATO DECAMERON, COGNOMINATO PRENCIPE GALEOTTO, NEL QUALE SI CONTENGONO CENTO NOVELLE IN DIECI DÌ DETTE DA SETTE DONNE E DA TRE GIOVANI UOMINI. PROEMIO Umana cosa è aver compassione degli afflitti: e come c",
+      "last_characters": "to. E voi, piacevoli donne, con la sua grazia in pace vi rimanete, di me ricordandovi, se a alcuna forse alcuna cosa giova l'averle lette. QUI FINISCE LA DECIMA E ULTIMA GIORNATA DEL LIBRO CHIAMATO DECAMERON COGNOMINATO PRENCIPE GALEOTTO.",
+      "license_notes": "Liber Liber digital edition license: CC BY-NC-SA 4.0; attribution, non-commercial use, and share-alike apply; https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "cleaning_notes": "Exclude modern introduction and metadata; preserve the primary text."
+    },
+    {
+      "source_id": "ll_boccaccio_filocolo",
+      "title": "Filocolo",
+      "author": "Giovanni Boccaccio",
+      "source_archive": "Liber Liber",
+      "landing_page_url": "https://liberliber.it/autori/autori-b/giovanni-boccaccio/filocolo/",
+      "fetched_url": "https://www.liberliber.eu/mediateca/libri/b/boccaccio/filocolo/txt/filocolo.zip",
+      "processed_path": "data/processed/pretraining_medieval_v1/sources/ll_boccaccio_filocolo.txt",
+      "raw_character_count": 1212836,
+      "cleaned_character_count": 1212836,
+      "cleaned_word_count": 208186,
+      "first_characters": "Filocolo LIBRO PRIMO [1] Mancate già tanto le forze del valoroso popolo anticamente disceso del troiano Enea, che quasi al niente venute erano per lo maraviglioso valore di Giunone, la quale la morte della pattovita Didone cartaginese",
+      "last_characters": "to comandamento, che 'l tuo principio palesa. Serva adunque i porti mandati, e de' beni del tuo padre non essere detrattore: vivi, e di me tuo fattore sempre nella mente il nome porta, la cui vita nelle mani della tua donna Amore conservi.",
+      "license_notes": "Liber Liber digital edition license: CC BY-NC-SA 4.0; attribution, non-commercial use, and share-alike apply; https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "cleaning_notes": "Exclude modern editorial material; preserve primary-text spelling and punctuation."
+    },
+    {
+      "source_id": "ll_boccaccio_elegia_fiammetta",
+      "title": "Elegia di Madonna Fiammetta",
+      "author": "Giovanni Boccaccio",
+      "source_archive": "Liber Liber",
+      "landing_page_url": "https://liberliber.it/autori/autori-b/giovanni-boccaccio/elegia-di-madonna-fiammetta/",
+      "fetched_url": "https://www.liberliber.eu/mediateca/libri/b/boccaccio/elegia_di_madonna_fiammetta/odt/boccaccio_elegia_di_madonna_fiammetta.odt",
+      "processed_path": "data/processed/pretraining_medieval_v1/sources/ll_boccaccio_elegia_fiammetta.txt",
+      "raw_character_count": 336933,
+      "cleaned_character_count": 336933,
+      "cleaned_word_count": 57516,
+      "first_characters": "Elegia di Madonna Fiammetta Incomincia il libro chiamato Elegia di Madonna Fiammetta, da lei alle innamorate donne mandato. Prologo Suole a' miseri crescere di dolersi vaghezza, quando di sé discernono o sentono compassione in alcuno. Adunq",
+      "last_characters": "Vivi adunque: nullo ti può di questo privare; ed essemplo etterno a' felici e a' miseri dimora dell'angoscie della tua donna. Qui finisce il libro chiamato elegia della nobile Madonna Fiammetta, mandato da lei a tutte le donne innamorate.",
+      "license_notes": "Liber Liber digital edition license: CC BY-NC-SA 4.0; attribution, non-commercial use, and share-alike apply; https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "cleaning_notes": "Exclude modern editorial material; preserve primary-text spelling and punctuation."
+    },
+    {
+      "source_id": "ll_boccaccio_trattatello",
+      "title": "Trattatello in laude di Dante",
+      "author": "Giovanni Boccaccio",
+      "source_archive": "Liber Liber",
+      "landing_page_url": "https://liberliber.it/autori/autori-b/giovanni-boccaccio/trattatello-in-laude-di-dante/",
+      "fetched_url": "https://www.liberliber.eu/mediateca/libri/b/boccaccio/trattatello_in_laude_di_dante/txt/trattate.zip",
+      "processed_path": "data/processed/pretraining_medieval_v1/sources/ll_boccaccio_trattatello.txt",
+      "raw_character_count": 122698,
+      "cleaned_character_count": 122698,
+      "cleaned_word_count": 20264,
+      "first_characters": "Trattatello in laude di Dante di Giovanni Boccaccio DE ORIGINE VITA, STUDIIS ET MORIBUS VIRI CLARISSIMI DANTIS ALIGERII FLORENTINI, POETE ILLUSTRIS, ET DE OPERIBUS COMPOSITIS AB EODEM, INCIPIT FELICITER. I Proposizione Solone, il cui pet",
+      "last_characters": "converrieno, ma quelle che io posso, rendo, benedicendo in etterno il suo nome e 'l suo valore. DE ORIGINE, VITA, STUDIIS ET MORIBUS CLARISSIMI VIRI DANTIS ALIGERII FIORENTINI, POETE ILLUSTRIS, ET DE OPERIBUS COMPOSITIS AB EODEM, EXPLICIT",
+      "license_notes": "Liber Liber digital edition license: CC BY-NC-SA 4.0; attribution, non-commercial use, and share-alike apply; https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "cleaning_notes": "Exclude modern editorial material; preserve primary-text spelling and punctuation."
+    },
+    {
+      "source_id": "ll_sacchetti_trecentonovelle",
+      "title": "Il Trecentonovelle",
+      "author": "Franco Sacchetti",
+      "source_archive": "Liber Liber",
+      "landing_page_url": "https://liberliber.it/autori/autori-s/franco-sacchetti/il-trecentonovelle/",
+      "fetched_url": "https://www.liberliber.eu/mediateca/libri/s/sacchetti/il_trecentonovelle/odt/sacchetti_il_trecentonovelle.odt",
+      "processed_path": "data/processed/pretraining_medieval_v1/sources/ll_sacchetti_trecentonovelle.txt",
+      "raw_character_count": 1037219,
+      "cleaned_character_count": 1037193,
+      "cleaned_word_count": 184707,
+      "first_characters": "il trecentonovelle Proemio Considerando al presente tempo e alla condizione dell'umana vita, la quale con pestilenziose infirmità e con oscure morti è spesso vicitata; e veggendo quante rovine con quante guerre civili e campestre in essa di",
+      "last_characters": "l lume, vede l'asino morto e sbudellato; e alzando il lume, vede il lupo là ricantucciato. — Alle guagnele! — dice ser Francesco, — noi abbiamo poco ben fatto; l'asino è qui morto, e costà è il lupo, che l'ha devorato: serra la finestra...",
+      "license_notes": "Liber Liber digital edition license: CC BY-NC-SA 4.0; attribution, non-commercial use, and share-alike apply; https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "cleaning_notes": "Preserve dialectal and spoken-language features; exclude modern metadata."
+    }
+  ]
+}

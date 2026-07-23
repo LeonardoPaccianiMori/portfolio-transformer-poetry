@@ -1,0 +1,31 @@
+{
+  "started_at_utc": "2026-07-23T15:13:06+00:00",
+  "finished_at_utc": "2026-07-23T15:13:07+00:00",
+  "manifest_path": "data/metadata/broader_prose_sources_manifest.csv",
+  "tokenizer_path": "",
+  "selected_rows": 1,
+  "skipped_rows": 48,
+  "total_cleaned_characters": 490561,
+  "total_cleaned_words": 80713,
+  "bpe_tokenized_rows": 0,
+  "bpe_tokenization_error_rows": 0,
+  "total_bpe_tokens": null,
+  "results": [
+    {
+      "source_id": "pg_villani_cronica_vol4_69901",
+      "title": "Cronica di Matteo Villani: volume 4",
+      "author": "Matteo Villani",
+      "ebook_id": "69901",
+      "landing_page_url": "https://www.gutenberg.org/ebooks/69901",
+      "status": "ok",
+      "error": "",
+      "fetched_url": "https://www.gutenberg.org/cache/epub/69901/pg69901.txt",
+      "raw_character_count": 519011,
+      "cleaned_character_count": 490561,
+      "cleaned_word_count": 80713,
+      "bpe_token_count": null,
+      "bpe_tokenization_error": "",
+      "cleaning_notes": "Preserve original spelling and punctuation after removing source paratext."
+    }
+  ]
+}

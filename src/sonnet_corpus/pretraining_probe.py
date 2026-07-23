@@ -48,19 +48,25 @@ def probe_gutenberg_sources(
     report_path: Path,
     tokenizer_path: Path | None = None,
     request_delay: float = 1.0,
+    source_ids: set[str] | None = None,
     fetch_text: FetchGutenbergText = fetch_gutenberg_text,
     session: requests.Session | None = None,
+    progress: Callable[[str], None] | None = None,
 ) -> dict[str, object]:
     """Probe active Project Gutenberg prose rows and write a compact JSON report."""
 
     started_at = _utc_now()
     rows = read_pretraining_manifest(manifest_path)
-    probe_rows = select_gutenberg_probe_rows(rows)
+    probe_rows = select_gutenberg_probe_rows(rows, source_ids=source_ids)
     tokenizer = _load_tokenizer(tokenizer_path)
     rate_limiter = GutenbergRateLimiter(request_delay=request_delay)
 
     results: list[GutenbergProbeResult] = []
-    for row in probe_rows:
+    for index, row in enumerate(probe_rows, start=1):
+        _write_progress(
+            progress,
+            f"probing source {index}/{len(probe_rows)}: {row.source_id}",
+        )
         rate_limiter.wait()
         results.append(
             _probe_gutenberg_row(
@@ -102,16 +108,31 @@ def probe_gutenberg_sources(
     return report
 
 
-def select_gutenberg_probe_rows(rows: list[PretrainingSourceRow]) -> list[PretrainingSourceRow]:
-    """Return active Project Gutenberg prose rows for the first source probe."""
+def select_gutenberg_probe_rows(
+    rows: list[PretrainingSourceRow],
+    *,
+    source_ids: set[str] | None = None,
+) -> list[PretrainingSourceRow]:
+    """Return selected active Project Gutenberg prose rows."""
 
-    return [
+    selected = [
         row
         for row in rows
         if row.source_archive == "Project Gutenberg"
         and row.inclusion_status == "include_probe"
         and row.text_kind == "prose"
     ]
+    if source_ids is None:
+        return selected
+
+    selected_ids = {row.source_id for row in selected}
+    missing_ids = sorted(source_ids - selected_ids)
+    if missing_ids:
+        raise ValueError(
+            "requested Project Gutenberg source IDs are not active prose rows: "
+            + ", ".join(missing_ids)
+        )
+    return [row for row in selected if row.source_id in source_ids]
 
 
 def count_whitespace_words(text: str) -> int:
@@ -212,3 +233,8 @@ def _portable_path(path: Path) -> str:
         return str(path.resolve().relative_to(Path.cwd().resolve()))
     except ValueError:
         return str(path)
+
+
+def _write_progress(progress: Callable[[str], None] | None, message: str) -> None:
+    if progress is not None:
+        progress(message)

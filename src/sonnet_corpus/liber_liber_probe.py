@@ -67,6 +67,7 @@ def probe_liber_liber_sources(
     report_path: Path,
     attribution_path: Path,
     request_delay: float = 1.0,
+    source_ids: set[str] | None = None,
     fetch_text: FetchLiberLiberText = fetch_liber_liber_text,
     session: requests.Session | None = None,
     progress: Callable[[str], None] | None = None,
@@ -75,7 +76,7 @@ def probe_liber_liber_sources(
 
     started_at = _utc_now()
     rows = read_pretraining_manifest(manifest_path)
-    probe_rows = select_liber_liber_probe_rows(rows)
+    probe_rows = select_liber_liber_probe_rows(rows, source_ids=source_ids)
     rate_limiter = LiberLiberRateLimiter(request_delay=request_delay)
     results: list[LiberLiberProbeResult] = []
 
@@ -154,16 +155,29 @@ def probe_liber_liber_source(
 
 def select_liber_liber_probe_rows(
     rows: list[PretrainingSourceRow],
+    *,
+    source_ids: set[str] | None = None,
 ) -> list[PretrainingSourceRow]:
-    """Return active prose-only Liber Liber rows."""
+    """Return selected active prose-only Liber Liber rows."""
 
-    return [
+    selected = [
         row
         for row in rows
         if row.source_archive == "Liber Liber"
         and row.inclusion_status == "include_probe"
         and row.text_kind == "prose"
     ]
+    if source_ids is None:
+        return selected
+
+    selected_ids = {row.source_id for row in selected}
+    missing_ids = sorted(source_ids - selected_ids)
+    if missing_ids:
+        raise ValueError(
+            "requested Liber Liber source IDs are not active prose rows: "
+            + ", ".join(missing_ids)
+        )
+    return [row for row in selected if row.source_id in source_ids]
 
 
 def select_liber_liber_candidate_probe_row(

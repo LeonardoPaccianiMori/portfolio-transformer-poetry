@@ -76,6 +76,17 @@ def test_select_liber_liber_probe_rows_skips_conditional_mixed_work():
     assert [row.source_id for row in selected] == ["active"]
 
 
+def test_select_liber_liber_probe_rows_filters_to_requested_active_sources():
+    rows = [make_row(source_id="one"), make_row(source_id="two")]
+
+    selected = select_liber_liber_probe_rows(rows, source_ids={"two"})
+
+    assert [row.source_id for row in selected] == ["two"]
+
+    with pytest.raises(ValueError, match="not active prose rows"):
+        select_liber_liber_probe_rows(rows, source_ids={"missing"})
+
+
 def test_select_liber_liber_candidate_probe_row_requires_an_audit_only_prose_row():
     candidate = select_liber_liber_candidate_probe_row(
         [make_row(source_id="candidate", inclusion_status="audit_then_include")],

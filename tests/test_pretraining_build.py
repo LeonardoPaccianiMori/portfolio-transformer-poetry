@@ -140,6 +140,17 @@ def test_select_pretraining_build_rows_keeps_only_active_supported_prose():
     assert [row.source_id for row in selected] == ["active_pg", "active_ll", "active_ws"]
 
 
+def test_select_pretraining_build_rows_filters_to_requested_sources():
+    rows = [make_row(source_id="one"), make_liber_liber_row(source_id="two")]
+
+    selected = select_pretraining_build_rows(rows, source_ids={"two"})
+
+    assert [row.source_id for row in selected] == ["two"]
+
+    with pytest.raises(ValueError, match="not active supported prose rows"):
+        select_pretraining_build_rows(rows, source_ids={"missing"})
+
+
 def test_build_pretraining_corpus_uses_committed_wikisource_snapshot(tmp_path: Path):
     manifest_path = tmp_path / "manifest.csv"
     snapshot_dir = tmp_path / "snapshots"

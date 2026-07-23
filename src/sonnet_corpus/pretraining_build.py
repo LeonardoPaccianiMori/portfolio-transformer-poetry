@@ -54,6 +54,7 @@ class PretrainingBuildConfig:
     wikisource_snapshot_dir: Path = Path("data/metadata/wikisource_snapshots")
     wikisource_request_delay_seconds: float = 6.0
     min_character_count: int = 200
+    source_ids: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -97,16 +98,29 @@ class PretrainingBuildReport:
 
 def select_pretraining_build_rows(
     rows: list[PretrainingSourceRow],
+    *,
+    source_ids: set[str] | None = None,
 ) -> list[PretrainingSourceRow]:
-    """Return active prose rows that are approved for the broader-corpus build."""
+    """Return selected active prose rows approved for the broader-corpus build."""
 
-    return [
+    selected = [
         row
         for row in rows
         if row.inclusion_status == "include_probe"
         and row.text_kind == "prose"
         and row.source_archive in {"Project Gutenberg", "Liber Liber", "Italian Wikisource"}
     ]
+    if source_ids is None:
+        return selected
+
+    selected_ids = {row.source_id for row in selected}
+    missing_ids = sorted(source_ids - selected_ids)
+    if missing_ids:
+        raise ValueError(
+            "requested build source IDs are not active supported prose rows: "
+            + ", ".join(missing_ids)
+        )
+    return [row for row in selected if row.source_id in source_ids]
 
 
 def build_pretraining_corpus(
@@ -122,10 +136,18 @@ def build_pretraining_corpus(
 
     started_at = _utc_now()
     rows = read_pretraining_manifest(config.manifest_path)
-    selected_rows = select_pretraining_build_rows(rows)
+    source_ids = set(config.source_ids) if config.source_ids else None
+    selected_rows = select_pretraining_build_rows(rows, source_ids=source_ids)
     skipped_rows = len(rows) - len(selected_rows)
     if not selected_rows:
         raise ValueError("no active broader pretraining prose rows selected")
+    _write_progress(
+        progress,
+        "start "
+        f"corpus_version={config.corpus_version} "
+        f"sources={len(selected_rows)} "
+        f"request_delay={config.request_delay_seconds:.1f}s",
+    )
 
     temp_root = config.temp_dir
     raw_dir = temp_root / "raw"

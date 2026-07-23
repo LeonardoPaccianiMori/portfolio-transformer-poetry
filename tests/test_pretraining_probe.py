@@ -1,6 +1,8 @@
 import json
 from pathlib import Path
 
+import pytest
+
 from sonnet_corpus.bpe import BytePairEncodingTokenizer
 from sonnet_corpus.gutenberg import FetchedGutenbergText
 from sonnet_corpus.pretraining_manifest import (
@@ -72,6 +74,17 @@ def test_select_gutenberg_probe_rows_skips_conditional_and_non_gutenberg_rows():
     assert [row.source_id for row in selected] == ["active"]
 
 
+def test_select_gutenberg_probe_rows_filters_to_requested_active_sources():
+    rows = [make_row(source_id="one"), make_row(source_id="two")]
+
+    selected = select_gutenberg_probe_rows(rows, source_ids={"two"})
+
+    assert [row.source_id for row in selected] == ["two"]
+
+    with pytest.raises(ValueError, match="not active prose rows"):
+        select_gutenberg_probe_rows(rows, source_ids={"missing"})
+
+
 def test_count_whitespace_words_counts_non_empty_units():
     assert count_whitespace_words(" uno  due\ntre ") == 3
 
@@ -130,6 +143,30 @@ def test_probe_gutenberg_sources_writes_report(tmp_path: Path):
     assert saved["results"][0]["status"] == "ok"
     assert saved["results"][0]["fetched_url"] == "https://example.test/44549.txt"
     assert saved["results"][0]["cleaned_word_count"] == 6
+
+
+def test_probe_gutenberg_sources_reports_per_source_progress(tmp_path: Path):
+    manifest_path = tmp_path / "manifest.csv"
+    report_path = tmp_path / "report.json"
+    write_pretraining_manifest([make_row()], manifest_path)
+    progress_messages = []
+
+    def fake_fetch_text(ebook_id, session=None):
+        return FetchedGutenbergText(
+            ebook_id=ebook_id,
+            url="https://example.test/book.txt",
+            text="text",
+        )
+
+    probe_gutenberg_sources(
+        manifest_path=manifest_path,
+        report_path=report_path,
+        request_delay=0,
+        fetch_text=fake_fetch_text,
+        progress=progress_messages.append,
+    )
+
+    assert progress_messages == ["probing source 1/1: pg_sidrac_44549"]
 
 
 def test_probe_gutenberg_sources_records_fetch_errors(tmp_path: Path):

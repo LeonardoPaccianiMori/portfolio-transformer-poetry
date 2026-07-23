@@ -1,0 +1,31 @@
+{
+  "started_at_utc": "2026-07-23T15:12:45+00:00",
+  "finished_at_utc": "2026-07-23T15:12:47+00:00",
+  "manifest_path": "data/metadata/broader_prose_sources_manifest.csv",
+  "tokenizer_path": "",
+  "selected_rows": 1,
+  "skipped_rows": 48,
+  "total_cleaned_characters": 418443,
+  "total_cleaned_words": 67418,
+  "bpe_tokenized_rows": 0,
+  "bpe_tokenization_error_rows": 0,
+  "total_bpe_tokens": null,
+  "results": [
+    {
+      "source_id": "pg_villani_cronica_vol2_69899",
+      "title": "Cronica di Matteo Villani: volume 2",
+      "author": "Matteo Villani",
+      "ebook_id": "69899",
+      "landing_page_url": "https://www.gutenberg.org/ebooks/69899",
+      "status": "ok",
+      "error": "",
+      "fetched_url": "https://www.gutenberg.org/cache/epub/69899/pg69899.txt",
+      "raw_character_count": 445736,
+      "cleaned_character_count": 418443,
+      "cleaned_word_count": 67418,
+      "bpe_token_count": null,
+      "bpe_tokenization_error": "",
+      "cleaning_notes": "Preserve original spelling and punctuation after removing source paratext."
+    }
+  ]
+}

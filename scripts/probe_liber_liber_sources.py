@@ -41,6 +41,15 @@ def parse_args() -> argparse.Namespace:
         default=1.0,
         help="Minimum seconds between Liber Liber works.",
     )
+    parser.add_argument(
+        "--source-id",
+        action="append",
+        default=None,
+        help=(
+            "Probe only this active prose source ID. Repeat the option to select "
+            "multiple sources."
+        ),
+    )
     parser.add_argument("--quiet", action="store_true", help="Hide summary output.")
     return parser.parse_args()
 
@@ -57,6 +66,7 @@ def main() -> None:
         report_path=args.report,
         attribution_path=args.attribution,
         request_delay=args.request_delay,
+        source_ids=set(args.source_id) if args.source_id is not None else None,
         progress=progress,
     )
 

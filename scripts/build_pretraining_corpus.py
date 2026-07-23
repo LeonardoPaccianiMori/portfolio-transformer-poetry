@@ -51,6 +51,15 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--wikisource-request-delay-seconds", type=float, default=6.0)
     parser.add_argument("--min-character-count", type=int, default=200)
+    parser.add_argument(
+        "--source-id",
+        action="append",
+        default=None,
+        help=(
+            "Build only this active prose source ID. Repeat the option to select "
+            "multiple sources."
+        ),
+    )
     parser.add_argument("--quiet", action="store_true", help="Hide progress output.")
     return parser.parse_args()
 
@@ -67,19 +76,21 @@ def main() -> None:
         wikisource_snapshot_dir=args.wikisource_snapshot_dir,
         wikisource_request_delay_seconds=args.wikisource_request_delay_seconds,
         min_character_count=args.min_character_count,
+        source_ids=tuple(args.source_id or []),
     )
     report = build_pretraining_corpus(
         config,
         progress=None if args.quiet else lambda message: print(f"build | {message}", flush=True),
     )
     print(
-        "Built "
-        f"{report.selected_rows} sources, "
-        f"{report.total_cleaned_characters} characters, "
-        f"{report.total_cleaned_words} whitespace-delimited units."
+        "build | complete "
+        f"sources={report.selected_rows} "
+        f"cleaned_characters={report.total_cleaned_characters} "
+        f"cleaned_words={report.total_cleaned_words}",
+        flush=True,
     )
-    print(f"Processed corpus: {report.processed_dir}")
-    print(f"Build report: {args.report_path}")
+    print(f"build | processed_corpus={report.processed_dir}", flush=True)
+    print(f"build | report={args.report_path}", flush=True)
 
 
 if __name__ == "__main__":
