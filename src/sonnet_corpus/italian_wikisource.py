@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import re
 import json
-from collections.abc import Callable
+from collections.abc import Callable, Iterable
 from dataclasses import dataclass, field
 from pathlib import Path
 from time import monotonic, sleep
@@ -341,7 +341,9 @@ def _fetch_recursive_leaf_pages(
     seen_titles: set[str] = set()
     leaves: list[FetchedItalianWikisourcePage] = []
     while pending_titles:
-        current_titles = [title for title in pending_titles if title not in seen_titles]
+        current_titles = _unique_titles_in_order(
+            title for title in pending_titles if title not in seen_titles
+        )
         pending_titles = []
         if not current_titles:
             continue
@@ -992,13 +994,10 @@ def _fetch_page_revisions(
             },
         )
         pages = payload.get("query", {}).get("pages", [])
-        if len(pages) != len(title_batch):
-            raise ValueError("Wikisource revision batch returned an unexpected page count")
-
         expected_titles = {_normalize_title(title) for title in title_batch}
         for page in pages:
             if page.get("missing"):
-                raise ValueError(f"Wikisource page is missing: {page.get('title', '')}")
+                continue
             actual_title = _normalize_title(page.get("title", ""))
             if actual_title not in expected_titles:
                 raise ValueError(f"unexpected Wikisource page title: {actual_title!r}")
@@ -1012,7 +1011,32 @@ def _fetch_page_revisions(
                 revision_timestamp=str(revision["timestamp"]),
             )
 
+        missing_titles = [
+            title
+            for title in _unique_titles_in_order(title_batch)
+            if _normalize_title(title) not in revisions_by_title
+        ]
+        if missing_titles:
+            raise ValueError(
+                "Wikisource selected pages are missing or untranscribed: "
+                + ", ".join(missing_titles)
+            )
+
     return [revisions_by_title[_normalize_title(title)] for title in titles]
+
+
+def _unique_titles_in_order(titles: Iterable[str]) -> list[str]:
+    """Deduplicate page titles while preserving the source's visible order."""
+
+    unique_titles: list[str] = []
+    seen_titles: set[str] = set()
+    for title in titles:
+        normalized_title = _normalize_title(title)
+        if normalized_title in seen_titles:
+            continue
+        seen_titles.add(normalized_title)
+        unique_titles.append(title)
+    return unique_titles
 
 
 def _fetch_rendered_revision(

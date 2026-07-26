@@ -67,8 +67,7 @@ WORK_BOUNDARIES = {
         root_page_title="La scienza nuova - Volume I",
     ),
     "ws_giannone_istoria_civile_vol1": WorkBoundaries(
-        first_subpage="Pagina:Giannone - Istoria civile del regno di Napoli, 1770, Vol.1.djvu/i",
-        last_subpage="Pagina:Giannone - Istoria civile del regno di Napoli, 1770, Vol.1.djvu/552",
+        first_subpage="Pagina:Giannone - Istoria civile del regno di Napoli, 1770, Vol.1.djvu/1",
         root_page_title="Indice:Giannone - Istoria civile del regno di Napoli, 1770, Vol.1.djvu",
         page_namespace_links=True,
     ),
@@ -85,8 +84,7 @@ WORK_BOUNDARIES = {
         page_namespace_links=True,
     ),
     "ws_giannone_istoria_civile_vol5": WorkBoundaries(
-        first_subpage="Pagina:Giannone - Istoria civile del regno di Napoli, 1770, Vol.5.djvu/i",
-        last_subpage="Pagina:Giannone - Istoria civile del regno di Napoli, 1770, Vol.5.djvu/679",
+        first_subpage="Pagina:Giannone - Istoria civile del regno di Napoli, 1770, Vol.5.djvu/1",
         root_page_title="Indice:Giannone - Istoria civile del regno di Napoli, 1770, Vol.5.djvu",
         page_namespace_links=True,
     ),
@@ -95,10 +93,11 @@ WORK_BOUNDARIES = {
         recursive_subpages=True,
     ),
     "ws_verri_storia_milano": WorkBoundaries(
-        first_subpage="Storia di Milano/Dedicatoria",
+        first_subpage="Storia di Milano/Avvertimento",
     ),
     "ws_verri_osservazioni_tortura": WorkBoundaries(
         first_subpage="Osservazioni sulla tortura/I",
+        excluded_subpage_prefixes=("Osservazioni sulla tortura/Avviso del tipografo",),
     ),
     "ws_verri_meditazioni_economia": WorkBoundaries(
         first_subpage="Meditazioni sulla economia politica/I",

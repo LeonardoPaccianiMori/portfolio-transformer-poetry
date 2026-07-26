@@ -287,6 +287,37 @@ def test_fetch_collection_recursively_selects_leaf_text_pages():
     assert [page.revision.title for page in collection.pages] == [chapter_one, chapter_two]
 
 
+def test_fetch_collection_recursively_deduplicates_repeated_child_links():
+    root_title = "Istoria"
+    first_book = "Istoria/Libro primo"
+    chapter_one = "Istoria/Libro primo/Capitolo I"
+    revisions = {
+        root_title: (100, "2026-07-23T10:00:00Z"),
+        first_book: (101, "2026-07-23T10:01:00Z"),
+        chapter_one: (102, "2026-07-23T10:02:00Z"),
+    }
+    rendered_html = {
+        100: f'<div class="mw-parser-output"><a title="{first_book}">book</a></div>',
+        101: (
+            '<div class="mw-parser-output">'
+            f'<a title="{chapter_one}">one</a>'
+            f'<a title="{chapter_one}">one again</a></div>'
+        ),
+        102: '<div class="mw-parser-output">Chapter.</div>',
+    }
+
+    collection = fetch_italian_wikisource_page_collection(
+        "https://example.test/istoria",
+        expected_title=root_title,
+        expected_first_subpage=first_book,
+        recursive_subpages=True,
+        request_delay=0,
+        session=FakeSession(revisions, rendered_html),
+    )
+
+    assert [page.revision.title for page in collection.pages] == [chapter_one]
+
+
 def test_select_work_subpage_titles_rejects_an_empty_filtered_scope():
     with pytest.raises(ValueError, match="selected no primary-text subpages"):
         select_work_subpage_titles(

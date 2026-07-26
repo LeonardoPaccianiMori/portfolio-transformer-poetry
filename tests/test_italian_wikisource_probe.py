@@ -208,6 +208,21 @@ def test_beccaria_probe_uses_the_primary_work_hierarchy():
     assert boundaries.last_subpage == ""
 
 
+def test_historical_probe_boundaries_match_the_audited_wikisource_hierarchies():
+    assert WORK_BOUNDARIES["ws_giannone_istoria_civile_vol1"].first_subpage.endswith(
+        "/1"
+    )
+    assert WORK_BOUNDARIES["ws_giannone_istoria_civile_vol5"].first_subpage.endswith(
+        "/1"
+    )
+    assert WORK_BOUNDARIES["ws_verri_storia_milano"].first_subpage == (
+        "Storia di Milano/Avvertimento"
+    )
+    assert WORK_BOUNDARIES["ws_verri_osservazioni_tortura"].excluded_subpage_prefixes == (
+        "Osservazioni sulla tortura/Avviso del tipografo",
+    )
+
+
 def test_vico_probe_uses_its_explicit_root_page_title(tmp_path: Path):
     manifest_path = tmp_path / "manifest.csv"
     report_path = tmp_path / "probe.json"
