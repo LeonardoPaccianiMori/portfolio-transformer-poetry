@@ -1,0 +1,486 @@
+{
+  "started_at_utc": "2026-07-16T09:31:27+00:00",
+  "finished_at_utc": "2026-07-16T09:31:28+00:00",
+  "manifest_path": "data/metadata/broader_prose_sources_manifest.csv",
+  "processed_dir": "data/processed/expanded_italian_1200_1800_v1",
+  "selected_source_count": 33,
+  "total_cleaned_characters": 43418117,
+  "total_cleaned_words": 7352381,
+  "max_source_share": 0.15,
+  "max_author_share": 0.2,
+  "source_entries": [
+    {
+      "name": "ll_ramusio_navigazioni_viaggi",
+      "cleaned_character_count": 11966998,
+      "cleaned_word_count": 2048570,
+      "character_share": 0.27562222470403314,
+      "word_share": 0.2786267469000858,
+      "exceeds_character_cap": true,
+      "exceeds_word_cap": true
+    },
+    {
+      "name": "ll_vasari_vite_1568",
+      "cleaned_character_count": 4359397,
+      "cleaned_word_count": 739341,
+      "character_share": 0.10040502217081408,
+      "word_share": 0.10055803691348422,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ll_bandello_novelle",
+      "cleaned_character_count": 4212617,
+      "cleaned_word_count": 737390,
+      "character_share": 0.09702440573367103,
+      "word_share": 0.10029268069758626,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ll_guicciardini_storia_italia",
+      "cleaned_character_count": 3821521,
+      "cleaned_word_count": 609459,
+      "character_share": 0.08801673734491987,
+      "word_share": 0.08289273910043563,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ll_giovanni_villani_nuova_cronica",
+      "cleaned_character_count": 2713993,
+      "cleaned_word_count": 468306,
+      "character_share": 0.06250830730406848,
+      "word_share": 0.06369446849938816,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ll_boccaccio_decameron_mondadori",
+      "cleaned_character_count": 1511926,
+      "cleaned_word_count": 263797,
+      "character_share": 0.03482246823370991,
+      "word_share": 0.03587912541529064,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ll_boccaccio_filocolo",
+      "cleaned_character_count": 1212836,
+      "cleaned_word_count": 208186,
+      "character_share": 0.027933869172631322,
+      "word_share": 0.028315453184485407,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ws_galileo_dialogo",
+      "cleaned_character_count": 1104336,
+      "cleaned_word_count": 182591,
+      "character_share": 0.025434912343158502,
+      "word_share": 0.02483426797387132,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ll_sacchetti_trecentonovelle",
+      "cleaned_character_count": 1037219,
+      "cleaned_word_count": 184712,
+      "character_share": 0.023889082983492814,
+      "word_share": 0.02512274595127755,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "pg_caterina_dialogo_26961",
+      "cleaned_character_count": 960764,
+      "cleaned_word_count": 162074,
+      "character_share": 0.022128182113471204,
+      "word_share": 0.022043743380545704,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ll_vico_principj_scienza_nuova",
+      "cleaned_character_count": 943187,
+      "cleaned_word_count": 150584,
+      "character_share": 0.021723351107096608,
+      "word_share": 0.02048098432330969,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ll_machiavelli_istorie_fiorentine",
+      "cleaned_character_count": 881201,
+      "cleaned_word_count": 146830,
+      "character_share": 0.020295698222011792,
+      "word_share": 0.019970401425062168,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ll_masuccio_novellino",
+      "cleaned_character_count": 847497,
+      "cleaned_word_count": 144094,
+      "character_share": 0.019519432406522836,
+      "word_share": 0.019598277075140693,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ll_castiglione_cortegiano",
+      "cleaned_character_count": 779031,
+      "cleaned_word_count": 131576,
+      "character_share": 0.017942533067475036,
+      "word_share": 0.017895699365960496,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ll_machiavelli_discorsi",
+      "cleaned_character_count": 709808,
+      "cleaned_word_count": 118694,
+      "character_share": 0.016348198610271376,
+      "word_share": 0.016143613885080222,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ll_guicciardini_storie_fiorentine",
+      "cleaned_character_count": 680384,
+      "cleaned_word_count": 113345,
+      "character_share": 0.015670509156350564,
+      "word_share": 0.01541609445974032,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ws_galileo_saggiatore",
+      "cleaned_character_count": 512145,
+      "cleaned_word_count": 81884,
+      "character_share": 0.011795652031616203,
+      "word_share": 0.011137072466728805,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "pg_villani_cronica_vol4_69901",
+      "cleaned_character_count": 490318,
+      "cleaned_word_count": 80713,
+      "character_share": 0.011292935619478845,
+      "word_share": 0.010977804333045309,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "pg_villani_cronica_vol3_69900",
+      "cleaned_character_count": 485959,
+      "cleaned_word_count": 79121,
+      "character_share": 0.011192539740956523,
+      "word_share": 0.010761275837038368,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "pg_villani_cronica_vol1_69898",
+      "cleaned_character_count": 459395,
+      "cleaned_word_count": 74872,
+      "character_share": 0.010580721407149002,
+      "word_share": 0.010183367809693214,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "pg_villani_cronica_vol5_69902",
+      "cleaned_character_count": 444258,
+      "cleaned_word_count": 73305,
+      "character_share": 0.010232088139612319,
+      "word_share": 0.00997023957273161,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "pg_villani_cronica_vol2_69899",
+      "cleaned_character_count": 418219,
+      "cleaned_word_count": 67418,
+      "character_share": 0.009632361532399021,
+      "word_share": 0.009169546572736097,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ll_bembo_prose_volgar_lingua",
+      "cleaned_character_count": 380650,
+      "cleaned_word_count": 66823,
+      "character_share": 0.0087670775773164,
+      "word_share": 0.009088620407457122,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ll_machiavelli_arte_guerra",
+      "cleaned_character_count": 367150,
+      "cleaned_word_count": 61625,
+      "character_share": 0.008456147464893515,
+      "word_share": 0.008381638546751046,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ll_bembo_asolani",
+      "cleaned_character_count": 347457,
+      "cleaned_word_count": 57972,
+      "character_share": 0.008002581042379152,
+      "word_share": 0.00788479269504668,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ll_boccaccio_elegia_fiammetta",
+      "cleaned_character_count": 336933,
+      "cleaned_word_count": 57516,
+      "character_share": 0.007760193745850378,
+      "word_share": 0.007822771970059768,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ll_guicciardini_discorsi_politici",
+      "cleaned_character_count": 298418,
+      "cleaned_word_count": 51065,
+      "character_share": 0.0068731216510379755,
+      "word_share": 0.0069453691260014955,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "pg_jacopo_alighieri_chiose_30766",
+      "cleaned_character_count": 230678,
+      "cleaned_word_count": 36518,
+      "character_share": 0.005312943442480474,
+      "word_share": 0.004966826392701902,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ll_dino_compagni_cronica",
+      "cleaned_character_count": 221766,
+      "cleaned_word_count": 37152,
+      "character_share": 0.005107683504561011,
+      "word_share": 0.0050530569620916,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ll_novellino",
+      "cleaned_character_count": 217549,
+      "cleaned_word_count": 38370,
+      "character_share": 0.005010558150184173,
+      "word_share": 0.005218717582780327,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ll_machiavelli_principe",
+      "cleaned_character_count": 172431,
+      "cleaned_word_count": 28981,
+      "character_share": 0.00397140668260671,
+      "word_share": 0.003941716295714273,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ll_guicciardini_ricordi",
+      "cleaned_character_count": 169378,
+      "cleaned_word_count": 29233,
+      "character_share": 0.003901090413478779,
+      "word_share": 0.003975990906891251,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "ll_boccaccio_trattatello",
+      "cleaned_character_count": 122698,
+      "cleaned_word_count": 20264,
+      "character_share": 0.002825963180300979,
+      "word_share": 0.0027561139717868265,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    }
+  ],
+  "author_entries": [
+    {
+      "name": "Giovan Battista Ramusio",
+      "cleaned_character_count": 11966998,
+      "cleaned_word_count": 2048570,
+      "character_share": 0.27562222470403314,
+      "word_share": 0.2786267469000858,
+      "exceeds_character_cap": true,
+      "exceeds_word_cap": true
+    },
+    {
+      "name": "Francesco Guicciardini",
+      "cleaned_character_count": 4969701,
+      "cleaned_word_count": 803102,
+      "character_share": 0.11446145856578718,
+      "word_share": 0.1092301935930687,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "Giorgio Vasari",
+      "cleaned_character_count": 4359397,
+      "cleaned_word_count": 739341,
+      "character_share": 0.10040502217081408,
+      "word_share": 0.10055803691348422,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "Matteo Bandello",
+      "cleaned_character_count": 4212617,
+      "cleaned_word_count": 737390,
+      "character_share": 0.09702440573367103,
+      "word_share": 0.10029268069758626,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "Giovanni Boccaccio",
+      "cleaned_character_count": 3184393,
+      "cleaned_word_count": 549763,
+      "character_share": 0.07334249433249258,
+      "word_share": 0.07477346454162263,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "Giovanni Villani",
+      "cleaned_character_count": 2713993,
+      "cleaned_word_count": 468306,
+      "character_share": 0.06250830730406848,
+      "word_share": 0.06369446849938816,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "Matteo Villani",
+      "cleaned_character_count": 2298149,
+      "cleaned_word_count": 375429,
+      "character_share": 0.05293064643959571,
+      "word_share": 0.0510622341252446,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "Niccolò Machiavelli",
+      "cleaned_character_count": 2130590,
+      "cleaned_word_count": 356130,
+      "character_share": 0.049071450979783396,
+      "word_share": 0.048437370152607705,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "Galileo Galilei",
+      "cleaned_character_count": 1616481,
+      "cleaned_word_count": 264475,
+      "character_share": 0.037230564374774705,
+      "word_share": 0.03597134044060012,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "Franco Sacchetti",
+      "cleaned_character_count": 1037219,
+      "cleaned_word_count": 184712,
+      "character_share": 0.023889082983492814,
+      "word_share": 0.02512274595127755,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "Caterina da Siena",
+      "cleaned_character_count": 960764,
+      "cleaned_word_count": 162074,
+      "character_share": 0.022128182113471204,
+      "word_share": 0.022043743380545704,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "Giambattista Vico",
+      "cleaned_character_count": 943187,
+      "cleaned_word_count": 150584,
+      "character_share": 0.021723351107096608,
+      "word_share": 0.02048098432330969,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "Masuccio Salernitano",
+      "cleaned_character_count": 847497,
+      "cleaned_word_count": 144094,
+      "character_share": 0.019519432406522836,
+      "word_share": 0.019598277075140693,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "Baldassarre Castiglione",
+      "cleaned_character_count": 779031,
+      "cleaned_word_count": 131576,
+      "character_share": 0.017942533067475036,
+      "word_share": 0.017895699365960496,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "Pietro Bembo",
+      "cleaned_character_count": 728107,
+      "cleaned_word_count": 124795,
+      "character_share": 0.01676965861969555,
+      "word_share": 0.0169734131025038,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "Jacopo Alighieri",
+      "cleaned_character_count": 230678,
+      "cleaned_word_count": 36518,
+      "character_share": 0.005312943442480474,
+      "word_share": 0.004966826392701902,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "Dino Compagni",
+      "cleaned_character_count": 221766,
+      "cleaned_word_count": 37152,
+      "character_share": 0.005107683504561011,
+      "word_share": 0.0050530569620916,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    },
+    {
+      "name": "Anonymous / multiple traditions",
+      "cleaned_character_count": 217549,
+      "cleaned_word_count": 38370,
+      "character_share": 0.005010558150184173,
+      "word_share": 0.005218717582780327,
+      "exceeds_character_cap": false,
+      "exceeds_word_cap": false
+    }
+  ],
+  "source_character_cap_violations": [
+    "ll_ramusio_navigazioni_viaggi"
+  ],
+  "source_word_cap_violations": [
+    "ll_ramusio_navigazioni_viaggi"
+  ],
+  "author_character_cap_violations": [
+    "Giovan Battista Ramusio"
+  ],
+  "author_word_cap_violations": [
+    "Giovan Battista Ramusio"
+  ]
+}

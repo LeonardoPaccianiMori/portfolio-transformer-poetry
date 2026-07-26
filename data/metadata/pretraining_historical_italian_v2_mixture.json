@@ -1,0 +1,26 @@
+{
+  "corpus_version": "pretraining_historical_italian_v2",
+  "components": [
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "processed_dir": "data/processed/expanded_italian_1200_1800_v1",
+      "report_path": "reports/expanded_italian_1200_1800_v1_build_report.json"
+    },
+    {
+      "component_id": "pretraining_historical_wikisource_v1",
+      "processed_dir": "data/processed/pretraining_historical_wikisource_v1",
+      "report_path": "reports/pretraining_historical_wikisource_v1_build_report.json"
+    }
+  ],
+  "processed_dir": "data/processed/pretraining_historical_italian_v2",
+  "report_path": "reports/pretraining_historical_italian_v2_mixture_report.json",
+  "markdown_report_path": "reports/pretraining_historical_italian_v2_composition.md",
+  "work_cap_warning": 0.15,
+  "author_cap_warning": 0.2,
+  "approved_work_cap_exceptions": [
+    "ll_ramusio_navigazioni_viaggi"
+  ],
+  "approved_author_cap_exceptions": [
+    "Giovan Battista Ramusio"
+  ]
+}

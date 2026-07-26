@@ -1,0 +1,657 @@
+{
+  "corpus_version": "pretraining_historical_italian_v2",
+  "components": [
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "processed_dir": "data/processed/expanded_italian_1200_1800_v1",
+      "report_path": "reports/expanded_italian_1200_1800_v1_build_report.json"
+    },
+    {
+      "component_id": "pretraining_historical_wikisource_v1",
+      "processed_dir": "data/processed/pretraining_historical_wikisource_v1",
+      "report_path": "reports/pretraining_historical_wikisource_v1_build_report.json"
+    }
+  ],
+  "sampling_policy": {
+    "strategy": "one_pass_concatenation",
+    "default_source_weight": 1.0,
+    "cap_enforcement": "none",
+    "work_cap_warning": 0.15,
+    "author_cap_warning": 0.2,
+    "approved_work_cap_exceptions": [
+      "ll_ramusio_navigazioni_viaggi"
+    ],
+    "approved_author_cap_exceptions": [
+      "Giovan Battista Ramusio"
+    ]
+  },
+  "source_count": 36,
+  "total_cleaned_characters": 48005056,
+  "total_cleaned_words": 8080476,
+  "sources": [
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "pg_villani_cronica_vol1_69898",
+      "title": "Cronica di Matteo Villani: volume 1",
+      "author": "Matteo Villani",
+      "source_archive": "Project Gutenberg",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/pg_villani_cronica_vol1_69898.txt",
+      "cleaned_character_count": 459395,
+      "cleaned_word_count": 74872,
+      "sampling_weight": 1.0,
+      "character_share": 0.00956972115603823,
+      "word_share": 0.009265790777672008
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "pg_jacopo_alighieri_chiose_30766",
+      "title": "Chiose alla cantica dell'Inferno di Dante Alighieri",
+      "author": "Jacopo Alighieri",
+      "source_archive": "Project Gutenberg",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/pg_jacopo_alighieri_chiose_30766.txt",
+      "cleaned_character_count": 230678,
+      "cleaned_word_count": 36518,
+      "sampling_weight": 1.0,
+      "character_share": 0.004805285509926288,
+      "word_share": 0.004519288220149407
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "pg_caterina_dialogo_26961",
+      "title": "Libro della divina dottrina: Dialogo della divina provvidenza",
+      "author": "Caterina da Siena",
+      "source_archive": "Project Gutenberg",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/pg_caterina_dialogo_26961.txt",
+      "cleaned_character_count": 960764,
+      "cleaned_word_count": 162074,
+      "sampling_weight": 1.0,
+      "character_share": 0.020013808545499875,
+      "word_share": 0.020057481762213017
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "pg_villani_cronica_vol2_69899",
+      "title": "Cronica di Matteo Villani: volume 2",
+      "author": "Matteo Villani",
+      "source_archive": "Project Gutenberg",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/pg_villani_cronica_vol2_69899.txt",
+      "cleaned_character_count": 418219,
+      "cleaned_word_count": 67418,
+      "sampling_weight": 1.0,
+      "character_share": 0.008711978171632589,
+      "word_share": 0.008343320368750554
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "pg_villani_cronica_vol3_69900",
+      "title": "Cronica di Matteo Villani: volume 3",
+      "author": "Matteo Villani",
+      "source_archive": "Project Gutenberg",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/pg_villani_cronica_vol3_69900.txt",
+      "cleaned_character_count": 485959,
+      "cleaned_word_count": 79121,
+      "sampling_weight": 1.0,
+      "character_share": 0.010123079535622248,
+      "word_share": 0.009791626136876095
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "pg_villani_cronica_vol4_69901",
+      "title": "Cronica di Matteo Villani: volume 4",
+      "author": "Matteo Villani",
+      "source_archive": "Project Gutenberg",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/pg_villani_cronica_vol4_69901.txt",
+      "cleaned_character_count": 490318,
+      "cleaned_word_count": 80713,
+      "sampling_weight": 1.0,
+      "character_share": 0.010213882471046383,
+      "word_share": 0.00998864423333477
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "pg_villani_cronica_vol5_69902",
+      "title": "Cronica di Matteo Villani: volume 5",
+      "author": "Matteo Villani",
+      "source_archive": "Project Gutenberg",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/pg_villani_cronica_vol5_69902.txt",
+      "cleaned_character_count": 444258,
+      "cleaned_word_count": 73305,
+      "sampling_weight": 1.0,
+      "character_share": 0.009254400203178598,
+      "word_share": 0.009071866558356215
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_novellino",
+      "title": "Il Novellino",
+      "author": "Anonymous / multiple traditions",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_novellino.txt",
+      "cleaned_character_count": 217549,
+      "cleaned_word_count": 38370,
+      "sampling_weight": 1.0,
+      "character_share": 0.004531793484419641,
+      "word_share": 0.004748482638894045
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_giovanni_villani_nuova_cronica",
+      "title": "Nuova cronica",
+      "author": "Giovanni Villani",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_giovanni_villani_nuova_cronica.txt",
+      "cleaned_character_count": 2713993,
+      "cleaned_word_count": 468306,
+      "sampling_weight": 1.0,
+      "character_share": 0.05653556575374061,
+      "word_share": 0.05795524917096468
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_dino_compagni_cronica",
+      "title": "Cronica delle cose occorrenti ne' tempi suoi",
+      "author": "Dino Compagni",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_dino_compagni_cronica.txt",
+      "cleaned_character_count": 221766,
+      "cleaned_word_count": 37152,
+      "sampling_weight": 1.0,
+      "character_share": 0.004619638398088734,
+      "word_share": 0.004597748944492874
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_boccaccio_decameron_mondadori",
+      "title": "Decameron [Mondadori]",
+      "author": "Giovanni Boccaccio",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_boccaccio_decameron_mondadori.txt",
+      "cleaned_character_count": 1511926,
+      "cleaned_word_count": 263797,
+      "sampling_weight": 1.0,
+      "character_share": 0.03149514084516431,
+      "word_share": 0.032646220346425135
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_boccaccio_filocolo",
+      "title": "Filocolo",
+      "author": "Giovanni Boccaccio",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_boccaccio_filocolo.txt",
+      "cleaned_character_count": 1212836,
+      "cleaned_word_count": 208186,
+      "sampling_weight": 1.0,
+      "character_share": 0.025264755445759714,
+      "word_share": 0.02576407627471451
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_boccaccio_elegia_fiammetta",
+      "title": "Elegia di Madonna Fiammetta",
+      "author": "Giovanni Boccaccio",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_boccaccio_elegia_fiammetta.txt",
+      "cleaned_character_count": 336933,
+      "cleaned_word_count": 57516,
+      "sampling_weight": 1.0,
+      "character_share": 0.0070186981971232364,
+      "word_share": 0.007117897509998174
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_boccaccio_trattatello",
+      "title": "Trattatello in laude di Dante",
+      "author": "Giovanni Boccaccio",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_boccaccio_trattatello.txt",
+      "cleaned_character_count": 122698,
+      "cleaned_word_count": 20264,
+      "sampling_weight": 1.0,
+      "character_share": 0.0025559391077473173,
+      "word_share": 0.0025077730569337746
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_sacchetti_trecentonovelle",
+      "title": "Il Trecentonovelle",
+      "author": "Franco Sacchetti",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_sacchetti_trecentonovelle.txt",
+      "cleaned_character_count": 1037219,
+      "cleaned_word_count": 184712,
+      "sampling_weight": 1.0,
+      "character_share": 0.021606453286920443,
+      "word_share": 0.02285904939263479
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_bandello_novelle",
+      "title": "Novelle",
+      "author": "Matteo Bandello",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_bandello_novelle.txt",
+      "cleaned_character_count": 4212617,
+      "cleaned_word_count": 737390,
+      "sampling_weight": 1.0,
+      "character_share": 0.08775361078633051,
+      "word_share": 0.09125576265556633
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_bembo_asolani",
+      "title": "Gli Asolani",
+      "author": "Pietro Bembo",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_bembo_asolani.txt",
+      "cleaned_character_count": 347457,
+      "cleaned_word_count": 57972,
+      "sampling_weight": 1.0,
+      "character_share": 0.00723792510522225,
+      "word_share": 0.0071743298290843265
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_bembo_prose_volgar_lingua",
+      "title": "Prose della volgar lingua",
+      "author": "Pietro Bembo",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_bembo_prose_volgar_lingua.txt",
+      "cleaned_character_count": 380650,
+      "cleaned_word_count": 66823,
+      "sampling_weight": 1.0,
+      "character_share": 0.007929373106032832,
+      "word_share": 0.008269686092749981
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_castiglione_cortegiano",
+      "title": "Il libro del Cortegiano",
+      "author": "Baldassarre Castiglione",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_castiglione_cortegiano.txt",
+      "cleaned_character_count": 779031,
+      "cleaned_word_count": 131576,
+      "sampling_weight": 1.0,
+      "character_share": 0.016228103139802608,
+      "word_share": 0.0162831991580694
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_machiavelli_discorsi",
+      "title": "Discorsi sopra la prima Deca di Tito Livio",
+      "author": "Niccolò Machiavelli",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_machiavelli_discorsi.txt",
+      "cleaned_character_count": 709808,
+      "cleaned_word_count": 118694,
+      "sampling_weight": 1.0,
+      "character_share": 0.01478610919649797,
+      "word_share": 0.014688986143885583
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_machiavelli_istorie_fiorentine",
+      "title": "Istorie fiorentine",
+      "author": "Niccolò Machiavelli",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_machiavelli_istorie_fiorentine.txt",
+      "cleaned_character_count": 881201,
+      "cleaned_word_count": 146830,
+      "sampling_weight": 1.0,
+      "character_share": 0.018356420623694303,
+      "word_share": 0.018170959235569786
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_machiavelli_arte_guerra",
+      "title": "Dell'arte della guerra",
+      "author": "Niccolò Machiavelli",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_machiavelli_arte_guerra.txt",
+      "cleaned_character_count": 367150,
+      "cleaned_word_count": 61625,
+      "sampling_weight": 1.0,
+      "character_share": 0.00764815272791266,
+      "word_share": 0.007626407157202125
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_machiavelli_principe",
+      "title": "Il Principe",
+      "author": "Niccolò Machiavelli",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_machiavelli_principe.txt",
+      "cleaned_character_count": 172431,
+      "cleaned_word_count": 28981,
+      "sampling_weight": 1.0,
+      "character_share": 0.0035919341496029084,
+      "word_share": 0.003586546139113587
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_guicciardini_storia_italia",
+      "title": "Storia d'Italia",
+      "author": "Francesco Guicciardini",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_guicciardini_storia_italia.txt",
+      "cleaned_character_count": 3821521,
+      "cleaned_word_count": 609459,
+      "sampling_weight": 1.0,
+      "character_share": 0.07960663560105002,
+      "word_share": 0.075423650784929
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_guicciardini_storie_fiorentine",
+      "title": "Storie Fiorentine dal 1378 al 1509",
+      "author": "Francesco Guicciardini",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_guicciardini_storie_fiorentine.txt",
+      "cleaned_character_count": 680384,
+      "cleaned_word_count": 113345,
+      "sampling_weight": 1.0,
+      "character_share": 0.014173173759030716,
+      "word_share": 0.014027020190394724
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_guicciardini_discorsi_politici",
+      "title": "Discorsi politici",
+      "author": "Francesco Guicciardini",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_guicciardini_discorsi_politici.txt",
+      "cleaned_character_count": 298418,
+      "cleaned_word_count": 51065,
+      "sampling_weight": 1.0,
+      "character_share": 0.006216386873915947,
+      "word_share": 0.006319553452049112
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_guicciardini_ricordi",
+      "title": "Ricordi",
+      "author": "Francesco Guicciardini",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_guicciardini_ricordi.txt",
+      "cleaned_character_count": 169378,
+      "cleaned_word_count": 29233,
+      "sampling_weight": 1.0,
+      "character_share": 0.0035283366818695096,
+      "word_share": 0.003617732420713829
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_vasari_vite_1568",
+      "title": "Le vite dei più eccellenti pittori, scultori e architetti",
+      "author": "Giorgio Vasari",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_vasari_vite_1568.txt",
+      "cleaned_character_count": 4359397,
+      "cleaned_word_count": 739341,
+      "sampling_weight": 1.0,
+      "character_share": 0.09081120538636597,
+      "word_share": 0.09149720882779677
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_masuccio_novellino",
+      "title": "Il Novellino",
+      "author": "Masuccio Salernitano",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_masuccio_novellino.txt",
+      "cleaned_character_count": 847497,
+      "cleaned_word_count": 144094,
+      "sampling_weight": 1.0,
+      "character_share": 0.017654327910793396,
+      "word_share": 0.017832365321052868
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_ramusio_navigazioni_viaggi",
+      "title": "Navigazioni e Viaggi",
+      "author": "Giovan Battista Ramusio",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_ramusio_navigazioni_viaggi.txt",
+      "cleaned_character_count": 11966998,
+      "cleaned_word_count": 2048570,
+      "sampling_weight": 1.0,
+      "character_share": 0.24928620018691364,
+      "word_share": 0.2535209559436845
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ws_galileo_saggiatore",
+      "title": "Il Saggiatore",
+      "author": "Galileo Galilei",
+      "source_archive": "Italian Wikisource",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ws_galileo_saggiatore.txt",
+      "cleaned_character_count": 512145,
+      "cleaned_word_count": 81884,
+      "sampling_weight": 1.0,
+      "character_share": 0.0106685637446189,
+      "word_share": 0.010133561438707323
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ws_galileo_dialogo",
+      "title": "Dialogo sopra i due massimi sistemi del mondo tolemaico e copernicano",
+      "author": "Galileo Galilei",
+      "source_archive": "Italian Wikisource",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ws_galileo_dialogo.txt",
+      "cleaned_character_count": 1104336,
+      "cleaned_word_count": 182591,
+      "sampling_weight": 1.0,
+      "character_share": 0.023004576851238336,
+      "word_share": 0.02259656485583275
+    },
+    {
+      "component_id": "expanded_italian_1200_1800_v1",
+      "source_id": "ll_vico_principj_scienza_nuova",
+      "title": "Principj di scienza nuova",
+      "author": "Giambattista Vico",
+      "source_archive": "Liber Liber",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_vico_principj_scienza_nuova.txt",
+      "cleaned_character_count": 943187,
+      "cleaned_word_count": 150584,
+      "sampling_weight": 1.0,
+      "character_share": 0.019647659613187412,
+      "word_share": 0.018635535827344826
+    },
+    {
+      "component_id": "pretraining_historical_wikisource_v1",
+      "source_id": "ws_sarpi_istoria_concilio",
+      "title": "Istoria del Concilio tridentino",
+      "author": "Paolo Sarpi",
+      "source_archive": "Italian Wikisource",
+      "source_path": "data/processed/pretraining_historical_wikisource_v1/sources/ws_sarpi_istoria_concilio.txt",
+      "cleaned_character_count": 2815896,
+      "cleaned_word_count": 448490,
+      "sampling_weight": 1.0,
+      "character_share": 0.05865832132348726,
+      "word_share": 0.055502918392431336
+    },
+    {
+      "component_id": "pretraining_historical_wikisource_v1",
+      "source_id": "ws_verri_storia_milano",
+      "title": "Storia di Milano",
+      "author": "Pietro Verri",
+      "source_archive": "Italian Wikisource",
+      "source_path": "data/processed/pretraining_historical_wikisource_v1/sources/ws_verri_storia_milano.txt",
+      "cleaned_character_count": 1615569,
+      "cleaned_word_count": 254163,
+      "sampling_weight": 1.0,
+      "character_share": 0.03365414259697978,
+      "word_share": 0.031453963850644445
+    },
+    {
+      "component_id": "pretraining_historical_wikisource_v1",
+      "source_id": "ws_verri_osservazioni_tortura",
+      "title": "Osservazioni sulla tortura",
+      "author": "Pietro Verri",
+      "source_archive": "Italian Wikisource",
+      "source_path": "data/processed/pretraining_historical_wikisource_v1/sources/ws_verri_osservazioni_tortura.txt",
+      "cleaned_character_count": 155474,
+      "cleaned_word_count": 25442,
+      "sampling_weight": 1.0,
+      "character_share": 0.0032387005235448535,
+      "word_share": 0.003148576890767326
+    }
+  ],
+  "authors": [
+    {
+      "author": "Giovan Battista Ramusio",
+      "cleaned_character_count": 11966998,
+      "cleaned_word_count": 2048570,
+      "character_share": 0.24928620018691364,
+      "word_share": 0.2535209559436845
+    },
+    {
+      "author": "Francesco Guicciardini",
+      "cleaned_character_count": 4969701,
+      "cleaned_word_count": 803102,
+      "character_share": 0.10352453291586619,
+      "word_share": 0.09938795684808667
+    },
+    {
+      "author": "Giorgio Vasari",
+      "cleaned_character_count": 4359397,
+      "cleaned_word_count": 739341,
+      "character_share": 0.09081120538636597,
+      "word_share": 0.09149720882779677
+    },
+    {
+      "author": "Matteo Bandello",
+      "cleaned_character_count": 4212617,
+      "cleaned_word_count": 737390,
+      "character_share": 0.08775361078633051,
+      "word_share": 0.09125576265556633
+    },
+    {
+      "author": "Giovanni Boccaccio",
+      "cleaned_character_count": 3184393,
+      "cleaned_word_count": 549763,
+      "character_share": 0.06633453359579458,
+      "word_share": 0.06803596718807159
+    },
+    {
+      "author": "Paolo Sarpi",
+      "cleaned_character_count": 2815896,
+      "cleaned_word_count": 448490,
+      "character_share": 0.05865832132348726,
+      "word_share": 0.055502918392431336
+    },
+    {
+      "author": "Giovanni Villani",
+      "cleaned_character_count": 2713993,
+      "cleaned_word_count": 468306,
+      "character_share": 0.05653556575374061,
+      "word_share": 0.05795524917096468
+    },
+    {
+      "author": "Matteo Villani",
+      "cleaned_character_count": 2298149,
+      "cleaned_word_count": 375429,
+      "character_share": 0.047873061537518045,
+      "word_share": 0.04646124807498964
+    },
+    {
+      "author": "Niccolò Machiavelli",
+      "cleaned_character_count": 2130590,
+      "cleaned_word_count": 356130,
+      "character_share": 0.04438261669770784,
+      "word_share": 0.044072898675771084
+    },
+    {
+      "author": "Pietro Verri",
+      "cleaned_character_count": 1771043,
+      "cleaned_word_count": 279605,
+      "character_share": 0.03689284312052464,
+      "word_share": 0.034602540741411766
+    },
+    {
+      "author": "Galileo Galilei",
+      "cleaned_character_count": 1616481,
+      "cleaned_word_count": 264475,
+      "character_share": 0.033673140595857236,
+      "word_share": 0.03273012629454007
+    },
+    {
+      "author": "Franco Sacchetti",
+      "cleaned_character_count": 1037219,
+      "cleaned_word_count": 184712,
+      "character_share": 0.021606453286920443,
+      "word_share": 0.02285904939263479
+    },
+    {
+      "author": "Caterina da Siena",
+      "cleaned_character_count": 960764,
+      "cleaned_word_count": 162074,
+      "character_share": 0.020013808545499875,
+      "word_share": 0.020057481762213017
+    },
+    {
+      "author": "Giambattista Vico",
+      "cleaned_character_count": 943187,
+      "cleaned_word_count": 150584,
+      "character_share": 0.019647659613187412,
+      "word_share": 0.018635535827344826
+    },
+    {
+      "author": "Masuccio Salernitano",
+      "cleaned_character_count": 847497,
+      "cleaned_word_count": 144094,
+      "character_share": 0.017654327910793396,
+      "word_share": 0.017832365321052868
+    },
+    {
+      "author": "Baldassarre Castiglione",
+      "cleaned_character_count": 779031,
+      "cleaned_word_count": 131576,
+      "character_share": 0.016228103139802608,
+      "word_share": 0.0162831991580694
+    },
+    {
+      "author": "Pietro Bembo",
+      "cleaned_character_count": 728107,
+      "cleaned_word_count": 124795,
+      "character_share": 0.01516729821125508,
+      "word_share": 0.015444015921834307
+    },
+    {
+      "author": "Jacopo Alighieri",
+      "cleaned_character_count": 230678,
+      "cleaned_word_count": 36518,
+      "character_share": 0.004805285509926288,
+      "word_share": 0.004519288220149407
+    },
+    {
+      "author": "Dino Compagni",
+      "cleaned_character_count": 221766,
+      "cleaned_word_count": 37152,
+      "character_share": 0.004619638398088734,
+      "word_share": 0.004597748944492874
+    },
+    {
+      "author": "Anonymous / multiple traditions",
+      "cleaned_character_count": 217549,
+      "cleaned_word_count": 38370,
+      "character_share": 0.004531793484419641,
+      "word_share": 0.004748482638894045
+    }
+  ],
+  "concentration_warnings": [
+    {
+      "level": "work",
+      "name": "ll_ramusio_navigazioni_viaggi",
+      "character_share": 0.24928620018691364,
+      "approved_exception": true
+    },
+    {
+      "level": "author",
+      "name": "Giovan Battista Ramusio",
+      "character_share": 0.24928620018691364,
+      "approved_exception": true
+    }
+  ]
+}

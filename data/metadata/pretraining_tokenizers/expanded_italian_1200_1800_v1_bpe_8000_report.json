@@ -1,0 +1,242 @@
+{
+  "started_at_utc": "2026-07-16T10:02:10+00:00",
+  "finished_at_utc": "2026-07-16T10:02:38+00:00",
+  "corpus_path": "data/processed/expanded_italian_1200_1800_v1/corpus.txt",
+  "tokenizer_path": "data/metadata/pretraining_tokenizers/expanded_italian_1200_1800_v1_bpe_8000.json",
+  "build_report_path": "reports/expanded_italian_1200_1800_v1_build_report.json",
+  "target_vocab_size": 8000,
+  "actual_vocab_size": 8000,
+  "merge_count": 7843,
+  "status": "complete",
+  "special_tokens": [
+    "<|endoftext|>"
+  ],
+  "corpus_character_count": 43418149,
+  "training_character_limit": 1000000,
+  "training_character_count": 998144,
+  "sampling_strategy": "stratified_sources",
+  "minimum_source_characters": 10000,
+  "sample_sources": [
+    {
+      "source_id": "pg_villani_cronica_vol1_69898",
+      "available_character_count": 459395,
+      "allocated_character_count": 16988,
+      "sampled_character_count": 16939
+    },
+    {
+      "source_id": "pg_jacopo_alighieri_chiose_30766",
+      "available_character_count": 230678,
+      "allocated_character_count": 13431,
+      "sampled_character_count": 13399
+    },
+    {
+      "source_id": "pg_caterina_dialogo_26961",
+      "available_character_count": 960764,
+      "allocated_character_count": 24784,
+      "sampled_character_count": 24720
+    },
+    {
+      "source_id": "pg_villani_cronica_vol2_69899",
+      "available_character_count": 418219,
+      "allocated_character_count": 16348,
+      "sampled_character_count": 16303
+    },
+    {
+      "source_id": "pg_villani_cronica_vol3_69900",
+      "available_character_count": 485959,
+      "allocated_character_count": 17401,
+      "sampled_character_count": 17357
+    },
+    {
+      "source_id": "pg_villani_cronica_vol4_69901",
+      "available_character_count": 490318,
+      "allocated_character_count": 17469,
+      "sampled_character_count": 17443
+    },
+    {
+      "source_id": "pg_villani_cronica_vol5_69902",
+      "available_character_count": 444258,
+      "allocated_character_count": 16752,
+      "sampled_character_count": 16683
+    },
+    {
+      "source_id": "ll_novellino",
+      "available_character_count": 217549,
+      "allocated_character_count": 13227,
+      "sampled_character_count": 13198
+    },
+    {
+      "source_id": "ll_giovanni_villani_nuova_cronica",
+      "available_character_count": 2713993,
+      "allocated_character_count": 52046,
+      "sampled_character_count": 51954
+    },
+    {
+      "source_id": "ll_dino_compagni_cronica",
+      "available_character_count": 221766,
+      "allocated_character_count": 13293,
+      "sampled_character_count": 13247
+    },
+    {
+      "source_id": "ll_boccaccio_decameron_mondadori",
+      "available_character_count": 1511926,
+      "allocated_character_count": 33354,
+      "sampled_character_count": 33263
+    },
+    {
+      "source_id": "ll_boccaccio_filocolo",
+      "available_character_count": 1212836,
+      "allocated_character_count": 28704,
+      "sampled_character_count": 28636
+    },
+    {
+      "source_id": "ll_boccaccio_elegia_fiammetta",
+      "available_character_count": 336933,
+      "allocated_character_count": 15084,
+      "sampled_character_count": 15039
+    },
+    {
+      "source_id": "ll_boccaccio_trattatello",
+      "available_character_count": 122698,
+      "allocated_character_count": 11752,
+      "sampled_character_count": 11724
+    },
+    {
+      "source_id": "ll_sacchetti_trecentonovelle",
+      "available_character_count": 1037219,
+      "allocated_character_count": 25973,
+      "sampled_character_count": 25877
+    },
+    {
+      "source_id": "ll_bandello_novelle",
+      "available_character_count": 4212617,
+      "allocated_character_count": 75349,
+      "sampled_character_count": 75271
+    },
+    {
+      "source_id": "ll_bembo_asolani",
+      "available_character_count": 347457,
+      "allocated_character_count": 15247,
+      "sampled_character_count": 15213
+    },
+    {
+      "source_id": "ll_bembo_prose_volgar_lingua",
+      "available_character_count": 380650,
+      "allocated_character_count": 15763,
+      "sampled_character_count": 15738
+    },
+    {
+      "source_id": "ll_castiglione_cortegiano",
+      "available_character_count": 779031,
+      "allocated_character_count": 21958,
+      "sampled_character_count": 21896
+    },
+    {
+      "source_id": "ll_machiavelli_discorsi",
+      "available_character_count": 709808,
+      "allocated_character_count": 20882,
+      "sampled_character_count": 20820
+    },
+    {
+      "source_id": "ll_machiavelli_istorie_fiorentine",
+      "available_character_count": 881201,
+      "allocated_character_count": 23547,
+      "sampled_character_count": 23468
+    },
+    {
+      "source_id": "ll_machiavelli_arte_guerra",
+      "available_character_count": 367150,
+      "allocated_character_count": 15553,
+      "sampled_character_count": 15509
+    },
+    {
+      "source_id": "ll_machiavelli_principe",
+      "available_character_count": 172431,
+      "allocated_character_count": 12526,
+      "sampled_character_count": 12494
+    },
+    {
+      "source_id": "ll_guicciardini_storia_italia",
+      "available_character_count": 3821521,
+      "allocated_character_count": 69267,
+      "sampled_character_count": 69170
+    },
+    {
+      "source_id": "ll_guicciardini_storie_fiorentine",
+      "available_character_count": 680384,
+      "allocated_character_count": 20424,
+      "sampled_character_count": 20354
+    },
+    {
+      "source_id": "ll_guicciardini_discorsi_politici",
+      "available_character_count": 298418,
+      "allocated_character_count": 14485,
+      "sampled_character_count": 14458
+    },
+    {
+      "source_id": "ll_guicciardini_ricordi",
+      "available_character_count": 169378,
+      "allocated_character_count": 12478,
+      "sampled_character_count": 12450
+    },
+    {
+      "source_id": "ll_vasari_vite_1568",
+      "available_character_count": 4359397,
+      "allocated_character_count": 77631,
+      "sampled_character_count": 77554
+    },
+    {
+      "source_id": "ll_masuccio_novellino",
+      "available_character_count": 847497,
+      "allocated_character_count": 23023,
+      "sampled_character_count": 22968
+    },
+    {
+      "source_id": "ll_ramusio_navigazioni_viaggi",
+      "available_character_count": 11966998,
+      "allocated_character_count": 195926,
+      "sampled_character_count": 195834
+    },
+    {
+      "source_id": "ws_galileo_saggiatore",
+      "available_character_count": 512145,
+      "allocated_character_count": 17808,
+      "sampled_character_count": 17765
+    },
+    {
+      "source_id": "ws_galileo_dialogo",
+      "available_character_count": 1104336,
+      "allocated_character_count": 27016,
+      "sampled_character_count": 26906
+    },
+    {
+      "source_id": "ll_vico_principj_scienza_nuova",
+      "available_character_count": 943187,
+      "allocated_character_count": 24511,
+      "sampled_character_count": 24462
+    }
+  ],
+  "token_count": 17294376,
+  "characters_per_token": 2.5105357371668107,
+  "boundary_warnings": [],
+  "round_trip_samples": [
+    {
+      "name": "start",
+      "character_count": 500,
+      "token_count": 72,
+      "round_trip_ok": true
+    },
+    {
+      "name": "middle",
+      "character_count": 500,
+      "token_count": 190,
+      "round_trip_ok": true
+    },
+    {
+      "name": "end",
+      "character_count": 500,
+      "token_count": 199,
+      "round_trip_ok": true
+    }
+  ]
+}
