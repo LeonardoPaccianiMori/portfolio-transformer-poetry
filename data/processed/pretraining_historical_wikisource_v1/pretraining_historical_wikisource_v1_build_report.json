@@ -1,0 +1,78 @@
+{
+  "corpus_version": "pretraining_historical_wikisource_v1",
+  "started_at_utc": "2026-07-26T20:14:13+00:00",
+  "finished_at_utc": "2026-07-26T20:26:22+00:00",
+  "manifest_path": "data/metadata/broader_prose_sources_manifest.csv",
+  "processed_dir": "data/processed/pretraining_historical_wikisource_v1",
+  "combined_corpus_path": "data/processed/pretraining_historical_wikisource_v1/corpus.txt",
+  "selected_rows": 3,
+  "skipped_rows": 46,
+  "total_cleaned_characters": 4586939,
+  "total_cleaned_words": 728095,
+  "source_archive_shares": {
+    "Italian Wikisource": {
+      "cleaned_character_count": 4586939,
+      "share": 1.0
+    }
+  },
+  "author_shares": {
+    "Paolo Sarpi": {
+      "cleaned_character_count": 2815896,
+      "share": 0.6138943639756274
+    },
+    "Pietro Verri": {
+      "cleaned_character_count": 1771043,
+      "share": 0.3861056360243727
+    }
+  },
+  "sources": [
+    {
+      "source_id": "ws_sarpi_istoria_concilio",
+      "title": "Istoria del Concilio tridentino",
+      "author": "Paolo Sarpi",
+      "source_archive": "Italian Wikisource",
+      "landing_page_url": "https://it.wikisource.org/wiki/Istoria_del_Concilio_tridentino",
+      "fetched_url": "https://it.wikisource.org/wiki/Istoria_del_Concilio_tridentino?oldid=3809430",
+      "processed_path": "data/processed/pretraining_historical_wikisource_v1/sources/ws_sarpi_istoria_concilio.txt",
+      "raw_character_count": 2815896,
+      "cleaned_character_count": 2815896,
+      "cleaned_word_count": 448490,
+      "first_characters": "## Istoria del Concilio tridentino/Libro primo/Capitolo I CAPITOLO I (1502-1521) [Disegno dell’autore. — Uso antico di convocare concili. — Condizioni della Chiesa nel secolo XVI. — Leone X e le indulgenze. — Protesta di Martin Lutero. — V",
+      "last_characters": "faticati nel concilio in servizio fidele di Sua Santitá. A questi aggionse Zaccaria Delfino vescovo di Liesena, che, noncio all’imperatore, non si affaticò manco per metter fine al concilio, di quello che gli altri avevano fatto in Trento.",
+      "license_notes": "Retain Italian Wikisource attribution, work URL, revision or dump date, and CC BY-SA 3.0/GFDL metadata.",
+      "cleaning_notes": "Exclude three volume-index leaves and 17 alphabetical name-index leaves; retain uncertain in-text square brackets; preserve spelling and punctuation."
+    },
+    {
+      "source_id": "ws_verri_storia_milano",
+      "title": "Storia di Milano",
+      "author": "Pietro Verri",
+      "source_archive": "Italian Wikisource",
+      "landing_page_url": "https://it.wikisource.org/wiki/Storia_di_Milano",
+      "fetched_url": "https://it.wikisource.org/wiki/Storia_di_Milano?oldid=3828025",
+      "processed_path": "data/processed/pretraining_historical_wikisource_v1/sources/ws_verri_storia_milano.txt",
+      "raw_character_count": 1615587,
+      "cleaned_character_count": 1615569,
+      "cleaned_word_count": 254163,
+      "first_characters": "## Storia di Milano/Dedicatoria D E D I C A T O R I A DELL’AUTORE A S. A. R. L’ARCIDUCA FERDINANDO GOVERNATORE DELLA LOMBARDIA AUSTRIACA L e onorificenze che Vostr’Altezza Reale ha fatto scendere dal Trono Augustissimo sopra di me, e i mol",
+      "last_characters": "delle sue azioni fu per esso troppo vasto; e avvenne di lui ciò che sarebbe accaduto nel regno delle belle arti a Giulio Clovio, miniatore eccellentissimo, se la sorte lo avesse costretto ad eseguire le gigantesche imprese di Michelangelo.",
+      "license_notes": "Retain Italian Wikisource attribution, source URL, revision or dump date, and page-level license metadata.",
+      "cleaning_notes": "Exclude the editor's Avvertimento and remove only the audited editorial gloss [parla di Arialdo]; preserve all other spelling and punctuation."
+    },
+    {
+      "source_id": "ws_verri_osservazioni_tortura",
+      "title": "Osservazioni sulla tortura",
+      "author": "Pietro Verri",
+      "source_archive": "Italian Wikisource",
+      "landing_page_url": "https://it.wikisource.org/wiki/Osservazioni_sulla_tortura",
+      "fetched_url": "https://it.wikisource.org/wiki/Osservazioni_sulla_tortura?oldid=3821110",
+      "processed_path": "data/processed/pretraining_historical_wikisource_v1/sources/ws_verri_osservazioni_tortura.txt",
+      "raw_character_count": 155474,
+      "cleaned_character_count": 155474,
+      "cleaned_word_count": 25442,
+      "first_characters": "## Osservazioni sulla tortura/I OSSERVAZIONI SULLA TORTURA §. I. INTRODUZIONE F ra i molti uomini d’ingegno e di cuore, i quali hanno scritto contro la pratica criminale della tortura e contro l’insidioso raggiro de’ processi che secretame",
+      "last_characters": "enerazione per i di lei talenti e la mia ammirazione per le di lei virtù, facendomi un dovere di protestarmi, Li 18 dicembre, 1777 Umilissimo ed obbligatissimo servitore, e se osassi ancora aggiungere il titolo lusinghiero d’amico, Gorani.",
+      "license_notes": "Retain Italian Wikisource attribution, source URL, revision or dump date, and CC BY-SA 3.0/GFDL metadata.",
+      "cleaning_notes": "Preserve primary prose while recording embedded quotations or historical documents."
+    }
+  ]
+}
