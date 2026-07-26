@@ -195,6 +195,92 @@ def test_train_pretraining_bpe_tokenizer_stratifies_a_source_sample(tmp_path: Pa
     assert any(message.startswith("token count cache entries:") for message in messages)
 
 
+def test_train_pretraining_bpe_tokenizer_stratifies_a_mixture_sample(tmp_path: Path):
+    first_path = tmp_path / "first.txt"
+    second_path = tmp_path / "second.txt"
+    first_text = ("amor virtute memoria ") * 20
+    second_text = ("cronica novella istoria ") * 20
+    first_path.write_text(first_text, encoding="utf-8")
+    second_path.write_text(second_text, encoding="utf-8")
+    corpus_path = tmp_path / "corpus.txt"
+    corpus_path.write_text(f"{first_text}\n{second_text}", encoding="utf-8")
+    mixture_report_path = tmp_path / "mixture.json"
+    mixture_report_path.write_text(
+        json.dumps(
+            {
+                "sources": [
+                    {
+                        "source_id": "first",
+                        "source_path": str(first_path),
+                        "cleaned_character_count": len(first_text),
+                    },
+                    {
+                        "source_id": "second",
+                        "source_path": str(second_path),
+                        "cleaned_character_count": len(second_text),
+                    },
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    report = train_pretraining_bpe_tokenizer(
+        PretrainingTokenizerConfig(
+            corpus_path=corpus_path,
+            tokenizer_path=tmp_path / "tokenizer.json",
+            report_path=tmp_path / "report.json",
+            build_report_path=mixture_report_path,
+            mixture_report_path=mixture_report_path,
+            vocab_size=80,
+            training_character_limit=120,
+            minimum_source_characters=40,
+        )
+    )
+
+    assert report["sampling_strategy"] == "stratified_mixture_sources"
+    assert [item["source_id"] for item in report["sample_sources"]] == ["first", "second"]
+    assert report["mixture_report_path"].endswith("mixture.json")
+
+
+def test_train_pretraining_bpe_tokenizer_rejects_duplicate_mixture_source_ids(tmp_path: Path):
+    source_path = tmp_path / "source.txt"
+    source_path.write_text("amor virtute memoria", encoding="utf-8")
+    mixture_report_path = tmp_path / "mixture.json"
+    mixture_report_path.write_text(
+        json.dumps(
+            {
+                "sources": [
+                    {
+                        "source_id": "duplicate",
+                        "source_path": str(source_path),
+                        "cleaned_character_count": len(source_path.read_text(encoding="utf-8")),
+                    },
+                    {
+                        "source_id": "duplicate",
+                        "source_path": str(source_path),
+                        "cleaned_character_count": len(source_path.read_text(encoding="utf-8")),
+                    },
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="duplicate source ID: duplicate"):
+        train_pretraining_bpe_tokenizer(
+            PretrainingTokenizerConfig(
+                corpus_path=source_path,
+                tokenizer_path=tmp_path / "tokenizer.json",
+                report_path=tmp_path / "report.json",
+                build_report_path=mixture_report_path,
+                mixture_report_path=mixture_report_path,
+                vocab_size=40,
+                training_character_limit=10,
+            )
+        )
+
+
 def test_train_pretraining_bpe_tokenizer_resumes_merge_checkpoints(tmp_path: Path):
     corpus_path = tmp_path / "corpus.txt"
     corpus_path.write_text(("amor virtute memoria cronica novella\n") * 20, encoding="utf-8")

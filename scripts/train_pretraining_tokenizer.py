@@ -21,50 +21,55 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--corpus-path",
         type=Path,
-        default=ROOT / "data/local/pretraining/expanded_italian_1200_1800_v1/processed/corpus.txt",
+        default=ROOT / "data/processed/pretraining_historical_italian_v2/corpus.txt",
     )
     parser.add_argument(
-        "--manifest-path",
+        "--mixture-report-path",
         type=Path,
-        default=ROOT / "data/metadata/broader_prose_sources_manifest.csv",
+        default=ROOT / "reports/pretraining_historical_italian_v2_mixture_report.json",
     )
-    parser.add_argument(
-        "--source-dir",
-        type=Path,
-        default=ROOT / "data/local/pretraining/expanded_italian_1200_1800_v1/processed/sources",
-    )
+    parser.add_argument("--manifest-path", type=Path)
+    parser.add_argument("--source-dir", type=Path)
     parser.add_argument(
         "--tokenizer-path",
         type=Path,
-        default=ROOT / "data/local/pretraining/expanded_italian_1200_1800_v1/tokenizers/bpe_8000.json",
+        default=ROOT
+        / "data/metadata/pretraining_tokenizers/pretraining_historical_italian_v2_bpe_16000.json",
     )
     parser.add_argument(
         "--report-path",
         type=Path,
-        default=ROOT / "data/local/pretraining/expanded_italian_1200_1800_v1/tokenizers/bpe_8000_report.json",
+        default=ROOT / "reports/pretraining_historical_italian_v2_bpe_16000_report.json",
     )
     parser.add_argument(
         "--build-report-path",
         type=Path,
-        default=ROOT / "data/local/pretraining/expanded_italian_1200_1800_v1/build_report.json",
+        default=ROOT / "reports/pretraining_historical_italian_v2_mixture_report.json",
     )
-    parser.add_argument("--vocab-size", type=int, default=8000)
+    parser.add_argument("--vocab-size", type=int, default=16000)
     parser.add_argument("--special-token", action="append", default=["<|endoftext|>"])
-    parser.add_argument("--training-character-limit", type=int, default=1_000_000)
-    parser.add_argument("--minimum-source-characters", type=int, default=10_000)
+    parser.add_argument("--training-character-limit", type=int, default=4_000_000)
+    parser.add_argument("--minimum-source-characters", type=int, default=20_000)
     parser.add_argument("--merge-progress-interval", type=int, default=500)
     parser.add_argument(
         "--training-checkpoint-path",
         type=Path,
         default=ROOT
-        / "data/local/pretraining/expanded_italian_1200_1800_v1/tokenizers/bpe_8000_training_state.json",
+        / "data/local/pretraining/tokenizers/pretraining_historical_italian_v2_bpe_16000_training_state.json",
     )
     parser.add_argument("--max-merges-per-run", type=int)
+    parser.add_argument(
+        "--resume-until-complete",
+        action="store_true",
+        help="Repeat checkpointed merge chunks until the requested vocabulary is complete.",
+    )
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
+    if args.resume_until_complete and args.max_merges_per_run is None:
+        raise ValueError("--resume-until-complete requires --max-merges-per-run")
     config = PretrainingTokenizerConfig(
         corpus_path=args.corpus_path,
         tokenizer_path=args.tokenizer_path,
@@ -75,24 +80,29 @@ def main() -> None:
         training_character_limit=args.training_character_limit,
         manifest_path=args.manifest_path,
         source_dir=args.source_dir,
+        mixture_report_path=args.mixture_report_path,
         minimum_source_characters=args.minimum_source_characters,
         merge_progress_interval=args.merge_progress_interval,
         training_checkpoint_path=args.training_checkpoint_path,
         max_merges_per_run=args.max_merges_per_run,
     )
-    report = train_pretraining_bpe_tokenizer(
-        config,
-        progress=lambda message: print(f"tokenizer | {message}", flush=True),
-    )
-    print(f"tokenizer | wrote report: {args.report_path}", flush=True)
-    if report["status"] == "incomplete":
+    while True:
+        report = train_pretraining_bpe_tokenizer(
+            config,
+            progress=lambda message: print(f"tokenizer | {message}", flush=True),
+        )
+        print(f"tokenizer | wrote report: {args.report_path}", flush=True)
+        if report["status"] == "complete":
+            break
         print(
             "tokenizer | checkpointed "
             f"vocabulary={report['actual_vocab_size']}/{report['target_vocab_size']} "
             f"merges={report['merge_count']}",
             flush=True,
         )
-        return
+        if not args.resume_until_complete:
+            return
+        print("tokenizer | resuming from checkpoint", flush=True)
 
     print(f"tokenizer | wrote tokenizer: {args.tokenizer_path}", flush=True)
     print(

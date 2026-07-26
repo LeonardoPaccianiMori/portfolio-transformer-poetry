@@ -48,6 +48,7 @@ class PretrainingTokenizerConfig:
     training_character_limit: int = 100_000
     manifest_path: Path | None = None
     source_dir: Path | None = None
+    mixture_report_path: Path | None = None
     minimum_source_characters: int = 0
     merge_progress_interval: int = 500
     training_checkpoint_path: Path | None = None
@@ -128,6 +129,8 @@ def train_pretraining_bpe_tokenizer(
         "boundary_warnings": inspect_build_report_boundaries(config.build_report_path),
         "round_trip_samples": sample_results,
     }
+    if config.mixture_report_path is not None:
+        report["mixture_report_path"] = _portable_path(config.mixture_report_path)
 
     if not all(item["round_trip_ok"] for item in sample_results):
         raise ValueError("tokenizer failed a round-trip sample check")
@@ -151,6 +154,18 @@ def _select_training_text(
     has_source_dir = config.source_dir is not None
     if has_manifest != has_source_dir:
         raise ValueError("manifest_path and source_dir must be provided together")
+    if config.mixture_report_path is not None and has_manifest:
+        raise ValueError(
+            "mixture_report_path cannot be combined with manifest_path and source_dir"
+        )
+
+    if config.mixture_report_path is not None:
+        return _build_mixture_training_sample(
+            mixture_report_path=config.mixture_report_path,
+            training_character_limit=config.training_character_limit,
+            minimum_source_characters=config.minimum_source_characters,
+            progress=progress,
+        )
 
     if not has_manifest:
         return base_text[: config.training_character_limit], [], "corpus_prefix"
@@ -164,6 +179,51 @@ def _select_training_text(
         minimum_source_characters=config.minimum_source_characters,
         progress=progress,
     )
+
+
+def _build_mixture_training_sample(
+    *,
+    mixture_report_path: Path,
+    training_character_limit: int,
+    minimum_source_characters: int,
+    progress: ProgressCallback | None,
+) -> tuple[str, list[dict[str, int | str]], str]:
+    """Create a proportional sample from the public source paths in one mixture."""
+
+    payload = json.loads(mixture_report_path.read_text(encoding="utf-8"))
+    sources = payload.get("sources")
+    if not isinstance(sources, list) or not sources:
+        raise ValueError("pretraining mixture report has no sources")
+
+    source_texts: dict[str, str] = {}
+    for index, source in enumerate(sources, start=1):
+        if not isinstance(source, dict):
+            raise ValueError("pretraining mixture report has an invalid source record")
+        source_id = str(source["source_id"])
+        if source_id in source_texts:
+            raise ValueError(f"pretraining mixture report has duplicate source ID: {source_id}")
+        source_path = Path(str(source["source_path"]))
+        if not source_path.is_file():
+            raise ValueError(f"pretraining mixture source file is missing: {source_path}")
+        text = source_path.read_text(encoding="utf-8")
+        expected_length = int(source["cleaned_character_count"])
+        if len(text) != expected_length:
+            raise ValueError(
+                "pretraining mixture source size does not match report: " f"{source_id}"
+            )
+        source_texts[source_id] = text
+        _write_progress(
+            progress,
+            f"reading mixture source {index}/{len(sources)}: {source_id}",
+        )
+
+    sampled_text, sample_sources = _stratified_sample_from_source_texts(
+        source_texts,
+        training_character_limit=training_character_limit,
+        minimum_source_characters=minimum_source_characters,
+        progress=progress,
+    )
+    return sampled_text, sample_sources, "stratified_mixture_sources"
 
 
 def _build_stratified_training_sample(
@@ -191,6 +251,29 @@ def _build_stratified_training_sample(
             encoding="utf-8"
         )
 
+    sampled_text, sample_sources = _stratified_sample_from_source_texts(
+        source_texts,
+        training_character_limit=training_character_limit,
+        minimum_source_characters=minimum_source_characters,
+        progress=progress,
+    )
+    return sampled_text, sample_sources, "stratified_sources"
+
+
+def _stratified_sample_from_source_texts(
+    source_texts: dict[str, str],
+    *,
+    training_character_limit: int,
+    minimum_source_characters: int,
+    progress: ProgressCallback | None,
+) -> tuple[str, list[dict[str, int | str]]]:
+    """Allocate and sample text from each already-validated source."""
+
+    if training_character_limit <= 0:
+        raise ValueError("training_character_limit must be greater than 0")
+    if minimum_source_characters < 0:
+        raise ValueError("minimum_source_characters cannot be negative")
+
     available = {source_id: len(text) for source_id, text in source_texts.items()}
     total_available = sum(available.values())
     if training_character_limit > total_available:
@@ -203,8 +286,7 @@ def _build_stratified_training_sample(
     )
     sampled_parts: list[str] = []
     sample_sources: list[dict[str, int | str]] = []
-    for index, row in enumerate(rows, start=1):
-        source_id = row.source_id
+    for index, source_id in enumerate(source_texts, start=1):
         sampled_text = _sample_text_evenly(source_texts[source_id], allocations[source_id])
         sampled_parts.append(sampled_text)
         sample_sources.append(
@@ -217,10 +299,11 @@ def _build_stratified_training_sample(
         )
         _write_progress(
             progress,
-            f"sampled source {index}/{len(rows)}: {source_id} ({len(sampled_text)} characters)",
+            "sampled source "
+            f"{index}/{len(source_texts)}: {source_id} ({len(sampled_text)} characters)",
         )
 
-    return "\n".join(sampled_parts), sample_sources, "stratified_sources"
+    return "\n".join(sampled_parts), sample_sources
 
 
 def _allocate_source_characters(
