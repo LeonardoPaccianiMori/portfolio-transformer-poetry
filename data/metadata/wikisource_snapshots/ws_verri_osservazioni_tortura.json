@@ -1,0 +1,98 @@
+{
+  "source_id": "ws_verri_osservazioni_tortura",
+  "landing_page_url": "https://it.wikisource.org/wiki/Osservazioni_sulla_tortura",
+  "title": "Osservazioni sulla tortura",
+  "scope": "explicit_subpages",
+  "root_revision": {
+    "title": "Osservazioni sulla tortura",
+    "revision_id": 3821110,
+    "revision_timestamp": "2026-05-06T03:15:44Z"
+  },
+  "page_revisions": [
+    {
+      "title": "Osservazioni sulla tortura/I",
+      "revision_id": 3737017,
+      "revision_timestamp": "2026-04-25T16:33:40Z"
+    },
+    {
+      "title": "Osservazioni sulla tortura/II",
+      "revision_id": 3737018,
+      "revision_timestamp": "2026-04-25T16:33:41Z"
+    },
+    {
+      "title": "Osservazioni sulla tortura/III",
+      "revision_id": 3737019,
+      "revision_timestamp": "2026-04-25T16:33:41Z"
+    },
+    {
+      "title": "Osservazioni sulla tortura/IV",
+      "revision_id": 3737020,
+      "revision_timestamp": "2026-04-25T16:33:42Z"
+    },
+    {
+      "title": "Osservazioni sulla tortura/V",
+      "revision_id": 3737023,
+      "revision_timestamp": "2026-04-25T16:33:45Z"
+    },
+    {
+      "title": "Osservazioni sulla tortura/VI",
+      "revision_id": 3737024,
+      "revision_timestamp": "2026-04-25T16:33:46Z"
+    },
+    {
+      "title": "Osservazioni sulla tortura/VII",
+      "revision_id": 3737025,
+      "revision_timestamp": "2026-04-25T16:33:46Z"
+    },
+    {
+      "title": "Osservazioni sulla tortura/VIII",
+      "revision_id": 3737026,
+      "revision_timestamp": "2026-04-25T16:33:47Z"
+    },
+    {
+      "title": "Osservazioni sulla tortura/IX",
+      "revision_id": 3737021,
+      "revision_timestamp": "2026-04-25T16:33:43Z"
+    },
+    {
+      "title": "Osservazioni sulla tortura/X",
+      "revision_id": 3737027,
+      "revision_timestamp": "2026-04-25T16:33:48Z"
+    },
+    {
+      "title": "Osservazioni sulla tortura/XI",
+      "revision_id": 3737028,
+      "revision_timestamp": "2026-04-25T16:33:49Z"
+    },
+    {
+      "title": "Osservazioni sulla tortura/XII",
+      "revision_id": 3737029,
+      "revision_timestamp": "2026-04-25T16:33:50Z"
+    },
+    {
+      "title": "Osservazioni sulla tortura/XIII",
+      "revision_id": 3737030,
+      "revision_timestamp": "2026-04-25T16:33:50Z"
+    },
+    {
+      "title": "Osservazioni sulla tortura/XIV",
+      "revision_id": 3737031,
+      "revision_timestamp": "2026-04-25T16:33:51Z"
+    },
+    {
+      "title": "Osservazioni sulla tortura/XV",
+      "revision_id": 3737032,
+      "revision_timestamp": "2026-04-25T16:33:52Z"
+    },
+    {
+      "title": "Osservazioni sulla tortura/XVI",
+      "revision_id": 3737033,
+      "revision_timestamp": "2026-04-25T16:33:52Z"
+    },
+    {
+      "title": "Osservazioni sulla tortura/Lettera del conte Giuseppe Gorani all'autore",
+      "revision_id": 3821112,
+      "revision_timestamp": "2026-05-06T03:15:46Z"
+    }
+  ]
+}

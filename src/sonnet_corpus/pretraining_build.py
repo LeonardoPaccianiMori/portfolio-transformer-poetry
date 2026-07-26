@@ -146,7 +146,8 @@ def build_pretraining_corpus(
         "start "
         f"corpus_version={config.corpus_version} "
         f"sources={len(selected_rows)} "
-        f"request_delay={config.request_delay_seconds:.1f}s",
+        f"archive_request_delay={config.request_delay_seconds:.1f}s "
+        f"wikisource_request_delay={config.wikisource_request_delay_seconds:.1f}s",
     )
 
     temp_root = config.temp_dir

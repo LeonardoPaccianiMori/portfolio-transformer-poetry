@@ -536,6 +536,7 @@ def read_wikisource_work_snapshot(path: Path) -> WikisourceWorkSnapshot:
     if snapshot.scope not in {
         "all_root_subpages",
         "explicit_subpages",
+        "recursive_leaf_pages",
         "explicit_edition_pages",
     }:
         raise ValueError(f"invalid Wikisource snapshot scope: {snapshot.scope}")

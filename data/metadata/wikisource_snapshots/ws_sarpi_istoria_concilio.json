@@ -1,0 +1,433 @@
+{
+  "source_id": "ws_sarpi_istoria_concilio",
+  "landing_page_url": "https://it.wikisource.org/wiki/Istoria_del_Concilio_tridentino",
+  "title": "Istoria del Concilio tridentino",
+  "scope": "recursive_leaf_pages",
+  "root_revision": {
+    "title": "Istoria del Concilio tridentino",
+    "revision_id": 3809430,
+    "revision_timestamp": "2026-05-05T23:39:24Z"
+  },
+  "page_revisions": [
+    {
+      "title": "Istoria del Concilio tridentino/Libro primo/Capitolo I",
+      "revision_id": 3809451,
+      "revision_timestamp": "2026-05-05T23:39:47Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro primo/Capitolo II",
+      "revision_id": 3809452,
+      "revision_timestamp": "2026-05-05T23:39:48Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro primo/Capitolo III",
+      "revision_id": 3809453,
+      "revision_timestamp": "2026-05-05T23:39:49Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro primo/Capitolo IV",
+      "revision_id": 3809454,
+      "revision_timestamp": "2026-05-05T23:39:50Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro primo/Capitolo V",
+      "revision_id": 3809455,
+      "revision_timestamp": "2026-05-05T23:39:52Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro primo/Capitolo VI",
+      "revision_id": 3809456,
+      "revision_timestamp": "2026-05-05T23:39:53Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro secondo/Capitolo I",
+      "revision_id": 3809471,
+      "revision_timestamp": "2026-05-05T23:40:10Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro secondo/Capitolo II",
+      "revision_id": 3809472,
+      "revision_timestamp": "2026-05-05T23:40:12Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro secondo/Capitolo III",
+      "revision_id": 3809473,
+      "revision_timestamp": "2026-05-05T23:40:13Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro secondo/Capitolo IV",
+      "revision_id": 3809474,
+      "revision_timestamp": "2026-05-05T23:40:15Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro secondo/Capitolo V",
+      "revision_id": 3809476,
+      "revision_timestamp": "2026-05-05T23:40:17Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro secondo/Capitolo VI",
+      "revision_id": 3809477,
+      "revision_timestamp": "2026-05-05T23:40:18Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro secondo/Capitolo VII",
+      "revision_id": 3809478,
+      "revision_timestamp": "2026-05-05T23:40:20Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro secondo/Capitolo VIII",
+      "revision_id": 3809479,
+      "revision_timestamp": "2026-05-05T23:40:21Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro secondo/Capitolo IX",
+      "revision_id": 3809475,
+      "revision_timestamp": "2026-05-05T23:40:16Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro secondo/Capitolo X",
+      "revision_id": 3809480,
+      "revision_timestamp": "2026-05-05T23:40:22Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro terzo/Capitolo I",
+      "revision_id": 3809503,
+      "revision_timestamp": "2026-05-05T23:40:48Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro terzo/Capitolo II",
+      "revision_id": 3809504,
+      "revision_timestamp": "2026-05-05T23:40:49Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro terzo/Capitolo III",
+      "revision_id": 3809505,
+      "revision_timestamp": "2026-05-05T23:40:50Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro quarto/Capitolo I",
+      "revision_id": 3809457,
+      "revision_timestamp": "2026-05-05T23:39:54Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro quarto/Capitolo II",
+      "revision_id": 3809458,
+      "revision_timestamp": "2026-05-05T23:39:55Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro quarto/Capitolo III",
+      "revision_id": 3809459,
+      "revision_timestamp": "2026-05-05T23:39:56Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro quarto/Capitolo IV",
+      "revision_id": 3809460,
+      "revision_timestamp": "2026-05-05T23:39:58Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro quarto/Capitolo V",
+      "revision_id": 3809461,
+      "revision_timestamp": "2026-05-05T23:39:59Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro quarto/Capitolo VI",
+      "revision_id": 3809462,
+      "revision_timestamp": "2026-05-05T23:40:00Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro quinto/Capitolo I",
+      "revision_id": 3809463,
+      "revision_timestamp": "2026-05-05T23:40:01Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro quinto/Capitolo II",
+      "revision_id": 3809464,
+      "revision_timestamp": "2026-05-05T23:40:02Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro quinto/Capitolo III",
+      "revision_id": 3809465,
+      "revision_timestamp": "2026-05-05T23:40:04Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro quinto/Capitolo IV",
+      "revision_id": 3809466,
+      "revision_timestamp": "2026-05-05T23:40:05Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro quinto/Capitolo V",
+      "revision_id": 3809467,
+      "revision_timestamp": "2026-05-05T23:40:06Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro quinto/Capitolo VI",
+      "revision_id": 3809468,
+      "revision_timestamp": "2026-05-05T23:40:07Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro quinto/Capitolo VII",
+      "revision_id": 3809469,
+      "revision_timestamp": "2026-05-05T23:40:08Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro quinto/Capitolo VIII",
+      "revision_id": 3809470,
+      "revision_timestamp": "2026-05-05T23:40:09Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro sesto/Capitolo I",
+      "revision_id": 3809481,
+      "revision_timestamp": "2026-05-05T23:40:23Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro sesto/Capitolo II",
+      "revision_id": 3809482,
+      "revision_timestamp": "2026-05-05T23:40:24Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro sesto/Capitolo III",
+      "revision_id": 3809483,
+      "revision_timestamp": "2026-05-05T23:40:25Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro sesto/Capitolo IV",
+      "revision_id": 3809484,
+      "revision_timestamp": "2026-05-05T23:40:27Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro sesto/Capitolo V",
+      "revision_id": 3809486,
+      "revision_timestamp": "2026-05-05T23:40:29Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro sesto/Capitolo VI",
+      "revision_id": 3809487,
+      "revision_timestamp": "2026-05-05T23:40:30Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro sesto/Capitolo VII",
+      "revision_id": 3809488,
+      "revision_timestamp": "2026-05-05T23:40:31Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro sesto/Capitolo VIII",
+      "revision_id": 3809489,
+      "revision_timestamp": "2026-05-05T23:40:32Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro sesto/Capitolo IX",
+      "revision_id": 3809485,
+      "revision_timestamp": "2026-05-05T23:40:28Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro sesto/Capitolo X",
+      "revision_id": 3809490,
+      "revision_timestamp": "2026-05-05T23:40:33Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro settimo/Capitolo I",
+      "revision_id": 3809491,
+      "revision_timestamp": "2026-05-05T23:40:34Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro settimo/Capitolo II",
+      "revision_id": 3809492,
+      "revision_timestamp": "2026-05-05T23:40:36Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro settimo/Capitolo III",
+      "revision_id": 3809493,
+      "revision_timestamp": "2026-05-05T23:40:37Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro settimo/Capitolo IV",
+      "revision_id": 3809494,
+      "revision_timestamp": "2026-05-05T23:40:38Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro settimo/Capitolo V",
+      "revision_id": 3809496,
+      "revision_timestamp": "2026-05-05T23:40:40Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro settimo/Capitolo VI",
+      "revision_id": 3809497,
+      "revision_timestamp": "2026-05-05T23:40:41Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro settimo/Capitolo VII",
+      "revision_id": 3809498,
+      "revision_timestamp": "2026-05-05T23:40:42Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro settimo/Capitolo VIII",
+      "revision_id": 3809499,
+      "revision_timestamp": "2026-05-05T23:40:43Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro settimo/Capitolo IX",
+      "revision_id": 3809495,
+      "revision_timestamp": "2026-05-05T23:40:39Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro settimo/Capitolo X",
+      "revision_id": 3809500,
+      "revision_timestamp": "2026-05-05T23:40:44Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro settimo/Capitolo XI",
+      "revision_id": 3809501,
+      "revision_timestamp": "2026-05-05T23:40:45Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro settimo/Capitolo XII",
+      "revision_id": 3809502,
+      "revision_timestamp": "2026-05-05T23:40:47Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro ottavo/Capitolo I",
+      "revision_id": 3809439,
+      "revision_timestamp": "2026-05-05T23:39:34Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro ottavo/Capitolo II",
+      "revision_id": 3809440,
+      "revision_timestamp": "2026-05-05T23:39:35Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro ottavo/Capitolo III",
+      "revision_id": 3809441,
+      "revision_timestamp": "2026-05-05T23:39:36Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro ottavo/Capitolo IV",
+      "revision_id": 3809442,
+      "revision_timestamp": "2026-05-05T23:39:37Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro ottavo/Capitolo V",
+      "revision_id": 3809444,
+      "revision_timestamp": "2026-05-05T23:39:39Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro ottavo/Capitolo VI",
+      "revision_id": 3809445,
+      "revision_timestamp": "2026-05-05T23:39:40Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro ottavo/Capitolo VII",
+      "revision_id": 3809446,
+      "revision_timestamp": "2026-05-05T23:39:42Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro ottavo/Capitolo VIII",
+      "revision_id": 3809447,
+      "revision_timestamp": "2026-05-05T23:39:43Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro ottavo/Capitolo IX",
+      "revision_id": 3809443,
+      "revision_timestamp": "2026-05-05T23:39:38Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro ottavo/Capitolo X",
+      "revision_id": 3809448,
+      "revision_timestamp": "2026-05-05T23:39:44Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro ottavo/Capitolo XI",
+      "revision_id": 3809449,
+      "revision_timestamp": "2026-05-05T23:39:44Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Libro ottavo/Capitolo XII",
+      "revision_id": 3809450,
+      "revision_timestamp": "2026-05-05T23:39:45Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Indice dei nomi/A",
+      "revision_id": 3710041,
+      "revision_timestamp": "2026-04-25T01:06:26Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Indice dei nomi/B",
+      "revision_id": 3710042,
+      "revision_timestamp": "2026-04-25T01:06:27Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Indice dei nomi/C",
+      "revision_id": 3710043,
+      "revision_timestamp": "2026-04-25T01:06:28Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Indice dei nomi/D",
+      "revision_id": 3710044,
+      "revision_timestamp": "2026-04-25T01:06:30Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Indice dei nomi/E",
+      "revision_id": 3710045,
+      "revision_timestamp": "2026-04-25T01:06:31Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Indice dei nomi/F",
+      "revision_id": 3710046,
+      "revision_timestamp": "2026-04-25T01:06:32Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Indice dei nomi/G",
+      "revision_id": 3710047,
+      "revision_timestamp": "2026-04-25T01:06:33Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Indice dei nomi/HIK",
+      "revision_id": 3710048,
+      "revision_timestamp": "2026-04-25T01:06:34Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Indice dei nomi/L",
+      "revision_id": 3809431,
+      "revision_timestamp": "2026-05-05T23:39:25Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Indice dei nomi/M",
+      "revision_id": 3809432,
+      "revision_timestamp": "2026-05-05T23:39:27Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Indice dei nomi/N",
+      "revision_id": 3809433,
+      "revision_timestamp": "2026-05-05T23:39:28Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Indice dei nomi/O",
+      "revision_id": 3809434,
+      "revision_timestamp": "2026-05-05T23:39:29Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Indice dei nomi/PQ",
+      "revision_id": 3710053,
+      "revision_timestamp": "2026-04-25T01:06:39Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Indice dei nomi/R",
+      "revision_id": 3710054,
+      "revision_timestamp": "2026-04-25T01:06:40Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Indice dei nomi/S",
+      "revision_id": 3710055,
+      "revision_timestamp": "2026-04-25T01:06:41Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Indice dei nomi/T",
+      "revision_id": 3710056,
+      "revision_timestamp": "2026-04-25T01:06:43Z"
+    },
+    {
+      "title": "Istoria del Concilio tridentino/Indice dei nomi/UVWYZ",
+      "revision_id": 3809435,
+      "revision_timestamp": "2026-05-05T23:39:30Z"
+    }
+  ]
+}

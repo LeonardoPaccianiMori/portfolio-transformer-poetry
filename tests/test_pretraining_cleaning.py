@@ -61,6 +61,15 @@ def test_clean_pretraining_text_removes_audited_terminal_editorial_notes():
     assert novellino == "Novella finale.\n"
 
 
+def test_clean_pretraining_text_removes_the_approved_verri_editorial_gloss_only():
+    cleaned = clean_pretraining_text(
+        "Arnolfo racconta [parla di Arialdo] questo episodio.\n",
+        source_id="ws_verri_storia_milano",
+    )
+
+    assert cleaned == "Arnolfo racconta  questo episodio.\n"
+
+
 def test_clean_pretraining_text_removes_only_the_terminal_novellino_summary():
     cleaned = clean_pretraining_text(
         "Il sommario del racconto e nel corpo del testo.\n\n"

@@ -9,6 +9,7 @@ VICO_FIGURE_PLACEHOLDER_SOURCE_ID = "ll_vico_principj_scienza_nuova"
 DECAMERON_SOURCE_ID = "ll_boccaccio_decameron_mondadori"
 TRECENTONOVELLE_SOURCE_ID = "ll_sacchetti_trecentonovelle"
 NOVELLINO_SOURCE_ID = "ll_novellino"
+VERRI_STORIA_MILANO_SOURCE_ID = "ws_verri_storia_milano"
 MATTEO_VILLANI_SOURCE_IDS = {
     "pg_villani_cronica_vol1_69898",
     "pg_villani_cronica_vol2_69899",
@@ -65,6 +66,9 @@ def clean_pretraining_text(text: str, *, source_id: str) -> str:
         if summary_start > 0:
             text = text[:summary_start]
 
+    if source_id == VERRI_STORIA_MILANO_SOURCE_ID:
+        text = text.replace("[parla di Arialdo]", "", 1)
+
     if source_id in MATTEO_VILLANI_SOURCE_IDS:
         text = re.sub(
             r"\n\s*ERRORI\s+CORREZIONI\s*\n.*\Z",
@@ -108,6 +112,7 @@ def validate_cleaned_text(
             "nota per l'edizione elettronica manuzio",
             "\nsommario\n",
         ],
+        VERRI_STORIA_MILANO_SOURCE_ID: ["[parla di arialdo]"],
     }
     if source_id in MATTEO_VILLANI_SOURCE_IDS:
         source_specific_markers[source_id] = [
