@@ -9,8 +9,8 @@ pretraining dataset.
 
 | Source | Audited pages | Audited characters | Activation decision |
 | --- | ---: | ---: | --- |
-| Paolo Sarpi, *Istoria del Concilio tridentino* | 87 | 2,990,432 | Activate with 3 index pages excluded, leaving 84 revision-pinned primary pages. |
-| Pietro Verri, *Storia di Milano* | 36 | 1,617,868 | Activate; remove only the exact editorial gloss `[parla di Arialdo]`. |
+| Paolo Sarpi, *Istoria del Concilio tridentino* | 87 | 2,990,432 | Activate with 20 structural index pages excluded, leaving 67 revision-pinned primary pages. |
+| Pietro Verri, *Storia di Milano* | 36 | 1,617,868 | Activate with the editor's notice excluded; remove only the exact editorial gloss `[parla di Arialdo]` from the retained 35 pages. |
 | Pietro Verri, *Osservazioni sulla tortura* | 17 | 155,474 | Activate without source-specific text removal. |
 
 The three audited works total 4,763,774 characters before the approved narrow
@@ -21,13 +21,14 @@ committed when the component build completes.
 
 Sarpi's audit found 33 bracketed items. Most are short in-text readings such as
 `[si]` and `[in]`; their editorial status cannot be determined safely from the
-rendered text alone. They are retained rather than guessed away. All three
-Sarpi `Indice del ... volume` leaves are excluded because they are structural
-tables of contents, not primary prose.
+rendered text alone. They are retained rather than guessed away. The three
+Sarpi `Indice del ... volume` leaves and 17 `Indice dei nomi` leaves are
+excluded because they are structural indexes, not primary prose.
 
 Verri's *Storia di Milano* contained one clear editorial gloss, `[parla di
-Arialdo]`, which is removed exactly once. No broad bracket-removal rule is
-used.
+Arialdo]`, which is removed exactly once. Its `Avvertimento` page is also
+excluded because it is an editor's notice rather than Verri's primary text. No
+broad bracket-removal rule is used.
 
 ## Deferred Giannone Volumes
 

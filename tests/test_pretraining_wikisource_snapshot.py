@@ -70,9 +70,14 @@ def test_create_snapshots_pins_a_successful_audit_and_excludes_reviewed_index(tm
                                 "revision_timestamp": "2026-07-26T10:01:00Z",
                             },
                             {
-                                "title": "Istoria del Concilio tridentino/Libro primo/Capitolo I",
+                                "title": "Istoria del Concilio tridentino/Indice dei nomi/A",
                                 "revision_id": 102,
                                 "revision_timestamp": "2026-07-26T10:02:00Z",
+                            },
+                            {
+                                "title": "Istoria del Concilio tridentino/Libro primo/Capitolo I",
+                                "revision_id": 103,
+                                "revision_timestamp": "2026-07-26T10:03:00Z",
                             },
                         ],
                     }
@@ -93,6 +98,7 @@ def test_create_snapshots_pins_a_successful_audit_and_excludes_reviewed_index(tm
                 excluded_page_titles=(
                     "Istoria del Concilio tridentino/Indice del primo volume",
                     "Istoria del Concilio tridentino/Indice del terzo volume",
+                    "Istoria del Concilio tridentino/Indice dei nomi/A",
                 ),
             ),
         ),

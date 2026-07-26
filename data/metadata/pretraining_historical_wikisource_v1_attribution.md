@@ -13,8 +13,9 @@ records, and stated CC BY-SA/GFDL obligations.
 - Source edition: Giovanni Gambarin edition, 1935, arranged across three volumes.
 - Rights record: underlying 1619 work is public domain; the Wikisource
   transcription reports CC BY-SA 3.0 and GFDL terms.
-- Provenance: the committed snapshot pins root revision `3809430` and 84
-  primary-text page revisions. All three volume index pages are excluded.
+- Provenance: the committed snapshot pins root revision `3809430` and 67
+  primary-text page revisions. Three volume index pages and 17 alphabetical
+  name-index pages are excluded.
 - Changes: navigation wrappers are removed; uncertain in-text square brackets
   are retained.
 
@@ -25,11 +26,10 @@ records, and stated CC BY-SA/GFDL obligations.
 - Source edition: Societa Tipografica de' Classici Italiani, 1834.
 - Rights record: underlying work is public domain; the Wikisource transcription
   reports Creative Commons Attribution-ShareAlike terms.
-- Provenance: the committed snapshot pins root revision `3828025` and 36 page
-  revisions.
-- Changes: navigation wrappers are removed. The exact editorial gloss
-  `[parla di Arialdo]` is removed; all other spelling and punctuation are
-  retained.
+- Provenance: the committed snapshot pins root revision `3828025` and 35
+  primary-text page revisions; the editor's `Avvertimento` page is excluded.
+- Changes: navigation wrappers are removed. The exact editorial gloss `[parla
+  di Arialdo]` is removed; all other spelling and punctuation are retained.
 
 ## Osservazioni sulla tortura
 
