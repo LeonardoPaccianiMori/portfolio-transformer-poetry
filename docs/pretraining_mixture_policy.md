@@ -22,3 +22,12 @@ The old BPE tokenizer is retained as experiment provenance only. The active
 all 36 sources and then counted against the full combined public corpus. Its
 JSON artifact and report are committed so its vocabulary reflects the new
 Sarpi and Verri text reproducibly.
+
+The active encoded dataset uses that tokenizer without further vocabulary
+training. Each source is encoded independently; its final one percent of token
+IDs is validation data and the preceding 99 percent is training data. The
+builder appends the single-token `<|endoftext|>` separator between consecutive
+source segments in both splits. The resulting 17,891,995 training-token and
+180,745 validation-token tensors are reproducible local artifacts; their
+configuration, source-level counts, and integrity-relevant metadata are public
+in [`pretraining_historical_italian_v2_encoded_report.json`](../reports/pretraining_historical_italian_v2_encoded_report.json).

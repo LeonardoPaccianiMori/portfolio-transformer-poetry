@@ -33,6 +33,7 @@ class PretrainingDatasetConfig:
     train_filename: str = "bpe_8000_train.pt"
     validation_filename: str = "bpe_8000_validation.pt"
     manifest_path: Path | None = None
+    mixture_report_path: Path | None = None
 
 
 def build_pretraining_token_dataset(
@@ -44,7 +45,7 @@ def build_pretraining_token_dataset(
 
     started_at = _utc_now()
     _validate_validation_fraction(config.validation_fraction)
-    source_paths = list_processed_source_paths(config.processed_sources_dir)
+    source_paths = _resolve_source_paths(config)
     if config.manifest_path is not None:
         validate_processed_source_manifest(source_paths, config.manifest_path)
     tokenizer = BytePairEncodingTokenizer.load(config.tokenizer_path)
@@ -95,7 +96,11 @@ def build_pretraining_token_dataset(
     report = {
         "started_at_utc": started_at,
         "finished_at_utc": _utc_now(),
-        "processed_sources_dir": _portable_path(config.processed_sources_dir),
+        "processed_sources_dir": (
+            _portable_path(config.processed_sources_dir)
+            if config.mixture_report_path is None
+            else None
+        ),
         "tokenizer_path": _portable_path(config.tokenizer_path),
         "output_dir": _portable_path(config.output_dir),
         "train_path": _portable_path(train_path),
@@ -112,8 +117,12 @@ def build_pretraining_token_dataset(
         "total_tokens": int(train_tensor.numel() + validation_tensor.numel()),
         "train_dtype": str(train_tensor.dtype),
         "validation_dtype": str(validation_tensor.dtype),
+        "vocab_size": tokenizer.vocab_size,
+        "document_separator_token_id": separator_ids[0],
         "sources": source_reports,
     }
+    if config.mixture_report_path is not None:
+        report["mixture_report_path"] = _portable_path(config.mixture_report_path)
     config.report_path.parent.mkdir(parents=True, exist_ok=True)
     config.report_path.write_text(
         json.dumps(report, ensure_ascii=False, indent=2) + "\n",
@@ -153,6 +162,36 @@ def list_processed_source_paths(processed_sources_dir: Path) -> list[Path]:
     return source_paths
 
 
+def list_mixture_source_paths(mixture_report_path: Path) -> list[Path]:
+    """Return the ordered, validated source paths declared by one mixture report."""
+
+    payload = json.loads(mixture_report_path.read_text(encoding="utf-8"))
+    sources = payload.get("sources")
+    if not isinstance(sources, list) or not sources:
+        raise ValueError("pretraining mixture report has no sources")
+
+    source_paths: list[Path] = []
+    source_ids: set[str] = set()
+    for source in sources:
+        if not isinstance(source, dict):
+            raise ValueError("pretraining mixture report has an invalid source record")
+        source_id = str(source["source_id"])
+        if source_id in source_ids:
+            raise ValueError(f"pretraining mixture report has duplicate source ID: {source_id}")
+        source_ids.add(source_id)
+        source_path = Path(str(source["source_path"]))
+        if not source_path.is_file():
+            raise ValueError(f"pretraining mixture source file is missing: {source_path}")
+        expected_length = int(source["cleaned_character_count"])
+        actual_length = len(source_path.read_text(encoding="utf-8"))
+        if actual_length != expected_length:
+            raise ValueError(
+                "pretraining mixture source size does not match report: " f"{source_id}"
+            )
+        source_paths.append(source_path)
+    return source_paths
+
+
 def validate_processed_source_manifest(
     source_paths: list[Path],
     manifest_path: Path,
@@ -171,6 +210,14 @@ def validate_processed_source_manifest(
         if unexpected_ids:
             details.append(f"unexpected={','.join(unexpected_ids)}")
         raise ValueError("processed source files do not match active manifest rows: " + "; ".join(details))
+
+
+def _resolve_source_paths(config: PretrainingDatasetConfig) -> list[Path]:
+    if config.mixture_report_path is not None:
+        if config.manifest_path is not None:
+            raise ValueError("mixture_report_path cannot be combined with manifest_path")
+        return list_mixture_source_paths(config.mixture_report_path)
+    return list_processed_source_paths(config.processed_sources_dir)
 
 
 def split_source_token_ids(

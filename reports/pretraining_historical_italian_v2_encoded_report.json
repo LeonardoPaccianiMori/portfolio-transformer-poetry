@@ -1,0 +1,276 @@
+{
+  "started_at_utc": "2026-07-27T06:15:10+00:00",
+  "finished_at_utc": "2026-07-27T06:15:27+00:00",
+  "processed_sources_dir": null,
+  "tokenizer_path": "data/metadata/pretraining_tokenizers/pretraining_historical_italian_v2_bpe_16000.json",
+  "output_dir": "data/local/pretraining/pretraining_historical_italian_v2/encoded",
+  "train_path": "data/local/pretraining/pretraining_historical_italian_v2/encoded/bpe_16000_train.pt",
+  "validation_path": "data/local/pretraining/pretraining_historical_italian_v2/encoded/bpe_16000_validation.pt",
+  "validation_fraction": 0.01,
+  "split_policy": "final_token_fraction_per_source",
+  "document_separator": "<|endoftext|>",
+  "manifest_path": "",
+  "source_count": 36,
+  "train_tokens": 17891995,
+  "validation_tokens": 180745,
+  "total_tokens": 18072740,
+  "train_dtype": "torch.int64",
+  "validation_dtype": "torch.int64",
+  "vocab_size": 16000,
+  "document_separator_token_id": 0,
+  "sources": [
+    {
+      "source_id": "pg_villani_cronica_vol1_69898",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/pg_villani_cronica_vol1_69898.txt",
+      "total_tokens": 165028,
+      "train_tokens": 163378,
+      "validation_tokens": 1650
+    },
+    {
+      "source_id": "pg_jacopo_alighieri_chiose_30766",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/pg_jacopo_alighieri_chiose_30766.txt",
+      "total_tokens": 85444,
+      "train_tokens": 84590,
+      "validation_tokens": 854
+    },
+    {
+      "source_id": "pg_caterina_dialogo_26961",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/pg_caterina_dialogo_26961.txt",
+      "total_tokens": 372865,
+      "train_tokens": 369137,
+      "validation_tokens": 3728
+    },
+    {
+      "source_id": "pg_villani_cronica_vol2_69899",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/pg_villani_cronica_vol2_69899.txt",
+      "total_tokens": 148688,
+      "train_tokens": 147202,
+      "validation_tokens": 1486
+    },
+    {
+      "source_id": "pg_villani_cronica_vol3_69900",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/pg_villani_cronica_vol3_69900.txt",
+      "total_tokens": 173968,
+      "train_tokens": 172229,
+      "validation_tokens": 1739
+    },
+    {
+      "source_id": "pg_villani_cronica_vol4_69901",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/pg_villani_cronica_vol4_69901.txt",
+      "total_tokens": 177647,
+      "train_tokens": 175871,
+      "validation_tokens": 1776
+    },
+    {
+      "source_id": "pg_villani_cronica_vol5_69902",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/pg_villani_cronica_vol5_69902.txt",
+      "total_tokens": 162071,
+      "train_tokens": 160451,
+      "validation_tokens": 1620
+    },
+    {
+      "source_id": "ll_novellino",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_novellino.txt",
+      "total_tokens": 88660,
+      "train_tokens": 87774,
+      "validation_tokens": 886
+    },
+    {
+      "source_id": "ll_giovanni_villani_nuova_cronica",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_giovanni_villani_nuova_cronica.txt",
+      "total_tokens": 1037968,
+      "train_tokens": 1027589,
+      "validation_tokens": 10379
+    },
+    {
+      "source_id": "ll_dino_compagni_cronica",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_dino_compagni_cronica.txt",
+      "total_tokens": 84899,
+      "train_tokens": 84051,
+      "validation_tokens": 848
+    },
+    {
+      "source_id": "ll_boccaccio_decameron_mondadori",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_boccaccio_decameron_mondadori.txt",
+      "total_tokens": 586565,
+      "train_tokens": 580700,
+      "validation_tokens": 5865
+    },
+    {
+      "source_id": "ll_boccaccio_filocolo",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_boccaccio_filocolo.txt",
+      "total_tokens": 462343,
+      "train_tokens": 457720,
+      "validation_tokens": 4623
+    },
+    {
+      "source_id": "ll_boccaccio_elegia_fiammetta",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_boccaccio_elegia_fiammetta.txt",
+      "total_tokens": 128818,
+      "train_tokens": 127530,
+      "validation_tokens": 1288
+    },
+    {
+      "source_id": "ll_boccaccio_trattatello",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_boccaccio_trattatello.txt",
+      "total_tokens": 45511,
+      "train_tokens": 45056,
+      "validation_tokens": 455
+    },
+    {
+      "source_id": "ll_sacchetti_trecentonovelle",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_sacchetti_trecentonovelle.txt",
+      "total_tokens": 415957,
+      "train_tokens": 411798,
+      "validation_tokens": 4159
+    },
+    {
+      "source_id": "ll_bandello_novelle",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_bandello_novelle.txt",
+      "total_tokens": 1637215,
+      "train_tokens": 1620843,
+      "validation_tokens": 16372
+    },
+    {
+      "source_id": "ll_bembo_asolani",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_bembo_asolani.txt",
+      "total_tokens": 129428,
+      "train_tokens": 128134,
+      "validation_tokens": 1294
+    },
+    {
+      "source_id": "ll_bembo_prose_volgar_lingua",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_bembo_prose_volgar_lingua.txt",
+      "total_tokens": 148261,
+      "train_tokens": 146779,
+      "validation_tokens": 1482
+    },
+    {
+      "source_id": "ll_castiglione_cortegiano",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_castiglione_cortegiano.txt",
+      "total_tokens": 301824,
+      "train_tokens": 298806,
+      "validation_tokens": 3018
+    },
+    {
+      "source_id": "ll_machiavelli_discorsi",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_machiavelli_discorsi.txt",
+      "total_tokens": 261141,
+      "train_tokens": 258530,
+      "validation_tokens": 2611
+    },
+    {
+      "source_id": "ll_machiavelli_istorie_fiorentine",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_machiavelli_istorie_fiorentine.txt",
+      "total_tokens": 322146,
+      "train_tokens": 318925,
+      "validation_tokens": 3221
+    },
+    {
+      "source_id": "ll_machiavelli_arte_guerra",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_machiavelli_arte_guerra.txt",
+      "total_tokens": 134718,
+      "train_tokens": 133371,
+      "validation_tokens": 1347
+    },
+    {
+      "source_id": "ll_machiavelli_principe",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_machiavelli_principe.txt",
+      "total_tokens": 64479,
+      "train_tokens": 63835,
+      "validation_tokens": 644
+    },
+    {
+      "source_id": "ll_guicciardini_storia_italia",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_guicciardini_storia_italia.txt",
+      "total_tokens": 1337862,
+      "train_tokens": 1324484,
+      "validation_tokens": 13378
+    },
+    {
+      "source_id": "ll_guicciardini_storie_fiorentine",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_guicciardini_storie_fiorentine.txt",
+      "total_tokens": 246840,
+      "train_tokens": 244372,
+      "validation_tokens": 2468
+    },
+    {
+      "source_id": "ll_guicciardini_discorsi_politici",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_guicciardini_discorsi_politici.txt",
+      "total_tokens": 110100,
+      "train_tokens": 108999,
+      "validation_tokens": 1101
+    },
+    {
+      "source_id": "ll_guicciardini_ricordi",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_guicciardini_ricordi.txt",
+      "total_tokens": 63893,
+      "train_tokens": 63255,
+      "validation_tokens": 638
+    },
+    {
+      "source_id": "ll_vasari_vite_1568",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_vasari_vite_1568.txt",
+      "total_tokens": 1630769,
+      "train_tokens": 1614462,
+      "validation_tokens": 16307
+    },
+    {
+      "source_id": "ll_masuccio_novellino",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_masuccio_novellino.txt",
+      "total_tokens": 325715,
+      "train_tokens": 322458,
+      "validation_tokens": 3257
+    },
+    {
+      "source_id": "ll_ramusio_navigazioni_viaggi",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_ramusio_navigazioni_viaggi.txt",
+      "total_tokens": 4564325,
+      "train_tokens": 4518682,
+      "validation_tokens": 45643
+    },
+    {
+      "source_id": "ws_galileo_saggiatore",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ws_galileo_saggiatore.txt",
+      "total_tokens": 201223,
+      "train_tokens": 199211,
+      "validation_tokens": 2012
+    },
+    {
+      "source_id": "ws_galileo_dialogo",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ws_galileo_dialogo.txt",
+      "total_tokens": 417645,
+      "train_tokens": 413469,
+      "validation_tokens": 4176
+    },
+    {
+      "source_id": "ll_vico_principj_scienza_nuova",
+      "source_path": "data/processed/expanded_italian_1200_1800_v1/sources/ll_vico_principj_scienza_nuova.txt",
+      "total_tokens": 357550,
+      "train_tokens": 353975,
+      "validation_tokens": 3575
+    },
+    {
+      "source_id": "ws_sarpi_istoria_concilio",
+      "source_path": "data/processed/pretraining_historical_wikisource_v1/sources/ws_sarpi_istoria_concilio.txt",
+      "total_tokens": 1009642,
+      "train_tokens": 999546,
+      "validation_tokens": 10096
+    },
+    {
+      "source_id": "ws_verri_storia_milano",
+      "source_path": "data/processed/pretraining_historical_wikisource_v1/sources/ws_verri_storia_milano.txt",
+      "total_tokens": 610031,
+      "train_tokens": 603931,
+      "validation_tokens": 6100
+    },
+    {
+      "source_id": "ws_verri_osservazioni_tortura",
+      "source_path": "data/processed/pretraining_historical_wikisource_v1/sources/ws_verri_osservazioni_tortura.txt",
+      "total_tokens": 61431,
+      "train_tokens": 60817,
+      "validation_tokens": 614
+    }
+  ],
+  "mixture_report_path": "reports/pretraining_historical_italian_v2_mixture_report.json"
+}

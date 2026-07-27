@@ -7,6 +7,7 @@ import torch
 from sonnet_corpus.pretraining_dataset import (
     PretrainingDatasetConfig,
     build_pretraining_token_dataset,
+    list_mixture_source_paths,
     list_processed_source_paths,
     load_pretraining_token_splits,
     split_source_token_ids,
@@ -91,6 +92,39 @@ def test_list_processed_source_paths_rejects_directory_without_text_files(
         list_processed_source_paths(sources_dir)
 
 
+def test_list_mixture_source_paths_preserves_report_order_and_validates_sizes(
+    tmp_path: Path,
+):
+    first_path = tmp_path / "first.txt"
+    second_path = tmp_path / "second.txt"
+    first_path.write_text("amor", encoding="utf-8")
+    second_path.write_text("virtute", encoding="utf-8")
+    mixture_report_path = tmp_path / "mixture.json"
+    mixture_report_path.write_text(
+        json.dumps(
+            {
+                "sources": [
+                    {
+                        "source_id": "second",
+                        "source_path": str(second_path),
+                        "cleaned_character_count": len("virtute"),
+                    },
+                    {
+                        "source_id": "first",
+                        "source_path": str(first_path),
+                        "cleaned_character_count": len("amor"),
+                    },
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    paths = list_mixture_source_paths(mixture_report_path)
+
+    assert paths == [second_path, first_path]
+
+
 def test_split_source_token_ids_uses_final_fraction_for_validation():
     train_ids, validation_ids = split_source_token_ids(
         list(range(10)),
@@ -167,6 +201,50 @@ def test_build_pretraining_token_dataset_writes_tensors_and_report(tmp_path: Pat
     assert saved_report["document_separator"] == "<|endoftext|>"
     assert saved_report["sources"][0]["source_id"] == "a_source"
     assert saved_report["sources"][1]["source_id"] == "b_source"
+
+
+def test_build_pretraining_token_dataset_uses_mixture_source_paths(tmp_path: Path):
+    first_path = tmp_path / "first.txt"
+    second_path = tmp_path / "second.txt"
+    first_path.write_text("amor antico memoria cronica\n" * 4, encoding="utf-8")
+    second_path.write_text("virtute novella lingua storia\n" * 4, encoding="utf-8")
+    mixture_report_path = tmp_path / "mixture.json"
+    mixture_report_path.write_text(
+        json.dumps(
+            {
+                "sources": [
+                    {
+                        "source_id": "first",
+                        "source_path": str(first_path),
+                        "cleaned_character_count": len(first_path.read_text(encoding="utf-8")),
+                    },
+                    {
+                        "source_id": "second",
+                        "source_path": str(second_path),
+                        "cleaned_character_count": len(second_path.read_text(encoding="utf-8")),
+                    },
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    tokenizer_path = tmp_path / "tokenizer.json"
+    write_tiny_tokenizer(tokenizer_path)
+
+    report = build_pretraining_token_dataset(
+        PretrainingDatasetConfig(
+            tokenizer_path=tokenizer_path,
+            output_dir=tmp_path / "encoded",
+            report_path=tmp_path / "report.json",
+            mixture_report_path=mixture_report_path,
+            validation_fraction=0.25,
+        )
+    )
+
+    assert report["mixture_report_path"].endswith("mixture.json")
+    assert report["source_count"] == 2
+    assert report["vocab_size"] == 60
+    assert report["document_separator_token_id"] == 0
 
 
 def test_build_pretraining_token_dataset_rejects_separator_without_single_token(

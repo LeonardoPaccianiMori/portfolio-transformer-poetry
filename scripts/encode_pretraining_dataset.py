@@ -21,30 +21,34 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--processed-sources-dir",
         type=Path,
-        default=ROOT / "data/local/pretraining/expanded_italian_1200_1800_v1/processed/sources",
+        default=ROOT / "data/processed/expanded_italian_1200_1800_v1/sources",
     )
     parser.add_argument(
-        "--manifest-path",
+        "--mixture-report-path",
         type=Path,
-        default=ROOT / "data/metadata/broader_prose_sources_manifest.csv",
+        default=ROOT / "reports/pretraining_historical_italian_v2_mixture_report.json",
     )
+    parser.add_argument("--manifest-path", type=Path)
     parser.add_argument(
         "--tokenizer-path",
         type=Path,
-        default=ROOT / "data/local/pretraining/expanded_italian_1200_1800_v1/tokenizers/bpe_8000.json",
+        default=ROOT
+        / "data/metadata/pretraining_tokenizers/pretraining_historical_italian_v2_bpe_16000.json",
     )
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=ROOT / "data/local/pretraining/expanded_italian_1200_1800_v1/encoded",
+        default=ROOT / "data/local/pretraining/pretraining_historical_italian_v2/encoded",
     )
     parser.add_argument(
         "--report-path",
         type=Path,
-        default=ROOT / "data/local/pretraining/expanded_italian_1200_1800_v1/encoded/bpe_8000_report.json",
+        default=ROOT / "reports/pretraining_historical_italian_v2_encoded_report.json",
     )
     parser.add_argument("--validation-fraction", type=float, default=0.01)
     parser.add_argument("--document-separator", default="<|endoftext|>")
+    parser.add_argument("--train-filename", default="bpe_16000_train.pt")
+    parser.add_argument("--validation-filename", default="bpe_16000_validation.pt")
     return parser.parse_args()
 
 
@@ -58,6 +62,9 @@ def main() -> None:
         validation_fraction=args.validation_fraction,
         document_separator=args.document_separator,
         manifest_path=args.manifest_path,
+        mixture_report_path=args.mixture_report_path,
+        train_filename=args.train_filename,
+        validation_filename=args.validation_filename,
     )
     report = build_pretraining_token_dataset(
         config,
