@@ -29,6 +29,7 @@ from sonnet_training.transformer_run import resolve_device, write_json, write_js
 
 
 ValidationMode = Literal["random_batches", "sequential_windows"]
+CheckpointRetention = Literal["all", "latest_only"]
 
 
 PRETRAINING_DATASET_VERSION = "pretraining_historical_italian_v2"
@@ -59,6 +60,7 @@ class PretrainingRunConfig:
     tokenizer_path: str = PRETRAINING_TOKENIZER_PATH
     dataset_report_path: str = PRETRAINING_DATASET_REPORT_PATH
     batch_size: int = 8
+    gradient_accumulation_steps: int = 1
     context_length: int = 512
     train_steps: int = 100
     eval_interval: int = 25
@@ -85,6 +87,7 @@ class PretrainingRunConfig:
     feed_forward_type: FeedForwardType = "relu"
     tie_token_embeddings: bool = False
     checkpoint_interval: int = 0
+    checkpoint_retention: CheckpointRetention = "all"
     progress_interval: int = 100
     resume_from_checkpoint: str = ""
 
@@ -195,6 +198,9 @@ def train_pretraining_run(
             "vocab_size": tokenizer.vocab_size,
             "train_tokens": int(train_tokens.numel()),
             "validation_tokens": int(validation_tokens.numel()),
+            "microbatch_tokens": microbatch_token_count(config),
+            "tokens_per_optimizer_step": optimizer_step_token_count(config),
+            "planned_train_token_exposures": planned_train_token_exposures(config),
             "dataset_provenance": dataset_provenance,
             "validation_window_count": sequential_next_token_window_count(
                 validation_tokens,
@@ -232,6 +238,7 @@ def train_pretraining_run(
         "sample_path": sample_path,
         "checkpoint_path": checkpoint_path,
         "checkpoint_dir": output_dir / "checkpoints",
+        "resume_checkpoint_path": output_dir / "resume.pt",
         "best_checkpoint_path": output_dir / "best_validation.pt",
         "history": saved_history,
     }
@@ -263,7 +270,12 @@ def train_pretraining_steps(
         progress_interval=config.progress_interval,
         start_step=start_step,
     )
-    progress.write_start(label="pretraining", device=str(device))
+    progress.write_start(
+        label="pretraining",
+        device=str(device),
+        tokens_per_step=optimizer_step_token_count(config),
+        gradient_accumulation_steps=config.gradient_accumulation_steps,
+    )
 
     for step in range(start_step + 1, config.train_steps + 1):
         current_learning_rate = learning_rate_for_step(config, step)
@@ -275,6 +287,7 @@ def train_pretraining_steps(
             batch_size=config.batch_size,
             context_length=config.context_length,
             device=device,
+            gradient_accumulation_steps=config.gradient_accumulation_steps,
         )
 
         should_evaluate = (
@@ -310,6 +323,7 @@ def train_pretraining_steps(
                     tokenizer=tokenizer,
                     step=step,
                     best_validation_row=best_validation_row,
+                    include_optimizer_state=False,
                 )
         else:
             validation_loss = None
@@ -317,8 +331,13 @@ def train_pretraining_steps(
 
         checkpoint_written = False
         if config.checkpoint_interval and step % config.checkpoint_interval == 0:
+            checkpoint_path = checkpoint_path_for_interval(
+                output_dir=output_dir,
+                step=step,
+                retention=config.checkpoint_retention,
+            )
             save_pretraining_checkpoint(
-                checkpoint_path=output_dir / "checkpoints" / f"step_{step}.pt",
+                checkpoint_path=checkpoint_path,
                 model=model,
                 optimizer=optimizer,
                 config=config,
@@ -384,22 +403,27 @@ def save_pretraining_checkpoint(
     tokenizer: BytePairEncodingTokenizer,
     step: int,
     best_validation_row: dict[str, float | int] | None = None,
+    include_optimizer_state: bool = True,
 ) -> None:
-    """Save model and optimizer state for later resume/fine-tuning."""
+    """Save model state and optionally optimizer state using atomic replacement."""
 
     checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
+    temporary_path = checkpoint_path.with_suffix(checkpoint_path.suffix + ".tmp")
     torch.save(
         {
             "step": step,
             "model_state_dict": model.state_dict(),
-            "optimizer_state_dict": optimizer.state_dict(),
+            "optimizer_state_dict": (
+                optimizer.state_dict() if include_optimizer_state else None
+            ),
             "config": asdict(config),
             "vocab_size": tokenizer.vocab_size,
             "parameter_count": count_parameters(model),
             "best_validation_row": best_validation_row,
         },
-        checkpoint_path,
+        temporary_path,
     )
+    temporary_path.replace(checkpoint_path)
 
 
 def load_pretraining_checkpoint(
@@ -417,6 +441,8 @@ def load_pretraining_checkpoint(
     checkpoint = torch.load(checkpoint_path, map_location=device)
     if not isinstance(checkpoint, dict):
         raise ValueError(f"checkpoint must contain a dictionary: {checkpoint_path}")
+    if checkpoint.get("optimizer_state_dict") is None:
+        raise ValueError(f"checkpoint is not resumable: {checkpoint_path}")
 
     model.load_state_dict(checkpoint["model_state_dict"])
     optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
@@ -646,6 +672,39 @@ def count_parameters(model: torch.nn.Module) -> int:
     return sum(parameter.numel() for parameter in model.parameters())
 
 
+def microbatch_token_count(config: PretrainingRunConfig) -> int:
+    """Return next-token targets processed by one microbatch."""
+
+    return config.batch_size * config.context_length
+
+
+def optimizer_step_token_count(config: PretrainingRunConfig) -> int:
+    """Return next-token targets represented by one optimizer update."""
+
+    return microbatch_token_count(config) * config.gradient_accumulation_steps
+
+
+def planned_train_token_exposures(config: PretrainingRunConfig) -> int:
+    """Return the planned count of sampled next-token targets for one run."""
+
+    return config.train_steps * optimizer_step_token_count(config)
+
+
+def checkpoint_path_for_interval(
+    *,
+    output_dir: Path,
+    step: int,
+    retention: CheckpointRetention,
+) -> Path:
+    """Return an interval-checkpoint path under the configured retention policy."""
+
+    if retention == "all":
+        return output_dir / "checkpoints" / f"step_{step}.pt"
+    if retention == "latest_only":
+        return output_dir / "resume.pt"
+    raise ValueError("unsupported checkpoint_retention")
+
+
 def _validate_config(config: PretrainingRunConfig) -> None:
     if config.context_length > config.max_context_length:
         raise ValueError(
@@ -675,6 +734,10 @@ def _validate_config(config: PretrainingRunConfig) -> None:
         raise ValueError("min_learning_rate must not exceed learning_rate")
     if config.checkpoint_interval < 0:
         raise ValueError("checkpoint_interval must be greater than or equal to 0")
+    if config.checkpoint_retention not in {"all", "latest_only"}:
+        raise ValueError("unsupported checkpoint_retention")
+    if config.gradient_accumulation_steps <= 0:
+        raise ValueError("gradient_accumulation_steps must be greater than 0")
     if config.progress_interval <= 0:
         raise ValueError("progress_interval must be greater than 0")
 

@@ -30,13 +30,24 @@ class TrainingProgressReporter:
         self._clock = clock
         self._started_at = clock()
 
-    def write_start(self, *, label: str, device: str) -> None:
+    def write_start(
+        self,
+        *,
+        label: str,
+        device: str,
+        tokens_per_step: int | None = None,
+        gradient_accumulation_steps: int | None = None,
+    ) -> None:
         """Report the start of a job before its first optimization step."""
-        print(
+        fields = [
             f"{label} started | steps={self.start_step}/{self.total_steps} "
-            f"| device={device} | progress_interval={self.progress_interval}",
-            flush=True,
-        )
+            f"| device={device} | progress_interval={self.progress_interval}"
+        ]
+        if tokens_per_step is not None:
+            fields.append(f"tokens_per_update={tokens_per_step}")
+        if gradient_accumulation_steps is not None:
+            fields.append(f"gradient_accumulation={gradient_accumulation_steps}")
+        print(" | ".join(fields), flush=True)
 
     def should_report(self, step: int, *, force: bool = False) -> bool:
         """Return whether this completed step should be shown to the user."""

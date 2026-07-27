@@ -1,6 +1,7 @@
 import pytest
 import torch
 
+import sonnet_training.steps as training_steps
 from sonnet_model.bigram import BigramLanguageModel
 from sonnet_training.steps import (
     estimate_next_token_loss,
@@ -126,6 +127,60 @@ def test_train_next_token_step_rejects_nonpositive_gradient_norm_limit():
             context_length=8,
             device=torch.device("cpu"),
             max_gradient_norm=0.0,
+        )
+
+
+def test_train_next_token_step_accumulates_microbatch_gradients_before_one_update(
+    monkeypatch: pytest.MonkeyPatch,
+):
+    model = BigramLanguageModel(vocab_size=10)
+    optimizer = torch.optim.SGD(model.parameters(), lr=1e-2)
+    token_ids = torch.arange(100, dtype=torch.long) % 10
+    sample_calls = 0
+    optimizer_steps = 0
+    original_step = optimizer.step
+
+    def fake_sample_next_token_batch(**kwargs):
+        nonlocal sample_calls
+        sample_calls += 1
+        return (
+            torch.tensor([[1, 2, 3, 4]], dtype=torch.long),
+            torch.tensor([[2, 3, 4, 5]], dtype=torch.long),
+        )
+
+    def counting_step(*args, **kwargs):
+        nonlocal optimizer_steps
+        optimizer_steps += 1
+        return original_step(*args, **kwargs)
+
+    monkeypatch.setattr(training_steps, "sample_next_token_batch", fake_sample_next_token_batch)
+    monkeypatch.setattr(optimizer, "step", counting_step)
+
+    loss = train_next_token_step(
+        model=model,
+        optimizer=optimizer,
+        token_ids=token_ids,
+        batch_size=1,
+        context_length=4,
+        device=torch.device("cpu"),
+        gradient_accumulation_steps=3,
+    )
+
+    assert loss > 0.0
+    assert sample_calls == 3
+    assert optimizer_steps == 1
+
+
+def test_train_next_token_step_rejects_nonpositive_gradient_accumulation():
+    with pytest.raises(ValueError, match="gradient_accumulation_steps"):
+        train_next_token_step(
+            model=BigramLanguageModel(vocab_size=10),
+            optimizer=torch.optim.AdamW(BigramLanguageModel(vocab_size=10).parameters()),
+            token_ids=torch.arange(100, dtype=torch.long) % 10,
+            batch_size=1,
+            context_length=8,
+            device=torch.device("cpu"),
+            gradient_accumulation_steps=0,
         )
 
 

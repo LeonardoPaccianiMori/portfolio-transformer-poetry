@@ -34,13 +34,17 @@ def parse_args() -> argparse.Namespace:
         "--tokenizer-path",
         default=PRETRAINING_TOKENIZER_PATH,
     )
-    parser.add_argument("--dataset-report-path", default=PRETRAINING_DATASET_REPORT_PATH)
+    parser.add_argument(
+        "--dataset-report-path",
+        default=PRETRAINING_DATASET_REPORT_PATH,
+    )
     parser.add_argument(
         "--output-dir",
         type=Path,
         default=ROOT / "runs" / "pretraining_sanity_001",
     )
     parser.add_argument("--batch-size", type=int, default=8)
+    parser.add_argument("--gradient-accumulation-steps", type=int, default=1)
     parser.add_argument("--context-length", type=int, default=512)
     parser.add_argument("--train-steps", type=int, default=100)
     parser.add_argument("--eval-interval", type=int, default=25)
@@ -87,6 +91,11 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--tie-token-embeddings", action="store_true")
     parser.add_argument("--checkpoint-interval", type=int, default=0)
+    parser.add_argument(
+        "--checkpoint-retention",
+        choices=["all", "latest_only"],
+        default="all",
+    )
     parser.add_argument("--progress-interval", type=int, default=100)
     parser.add_argument("--resume-from-checkpoint", default="")
     return parser.parse_args()
@@ -100,6 +109,7 @@ def main() -> None:
         tokenizer_path=args.tokenizer_path,
         dataset_report_path=args.dataset_report_path,
         batch_size=args.batch_size,
+        gradient_accumulation_steps=args.gradient_accumulation_steps,
         context_length=args.context_length,
         train_steps=args.train_steps,
         eval_interval=args.eval_interval,
@@ -126,6 +136,7 @@ def main() -> None:
         feed_forward_type=args.feed_forward_type,
         tie_token_embeddings=args.tie_token_embeddings,
         checkpoint_interval=args.checkpoint_interval,
+        checkpoint_retention=args.checkpoint_retention,
         progress_interval=args.progress_interval,
         resume_from_checkpoint=args.resume_from_checkpoint,
     )

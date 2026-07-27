@@ -14,27 +14,33 @@ def train_next_token_step(
     device: torch.device | str,
     max_gradient_norm: float | None = None,
     return_gradient_norm: bool = False,
+    gradient_accumulation_steps: int = 1,
 ) -> float | tuple[float, float | None]:
-    """Run one update, optionally clipping and reporting the gradient norm."""
+    """Run one optimizer update over one or more sampled microbatches."""
     if max_gradient_norm is not None and max_gradient_norm <= 0:
         raise ValueError("max_gradient_norm must be greater than 0 when provided")
+    if gradient_accumulation_steps <= 0:
+        raise ValueError("gradient_accumulation_steps must be greater than 0")
 
     model.train()
-
-    input_ids, target_ids = sample_next_token_batch(
-        token_ids=token_ids,
-        batch_size=batch_size,
-        context_length=context_length,
-        device=device,
-    )
-
-    _, loss = model(input_ids, target_ids)
-
-    if loss is None:
-        raise RuntimeError("model did not return a training loss")
-
     optimizer.zero_grad()
-    loss.backward()
+    loss_values: list[float] = []
+    for _ in range(gradient_accumulation_steps):
+        input_ids, target_ids = sample_next_token_batch(
+            token_ids=token_ids,
+            batch_size=batch_size,
+            context_length=context_length,
+            device=device,
+        )
+        _, loss = model(input_ids, target_ids)
+
+        if loss is None:
+            raise RuntimeError("model did not return a training loss")
+
+        # Average gradients so the learning-rate meaning stays unchanged.
+        (loss / gradient_accumulation_steps).backward()
+        loss_values.append(float(loss.item()))
+
     pre_clipping_gradient_norm = None
     if max_gradient_norm is not None:
         pre_clipping_gradient_norm = float(
@@ -45,7 +51,7 @@ def train_next_token_step(
         )
     optimizer.step()
 
-    loss_value = float(loss.item())
+    loss_value = float(sum(loss_values) / len(loss_values))
     if return_gradient_norm:
         return loss_value, pre_clipping_gradient_norm
     return loss_value

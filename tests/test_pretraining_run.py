@@ -10,11 +10,14 @@ from sonnet_corpus.pretraining_tokenizer import train_weighted_pretoken_bpe_toke
 from sonnet_model.transformer import CausalTransformerLanguageModel
 from sonnet_training.pretraining_run import (
     PretrainingRunConfig,
+    checkpoint_path_for_interval,
     count_parameters,
     learning_rate_for_step,
     load_pretraining_checkpoint,
     load_token_tensor,
     merge_existing_history,
+    optimizer_step_token_count,
+    planned_train_token_exposures,
     train_pretraining_run,
     validate_pretraining_dataset_artifacts,
 )
@@ -153,6 +156,9 @@ def test_train_pretraining_run_writes_reproducible_artifacts(tmp_path: Path):
     assert saved_config["vocab_size"] == 50
     assert saved_config["train_tokens"] == 240
     assert saved_config["validation_tokens"] == 240
+    assert saved_config["microbatch_tokens"] == 32
+    assert saved_config["tokens_per_optimizer_step"] == 32
+    assert saved_config["planned_train_token_exposures"] == 96
     assert saved_config["dataset_provenance"] == {
         "dataset_version": "pretraining_historical_italian_v2",
         "dataset_report_path": "reports/tiny_pretraining_dataset_report.json",
@@ -388,6 +394,44 @@ def test_train_pretraining_run_writes_interval_checkpoints(tmp_path: Path):
     assert torch.load(step_2, map_location="cpu")["step"] == 2
     assert torch.load(step_4, map_location="cpu")["step"] == 4
     assert torch.load(final_checkpoint, map_location="cpu")["step"] == 4
+
+
+def test_train_pretraining_run_keeps_one_resumable_checkpoint_when_requested(
+    tmp_path: Path,
+):
+    write_tiny_pretraining_artifacts(tmp_path)
+    output_dir = tmp_path / "runs" / "pretraining"
+    config = PretrainingRunConfig(
+        **{
+            **tiny_pretraining_config().__dict__,
+            "train_steps": 4,
+            "checkpoint_interval": 2,
+            "checkpoint_retention": "latest_only",
+            "gradient_accumulation_steps": 2,
+        }
+    )
+
+    result = train_pretraining_run(
+        repo_root=tmp_path,
+        output_dir=output_dir,
+        config=config,
+    )
+
+    resume_checkpoint = result["resume_checkpoint_path"]
+    assert resume_checkpoint.is_file()
+    assert torch.load(resume_checkpoint, map_location="cpu")["step"] == 4
+    assert not (output_dir / "checkpoints").exists()
+    assert optimizer_step_token_count(config) == 64
+    assert planned_train_token_exposures(config) == 256
+
+
+def test_checkpoint_path_for_interval_rejects_unknown_retention(tmp_path: Path):
+    with pytest.raises(ValueError, match="checkpoint_retention"):
+        checkpoint_path_for_interval(
+            output_dir=tmp_path,
+            step=1,
+            retention="unknown",  # type: ignore[arg-type]
+        )
 
 
 def test_train_pretraining_run_resumes_from_checkpoint(tmp_path: Path):
