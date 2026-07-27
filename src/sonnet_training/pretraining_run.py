@@ -144,12 +144,15 @@ def train_pretraining_run(
         lr=config.learning_rate,
     )
     start_step = 0
+    checkpoint_best_validation_row = None
     if config.resume_from_checkpoint:
-        start_step = load_pretraining_checkpoint(
+        start_step, checkpoint_best_validation_row = (
+            load_pretraining_checkpoint_with_best_validation(
             checkpoint_path=repo_root / config.resume_from_checkpoint,
             model=model,
             optimizer=optimizer,
             device=device,
+            )
         )
         if start_step >= config.train_steps:
             raise ValueError(
@@ -158,9 +161,9 @@ def train_pretraining_run(
 
     output_dir.mkdir(parents=True, exist_ok=True)
     prior_history = _read_history(output_dir / "loss_history.jsonl")
-    initial_best_validation_row = _best_validation_row(
-        prior_history,
-        through_step=start_step,
+    initial_best_validation_row = _select_best_validation_row(
+        _best_validation_row(prior_history, through_step=start_step),
+        checkpoint_best_validation_row,
     )
 
     history, best_validation_row = train_pretraining_steps(
@@ -435,6 +438,24 @@ def load_pretraining_checkpoint(
 ) -> int:
     """Load model/optimizer state and return the completed checkpoint step."""
 
+    step, _ = load_pretraining_checkpoint_with_best_validation(
+        checkpoint_path=checkpoint_path,
+        model=model,
+        optimizer=optimizer,
+        device=device,
+    )
+    return step
+
+
+def load_pretraining_checkpoint_with_best_validation(
+    *,
+    checkpoint_path: Path,
+    model: CausalTransformerLanguageModel,
+    optimizer: torch.optim.Optimizer,
+    device: torch.device,
+) -> tuple[int, dict[str, float | int] | None]:
+    """Restore a resumable checkpoint and return its selected validation row."""
+
     if not checkpoint_path.is_file():
         raise FileNotFoundError(f"checkpoint file does not exist: {checkpoint_path}")
 
@@ -446,7 +467,7 @@ def load_pretraining_checkpoint(
 
     model.load_state_dict(checkpoint["model_state_dict"])
     optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
-    return int(checkpoint["step"])
+    return int(checkpoint["step"]), _checkpoint_best_validation_row(checkpoint)
 
 
 def merge_existing_history(
@@ -488,6 +509,40 @@ def _best_validation_row(
     if not eligible_rows:
         return None
     return min(eligible_rows, key=lambda row: float(row["validation_loss"]))
+
+
+def _select_best_validation_row(
+    *rows: dict[str, float | int] | None,
+) -> dict[str, float | int] | None:
+    """Return the lowest-loss row available from history and resume state."""
+
+    available_rows = [row for row in rows if row is not None]
+    if not available_rows:
+        return None
+    return min(available_rows, key=lambda row: float(row["validation_loss"]))
+
+
+def _checkpoint_best_validation_row(
+    checkpoint: dict[str, object],
+) -> dict[str, float | int] | None:
+    row = checkpoint.get("best_validation_row")
+    if row is None:
+        return None
+    if not isinstance(row, dict):
+        raise ValueError("checkpoint best_validation_row must be a dictionary")
+    required_fields = {"step", "train_loss", "validation_loss", "learning_rate"}
+    missing_fields = sorted(required_fields - row.keys())
+    if missing_fields:
+        raise ValueError(
+            "checkpoint best_validation_row is missing fields: "
+            + ", ".join(missing_fields)
+        )
+    return {
+        "step": int(row["step"]),
+        "train_loss": float(row["train_loss"]),
+        "validation_loss": float(row["validation_loss"]),
+        "learning_rate": float(row["learning_rate"]),
+    }
 
 
 def load_token_tensor(path: Path) -> torch.Tensor:

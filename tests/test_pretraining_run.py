@@ -14,6 +14,7 @@ from sonnet_training.pretraining_run import (
     count_parameters,
     learning_rate_for_step,
     load_pretraining_checkpoint,
+    load_pretraining_checkpoint_with_best_validation,
     load_token_tensor,
     merge_existing_history,
     optimizer_step_token_count,
@@ -478,6 +479,88 @@ def test_train_pretraining_run_resumes_from_checkpoint(tmp_path: Path):
     assert loss_history[0]["step"] == 3
     assert loss_history[-1]["step"] == 4
     assert final_checkpoint["step"] == 4
+
+
+def test_pretraining_resume_preserves_checkpoint_best_when_history_is_missing(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    write_tiny_pretraining_artifacts(tmp_path)
+    output_dir = tmp_path / "runs" / "interrupted_pretraining"
+    first_config = PretrainingRunConfig(
+        **{
+            **tiny_pretraining_config().__dict__,
+            "train_steps": 2,
+            "checkpoint_interval": 2,
+            "checkpoint_retention": "latest_only",
+        }
+    )
+    train_pretraining_run(
+        repo_root=tmp_path,
+        output_dir=output_dir,
+        config=first_config,
+    )
+    best_before = torch.load(output_dir / "best_validation.pt", map_location="cpu")
+    (output_dir / "loss_history.jsonl").unlink()
+
+    monkeypatch.setattr(
+        pretraining_run,
+        "estimate_pretraining_validation_loss",
+        lambda **kwargs: float(best_before["best_validation_row"]["validation_loss"]) + 1.0,
+    )
+    resumed_config = PretrainingRunConfig(
+        **{
+            **tiny_pretraining_config().__dict__,
+            "train_steps": 4,
+            "checkpoint_interval": 2,
+            "checkpoint_retention": "latest_only",
+            "resume_from_checkpoint": str(
+                (output_dir / "resume.pt").relative_to(tmp_path)
+            ),
+        }
+    )
+    result = train_pretraining_run(
+        repo_root=tmp_path,
+        output_dir=output_dir,
+        config=resumed_config,
+    )
+    best_after = torch.load(output_dir / "best_validation.pt", map_location="cpu")
+    saved_config = read_json(result["config_path"])
+
+    assert best_after["step"] == best_before["step"]
+    assert saved_config["best_validation_step"] == best_before["step"]
+
+
+def test_load_pretraining_checkpoint_returns_saved_best_validation_row(tmp_path: Path):
+    write_tiny_pretraining_artifacts(tmp_path)
+    result = train_pretraining_run(
+        repo_root=tmp_path,
+        output_dir=tmp_path / "runs" / "pretraining",
+        config=tiny_pretraining_config(),
+    )
+    config = tiny_pretraining_config()
+    tokenizer = BytePairEncodingTokenizer.load(tmp_path / config.tokenizer_path)
+    model = CausalTransformerLanguageModel(
+        vocab_size=tokenizer.vocab_size,
+        embedding_dim=config.embedding_dim,
+        num_layers=config.num_layers,
+        num_heads=config.num_heads,
+        head_dim=config.head_dim,
+        feed_forward_dim=config.feed_forward_dim,
+        max_context_length=config.max_context_length,
+    )
+    optimizer = torch.optim.AdamW(model.parameters(), lr=config.learning_rate)
+
+    step, best_row = load_pretraining_checkpoint_with_best_validation(
+        checkpoint_path=result["checkpoint_path"],
+        model=model,
+        optimizer=optimizer,
+        device=torch.device("cpu"),
+    )
+
+    assert step == config.train_steps
+    assert best_row is not None
+    assert best_row["step"] <= config.train_steps
 
 
 def test_train_pretraining_run_rejects_resume_checkpoint_at_target_step(
