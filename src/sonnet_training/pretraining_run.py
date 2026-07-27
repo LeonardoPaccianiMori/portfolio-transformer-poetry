@@ -31,22 +31,33 @@ from sonnet_training.transformer_run import resolve_device, write_json, write_js
 ValidationMode = Literal["random_batches", "sequential_windows"]
 
 
+PRETRAINING_DATASET_VERSION = "pretraining_historical_italian_v2"
+PRETRAINING_TRAIN_TOKENS_PATH = (
+    "data/local/pretraining/pretraining_historical_italian_v2/encoded/"
+    "bpe_16000_train.pt"
+)
+PRETRAINING_VALIDATION_TOKENS_PATH = (
+    "data/local/pretraining/pretraining_historical_italian_v2/encoded/"
+    "bpe_16000_validation.pt"
+)
+PRETRAINING_TOKENIZER_PATH = (
+    "data/metadata/pretraining_tokenizers/"
+    "pretraining_historical_italian_v2_bpe_16000.json"
+)
+PRETRAINING_DATASET_REPORT_PATH = (
+    "reports/pretraining_historical_italian_v2_encoded_report.json"
+)
+
+
 @dataclass(frozen=True)
 class PretrainingRunConfig:
     """Configuration for a broader-corpus pretraining run."""
 
-    train_tokens_path: str = (
-        "data/local/pretraining/expanded_italian_1200_1800_v1/encoded/"
-        "bpe_8000_train.pt"
-    )
-    validation_tokens_path: str = (
-        "data/local/pretraining/expanded_italian_1200_1800_v1/encoded/"
-        "bpe_8000_validation.pt"
-    )
-    tokenizer_path: str = (
-        "data/local/pretraining/expanded_italian_1200_1800_v1/tokenizers/"
-        "bpe_8000.json"
-    )
+    dataset_version: str = PRETRAINING_DATASET_VERSION
+    train_tokens_path: str = PRETRAINING_TRAIN_TOKENS_PATH
+    validation_tokens_path: str = PRETRAINING_VALIDATION_TOKENS_PATH
+    tokenizer_path: str = PRETRAINING_TOKENIZER_PATH
+    dataset_report_path: str = PRETRAINING_DATASET_REPORT_PATH
     batch_size: int = 8
     context_length: int = 512
     train_steps: int = 100
@@ -92,6 +103,13 @@ def train_pretraining_run(
     train_tokens = load_token_tensor(repo_root / config.train_tokens_path)
     validation_tokens = load_token_tensor(repo_root / config.validation_tokens_path)
     tokenizer = BytePairEncodingTokenizer.load(repo_root / config.tokenizer_path)
+    dataset_provenance = validate_pretraining_dataset_artifacts(
+        repo_root=repo_root,
+        config=config,
+        tokenizer=tokenizer,
+        train_tokens=train_tokens,
+        validation_tokens=validation_tokens,
+    )
 
     model = CausalTransformerLanguageModel(
         vocab_size=tokenizer.vocab_size,
@@ -167,6 +185,7 @@ def train_pretraining_run(
             "vocab_size": tokenizer.vocab_size,
             "train_tokens": int(train_tokens.numel()),
             "validation_tokens": int(validation_tokens.numel()),
+            "dataset_provenance": dataset_provenance,
             "validation_window_count": sequential_next_token_window_count(
                 validation_tokens,
                 config.context_length,
@@ -449,6 +468,166 @@ def load_token_tensor(path: Path) -> torch.Tensor:
     if tensor.dtype != torch.long:
         raise ValueError(f"token tensor must use dtype torch.long: {path}")
     return tensor
+
+
+def validate_pretraining_dataset_artifacts(
+    *,
+    repo_root: Path,
+    config: PretrainingRunConfig,
+    tokenizer: BytePairEncodingTokenizer,
+    train_tokens: torch.Tensor,
+    validation_tokens: torch.Tensor,
+) -> dict[str, int | str]:
+    """Require loaded local tensors to match their committed dataset report."""
+
+    report_path = repo_root / config.dataset_report_path
+    if not report_path.is_file():
+        raise FileNotFoundError(f"dataset report file does not exist: {report_path}")
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    if not isinstance(report, dict):
+        raise ValueError(f"dataset report must contain a JSON object: {report_path}")
+
+    _require_report_path_match(
+        report=report,
+        field="train_path",
+        expected_path=config.train_tokens_path,
+        repo_root=repo_root,
+    )
+    _require_report_path_match(
+        report=report,
+        field="validation_path",
+        expected_path=config.validation_tokens_path,
+        repo_root=repo_root,
+    )
+    _require_report_path_match(
+        report=report,
+        field="tokenizer_path",
+        expected_path=config.tokenizer_path,
+        repo_root=repo_root,
+    )
+    _require_report_int_match(
+        report=report,
+        field="vocab_size",
+        actual_value=tokenizer.vocab_size,
+    )
+    _require_report_int_match(
+        report=report,
+        field="train_tokens",
+        actual_value=int(train_tokens.numel()),
+    )
+    _require_report_int_match(
+        report=report,
+        field="validation_tokens",
+        actual_value=int(validation_tokens.numel()),
+    )
+    _require_report_int_match(
+        report=report,
+        field="total_tokens",
+        actual_value=int(train_tokens.numel() + validation_tokens.numel()),
+    )
+    _require_report_string_match(
+        report=report,
+        field="train_dtype",
+        actual_value=str(train_tokens.dtype),
+    )
+    _require_report_string_match(
+        report=report,
+        field="validation_dtype",
+        actual_value=str(validation_tokens.dtype),
+    )
+
+    separator_ids = tokenizer.encode(str(report.get("document_separator", "")))
+    if len(separator_ids) != 1:
+        raise ValueError("dataset report separator must encode to exactly one token")
+    _require_report_int_match(
+        report=report,
+        field="document_separator_token_id",
+        actual_value=separator_ids[0],
+    )
+    _validate_token_id_range(train_tokens, vocab_size=tokenizer.vocab_size, name="train")
+    _validate_token_id_range(
+        validation_tokens,
+        vocab_size=tokenizer.vocab_size,
+        name="validation",
+    )
+
+    source_count = _require_positive_report_int(report=report, field="source_count")
+    sources = report.get("sources")
+    if not isinstance(sources, list) or len(sources) != source_count:
+        raise ValueError("dataset report source_count does not match its sources list")
+    return {
+        "dataset_version": config.dataset_version,
+        "dataset_report_path": config.dataset_report_path,
+        "source_count": source_count,
+        "split_policy": str(report.get("split_policy", "")),
+        "vocab_size": tokenizer.vocab_size,
+        "train_tokens": int(train_tokens.numel()),
+        "validation_tokens": int(validation_tokens.numel()),
+    }
+
+
+def _require_report_path_match(
+    *,
+    report: dict[str, object],
+    field: str,
+    expected_path: str,
+    repo_root: Path,
+) -> None:
+    report_value = report.get(field)
+    if not isinstance(report_value, str):
+        raise ValueError(f"dataset report is missing string field: {field}")
+    reported_path = (repo_root / report_value).resolve()
+    configured_path = (repo_root / expected_path).resolve()
+    if reported_path != configured_path:
+        raise ValueError(f"dataset report {field} does not match run configuration")
+
+
+def _require_report_int_match(
+    *,
+    report: dict[str, object],
+    field: str,
+    actual_value: int,
+) -> None:
+    report_value = report.get(field)
+    if not isinstance(report_value, int):
+        raise ValueError(f"dataset report is missing integer field: {field}")
+    if report_value != actual_value:
+        raise ValueError(f"dataset report {field} does not match loaded artifact")
+
+
+def _require_report_string_match(
+    *,
+    report: dict[str, object],
+    field: str,
+    actual_value: str,
+) -> None:
+    report_value = report.get(field)
+    if report_value != actual_value:
+        raise ValueError(f"dataset report {field} does not match loaded artifact")
+
+
+def _require_positive_report_int(*, report: dict[str, object], field: str) -> int:
+    report_value = report.get(field)
+    if not isinstance(report_value, int) or report_value <= 0:
+        raise ValueError(f"dataset report must contain a positive integer: {field}")
+    return report_value
+
+
+def _validate_token_id_range(
+    token_ids: torch.Tensor,
+    *,
+    vocab_size: int,
+    name: str,
+) -> None:
+    if token_ids.numel() == 0:
+        raise ValueError(f"{name} token tensor must not be empty")
+    minimum = int(token_ids.min())
+    maximum = int(token_ids.max())
+    if minimum < 0 or maximum >= vocab_size:
+        raise ValueError(
+            f"{name} token IDs must be in [0, {vocab_size - 1}], "
+            f"found [{minimum}, {maximum}]"
+        )
 
 
 def count_parameters(model: torch.nn.Module) -> int:

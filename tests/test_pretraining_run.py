@@ -16,6 +16,7 @@ from sonnet_training.pretraining_run import (
     load_token_tensor,
     merge_existing_history,
     train_pretraining_run,
+    validate_pretraining_dataset_artifacts,
 )
 
 
@@ -35,6 +36,7 @@ def tiny_pretraining_config() -> PretrainingRunConfig:
         train_tokens_path="data/local/pretraining/encoded/bpe_8000_train.pt",
         validation_tokens_path="data/local/pretraining/encoded/bpe_8000_validation.pt",
         tokenizer_path="data/local/pretraining/tokenizers/bpe_8000.json",
+        dataset_report_path="reports/tiny_pretraining_dataset_report.json",
         batch_size=4,
         context_length=8,
         train_steps=3,
@@ -67,6 +69,29 @@ def write_tiny_pretraining_artifacts(repo_root: Path) -> None:
     torch.save(
         torch.tensor(([1, 2, 3, 4, 5, 6] * 40), dtype=torch.long),
         encoded_dir / "bpe_8000_validation.pt",
+    )
+    report_dir = repo_root / "reports"
+    report_dir.mkdir()
+    report_dir.joinpath("tiny_pretraining_dataset_report.json").write_text(
+        json.dumps(
+            {
+                "train_path": "data/local/pretraining/encoded/bpe_8000_train.pt",
+                "validation_path": "data/local/pretraining/encoded/bpe_8000_validation.pt",
+                "tokenizer_path": "data/local/pretraining/tokenizers/bpe_8000.json",
+                "train_tokens": 240,
+                "validation_tokens": 240,
+                "total_tokens": 480,
+                "train_dtype": "torch.int64",
+                "validation_dtype": "torch.int64",
+                "vocab_size": 50,
+                "document_separator": "<|endoftext|>",
+                "document_separator_token_id": 0,
+                "source_count": 2,
+                "split_policy": "final_token_fraction_per_source",
+                "sources": [{"source_id": "a"}, {"source_id": "b"}],
+            }
+        ),
+        encoding="utf-8",
     )
 
 
@@ -128,6 +153,15 @@ def test_train_pretraining_run_writes_reproducible_artifacts(tmp_path: Path):
     assert saved_config["vocab_size"] == 50
     assert saved_config["train_tokens"] == 240
     assert saved_config["validation_tokens"] == 240
+    assert saved_config["dataset_provenance"] == {
+        "dataset_version": "pretraining_historical_italian_v2",
+        "dataset_report_path": "reports/tiny_pretraining_dataset_report.json",
+        "source_count": 2,
+        "split_policy": "final_token_fraction_per_source",
+        "vocab_size": 50,
+        "train_tokens": 240,
+        "validation_tokens": 240,
+    }
     assert saved_config["parameter_count"] > 0
     assert saved_config["progress_interval"] == 100
     assert len(loss_history) == 3
@@ -145,6 +179,47 @@ def test_train_pretraining_run_writes_reproducible_artifacts(tmp_path: Path):
     assert saved_config["best_validation_loss"] == best_history_row["validation_loss"]
     assert best_checkpoint["step"] == best_history_row["step"]
     assert best_checkpoint["best_validation_row"] == best_history_row
+
+
+def test_pretraining_dataset_preflight_rejects_token_ids_outside_vocabulary(
+    tmp_path: Path,
+):
+    write_tiny_pretraining_artifacts(tmp_path)
+    config = tiny_pretraining_config()
+    train_tokens = load_token_tensor(tmp_path / config.train_tokens_path)
+    validation_tokens = load_token_tensor(tmp_path / config.validation_tokens_path)
+    tokenizer = BytePairEncodingTokenizer.load(tmp_path / config.tokenizer_path)
+    train_tokens[-1] = tokenizer.vocab_size
+
+    with pytest.raises(ValueError, match="train token IDs"):
+        validate_pretraining_dataset_artifacts(
+            repo_root=tmp_path,
+            config=config,
+            tokenizer=tokenizer,
+            train_tokens=train_tokens,
+            validation_tokens=validation_tokens,
+        )
+
+
+def test_pretraining_dataset_preflight_rejects_mismatched_report_count(
+    tmp_path: Path,
+):
+    write_tiny_pretraining_artifacts(tmp_path)
+    config = tiny_pretraining_config()
+    report_path = tmp_path / config.dataset_report_path
+    report = read_json(report_path)
+    report["validation_tokens"] = 239
+    report_path.write_text(json.dumps(report), encoding="utf-8")
+    tokenizer = BytePairEncodingTokenizer.load(tmp_path / config.tokenizer_path)
+
+    with pytest.raises(ValueError, match="validation_tokens"):
+        validate_pretraining_dataset_artifacts(
+            repo_root=tmp_path,
+            config=config,
+            tokenizer=tokenizer,
+            train_tokens=load_token_tensor(tmp_path / config.train_tokens_path),
+            validation_tokens=load_token_tensor(tmp_path / config.validation_tokens_path),
+        )
 
 
 def test_pretraining_warmup_cosine_schedule_is_recorded_in_history(tmp_path: Path):

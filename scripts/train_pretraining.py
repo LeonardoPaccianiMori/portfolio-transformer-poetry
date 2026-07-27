@@ -12,27 +12,29 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
+from sonnet_training.pretraining_run import PRETRAINING_DATASET_REPORT_PATH
+from sonnet_training.pretraining_run import PRETRAINING_TOKENIZER_PATH
+from sonnet_training.pretraining_run import PRETRAINING_TRAIN_TOKENS_PATH
+from sonnet_training.pretraining_run import PRETRAINING_VALIDATION_TOKENS_PATH
 from sonnet_training.pretraining_run import PretrainingRunConfig
 from sonnet_training.pretraining_run import train_pretraining_run
-
-
-CORPUS_DIR = "data/local/pretraining/expanded_italian_1200_1800_v1"
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--train-tokens-path",
-        default=f"{CORPUS_DIR}/encoded/bpe_8000_train.pt",
+        default=PRETRAINING_TRAIN_TOKENS_PATH,
     )
     parser.add_argument(
         "--validation-tokens-path",
-        default=f"{CORPUS_DIR}/encoded/bpe_8000_validation.pt",
+        default=PRETRAINING_VALIDATION_TOKENS_PATH,
     )
     parser.add_argument(
         "--tokenizer-path",
-        default=f"{CORPUS_DIR}/tokenizers/bpe_8000.json",
+        default=PRETRAINING_TOKENIZER_PATH,
     )
+    parser.add_argument("--dataset-report-path", default=PRETRAINING_DATASET_REPORT_PATH)
     parser.add_argument(
         "--output-dir",
         type=Path,
@@ -96,6 +98,7 @@ def main() -> None:
         train_tokens_path=args.train_tokens_path,
         validation_tokens_path=args.validation_tokens_path,
         tokenizer_path=args.tokenizer_path,
+        dataset_report_path=args.dataset_report_path,
         batch_size=args.batch_size,
         context_length=args.context_length,
         train_steps=args.train_steps,
