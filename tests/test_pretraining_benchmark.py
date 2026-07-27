@@ -13,21 +13,16 @@ from sonnet_training.pretraining_benchmark import (
     benchmark_pretraining_candidates,
     build_markdown_report,
     default_pretraining_candidates,
+    historical_v2_quality_swiglu_candidates,
     pretraining_candidates_for_set,
     quality_swiglu_pretraining_candidates,
 )
 
 
 def write_tiny_benchmark_artifacts(repo_root: Path) -> None:
-    corpus_dir = (
-        repo_root
-        / "data"
-        / "local"
-        / "pretraining"
-        / "expanded_italian_1200_1800_v1"
-    )
+    corpus_dir = repo_root / "data" / "local" / "pretraining" / "pretraining_historical_italian_v2"
     encoded_dir = corpus_dir / "encoded"
-    tokenizer_dir = corpus_dir / "tokenizers"
+    tokenizer_dir = repo_root / "data" / "metadata" / "pretraining_tokenizers"
     encoded_dir.mkdir(parents=True)
     tokenizer_dir.mkdir(parents=True)
     text = "amor antico memoria cronica virtute novella lingua storia\n"
@@ -37,14 +32,37 @@ def write_tiny_benchmark_artifacts(repo_root: Path) -> None:
         vocab_size=50,
         special_tokens=["<|endoftext|>"],
     )
-    tokenizer.save(tokenizer_dir / "bpe_8000.json")
+    tokenizer.save(tokenizer_dir / "pretraining_historical_italian_v2_bpe_16000.json")
     torch.save(
         torch.tensor(([1, 2, 3, 4, 5, 6] * 40), dtype=torch.long),
-        encoded_dir / "bpe_8000_train.pt",
+        encoded_dir / "bpe_16000_train.pt",
     )
     torch.save(
         torch.tensor(([1, 2, 3, 4, 5, 6] * 40), dtype=torch.long),
-        encoded_dir / "bpe_8000_validation.pt",
+        encoded_dir / "bpe_16000_validation.pt",
+    )
+    report_dir = repo_root / "reports"
+    report_dir.mkdir()
+    report_dir.joinpath("pretraining_historical_italian_v2_encoded_report.json").write_text(
+        json.dumps(
+            {
+                "train_path": "data/local/pretraining/pretraining_historical_italian_v2/encoded/bpe_16000_train.pt",
+                "validation_path": "data/local/pretraining/pretraining_historical_italian_v2/encoded/bpe_16000_validation.pt",
+                "tokenizer_path": "data/metadata/pretraining_tokenizers/pretraining_historical_italian_v2_bpe_16000.json",
+                "train_tokens": 240,
+                "validation_tokens": 240,
+                "total_tokens": 480,
+                "train_dtype": "torch.int64",
+                "validation_dtype": "torch.int64",
+                "vocab_size": 50,
+                "document_separator": "<|endoftext|>",
+                "document_separator_token_id": 0,
+                "source_count": 2,
+                "split_policy": "final_token_fraction_per_source",
+                "sources": [{"source_id": "a"}, {"source_id": "b"}],
+            }
+        ),
+        encoding="utf-8",
     )
 
 
@@ -103,6 +121,17 @@ def test_quality_swiglu_candidates_match_the_approved_long_run_architectures():
     assert pretraining_candidates_for_set("quality_swiglu") == candidates
 
 
+def test_historical_v2_quality_candidates_cover_the_approved_size_range():
+    candidates = historical_v2_quality_swiglu_candidates()
+
+    assert [candidate.name for candidate in candidates] == ["max", "xl", "xxl", "ceiling"]
+    assert [candidate.embedding_dim for candidate in candidates] == [768, 896, 1024, 1152]
+    assert [candidate.num_layers for candidate in candidates] == [12, 14, 16, 18]
+    assert all(candidate.batch_size == 1 for candidate in candidates)
+    assert all(candidate.feed_forward_type == "swiglu" for candidate in candidates)
+    assert pretraining_candidates_for_set("historical_v2_quality_swiglu") == candidates
+
+
 def test_pretraining_candidates_for_set_rejects_unknown_set():
     with pytest.raises(ValueError, match="candidate_set_name"):
         pretraining_candidates_for_set("unknown")
@@ -121,10 +150,11 @@ def test_benchmark_pretraining_candidates_writes_reports(tmp_path: Path):
             markdown_report_path=markdown_report_path,
             context_length=8,
             warmup_steps=1,
-            benchmark_steps=2,
-            eval_batches=1,
-            device="cpu",
-        ),
+                benchmark_steps=2,
+                eval_batches=1,
+                device="cpu",
+                candidate_set_name="baseline_relu",
+            ),
         candidates=[tiny_candidate()],
         progress=progress_messages.append,
     )
@@ -145,6 +175,7 @@ def test_benchmark_pretraining_candidates_writes_reports(tmp_path: Path):
     assert "# Pretraining Hardware Benchmark" in markdown
     assert "| tiny | ok |" in markdown
     assert "Candidate set: `baseline_relu`" in markdown
+    assert "Dataset version: `pretraining_historical_italian_v2`" in markdown
     assert "resolved device: cpu" in progress_messages
     assert "candidate 1/1: tiny" in progress_messages
     assert "tiny: timed steps 2/2" in progress_messages

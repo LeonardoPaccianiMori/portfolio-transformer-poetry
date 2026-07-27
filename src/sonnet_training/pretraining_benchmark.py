@@ -13,8 +13,16 @@ from typing import Any
 import torch
 
 from sonnet_corpus.bpe import BytePairEncodingTokenizer
+from sonnet_model.normalization import NormalizationType
+from sonnet_model.positional_encoding import PositionEncodingType
 from sonnet_model.transformer import CausalTransformerLanguageModel, FeedForwardType
+from sonnet_training.pretraining_run import PRETRAINING_DATASET_REPORT_PATH
+from sonnet_training.pretraining_run import PRETRAINING_DATASET_VERSION
+from sonnet_training.pretraining_run import PRETRAINING_TOKENIZER_PATH
+from sonnet_training.pretraining_run import PRETRAINING_TRAIN_TOKENS_PATH
+from sonnet_training.pretraining_run import PRETRAINING_VALIDATION_TOKENS_PATH
 from sonnet_training.pretraining_run import count_parameters, load_token_tensor
+from sonnet_training.pretraining_run import validate_pretraining_dataset_artifacts
 from sonnet_training.steps import estimate_next_token_loss, train_next_token_step
 from sonnet_training.transformer_run import resolve_device
 
@@ -37,22 +45,18 @@ class PretrainingModelCandidate:
 class PretrainingBenchmarkConfig:
     """Configuration for benchmarking broader-pretraining candidates."""
 
-    train_tokens_path: Path = Path(
-        "data/local/pretraining/expanded_italian_1200_1800_v1/encoded/"
-        "bpe_8000_train.pt"
-    )
-    validation_tokens_path: Path = Path(
-        "data/local/pretraining/expanded_italian_1200_1800_v1/encoded/"
-        "bpe_8000_validation.pt"
-    )
-    tokenizer_path: Path = Path(
-        "data/local/pretraining/expanded_italian_1200_1800_v1/tokenizers/"
-        "bpe_8000.json"
-    )
+    dataset_version: str = PRETRAINING_DATASET_VERSION
+    train_tokens_path: Path = Path(PRETRAINING_TRAIN_TOKENS_PATH)
+    validation_tokens_path: Path = Path(PRETRAINING_VALIDATION_TOKENS_PATH)
+    tokenizer_path: Path = Path(PRETRAINING_TOKENIZER_PATH)
+    dataset_report_path: Path = Path(PRETRAINING_DATASET_REPORT_PATH)
     json_report_path: Path = Path(
-        "data/local/pretraining/benchmarks/pretraining_benchmark.json"
+        "data/local/pretraining/benchmarks/"
+        "pretraining_historical_italian_v2_benchmark.json"
     )
-    markdown_report_path: Path = Path("reports/pretraining_hardware_benchmark.md")
+    markdown_report_path: Path = Path(
+        "reports/pretraining_historical_italian_v2_hardware_benchmark.md"
+    )
     context_length: int = 512
     warmup_steps: int = 10
     benchmark_steps: int = 100
@@ -60,7 +64,12 @@ class PretrainingBenchmarkConfig:
     learning_rate: float = 3e-4
     seed: int = 1337
     device: str = "auto"
-    candidate_set_name: str = "baseline_relu"
+    candidate_set_name: str = "historical_v2_quality_swiglu"
+    normalization_type: NormalizationType = "layer_norm"
+    normalization_eps: float = 1e-5
+    position_encoding_type: PositionEncodingType = "learned_absolute"
+    rope_theta: float = 10_000.0
+    tie_token_embeddings: bool = False
 
 
 def default_pretraining_candidates() -> list[PretrainingModelCandidate]:
@@ -152,6 +161,53 @@ def quality_swiglu_pretraining_candidates() -> list[PretrainingModelCandidate]:
     ]
 
 
+def historical_v2_quality_swiglu_candidates() -> list[PretrainingModelCandidate]:
+    """Return the approved v2 vocabulary-aware quality benchmark candidates."""
+
+    return [
+        PretrainingModelCandidate(
+            name="max",
+            embedding_dim=768,
+            num_layers=12,
+            num_heads=12,
+            head_dim=64,
+            feed_forward_dim=2048,
+            batch_size=1,
+            feed_forward_type="swiglu",
+        ),
+        PretrainingModelCandidate(
+            name="xl",
+            embedding_dim=896,
+            num_layers=14,
+            num_heads=14,
+            head_dim=64,
+            feed_forward_dim=2389,
+            batch_size=1,
+            feed_forward_type="swiglu",
+        ),
+        PretrainingModelCandidate(
+            name="xxl",
+            embedding_dim=1024,
+            num_layers=16,
+            num_heads=16,
+            head_dim=64,
+            feed_forward_dim=2731,
+            batch_size=1,
+            feed_forward_type="swiglu",
+        ),
+        PretrainingModelCandidate(
+            name="ceiling",
+            embedding_dim=1152,
+            num_layers=18,
+            num_heads=18,
+            head_dim=64,
+            feed_forward_dim=3072,
+            batch_size=1,
+            feed_forward_type="swiglu",
+        ),
+    ]
+
+
 def pretraining_candidates_for_set(
     candidate_set_name: str,
 ) -> list[PretrainingModelCandidate]:
@@ -161,6 +217,8 @@ def pretraining_candidates_for_set(
         return default_pretraining_candidates()
     if candidate_set_name == "quality_swiglu":
         return quality_swiglu_pretraining_candidates()
+    if candidate_set_name == "historical_v2_quality_swiglu":
+        return historical_v2_quality_swiglu_candidates()
     raise ValueError("unsupported candidate_set_name")
 
 
@@ -187,6 +245,13 @@ def benchmark_pretraining_candidates(
         f"loading validation tokens: {config.validation_tokens_path}",
     )
     validation_tokens = load_token_tensor(repo_root / config.validation_tokens_path)
+    dataset_provenance = validate_pretraining_dataset_artifacts(
+        repo_root=repo_root,
+        config=config,
+        tokenizer=tokenizer,
+        train_tokens=train_tokens,
+        validation_tokens=validation_tokens,
+    )
 
     results = []
     total_candidates = len(selected_candidates)
@@ -223,6 +288,12 @@ def benchmark_pretraining_candidates(
         "eval_batches": config.eval_batches,
         "learning_rate": config.learning_rate,
         "candidate_set_name": config.candidate_set_name,
+        "normalization_type": config.normalization_type,
+        "normalization_eps": config.normalization_eps,
+        "position_encoding_type": config.position_encoding_type,
+        "rope_theta": config.rope_theta,
+        "tie_token_embeddings": config.tie_token_embeddings,
+        "dataset_provenance": dataset_provenance,
         "train_tokens": int(train_tokens.numel()),
         "validation_tokens": int(validation_tokens.numel()),
         "results": results,
@@ -262,7 +333,12 @@ def benchmark_one_candidate(
             head_dim=candidate.head_dim,
             feed_forward_dim=candidate.feed_forward_dim,
             max_context_length=config.context_length,
+            normalization_type=config.normalization_type,
+            normalization_eps=config.normalization_eps,
+            position_encoding_type=config.position_encoding_type,
+            rope_theta=config.rope_theta,
             feed_forward_type=candidate.feed_forward_type,
+            tie_token_embeddings=config.tie_token_embeddings,
         ).to(device)
         optimizer = torch.optim.AdamW(model.parameters(), lr=config.learning_rate)
         parameter_count = count_parameters(model)
@@ -371,6 +447,10 @@ def _validate_config(config: PretrainingBenchmarkConfig) -> None:
         raise ValueError("benchmark_steps must be greater than 0")
     if config.eval_batches <= 0:
         raise ValueError("eval_batches must be greater than 0")
+    if config.normalization_type not in {"layer_norm", "rms_norm"}:
+        raise ValueError("unsupported normalization_type")
+    if config.position_encoding_type not in {"learned_absolute", "rope"}:
+        raise ValueError("unsupported position_encoding_type")
 
 
 def _report_step_progress(
@@ -481,6 +561,11 @@ def build_markdown_report(report: dict[str, Any]) -> str:
         f"- Evaluation batches: `{report['eval_batches']}`",
         f"- Learning rate: `{report['learning_rate']}`",
         f"- Candidate set: `{report.get('candidate_set_name', 'custom')}`",
+        f"- Dataset version: `{report.get('dataset_provenance', {}).get('dataset_version', '')}`",
+        f"- Source count: `{report.get('dataset_provenance', {}).get('source_count', '')}`",
+        f"- Normalization: `{report.get('normalization_type', '')}`",
+        f"- Position encoding: `{report.get('position_encoding_type', '')}`",
+        f"- Tied token embeddings: `{report.get('tie_token_embeddings', '')}`",
         "",
         "## Results",
         "",

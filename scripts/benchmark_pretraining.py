@@ -12,12 +12,13 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
+from sonnet_training.pretraining_benchmark import PRETRAINING_DATASET_REPORT_PATH
+from sonnet_training.pretraining_benchmark import PRETRAINING_TOKENIZER_PATH
+from sonnet_training.pretraining_benchmark import PRETRAINING_TRAIN_TOKENS_PATH
+from sonnet_training.pretraining_benchmark import PRETRAINING_VALIDATION_TOKENS_PATH
 from sonnet_training.pretraining_benchmark import PretrainingBenchmarkConfig
 from sonnet_training.pretraining_benchmark import benchmark_pretraining_candidates
 from sonnet_training.pretraining_benchmark import pretraining_candidates_for_set
-
-
-CORPUS_DIR = Path("data/local/pretraining/expanded_italian_1200_1800_v1")
 
 
 def parse_args() -> argparse.Namespace:
@@ -25,27 +26,35 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--train-tokens-path",
         type=Path,
-        default=CORPUS_DIR / "encoded" / "bpe_8000_train.pt",
+        default=Path(PRETRAINING_TRAIN_TOKENS_PATH),
     )
     parser.add_argument(
         "--validation-tokens-path",
         type=Path,
-        default=CORPUS_DIR / "encoded" / "bpe_8000_validation.pt",
+        default=Path(PRETRAINING_VALIDATION_TOKENS_PATH),
     )
     parser.add_argument(
         "--tokenizer-path",
         type=Path,
-        default=CORPUS_DIR / "tokenizers" / "bpe_8000.json",
+        default=Path(PRETRAINING_TOKENIZER_PATH),
+    )
+    parser.add_argument(
+        "--dataset-report-path",
+        type=Path,
+        default=Path(PRETRAINING_DATASET_REPORT_PATH),
     )
     parser.add_argument(
         "--json-report-path",
         type=Path,
-        default=Path("data/local/pretraining/benchmarks/pretraining_benchmark.json"),
+        default=Path(
+            "data/local/pretraining/benchmarks/"
+            "pretraining_historical_italian_v2_benchmark.json"
+        ),
     )
     parser.add_argument(
         "--markdown-report-path",
         type=Path,
-        default=Path("reports/pretraining_hardware_benchmark.md"),
+        default=Path("reports/pretraining_historical_italian_v2_hardware_benchmark.md"),
     )
     parser.add_argument("--context-length", type=int, default=512)
     parser.add_argument("--warmup-steps", type=int, default=10)
@@ -54,11 +63,24 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--learning-rate", type=float, default=3e-4)
     parser.add_argument(
         "--candidate-set",
-        choices=["baseline_relu", "quality_swiglu"],
-        default="quality_swiglu",
+        choices=["baseline_relu", "quality_swiglu", "historical_v2_quality_swiglu"],
+        default="historical_v2_quality_swiglu",
     )
     parser.add_argument("--seed", type=int, default=1337)
     parser.add_argument("--device", default="auto")
+    parser.add_argument(
+        "--normalization-type",
+        choices=["layer_norm", "rms_norm"],
+        default="layer_norm",
+    )
+    parser.add_argument("--normalization-eps", type=float, default=1e-5)
+    parser.add_argument(
+        "--position-encoding-type",
+        choices=["learned_absolute", "rope"],
+        default="learned_absolute",
+    )
+    parser.add_argument("--rope-theta", type=float, default=10_000.0)
+    parser.add_argument("--tie-token-embeddings", action="store_true")
     return parser.parse_args()
 
 
@@ -68,6 +90,7 @@ def main() -> None:
         train_tokens_path=args.train_tokens_path,
         validation_tokens_path=args.validation_tokens_path,
         tokenizer_path=args.tokenizer_path,
+        dataset_report_path=args.dataset_report_path,
         json_report_path=args.json_report_path,
         markdown_report_path=args.markdown_report_path,
         context_length=args.context_length,
@@ -78,6 +101,11 @@ def main() -> None:
         seed=args.seed,
         device=args.device,
         candidate_set_name=args.candidate_set,
+        normalization_type=args.normalization_type,
+        normalization_eps=args.normalization_eps,
+        position_encoding_type=args.position_encoding_type,
+        rope_theta=args.rope_theta,
+        tie_token_embeddings=args.tie_token_embeddings,
     )
     report = benchmark_pretraining_candidates(
         repo_root=ROOT,

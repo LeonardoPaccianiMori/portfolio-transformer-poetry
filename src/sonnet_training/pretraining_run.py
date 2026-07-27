@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Literal
+from typing import Literal, Protocol
 
 import torch
 
@@ -87,6 +87,16 @@ class PretrainingRunConfig:
     checkpoint_interval: int = 0
     progress_interval: int = 100
     resume_from_checkpoint: str = ""
+
+
+class PretrainingDatasetArtifactConfig(Protocol):
+    """Paths and identity required to validate pretraining data artifacts."""
+
+    dataset_version: str
+    train_tokens_path: str | Path
+    validation_tokens_path: str | Path
+    tokenizer_path: str | Path
+    dataset_report_path: str | Path
 
 
 def train_pretraining_run(
@@ -473,7 +483,7 @@ def load_token_tensor(path: Path) -> torch.Tensor:
 def validate_pretraining_dataset_artifacts(
     *,
     repo_root: Path,
-    config: PretrainingRunConfig,
+    config: PretrainingDatasetArtifactConfig,
     tokenizer: BytePairEncodingTokenizer,
     train_tokens: torch.Tensor,
     validation_tokens: torch.Tensor,
@@ -557,7 +567,7 @@ def validate_pretraining_dataset_artifacts(
         raise ValueError("dataset report source_count does not match its sources list")
     return {
         "dataset_version": config.dataset_version,
-        "dataset_report_path": config.dataset_report_path,
+        "dataset_report_path": str(config.dataset_report_path),
         "source_count": source_count,
         "split_policy": str(report.get("split_policy", "")),
         "vocab_size": tokenizer.vocab_size,
@@ -570,7 +580,7 @@ def _require_report_path_match(
     *,
     report: dict[str, object],
     field: str,
-    expected_path: str,
+    expected_path: str | Path,
     repo_root: Path,
 ) -> None:
     report_value = report.get(field)
