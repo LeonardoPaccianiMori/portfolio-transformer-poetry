@@ -17,6 +17,8 @@ than discard unique primary text merely to satisfy an arbitrary percentage.
 Every other future concentration warning requires an explicit composition
 decision before it becomes an exception.
 
-The old BPE tokenizer is retained as experiment provenance only. A new BPE
-tokenizer will be trained from the combined public corpus in the next
-checkpoint, so its vocabulary reflects the new Sarpi and Verri text.
+The old BPE tokenizer is retained as experiment provenance only. The active
+16,000-token BPE tokenizer is trained from a stratified 4M-character sample of
+all 36 sources and then counted against the full combined public corpus. Its
+JSON artifact and report are committed so its vocabulary reflects the new
+Sarpi and Verri text reproducibly.

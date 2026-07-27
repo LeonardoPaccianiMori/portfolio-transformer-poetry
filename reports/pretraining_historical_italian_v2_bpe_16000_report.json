@@ -1,0 +1,261 @@
+{
+  "started_at_utc": "2026-07-26T21:30:26+00:00",
+  "finished_at_utc": "2026-07-26T21:31:07+00:00",
+  "corpus_path": "data/processed/pretraining_historical_italian_v2/corpus.txt",
+  "tokenizer_path": "data/metadata/pretraining_tokenizers/pretraining_historical_italian_v2_bpe_16000.json",
+  "build_report_path": "reports/pretraining_historical_italian_v2_mixture_report.json",
+  "target_vocab_size": 16000,
+  "actual_vocab_size": 16000,
+  "merge_count": 15825,
+  "status": "complete",
+  "special_tokens": [
+    "<|endoftext|>"
+  ],
+  "corpus_character_count": 48005091,
+  "training_character_limit": 4000000,
+  "training_character_count": 3996594,
+  "sampling_strategy": "stratified_mixture_sources",
+  "minimum_source_characters": 20000,
+  "sample_sources": [
+    {
+      "source_id": "pg_villani_cronica_vol1_69898",
+      "available_character_count": 459395,
+      "allocated_character_count": 50479,
+      "sampled_character_count": 50335
+    },
+    {
+      "source_id": "pg_jacopo_alighieri_chiose_30766",
+      "available_character_count": 230678,
+      "allocated_character_count": 34614,
+      "sampled_character_count": 34518
+    },
+    {
+      "source_id": "pg_caterina_dialogo_26961",
+      "available_character_count": 960764,
+      "allocated_character_count": 85257,
+      "sampled_character_count": 85152
+    },
+    {
+      "source_id": "pg_villani_cronica_vol2_69899",
+      "available_character_count": 418219,
+      "allocated_character_count": 47623,
+      "sampled_character_count": 47524
+    },
+    {
+      "source_id": "pg_villani_cronica_vol3_69900",
+      "available_character_count": 485959,
+      "allocated_character_count": 52322,
+      "sampled_character_count": 52227
+    },
+    {
+      "source_id": "pg_villani_cronica_vol4_69901",
+      "available_character_count": 490318,
+      "allocated_character_count": 52624,
+      "sampled_character_count": 52525
+    },
+    {
+      "source_id": "pg_villani_cronica_vol5_69902",
+      "available_character_count": 444258,
+      "allocated_character_count": 49429,
+      "sampled_character_count": 49344
+    },
+    {
+      "source_id": "ll_novellino",
+      "available_character_count": 217549,
+      "allocated_character_count": 33703,
+      "sampled_character_count": 33633
+    },
+    {
+      "source_id": "ll_giovanni_villani_nuova_cronica",
+      "available_character_count": 2713993,
+      "allocated_character_count": 206873,
+      "sampled_character_count": 206797
+    },
+    {
+      "source_id": "ll_dino_compagni_cronica",
+      "available_character_count": 221766,
+      "allocated_character_count": 33996,
+      "sampled_character_count": 33915
+    },
+    {
+      "source_id": "ll_boccaccio_decameron_mondadori",
+      "available_character_count": 1511926,
+      "allocated_character_count": 123490,
+      "sampled_character_count": 123415
+    },
+    {
+      "source_id": "ll_boccaccio_filocolo",
+      "available_character_count": 1212836,
+      "allocated_character_count": 102743,
+      "sampled_character_count": 102647
+    },
+    {
+      "source_id": "ll_boccaccio_elegia_fiammetta",
+      "available_character_count": 336933,
+      "allocated_character_count": 41984,
+      "sampled_character_count": 41894
+    },
+    {
+      "source_id": "ll_boccaccio_trattatello",
+      "available_character_count": 122698,
+      "allocated_character_count": 27124,
+      "sampled_character_count": 27041
+    },
+    {
+      "source_id": "ll_sacchetti_trecentonovelle",
+      "available_character_count": 1037219,
+      "allocated_character_count": 90561,
+      "sampled_character_count": 90458
+    },
+    {
+      "source_id": "ll_bandello_novelle",
+      "available_character_count": 4212617,
+      "allocated_character_count": 310827,
+      "sampled_character_count": 310746
+    },
+    {
+      "source_id": "ll_bembo_asolani",
+      "available_character_count": 347457,
+      "allocated_character_count": 42715,
+      "sampled_character_count": 42618
+    },
+    {
+      "source_id": "ll_bembo_prose_volgar_lingua",
+      "available_character_count": 380650,
+      "allocated_character_count": 45017,
+      "sampled_character_count": 44916
+    },
+    {
+      "source_id": "ll_castiglione_cortegiano",
+      "available_character_count": 779031,
+      "allocated_character_count": 72651,
+      "sampled_character_count": 72542
+    },
+    {
+      "source_id": "ll_machiavelli_discorsi",
+      "available_character_count": 709808,
+      "allocated_character_count": 67850,
+      "sampled_character_count": 67763
+    },
+    {
+      "source_id": "ll_machiavelli_istorie_fiorentine",
+      "available_character_count": 881201,
+      "allocated_character_count": 79738,
+      "sampled_character_count": 79615
+    },
+    {
+      "source_id": "ll_machiavelli_arte_guerra",
+      "available_character_count": 367150,
+      "allocated_character_count": 44081,
+      "sampled_character_count": 43977
+    },
+    {
+      "source_id": "ll_machiavelli_principe",
+      "available_character_count": 172431,
+      "allocated_character_count": 30574,
+      "sampled_character_count": 30488
+    },
+    {
+      "source_id": "ll_guicciardini_storia_italia",
+      "available_character_count": 3821521,
+      "allocated_character_count": 283698,
+      "sampled_character_count": 283621
+    },
+    {
+      "source_id": "ll_guicciardini_storie_fiorentine",
+      "available_character_count": 680384,
+      "allocated_character_count": 65809,
+      "sampled_character_count": 65701
+    },
+    {
+      "source_id": "ll_guicciardini_discorsi_politici",
+      "available_character_count": 298418,
+      "allocated_character_count": 39313,
+      "sampled_character_count": 39205
+    },
+    {
+      "source_id": "ll_guicciardini_ricordi",
+      "available_character_count": 169378,
+      "allocated_character_count": 30362,
+      "sampled_character_count": 30255
+    },
+    {
+      "source_id": "ll_vasari_vite_1568",
+      "available_character_count": 4359397,
+      "allocated_character_count": 321009,
+      "sampled_character_count": 320933
+    },
+    {
+      "source_id": "ll_masuccio_novellino",
+      "available_character_count": 847497,
+      "allocated_character_count": 77401,
+      "sampled_character_count": 77310
+    },
+    {
+      "source_id": "ll_ramusio_navigazioni_viaggi",
+      "available_character_count": 11966998,
+      "allocated_character_count": 848722,
+      "sampled_character_count": 848633
+    },
+    {
+      "source_id": "ws_galileo_saggiatore",
+      "available_character_count": 512145,
+      "allocated_character_count": 54138,
+      "sampled_character_count": 54032
+    },
+    {
+      "source_id": "ws_galileo_dialogo",
+      "available_character_count": 1104336,
+      "allocated_character_count": 95217,
+      "sampled_character_count": 95128
+    },
+    {
+      "source_id": "ll_vico_principj_scienza_nuova",
+      "available_character_count": 943187,
+      "allocated_character_count": 84038,
+      "sampled_character_count": 83956
+    },
+    {
+      "source_id": "ws_sarpi_istoria_concilio",
+      "available_character_count": 2815896,
+      "allocated_character_count": 213942,
+      "sampled_character_count": 213819
+    },
+    {
+      "source_id": "ws_verri_storia_milano",
+      "available_character_count": 1615569,
+      "allocated_character_count": 130679,
+      "sampled_character_count": 130555
+    },
+    {
+      "source_id": "ws_verri_osservazioni_tortura",
+      "available_character_count": 155474,
+      "allocated_character_count": 29397,
+      "sampled_character_count": 29321
+    }
+  ],
+  "token_count": 18072670,
+  "characters_per_token": 2.6562257264698577,
+  "boundary_warnings": [],
+  "round_trip_samples": [
+    {
+      "name": "start",
+      "character_count": 500,
+      "token_count": 93,
+      "round_trip_ok": true
+    },
+    {
+      "name": "middle",
+      "character_count": 500,
+      "token_count": 187,
+      "round_trip_ok": true
+    },
+    {
+      "name": "end",
+      "character_count": 500,
+      "token_count": 201,
+      "round_trip_ok": true
+    }
+  ],
+  "mixture_report_path": "reports/pretraining_historical_italian_v2_mixture_report.json"
+}
