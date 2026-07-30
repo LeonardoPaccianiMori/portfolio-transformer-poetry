@@ -28,7 +28,11 @@ class BigramLanguageModel(nn.Module):
                 batch_size * context_length,
             )
 
-            loss = F.cross_entropy(logits_flat, targets_flat)
+            loss = F.cross_entropy(
+                logits_flat,
+                targets_flat,
+                ignore_index=-100,
+            )
 
         return logits, loss
 
