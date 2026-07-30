@@ -211,6 +211,29 @@ def test_summarize_pretraining_run_reads_explicit_swiglu_configuration(tmp_path)
     assert summary["feed_forward_type"] == "swiglu"
 
 
+def test_summarize_pretraining_run_prefers_persisted_best_selection_after_resume(
+    tmp_path,
+):
+    run_dir = tmp_path / "pretraining_run"
+    write_fake_pretraining_run(run_dir)
+    config_path = run_dir / "config.json"
+    config = json.loads(config_path.read_text(encoding="utf-8"))
+    config.update({
+        "best_validation_step": 5_000,
+        "best_validation_loss": 1.9,
+        "best_validation_train_loss": None,
+    })
+    write_json(config_path, config)
+
+    summary = summarize_pretraining_run(run_dir)
+    report = build_pretraining_markdown_report(summary)
+
+    assert summary["best_validation_step"] == 5_000
+    assert summary["best_validation_loss"] == 1.9
+    assert summary["best_validation_train_loss"] is None
+    assert "| Best validation evaluation | 5,000 | not retained | 1.9000 |" in report
+
+
 def test_write_pretraining_markdown_report_writes_public_file(tmp_path):
     run_dir = tmp_path / "pretraining_run"
     output_path = tmp_path / "reports" / "pretraining.md"

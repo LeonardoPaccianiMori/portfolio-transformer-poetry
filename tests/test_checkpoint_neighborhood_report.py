@@ -45,6 +45,7 @@ def write_neighborhood_metadata(tmp_path: Path) -> Path:
                 "checkpoints": [
                     {
                         "id": "before",
+                        "comparison_role": "validation_neighbor",
                         "step": 10,
                         "validation_loss": 2.1,
                         "output_dir": str(before_dir),
@@ -71,6 +72,7 @@ def test_summarize_checkpoint_neighborhoods_scores_all_batches(tmp_path: Path):
     assert len(summaries) == 2
     assert summaries[0]["run_id"] == "tiny"
     assert summaries[0]["checkpoint_id"] == "before"
+    assert summaries[0]["comparison_role"] == "validation_neighbor"
     assert not summaries[0]["selected_by_validation"]
     assert summaries[1]["selected_by_validation"]
     assert summaries[1]["all_prompts_preserved"]
@@ -89,7 +91,7 @@ def test_write_checkpoint_neighborhood_report_writes_interpretation(tmp_path: Pa
     report = output_path.read_text(encoding="utf-8")
     assert len(summaries) == 2
     assert "# Pretraining Checkpoint-Neighborhood Evaluation" in report
-    assert "| Parent Run | Checkpoint |" in report
+    assert "| Parent Run | Checkpoint | Comparison Role |" in report
     assert "not a basis for cherry-picking" in report
 
 

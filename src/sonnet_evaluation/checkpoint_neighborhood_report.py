@@ -47,6 +47,10 @@ def summarize_checkpoint_neighborhoods(
             summaries.append({
                 "run_id": run_id,
                 "checkpoint_id": checkpoint_id,
+                "comparison_role": checkpoint.get(
+                    "comparison_role",
+                    "planned_comparison",
+                ),
                 "selected_by_validation": checkpoint_id == selected_checkpoint_id,
                 "step": _require_number(checkpoint, "step"),
                 "validation_loss": _require_number(checkpoint, "validation_loss"),
@@ -96,6 +100,7 @@ def build_checkpoint_neighborhood_report(
         rows.append([
             summary["run_id"],
             summary["checkpoint_id"],
+            summary["comparison_role"],
             "yes" if summary["selected_by_validation"] else "no",
             f"{summary['step']:,}",
             f"{summary['validation_loss']:.4f}",
@@ -108,8 +113,8 @@ def build_checkpoint_neighborhood_report(
         ])
 
     table = "\n".join([
-        "| Parent Run | Checkpoint | Validation Selected | Step | Validation Loss | Prompts | Avg Chars | Avg Non-empty Lines | Avg Repeated Character-4-gram Ratio | Avg Unique-Character Ratio | Prompts Preserved |",
-        "| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |",
+        "| Parent Run | Checkpoint | Comparison Role | Validation Selected | Step | Validation Loss | Prompts | Avg Chars | Avg Non-empty Lines | Avg Repeated Character-4-gram Ratio | Avg Unique-Character Ratio | Prompts Preserved |",
+        "| --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |",
         *["| " + " | ".join(row) + " |" for row in rows],
     ])
 
@@ -117,14 +122,15 @@ def build_checkpoint_neighborhood_report(
         "# Pretraining Checkpoint-Neighborhood Evaluation",
         (
             "Each parent run is evaluated at the checkpoint selected by its lowest "
-            "deterministic validation loss and at the nearest planned checkpoints "
-            "before and after it. Every batch uses the same five prompts, fixed "
-            "seeds, temperature 1.0, and a 300-token limit."
+            "deterministic validation loss and at any predeclared comparison "
+            "checkpoints. Every batch uses the same five prompts, fixed seeds, "
+            "temperature 1.0, and a 300-token limit."
         ),
         "## Automatic Diagnostics\n\n" + table,
         "## Interpretation Rules\n\n"
         + "\n".join([
-            "- The validation-selected checkpoint remains the model-selection checkpoint. Neighbor outputs are a stability diagnostic, not a basis for cherry-picking a different checkpoint.",
+            "- The validation-selected checkpoint remains the model-selection checkpoint. Other planned outputs are diagnostics, not a basis for cherry-picking a different checkpoint.",
+            "- `Comparison Role` states whether a batch is the selected parent, a retained neighbor, or another explicitly labelled contrast such as an overfitted final model.",
             f"- Repetition is measured as the proportion of repeated character {ngram_size}-grams within each output, then averaged across the five prompts. Lower values can indicate less local looping, but do not by themselves establish better prose.",
             "- Prompt preservation must be `yes`; otherwise the generation procedure is invalid for that batch.",
             "- These automatic measurements must be read together with qualitative inspection of the matched outputs. They do not measure grammaticality, historical style, factual consistency, or literary quality.",

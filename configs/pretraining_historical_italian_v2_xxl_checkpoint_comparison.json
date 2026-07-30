@@ -1,0 +1,25 @@
+{
+  "runs": [
+    {
+      "id": "historical_v2_xxl",
+      "run_dir": "runs/pretraining_historical_italian_v2_xxl_accum8_100k_001",
+      "selected_checkpoint_id": "best_validation",
+      "checkpoints": [
+        {
+          "id": "best_validation",
+          "checkpoint_path": "runs/pretraining_historical_italian_v2_xxl_accum8_100k_001/best_validation.pt",
+          "step": 18000,
+          "validation_loss": 2.6694375651416293,
+          "comparison_role": "selected_parent"
+        },
+        {
+          "id": "final_overfit_contrast",
+          "checkpoint_path": "runs/pretraining_historical_italian_v2_xxl_accum8_100k_001/model.pt",
+          "step": 100000,
+          "validation_loss": 5.091096367444263,
+          "comparison_role": "final_overfit_contrast"
+        }
+      ]
+    }
+  ]
+}

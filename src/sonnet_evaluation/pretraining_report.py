@@ -61,6 +61,12 @@ def summarize_pretraining_run(
     first_row = history[0]
     final_row = history[-1]
     best_validation_row = min(history, key=lambda row: row["validation_loss"])
+    best_validation_step, best_validation_loss, best_validation_train_loss = (
+        _selected_best_validation(
+            config=config,
+            history_best_row=best_validation_row,
+        )
+    )
 
     return {
         "run_name": run_dir.name,
@@ -103,9 +109,9 @@ def summarize_pretraining_run(
         "first_validation_loss": first_row["validation_loss"],
         "final_train_loss": final_row["train_loss"],
         "final_validation_loss": final_row["validation_loss"],
-        "best_validation_step": best_validation_row["step"],
-        "best_validation_train_loss": best_validation_row["train_loss"],
-        "best_validation_loss": best_validation_row["validation_loss"],
+        "best_validation_step": best_validation_step,
+        "best_validation_train_loss": best_validation_train_loss,
+        "best_validation_loss": best_validation_loss,
         "loss_records": len(history),
         "interval_checkpoint_count": checkpoint_count(run_dir),
         "final_checkpoint_size_mib": model_path.stat().st_size / (1024 * 1024),
@@ -115,6 +121,38 @@ def summarize_pretraining_run(
         ),
         "loss_history": history,
     }
+
+
+def _selected_best_validation(
+    *,
+    config: dict[str, Any],
+    history_best_row: dict[str, Any],
+) -> tuple[int, float, float | None]:
+    """Prefer persisted selection metadata when resumed history is incomplete."""
+
+    selected_step = config.get("best_validation_step")
+    selected_loss = config.get("best_validation_loss")
+    selected_train_loss = config.get("best_validation_train_loss")
+    has_persisted_selection = (
+        isinstance(selected_step, int)
+        and not isinstance(selected_step, bool)
+        and isinstance(selected_loss, (int, float))
+        and not isinstance(selected_loss, bool)
+    )
+    if has_persisted_selection:
+        train_loss = (
+            float(selected_train_loss)
+            if isinstance(selected_train_loss, (int, float))
+            and not isinstance(selected_train_loss, bool)
+            else None
+        )
+        return int(selected_step), float(selected_loss), train_loss
+
+    return (
+        int(history_best_row["step"]),
+        float(history_best_row["validation_loss"]),
+        float(history_best_row["train_loss"]),
+    )
 
 
 def _configuration_table(summary: dict[str, Any]) -> str:
@@ -210,7 +248,7 @@ def build_pretraining_markdown_report(summary: dict[str, Any]) -> str:
             ),
             (
                 f"| Best validation evaluation | {summary['best_validation_step']:,} | "
-                f"{summary['best_validation_train_loss']:.4f} | "
+                f"{_format_optional_loss(summary['best_validation_train_loss'])} | "
                 f"{summary['best_validation_loss']:.4f} |"
             ),
             (
@@ -231,6 +269,12 @@ def build_pretraining_markdown_report(summary: dict[str, Any]) -> str:
         "## Interpretation\n\n" + _interpretation(summary),
         "## Full Loss History\n\n" + _loss_history_table(summary["loss_history"]),
     ]) + "\n"
+
+
+def _format_optional_loss(value: float | None) -> str:
+    """Render a loss that may be absent when old history was not retained."""
+
+    return "not retained" if value is None else f"{value:.4f}"
 
 
 def _interpretation(summary: dict[str, Any]) -> str:
