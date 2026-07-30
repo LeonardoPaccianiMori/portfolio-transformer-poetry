@@ -64,6 +64,7 @@ class SonnetControlRunConfig:
     pretraining_tokenizer_path: str = "runs/pretraining_larger_200k_001/tokenizer.json"
     pretraining_checkpoint_path: str = "runs/pretraining_larger_200k_001/model.pt"
     batch_size: int = 2
+    gradient_accumulation_steps: int = 1
     context_length: int = 512
     train_steps: int = 20_000
     eval_interval: int = 250
@@ -330,7 +331,12 @@ def train_control_steps(
         total_steps=config.train_steps,
         progress_interval=config.progress_interval,
     )
-    progress.write_start(label="sonnet control", device=str(device))
+    progress.write_start(
+        label="sonnet control",
+        device=str(device),
+        tokens_per_step=control_optimizer_step_token_count(config),
+        gradient_accumulation_steps=config.gradient_accumulation_steps,
+    )
     for step in range(1, config.train_steps + 1):
         current_learning_rate = learning_rate_for_step(config, step)
         set_optimizer_learning_rate(optimizer, current_learning_rate)
@@ -343,6 +349,7 @@ def train_control_steps(
             device=device,
             max_gradient_norm=config.max_gradient_norm,
             return_gradient_norm=True,
+            gradient_accumulation_steps=config.gradient_accumulation_steps,
         )
         should_evaluate = (
             step == 1
@@ -540,6 +547,11 @@ def build_run_metadata(
         "vocab_size": tokenizer.vocab_size,
         "train_tokens": int(train_tokens.numel()),
         "validation_tokens": int(validation_tokens.numel()),
+        "microbatch_tokens": control_microbatch_token_count(config),
+        "tokens_per_optimizer_step": control_optimizer_step_token_count(config),
+        "planned_train_token_exposures": control_planned_train_token_exposures(
+            config,
+        ),
         "validation_window_count": sequential_next_token_window_count(
             validation_tokens,
             config.context_length,
@@ -558,6 +570,24 @@ def build_run_metadata(
         "best_validation_step": int(best_validation_row["step"]),
         "best_validation_loss": float(best_validation_row["validation_loss"]),
     }
+
+
+def control_microbatch_token_count(config: SonnetControlRunConfig) -> int:
+    """Return next-token targets processed by one control-run microbatch."""
+
+    return config.batch_size * config.context_length
+
+
+def control_optimizer_step_token_count(config: SonnetControlRunConfig) -> int:
+    """Return next-token targets represented by one optimizer update."""
+
+    return control_microbatch_token_count(config) * config.gradient_accumulation_steps
+
+
+def control_planned_train_token_exposures(config: SonnetControlRunConfig) -> int:
+    """Return the planned target-token count across all control-run updates."""
+
+    return config.train_steps * control_optimizer_step_token_count(config)
 
 
 def _validate_tokenizer_architecture(
@@ -633,6 +663,8 @@ def _validate_config(config: SonnetControlRunConfig) -> None:
         )
     if config.batch_size <= 0:
         raise ValueError("batch_size must be greater than 0")
+    if config.gradient_accumulation_steps <= 0:
+        raise ValueError("gradient_accumulation_steps must be greater than 0")
     if config.context_length <= 0:
         raise ValueError("context_length must be greater than 0")
     if config.train_steps <= 0:

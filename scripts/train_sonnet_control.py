@@ -45,6 +45,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--batch-size", type=int, default=2)
+    parser.add_argument("--gradient-accumulation-steps", type=int, default=1)
     parser.add_argument("--context-length", type=int, default=512)
     parser.add_argument("--train-steps", type=int, default=20_000)
     parser.add_argument("--eval-interval", type=int, default=250)
@@ -84,6 +85,7 @@ def main() -> None:
         pretraining_tokenizer_path=args.pretraining_tokenizer_path,
         pretraining_checkpoint_path=args.pretraining_checkpoint_path,
         batch_size=args.batch_size,
+        gradient_accumulation_steps=args.gradient_accumulation_steps,
         context_length=args.context_length,
         train_steps=args.train_steps,
         eval_interval=args.eval_interval,

@@ -11,6 +11,9 @@ from sonnet_corpus.dataset_text import PRETRAINING_DOCUMENT_SEPARATOR
 from sonnet_model.transformer import CausalTransformerLanguageModel
 from sonnet_training.sonnet_control_run import (
     SonnetControlRunConfig,
+    control_microbatch_token_count,
+    control_optimizer_step_token_count,
+    control_planned_train_token_exposures,
     initialize_control_model,
     learning_rate_for_step,
     load_model_architecture,
@@ -209,6 +212,59 @@ def test_control_run_logs_pre_clipping_gradient_norm_when_enabled(tmp_path):
 
     assert all(row["pre_clipping_gradient_norm"] is not None for row in history)
     assert all(row["pre_clipping_gradient_norm"] > 0.01 for row in history)
+
+
+def test_control_run_records_and_uses_gradient_accumulation(tmp_path, monkeypatch):
+    write_control_inputs(tmp_path)
+    calls = []
+    from sonnet_training import sonnet_control_run
+
+    original_train_step = sonnet_control_run.train_next_token_step
+
+    def record_train_step(*args, **kwargs):
+        calls.append(kwargs["gradient_accumulation_steps"])
+        return original_train_step(*args, **kwargs)
+
+    monkeypatch.setattr(
+        sonnet_control_run,
+        "train_next_token_step",
+        record_train_step,
+    )
+    config = SonnetControlRunConfig(
+        **{
+            **tiny_control_config(tmp_path, "random").__dict__,
+            "batch_size": 1,
+            "gradient_accumulation_steps": 2,
+        }
+    )
+
+    result = train_sonnet_control_run(
+        tmp_path,
+        tmp_path / "runs" / "accumulated",
+        config,
+    )
+    metadata = json.loads(result["config_path"].read_text(encoding="utf-8"))
+
+    assert calls == [2, 2, 2]
+    assert metadata["gradient_accumulation_steps"] == 2
+    assert metadata["microbatch_tokens"] == 8
+    assert metadata["tokens_per_optimizer_step"] == 16
+    assert metadata["planned_train_token_exposures"] == 48
+    assert control_microbatch_token_count(config) == 8
+    assert control_optimizer_step_token_count(config) == 16
+    assert control_planned_train_token_exposures(config) == 48
+
+
+def test_control_run_rejects_non_positive_gradient_accumulation(tmp_path):
+    config = SonnetControlRunConfig(
+        **{
+            **tiny_control_config(tmp_path, "random").__dict__,
+            "gradient_accumulation_steps": 0,
+        }
+    )
+
+    with pytest.raises(ValueError, match="gradient_accumulation_steps"):
+        train_sonnet_control_run(tmp_path, tmp_path / "runs" / "invalid", config)
 
 
 def test_conversion_control_run_records_rms_norm_provenance(tmp_path):
