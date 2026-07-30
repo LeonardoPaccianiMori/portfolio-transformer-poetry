@@ -54,9 +54,29 @@ The machine-readable policy is
 The aggregate local preparation evidence is
 [`reports/paisa_historical_rescue_v1_curriculum_report.json`](../reports/paisa_historical_rescue_v1_curriculum_report.json).
 
+## Completed Tokenizer Gate
+
+The train-only Unicode BPE fit completed with exactly 16,000 tokens: 7,217
+base tokens and 8,783 learned merges. The serialized tokenizer sample contains
+12,049,232 characters and 4,812,076 BPE tokens, or 2.5040 characters per
+token. Its difference from the 12,016,997 selected text characters is the
+required newline and `<|endoftext|>` document separators.
+
+The PAISÀ validation split contained nine characters that were absent from both
+training splits: one control character and eight rare CJK characters. The
+original validation file remains unchanged. The tokenizer workflow derives a
+separate local validation file which excludes only the six affected documents
+(32,468 characters), leaving 3,770 of 3,776 documents. This prevents
+validation-derived vocabulary entries and records the exclusion count and
+codepoints without publishing PAISÀ text or document URLs.
+
+The completed aggregate evidence is in
+[`reports/paisa_historical_rescue_v1_tokenizer_report.json`](../reports/paisa_historical_rescue_v1_tokenizer_report.json).
+
 ## Next Scheduled Checkpoint
 
-Fit the specified 16k BPE tokenizer on the exact local training sample, encode
-the four fixed splits separately, and measure their token counts. Those measured
-counts determine the final rescue model size within the already approved
+Implement a memory-safe streaming encoder for the four already fixed splits:
+PAISÀ train, tokenizable PAISÀ validation, historical train, and historical
+validation. It must not create another suffix or random split. Its measured
+token counts determine the final rescue model size within the already approved
 50–70M-parameter range, its update budgets, and the GPU benchmark configuration.

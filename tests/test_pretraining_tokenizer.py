@@ -65,6 +65,34 @@ def test_weighted_pretoken_bpe_tokenizer_round_trips_text():
     assert len(tokenizer.merges) > 0
 
 
+def test_weighted_pretoken_bpe_tokenizer_accepts_a_precomputed_base_vocabulary():
+    tokenizer = train_weighted_pretoken_bpe_tokenizer(
+        training_text="amor amor\n",
+        base_text="amor amor\n",
+        vocab_size=20,
+        special_tokens=["<|endoftext|>"],
+        base_vocabulary_tokens=("<|endoftext|>", "a", "m", "o", "r", "\n", "z"),
+    )
+
+    assert tokenizer.token_to_id["<|endoftext|>"] == 0
+    assert "z" in tokenizer.token_to_id
+    assert tokenizer.decode(tokenizer.encode("amor\n")) == "amor\n"
+
+
+def test_weighted_pretoken_bpe_does_not_stop_when_training_text_contains_special_tokens():
+    tokenizer = train_weighted_pretoken_bpe_tokenizer(
+        training_text=("amor amore amabile\n<|endoftext|>\n") * 10,
+        base_text="amor amore amabile\n<|endoftext|>\n",
+        vocab_size=30,
+        special_tokens=["<|endoftext|>"],
+    )
+
+    assert tokenizer.vocab_size == 20
+    assert tokenizer.token_to_id["<|endoftext|>"] == 0
+    assert all("<|endoftext|>" not in "".join(pair) for pair in tokenizer.merges)
+    assert len(tokenizer.encode("amabile")) == 1
+
+
 def test_count_bpe_tokens_by_pretoken_matches_regular_encoding():
     text = "amor amor\nvirtute\n"
     tokenizer = train_weighted_pretoken_bpe_tokenizer(
@@ -77,6 +105,18 @@ def test_count_bpe_tokens_by_pretoken_matches_regular_encoding():
     token_count = count_bpe_tokens_by_pretoken(text, tokenizer)
 
     assert token_count == len(tokenizer.encode(text))
+
+
+def test_count_bpe_tokens_by_pretoken_keeps_special_tokens_atomic():
+    text = "amor<|endoftext|>virtute\n"
+    tokenizer = train_weighted_pretoken_bpe_tokenizer(
+        training_text="amor virtute\n",
+        base_text=text,
+        vocab_size=24,
+        special_tokens=["<|endoftext|>"],
+    )
+
+    assert count_bpe_tokens_by_pretoken(text, tokenizer) == len(tokenizer.encode(text))
 
 
 def test_encode_text_by_pretoken_matches_regular_encoding():
@@ -160,6 +200,37 @@ def test_train_pretraining_bpe_tokenizer_writes_tokenizer_and_report(tmp_path: P
     saved = json.loads(report_path.read_text(encoding="utf-8"))
     assert saved["tokenizer_path"].endswith("tokenizer.json")
     assert saved["special_tokens"] == ["<|endoftext|>"]
+
+
+def test_train_pretraining_bpe_tokenizer_reuses_a_verified_completed_tokenizer(
+    tmp_path: Path,
+):
+    corpus_path = tmp_path / "corpus.txt"
+    tokenizer_path = tmp_path / "tokenizer.json"
+    report_path = tmp_path / "report.json"
+    corpus_path.write_text("amor amore amabile\n", encoding="utf-8")
+    initial_config = PretrainingTokenizerConfig(
+        corpus_path=corpus_path,
+        tokenizer_path=tokenizer_path,
+        report_path=report_path,
+        vocab_size=20,
+        training_character_limit=100,
+    )
+    train_pretraining_bpe_tokenizer(initial_config)
+
+    report = train_pretraining_bpe_tokenizer(
+        PretrainingTokenizerConfig(
+            corpus_path=corpus_path,
+            tokenizer_path=tokenizer_path,
+            report_path=report_path,
+            vocab_size=20,
+            training_character_limit=100,
+            reuse_completed_tokenizer=True,
+        )
+    )
+
+    assert report["status"] == "complete"
+    assert report["actual_vocab_size"] == 20
 
 
 def test_train_pretraining_bpe_tokenizer_stratifies_a_source_sample(tmp_path: Path):

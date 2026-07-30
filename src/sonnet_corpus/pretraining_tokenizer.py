@@ -53,6 +53,8 @@ class PretrainingTokenizerConfig:
     merge_progress_interval: int = 500
     training_checkpoint_path: Path | None = None
     max_merges_per_run: int | None = None
+    base_vocabulary_tokens: tuple[str, ...] | None = None
+    reuse_completed_tokenizer: bool = False
 
 
 def train_pretraining_bpe_tokenizer(
@@ -72,17 +74,24 @@ def train_pretraining_bpe_tokenizer(
     if not training_text.strip():
         raise ValueError("training text sample is empty")
 
-    _write_progress(progress, "training BPE merges")
-    tokenizer, merge_count, completed = _train_or_resume_weighted_bpe_tokenizer(
-        training_text=training_text,
-        base_text=text,
-        vocab_size=config.vocab_size,
-        special_tokens=list(config.special_tokens),
-        progress=progress,
-        progress_interval=config.merge_progress_interval,
-        checkpoint_path=config.training_checkpoint_path,
-        max_merges_per_run=config.max_merges_per_run,
-    )
+    tokenizer = _load_reusable_completed_tokenizer(config, base_text=text)
+    if tokenizer is None:
+        _write_progress(progress, "training BPE merges")
+        tokenizer, merge_count, completed = _train_or_resume_weighted_bpe_tokenizer(
+            training_text=training_text,
+            base_text=text,
+            vocab_size=config.vocab_size,
+            special_tokens=list(config.special_tokens),
+            base_vocabulary_tokens=config.base_vocabulary_tokens,
+            progress=progress,
+            progress_interval=config.merge_progress_interval,
+            checkpoint_path=config.training_checkpoint_path,
+            max_merges_per_run=config.max_merges_per_run,
+        )
+    else:
+        _write_progress(progress, "reusing completed BPE tokenizer for report verification")
+        merge_count = len(tokenizer.merges)
+        completed = True
     if not completed:
         report = {
             "status": "incomplete",
@@ -92,6 +101,11 @@ def train_pretraining_bpe_tokenizer(
             "tokenizer_path": _portable_path(config.tokenizer_path),
             "target_vocab_size": config.vocab_size,
             "actual_vocab_size": tokenizer.vocab_size,
+            "base_vocabulary_size": len(
+                config.base_vocabulary_tokens
+                if config.base_vocabulary_tokens is not None
+                else build_base_vocabulary(texts=[text], special_tokens=list(config.special_tokens))
+            ),
             "merge_count": merge_count,
             "training_character_limit": config.training_character_limit,
             "training_character_count": len(training_text),
@@ -115,6 +129,11 @@ def train_pretraining_bpe_tokenizer(
         "build_report_path": _portable_path(config.build_report_path),
         "target_vocab_size": config.vocab_size,
         "actual_vocab_size": tokenizer.vocab_size,
+        "base_vocabulary_size": len(
+            config.base_vocabulary_tokens
+            if config.base_vocabulary_tokens is not None
+            else build_base_vocabulary(texts=[text], special_tokens=list(config.special_tokens))
+        ),
         "merge_count": merge_count,
         "status": "complete",
         "special_tokens": list(config.special_tokens),
@@ -424,6 +443,7 @@ def _train_or_resume_weighted_bpe_tokenizer(
     base_text: str,
     vocab_size: int,
     special_tokens: list[str],
+    base_vocabulary_tokens: tuple[str, ...] | None,
     progress: ProgressCallback | None,
     progress_interval: int,
     checkpoint_path: Path | None,
@@ -435,6 +455,7 @@ def _train_or_resume_weighted_bpe_tokenizer(
             base_text=base_text,
             vocab_size=vocab_size,
             special_tokens=special_tokens,
+            base_vocabulary_tokens=base_vocabulary_tokens,
             progress=progress,
             progress_interval=progress_interval,
         )
@@ -450,6 +471,7 @@ def _train_or_resume_weighted_bpe_tokenizer(
         base_text=base_text,
         vocab_size=vocab_size,
         special_tokens=special_tokens,
+        base_vocabulary_tokens=base_vocabulary_tokens,
     )
     completed = _advance_bpe_state(
         state,
@@ -475,6 +497,32 @@ def _train_or_resume_weighted_bpe_tokenizer(
     return tokenizer, len(tokenizer.merges), completed
 
 
+def _load_reusable_completed_tokenizer(
+    config: PretrainingTokenizerConfig,
+    *,
+    base_text: str,
+) -> BytePairEncodingTokenizer | None:
+    if not config.reuse_completed_tokenizer or not config.tokenizer_path.is_file():
+        return None
+    if config.training_checkpoint_path is not None and config.training_checkpoint_path.exists():
+        return None
+
+    tokenizer = BytePairEncodingTokenizer.load(config.tokenizer_path)
+    if tokenizer.vocab_size != config.vocab_size:
+        raise ValueError("existing tokenizer vocabulary size does not match configuration")
+    if tokenizer.special_tokens != list(config.special_tokens):
+        raise ValueError("existing tokenizer special tokens do not match configuration")
+    expected_base_tokens = _resolve_base_vocabulary_tokens(
+        base_text=base_text,
+        special_tokens=list(config.special_tokens),
+        base_vocabulary_tokens=config.base_vocabulary_tokens,
+    )
+    actual_base_tokens = [tokenizer.id_to_token[index] for index in range(len(expected_base_tokens))]
+    if actual_base_tokens != expected_base_tokens:
+        raise ValueError("existing tokenizer base vocabulary does not match configuration")
+    return tokenizer
+
+
 def _load_or_create_bpe_state(
     *,
     checkpoint_path: Path,
@@ -482,28 +530,39 @@ def _load_or_create_bpe_state(
     base_text: str,
     vocab_size: int,
     special_tokens: list[str],
+    base_vocabulary_tokens: tuple[str, ...] | None,
 ) -> dict[str, Any]:
     training_text_sha256 = sha256(training_text.encode("utf-8")).hexdigest()
+    vocabulary_tokens = _resolve_base_vocabulary_tokens(
+        base_text=base_text,
+        special_tokens=special_tokens,
+        base_vocabulary_tokens=base_vocabulary_tokens,
+    )
+    base_vocabulary_sha256 = _base_vocabulary_sha256(vocabulary_tokens)
     if checkpoint_path.is_file():
         state = json.loads(checkpoint_path.read_text(encoding="utf-8"))
         expected = {
             "training_text_sha256": training_text_sha256,
             "target_vocab_size": vocab_size,
             "special_tokens": special_tokens,
+            "base_vocabulary_sha256": base_vocabulary_sha256,
         }
         actual = {key: state.get(key) for key in expected}
         if actual != expected:
             raise ValueError("BPE checkpoint does not match the requested tokenizer configuration")
         return state
 
-    vocabulary_tokens = build_base_vocabulary(texts=[base_text], special_tokens=special_tokens)
     if vocab_size < len(vocabulary_tokens):
         raise ValueError("vocab_size must be at least the base vocabulary size")
-    sequence_counts = _count_initial_pretoken_sequences(training_text)
+    sequence_counts = _count_initial_pretoken_sequences(
+        training_text,
+        special_tokens=special_tokens,
+    )
     return {
         "training_text_sha256": training_text_sha256,
         "target_vocab_size": vocab_size,
         "special_tokens": special_tokens,
+        "base_vocabulary_sha256": base_vocabulary_sha256,
         "vocabulary_tokens": vocabulary_tokens,
         "merges": [],
         "sequence_counts": [
@@ -541,7 +600,7 @@ def _advance_bpe_state(
         pair_counts = _weighted_pair_counts(sequence_counts)
         best_pair = choose_best_pair(pair_counts)
         if best_pair is None or "".join(best_pair) in special_tokens:
-            break
+            return True
         merged_token = "".join(best_pair)
         sequence_counts = _merge_sequence_counts(
             sequence_counts=sequence_counts,
@@ -584,6 +643,7 @@ def train_weighted_pretoken_bpe_tokenizer(
     base_text: str,
     vocab_size: int,
     special_tokens: list[str],
+    base_vocabulary_tokens: tuple[str, ...] | None = None,
     progress: ProgressCallback | None = None,
     progress_interval: int = 500,
 ) -> BytePairEncodingTokenizer:
@@ -594,14 +654,18 @@ def train_weighted_pretoken_bpe_tokenizer(
     if progress_interval <= 0:
         raise ValueError("progress_interval must be greater than 0")
 
-    vocabulary_tokens = build_base_vocabulary(
-        texts=[base_text],
+    vocabulary_tokens = _resolve_base_vocabulary_tokens(
+        base_text=base_text,
         special_tokens=special_tokens,
+        base_vocabulary_tokens=base_vocabulary_tokens,
     )
     if vocab_size < len(vocabulary_tokens):
         raise ValueError("vocab_size must be at least the base vocabulary size")
 
-    sequence_counts = _count_initial_pretoken_sequences(training_text)
+    sequence_counts = _count_initial_pretoken_sequences(
+        training_text,
+        special_tokens=special_tokens,
+    )
     merges: list[TokenPair] = []
     vocabulary_set = set(vocabulary_tokens)
     _write_progress(
@@ -651,6 +715,30 @@ def train_weighted_pretoken_bpe_tokenizer(
     )
 
 
+def _resolve_base_vocabulary_tokens(
+    *,
+    base_text: str,
+    special_tokens: list[str],
+    base_vocabulary_tokens: tuple[str, ...] | None,
+) -> list[str]:
+    if base_vocabulary_tokens is None:
+        return build_base_vocabulary(texts=[base_text], special_tokens=special_tokens)
+
+    vocabulary_tokens = list(base_vocabulary_tokens)
+    if len(vocabulary_tokens) != len(set(vocabulary_tokens)):
+        raise ValueError("base_vocabulary_tokens must not contain duplicates")
+    if vocabulary_tokens[: len(special_tokens)] != special_tokens:
+        raise ValueError("base_vocabulary_tokens must begin with special_tokens in order")
+    if not vocabulary_tokens:
+        raise ValueError("base_vocabulary_tokens must not be empty")
+    return vocabulary_tokens
+
+
+def _base_vocabulary_sha256(vocabulary_tokens: list[str]) -> str:
+    payload = json.dumps(vocabulary_tokens, ensure_ascii=False, separators=(",", ":"))
+    return sha256(payload.encode("utf-8")).hexdigest()
+
+
 def count_bpe_tokens_by_pretoken(
     text: str,
     tokenizer: BytePairEncodingTokenizer,
@@ -662,9 +750,15 @@ def count_bpe_tokens_by_pretoken(
 
     if progress_interval <= 0:
         raise ValueError("progress_interval must be greater than 0")
-    pretoken_counts = Counter(_iter_pretokens(text))
+    pretoken_counts: Counter[str] = Counter()
+    special_token_count = 0
+    for is_special, segment in _split_text_on_special_tokens(text, tokenizer.special_tokens):
+        if is_special:
+            special_token_count += 1
+        else:
+            pretoken_counts.update(_iter_pretokens(segment))
     merge_ranks = _merge_ranks(tokenizer)
-    total = 0
+    total = special_token_count
     item_count = len(pretoken_counts)
     for index, (pretoken, count) in enumerate(pretoken_counts.items(), start=1):
         total += len(_encode_pretoken(pretoken, merge_ranks)) * count
@@ -770,8 +864,19 @@ def _read_non_empty_text(path: Path) -> str:
     return text
 
 
-def _count_initial_pretoken_sequences(text: str) -> Counter[tuple[str, ...]]:
-    return Counter(tuple(pretoken) for pretoken in _iter_pretokens(text))
+def _count_initial_pretoken_sequences(
+    text: str,
+    *,
+    special_tokens: list[str],
+) -> Counter[tuple[str, ...]]:
+    """Count ordinary pretoken sequences without allowing special-token merges."""
+
+    sequence_counts: Counter[tuple[str, ...]] = Counter()
+    for is_special, segment in _split_text_on_special_tokens(text, special_tokens):
+        if is_special:
+            continue
+        sequence_counts.update(tuple(pretoken) for pretoken in _iter_pretokens(segment))
+    return sequence_counts
 
 
 def _iter_pretokens(text: str) -> list[str]:

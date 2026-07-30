@@ -1,0 +1,63 @@
+{
+  "curriculum_id": "paisa_historical_rescue_v1",
+  "status": "complete",
+  "finished_at_utc": "2026-07-30T16:11:05+00:00",
+  "curriculum_config_path": "configs/paisa_historical_rescue_v1.json",
+  "provenance": {
+    "paisa_build_report_sha256": "c7b15593ab5daa893d3515a480a6f643ea4ad9a38ee6f63048f2301792f5a6d7",
+    "historical_mixture_report_sha256": "b564aafef2fc62c1d36f3101a8e71502dc2041f996ede606f7c1a848ac636be1",
+    "paisa_release_sha256": "6c6bee67ad491f858568793ee95831f2b0128eebe42afe4cb566c26823afb4ba",
+    "tokenizer_sample_sha256": "3ee947343b013ad40a764907a99d6f3422258579fd626076103b667cbd1052ca"
+  },
+  "tokenizer": {
+    "target_vocab_size": 16000,
+    "actual_vocab_size": 16000,
+    "base_vocabulary_size": 7217,
+    "merge_count": 8783,
+    "special_tokens": [
+      "<|endoftext|>"
+    ],
+    "merge_statistics_policy": "exact fixed PAISÀ-plus-historical train-only sample",
+    "base_vocabulary_policy": "all PAISÀ and historical training characters only"
+  },
+  "sample": {
+    "path": "data/local/pretraining/paisa_historical_rescue_v1/tokenizer_training_sample.txt",
+    "characters": 12049232,
+    "sha256": "3ee947343b013ad40a764907a99d6f3422258579fd626076103b667cbd1052ca"
+  },
+  "character_coverage": {
+    "training_unique_characters": 7216,
+    "validation_unique_characters": 674,
+    "uncovered_validation_character_count": 0
+  },
+  "paisa_validation_sanitization": {
+    "policy": "exclude only PAISÀ validation documents containing a character absent from both fixed training splits; original validation text remains unchanged",
+    "input_documents": 3776,
+    "retained_documents": 3770,
+    "excluded_documents": 6,
+    "retained_characters": 14427213,
+    "excluded_characters": 32468,
+    "excluded_codepoints": [
+      "U+0016",
+      "U+54D1",
+      "U+555E",
+      "U+6321",
+      "U+6655",
+      "U+7A3B",
+      "U+840D",
+      "U+8594",
+      "U+9262"
+    ]
+  },
+  "local_artifacts": {
+    "tokenizer_path": "data/local/pretraining/paisa_historical_rescue_v1/tokenizer.json",
+    "training_detail_report_path": "data/local/pretraining/paisa_historical_rescue_v1/tokenizer_training_detail.json",
+    "checkpoint_path": "data/local/pretraining/paisa_historical_rescue_v1/tokenizer_training_state.json",
+    "paisa_train_path": "data/local/pretraining/paisa/paisa_modern_italian_v1/train.txt",
+    "paisa_validation_original_path": "data/local/pretraining/paisa/paisa_modern_italian_v1/validation.txt",
+    "paisa_validation_tokenizable_path": "data/local/pretraining/paisa_historical_rescue_v1/paisa_validation_tokenizable.txt",
+    "historical_train_path": "data/local/pretraining/paisa_historical_rescue_v1/historical_train.txt",
+    "historical_validation_path": "data/local/pretraining/paisa_historical_rescue_v1/historical_validation.txt"
+  },
+  "public_repository_policy": "This aggregate report contains no PAISÀ document text or document URLs. The tokenizer and PAISÀ-derived artifacts remain local under the source terms."
+}
