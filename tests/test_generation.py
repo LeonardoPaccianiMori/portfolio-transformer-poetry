@@ -354,6 +354,32 @@ def test_load_transformer_from_checkpoint_restores_model(tmp_path):
     assert model.output_projection.out_features == 4
 
 
+def test_load_transformer_from_checkpoint_keeps_checkpoint_tensors_on_cpu(
+    tmp_path,
+    monkeypatch,
+):
+    run_dir = tmp_path / "run"
+    write_tiny_run(run_dir)
+    from sonnet_evaluation import generation
+
+    original_load = generation.torch.load
+    map_locations = []
+
+    def record_load(*args, **kwargs):
+        map_locations.append(kwargs["map_location"])
+        return original_load(*args, **kwargs)
+
+    monkeypatch.setattr(generation.torch, "load", record_load)
+
+    load_transformer_from_checkpoint(
+        checkpoint_path=run_dir / "model.pt",
+        config_path=run_dir / "config.json",
+        device=torch.device("cpu"),
+    )
+
+    assert map_locations == ["cpu"]
+
+
 def test_load_transformer_from_checkpoint_restores_rms_norm_architecture(tmp_path):
     checkpoint_path = tmp_path / "model.pt"
     config_path = tmp_path / "config.json"

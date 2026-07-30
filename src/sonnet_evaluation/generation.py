@@ -74,11 +74,10 @@ def load_transformer_from_checkpoint(
         feed_forward_type=model_config.get("feed_forward_type", "relu"),
         tie_token_embeddings=bool(model_config.get("tie_token_embeddings", False)),
     )
-    checkpoint = torch.load(
-        checkpoint_path,
-        map_location=device,
-    )
+    # Generation uses model weights only; do not map unused optimizer state to CUDA.
+    checkpoint = torch.load(checkpoint_path, map_location="cpu")
     model.load_state_dict(checkpoint["model_state_dict"])
+    del checkpoint
     model.to(device)
     model.eval()
 
