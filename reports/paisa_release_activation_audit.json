@@ -1,0 +1,61 @@
+{
+  "started_at_utc": "2026-07-30T13:40:02+00:00",
+  "finished_at_utc": "2026-07-30T13:40:06+00:00",
+  "scope": "release_activation_audit_no_corpus_payload_download",
+  "activation_status": "approved_for_local_acquisition",
+  "activation_reason": "official metadata, release route, and disk-capacity preflight passed; payload acquisition remains local and must retain document id/url attribution",
+  "metadata": {
+    "source_url": "https://www.corpusitaliano.it/en/contents/description.html",
+    "status": "ok",
+    "error": "",
+    "document_count": 380000,
+    "website_count": 1000,
+    "reported_word_count": 250000000,
+    "corpus_license": "CC BY-NC-SA",
+    "source_license_families": [
+      "CC BY-SA",
+      "CC BY-NC-SA"
+    ],
+    "document_provenance_fields": [
+      "id",
+      "url"
+    ],
+    "download_page_url": "description.html",
+    "citation": "Lyding, V. / Stemle, E. / Borghetti, C. / Brunello, M. / Castagnoli, S. / Dell'Orletta, F. / Dittmann, H. / Lenci, A. / Pirrelli, V. (2014): \"The PAISÀ Corpus of Italian Web Texts\" In: Proceedings of the 9th Web as Corpus Workshop (WaC-9), Association for Computational Linguistics, Gothenburg, Sweden, April 2014. pp. 36-43."
+  },
+  "release_route": {
+    "requested_url": "https://hdl.handle.net/20.500.12124/3",
+    "resolved_url": "https://clarin.eurac.edu/repository/xmlui/handle/20.500.12124/3",
+    "status": "ok",
+    "http_status": 200,
+    "content_type": "application/gzip",
+    "content_length_bytes": 546911754,
+    "artifact_url": "https://clarin.eurac.edu/repository/xmlui/bitstream/handle/20.500.12124/3/paisa.raw.utf8.gz?sequence=1&isAllowed=y",
+    "access_barrier": "",
+    "error": ""
+  },
+  "storage_preflight": {
+    "acquisition_dir": "/home/lpm/Desktop/portfolio-transformer-poetry/data/local/pretraining/paisa",
+    "available_bytes": 1145205489664,
+    "required_bytes": 1367279385,
+    "minimum_free_space_multiplier": 2.5,
+    "status": "ok",
+    "error": ""
+  },
+  "license_and_attribution": {
+    "permitted_project_role": "local_noncommercial_pretraining_corpus_only",
+    "corpus_license": "CC BY-NC-SA",
+    "source_license_families": [
+      "CC BY-SA",
+      "CC BY-NC-SA"
+    ],
+    "document_provenance_fields": [
+      "id",
+      "url"
+    ],
+    "document_level_license_classification": "not_reported_on_the_official_description_page; retain each document's id and url as attribution inventory",
+    "public_repository_policy": "Do not commit PAISÀ text, derivative token files, or PAISÀ-derived checkpoints. Commit only source links, license notices, code, configuration, and aggregate reports.",
+    "required_credit": "PAISÀ corpus, Lyding, V. / Stemle, E. / Borghetti, C. / Brunello, M. / Castagnoli, S. / Dell'Orletta, F. / Dittmann, H. / Lenci, A. / Pirrelli, V. (2014): \"The PAISÀ Corpus of Italian Web Texts\" In: Proceedings of the 9th Web as Corpus Workshop (WaC-9), Association for Computational Linguistics, Gothenburg, Sweden, April 2014. pp. 36-43.. Corpus license: CC BY-NC-SA. Retain document id and URL attribution fields for all acquired documents."
+  },
+  "next_action": "Run the PAISÀ local acquisition and document-level attribution inventory builder against https://clarin.eurac.edu/repository/xmlui/bitstream/handle/20.500.12124/3/paisa.raw.utf8.gz?sequence=1&isAllowed=y."
+}

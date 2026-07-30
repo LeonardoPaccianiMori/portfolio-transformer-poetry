@@ -78,6 +78,17 @@ this audit. Its document-level license and attribution inventory must be
 verified before download because the corpus contains more than one Creative
 Commons license family.
 
+### PAISÀ Activation Update: 2026-07-30
+
+The later release activation audit has passed its metadata, official-release,
+and disk-capacity checks. PAISÀ is now approved for the narrowly defined,
+local-only rescue curriculum, not as part of the historical core. The corpus
+text, derived token files, document inventory, and PAISÀ-derived checkpoints
+remain uncommitted under the corpus's CC BY-NC-SA terms. The current status,
+exact release route, license record, and required next acquisition/inventory
+criteria are in [`data/metadata/paisa_attribution.md`](../data/metadata/paisa_attribution.md)
+and [`reports/paisa_release_activation_audit.json`](../reports/paisa_release_activation_audit.json).
+
 ## Scale Conclusion
 
 Even the full historical-core candidate batch is expected to add only a few

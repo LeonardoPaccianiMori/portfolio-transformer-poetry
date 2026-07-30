@@ -45,10 +45,7 @@ def probe_paisa_metadata(
     started_at = _utc_now()
     _write_progress(progress, f"fetching metadata page: {source_url}")
     try:
-        http = session or requests.Session()
-        response = http.get(source_url, timeout=30)
-        response.raise_for_status()
-        result = _parse_metadata_page(source_url, response.text)
+        result = fetch_paisa_metadata(source_url=source_url, session=session)
     except Exception as exc:
         result = PaisaMetadataProbeResult(
             source_url=source_url,
@@ -78,6 +75,19 @@ def probe_paisa_metadata(
     )
     _write_progress(progress, f"wrote metadata report: {report_path}")
     return report
+
+
+def fetch_paisa_metadata(
+    *,
+    source_url: str = PAISA_DESCRIPTION_URL,
+    session: requests.Session | None = None,
+) -> PaisaMetadataProbeResult:
+    """Return PAISÀ metadata facts from the official description page."""
+
+    http = session or requests.Session()
+    response = http.get(source_url, timeout=30)
+    response.raise_for_status()
+    return _parse_metadata_page(source_url, response.text)
 
 
 def _parse_metadata_page(source_url: str, html: str) -> PaisaMetadataProbeResult:
