@@ -149,7 +149,8 @@ def load_parent_for_finetuning(
     if not checkpoint_path.is_file():
         raise FileNotFoundError(f"checkpoint file does not exist: {checkpoint_path}")
 
-    checkpoint = torch.load(checkpoint_path, map_location=device)
+    # Keep provenance weights on CPU after copying them into the GPU model.
+    checkpoint = torch.load(checkpoint_path, map_location="cpu")
     if not isinstance(checkpoint, dict):
         raise ValueError(f"checkpoint must contain a dictionary: {checkpoint_path}")
     _validate_parent_checkpoint(checkpoint, tokenizer)

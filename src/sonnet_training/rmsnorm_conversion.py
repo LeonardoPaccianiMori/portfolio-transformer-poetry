@@ -37,7 +37,8 @@ def initialize_rms_norm_conversion_from_parent(
     if not checkpoint_path.is_file():
         raise FileNotFoundError(f"checkpoint file does not exist: {checkpoint_path}")
 
-    checkpoint = torch.load(checkpoint_path, map_location=device)
+    # The returned checkpoint is provenance metadata and must not duplicate GPU weights.
+    checkpoint = torch.load(checkpoint_path, map_location="cpu")
     _validate_layer_norm_parent(checkpoint, tokenizer)
 
     parent_config = checkpoint["config"]

@@ -95,6 +95,29 @@ def test_rms_norm_conversion_copies_shared_weights_and_scales(tmp_path):
     }
 
 
+def test_rms_norm_conversion_keeps_checkpoint_weights_on_cpu(tmp_path, monkeypatch):
+    checkpoint_path, tokenizer = write_layer_norm_parent(tmp_path)
+    from sonnet_training import rmsnorm_conversion
+
+    original_load = rmsnorm_conversion.torch.load
+    map_locations = []
+
+    def record_load(*args, **kwargs):
+        map_locations.append(kwargs["map_location"])
+        return original_load(*args, **kwargs)
+
+    monkeypatch.setattr(rmsnorm_conversion.torch, "load", record_load)
+
+    initialize_rms_norm_conversion_from_parent(
+        checkpoint_path=checkpoint_path,
+        tokenizer=tokenizer,
+        learning_rate=3e-5,
+        device=torch.device("cpu"),
+    )
+
+    assert map_locations == ["cpu"]
+
+
 def test_rms_norm_conversion_rejects_non_layer_norm_parent(tmp_path):
     checkpoint_path, tokenizer = write_layer_norm_parent(tmp_path)
     checkpoint = torch.load(checkpoint_path, map_location="cpu")

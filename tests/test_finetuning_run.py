@@ -203,6 +203,34 @@ def test_load_parent_for_finetuning_restores_weights_and_approved_learning_rate(
     assert optimizer.state
 
 
+def test_load_parent_for_finetuning_keeps_checkpoint_weights_on_cpu(
+    tmp_path,
+    monkeypatch,
+):
+    checkpoint_path, tokenizer_path = write_tiny_finetuning_repository(tmp_path)
+    tokenizer = BytePairEncodingTokenizer.load(tokenizer_path)
+    from sonnet_training import finetuning_run
+
+    original_load = finetuning_run.torch.load
+    map_locations = []
+
+    def record_load(*args, **kwargs):
+        map_locations.append(kwargs["map_location"])
+        return original_load(*args, **kwargs)
+
+    monkeypatch.setattr(finetuning_run.torch, "load", record_load)
+
+    load_parent_for_finetuning(
+        checkpoint_path=checkpoint_path,
+        tokenizer=tokenizer,
+        learning_rate=3e-5,
+        restore_optimizer_state=False,
+        device=torch.device("cpu"),
+    )
+
+    assert map_locations == ["cpu"]
+
+
 def test_load_parent_for_finetuning_expands_vocabulary_weights_and_adamw_state(tmp_path):
     checkpoint_path, tokenizer_path = write_tiny_finetuning_repository(tmp_path)
     parent_checkpoint = torch.load(checkpoint_path, map_location="cpu")
