@@ -680,19 +680,62 @@ def encode_text_by_pretoken(
     text: str,
     tokenizer: BytePairEncodingTokenizer,
 ) -> list[int]:
-    """Encode text with the same pretoken cache strategy used in reports."""
+    """Encode text efficiently while preserving protected special tokens."""
 
     merge_ranks = _merge_ranks(tokenizer)
     encoded: list[int] = []
     encoded_pretokens: dict[str, list[int]] = {}
-    for pretoken in _iter_pretokens(text):
-        if pretoken not in encoded_pretokens:
-            encoded_pretokens[pretoken] = [
-                tokenizer.token_to_id[token]
-                for token in _encode_pretoken(pretoken, merge_ranks)
-            ]
-        encoded.extend(encoded_pretokens[pretoken])
+    for is_special, text_segment in _split_text_on_special_tokens(
+        text,
+        tokenizer.special_tokens,
+    ):
+        if is_special:
+            encoded.append(tokenizer.token_to_id[text_segment])
+            continue
+
+        for pretoken in _iter_pretokens(text_segment):
+            if pretoken not in encoded_pretokens:
+                encoded_pretokens[pretoken] = [
+                    tokenizer.token_to_id[token]
+                    for token in _encode_pretoken(pretoken, merge_ranks)
+                ]
+            encoded.extend(encoded_pretokens[pretoken])
     return encoded
+
+
+def _split_text_on_special_tokens(
+    text: str,
+    special_tokens: list[str],
+) -> list[tuple[bool, str]]:
+    """Split text into regular and protected-token segments in source order."""
+    ordered_special_tokens = sorted(special_tokens, key=len, reverse=True)
+    segments: list[tuple[bool, str]] = []
+    regular_start = 0
+    index = 0
+
+    while index < len(text):
+        matched_special_token = next(
+            (
+                special_token
+                for special_token in ordered_special_tokens
+                if text.startswith(special_token, index)
+            ),
+            None,
+        )
+        if matched_special_token is None:
+            index += 1
+            continue
+
+        if regular_start < index:
+            segments.append((False, text[regular_start:index]))
+        segments.append((True, matched_special_token))
+        index += len(matched_special_token)
+        regular_start = index
+
+    if regular_start < len(text):
+        segments.append((False, text[regular_start:]))
+
+    return segments
 
 
 def inspect_build_report_boundaries(build_report_path: Path) -> list[dict[str, str]]:

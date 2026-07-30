@@ -94,6 +94,25 @@ def test_encode_text_by_pretoken_matches_regular_encoding():
     assert tokenizer.decode(token_ids) == text
 
 
+def test_encode_text_by_pretoken_preserves_special_tokens_next_to_text():
+    text = "<|opening|>amor<|continuation|>virtute\n<|endoftext|>"
+    tokenizer = train_weighted_pretoken_bpe_tokenizer(
+        training_text="amor virtute\n",
+        base_text=text,
+        vocab_size=28,
+        special_tokens=[
+            "<|endoftext|>",
+            "<|opening|>",
+            "<|continuation|>",
+        ],
+    )
+
+    token_ids = encode_text_by_pretoken(text, tokenizer)
+
+    assert token_ids == tokenizer.encode(text)
+    assert tokenizer.decode(token_ids) == text
+
+
 def test_train_pretraining_bpe_tokenizer_writes_tokenizer_and_report(tmp_path: Path):
     corpus_path = tmp_path / "corpus.txt"
     tokenizer_path = tmp_path / "tokenizer.json"

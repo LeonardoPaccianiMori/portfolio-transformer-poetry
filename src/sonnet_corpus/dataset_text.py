@@ -330,6 +330,43 @@ def extend_tokenizer_for_character_coverage(
     )
 
 
+def extend_tokenizer_for_special_tokens(
+    tokenizer: BytePairEncodingTokenizer,
+    special_tokens: list[str] | tuple[str, ...],
+) -> tuple[BytePairEncodingTokenizer, list[str]]:
+    """Append protected special tokens without changing existing token IDs.
+
+    The new tokens are not fitted from held-out text and have no merge rules.
+    They are recognized atomically by BPE so task prefixes can be located
+    reliably when creating masked supervised-training labels.
+    """
+    requested_tokens = list(special_tokens)
+    if len(set(requested_tokens)) != len(requested_tokens):
+        raise ValueError("special_tokens must not contain duplicates")
+    if any(token == "" for token in requested_tokens):
+        raise ValueError("special_tokens must not contain empty strings")
+
+    token_to_id = dict(tokenizer.token_to_id)
+    protected_tokens = list(tokenizer.special_tokens)
+    added_tokens = []
+
+    for token in requested_tokens:
+        if token not in protected_tokens:
+            protected_tokens.append(token)
+        if token not in token_to_id:
+            token_to_id[token] = len(token_to_id)
+            added_tokens.append(token)
+
+    return (
+        BytePairEncodingTokenizer(
+            token_to_id=token_to_id,
+            merges=list(tokenizer.merges),
+            special_tokens=protected_tokens,
+        ),
+        added_tokens,
+    )
+
+
 def load_pretraining_bpe_encoded_splits(
     manifest_path: Path,
     repo_root: Path,
