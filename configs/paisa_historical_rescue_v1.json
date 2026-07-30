@@ -1,0 +1,44 @@
+{
+  "curriculum_id": "paisa_historical_rescue_v1",
+  "paisa_build_report_path": "reports/paisa_modern_italian_v1_build_report.json",
+  "historical_mixture_report_path": "reports/pretraining_historical_italian_v2_mixture_report.json",
+  "expected_paisa_build_report_sha256": "c7b15593ab5daa893d3515a480a6f643ea4ad9a38ee6f63048f2301792f5a6d7",
+  "expected_historical_mixture_report_sha256": "b564aafef2fc62c1d36f3101a8e71502dc2041f996ede606f7c1a848ac636be1",
+  "expected_paisa_release_sha256": "6c6bee67ad491f858568793ee95831f2b0128eebe42afe4cb566c26823afb4ba",
+  "local_output_dir": "data/local/pretraining/paisa_historical_rescue_v1",
+  "report_path": "reports/paisa_historical_rescue_v1_curriculum_report.json",
+  "historical_source_validation_fraction": 0.01,
+  "tokenizer": {
+    "vocab_size": 16000,
+    "special_tokens": ["<|endoftext|>"],
+    "paisa_train_sample_characters": 8000000,
+    "historical_train_sample_characters": 4000000,
+    "sample_seed": "paisa_historical_rescue_v1_bpe_sample"
+  },
+  "stages": [
+    {
+      "stage_id": "modern_italian_pretraining",
+      "dataset": "paisa_train",
+      "max_passes": 3,
+      "schedule": "warmup_stable_decay"
+    },
+    {
+      "stage_id": "historical_italian_annealing",
+      "dataset": "historical_train",
+      "max_passes": 12,
+      "schedule": "lower_rate_decay_after_modern_stage"
+    },
+    {
+      "stage_id": "v5_sonnet_finetuning",
+      "dataset": "sonnets_expanded_v5_train",
+      "max_passes": null,
+      "schedule": "selected_after_pretraining_evaluation"
+    },
+    {
+      "stage_id": "task_format_posttraining",
+      "dataset": "v5_task_format_train",
+      "max_passes": null,
+      "schedule": "selected_after_sonnet_finetuning_evaluation"
+    }
+  ]
+}

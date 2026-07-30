@@ -74,10 +74,16 @@ public repository. Commit only this attribution record, the official source
 links and license notice, deterministic acquisition/build code, configs, and
 aggregate non-text reports.
 
-## Next Scheduled Dataset Checkpoint
+## Current Curriculum Boundary
 
-The next PAISÀ artifact is the explicit PAISÀ-to-historical curriculum
-specification. It must define the stage order, token budgets, train-only inputs
-for the new tokenizer, and the held-out validation policy before fitting the
-rescue tokenizer. PAISÀ train and validation text remain separate from the
-historical corpus until that specification is committed.
+The PAISÀ-to-historical curriculum is now fixed in
+[`docs/paisa_historical_rescue_curriculum.md`](../../docs/paisa_historical_rescue_curriculum.md).
+It keeps PAISÀ and historical prose as separate sequential stages and uses only
+their training partitions for a fresh 16k BPE tokenizer. The local preparation
+report records 8,016,457 PAISÀ and 4,000,540 historical tokenizer-sample
+characters, with no validation text included.
+
+The next scheduled artifact is the fitted tokenizer plus separately encoded
+PAISÀ and historical training/validation tensors. Their measured token counts
+must be recorded before choosing the final rescue model size and training-update
+budgets.
