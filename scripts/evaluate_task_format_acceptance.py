@@ -55,6 +55,7 @@ def main() -> None:
         dataset=args.dataset,
         split=args.training_split,
         output_path=args.memorization_output,
+        progress=lambda message: print(f"task-evaluation | {message}", flush=True),
     )
     print(
         f"task-evaluation | memorization complete outputs={len(memorization_rows)}",

@@ -97,9 +97,8 @@ def build_qualitative_review_report(
         markdown_review_section(review, review_context=review_context)
         for review in reviews
     )
-    sections.append("")
 
-    return "\n\n".join(sections)
+    return "\n\n".join(sections) + "\n"
 
 
 def write_qualitative_review_report(

@@ -181,6 +181,27 @@ def test_find_nearest_training_record_rejects_empty_records():
         )
 
 
+def test_find_nearest_training_record_bounds_lcs_when_no_ngram_is_shared():
+    nearest = find_nearest_training_record(
+        generated_text="abcdef",
+        training_records=[
+            {
+                "poem_id": "different",
+                "title_or_first_line": "Different",
+                "author": "Author",
+                "clean_text_path": "different.txt",
+                "text": "uvwxyz",
+            },
+        ],
+        ngram_size=3,
+    )
+
+    assert nearest["nearest_poem_id"] is None
+    assert nearest["longest_common_substring_chars"] is None
+    assert nearest["longest_common_substring_upper_bound"] == 2
+    assert nearest["risk_level"] == "low"
+
+
 def test_score_generation_memorization_scores_each_output(tmp_path):
     generation_dir = tmp_path / "generation"
     write_generation_directory(generation_dir)
@@ -232,6 +253,33 @@ def test_build_memorization_report_contains_table_and_notes():
     assert "| Prompt | Chars |" in report
     assert r"Amor \| che move" in report
     assert "## Notes" in report
+
+
+def test_build_memorization_report_shows_lcs_upper_bound_when_exact_alignment_is_skipped():
+    rows = [
+        {
+            "prompt_id": "amor",
+            "generated_character_count": 100,
+            "nearest_title_or_first_line": None,
+            "nearest_author": None,
+            "ngram_containment": 0.0,
+            "longest_common_substring_chars": None,
+            "longest_common_substring_upper_bound": 39,
+            "risk_level": "low",
+            "seed": 1337,
+        },
+    ]
+
+    report = build_memorization_report(
+        generation_dir=Path("outputs/generations/run"),
+        dataset="expanded_with_petrarch",
+        split="train",
+        ngram_size=40,
+        rows=rows,
+    )
+
+    assert "No shared n-gram" in report
+    assert "< 40" in report
 
 
 def test_write_memorization_report_writes_markdown(tmp_path):

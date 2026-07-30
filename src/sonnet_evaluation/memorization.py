@@ -2,6 +2,7 @@ import json
 from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
+from collections.abc import Callable
 
 from sonnet_corpus.dataset_text import (
     load_poem_text,
@@ -16,6 +17,7 @@ MEDIUM_CONTAINMENT_THRESHOLD = 0.15
 HIGH_CONTAINMENT_THRESHOLD = 0.30
 MEDIUM_SUBSTRING_THRESHOLD = 80
 HIGH_SUBSTRING_THRESHOLD = 160
+ProgressCallback = Callable[[str], None]
 
 
 def normalize_for_memorization(text: str) -> str:
@@ -129,7 +131,7 @@ def find_nearest_training_record(
     if not training_records:
         raise ValueError("training_records must contain at least one record")
 
-    best_row: dict[str, Any] | None = None
+    candidate_records = []
 
     for record in training_records:
         containment = ngram_containment(
@@ -137,6 +139,26 @@ def find_nearest_training_record(
             reference_text=record["text"],
             ngram_size=ngram_size,
         )
+        if containment > 0.0:
+            candidate_records.append((record, containment))
+
+    if not candidate_records:
+        # A copied span of ngram_size characters would create a shared n-gram.
+        # Exact alignment is therefore unnecessary and cannot alter the risk label.
+        return {
+            "nearest_poem_id": None,
+            "nearest_title_or_first_line": None,
+            "nearest_author": None,
+            "nearest_clean_text_path": None,
+            "ngram_containment": 0.0,
+            "longest_common_substring_chars": None,
+            "longest_common_substring_is_exact": False,
+            "longest_common_substring_upper_bound": ngram_size - 1,
+            "risk_level": "low",
+        }
+
+    best_row: dict[str, Any] | None = None
+    for record, containment in candidate_records:
         longest_substring = longest_common_substring_length(
             generated_text,
             record["text"],
@@ -148,6 +170,8 @@ def find_nearest_training_record(
             "nearest_clean_text_path": record["clean_text_path"],
             "ngram_containment": containment,
             "longest_common_substring_chars": longest_substring,
+            "longest_common_substring_is_exact": True,
+            "longest_common_substring_upper_bound": None,
             "risk_level": memorization_risk_level(
                 containment=containment,
                 longest_common_substring_chars=longest_substring,
@@ -193,12 +217,14 @@ def score_generation_memorization(
     generation_dir: Path,
     training_records: list[dict[str, str]],
     ngram_size: int = DEFAULT_NGRAM_SIZE,
+    progress: ProgressCallback | None = None,
 ) -> list[dict[str, Any]]:
     metadata_path = generation_dir / "metadata.json"
     metadata = read_generation_metadata(generation_dir)
     rows = []
 
-    for generated_file in metadata["generated_files"]:
+    generated_files = metadata["generated_files"]
+    for output_index, generated_file in enumerate(generated_files, start=1):
         generated_path = resolve_generated_path(
             path_text=generated_file["path"],
             metadata_path=metadata_path,
@@ -217,6 +243,11 @@ def score_generation_memorization(
             "generated_character_count": len(generated_text),
             **nearest,
         })
+        if progress is not None:
+            progress(
+                "scored output "
+                f"{output_index}/{len(generated_files)}: {generated_file['prompt_id']}"
+            )
 
     return rows
 
@@ -245,10 +276,10 @@ def markdown_memorization_table(rows: list[dict[str, Any]]) -> str:
         values = [
             row["prompt_id"],
             row["generated_character_count"],
-            row["nearest_title_or_first_line"],
-            row["nearest_author"],
+            row["nearest_title_or_first_line"] or "No shared n-gram",
+            row["nearest_author"] or "-",
             f"{row['ngram_containment']:.4f}",
-            row["longest_common_substring_chars"],
+            _format_longest_common_substring(row),
             row["risk_level"],
             row["seed"],
         ]
@@ -278,6 +309,7 @@ def build_memorization_report(
         "- Punctuation is preserved because copied punctuation is useful evidence.",
         "- `Containment` is the fraction of generated character n-grams also found in the nearest training poem.",
         "- `LCS Chars` is the longest contiguous copied character span after normalization.",
+        "- When no generated 40-character n-gram occurs in training text, `LCS Chars` is reported as a strict upper bound rather than an unnecessary exact alignment.",
         "- Risk labels are heuristic surface-copying checks, not proof of memorization.",
         f"- `medium`: containment >= {MEDIUM_CONTAINMENT_THRESHOLD:.2f} or LCS >= {MEDIUM_SUBSTRING_THRESHOLD} chars.",
         f"- `high`: containment >= {HIGH_CONTAINMENT_THRESHOLD:.2f} or LCS >= {HIGH_SUBSTRING_THRESHOLD} chars.",
@@ -292,6 +324,7 @@ def write_memorization_report(
     split: str,
     output_path: Path,
     ngram_size: int = DEFAULT_NGRAM_SIZE,
+    progress: ProgressCallback | None = None,
 ) -> list[dict[str, Any]]:
     training_records = load_training_records(
         manifest_path=manifest_path,
@@ -303,6 +336,7 @@ def write_memorization_report(
         generation_dir=generation_dir,
         training_records=training_records,
         ngram_size=ngram_size,
+        progress=progress,
     )
     report = build_memorization_report(
         generation_dir=generation_dir,
@@ -316,3 +350,11 @@ def write_memorization_report(
     output_path.write_text(report, encoding="utf-8")
 
     return rows
+
+
+def _format_longest_common_substring(row: dict[str, Any]) -> str:
+    value = row["longest_common_substring_chars"]
+    if value is not None:
+        return str(value)
+
+    return f"< {row['longest_common_substring_upper_bound'] + 1}"
