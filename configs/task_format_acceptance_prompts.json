@@ -1,0 +1,62 @@
+[
+  {
+    "id": "giacomo_madonna",
+    "poem_id": "giacomo_madonna_à_n_sé_vertute_con_valore",
+    "author": "Giacomo da Lentini",
+    "opening_line": "Madonna à 'n sé vertute con valore"
+  },
+  {
+    "id": "dante_di_cio",
+    "poem_id": "dante_iv_di_ciò_che_stato_sei_dimandatore",
+    "author": "Dante Alighieri",
+    "opening_line": "Di ciò che stato sei dimandatore,"
+  },
+  {
+    "id": "cino_roma_superba",
+    "poem_id": "cino_a_che_roma_superba_tante_leggi",
+    "author": "Cino da Pistoia",
+    "opening_line": "A che, Roma superba, tante leggi"
+  },
+  {
+    "id": "cecco_chi_vol",
+    "poem_id": "cecco_xiv_chi_vol_vantaggio_aver_a_l_altre_genti",
+    "author": "Cecco Angiolieri",
+    "opening_line": "Chi vol vantaggio aver a l'altre genti"
+  },
+  {
+    "id": "cavalcanti_amore_lagia",
+    "poem_id": "cavalcanti_amore_e_monna_lagia_e_guido_ed_io",
+    "author": "Guido Cavalcanti",
+    "opening_line": "Amore e monna Lagia e Guido ed io"
+  },
+  {
+    "id": "petrarca_successor",
+    "poem_id": "petrarca_il_successor_di_karlo_che_la_chioma",
+    "author": "Francesco Petrarca",
+    "opening_line": "Il successor di Karlo, che la chioma"
+  },
+  {
+    "id": "stampa_meste_rime",
+    "poem_id": "stampa_rime_d_amore_i",
+    "author": "Gaspara Stampa",
+    "opening_line": "Voi, ch'ascoltate in queste meste rime,"
+  },
+  {
+    "id": "colonna_gravosi_pensier",
+    "poem_id": "colonna_sonetto_xxi",
+    "author": "Vittoria Colonna",
+    "opening_line": "DE' gravosi pensier la turba infesta"
+  },
+  {
+    "id": "andreini_alta_sorte",
+    "poem_id": "andreini_sonetto_xxi",
+    "author": "Isabella Andreini",
+    "opening_line": "ALta sorte (ma giusta) in ogni terra,"
+  },
+  {
+    "id": "alfieri_cessar_mai",
+    "poem_id": "alfieri_ix_non_cessera_mai_di_amare_la_contessa",
+    "author": "Vittorio Alfieri",
+    "opening_line": "Cessar io mai d'amarti? Ah! pria nel cielo"
+  }
+]

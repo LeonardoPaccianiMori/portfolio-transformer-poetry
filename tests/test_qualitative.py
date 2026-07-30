@@ -149,6 +149,27 @@ def test_pretraining_prose_review_context_uses_prose_quality_fields():
     assert "not as a sonnet" in report
 
 
+def test_task_format_review_context_uses_acceptance_rubric():
+    report = build_qualitative_review_report(
+        generation_dir=Path("outputs/generations/run"),
+        reviews=[
+            {
+                "prompt_id": "amor",
+                "prompt_text": "Amor",
+                "path": "outputs/amor.txt",
+                "seed": 1337,
+                "generated_text": "Amor\n",
+            },
+        ],
+        review_context="task_format_sonnet",
+    )
+
+    assert "Plausibly grammatical Italian" in report
+    assert "sustained for at least seven lines" in report
+    assert "Severe repetition or generation collapse" in report
+    assert "decoder-enforced" in report
+
+
 def test_qualitative_review_rejects_unknown_context():
     with pytest.raises(ValueError, match="review_context"):
         build_qualitative_review_report(

@@ -7,7 +7,11 @@ from sonnet_evaluation.metrics import resolve_generated_path
 
 RATING_PLACEHOLDER = "TODO: low / medium / high"
 NOTES_PLACEHOLDER = "TODO"
-ReviewContext = Literal["sonnet", "pretraining_prose"]
+ReviewContext = Literal[
+    "sonnet",
+    "pretraining_prose",
+    "task_format_sonnet",
+]
 
 
 def read_generation_metadata(generation_dir: Path) -> dict[str, Any]:
@@ -133,6 +137,14 @@ def _review_fields(review_context: ReviewContext) -> tuple[str, ...]:
             "Repetition problems",
             "Memorization concern",
         )
+    if review_context == "task_format_sonnet":
+        return (
+            "Sonnet-like structure beyond the enforced line count",
+            "Plausibly grammatical Italian",
+            "Topic or argument sustained for at least seven lines",
+            "Severe repetition or generation collapse",
+            "Memorization concern",
+        )
     raise ValueError("unsupported review_context")
 
 
@@ -143,5 +155,10 @@ def _review_instruction(review_context: ReviewContext) -> str:
         return (
             "Judge the generated text as an unspecialized historical-prose parent "
             "model, not as a sonnet."
+        )
+    if review_context == "task_format_sonnet":
+        return (
+            "Use this rubric for the fixed task-format acceptance set; line count "
+            "is decoder-enforced and is not evidence of learned metre or rhyme."
         )
     raise ValueError("unsupported review_context")
