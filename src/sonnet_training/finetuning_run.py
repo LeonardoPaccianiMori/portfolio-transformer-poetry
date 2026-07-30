@@ -143,6 +143,7 @@ def load_parent_for_finetuning(
     learning_rate: float,
     restore_optimizer_state: bool,
     device: torch.device,
+    adamw_foreach: bool | None = None,
 ) -> tuple[CausalTransformerLanguageModel, torch.optim.Optimizer, dict[str, Any]]:
     """Restore the parent architecture, weights, and optionally AdamW moments."""
     if not checkpoint_path.is_file():
@@ -179,7 +180,11 @@ def load_parent_for_finetuning(
         parent_vocab_size=parent_vocab_size,
     )
 
-    optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
+    optimizer = torch.optim.AdamW(
+        model.parameters(),
+        lr=learning_rate,
+        foreach=adamw_foreach,
+    )
     if restore_optimizer_state:
         optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
         _extend_optimizer_state_for_vocabulary(

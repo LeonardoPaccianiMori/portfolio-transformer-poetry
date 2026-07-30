@@ -75,6 +75,7 @@ class SonnetControlRunConfig:
     checkpoint_interval: int = 1_000
     progress_interval: int = 100
     learning_rate: float = 3e-5
+    adamw_foreach: bool = False
     learning_rate_schedule: LearningRateSchedule = "constant"
     warmup_steps: int = 0
     min_learning_rate: float = 0.0
@@ -264,7 +265,11 @@ def initialize_control_model(
     """Build one arm while always creating fresh AdamW optimizer state."""
     if config.initialization == "random":
         model = CausalTransformerLanguageModel(**model_architecture).to(device)
-        optimizer = torch.optim.AdamW(model.parameters(), lr=config.learning_rate)
+        optimizer = torch.optim.AdamW(
+            model.parameters(),
+            lr=config.learning_rate,
+            foreach=config.adamw_foreach,
+        )
         return model, optimizer, None, None
 
     if config.initialization == "pretrained":
@@ -277,6 +282,7 @@ def initialize_control_model(
             learning_rate=config.learning_rate,
             restore_optimizer_state=False,
             device=device,
+            adamw_foreach=config.adamw_foreach,
         )
         _validate_model_architecture(model, model_architecture)
         return model, optimizer, parent_checkpoint, None
@@ -291,6 +297,7 @@ def initialize_control_model(
                 tokenizer=tokenizer,
                 learning_rate=config.learning_rate,
                 device=device,
+                adamw_foreach=config.adamw_foreach,
             )
         )
         _validate_model_architecture(model, model_architecture)
@@ -685,6 +692,8 @@ def _validate_config(config: SonnetControlRunConfig) -> None:
         raise ValueError("progress_interval must be greater than 0")
     if config.learning_rate <= 0:
         raise ValueError("learning_rate must be greater than 0")
+    if not isinstance(config.adamw_foreach, bool):
+        raise ValueError("adamw_foreach must be a boolean")
     if config.learning_rate_schedule not in {"constant", "warmup_cosine"}:
         raise ValueError("unsupported learning_rate_schedule")
     if config.warmup_steps < 0 or config.warmup_steps >= config.train_steps:

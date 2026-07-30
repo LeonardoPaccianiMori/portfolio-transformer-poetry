@@ -161,6 +161,7 @@ def test_pretrained_control_uses_parent_weights_with_fresh_adamw_state(tmp_path)
     assert loaded_parent is not None
     assert initialization_metadata is None
     assert optimizer.state == {}
+    assert optimizer.param_groups[0]["foreach"] is False
     assert torch.equal(
         model.embedding.token_embedding.weight,
         parent_checkpoint["model_state_dict"]["embedding.token_embedding.weight"],
@@ -247,6 +248,7 @@ def test_control_run_records_and_uses_gradient_accumulation(tmp_path, monkeypatc
 
     assert calls == [2, 2, 2]
     assert metadata["gradient_accumulation_steps"] == 2
+    assert metadata["adamw_foreach"] is False
     assert metadata["microbatch_tokens"] == 8
     assert metadata["tokens_per_optimizer_step"] == 16
     assert metadata["planned_train_token_exposures"] == 48
@@ -264,6 +266,18 @@ def test_control_run_rejects_non_positive_gradient_accumulation(tmp_path):
     )
 
     with pytest.raises(ValueError, match="gradient_accumulation_steps"):
+        train_sonnet_control_run(tmp_path, tmp_path / "runs" / "invalid", config)
+
+
+def test_control_run_rejects_non_boolean_adamw_foreach(tmp_path):
+    config = SonnetControlRunConfig(
+        **{
+            **tiny_control_config(tmp_path, "random").__dict__,
+            "adamw_foreach": "false",
+        }
+    )
+
+    with pytest.raises(ValueError, match="adamw_foreach"):
         train_sonnet_control_run(tmp_path, tmp_path / "runs" / "invalid", config)
 
 

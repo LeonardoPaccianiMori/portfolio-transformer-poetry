@@ -24,6 +24,7 @@ def initialize_rms_norm_conversion_from_parent(
     tokenizer: BytePairEncodingTokenizer,
     learning_rate: float,
     device: torch.device,
+    adamw_foreach: bool | None = None,
 ) -> tuple[
     CausalTransformerLanguageModel,
     torch.optim.Optimizer,
@@ -65,7 +66,11 @@ def initialize_rms_norm_conversion_from_parent(
         parent_vocab_size=parent_vocab_size,
         checkpoint_path=checkpoint_path,
     )
-    optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
+    optimizer = torch.optim.AdamW(
+        model.parameters(),
+        lr=learning_rate,
+        foreach=adamw_foreach,
+    )
 
     return model, optimizer, checkpoint, conversion_metadata
 

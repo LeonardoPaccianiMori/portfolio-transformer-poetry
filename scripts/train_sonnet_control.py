@@ -61,6 +61,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--progress-interval", type=int, default=100)
     parser.add_argument("--learning-rate", type=float, default=3e-5)
     parser.add_argument(
+        "--adamw-foreach",
+        action=argparse.BooleanOptionalAction,
+        default=False,
+    )
+    parser.add_argument(
         "--learning-rate-schedule",
         choices=["constant", "warmup_cosine"],
         default="constant",
@@ -96,6 +101,7 @@ def main() -> None:
         checkpoint_interval=args.checkpoint_interval,
         progress_interval=args.progress_interval,
         learning_rate=args.learning_rate,
+        adamw_foreach=args.adamw_foreach,
         learning_rate_schedule=args.learning_rate_schedule,
         warmup_steps=args.warmup_steps,
         min_learning_rate=args.min_learning_rate,
