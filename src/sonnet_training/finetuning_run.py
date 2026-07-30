@@ -155,7 +155,9 @@ def load_parent_for_finetuning(
         raise ValueError(f"checkpoint must contain a dictionary: {checkpoint_path}")
     _validate_parent_checkpoint(checkpoint, tokenizer)
 
-    parent_config = checkpoint["config"]
+    parent_config = checkpoint.get("model_architecture", checkpoint["config"])
+    if not isinstance(parent_config, dict):
+        raise ValueError("parent checkpoint model architecture must be a dictionary")
     parent_vocab_size = int(checkpoint["vocab_size"])
     model = CausalTransformerLanguageModel(
         vocab_size=tokenizer.vocab_size,
