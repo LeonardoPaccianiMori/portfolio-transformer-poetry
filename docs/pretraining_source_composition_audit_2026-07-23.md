@@ -80,14 +80,18 @@ Commons license family.
 
 ### PAISÀ Activation Update: 2026-07-30
 
-The later release activation audit has passed its metadata, official-release,
-and disk-capacity checks. PAISÀ is now approved for the narrowly defined,
-local-only rescue curriculum, not as part of the historical core. The corpus
-text, derived token files, document inventory, and PAISÀ-derived checkpoints
-remain uncommitted under the corpus's CC BY-NC-SA terms. The current status,
-exact release route, license record, and required next acquisition/inventory
-criteria are in [`data/metadata/paisa_attribution.md`](../data/metadata/paisa_attribution.md)
-and [`reports/paisa_release_activation_audit.json`](../reports/paisa_release_activation_audit.json).
+The later release activation audit passed its metadata, official-release, and
+disk-capacity checks. The local acquisition then parsed 387,592 document blocks
+and retained 375,388 non-empty, exact-deduplicated documents with 220,693,165
+whitespace-delimited words. Its deterministic 1% fingerprint split contains
+371,612 train and 3,776 validation documents. PAISÀ is now ready for the
+narrowly defined, local-only rescue curriculum, not as part of the historical
+core. The corpus text, derived token files, document inventory, and
+PAISÀ-derived checkpoints remain uncommitted under the corpus's CC BY-NC-SA
+terms. The current status, exact release route, license record, and aggregate
+build evidence are in [`data/metadata/paisa_attribution.md`](../data/metadata/paisa_attribution.md),
+[`reports/paisa_release_activation_audit.json`](../reports/paisa_release_activation_audit.json),
+and [`reports/paisa_modern_italian_v1_build_report.json`](../reports/paisa_modern_italian_v1_build_report.json).
 
 ## Scale Conclusion
 

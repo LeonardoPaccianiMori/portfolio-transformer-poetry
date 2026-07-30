@@ -1,0 +1,59 @@
+{
+  "corpus_version": "paisa_modern_italian_v1",
+  "started_at_utc": "2026-07-30T14:09:35+00:00",
+  "finished_at_utc": "2026-07-30T14:12:31+00:00",
+  "source": {
+    "name": "PAISÀ Corpus of Italian Web Texts",
+    "release": {
+      "requested_url": "https://clarin.eurac.edu/repository/xmlui/bitstream/handle/20.500.12124/3/paisa.raw.utf8.gz?sequence=1&isAllowed=y",
+      "resolved_url": "https://clarin.eurac.edu/repository/xmlui/bitstream/handle/20.500.12124/3/paisa.raw.utf8.gz?sequence=1&isAllowed=y",
+      "content_length_bytes": 546911754,
+      "downloaded_bytes": 546911754,
+      "sha256": "6c6bee67ad491f858568793ee95831f2b0128eebe42afe4cb566c26823afb4ba",
+      "download_attempts": 0,
+      "acquisition_mode": "reused_complete_local_archive"
+    },
+    "corpus_license": "CC BY-NC-SA",
+    "source_license_families": [
+      "CC BY-SA",
+      "CC BY-NC-SA"
+    ],
+    "document_provenance_fields": [
+      "id",
+      "url"
+    ]
+  },
+  "cleaning_policy": "normalize line endings and transport whitespace only; preserve spelling, punctuation, and document-internal paragraph boundaries",
+  "deduplication_policy": "exact SHA-256 fingerprint after whitespace canonicalization",
+  "split_policy": {
+    "method": "SHA-256 fingerprint assignment",
+    "validation_fraction_target": 0.01,
+    "split_salt": "paisa_modern_italian_v1",
+    "exact_duplicate_split_leakage": "prevented by deduplication before splitting"
+  },
+  "document_counts": {
+    "parsed": 387592,
+    "retained": 375388,
+    "excluded_empty": 0,
+    "excluded_exact_duplicate": 12204,
+    "train": 371612,
+    "validation": 3776
+  },
+  "text_counts": {
+    "retained_characters": 1422136589,
+    "retained_whitespace_words": 220693165,
+    "train_characters": 1407676908,
+    "validation_characters": 14459681,
+    "train_whitespace_words": 218451712,
+    "validation_whitespace_words": 2241453,
+    "output_characters_with_document_separators": 1427767409
+  },
+  "document_separator": "<|endoftext|>",
+  "local_artifacts": {
+    "train_text_path": "data/local/pretraining/paisa/paisa_modern_italian_v1/train.txt",
+    "validation_text_path": "data/local/pretraining/paisa/paisa_modern_italian_v1/validation.txt",
+    "document_attribution_inventory_path": "data/local/pretraining/paisa/paisa_modern_italian_v1/document_attribution.jsonl"
+  },
+  "public_repository_policy": "This report contains no document text or document URLs. PAISÀ text, attribution inventory, derived token files, and derived checkpoints stay local.",
+  "temporary_raw_and_interim_deleted_after_success": true
+}

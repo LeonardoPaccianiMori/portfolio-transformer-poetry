@@ -17,6 +17,10 @@ from .paisa_probe import PAISA_DESCRIPTION_URL, PaisaMetadataProbeResult, fetch_
 
 
 PAISA_RELEASE_URL = "https://hdl.handle.net/20.500.12124/3"
+PAISA_RELEASE_ARTIFACT_URL = (
+    "https://clarin.eurac.edu/repository/xmlui/bitstream/handle/20.500.12124/3/"
+    "paisa.raw.utf8.gz?sequence=1&isAllowed=y"
+)
 ProgressCallback = Callable[[str], None]
 _DOWNLOAD_SUFFIXES = (".zip", ".tar", ".tar.gz", ".tgz", ".gz", ".xz", ".bz2")
 _DOWNLOAD_CONTENT_TYPES = (
