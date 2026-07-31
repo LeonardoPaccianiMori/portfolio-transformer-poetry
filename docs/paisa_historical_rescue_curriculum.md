@@ -73,10 +73,42 @@ codepoints without publishing PAISÀ text or document URLs.
 The completed aggregate evidence is in
 [`reports/paisa_historical_rescue_v1_tokenizer_report.json`](../reports/paisa_historical_rescue_v1_tokenizer_report.json).
 
+## Completed Encoding Gate
+
+The memory-safe encoder writes each of the four already fixed splits as a
+little-endian `uint16` binary token stream. It does not create another random
+or suffix split. The format uses two bytes per token, can be opened with
+`torch.from_file` without loading the complete corpus into RAM, and allows the
+trainer to convert only sampled training windows to `torch.long`.
+
+The completed token budget is:
+
+| Split | Documents | Characters | BPE tokens |
+| --- | ---: | ---: | ---: |
+| PAISÀ train | 371,612 | 1,407,676,908 | 563,880,445 |
+| PAISÀ validation | 3,770 | 14,427,213 | 5,777,210 |
+| Historical train | 36 | 47,559,476 | 19,187,647 |
+| Historical validation | 36 | 445,461 | 177,094 |
+
+The four streams contain 589,022,396 tokens and occupy 1,178,044,792 bytes
+(1.10 GiB). The same IDs stored as `torch.long` would require approximately
+4.39 GiB before serialization overhead. The encoder checkpoints complete
+document boundaries, truncates any uncheckpointed output before resuming, and
+publishes final files only after source consumption and document counts pass.
+
+Implementation:
+
+- `src/sonnet_corpus/paisa_historical_encoding.py`
+- `scripts/encode_paisa_historical_rescue.py`
+- `tests/test_paisa_historical_encoding.py`
+- `reports/paisa_historical_rescue_v1_encoded_report.json`
+
 ## Next Scheduled Checkpoint
 
-Implement a memory-safe streaming encoder for the four already fixed splits:
-PAISÀ train, tokenizable PAISÀ validation, historical train, and historical
-validation. It must not create another suffix or random split. Its measured
-token counts determine the final rescue model size within the already approved
-50–70M-parameter range, its update budgets, and the GPU benchmark configuration.
+Adapt pretraining batching and dataset validation to consume the memory-mapped
+`uint16` streams while converting only sampled model inputs and targets to
+`torch.long`. Then define and GPU-benchmark the final 50–70M-parameter rescue
+candidate against this measured token budget. The benchmark determines the
+largest trainable architecture, microbatch size, gradient accumulation, and
+exact update counts for the fixed maximum of three PAISÀ passes and twelve
+historical passes.
