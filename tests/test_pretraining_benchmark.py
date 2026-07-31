@@ -18,6 +18,7 @@ from sonnet_training.pretraining_benchmark import (
     paisa_historical_rescue_candidates,
     pretraining_candidates_for_set,
     quality_swiglu_pretraining_candidates,
+    resolve_required_cuda_device,
 )
 
 
@@ -387,6 +388,27 @@ def test_cuda_device_index_handles_explicit_and_implicit_cuda_devices():
 def test_cuda_device_index_rejects_cpu_device():
     with pytest.raises(ValueError, match="CUDA"):
         _cuda_device_index(torch.device("cpu"))
+
+
+def test_resolve_required_cuda_device_accepts_a_cuda_device(monkeypatch):
+    monkeypatch.setattr(
+        "sonnet_training.pretraining_benchmark.resolve_device",
+        lambda requested_device: torch.device("cuda:0"),
+    )
+
+    device = resolve_required_cuda_device("auto")
+
+    assert device == torch.device("cuda:0")
+
+
+def test_resolve_required_cuda_device_rejects_a_cpu_fallback(monkeypatch):
+    monkeypatch.setattr(
+        "sonnet_training.pretraining_benchmark.resolve_device",
+        lambda requested_device: torch.device("cpu"),
+    )
+
+    with pytest.raises(RuntimeError, match="requires CUDA"):
+        resolve_required_cuda_device("auto")
 
 
 def test_call_cuda_device_function_falls_back_to_no_argument_call(monkeypatch):

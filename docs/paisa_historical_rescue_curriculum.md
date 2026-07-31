@@ -145,3 +145,5 @@ microbatch options against the actual PAISÀ streams and writes a local JSON
 report plus the public Markdown report. Select the largest option that fits
 reliably, then calculate the fixed stage budgets for no more than three PAISÀ
 passes and twelve historical passes before the one permitted rescue run begins.
+The dedicated script rejects a CPU fallback before starting, so a published
+calibration report always represents a CUDA measurement.

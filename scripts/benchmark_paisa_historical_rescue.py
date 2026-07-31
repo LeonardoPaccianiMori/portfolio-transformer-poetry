@@ -15,6 +15,7 @@ if str(SRC) not in sys.path:
 from sonnet_training.pretraining_benchmark import PretrainingBenchmarkConfig
 from sonnet_training.pretraining_benchmark import benchmark_pretraining_candidates
 from sonnet_training.pretraining_benchmark import paisa_historical_rescue_candidates
+from sonnet_training.pretraining_benchmark import resolve_required_cuda_device
 
 
 def parse_args() -> argparse.Namespace:
@@ -30,6 +31,7 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
+    device = str(resolve_required_cuda_device(args.device))
     config = PretrainingBenchmarkConfig(
         dataset_version="paisa_historical_rescue_v1",
         train_tokens_path=Path(
@@ -61,7 +63,7 @@ def main() -> None:
         eval_batches=args.eval_batches,
         learning_rate=args.learning_rate,
         seed=args.seed,
-        device=args.device,
+        device=device,
         candidate_set_name="paisa_historical_rescue",
         normalization_type="layer_norm",
         position_encoding_type="learned_absolute",
@@ -80,12 +82,18 @@ def main() -> None:
     )
     for result in report["results"]:
         if result["status"] == "ok":
+            peak_memory_mib = result["peak_cuda_memory_mib"]
+            memory_text = (
+                "peak VRAM unavailable"
+                if peak_memory_mib is None
+                else f"{peak_memory_mib:.1f} MiB peak"
+            )
             print(
                 "rescue-benchmark | {name}: {tokens_per_second:.1f} tokens/s, "
-                "{memory:.1f} MiB peak".format(
+                "{memory}".format(
                     name=result["name"],
                     tokens_per_second=result["tokens_per_second"],
-                    memory=result["peak_cuda_memory_mib"],
+                    memory=memory_text,
                 ),
                 flush=True,
             )
@@ -94,7 +102,5 @@ def main() -> None:
                 f"rescue-benchmark | {result['name']}: error: {result['error']}",
                 flush=True,
             )
-
-
 if __name__ == "__main__":
     main()

@@ -531,6 +531,18 @@ def _validate_candidate(candidate: PretrainingModelCandidate) -> None:
         )
 
 
+def resolve_required_cuda_device(requested_device: str) -> torch.device:
+    """Resolve a CUDA device or reject a CPU fallback for GPU-only jobs."""
+
+    device = resolve_device(requested_device)
+    if device.type != "cuda":
+        raise RuntimeError(
+            "GPU benchmark requires CUDA, but PyTorch selected "
+            f"{device}. Use a CUDA-enabled PyTorch environment and retry."
+        )
+    return device
+
+
 def _report_step_progress(
     progress: Callable[[str], None] | None,
     candidate_name: str,
