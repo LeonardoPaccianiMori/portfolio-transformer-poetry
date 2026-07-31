@@ -1,6 +1,9 @@
 import torch
 
 
+_SUPPORTED_TOKEN_DTYPES = {torch.long, torch.uint16}
+
+
 def sample_next_token_batch(
     token_ids: torch.Tensor,
     batch_size: int,
@@ -10,8 +13,8 @@ def sample_next_token_batch(
     if token_ids.ndim != 1:
         raise ValueError("token_ids must be a 1D tensor")
 
-    if token_ids.dtype != torch.long:
-        raise ValueError("token_ids must have dtype torch.long")
+    if token_ids.dtype not in _SUPPORTED_TOKEN_DTYPES:
+        raise ValueError("token_ids must have dtype torch.long or torch.uint16")
 
     if batch_size <= 0:
         raise ValueError("batch_size must be greater than 0")
@@ -38,8 +41,9 @@ def sample_next_token_batch(
         for start in start_indices
     ])
 
-    if device is not None:
-        x_batch = x_batch.to(device)
-        y_batch = y_batch.to(device)
+    # Embedding lookup requires torch.long IDs. Keeping mapped streams uint16
+    # until this point avoids materializing an entire large corpus as int64.
+    x_batch = x_batch.to(device=device, dtype=torch.long)
+    y_batch = y_batch.to(device=device, dtype=torch.long)
 
     return x_batch, y_batch

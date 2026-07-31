@@ -1,4 +1,5 @@
 import json
+from array import array
 from pathlib import Path
 
 import pytest
@@ -13,6 +14,7 @@ from sonnet_training.pretraining_run import (
     checkpoint_path_for_interval,
     count_parameters,
     learning_rate_for_step,
+    load_pretraining_token_splits,
     load_pretraining_checkpoint,
     load_pretraining_checkpoint_with_best_validation,
     load_token_tensor,
@@ -99,6 +101,76 @@ def write_tiny_pretraining_artifacts(repo_root: Path) -> None:
     )
 
 
+def write_tiny_memory_mapped_pretraining_artifacts(repo_root: Path) -> None:
+    encoded_dir = repo_root / "data/local/pretraining/paisa_historical_rescue_v1/encoded"
+    tokenizer_dir = repo_root / "data/local/pretraining/paisa_historical_rescue_v1"
+    encoded_dir.mkdir(parents=True)
+    tokenizer_dir.mkdir(parents=True, exist_ok=True)
+    write_tiny_tokenizer(tokenizer_dir / "tokenizer.json")
+    token_values = [1, 2, 3, 4, 5, 6] * 40
+    for split_id in ("paisa_train", "paisa_validation"):
+        with (encoded_dir / f"{split_id}.uint16.bin").open("wb") as handle:
+            array("H", token_values).tofile(handle)
+    report_dir = repo_root / "reports"
+    report_dir.mkdir(exist_ok=True)
+    report_dir.joinpath("paisa_historical_rescue_v1_encoded_report.json").write_text(
+        json.dumps(
+            {
+                "status": "complete",
+                "split_policy": "fixed splits only",
+                "tokenizer": {
+                    "path": "data/local/pretraining/paisa_historical_rescue_v1/tokenizer.json",
+                    "vocab_size": 50,
+                    "document_separator": "<|endoftext|>",
+                    "document_separator_token_id": 0,
+                },
+                "splits": [
+                    {
+                        "split_id": "paisa_train",
+                        "status": "complete",
+                        "output_path": "data/local/pretraining/paisa_historical_rescue_v1/encoded/paisa_train.uint16.bin",
+                        "dtype": "torch.uint16",
+                        "documents": 2,
+                        "tokens": len(token_values),
+                    },
+                    {
+                        "split_id": "paisa_validation",
+                        "status": "complete",
+                        "output_path": "data/local/pretraining/paisa_historical_rescue_v1/encoded/paisa_validation.uint16.bin",
+                        "dtype": "torch.uint16",
+                        "documents": 2,
+                        "tokens": len(token_values),
+                    },
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+
+
+def tiny_memory_mapped_pretraining_config() -> PretrainingRunConfig:
+    return PretrainingRunConfig(
+        **{
+            **tiny_pretraining_config().__dict__,
+            "dataset_version": "paisa_historical_rescue_v1",
+            "train_tokens_path": (
+                "data/local/pretraining/paisa_historical_rescue_v1/encoded/"
+                "paisa_train.uint16.bin"
+            ),
+            "validation_tokens_path": (
+                "data/local/pretraining/paisa_historical_rescue_v1/encoded/"
+                "paisa_validation.uint16.bin"
+            ),
+            "tokenizer_path": (
+                "data/local/pretraining/paisa_historical_rescue_v1/tokenizer.json"
+            ),
+            "dataset_report_path": "reports/paisa_historical_rescue_v1_encoded_report.json",
+            "train_split_id": "paisa_train",
+            "validation_split_id": "paisa_validation",
+        }
+    )
+
+
 def read_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -126,6 +198,47 @@ def test_load_token_tensor_rejects_wrong_dtype(tmp_path: Path):
 
     with pytest.raises(ValueError, match="torch.long"):
         load_token_tensor(path)
+
+
+def test_pretraining_run_rejects_the_same_train_and_validation_split_id():
+    config = PretrainingRunConfig(
+        **{
+            **tiny_pretraining_config().__dict__,
+            "validation_split_id": "train",
+        }
+    )
+
+    with pytest.raises(ValueError, match="must differ"):
+        pretraining_run._validate_config(config)
+
+
+def test_memory_mapped_pretraining_artifacts_load_and_train_on_cpu(tmp_path: Path):
+    write_tiny_memory_mapped_pretraining_artifacts(tmp_path)
+    config = tiny_memory_mapped_pretraining_config()
+
+    train_tokens, validation_tokens = load_pretraining_token_splits(
+        repo_root=tmp_path,
+        config=config,
+    )
+    tokenizer = BytePairEncodingTokenizer.load(tmp_path / config.tokenizer_path)
+    provenance = validate_pretraining_dataset_artifacts(
+        repo_root=tmp_path,
+        config=config,
+        tokenizer=tokenizer,
+        train_tokens=train_tokens,
+        validation_tokens=validation_tokens,
+    )
+    result = train_pretraining_run(
+        repo_root=tmp_path,
+        output_dir=tmp_path / "runs/memory_mapped_pretraining",
+        config=config,
+    )
+
+    assert train_tokens.dtype == torch.uint16
+    assert validation_tokens.dtype == torch.uint16
+    assert provenance["stream_count"] == 2
+    assert provenance["document_count"] == 4
+    assert result["history"][-1]["step"] == config.train_steps
 
 
 def test_train_pretraining_run_writes_reproducible_artifacts(tmp_path: Path):

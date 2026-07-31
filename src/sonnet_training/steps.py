@@ -5,6 +5,9 @@ from sonnet_corpus.batching import sample_next_token_batch
 from sonnet_training.progress import TrainingProgressReporter
 
 
+_SUPPORTED_TOKEN_DTYPES = {torch.long, torch.uint16}
+
+
 def train_next_token_step(
     model: nn.Module,
     optimizer: torch.optim.Optimizer,
@@ -100,8 +103,8 @@ def sequential_next_token_window_count(
     """Return the number of complete, non-overlapping next-token windows."""
     if token_ids.ndim != 1:
         raise ValueError("token_ids must be a 1D tensor")
-    if token_ids.dtype != torch.long:
-        raise ValueError("token_ids must have dtype torch.long")
+    if token_ids.dtype not in _SUPPORTED_TOKEN_DTYPES:
+        raise ValueError("token_ids must have dtype torch.long or torch.uint16")
     if context_length <= 0:
         raise ValueError("context_length must be greater than 0")
     if len(token_ids) <= context_length:
@@ -140,7 +143,7 @@ def estimate_next_token_loss_on_sequential_windows(
             input_ids = torch.stack([
                 token_ids[start:start + context_length]
                 for start in start_indices
-            ]).to(device)
+            ]).to(device=device, dtype=torch.long)
             target_ids = torch.stack([
                 token_ids[start + 1:start + context_length + 1]
                 for start in range(
@@ -148,7 +151,7 @@ def estimate_next_token_loss_on_sequential_windows(
                     last_window * context_length,
                     context_length,
                 )
-            ]).to(device)
+            ]).to(device=device, dtype=torch.long)
             _, loss = model(input_ids, target_ids)
 
             if loss is None:

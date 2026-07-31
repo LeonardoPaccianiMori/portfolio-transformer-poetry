@@ -38,6 +38,8 @@ def parse_args() -> argparse.Namespace:
         "--dataset-report-path",
         default=PRETRAINING_DATASET_REPORT_PATH,
     )
+    parser.add_argument("--train-split-id", default="train")
+    parser.add_argument("--validation-split-id", default="validation")
     parser.add_argument(
         "--output-dir",
         type=Path,
@@ -108,6 +110,8 @@ def main() -> None:
         validation_tokens_path=args.validation_tokens_path,
         tokenizer_path=args.tokenizer_path,
         dataset_report_path=args.dataset_report_path,
+        train_split_id=args.train_split_id,
+        validation_split_id=args.validation_split_id,
         batch_size=args.batch_size,
         gradient_accumulation_steps=args.gradient_accumulation_steps,
         context_length=args.context_length,

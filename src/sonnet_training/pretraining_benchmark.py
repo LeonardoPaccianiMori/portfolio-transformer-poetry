@@ -21,7 +21,8 @@ from sonnet_training.pretraining_run import PRETRAINING_DATASET_VERSION
 from sonnet_training.pretraining_run import PRETRAINING_TOKENIZER_PATH
 from sonnet_training.pretraining_run import PRETRAINING_TRAIN_TOKENS_PATH
 from sonnet_training.pretraining_run import PRETRAINING_VALIDATION_TOKENS_PATH
-from sonnet_training.pretraining_run import count_parameters, load_token_tensor
+from sonnet_training.pretraining_run import count_parameters
+from sonnet_training.pretraining_run import load_pretraining_token_splits
 from sonnet_training.pretraining_run import validate_pretraining_dataset_artifacts
 from sonnet_training.steps import estimate_next_token_loss, train_next_token_step
 from sonnet_training.transformer_run import resolve_device
@@ -39,6 +40,7 @@ class PretrainingModelCandidate:
     feed_forward_dim: int
     batch_size: int
     feed_forward_type: FeedForwardType = "relu"
+    gradient_accumulation_steps: int = 1
 
 
 @dataclass(frozen=True)
@@ -50,6 +52,8 @@ class PretrainingBenchmarkConfig:
     validation_tokens_path: Path = Path(PRETRAINING_VALIDATION_TOKENS_PATH)
     tokenizer_path: Path = Path(PRETRAINING_TOKENIZER_PATH)
     dataset_report_path: Path = Path(PRETRAINING_DATASET_REPORT_PATH)
+    train_split_id: str = "train"
+    validation_split_id: str = "validation"
     json_report_path: Path = Path(
         "data/local/pretraining/benchmarks/"
         "pretraining_historical_italian_v2_benchmark.json"
@@ -208,6 +212,46 @@ def historical_v2_quality_swiglu_candidates() -> list[PretrainingModelCandidate]
     ]
 
 
+def paisa_historical_rescue_candidates() -> list[PretrainingModelCandidate]:
+    """Benchmark only the approved rescue architecture at three microbatches."""
+
+    return [
+        PretrainingModelCandidate(
+            name="rescue_upper_micro1",
+            embedding_dim=640,
+            num_layers=10,
+            num_heads=10,
+            head_dim=64,
+            feed_forward_dim=1707,
+            batch_size=1,
+            feed_forward_type="swiglu",
+            gradient_accumulation_steps=8,
+        ),
+        PretrainingModelCandidate(
+            name="rescue_upper_micro2",
+            embedding_dim=640,
+            num_layers=10,
+            num_heads=10,
+            head_dim=64,
+            feed_forward_dim=1707,
+            batch_size=2,
+            feed_forward_type="swiglu",
+            gradient_accumulation_steps=4,
+        ),
+        PretrainingModelCandidate(
+            name="rescue_upper_micro4",
+            embedding_dim=640,
+            num_layers=10,
+            num_heads=10,
+            head_dim=64,
+            feed_forward_dim=1707,
+            batch_size=4,
+            feed_forward_type="swiglu",
+            gradient_accumulation_steps=2,
+        ),
+    ]
+
+
 def pretraining_candidates_for_set(
     candidate_set_name: str,
 ) -> list[PretrainingModelCandidate]:
@@ -219,6 +263,8 @@ def pretraining_candidates_for_set(
         return quality_swiglu_pretraining_candidates()
     if candidate_set_name == "historical_v2_quality_swiglu":
         return historical_v2_quality_swiglu_candidates()
+    if candidate_set_name == "paisa_historical_rescue":
+        return paisa_historical_rescue_candidates()
     raise ValueError("unsupported candidate_set_name")
 
 
@@ -234,17 +280,21 @@ def benchmark_pretraining_candidates(
     _validate_config(config)
     started_at = _utc_now()
     selected_candidates = candidates or default_pretraining_candidates()
+    for candidate in selected_candidates:
+        _validate_candidate(candidate)
     device = resolve_device(config.device)
     _report_progress(progress, f"resolved device: {device}")
     _report_progress(progress, f"loading tokenizer: {config.tokenizer_path}")
     tokenizer = BytePairEncodingTokenizer.load(repo_root / config.tokenizer_path)
     _report_progress(progress, f"loading train tokens: {config.train_tokens_path}")
-    train_tokens = load_token_tensor(repo_root / config.train_tokens_path)
     _report_progress(
         progress,
         f"loading validation tokens: {config.validation_tokens_path}",
     )
-    validation_tokens = load_token_tensor(repo_root / config.validation_tokens_path)
+    train_tokens, validation_tokens = load_pretraining_token_splits(
+        repo_root=repo_root,
+        config=config,
+    )
     dataset_provenance = validate_pretraining_dataset_artifacts(
         repo_root=repo_root,
         config=config,
@@ -294,6 +344,8 @@ def benchmark_pretraining_candidates(
         "rope_theta": config.rope_theta,
         "tie_token_embeddings": config.tie_token_embeddings,
         "dataset_provenance": dataset_provenance,
+        "train_split_id": config.train_split_id,
+        "validation_split_id": config.validation_split_id,
         "train_tokens": int(train_tokens.numel()),
         "validation_tokens": int(validation_tokens.numel()),
         "results": results,
@@ -356,6 +408,7 @@ def benchmark_one_candidate(
                 batch_size=candidate.batch_size,
                 context_length=config.context_length,
                 device=device,
+                gradient_accumulation_steps=candidate.gradient_accumulation_steps,
             )
             _report_step_progress(
                 progress,
@@ -380,6 +433,7 @@ def benchmark_one_candidate(
                 batch_size=candidate.batch_size,
                 context_length=config.context_length,
                 device=device,
+                gradient_accumulation_steps=candidate.gradient_accumulation_steps,
             )
             _report_step_progress(
                 progress,
@@ -401,7 +455,10 @@ def benchmark_one_candidate(
             device=device,
         )
         tokens_processed = (
-            config.benchmark_steps * candidate.batch_size * config.context_length
+            config.benchmark_steps
+            * candidate.batch_size
+            * config.context_length
+            * candidate.gradient_accumulation_steps
         )
         return {
             "name": candidate.name,
@@ -416,6 +473,11 @@ def benchmark_one_candidate(
             "elapsed_seconds": elapsed_seconds,
             "seconds_per_step": elapsed_seconds / config.benchmark_steps,
             "tokens_per_second": tokens_processed / elapsed_seconds,
+            "tokens_per_optimizer_step": (
+                candidate.batch_size
+                * config.context_length
+                * candidate.gradient_accumulation_steps
+            ),
             "peak_cuda_memory_mib": _peak_cuda_memory_mib(device),
         }
     except RuntimeError as exc:
@@ -434,6 +496,7 @@ def benchmark_one_candidate(
             "elapsed_seconds": None,
             "seconds_per_step": None,
             "tokens_per_second": None,
+            "tokens_per_optimizer_step": None,
             "peak_cuda_memory_mib": _peak_cuda_memory_mib(device),
         }
 
@@ -447,10 +510,25 @@ def _validate_config(config: PretrainingBenchmarkConfig) -> None:
         raise ValueError("benchmark_steps must be greater than 0")
     if config.eval_batches <= 0:
         raise ValueError("eval_batches must be greater than 0")
+    if not config.train_split_id:
+        raise ValueError("train_split_id must not be empty")
+    if not config.validation_split_id:
+        raise ValueError("validation_split_id must not be empty")
+    if config.train_split_id == config.validation_split_id:
+        raise ValueError("train_split_id and validation_split_id must differ")
     if config.normalization_type not in {"layer_norm", "rms_norm"}:
         raise ValueError("unsupported normalization_type")
     if config.position_encoding_type not in {"learned_absolute", "rope"}:
         raise ValueError("unsupported position_encoding_type")
+
+
+def _validate_candidate(candidate: PretrainingModelCandidate) -> None:
+    if candidate.batch_size <= 0:
+        raise ValueError("candidate batch_size must be greater than 0")
+    if candidate.gradient_accumulation_steps <= 0:
+        raise ValueError(
+            "candidate gradient_accumulation_steps must be greater than 0"
+        )
 
 
 def _report_step_progress(
@@ -563,28 +641,35 @@ def build_markdown_report(report: dict[str, Any]) -> str:
         f"- Candidate set: `{report.get('candidate_set_name', 'custom')}`",
         f"- Dataset version: `{report.get('dataset_provenance', {}).get('dataset_version', '')}`",
         f"- Source count: `{report.get('dataset_provenance', {}).get('source_count', '')}`",
+        f"- Stream count: `{report.get('dataset_provenance', {}).get('stream_count', '')}`",
+        f"- Document count: `{report.get('dataset_provenance', {}).get('document_count', '')}`",
+        f"- Train split: `{report.get('train_split_id', '')}`",
+        f"- Validation split: `{report.get('validation_split_id', '')}`",
         f"- Normalization: `{report.get('normalization_type', '')}`",
         f"- Position encoding: `{report.get('position_encoding_type', '')}`",
         f"- Tied token embeddings: `{report.get('tie_token_embeddings', '')}`",
         "",
         "## Results",
         "",
-        "| Candidate | Status | Params | Batch | Seconds/Step | "
-        "Tokens/Sec | Peak CUDA MiB | Train Loss | Validation Loss |",
-        "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+        "| Candidate | Status | Params | Microbatch | Accumulation | Tokens/Update | "
+        "Seconds/Update | Tokens/Sec | Peak CUDA MiB | Train Loss | Validation Loss |",
+        "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
     ]
 
     for result in report["results"]:
         candidate = result["candidate"]
         lines.append(
             (
-                "| {name} | {status} | {params} | {batch} | {seconds} | "
-                "{tokens} | {memory} | {train_loss} | {validation_loss} |"
+                "| {name} | {status} | {params} | {batch} | {accumulation} | "
+                "{tokens_per_update} | {seconds} | {tokens} | {memory} | "
+                "{train_loss} | {validation_loss} |"
             ).format(
                 name=result["name"],
                 status=result["status"],
                 params=_format_int(result["parameter_count"]),
                 batch=candidate["batch_size"],
+                accumulation=candidate.get("gradient_accumulation_steps", 1),
+                tokens_per_update=_format_int(result.get("tokens_per_optimizer_step")),
                 seconds=_format_float(result["seconds_per_step"]),
                 tokens=_format_float(result["tokens_per_second"]),
                 memory=_format_float(result["peak_cuda_memory_mib"]),

@@ -40,6 +40,21 @@ def test_sample_next_token_batch_moves_batches_to_requested_device():
     assert token_ids.device.type == "cpu"
 
 
+def test_sample_next_token_batch_converts_uint16_storage_to_long_batches():
+    token_ids = torch.arange(20, dtype=torch.long).to(torch.uint16)
+
+    x_batch, y_batch = sample_next_token_batch(
+        token_ids=token_ids,
+        batch_size=4,
+        context_length=5,
+    )
+
+    assert token_ids.dtype == torch.uint16
+    assert x_batch.dtype == torch.long
+    assert y_batch.dtype == torch.long
+    assert torch.equal(x_batch[:, 1:], y_batch[:, :-1])
+
+
 def test_sample_next_token_batch_rejects_non_1d_token_ids():
     token_ids = torch.arange(20, dtype=torch.long).reshape(4, 5)
 

@@ -43,6 +43,8 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=Path(PRETRAINING_DATASET_REPORT_PATH),
     )
+    parser.add_argument("--train-split-id", default="train")
+    parser.add_argument("--validation-split-id", default="validation")
     parser.add_argument(
         "--json-report-path",
         type=Path,
@@ -63,7 +65,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--learning-rate", type=float, default=3e-4)
     parser.add_argument(
         "--candidate-set",
-        choices=["baseline_relu", "quality_swiglu", "historical_v2_quality_swiglu"],
+        choices=[
+            "baseline_relu",
+            "quality_swiglu",
+            "historical_v2_quality_swiglu",
+            "paisa_historical_rescue",
+        ],
         default="historical_v2_quality_swiglu",
     )
     parser.add_argument("--seed", type=int, default=1337)
@@ -91,6 +98,8 @@ def main() -> None:
         validation_tokens_path=args.validation_tokens_path,
         tokenizer_path=args.tokenizer_path,
         dataset_report_path=args.dataset_report_path,
+        train_split_id=args.train_split_id,
+        validation_split_id=args.validation_split_id,
         json_report_path=args.json_report_path,
         markdown_report_path=args.markdown_report_path,
         context_length=args.context_length,

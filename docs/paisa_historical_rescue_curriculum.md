@@ -103,12 +103,45 @@ Implementation:
 - `tests/test_paisa_historical_encoding.py`
 - `reports/paisa_historical_rescue_v1_encoded_report.json`
 
+## Completed Mapped-Training Gate
+
+The shared batching and validation code now accepts either legacy
+`torch.long` tensors or the rescue corpus's mapped `torch.uint16` streams.
+For the latter, it maps the files with `torch.from_file`, checks their recorded
+paths, split IDs, counts, tokenizer vocabulary, separator ID, and complete
+token-ID range, then converts only each sampled input/target window to
+`torch.long` for embedding lookup. This keeps the 1.10 GiB encoded corpus out
+of the training process's regular tensor allocation.
+
+The fixed rescue architecture is 70,055,900 parameters: a 16,000-token
+vocabulary, width 640, 10 layers, 10 attention heads of dimension 64, SwiGLU
+dimension 1,707, LayerNorm, learned absolute positions, untied embeddings, and
+a 512-token context. The only remaining hardware calibration is the practical
+microbatch/gradient-accumulation pairing, while preserving 4,096 target tokens
+per optimizer update:
+
+| Candidate | Microbatch | Accumulation | Tokens per update |
+| --- | ---: | ---: | ---: |
+| `rescue_upper_micro1` | 1 | 8 | 4,096 |
+| `rescue_upper_micro2` | 2 | 4 | 4,096 |
+| `rescue_upper_micro4` | 4 | 2 | 4,096 |
+
+Implementation:
+
+- `src/sonnet_corpus/batching.py`
+- `src/sonnet_training/pretraining_run.py`
+- `src/sonnet_training/pretraining_benchmark.py`
+- `scripts/benchmark_paisa_historical_rescue.py`
+- `tests/test_batching.py`
+- `tests/test_training_steps.py`
+- `tests/test_pretraining_run.py`
+- `tests/test_pretraining_benchmark.py`
+
 ## Next Scheduled Checkpoint
 
-Adapt pretraining batching and dataset validation to consume the memory-mapped
-`uint16` streams while converting only sampled model inputs and targets to
-`torch.long`. Then define and GPU-benchmark the final 50–70M-parameter rescue
-candidate against this measured token budget. The benchmark determines the
-largest trainable architecture, microbatch size, gradient accumulation, and
-exact update counts for the fixed maximum of three PAISÀ passes and twelve
-historical passes.
+Run the GPU microbatch calibration using
+`scripts/benchmark_paisa_historical_rescue.py`. It measures the three fixed
+microbatch options against the actual PAISÀ streams and writes a local JSON
+report plus the public Markdown report. Select the largest option that fits
+reliably, then calculate the fixed stage budgets for no more than three PAISÀ
+passes and twelve historical passes before the one permitted rescue run begins.

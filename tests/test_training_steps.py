@@ -276,6 +276,30 @@ def test_sequential_validation_uses_all_complete_non_overlapping_windows():
     )
 
 
+def test_sequential_validation_converts_uint16_windows_to_long():
+    class DtypeRecordingModel(torch.nn.Module):
+        def __init__(self):
+            super().__init__()
+            self.input_dtypes: list[torch.dtype] = []
+
+        def forward(self, input_ids, target_ids):
+            self.input_dtypes.append(input_ids.dtype)
+            logits = torch.zeros((*input_ids.shape, 20), device=input_ids.device)
+            return logits, torch.tensor(2.0, device=input_ids.device)
+
+    model = DtypeRecordingModel()
+    loss = estimate_next_token_loss_on_sequential_windows(
+        model=model,
+        token_ids=torch.arange(17, dtype=torch.long).to(torch.uint16),
+        batch_size=2,
+        context_length=4,
+        device=torch.device("cpu"),
+    )
+
+    assert loss == 2.0
+    assert model.input_dtypes == [torch.long, torch.long]
+
+
 def test_sequential_validation_is_deterministic_when_rng_state_changes():
     token_ids = torch.arange(49, dtype=torch.long) % 10
     model = BigramLanguageModel(vocab_size=10)

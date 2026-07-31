@@ -1,4 +1,5 @@
 import json
+from array import array
 from pathlib import Path
 
 import pytest
@@ -14,6 +15,7 @@ from sonnet_training.pretraining_benchmark import (
     build_markdown_report,
     default_pretraining_candidates,
     historical_v2_quality_swiglu_candidates,
+    paisa_historical_rescue_candidates,
     pretraining_candidates_for_set,
     quality_swiglu_pretraining_candidates,
 )
@@ -60,6 +62,59 @@ def write_tiny_benchmark_artifacts(repo_root: Path) -> None:
                 "source_count": 2,
                 "split_policy": "final_token_fraction_per_source",
                 "sources": [{"source_id": "a"}, {"source_id": "b"}],
+            }
+        ),
+        encoding="utf-8",
+    )
+
+
+def write_tiny_memory_mapped_benchmark_artifacts(repo_root: Path) -> None:
+    corpus_dir = repo_root / "data/local/pretraining/paisa_historical_rescue_v1"
+    encoded_dir = corpus_dir / "encoded"
+    encoded_dir.mkdir(parents=True)
+    text = "amor antico memoria cronica virtute novella lingua storia\n"
+    tokenizer = train_weighted_pretoken_bpe_tokenizer(
+        training_text=text,
+        base_text=text,
+        vocab_size=50,
+        special_tokens=["<|endoftext|>"],
+    )
+    tokenizer.save(corpus_dir / "tokenizer.json")
+    token_values = [1, 2, 3, 4, 5, 6] * 40
+    for split_id in ("paisa_train", "paisa_validation"):
+        with (encoded_dir / f"{split_id}.uint16.bin").open("wb") as handle:
+            array("H", token_values).tofile(handle)
+    report_dir = repo_root / "reports"
+    report_dir.mkdir()
+    report_dir.joinpath("paisa_historical_rescue_v1_encoded_report.json").write_text(
+        json.dumps(
+            {
+                "status": "complete",
+                "split_policy": "fixed splits only",
+                "tokenizer": {
+                    "path": "data/local/pretraining/paisa_historical_rescue_v1/tokenizer.json",
+                    "vocab_size": 50,
+                    "document_separator": "<|endoftext|>",
+                    "document_separator_token_id": 0,
+                },
+                "splits": [
+                    {
+                        "split_id": "paisa_train",
+                        "status": "complete",
+                        "output_path": "data/local/pretraining/paisa_historical_rescue_v1/encoded/paisa_train.uint16.bin",
+                        "dtype": "torch.uint16",
+                        "documents": 2,
+                        "tokens": len(token_values),
+                    },
+                    {
+                        "split_id": "paisa_validation",
+                        "status": "complete",
+                        "output_path": "data/local/pretraining/paisa_historical_rescue_v1/encoded/paisa_validation.uint16.bin",
+                        "dtype": "torch.uint16",
+                        "documents": 2,
+                        "tokens": len(token_values),
+                    },
+                ],
             }
         ),
         encoding="utf-8",
@@ -132,6 +187,22 @@ def test_historical_v2_quality_candidates_cover_the_approved_size_range():
     assert pretraining_candidates_for_set("historical_v2_quality_swiglu") == candidates
 
 
+def test_rescue_candidates_keep_the_architecture_fixed_across_microbatches():
+    candidates = paisa_historical_rescue_candidates()
+
+    assert [candidate.name for candidate in candidates] == [
+        "rescue_upper_micro1",
+        "rescue_upper_micro2",
+        "rescue_upper_micro4",
+    ]
+    assert [candidate.batch_size for candidate in candidates] == [1, 2, 4]
+    assert [candidate.gradient_accumulation_steps for candidate in candidates] == [8, 4, 2]
+    assert all(candidate.embedding_dim == 640 for candidate in candidates)
+    assert all(candidate.num_layers == 10 for candidate in candidates)
+    assert all(candidate.feed_forward_dim == 1707 for candidate in candidates)
+    assert pretraining_candidates_for_set("paisa_historical_rescue") == candidates
+
+
 def test_pretraining_candidates_for_set_rejects_unknown_set():
     with pytest.raises(ValueError, match="candidate_set_name"):
         pretraining_candidates_for_set("unknown")
@@ -150,11 +221,11 @@ def test_benchmark_pretraining_candidates_writes_reports(tmp_path: Path):
             markdown_report_path=markdown_report_path,
             context_length=8,
             warmup_steps=1,
-                benchmark_steps=2,
-                eval_batches=1,
-                device="cpu",
-                candidate_set_name="baseline_relu",
-            ),
+            benchmark_steps=2,
+            eval_batches=1,
+            device="cpu",
+            candidate_set_name="baseline_relu",
+        ),
         candidates=[tiny_candidate()],
         progress=progress_messages.append,
     )
@@ -197,6 +268,25 @@ def test_benchmark_pretraining_candidates_rejects_invalid_step_count(tmp_path: P
         )
 
 
+def test_benchmark_pretraining_candidates_rejects_matching_split_ids(
+    tmp_path: Path,
+):
+    write_tiny_benchmark_artifacts(tmp_path)
+
+    with pytest.raises(ValueError, match="must differ"):
+        benchmark_pretraining_candidates(
+            repo_root=tmp_path,
+            config=PretrainingBenchmarkConfig(
+                context_length=8,
+                benchmark_steps=1,
+                device="cpu",
+                train_split_id="train",
+                validation_split_id="train",
+            ),
+            candidates=[tiny_candidate()],
+        )
+
+
 def test_benchmark_pretraining_candidates_supports_swiglu_candidate(tmp_path: Path):
     write_tiny_benchmark_artifacts(tmp_path)
 
@@ -216,6 +306,48 @@ def test_benchmark_pretraining_candidates_supports_swiglu_candidate(tmp_path: Pa
     result = report["results"][0]
     assert result["status"] == "ok"
     assert result["candidate"]["feed_forward_type"] == "swiglu"
+
+
+def test_benchmark_pretraining_candidates_supports_memory_mapped_uint16_streams(
+    tmp_path: Path,
+):
+    write_tiny_memory_mapped_benchmark_artifacts(tmp_path)
+
+    report = benchmark_pretraining_candidates(
+        repo_root=tmp_path,
+        config=PretrainingBenchmarkConfig(
+            dataset_version="paisa_historical_rescue_v1",
+            train_tokens_path=Path(
+                "data/local/pretraining/paisa_historical_rescue_v1/encoded/"
+                "paisa_train.uint16.bin"
+            ),
+            validation_tokens_path=Path(
+                "data/local/pretraining/paisa_historical_rescue_v1/encoded/"
+                "paisa_validation.uint16.bin"
+            ),
+            tokenizer_path=Path(
+                "data/local/pretraining/paisa_historical_rescue_v1/tokenizer.json"
+            ),
+            dataset_report_path=Path(
+                "reports/paisa_historical_rescue_v1_encoded_report.json"
+            ),
+            train_split_id="paisa_train",
+            validation_split_id="paisa_validation",
+            json_report_path=Path("data/local/pretraining/benchmarks/rescue.json"),
+            markdown_report_path=Path("reports/rescue_benchmark.md"),
+            context_length=8,
+            warmup_steps=1,
+            benchmark_steps=1,
+            eval_batches=1,
+            device="cpu",
+            candidate_set_name="paisa_historical_rescue",
+        ),
+        candidates=[tiny_candidate()],
+    )
+
+    assert report["results"][0]["status"] == "ok"
+    assert report["dataset_provenance"]["stream_count"] == 2
+    assert report["results"][0]["tokens_per_optimizer_step"] == 32
 
 
 def test_build_markdown_report_formats_error_rows():

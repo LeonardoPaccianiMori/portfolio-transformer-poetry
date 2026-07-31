@@ -10,6 +10,7 @@ from typing import Literal, Protocol
 import torch
 
 from sonnet_corpus.bpe import BytePairEncodingTokenizer
+from sonnet_corpus.paisa_historical_encoding import load_memory_mapped_token_ids
 from sonnet_model.normalization import NormalizationType
 from sonnet_model.positional_encoding import PositionEncodingType
 from sonnet_model.transformer import CausalTransformerLanguageModel, FeedForwardType
@@ -59,6 +60,8 @@ class PretrainingRunConfig:
     validation_tokens_path: str = PRETRAINING_VALIDATION_TOKENS_PATH
     tokenizer_path: str = PRETRAINING_TOKENIZER_PATH
     dataset_report_path: str = PRETRAINING_DATASET_REPORT_PATH
+    train_split_id: str = "train"
+    validation_split_id: str = "validation"
     batch_size: int = 8
     gradient_accumulation_steps: int = 1
     context_length: int = 512
@@ -100,6 +103,8 @@ class PretrainingDatasetArtifactConfig(Protocol):
     validation_tokens_path: str | Path
     tokenizer_path: str | Path
     dataset_report_path: str | Path
+    train_split_id: str
+    validation_split_id: str
 
 
 def train_pretraining_run(
@@ -113,8 +118,10 @@ def train_pretraining_run(
     torch.manual_seed(config.seed)
     device = resolve_device(config.device)
 
-    train_tokens = load_token_tensor(repo_root / config.train_tokens_path)
-    validation_tokens = load_token_tensor(repo_root / config.validation_tokens_path)
+    train_tokens, validation_tokens = load_pretraining_token_splits(
+        repo_root=repo_root,
+        config=config,
+    )
     tokenizer = BytePairEncodingTokenizer.load(repo_root / config.tokenizer_path)
     dataset_provenance = validate_pretraining_dataset_artifacts(
         repo_root=repo_root,
@@ -545,11 +552,51 @@ def _checkpoint_best_validation_row(
     }
 
 
-def load_token_tensor(path: Path) -> torch.Tensor:
-    """Load one 1D local token tensor for language-model training."""
+def load_pretraining_token_splits(
+    *,
+    repo_root: Path,
+    config: PretrainingDatasetArtifactConfig,
+) -> tuple[torch.Tensor, torch.Tensor]:
+    """Load configured train/validation streams using their report token counts."""
+
+    report_path = repo_root / config.dataset_report_path
+    report = _read_dataset_report(report_path)
+    train_token_count = _configured_split_token_count(
+        report=report,
+        config=config,
+        role="train",
+    )
+    validation_token_count = _configured_split_token_count(
+        report=report,
+        config=config,
+        role="validation",
+    )
+    return (
+        load_token_tensor(
+            repo_root / config.train_tokens_path,
+            token_count=train_token_count,
+        ),
+        load_token_tensor(
+            repo_root / config.validation_tokens_path,
+            token_count=validation_token_count,
+        ),
+    )
+
+
+def load_token_tensor(
+    path: Path,
+    *,
+    token_count: int | None = None,
+) -> torch.Tensor:
+    """Load a legacy long tensor or map a compact uint16 token stream."""
 
     if not path.is_file():
         raise FileNotFoundError(f"token tensor file does not exist: {path}")
+
+    if path.name.endswith(".uint16.bin"):
+        if token_count is None:
+            raise ValueError("uint16 token streams require an expected token_count")
+        return load_memory_mapped_token_ids(path, token_count=token_count)
 
     tensor = torch.load(path, map_location="cpu")
     if not isinstance(tensor, torch.Tensor):
@@ -572,11 +619,17 @@ def validate_pretraining_dataset_artifacts(
     """Require loaded local tensors to match their committed dataset report."""
 
     report_path = repo_root / config.dataset_report_path
-    if not report_path.is_file():
-        raise FileNotFoundError(f"dataset report file does not exist: {report_path}")
-    report = json.loads(report_path.read_text(encoding="utf-8"))
-    if not isinstance(report, dict):
-        raise ValueError(f"dataset report must contain a JSON object: {report_path}")
+    report = _read_dataset_report(report_path)
+
+    if isinstance(report.get("splits"), list):
+        return _validate_memory_mapped_dataset_artifacts(
+            repo_root=repo_root,
+            config=config,
+            tokenizer=tokenizer,
+            report=report,
+            train_tokens=train_tokens,
+            validation_tokens=validation_tokens,
+        )
 
     _require_report_path_match(
         report=report,
@@ -627,7 +680,9 @@ def validate_pretraining_dataset_artifacts(
         actual_value=str(validation_tokens.dtype),
     )
 
-    separator_ids = tokenizer.encode(str(report.get("document_separator", "")))
+    separator_ids = tokenizer.encode(
+        str(report.get("document_separator", ""))
+    )
     if len(separator_ids) != 1:
         raise ValueError("dataset report separator must encode to exactly one token")
     _require_report_int_match(
@@ -673,6 +728,184 @@ def _require_report_path_match(
         raise ValueError(f"dataset report {field} does not match run configuration")
 
 
+def _read_dataset_report(path: Path) -> dict[str, object]:
+    if not path.is_file():
+        raise FileNotFoundError(f"dataset report file does not exist: {path}")
+    report = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(report, dict):
+        raise ValueError(f"dataset report must contain a JSON object: {path}")
+    return report
+
+
+def _configured_split_token_count(
+    *,
+    report: dict[str, object],
+    config: PretrainingDatasetArtifactConfig,
+    role: str,
+) -> int | None:
+    if not isinstance(report.get("splits"), list):
+        return _require_positive_report_int(report=report, field=f"{role}_tokens")
+    split = _report_split_for_role(report=report, config=config, role=role)
+    return _require_positive_mapping_int(mapping=split, field="tokens")
+
+
+def _validate_memory_mapped_dataset_artifacts(
+    *,
+    repo_root: Path,
+    config: PretrainingDatasetArtifactConfig,
+    tokenizer: BytePairEncodingTokenizer,
+    report: dict[str, object],
+    train_tokens: torch.Tensor,
+    validation_tokens: torch.Tensor,
+) -> dict[str, int | str]:
+    if report.get("status") != "complete":
+        raise ValueError("memory-mapped dataset report is not complete")
+    tokenizer_report = report.get("tokenizer")
+    if not isinstance(tokenizer_report, dict):
+        raise ValueError("memory-mapped dataset report is missing tokenizer metadata")
+    _require_mapping_path_match(
+        mapping=tokenizer_report,
+        field="path",
+        expected_path=config.tokenizer_path,
+        repo_root=repo_root,
+    )
+    _require_mapping_int_match(
+        mapping=tokenizer_report,
+        field="vocab_size",
+        actual_value=tokenizer.vocab_size,
+    )
+
+    train_split = _report_split_for_role(report=report, config=config, role="train")
+    validation_split = _report_split_for_role(
+        report=report,
+        config=config,
+        role="validation",
+    )
+    _validate_memory_mapped_split(
+        split=train_split,
+        expected_path=config.train_tokens_path,
+        token_ids=train_tokens,
+        tokenizer=tokenizer,
+        name="train",
+        repo_root=repo_root,
+    )
+    _validate_memory_mapped_split(
+        split=validation_split,
+        expected_path=config.validation_tokens_path,
+        token_ids=validation_tokens,
+        tokenizer=tokenizer,
+        name="validation",
+        repo_root=repo_root,
+    )
+    separator_ids = tokenizer.encode(
+        str(tokenizer_report.get("document_separator", ""))
+    )
+    if len(separator_ids) != 1:
+        raise ValueError("dataset report separator must encode to exactly one token")
+    _require_mapping_int_match(
+        mapping=tokenizer_report,
+        field="document_separator_token_id",
+        actual_value=separator_ids[0],
+    )
+    return {
+        "dataset_version": config.dataset_version,
+        "dataset_report_path": str(config.dataset_report_path),
+        "stream_count": 2,
+        "document_count": (
+            _require_positive_mapping_int(mapping=train_split, field="documents")
+            + _require_positive_mapping_int(
+                mapping=validation_split,
+                field="documents",
+            )
+        ),
+        "split_policy": str(report.get("split_policy", "")),
+        "vocab_size": tokenizer.vocab_size,
+        "train_tokens": int(train_tokens.numel()),
+        "validation_tokens": int(validation_tokens.numel()),
+    }
+
+
+def _report_split_for_role(
+    *,
+    report: dict[str, object],
+    config: PretrainingDatasetArtifactConfig,
+    role: str,
+) -> dict[str, object]:
+    split_id = getattr(config, f"{role}_split_id", role)
+    splits = report.get("splits")
+    if not isinstance(splits, list):
+        raise ValueError("memory-mapped dataset report is missing splits")
+    for split in splits:
+        if isinstance(split, dict) and split.get("split_id") == split_id:
+            return split
+    raise ValueError(
+        f"dataset report does not contain configured {role} split: {split_id}"
+    )
+
+
+def _validate_memory_mapped_split(
+    *,
+    split: dict[str, object],
+    expected_path: str | Path,
+    token_ids: torch.Tensor,
+    tokenizer: BytePairEncodingTokenizer,
+    name: str,
+    repo_root: Path,
+) -> None:
+    if split.get("status") != "complete":
+        raise ValueError(f"{name} split is not complete")
+    _require_mapping_path_match(
+        mapping=split,
+        field="output_path",
+        expected_path=expected_path,
+        repo_root=repo_root,
+    )
+    _require_mapping_int_match(
+        mapping=split,
+        field="tokens",
+        actual_value=int(token_ids.numel()),
+    )
+    if split.get("dtype") != "torch.uint16" or token_ids.dtype != torch.uint16:
+        raise ValueError(f"{name} split must use dtype torch.uint16")
+    _validate_token_id_range(token_ids, vocab_size=tokenizer.vocab_size, name=name)
+
+
+def _require_mapping_path_match(
+    *,
+    mapping: dict[str, object],
+    field: str,
+    expected_path: str | Path,
+    repo_root: Path,
+) -> None:
+    value = mapping.get(field)
+    if not isinstance(value, str):
+        raise ValueError(f"dataset report is missing string field: {field}")
+    reported_path = (repo_root / value).resolve()
+    configured_path = (repo_root / expected_path).resolve()
+    if reported_path != configured_path:
+        raise ValueError(f"dataset report {field} does not match run configuration")
+
+
+def _require_mapping_int_match(
+    *,
+    mapping: dict[str, object],
+    field: str,
+    actual_value: int,
+) -> None:
+    value = mapping.get(field)
+    if not isinstance(value, int):
+        raise ValueError(f"dataset report is missing integer field: {field}")
+    if value != actual_value:
+        raise ValueError(f"dataset report {field} does not match loaded artifact")
+
+
+def _require_positive_mapping_int(*, mapping: dict[str, object], field: str) -> int:
+    value = mapping.get(field)
+    if not isinstance(value, int) or value <= 0:
+        raise ValueError(f"dataset report must contain a positive integer: {field}")
+    return value
+
+
 def _require_report_int_match(
     *,
     report: dict[str, object],
@@ -712,13 +945,29 @@ def _validate_token_id_range(
 ) -> None:
     if token_ids.numel() == 0:
         raise ValueError(f"{name} token tensor must not be empty")
-    minimum = int(token_ids.min())
-    maximum = int(token_ids.max())
+    if token_ids.dtype == torch.uint16:
+        # PyTorch does not implement reductions directly for CPU uint16 tensors.
+        # Convert bounded chunks instead of materializing a full int64 corpus.
+        minimum, maximum = _uint16_token_id_range(token_ids)
+    else:
+        minimum = int(token_ids.min())
+        maximum = int(token_ids.max())
     if minimum < 0 or maximum >= vocab_size:
         raise ValueError(
             f"{name} token IDs must be in [0, {vocab_size - 1}], "
             f"found [{minimum}, {maximum}]"
         )
+
+
+def _uint16_token_id_range(token_ids: torch.Tensor) -> tuple[int, int]:
+    chunk_size = 1_048_576
+    minimum = 65_535
+    maximum = 0
+    for start in range(0, token_ids.numel(), chunk_size):
+        chunk = token_ids[start : start + chunk_size].to(dtype=torch.long)
+        minimum = min(minimum, int(chunk.min()))
+        maximum = max(maximum, int(chunk.max()))
+    return minimum, maximum
 
 
 def count_parameters(model: torch.nn.Module) -> int:
@@ -769,6 +1018,12 @@ def _validate_config(config: PretrainingRunConfig) -> None:
         raise ValueError("context_length must be greater than 0")
     if config.batch_size <= 0:
         raise ValueError("batch_size must be greater than 0")
+    if not config.train_split_id:
+        raise ValueError("train_split_id must not be empty")
+    if not config.validation_split_id:
+        raise ValueError("validation_split_id must not be empty")
+    if config.train_split_id == config.validation_split_id:
+        raise ValueError("train_split_id and validation_split_id must differ")
     if config.max_new_tokens < 0:
         raise ValueError("max_new_tokens must be greater than or equal to 0")
     if config.train_steps <= 0:
