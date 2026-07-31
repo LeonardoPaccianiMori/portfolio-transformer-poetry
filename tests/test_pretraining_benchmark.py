@@ -349,6 +349,9 @@ def test_benchmark_pretraining_candidates_supports_memory_mapped_uint16_streams(
     assert report["results"][0]["status"] == "ok"
     assert report["dataset_provenance"]["stream_count"] == 2
     assert report["results"][0]["tokens_per_optimizer_step"] == 32
+    markdown = (tmp_path / "reports/rescue_benchmark.md").read_text(encoding="utf-8")
+    assert "- Stream count: `2`" in markdown
+    assert "- Source count: ``" not in markdown
 
 
 def test_build_markdown_report_formats_error_rows():

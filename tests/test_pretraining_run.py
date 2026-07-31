@@ -14,6 +14,7 @@ from sonnet_training.pretraining_run import (
     checkpoint_path_for_interval,
     count_parameters,
     learning_rate_for_step,
+    initialize_pretraining_model_from_checkpoint,
     load_pretraining_token_splits,
     load_pretraining_checkpoint,
     load_pretraining_checkpoint_with_best_validation,
@@ -198,6 +199,80 @@ def test_load_token_tensor_rejects_wrong_dtype(tmp_path: Path):
 
     with pytest.raises(ValueError, match="torch.long"):
         load_token_tensor(path)
+
+
+def test_warmup_stable_cosine_schedule_has_the_expected_three_regions():
+    config = PretrainingRunConfig(
+        **{
+            **tiny_pretraining_config().__dict__,
+            "train_steps": 10,
+            "learning_rate": 1e-3,
+            "learning_rate_schedule": "warmup_stable_cosine",
+            "warmup_steps": 2,
+            "stable_steps": 8,
+            "min_learning_rate": 1e-4,
+        }
+    )
+
+    assert learning_rate_for_step(config, 1) == 5e-4
+    assert learning_rate_for_step(config, 2) == 1e-3
+    assert learning_rate_for_step(config, 3) == 1e-3
+    assert learning_rate_for_step(config, 8) == 1e-3
+    assert learning_rate_for_step(config, 10) == 1e-4
+
+
+def test_initialization_checkpoint_loads_model_weights_without_optimizer_state(
+    tmp_path: Path,
+):
+    write_tiny_pretraining_artifacts(tmp_path)
+    config = tiny_pretraining_config()
+    tokenizer = BytePairEncodingTokenizer.load(tmp_path / config.tokenizer_path)
+    source_model = CausalTransformerLanguageModel(
+        vocab_size=tokenizer.vocab_size,
+        embedding_dim=config.embedding_dim,
+        num_layers=config.num_layers,
+        num_heads=config.num_heads,
+        head_dim=config.head_dim,
+        feed_forward_dim=config.feed_forward_dim,
+        max_context_length=config.max_context_length,
+    )
+    checkpoint_path = tmp_path / "best_validation.pt"
+    torch.save(
+        {
+            "step": 7,
+            "model_state_dict": source_model.state_dict(),
+            "optimizer_state_dict": None,
+            "config": {"dataset_version": "parent_dataset"},
+            "vocab_size": tokenizer.vocab_size,
+            "parameter_count": count_parameters(source_model),
+        },
+        checkpoint_path,
+    )
+    target_model = CausalTransformerLanguageModel(
+        vocab_size=tokenizer.vocab_size,
+        embedding_dim=config.embedding_dim,
+        num_layers=config.num_layers,
+        num_heads=config.num_heads,
+        head_dim=config.head_dim,
+        feed_forward_dim=config.feed_forward_dim,
+        max_context_length=config.max_context_length,
+    )
+
+    metadata = initialize_pretraining_model_from_checkpoint(
+        checkpoint_path=checkpoint_path,
+        model=target_model,
+        tokenizer=tokenizer,
+    )
+
+    assert metadata["source_step"] == 7
+    assert metadata["source_dataset_version"] == "parent_dataset"
+    assert metadata["optimizer_state_reused"] is False
+    for source_parameter, target_parameter in zip(
+        source_model.parameters(),
+        target_model.parameters(),
+        strict=True,
+    ):
+        assert torch.equal(source_parameter, target_parameter)
 
 
 def test_pretraining_run_rejects_the_same_train_and_validation_split_id():

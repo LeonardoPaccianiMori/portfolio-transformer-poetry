@@ -137,13 +137,43 @@ Implementation:
 - `tests/test_pretraining_run.py`
 - `tests/test_pretraining_benchmark.py`
 
+## Completed Hardware And Training-Plan Gate
+
+The GPU benchmark completed on `cuda:0`. All three candidates fit, and
+`rescue_upper_micro4` is selected because it has both the largest tested
+microbatch and the highest measured throughput: 7,924.4 tokens/second with
+3,092.3 MiB peak CUDA memory. Its microbatch size is four and it accumulates
+two microbatches per optimizer update.
+
+The resulting fixed training plan is:
+
+| Stage | Pass cap | Updates | Peak LR | Schedule | Validation |
+| --- | ---: | ---: | ---: | --- | --- |
+| Modern Italian pretraining | 3 | 412,998 | 3e-4 | 1,000 warmup, 80% stable, cosine to 3e-5 | 20 random batches every 2,000 updates |
+| Historical Italian annealing | 12 | 56,213 | 1e-4 | 500 warmup, 80% stable, cosine to 1e-5 | all sequential windows every 500 updates |
+
+The historical stage initializes from the exact PAISÀ best-validation weights
+and starts a fresh AdamW optimizer. This intentionally transfers language-model
+weights while discarding PAISÀ-specific optimizer moments. Both stages use
+atomic resumable checkpoints and preserve their exact best-validation model.
+
+The public evidence is in
+[`reports/paisa_historical_rescue_v1_hardware_benchmark.md`](../reports/paisa_historical_rescue_v1_hardware_benchmark.md),
+[`reports/paisa_historical_rescue_v1_training_plan.md`](../reports/paisa_historical_rescue_v1_training_plan.md),
+and [`reports/paisa_historical_rescue_v1_training_plan.json`](../reports/paisa_historical_rescue_v1_training_plan.json).
+
+Implementation:
+
+- `src/sonnet_training/paisa_historical_rescue.py`
+- `src/sonnet_training/learning_rate.py`
+- `scripts/train_paisa_historical_rescue.py`
+- `scripts/write_paisa_historical_rescue_training_plan.py`
+- `tests/test_paisa_historical_rescue.py`
+
 ## Next Scheduled Checkpoint
 
-Run the GPU microbatch calibration using
-`scripts/benchmark_paisa_historical_rescue.py`. It measures the three fixed
-microbatch options against the actual PAISÀ streams and writes a local JSON
-report plus the public Markdown report. Select the largest option that fits
-reliably, then calculate the fixed stage budgets for no more than three PAISÀ
-passes and twelve historical passes before the one permitted rescue run begins.
-The dedicated script rejects a CPU fallback before starting, so a published
-calibration report always represents a CUDA measurement.
+Run the fixed PAISÀ modern-Italian stage on CUDA. It must complete or resume to
+its 412,998-update cap, then its recorded best-validation checkpoint becomes the
+only permitted parent for the fixed historical annealing stage. No architecture,
+tokenizer, data-mixture, or hyperparameter branch is authorized between the two
+stages.

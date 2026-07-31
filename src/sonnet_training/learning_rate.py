@@ -8,7 +8,11 @@ from typing import Literal, Protocol
 import torch
 
 
-LearningRateSchedule = Literal["constant", "warmup_cosine"]
+LearningRateSchedule = Literal[
+    "constant",
+    "warmup_cosine",
+    "warmup_stable_cosine",
+]
 
 
 class LearningRateScheduleConfig(Protocol):
@@ -18,6 +22,7 @@ class LearningRateScheduleConfig(Protocol):
     learning_rate: float
     learning_rate_schedule: LearningRateSchedule
     warmup_steps: int
+    stable_steps: int
     min_learning_rate: float
 
 
@@ -35,6 +40,19 @@ def learning_rate_for_step(config: LearningRateScheduleConfig, step: int) -> flo
 
         decay_steps = config.train_steps - config.warmup_steps
         decay_progress = (step - config.warmup_steps) / decay_steps
+        cosine_factor = 0.5 * (1.0 + math.cos(math.pi * decay_progress))
+        return config.min_learning_rate + cosine_factor * (
+            config.learning_rate - config.min_learning_rate
+        )
+
+    if config.learning_rate_schedule == "warmup_stable_cosine":
+        if config.warmup_steps and step <= config.warmup_steps:
+            return config.learning_rate * step / config.warmup_steps
+        if step <= config.stable_steps:
+            return config.learning_rate
+
+        decay_steps = config.train_steps - config.stable_steps
+        decay_progress = (step - config.stable_steps) / decay_steps
         cosine_factor = 0.5 * (1.0 + math.cos(math.pi * decay_progress))
         return config.min_learning_rate + cosine_factor * (
             config.learning_rate - config.min_learning_rate

@@ -38,6 +38,7 @@ def parse_args() -> argparse.Namespace:
         "--dataset-report-path",
         default=PRETRAINING_DATASET_REPORT_PATH,
     )
+    parser.add_argument("--run-label", default="pretraining")
     parser.add_argument("--train-split-id", default="train")
     parser.add_argument("--validation-split-id", default="validation")
     parser.add_argument(
@@ -59,10 +60,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--learning-rate", type=float, default=3e-4)
     parser.add_argument(
         "--learning-rate-schedule",
-        choices=["constant", "warmup_cosine"],
+        choices=["constant", "warmup_cosine", "warmup_stable_cosine"],
         default="constant",
     )
     parser.add_argument("--warmup-steps", type=int, default=0)
+    parser.add_argument("--stable-steps", type=int, default=0)
     parser.add_argument("--min-learning-rate", type=float, default=0.0)
     parser.add_argument("--seed", type=int, default=1337)
     parser.add_argument("--prompt", default="Nel ")
@@ -100,6 +102,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--progress-interval", type=int, default=100)
     parser.add_argument("--resume-from-checkpoint", default="")
+    parser.add_argument("--initialization-checkpoint-path", default="")
     return parser.parse_args()
 
 
@@ -110,6 +113,7 @@ def main() -> None:
         validation_tokens_path=args.validation_tokens_path,
         tokenizer_path=args.tokenizer_path,
         dataset_report_path=args.dataset_report_path,
+        run_label=args.run_label,
         train_split_id=args.train_split_id,
         validation_split_id=args.validation_split_id,
         batch_size=args.batch_size,
@@ -122,6 +126,7 @@ def main() -> None:
         learning_rate=args.learning_rate,
         learning_rate_schedule=args.learning_rate_schedule,
         warmup_steps=args.warmup_steps,
+        stable_steps=args.stable_steps,
         min_learning_rate=args.min_learning_rate,
         seed=args.seed,
         prompt=args.prompt,
@@ -143,6 +148,7 @@ def main() -> None:
         checkpoint_retention=args.checkpoint_retention,
         progress_interval=args.progress_interval,
         resume_from_checkpoint=args.resume_from_checkpoint,
+        initialization_checkpoint_path=args.initialization_checkpoint_path,
     )
     result = train_pretraining_run(
         repo_root=ROOT,

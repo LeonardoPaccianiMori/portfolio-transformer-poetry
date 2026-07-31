@@ -634,6 +634,9 @@ def _write_markdown(path: Path, report: dict[str, Any]) -> None:
 def build_markdown_report(report: dict[str, Any]) -> str:
     """Build the public Markdown benchmark summary."""
 
+    dataset_provenance = report.get("dataset_provenance", {})
+    if not isinstance(dataset_provenance, dict):
+        dataset_provenance = {}
     lines = [
         "# Pretraining Hardware Benchmark",
         "",
@@ -651,10 +654,7 @@ def build_markdown_report(report: dict[str, Any]) -> str:
         f"- Evaluation batches: `{report['eval_batches']}`",
         f"- Learning rate: `{report['learning_rate']}`",
         f"- Candidate set: `{report.get('candidate_set_name', 'custom')}`",
-        f"- Dataset version: `{report.get('dataset_provenance', {}).get('dataset_version', '')}`",
-        f"- Source count: `{report.get('dataset_provenance', {}).get('source_count', '')}`",
-        f"- Stream count: `{report.get('dataset_provenance', {}).get('stream_count', '')}`",
-        f"- Document count: `{report.get('dataset_provenance', {}).get('document_count', '')}`",
+        f"- Dataset version: `{dataset_provenance.get('dataset_version', '')}`",
         f"- Train split: `{report.get('train_split_id', '')}`",
         f"- Validation split: `{report.get('validation_split_id', '')}`",
         f"- Normalization: `{report.get('normalization_type', '')}`",
@@ -667,6 +667,21 @@ def build_markdown_report(report: dict[str, Any]) -> str:
         "Seconds/Update | Tokens/Sec | Peak CUDA MiB | Train Loss | Validation Loss |",
         "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
     ]
+    provenance_lines = []
+    if "source_count" in dataset_provenance:
+        provenance_lines.append(
+            f"- Source count: `{dataset_provenance['source_count']}`"
+        )
+    if "stream_count" in dataset_provenance:
+        provenance_lines.append(
+            f"- Stream count: `{dataset_provenance['stream_count']}`"
+        )
+    if "document_count" in dataset_provenance:
+        provenance_lines.append(
+            f"- Document count: `{dataset_provenance['document_count']}`"
+        )
+    results_heading_index = lines.index("## Results")
+    lines[results_heading_index - 1:results_heading_index - 1] = provenance_lines
 
     for result in report["results"]:
         candidate = result["candidate"]

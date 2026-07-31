@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from hashlib import sha256
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Literal, Protocol
@@ -60,6 +61,7 @@ class PretrainingRunConfig:
     validation_tokens_path: str = PRETRAINING_VALIDATION_TOKENS_PATH
     tokenizer_path: str = PRETRAINING_TOKENIZER_PATH
     dataset_report_path: str = PRETRAINING_DATASET_REPORT_PATH
+    run_label: str = "pretraining"
     train_split_id: str = "train"
     validation_split_id: str = "validation"
     batch_size: int = 8
@@ -72,6 +74,7 @@ class PretrainingRunConfig:
     learning_rate: float = 3e-4
     learning_rate_schedule: LearningRateSchedule = "constant"
     warmup_steps: int = 0
+    stable_steps: int = 0
     min_learning_rate: float = 0.0
     seed: int = 1337
     prompt: str = "Nel "
@@ -93,6 +96,7 @@ class PretrainingRunConfig:
     checkpoint_retention: CheckpointRetention = "all"
     progress_interval: int = 100
     resume_from_checkpoint: str = ""
+    initialization_checkpoint_path: str = ""
 
 
 class PretrainingDatasetArtifactConfig(Protocol):
@@ -152,6 +156,13 @@ def train_pretraining_run(
     )
     start_step = 0
     checkpoint_best_validation_row = None
+    initialization_metadata = None
+    if config.initialization_checkpoint_path and not config.resume_from_checkpoint:
+        initialization_metadata = initialize_pretraining_model_from_checkpoint(
+            checkpoint_path=repo_root / config.initialization_checkpoint_path,
+            model=model,
+            tokenizer=tokenizer,
+        )
     if config.resume_from_checkpoint:
         start_step, checkpoint_best_validation_row = (
             load_pretraining_checkpoint_with_best_validation(
@@ -221,6 +232,7 @@ def train_pretraining_run(
             "completed_steps": config.train_steps,
             "best_validation_step": int(best_validation_row["step"]),
             "best_validation_loss": float(best_validation_row["validation_loss"]),
+            "initialization": initialization_metadata,
         },
     )
     saved_history = merge_existing_history(
@@ -281,7 +293,7 @@ def train_pretraining_steps(
         start_step=start_step,
     )
     progress.write_start(
-        label="pretraining",
+        label=config.run_label,
         device=str(device),
         tokens_per_step=optimizer_step_token_count(config),
         gradient_accumulation_steps=config.gradient_accumulation_steps,
@@ -454,6 +466,41 @@ def load_pretraining_checkpoint(
     return step
 
 
+def initialize_pretraining_model_from_checkpoint(
+    *,
+    checkpoint_path: Path,
+    model: CausalTransformerLanguageModel,
+    tokenizer: BytePairEncodingTokenizer,
+) -> dict[str, object]:
+    """Load model weights only and return immutable parent-checkpoint metadata."""
+
+    if not checkpoint_path.is_file():
+        raise FileNotFoundError(f"checkpoint file does not exist: {checkpoint_path}")
+    checkpoint = torch.load(checkpoint_path, map_location="cpu")
+    if not isinstance(checkpoint, dict):
+        raise ValueError(f"checkpoint must contain a dictionary: {checkpoint_path}")
+    if checkpoint.get("vocab_size") != tokenizer.vocab_size:
+        raise ValueError("initialization checkpoint vocabulary size does not match")
+    model_state_dict = checkpoint.get("model_state_dict")
+    if not isinstance(model_state_dict, dict):
+        raise ValueError("initialization checkpoint is missing model_state_dict")
+
+    model.load_state_dict(model_state_dict)
+    source_config = checkpoint.get("config")
+    return {
+        "checkpoint_path": str(checkpoint_path),
+        "checkpoint_sha256": _sha256_file(checkpoint_path),
+        "source_step": int(checkpoint.get("step", 0)),
+        "source_parameter_count": int(checkpoint.get("parameter_count", 0)),
+        "source_dataset_version": (
+            source_config.get("dataset_version", "")
+            if isinstance(source_config, dict)
+            else ""
+        ),
+        "optimizer_state_reused": False,
+    }
+
+
 def load_pretraining_checkpoint_with_best_validation(
     *,
     checkpoint_path: Path,
@@ -505,6 +552,14 @@ def _read_history(log_path: Path) -> list[dict[str, float | int]]:
         for line in log_path.read_text(encoding="utf-8").splitlines()
         if line.strip()
     ]
+
+
+def _sha256_file(path: Path) -> str:
+    digest = sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1_048_576), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 def _best_validation_row(
@@ -1034,10 +1089,19 @@ def _validate_config(config: PretrainingRunConfig) -> None:
         raise ValueError("eval_batches must be greater than 0")
     if config.validation_mode not in {"random_batches", "sequential_windows"}:
         raise ValueError("unsupported validation_mode")
-    if config.learning_rate_schedule not in {"constant", "warmup_cosine"}:
+    if config.learning_rate_schedule not in {
+        "constant",
+        "warmup_cosine",
+        "warmup_stable_cosine",
+    }:
         raise ValueError("unsupported learning_rate_schedule")
     if config.warmup_steps < 0 or config.warmup_steps > config.train_steps:
         raise ValueError("warmup_steps must be between 0 and train_steps")
+    if config.learning_rate_schedule == "warmup_stable_cosine":
+        if config.stable_steps < config.warmup_steps:
+            raise ValueError("stable_steps must not be less than warmup_steps")
+        if config.stable_steps >= config.train_steps:
+            raise ValueError("stable_steps must be less than train_steps")
     if config.min_learning_rate < 0:
         raise ValueError("min_learning_rate must be greater than or equal to 0")
     if config.min_learning_rate > config.learning_rate:

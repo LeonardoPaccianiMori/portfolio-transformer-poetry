@@ -83,7 +83,8 @@ their training partitions for a fresh 16k BPE tokenizer. The local preparation
 report records 8,016,457 PAISÀ and 4,000,540 historical tokenizer-sample
 characters, with no validation text included.
 
-The next scheduled artifact is the fitted tokenizer plus separately encoded
-PAISÀ and historical training/validation tensors. Their measured token counts
-must be recorded before choosing the final rescue model size and training-update
-budgets.
+The tokenizer, separate encoded streams, GPU calibration, and fixed staged
+training plan are complete. The next scheduled action is the locally retained
+PAISÀ modern-Italian stage. Its best-validation checkpoint will remain local
+under the same CC BY-NC-SA boundary and will initialize the fixed historical
+annealing stage.
