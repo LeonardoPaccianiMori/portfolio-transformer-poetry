@@ -21,8 +21,9 @@ Setup checkpoint completed on 2026-08-03: `.venv` was created with
 installation. The pinned `transformers 4.57.1`, `peft 0.17.1`,
 `accelerate 1.10.1`, `bitsandbytes 0.48.1`, `safetensors 0.6.2`, and
 `huggingface_hub 0.34.4` packages import successfully with the Mistral and
-QLoRA classes. The actual one-batch CUDA calibration must run on the laptop,
-not in the assistant sandbox.
+QLoRA classes. `sentencepiece 0.2.2` is also required by the Minerva tokenizer
+and is pinned in the requirements file. The actual one-batch CUDA calibration
+must run on the laptop, not in the assistant sandbox.
 
 ## Authentication
 

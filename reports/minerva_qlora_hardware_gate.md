@@ -81,3 +81,26 @@ Before any model download or fine-tuning:
    512, with no corpus or recipe sweep.
 4. Record the actual peak GPU memory and select the resulting fixed QLoRA
    training configuration before starting a long run.
+
+## Calibration Result
+
+The approved local calibration completed on 2026-08-03 after the authorized
+Minerva 3B repository access and local Hugging Face authentication. It loaded
+the exact recorded revision in 4-bit NF4, attached rank-16 adapters to all seven
+recorded projection types, enabled gradient checkpointing, and completed one
+forward pass, backward pass, and `PagedAdamW8bit` adapter update at batch size
+one and context length 512.
+
+| Measurement | Result |
+| --- | ---: |
+| Peak allocated CUDA memory | 2,462.1 MiB |
+| Peak reserved CUDA memory | 2,818.0 MiB |
+| Trainable LoRA parameters | 26,214,400 |
+| Trainable fraction of reported quantized representation | 1.68% |
+| Calibration loss | 3.2253 |
+
+The calibration passed without an out-of-memory error and leaves substantial
+VRAM headroom relative to the 6,144 MiB GPU. `sentencepiece 0.2.2` was needed
+by the Minerva tokenizer and is now pinned in
+`requirements/minerva_qlora.txt`. The next checkpoint may define one fixed
+QLoRA sonnet fine-tuning recipe; it does not authorize a hyperparameter sweep.
