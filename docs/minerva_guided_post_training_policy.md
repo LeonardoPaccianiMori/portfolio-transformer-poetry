@@ -6,9 +6,10 @@ Decision approved: 2026-08-08.
 
 The corpus-only from-scratch track remains a completed experimental result. The
 project has finished and evaluated the fixed Minerva 3B QLoRA comparison. The
-judge gate is temporarily paused for the validation-only diagnostic in
-[`minerva_sanity_audit.md`](minerva_sanity_audit.md). After that diagnostic, the
-project may test whether feedback from the untouched Minerva 3B base model
+validation-only diagnostic in
+[`minerva_sanity_audit.md`](minerva_sanity_audit.md) completed without a
+qualifying QLoRA adapter strength. The judge gate is therefore current again.
+The project may test whether feedback from the untouched Minerva 3B base model
 improves the selected from-scratch model through two bounded post-training
 methods: DPO and GRPO.
 

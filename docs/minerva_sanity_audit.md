@@ -92,4 +92,17 @@ match the protocol, limiting interruption loss to the current condition.
 After GPU generation, the assistant runs
 [`../scripts/evaluate_minerva_sanity_audit.py`](../scripts/evaluate_minerva_sanity_audit.py)
 on CPU to create the automatic evidence and blinded review. DPO and GRPO judge
-development remains paused until this audit is resolved.
+development was paused until this audit was resolved.
+
+## Completed Result
+
+The audit completed on 2026-08-08. None of the selectable epoch-3 adapter
+strengths qualified: their grammatical counts were 0/8, 0/8, 0/8, and 1/8 for
+scales 0.25, 0.50, 0.75, and 1.00. Raw Base retained grammatical modern prose
+in 5/8 outputs but did not reliably perform the historical-sonnet task; the
+explicit instruction reduced that count to 3/8 and increased collapse.
+
+No additional final-test rerun is authorized. The complete result is recorded
+in
+[`../reports/minerva_3b_validation_sanity_evaluation.md`](../reports/minerva_3b_validation_sanity_evaluation.md).
+The Minerva judge-validation gate is now the current checkpoint again.

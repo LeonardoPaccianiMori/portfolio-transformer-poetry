@@ -112,9 +112,15 @@ With this run and evaluation complete, the project proceeds to the conditional
 Minerva-judge gate and the independently initialized DPO and GRPO branches
 recorded in [`minerva_guided_post_training_policy.md`](minerva_guided_post_training_policy.md).
 
-Before that judge gate, the project now runs the validation-only diagnostic in
+Before that judge gate, the project ran the validation-only diagnostic in
 [`minerva_sanity_audit.md`](minerva_sanity_audit.md). This checks whether an
 explicit Base prompt, reduced epoch-3 adapter strength, or the epoch-6
 overfitting contrast explains the unexpectedly weak scale-1.0 generations.
 The audit does not use final-test prompts for selection and does not replace the
 failed fixed-recipe result above.
+
+The diagnostic completed without a qualifying adapter strength. Lower scales
+did not recover grammaticality, so no additional final-test rerun will be made.
+See
+[`../reports/minerva_3b_validation_sanity_evaluation.md`](../reports/minerva_3b_validation_sanity_evaluation.md)
+for the blinded evidence and decision.
