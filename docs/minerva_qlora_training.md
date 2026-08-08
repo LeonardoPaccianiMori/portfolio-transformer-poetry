@@ -70,6 +70,35 @@ four or more epochs. The initial ETA printed after 25 updates is the reliable
 machine-specific estimate; it includes 4-bit computation, gradient
 checkpointing, and full validation.
 
+## Completed Run
+
+The fixed run completed on 2026-08-08 after six epochs and 1,116 optimizer
+updates. Validation loss improved through epoch three, reaching the selected
+minimum of `3.3710155857` at update 558. It then worsened for three consecutive
+epochs while training loss continued to fall, so early stopping retained
+`runs/minerva_3b_qlora_v5_001/best_adapter.pt`. That checkpoint contains the
+26,214,400 adapter parameters from epoch three; the epoch-six final adapter is
+an overfitting contrast and is excluded from generation.
+
+## Fixed Generation
+
+The next GPU command loads Minerva once and generates two independent fixed
+sets: the untouched base model with adapters disabled and the selected QLoRA
+adapter. Each set uses the ten held-out openings, seeds 1337 and 1338,
+`temperature=0.8`, `top_k=50`, a 900-token ceiling, and decoder-enforced
+13-line continuation stopping:
+
+```bash
+.venv/bin/python scripts/generate_minerva_qlora_comparison.py \
+    --device cuda:0
+```
+
+The command writes 20 base outputs and 20 QLoRA outputs under
+`outputs/generations/minerva_3b_v5_fixed_comparison/`. It reports elapsed time
+and ETA after every output. The two directories deliberately use the existing
+task-format metadata contract so the same automatic, memorization, and
+qualitative evaluation can score both systems.
+
 After selection, the same fixed ten held-out openings, two seeds, controlled
 14-line stopping, memorization checks, and qualitative rubric used for the
 from-scratch model will be adapted for the Minerva adapter.
