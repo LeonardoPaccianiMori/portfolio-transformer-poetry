@@ -82,7 +82,7 @@ an overfitting contrast and is excluded from generation.
 
 ## Fixed Generation
 
-The next GPU command loads Minerva once and generates two independent fixed
+The completed GPU command loaded Minerva once and generated two independent fixed
 sets: the untouched base model with adapters disabled and the selected QLoRA
 adapter. Each set uses the ten held-out openings, seeds 1337 and 1338,
 `temperature=0.8`, `top_k=50`, a 900-token ceiling, and decoder-enforced
@@ -99,11 +99,15 @@ and ETA after every output. The two directories deliberately use the existing
 task-format metadata contract so the same automatic, memorization, and
 qualitative evaluation can score both systems.
 
-After selection, the same fixed ten held-out openings, two seeds, controlled
-14-line stopping, memorization checks, and qualitative rubric used for the
-from-scratch model will be adapted for the Minerva adapter.
+The completed comparison is recorded in
+[`../reports/minerva_3b_base_vs_qlora_evaluation.md`](../reports/minerva_3b_base_vs_qlora_evaluation.md).
+Untouched Base fails the controlled form gate at 15/20. QLoRA reaches 20/20
+controlled forms and 13/20 seven-line topic continuations with no high-risk V5
+training overlap, but only 2/20 outputs remain generally grammatical and 7/20
+show severe collapse. QLoRA is a substantial improvement and the project's
+strongest generator so far, but it fails the predeclared acceptable-quality
+threshold.
 
-Only after this run and evaluation are complete does the project proceed to
-the conditional Minerva-judge gate and the independently initialized DPO and
-GRPO branches recorded in
-[`minerva_guided_post_training_policy.md`](minerva_guided_post_training_policy.md).
+With this run and evaluation complete, the project proceeds to the conditional
+Minerva-judge gate and the independently initialized DPO and GRPO branches
+recorded in [`minerva_guided_post_training_policy.md`](minerva_guided_post_training_policy.md).
