@@ -1,3 +1,4 @@
+from collections import UserDict
 from dataclasses import replace
 
 import pytest
@@ -23,6 +24,11 @@ class CharacterTokenizer:
     def __call__(self, text, *, add_special_tokens):
         assert add_special_tokens is False
         return {"input_ids": [ord(character) for character in text]}
+
+
+class MappingCharacterTokenizer(CharacterTokenizer):
+    def __call__(self, text, *, add_special_tokens):
+        return UserDict(super().__call__(text, add_special_tokens=add_special_tokens))
 
 
 def _example(*, poem_id="example", opening="Prima riga", continuation="Seconda\nTerza"):
@@ -53,6 +59,16 @@ def test_minerva_tokenization_masks_the_full_prompt_and_keeps_continuation():
     assert tokenized.labels[:prompt_length] == (IGNORE_INDEX,) * prompt_length
     assert tokenized.labels[prompt_length] == ord("S")
     assert tokenized.continuation_target_start == prompt_length
+
+
+def test_minerva_tokenization_accepts_huggingface_style_mapping_output():
+    tokenized = tokenize_minerva_continuation_example(
+        example=_example(),
+        tokenizer=MappingCharacterTokenizer(),
+        context_length=512,
+    )
+
+    assert tokenized.input_ids[-1] == 0
 
 
 def test_minerva_collation_right_pads_and_preserves_masked_labels():
