@@ -1,4 +1,5 @@
 import json
+from collections.abc import Mapping
 from pathlib import Path
 
 import torch
@@ -20,6 +21,27 @@ class FakeTokenizer:
 
     def __call__(self, text, **kwargs):
         return {"input_ids": [3 + ord(character) % 100 for character in text]}
+
+
+class FakeBatchEncoding(Mapping):
+    def __init__(self, input_ids):
+        self.input_ids = input_ids
+
+    def __getitem__(self, key):
+        if key != "input_ids":
+            raise KeyError(key)
+        return self.input_ids
+
+    def __iter__(self):
+        return iter(("input_ids",))
+
+    def __len__(self):
+        return 1
+
+
+class FakeBatchEncodingTokenizer(FakeTokenizer):
+    def __call__(self, text, **kwargs):
+        return FakeBatchEncoding([3 + ord(character) % 100 for character in text])
 
 
 def test_select_even_windows_covers_stream_endpoints():
@@ -92,3 +114,30 @@ def test_prepare_staged_data_preserves_source_splits_and_writes_int32(tmp_path):
     assert train.tolist().count(2) == 2
     assert validation.tolist().count(2) == 2
     assert preservation.shape == (2, 513)
+
+
+def test_prepare_staged_data_accepts_hugging_face_style_mapping(tmp_path):
+    source = tmp_path / "source.txt"
+    source.write_text("historical text " * 60)
+    mixture = tmp_path / "mixture.json"
+    mixture.write_text(json.dumps({
+        "sources": [{"source_id": "source", "source_path": str(source)}]
+    }))
+    replay = tmp_path / "replay.txt"
+    replay.write_text("modern replay " * 60)
+    preservation = tmp_path / "preservation.txt"
+    preservation.write_text("modern validation " * 120)
+
+    report = prepare_minerva_7b_staged_data(
+        repo_root=tmp_path,
+        config=Minerva7BStagedDataConfig(
+            mixture_report_path=str(mixture),
+            replay_text_path=str(replay),
+            preservation_text_path=str(preservation),
+            output_dir=str(tmp_path / "encoded"),
+            preservation_window_count=2,
+        ),
+        tokenizer=FakeBatchEncodingTokenizer(),
+    )
+
+    assert report["source_count"] == 1

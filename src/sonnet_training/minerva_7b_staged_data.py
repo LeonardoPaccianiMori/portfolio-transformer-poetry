@@ -5,7 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
-from collections.abc import Callable, Sequence
+from collections.abc import Callable, Mapping, Sequence
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
@@ -290,7 +290,7 @@ def _token_ids(tokenizer: Any, text: str) -> list[int]:
         add_special_tokens=False,
         return_attention_mask=False,
     )
-    token_ids = encoded.get("input_ids") if isinstance(encoded, dict) else None
+    token_ids = encoded.get("input_ids") if isinstance(encoded, Mapping) else None
     if not isinstance(token_ids, list) or any(not isinstance(item, int) for item in token_ids):
         raise ValueError("Minerva tokenizer must return a list of input_ids")
     return token_ids
