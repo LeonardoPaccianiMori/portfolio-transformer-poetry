@@ -231,6 +231,12 @@ replay plus modern-language and instruction-following preservation checks
 because raw-text adaptation of an instruct model can weaken abilities already
 present in the parent.
 
+The exact Stage A calibration passed on the remote Quadro RTX 8000 at 1,145.2
+tokens per second, with 14,786.0 MiB peak reserved memory and 33,405.4 MiB free
+after a standard AdamW update. The planned 6,762-update command is estimated at
+7–9 hours including validation and checkpoint overhead. Evidence is in
+`reports/minerva_7b_historical_fp16_lora_calibration.md`.
+
 ## Isolation And Exit Rules
 
 - Use only training and validation records for repair design and checkpoint

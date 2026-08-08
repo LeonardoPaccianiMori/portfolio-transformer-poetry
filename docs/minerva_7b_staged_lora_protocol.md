@@ -82,12 +82,18 @@ not an open modeling decision.
 
 ## Runtime And Interruption Policy
 
-The exact Stage A throughput estimate comes from a short twelve-update
-calibration on the rented 48 GiB Quadro RTX 8000. The long command is run by the
-user directly in the VM terminal. It writes `resume.pt` every 100 updates, so an
-interruption loses at most the work since the most recent resume checkpoint.
-The resume command must use the same output directory and explicitly name that
-checkpoint.
+The exact twelve-update calibration passed on the rented 48 GiB Quadro RTX
+8000. It measured 1,145.2 tokens per second, 14,786.0 MiB peak reserved memory,
+and 33,405.4 MiB free after the standard AdamW update. Its update-only estimate
+for all 6,762 planned updates is 6 hours 43 minutes; the complete command is
+expected to take roughly 7–9 hours after validation and checkpoint overhead.
+The retained report is
+`reports/minerva_7b_historical_fp16_lora_calibration.md`.
+
+The long command is run by the user directly in the VM terminal. It writes
+`resume.pt` every 100 updates, so an interruption loses at most the work since
+the most recent resume checkpoint. The resume command must use the same output
+directory and explicitly name that checkpoint.
 
 All selected adapters, interval candidates, configuration, logs, data hashes,
 baseline measurements, and final result files must be copied off the temporary
