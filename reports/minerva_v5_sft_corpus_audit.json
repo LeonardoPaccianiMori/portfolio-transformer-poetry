@@ -1,0 +1,267 @@
+{
+  "audit_version": "minerva_v5_sft_corpus_audit_v1",
+  "dataset": "expanded_with_petrarch",
+  "manifest_path": "data/metadata/sonnets_expanded_v5_manifest.csv",
+  "manifest_sha256": "d71abe5bbc048392b7579702124f25bd6dedb400a47a0c171e3f4e6e0aae6275",
+  "selected_poem_count": 1875,
+  "split_poem_counts": {
+    "train": 1486,
+    "validation": 191,
+    "test": 198
+  },
+  "period_counts": {
+    "XVI secolo": 701,
+    "XIII secolo": 491,
+    "XIV secolo": 430,
+    "XVII secolo": 196,
+    "XVIII secolo": 45,
+    "XIX secolo": 12
+  },
+  "author_counts": {
+    "Vittoria Colonna": 336,
+    "Francesco Petrarca": 313,
+    "Gaspara Stampa": 282,
+    "Guittone d'Arezzo": 210,
+    "Isabella Andreini": 196,
+    "Cecco Angiolieri": 123,
+    "Dante Alighieri": 84,
+    "Cino da Pistoia": 81,
+    "Guido Cavalcanti": 45,
+    "Vittorio Alfieri": 45,
+    "Folgore da San Gimignano": 36,
+    "Benedetto Varchi": 33,
+    "Ludovico Ariosto": 29,
+    "Giacomo da Lentini": 24,
+    "Jacopo Sannazaro": 21,
+    "Ugo Foscolo": 12,
+    "Abate di Tivoli": 3,
+    "Iacopo Mostacci": 1,
+    "Pier della Vigna": 1
+  },
+  "source_archive_counts": {
+    "Italian Wikisource": 1875
+  },
+  "source_collection_counts": {
+    "Rime (Vittoria Colonna)": 336,
+    "Canzoniere (Rerum vulgarium fragmenta)": 313,
+    "Rime (Stampa)": 282,
+    "Rime (Guittone d'Arezzo)": 210,
+    "Rime (Andreini)": 196,
+    "Rime (Angiolieri)": 123,
+    "Rime (Dante)": 84,
+    "Rime (Cino da Pistoia)": 81,
+    "Rime (Cavalcanti)": 45,
+    "Rime varie (Alfieri, 1912)": 45,
+    "Folgore da San Gimignano sonnet cycles": 36,
+    "Sonetti per la infermità, e guarigione di Cosimo I dei Medici": 33,
+    "Opere minori (Ariosto)/Rime varie": 29,
+    "Poesie (Giacomo da Lentini)": 29,
+    "Rime disperse": 21,
+    "Sonetti (Foscolo)": 12
+  },
+  "train_author_concentration": [
+    {
+      "name": "Vittoria Colonna",
+      "count": 268,
+      "share": 0.180349932705249
+    },
+    {
+      "name": "Francesco Petrarca",
+      "count": 253,
+      "share": 0.1702557200538358
+    },
+    {
+      "name": "Gaspara Stampa",
+      "count": 217,
+      "share": 0.14602960969044415
+    },
+    {
+      "name": "Guittone d'Arezzo",
+      "count": 164,
+      "share": 0.11036339165545088
+    },
+    {
+      "name": "Isabella Andreini",
+      "count": 151,
+      "share": 0.1016150740242261
+    },
+    {
+      "name": "Cecco Angiolieri",
+      "count": 102,
+      "share": 0.06864064602960969
+    },
+    {
+      "name": "Dante Alighieri",
+      "count": 66,
+      "share": 0.04441453566621804
+    },
+    {
+      "name": "Cino da Pistoia",
+      "count": 65,
+      "share": 0.04374158815612382
+    },
+    {
+      "name": "Guido Cavalcanti",
+      "count": 36,
+      "share": 0.024226110363391656
+    },
+    {
+      "name": "Vittorio Alfieri",
+      "count": 36,
+      "share": 0.024226110363391656
+    }
+  ],
+  "train_source_concentration": [
+    {
+      "name": "Rime (Vittoria Colonna)",
+      "count": 268,
+      "share": 0.180349932705249
+    },
+    {
+      "name": "Canzoniere (Rerum vulgarium fragmenta)",
+      "count": 253,
+      "share": 0.1702557200538358
+    },
+    {
+      "name": "Rime (Stampa)",
+      "count": 217,
+      "share": 0.14602960969044415
+    },
+    {
+      "name": "Rime (Guittone d'Arezzo)",
+      "count": 164,
+      "share": 0.11036339165545088
+    },
+    {
+      "name": "Rime (Andreini)",
+      "count": 151,
+      "share": 0.1016150740242261
+    },
+    {
+      "name": "Rime (Angiolieri)",
+      "count": 102,
+      "share": 0.06864064602960969
+    },
+    {
+      "name": "Rime (Dante)",
+      "count": 66,
+      "share": 0.04441453566621804
+    },
+    {
+      "name": "Rime (Cino da Pistoia)",
+      "count": 65,
+      "share": 0.04374158815612382
+    },
+    {
+      "name": "Rime (Cavalcanti)",
+      "count": 36,
+      "share": 0.024226110363391656
+    },
+    {
+      "name": "Rime varie (Alfieri, 1912)",
+      "count": 36,
+      "share": 0.024226110363391656
+    }
+  ],
+  "cleaning_metadata": {
+    "editorial_brackets_removed": 1875,
+    "line_markers_removed": 1875,
+    "rows_with_cleaning_notes": 1875,
+    "rows_with_audit_notes": 990
+  },
+  "structural_issue_count": 1,
+  "structural_issues": [
+    {
+      "poem_id": "cavalcanti_la_genealogia_dei_manoscritti",
+      "author": "Guido Cavalcanti",
+      "issue_type": "short_line",
+      "detail": "contains a line under 4 characters"
+    }
+  ],
+  "suspicious_marker_counts": {},
+  "exact_normalized_duplicate_group_count": 6,
+  "cross_split_duplicate_group_count": 4,
+  "exact_normalized_duplicate_groups": [
+    {
+      "poem_ids": [
+        "cino_rime_dantecx_dante_quando_per_caso_s_abbandona",
+        "dante_cx_dante_quando_per_caso_s_abbandona"
+      ],
+      "count": 2,
+      "splits": [
+        "train",
+        "validation"
+      ],
+      "cross_split": true
+    },
+    {
+      "poem_ids": [
+        "cino_rime_dantecxii_cercando_di_trovar_minera_in_oro",
+        "dante_cxii_cercando_di_trovar_minera_in_oro"
+      ],
+      "count": 2,
+      "splits": [
+        "train",
+        "test"
+      ],
+      "cross_split": true
+    },
+    {
+      "poem_ids": [
+        "dante_xcvii_dante_i_non_so_in_qual_albergo_soni",
+        "cino_rime_dantexcvii_dante_i_non_so_in_qual_albergo_soni"
+      ],
+      "count": 2,
+      "splits": [
+        "train",
+        "validation"
+      ],
+      "cross_split": true
+    },
+    {
+      "poem_ids": [
+        "dante_xcviii_dante_i_ho_preso_l_abito_di_doglia",
+        "cino_rime_dantexcviii_dante_i_ho_preso_l_abito_di_doglia"
+      ],
+      "count": 2,
+      "splits": [
+        "train",
+        "train"
+      ],
+      "cross_split": false
+    },
+    {
+      "poem_ids": [
+        "guittone_ben_si_conosce_lo_servente_e_vede",
+        "guittone_non_per_meo_fallo_lasso_mi_convene"
+      ],
+      "count": 2,
+      "splits": [
+        "train",
+        "train"
+      ],
+      "cross_split": false
+    },
+    {
+      "poem_ids": [
+        "guittone_de_vertù_de_scienzia_il_cui_podere",
+        "guittone_tu_costante_e_sicuro_fondamento"
+      ],
+      "count": 2,
+      "splits": [
+        "train",
+        "test"
+      ],
+      "cross_split": true
+    }
+  ],
+  "line_length_characters": {
+    "minimum": 1,
+    "maximum": 53,
+    "mean": 36.91161904761905,
+    "lines_over_120": 0,
+    "lines_under_4": 2
+  },
+  "automated_structural_gate": "review_required",
+  "editorial_conclusion": "Automated checks cannot certify historical grammar; review the deterministic sample before freezing another Minerva recipe."
+}

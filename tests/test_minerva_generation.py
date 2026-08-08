@@ -126,9 +126,13 @@ def test_minerva_variant_writes_task_format_compatible_metadata(tmp_path):
         seeds=[1337],
         device="cpu",
         continuation_line_target=1,
+        model_id="example/model",
+        revision="example-revision",
     )
 
     assert metadata["generation_format"] == "task_format_opening_line_continuation"
+    assert metadata["model_id"] == "example/model"
+    assert metadata["revision"] == "example-revision"
     assert metadata["total_line_target"] == 2
     assert metadata["generated_files"][0]["source_prompt_id"] == "first"
     assert (output_dir / "first__seed_1337.txt").read_text(encoding="utf-8") == (

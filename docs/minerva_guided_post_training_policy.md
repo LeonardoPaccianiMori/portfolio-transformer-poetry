@@ -2,14 +2,21 @@
 
 Decision approved: 2026-08-08.
 
+Status update: **paused by the approved Minerva repair programme.** The judge
+gate remains mandatory before DPO or GRPO, but it is no longer the current
+checkpoint. See [`minerva_repair_policy.md`](minerva_repair_policy.md). No
+final-test isolation or branch-independence rule below is changed.
+
 ## Purpose And Order
 
 The corpus-only from-scratch track remains a completed experimental result. The
 project has finished and evaluated the fixed Minerva 3B QLoRA comparison. The
 validation-only diagnostic in
 [`minerva_sanity_audit.md`](minerva_sanity_audit.md) completed without a
-qualifying QLoRA adapter strength. The judge gate is therefore current again.
-The project may test whether feedback from the untouched Minerva 3B base model
+qualifying QLoRA adapter strength. The later repair-policy decision pauses the
+judge gate until the bounded Minerva repair comparison is resolved. After that
+comparison, the project may test whether feedback from the untouched Minerva
+3B base model
 improves the selected from-scratch model through two bounded post-training
 methods: DPO and GRPO.
 

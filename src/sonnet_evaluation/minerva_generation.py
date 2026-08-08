@@ -179,6 +179,8 @@ def generate_minerva_variant_for_prompts(
     conditioning_format: str = "opening_line_newline",
     adapter_scale: float | None = None,
     adapter_epoch: int | None = None,
+    model_id: str = MINERVA_3B_MODEL_ID,
+    revision: str = MINERVA_3B_REVISION,
     progress: Callable[[str], None] | None = None,
 ) -> dict[str, Any]:
     """Generate and persist one Minerva variant's fixed prompt/seed set."""
@@ -251,8 +253,8 @@ def generate_minerva_variant_for_prompts(
         "generation_format": MINERVA_GENERATION_FORMAT,
         "task_format_version": TASK_FORMAT_VERSION,
         "model_variant": model_variant,
-        "model_id": MINERVA_3B_MODEL_ID,
-        "revision": MINERVA_3B_REVISION,
+        "model_id": model_id,
+        "revision": revision,
         "adapter_checkpoint_path": (
             str(adapter_checkpoint_path) if adapter_checkpoint_path else None
         ),
