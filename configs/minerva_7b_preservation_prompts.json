@@ -1,0 +1,62 @@
+[
+  {
+    "id": "arithmetic",
+    "prompt": "Rispondi soltanto con il risultato: quanto fa 17 più 25?",
+    "response": "42"
+  },
+  {
+    "id": "capital",
+    "prompt": "Qual è la capitale d'Italia? Rispondi con una sola frase.",
+    "response": "La capitale d'Italia è Roma."
+  },
+  {
+    "id": "summary",
+    "prompt": "Riassumi in una frase: Il temporale terminò e gli abitanti tornarono nelle strade.",
+    "response": "Dopo la fine del temporale, gli abitanti tornarono nelle strade."
+  },
+  {
+    "id": "rewrite",
+    "prompt": "Riscrivi in italiano formale: Non posso venire perché sto male.",
+    "response": "Non posso partecipare perché non sono in buona salute."
+  },
+  {
+    "id": "classification",
+    "prompt": "Classifica come positivo o negativo: Il servizio è stato rapido e cortese.",
+    "response": "Positivo."
+  },
+  {
+    "id": "ordering",
+    "prompt": "Metti in ordine crescente i numeri 9, 2, 14 e 5.",
+    "response": "2, 5, 9, 14."
+  },
+  {
+    "id": "definition",
+    "prompt": "Definisci brevemente la fotosintesi.",
+    "response": "La fotosintesi è il processo con cui le piante trasformano luce, acqua e anidride carbonica in energia chimica e ossigeno."
+  },
+  {
+    "id": "conditional",
+    "prompt": "Se tutti i merli sono uccelli e Lino è un merlo, che cosa possiamo concludere?",
+    "response": "Possiamo concludere che Lino è un uccello."
+  },
+  {
+    "id": "translation",
+    "prompt": "Traduci in italiano: The book is on the table.",
+    "response": "Il libro è sul tavolo."
+  },
+  {
+    "id": "polite_request",
+    "prompt": "Trasforma in una richiesta cortese: Mandami il documento oggi.",
+    "response": "Potresti inviarmi il documento entro oggi, per favore?"
+  },
+  {
+    "id": "explanation",
+    "prompt": "Spiega in una frase perché il ghiaccio galleggia sull'acqua.",
+    "response": "Il ghiaccio galleggia perché allo stato solido ha una densità inferiore a quella dell'acqua liquida."
+  },
+  {
+    "id": "constraint",
+    "prompt": "Scrivi esattamente tre colori, separati da virgole.",
+    "response": "rosso, verde, blu"
+  }
+]

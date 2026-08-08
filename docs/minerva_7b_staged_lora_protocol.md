@@ -1,0 +1,94 @@
+# Minerva 7B Staged FP16 LoRA Protocol
+
+Decision approved: 2026-08-08.
+
+## Purpose
+
+This experiment tests whether Minerva 7B can first acquire a stronger model of
+historical Italian prose and then learn the sonnet-composition task. It starts
+from `sapienzanlp/Minerva-7B-instruct-v1.0` at revision
+`d1fc0f0e589ae879c5ac763e0e4206a4d14a3f6d`.
+
+The 7.4-billion-parameter parent is loaded directly in FP16. It is not loaded in
+4-bit or 8-bit form and none of its base parameters are updated. Rank-8 LoRA
+adapters on `q_proj`, `k_proj`, `v_proj`, and `o_proj` are the only trainable
+model parameters. Training uses ordinary `torch.optim.AdamW`; this is therefore
+unquantized FP16 LoRA, not QLoRA.
+
+## Stage A: Historical Adaptation
+
+The historical corpus is `pretraining_historical_italian_v2`: 36 licensed or
+public-domain prose sources with source-level provenance. Each source is
+tokenized independently with the pinned Minerva tokenizer. Its final one
+percent remains validation data, and an end-of-text token separates sources.
+
+Each optimizer update contains exactly:
+
+- seven packed 512-token historical microbatches;
+- one packed 512-token PAISÀ modern-Italian replay microbatch;
+- 4,096 tokens in the nominal complete update.
+
+The deterministic replay sample is taken only from PAISÀ training text. It is a
+local artifact governed by PAISÀ's CC BY-NC-SA terms and is not committed. A
+separate fixed sample of PAISÀ validation text is used only for preservation
+measurement.
+
+The locked Stage A recipe is:
+
+- at most two complete historical passes;
+- peak learning rate `2e-5`, 3 percent warmup, cosine decay to `2e-6`;
+- AdamW weight decay `0.01` and maximum gradient norm `1.0`;
+- validation every 500 updates and at every epoch boundary;
+- atomic resume checkpoint every 100 updates;
+- progress output every 25 updates;
+- early-stopping patience three, but never before one historical pass.
+
+Every candidate is measured on historical validation text, 256 fixed modern
+Italian windows, and twelve project-authored Italian instruction/answer pairs.
+A checkpoint qualifies only if:
+
+- historical validation improves by at least `0.005` relative to stage zero;
+- modern-Italian loss is no more than 5 percent above stage zero;
+- instruction-response loss is no more than 10 percent above stage zero.
+
+The selected Stage A checkpoint is the lowest historical validation-loss
+candidate satisfying all three conditions. If none qualifies, Stage A is a
+completed negative result and Stage B does not start from a damaged adapter.
+
+## Stage B: Sonnet Specialization
+
+Stage B is scheduled only after Stage A produces a qualifying selected adapter.
+It continues that exact adapter lineage while starting a fresh optimizer. The
+parent remains frozen and unquantized FP16.
+
+Training uses only V6 train poems. Each example uses Minerva's published chat
+template: the user requests an exact fourteen-line classical Italian sonnet and
+supplies its required first line; the assistant target is the complete original
+sonnet. Loss is masked over the system/user prompt and applied only to the
+assistant response. V6 validation poems select checkpoints; final-test poems
+remain unavailable until model selection is frozen.
+
+The predeclared Stage B limits are context 512, batch one, accumulation eight,
+at most ten epochs, peak learning rate `1e-5`, 5 percent warmup, cosine decay to
+`1e-6`, and patience-three early stopping. Modern-Italian and instruction
+preservation gates remain active. After training, the three strongest
+validation-loss candidates are compared on the eight frozen validation prompts
+before one model is selected. Validation loss alone does not choose the final
+adapter.
+
+Stage B's executable checkpoint will be implemented after Stage A qualification
+so it can pin the actual selected parent hash. This is a scheduled dependency,
+not an open modeling decision.
+
+## Runtime And Interruption Policy
+
+The exact Stage A throughput estimate comes from a short twelve-update
+calibration on the rented 48 GiB Quadro RTX 8000. The long command is run by the
+user directly in the VM terminal. It writes `resume.pt` every 100 updates, so an
+interruption loses at most the work since the most recent resume checkpoint.
+The resume command must use the same output directory and explicitly name that
+checkpoint.
+
+All selected adapters, interval candidates, configuration, logs, data hashes,
+baseline measurements, and final result files must be copied off the temporary
+Vast instance before it is destroyed or recycled.

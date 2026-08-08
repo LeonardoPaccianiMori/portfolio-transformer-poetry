@@ -224,12 +224,12 @@ corpus. Stage B continues the same adapter lineage with instruction-formatted
 V6 sonnet examples. This adapts historical vocabulary and syntax before the
 narrow form task while leaving the 7.4-billion-parameter parent weights frozen.
 
-The exact learning rates, adapter scope, token budget, replay or preservation
-mixture, validation gates, checkpoint cadence, and stopping rules are not yet
-authorized. They must be frozen in the next design checkpoint. Stage A must
-include modern-Italian and instruction-following preservation checks because
-raw-text adaptation of an instruct model can weaken abilities already present
-in the parent.
+The exact learning rates, adapter scope, token budget, replay and preservation
+mixture, validation gates, checkpoint cadence, and stopping rules are frozen in
+`docs/minerva_7b_staged_lora_protocol.md`. Stage A includes modern-Italian
+replay plus modern-language and instruction-following preservation checks
+because raw-text adaptation of an instruct model can weaken abilities already
+present in the parent.
 
 ## Isolation And Exit Rules
 
