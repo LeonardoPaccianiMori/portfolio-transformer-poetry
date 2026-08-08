@@ -142,6 +142,28 @@ outputs can be compared with NF4. A successful calibration authorizes recipe
 design, not immediate training. The corrected V6 corpus and a frozen full-run
 protocol remain mandatory.
 
+### Completed Remote Result
+
+The unquantized FP16 baseline and LoRA calibration both completed on the 48 GiB
+Quadro RTX 8000. FP16 inference reserved 14,320.0 MiB at peak. All eight outputs
+reached the decoder-controlled form and none reached the token ceiling, but the
+fixed review found only 1/8 generally grammatical outputs, 8/8 seven-line topic
+continuations, and 1/8 severe collapses. The FP16 prompt-only quality-parent
+gate therefore fails. Quantization is not an adequate explanation for the
+model's grammatical weakness.
+
+The one-update FP16 LoRA calibration passed. It trained 6,815,744 rank-8
+attention-adapter parameters, reserved 14,706.0 MiB at peak, and left 33,485.4
+MiB free after the optimizer update. The 48 GiB GPU is sufficient for this
+adapter protocol; a larger GPU is not required for memory. The public evidence
+is in `reports/minerva_7b_instruct_fp16_validation_evaluation.md` and
+`reports/minerva_7b_fp16_lora_calibration.md`.
+
+The next authorized checkpoint is the corrected V6 corpus. After V6 is frozen,
+the project may predeclare one conservative full FP16 LoRA run. The failed
+prompt-only gate remains part of the evidence and must not be rewritten as a
+successful untouched baseline.
+
 ## V5 Data Audit
 
 Before designing another 3B run, inspect every selected V5 poem for structural
