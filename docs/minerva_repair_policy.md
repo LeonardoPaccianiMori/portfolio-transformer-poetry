@@ -80,6 +80,21 @@ outputs are generally grammatical, at least 5/8 sustain a topic or argument
 for seven generated lines, and no more than 1/8 severely collapses. Results are
 reported even if the threshold is missed.
 
+### Completed Baseline Result
+
+The 4-bit validation run completed on the local RTX 3060 Laptop GPU. Peak CUDA
+allocation was 4,445.9 MiB and peak reservation was 4,568.0 MiB. Six of eight
+outputs reached the decoder-controlled fourteen-line form, while two reached
+the 512-token ceiling. The fixed qualitative review found 2/8 generally
+grammatical outputs, 7/8 seven-line topic continuations, and 2/8 severe
+collapses.
+
+The prompt-only quality-parent gate therefore fails. This does not disqualify
+7B Instruct from calibration or conservative adaptation: it remains materially
+more coherent and controllable than the tested 3B Base conditions. The full
+evidence and interpretation are in
+`reports/minerva_7b_instruct_validation_evaluation.md`.
+
 ## 7B Training Calibration
 
 The one permitted calibration uses:
