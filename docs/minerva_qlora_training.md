@@ -73,3 +73,8 @@ checkpointing, and full validation.
 After selection, the same fixed ten held-out openings, two seeds, controlled
 14-line stopping, memorization checks, and qualitative rubric used for the
 from-scratch model will be adapted for the Minerva adapter.
+
+Only after this run and evaluation are complete does the project proceed to
+the conditional Minerva-judge gate and the independently initialized DPO and
+GRPO branches recorded in
+[`minerva_guided_post_training_policy.md`](minerva_guided_post_training_policy.md).
