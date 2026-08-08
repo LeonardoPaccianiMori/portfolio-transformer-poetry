@@ -71,6 +71,41 @@ def test_minerva_generation_preserves_opening_and_stops_after_target_line():
     assert model.training is False
 
 
+def test_minerva_generation_accepts_hidden_instruction_conditioning():
+    tokenizer = CharacterTensorTokenizer()
+    model = ScriptedHuggingFaceModel(ord(char) for char in "Seconda linea\n")
+    conditioning_prompt = "Scrivi un sonetto.\nSonetto:\nPrima linea\n"
+
+    result = generate_minerva_continuation(
+        model=model,
+        tokenizer=tokenizer,
+        opening_line="Prima linea",
+        conditioning_prompt=conditioning_prompt,
+        max_new_tokens=100,
+        device="cpu",
+        seed=1337,
+        top_k=50,
+        continuation_line_target=1,
+    )
+
+    assert result["conditioning_prompt"] == conditioning_prompt
+    assert result["text"] == "Prima linea\nSeconda linea\n"
+    assert "Scrivi un sonetto" not in result["text"]
+
+
+def test_minerva_generation_rejects_conditioning_without_visible_prefix():
+    with pytest.raises(ValueError, match="exact visible opening"):
+        generate_minerva_continuation(
+            model=ScriptedHuggingFaceModel([ord("x")]),
+            tokenizer=CharacterTensorTokenizer(),
+            opening_line="Prima linea",
+            conditioning_prompt="Scrivi un sonetto.\n",
+            max_new_tokens=1,
+            device="cpu",
+            seed=1337,
+        )
+
+
 def test_minerva_variant_writes_task_format_compatible_metadata(tmp_path):
     tokenizer = CharacterTensorTokenizer()
     model = ScriptedHuggingFaceModel(ord(char) for char in "Seconda\n")
@@ -120,3 +155,5 @@ def test_minerva_generation_rejects_non_selected_adapter_checkpoint():
 
     with pytest.raises(ValueError, match="selected best"):
         _validate_adapter_checkpoint(checkpoint)
+
+    _validate_adapter_checkpoint(checkpoint, require_selected=False)

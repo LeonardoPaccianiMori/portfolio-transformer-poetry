@@ -5,10 +5,12 @@ Decision approved: 2026-08-08.
 ## Purpose And Order
 
 The corpus-only from-scratch track remains a completed experimental result. The
-project will first finish and evaluate the fixed Minerva 3B QLoRA comparison.
-After that evaluation, it may test whether feedback from the untouched Minerva
-3B base model improves the selected from-scratch model through two bounded
-post-training methods: DPO and GRPO.
+project has finished and evaluated the fixed Minerva 3B QLoRA comparison. The
+judge gate is temporarily paused for the validation-only diagnostic in
+[`minerva_sanity_audit.md`](minerva_sanity_audit.md). After that diagnostic, the
+project may test whether feedback from the untouched Minerva 3B base model
+improves the selected from-scratch model through two bounded post-training
+methods: DPO and GRPO.
 
 These experiments do not replace or retroactively redefine the corpus-only
 from-scratch result. They must be reported as Minerva-guided post-training of a

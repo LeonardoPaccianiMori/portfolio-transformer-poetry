@@ -44,6 +44,7 @@ def generate_minerva_continuation(
     temperature: float = ACCEPTANCE_TEMPERATURE,
     top_k: int | None = ACCEPTANCE_TOP_K,
     continuation_line_target: int = TASK_CONTINUATION_LINE_TARGET,
+    conditioning_prompt: str | None = None,
 ) -> dict[str, Any]:
     """Generate one visible continuation with cached causal decoding."""
     if not opening_line.strip() or "\n" in opening_line or "\r" in opening_line:
@@ -58,7 +59,18 @@ def generate_minerva_continuation(
         raise ValueError("continuation_line_target must be greater than 0")
 
     resolved_device = torch.device(device)
-    prompt = f"{opening_line}\n"
+    visible_prompt = f"{opening_line}\n"
+    prompt = (
+        conditioning_prompt
+        if conditioning_prompt is not None
+        else visible_prompt
+    )
+    if not prompt.strip():
+        raise ValueError("conditioning_prompt must not be empty")
+    if not prompt.endswith(visible_prompt):
+        raise ValueError(
+            "conditioning_prompt must end with the exact visible opening line"
+        )
     encoded = tokenizer(
         prompt,
         add_special_tokens=False,
@@ -139,6 +151,7 @@ def generate_minerva_continuation(
         "text": f"{opening_line}\n{continuation_text}",
         "opening_line": opening_line,
         "prompt": prompt,
+        "conditioning_prompt": prompt,
         "stop_reason": stop_reason,
         "generated_new_tokens": len(generated_ids),
         "completed_continuation_lines": completed_non_empty_line_count(
@@ -162,6 +175,10 @@ def generate_minerva_variant_for_prompts(
     continuation_line_target: int = TASK_CONTINUATION_LINE_TARGET,
     adapter_checkpoint_path: Path | None = None,
     prompt_config_path: Path | None = None,
+    conditioning_prompt_builder: Callable[[str], str] | None = None,
+    conditioning_format: str = "opening_line_newline",
+    adapter_scale: float | None = None,
+    adapter_epoch: int | None = None,
     progress: Callable[[str], None] | None = None,
 ) -> dict[str, Any]:
     """Generate and persist one Minerva variant's fixed prompt/seed set."""
@@ -193,6 +210,11 @@ def generate_minerva_variant_for_prompts(
                 temperature=temperature,
                 top_k=top_k,
                 continuation_line_target=continuation_line_target,
+                conditioning_prompt=(
+                    conditioning_prompt_builder(prompt["opening_line"])
+                    if conditioning_prompt_builder is not None
+                    else None
+                ),
             )
             output_path = output_dir / safe_prompt_filename(generation_id)
             output_path.write_text(result["text"], encoding="utf-8")
@@ -210,6 +232,8 @@ def generate_minerva_variant_for_prompts(
                 "completed_continuation_lines": result[
                     "completed_continuation_lines"
                 ],
+                "conditioning_format": conditioning_format,
+                "conditioning_prompt": result["conditioning_prompt"],
             })
             completed_outputs = len(generated_files)
             elapsed_seconds = time.monotonic() - started_at
@@ -232,6 +256,9 @@ def generate_minerva_variant_for_prompts(
         "adapter_checkpoint_path": (
             str(adapter_checkpoint_path) if adapter_checkpoint_path else None
         ),
+        "adapter_scale": adapter_scale,
+        "adapter_epoch": adapter_epoch,
+        "conditioning_format": conditioning_format,
         "prompt_config_path": str(prompt_config_path) if prompt_config_path else None,
         "output_dir": str(output_dir),
         "max_new_tokens": max_new_tokens,
@@ -377,7 +404,11 @@ def generate_fixed_minerva_comparison(
     return comparison_metadata
 
 
-def _validate_adapter_checkpoint(checkpoint: Any) -> None:
+def _validate_adapter_checkpoint(
+    checkpoint: Any,
+    *,
+    require_selected: bool = True,
+) -> None:
     if not isinstance(checkpoint, dict):
         raise ValueError("Minerva adapter checkpoint must contain a dictionary")
     if checkpoint.get("checkpoint_type") != "minerva_qlora_adapter":
@@ -391,7 +422,7 @@ def _validate_adapter_checkpoint(checkpoint: Any) -> None:
     best_row = checkpoint.get("best_validation_row")
     if not isinstance(best_row, dict):
         raise ValueError("adapter checkpoint is missing best_validation_row")
-    if (
+    if require_selected and (
         checkpoint.get("epoch") != best_row.get("epoch")
         or checkpoint.get("step") != best_row.get("step")
     ):
@@ -411,6 +442,7 @@ def _load_dependencies() -> dict[str, Any]:
             get_peft_model,
             set_peft_model_state_dict,
         )
+        from peft.helpers import rescale_adapter_scale
         from transformers import (
             AutoModelForCausalLM,
             AutoTokenizer,
@@ -424,6 +456,7 @@ def _load_dependencies() -> dict[str, Any]:
         "LoraConfig": LoraConfig,
         "get_peft_model": get_peft_model,
         "set_peft_model_state_dict": set_peft_model_state_dict,
+        "rescale_adapter_scale": rescale_adapter_scale,
         "AutoModelForCausalLM": AutoModelForCausalLM,
         "AutoTokenizer": AutoTokenizer,
         "BitsAndBytesConfig": BitsAndBytesConfig,

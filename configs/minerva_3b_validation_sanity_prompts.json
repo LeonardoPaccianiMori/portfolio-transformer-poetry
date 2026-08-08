@@ -1,0 +1,58 @@
+[
+  {
+    "id": "giacomo_or_come",
+    "poem_id": "giacomo_or_come_pote_sì_gran_donna_entrare",
+    "author": "Giacomo da Lentini",
+    "period": "XIII secolo",
+    "opening_line": "Or come pote sì gran donna entrare"
+  },
+  {
+    "id": "cavalcanti_anima_mia",
+    "poem_id": "cavalcanti_l_anima_mia_vilment_è_sbigotita",
+    "author": "Guido Cavalcanti",
+    "period": "XIII secolo",
+    "opening_line": "L'anima mia vilment'è sbigotita"
+  },
+  {
+    "id": "dante_due_donne",
+    "poem_id": "dante_lxxxvi_due_donne_in_cima_de_la_mente_mia",
+    "author": "Dante Alighieri",
+    "period": "XIII secolo",
+    "opening_line": "Due donne in cima de la mente mia"
+  },
+  {
+    "id": "petrarca_laura",
+    "poem_id": "petrarca_l_aura_che_l_verde_lauro_et_l_aureo_crine",
+    "author": "Francesco Petrarca",
+    "period": "XIV secolo",
+    "opening_line": "L'aura che 'l verde lauro et l'aureo crine"
+  },
+  {
+    "id": "stampa_piangete",
+    "poem_id": "stampa_rime_d_amore_lxxxvi",
+    "author": "Gaspara Stampa",
+    "period": "XVI secolo",
+    "opening_line": "Piangete, donne, e poi che la mia morte"
+  },
+  {
+    "id": "colonna_quando",
+    "poem_id": "colonna_sonetti_spirituali_sonetto_ccvii",
+    "author": "Vittoria Colonna",
+    "period": "XVI secolo",
+    "opening_line": "QUando (mercè del Ciel) per tante prove,"
+  },
+  {
+    "id": "andreini_gia_non_possio",
+    "poem_id": "andreini_sonetti_clxxiii_clxxiv_sonetto_clxxiii",
+    "author": "Isabella Andreini",
+    "period": "XVII secolo",
+    "opening_line": "GIà non poss'io da lunge il bell'aspetto"
+  },
+  {
+    "id": "alfieri_improvvisatrice",
+    "poem_id": "alfieri_clxx_ad_una_improvvisatrice",
+    "author": "Vittorio Alfieri",
+    "period": "XVIII secolo",
+    "opening_line": "Ed io pure, ancorché dei fervidi anni"
+  }
+]
