@@ -10,6 +10,14 @@ from typing import Any
 
 import torch
 
+from sonnet_training.cuda_compat import (
+    cuda_device_name,
+    max_cuda_memory_allocated,
+    max_cuda_memory_reserved,
+    prepare_cuda_memory_measurement,
+    synchronize_cuda,
+)
+
 
 MINERVA_3B_MODEL_ID = "sapienzanlp/Minerva-3B-base-v1.0"
 MINERVA_3B_REVISION = "129ae5366bae3611a1c9f8c68606c38b7de8b055"
@@ -135,8 +143,7 @@ def calibrate_minerva_qlora(
 
     device = torch.device("cuda:0")
     cache_dir.mkdir(parents=True, exist_ok=True)
-    torch.cuda.empty_cache()
-    torch.cuda.reset_peak_memory_stats(device)
+    prepare_cuda_memory_measurement(device)
 
     progress("loading tokenizer")
     tokenizer = AutoTokenizer.from_pretrained(
@@ -212,7 +219,7 @@ def calibrate_minerva_qlora(
 
     progress("running one adapter optimizer update")
     optimizer.step()
-    torch.cuda.synchronize(device)
+    synchronize_cuda(device)
 
     total_parameter_count = sum(parameter.numel() for parameter in model.parameters())
     trainable_parameter_count = sum(
@@ -221,12 +228,12 @@ def calibrate_minerva_qlora(
     report = build_calibration_report(
         config=config,
         device=device,
-        gpu_name=torch.cuda.get_device_name(device),
+        gpu_name=cuda_device_name(device),
         loss=float(loss.item()),
         total_parameter_count=total_parameter_count,
         trainable_parameter_count=trainable_parameter_count,
-        peak_allocated_mib=torch.cuda.max_memory_allocated(device) / (1024**2),
-        peak_reserved_mib=torch.cuda.max_memory_reserved(device) / (1024**2),
+        peak_allocated_mib=max_cuda_memory_allocated(device) / (1024**2),
+        peak_reserved_mib=max_cuda_memory_reserved(device) / (1024**2),
         package_versions={
             "accelerate": accelerate.__version__,
             "bitsandbytes": bnb.__version__,

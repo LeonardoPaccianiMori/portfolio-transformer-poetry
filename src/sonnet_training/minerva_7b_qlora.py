@@ -10,6 +10,16 @@ from typing import Any
 
 import torch
 
+from sonnet_training.cuda_compat import (
+    cuda_device_name,
+    cuda_device_properties,
+    cuda_memory_info,
+    max_cuda_memory_allocated,
+    max_cuda_memory_reserved,
+    prepare_cuda_memory_measurement,
+    synchronize_cuda,
+)
+
 MINERVA_7B_INSTRUCT_MODEL_ID = "sapienzanlp/Minerva-7B-instruct-v1.0"
 MINERVA_7B_INSTRUCT_REVISION = "d1fc0f0e589ae879c5ac763e0e4206a4d14a3f6d"
 MINERVA_7B_QLORA_TARGET_MODULES = (
@@ -127,11 +137,10 @@ def calibrate_minerva_7b_qlora(
     dependencies = _load_dependencies()
     device = torch.device("cuda:0")
     device_index = 0
-    properties = torch.cuda.get_device_properties(device_index)
+    properties = cuda_device_properties(device)
     total_gpu_memory_mib = properties.total_memory / (1024**2)
     cache_dir.mkdir(parents=True, exist_ok=True)
-    torch.cuda.empty_cache()
-    torch.cuda.reset_peak_memory_stats(device_index)
+    prepare_cuda_memory_measurement(device)
 
     try:
         report = _run_calibration(
@@ -146,15 +155,15 @@ def calibrate_minerva_7b_qlora(
     except (torch.OutOfMemoryError, RuntimeError) as error:
         if not _is_out_of_memory(error):
             raise
-        peak_allocated = torch.cuda.max_memory_allocated(device_index) / (1024**2)
-        peak_reserved = torch.cuda.max_memory_reserved(device_index) / (1024**2)
+        peak_allocated = max_cuda_memory_allocated(device) / (1024**2)
+        peak_reserved = max_cuda_memory_reserved(device) / (1024**2)
         torch.cuda.empty_cache()
-        free_bytes, _ = torch.cuda.mem_get_info(device_index)
+        free_bytes, _ = cuda_memory_info(device)
         report = build_minerva_7b_calibration_report(
             config=config,
             status="out_of_memory",
             device=device,
-            gpu_name=torch.cuda.get_device_name(device_index),
+            gpu_name=cuda_device_name(device),
             total_gpu_memory_mib=total_gpu_memory_mib,
             peak_allocated_mib=peak_allocated,
             peak_reserved_mib=peak_reserved,
@@ -248,8 +257,8 @@ def _run_calibration(
 
     progress("stage 5/5: running one adapter optimizer update")
     optimizer.step()
-    torch.cuda.synchronize(device_index)
-    free_bytes, _ = torch.cuda.mem_get_info(device_index)
+    synchronize_cuda(device)
+    free_bytes, _ = cuda_memory_info(device)
     total_parameter_count = sum(parameter.numel() for parameter in model.parameters())
     trainable_parameter_count = sum(
         parameter.numel() for parameter in trainable_parameters
@@ -258,10 +267,10 @@ def _run_calibration(
         config=config,
         status="ok",
         device=device,
-        gpu_name=torch.cuda.get_device_name(device_index),
+        gpu_name=cuda_device_name(device),
         total_gpu_memory_mib=total_gpu_memory_mib,
-        peak_allocated_mib=torch.cuda.max_memory_allocated(device_index) / (1024**2),
-        peak_reserved_mib=torch.cuda.max_memory_reserved(device_index) / (1024**2),
+        peak_allocated_mib=max_cuda_memory_allocated(device) / (1024**2),
+        peak_reserved_mib=max_cuda_memory_reserved(device) / (1024**2),
         free_memory_after_mib=free_bytes / (1024**2),
         loss=float(loss.item()),
         total_parameter_count=total_parameter_count,

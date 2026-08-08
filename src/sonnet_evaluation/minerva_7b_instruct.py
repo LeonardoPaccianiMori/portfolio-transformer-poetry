@@ -20,6 +20,11 @@ from sonnet_training.minerva_7b_qlora import (
     MINERVA_7B_INSTRUCT_MODEL_ID,
     MINERVA_7B_INSTRUCT_REVISION,
 )
+from sonnet_training.cuda_compat import (
+    max_cuda_memory_allocated,
+    max_cuda_memory_reserved,
+    prepare_cuda_memory_measurement,
+)
 
 
 MINERVA_7B_BASELINE_VERSION = "minerva_7b_instruct_validation_baseline_v1"
@@ -89,8 +94,7 @@ def generate_minerva_7b_instruct_baseline(
         bnb_4bit_compute_dtype=torch.float16,
     )
     device_index = resolved_device.index or 0
-    torch.cuda.empty_cache()
-    torch.cuda.reset_peak_memory_stats(device_index)
+    prepare_cuda_memory_measurement(resolved_device)
     model = dependencies["AutoModelForCausalLM"].from_pretrained(
         MINERVA_7B_INSTRUCT_MODEL_ID,
         revision=MINERVA_7B_INSTRUCT_REVISION,
@@ -136,9 +140,8 @@ def generate_minerva_7b_instruct_baseline(
         "prompt_count": len(prompts),
         "output_count": len(generation_metadata["generated_files"]),
         "output_dir": str(output_dir),
-        "peak_allocated_mib": torch.cuda.max_memory_allocated(device_index)
-        / (1024**2),
-        "peak_reserved_mib": torch.cuda.max_memory_reserved(device_index) / (1024**2),
+        "peak_allocated_mib": max_cuda_memory_allocated(resolved_device) / (1024**2),
+        "peak_reserved_mib": max_cuda_memory_reserved(resolved_device) / (1024**2),
     }
     output_root.mkdir(parents=True, exist_ok=True)
     (output_root / "baseline_metadata.json").write_text(
