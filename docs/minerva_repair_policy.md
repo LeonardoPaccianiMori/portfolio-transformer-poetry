@@ -111,6 +111,37 @@ parameters, loss, GPU identity, total memory, peak allocated and reserved CUDA
 memory, and measured headroom. An out-of-memory outcome is a valid completed
 result rather than a reason to vary context length, rank, or module scope.
 
+### Completed Local Calibration Result
+
+The fixed local calibration failed during the forward/backward stage before the
+first optimizer update. Peak allocation was 5,544.2 MiB, peak reservation was
+5,636.0 MiB, and only 137.3 MiB was free after exception cleanup. The attempted
+102 MiB allocation could not be satisfied. Local 7B QLoRA is therefore rejected
+under this protocol. The retained evidence is
+`reports/minerva_7b_qlora_local_calibration.md`.
+
+## Remote Unquantized FP16 Extension
+
+The user approved one remote 48 GiB Quadro RTX 8000 experiment after the local
+hardware rejection. This extension tests whether quantization affected the 7B
+baseline and enables a quality-oriented adapter run without altering all model
+weights.
+
+The remote preflight consists of exactly:
+
+1. the same frozen eight validation prompts and decoding protocol, with the
+   exact 7B Instruct revision loaded in unquantized FP16;
+2. one context-512, microbatch-one FP16 LoRA optimizer update;
+3. rank-8, alpha-16 adapters on `q_proj`, `k_proj`, `v_proj`, and `o_proj`;
+4. non-reentrant gradient checkpointing and `PagedAdamW8bit` at `2e-5`;
+5. a minimum 4,096 MiB measured headroom requirement before full training.
+
+The RTX 8000 does not provide native BF16 arithmetic, so FP16 is the declared
+unquantized precision. The untouched FP16 baseline must be evaluated before its
+outputs can be compared with NF4. A successful calibration authorizes recipe
+design, not immediate training. The corrected V6 corpus and a frozen full-run
+protocol remain mandatory.
+
 ## V5 Data Audit
 
 Before designing another 3B run, inspect every selected V5 poem for structural
@@ -150,8 +181,9 @@ approved data-version checkpoint.
 - Do not expose or regenerate the fixed final-test prompts during calibration.
 - Do not use final-test results to tune prompts, adapter strength, or decoding.
 - QLoRA is treated as a memory mechanism, not as one immutable training recipe.
-- After the 7B baseline/calibration and V5 audit, predeclare the exact 3B recipe
-  and, if hardware permits, the exact 7B recipe before either full run.
+- After the local and remote 7B baselines/calibrations and V5 audit, predeclare
+  the exact 3B recipe and, if remote hardware permits, the exact 7B recipe
+  before either full run.
 - Run at most one full repaired 3B experiment and one full 7B experiment.
 - Evaluate every surviving model under one shared protocol before deciding
   whether to resume the judge/DPO/GRPO branch.

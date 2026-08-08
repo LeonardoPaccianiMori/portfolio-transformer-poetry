@@ -5,6 +5,7 @@ import pytest
 
 from sonnet_evaluation.minerva_7b_instruct import (
     build_minerva_7b_instruct_prompt,
+    minerva_7b_load_metadata,
     write_minerva_7b_instruct_baseline_scaffolds,
 )
 from sonnet_training.minerva_7b_qlora import (
@@ -29,6 +30,23 @@ def test_minerva_7b_prompt_uses_chat_template_and_exact_opening_prefill():
 
     with pytest.raises(ValueError, match="exactly one"):
         build_minerva_7b_instruct_prompt(ChatTokenizer(), "Primo\nverso")
+
+
+def test_minerva_7b_load_modes_distinguish_nf4_from_unquantized_fp16():
+    nf4 = minerva_7b_load_metadata("nf4")
+    fp16 = minerva_7b_load_metadata("fp16")
+
+    assert nf4["weight_loading"]["quantized"] is True
+    assert nf4["weight_loading"]["quant_type"] == "nf4"
+    assert fp16["weight_loading"] == {
+        "quantized": False,
+        "parameter_dtype": "float16",
+        "compute_dtype": "float16",
+    }
+    assert fp16["model_variant"] == "minerva_7b_instruct_fp16"
+
+    with pytest.raises(ValueError, match="unsupported"):
+        minerva_7b_load_metadata("int8")
 
 
 def test_minerva_7b_scaffolds_score_exact_eight_outputs(tmp_path: Path):

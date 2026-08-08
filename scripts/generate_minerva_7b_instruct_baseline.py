@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the frozen 4-bit Minerva 7B Instruct validation baseline."""
+"""Generate a frozen Minerva 7B Instruct validation baseline."""
 
 from __future__ import annotations
 
@@ -31,7 +31,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output-root",
         type=Path,
-        default=Path("outputs/generations/minerva_7b_instruct_validation_v1"),
+        default=None,
     )
     parser.add_argument(
         "--prompts",
@@ -50,6 +50,12 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--dataset", default="expanded_with_petrarch")
     parser.add_argument("--device", default="cuda:0")
+    parser.add_argument(
+        "--load-mode",
+        choices=("nf4", "fp16"),
+        default="nf4",
+        help="Load the frozen base in 4-bit NF4 or unquantized FP16.",
+    )
     return parser.parse_args()
 
 
@@ -66,6 +72,11 @@ def main() -> None:
         split="validation",
     )
     device = torch.device(args.device)
+    output_root = args.output_root or Path(
+        "outputs/generations/minerva_7b_instruct_validation_v1"
+        if args.load_mode == "nf4"
+        else "outputs/generations/minerva_7b_instruct_fp16_validation_v1"
+    )
     started_at = time.monotonic()
 
     def progress(message: str) -> None:
@@ -74,20 +85,22 @@ def main() -> None:
 
     print(
         "minerva-7b-baseline | start model={model} device={device} "
-        "prompts={prompts} outputs={outputs}".format(
+        "load_mode={load_mode} prompts={prompts} outputs={outputs}".format(
             model=MINERVA_7B_INSTRUCT_MODEL_ID,
             device=device,
+            load_mode=args.load_mode,
             prompts=len(prompts),
             outputs=len(prompts),
         ),
         flush=True,
     )
     metadata = generate_minerva_7b_instruct_baseline(
-        output_root=ROOT / args.output_root,
+        output_root=ROOT / output_root,
         prompts=prompts,
         prompt_config_path=args.prompts,
         device=device,
         cache_dir=ROOT / "data" / "local" / "minerva_qlora" / "huggingface",
+        load_mode=args.load_mode,
         progress=progress,
     )
     print(
@@ -95,7 +108,7 @@ def main() -> None:
         "peak_reserved={memory:.1f}MiB output_root={root}".format(
             outputs=metadata["output_count"],
             memory=metadata["peak_reserved_mib"],
-            root=args.output_root,
+            root=output_root,
         ),
         flush=True,
     )
@@ -103,4 +116,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
