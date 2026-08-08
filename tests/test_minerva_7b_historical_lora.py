@@ -10,6 +10,7 @@ from sonnet_training.minerva_7b_historical_lora import (
     build_historical_training_plan,
     historical_learning_rate,
     preservation_gate,
+    select_lowest_qualifying_historical_row,
 )
 
 
@@ -101,3 +102,21 @@ def test_instruction_preservation_masks_chat_prompt(tmp_path):
 
     assert batches[0][0].tolist() == [[1, 2, 3, 4]]
     assert batches[0][1].tolist() == [[-100, -100, 3, 4]]
+
+
+def test_stage_a_final_selection_uses_lowest_qualifying_loss():
+    config = Minerva7BHistoricalLoRAConfig()
+    baseline = {"historical_validation_loss": 3.3}
+    history = [
+        {"step": 3000, "historical_validation_loss": 3.19, "preservation_gate_passed": True},
+        {"step": 3381, "historical_validation_loss": 3.18, "preservation_gate_passed": True},
+        {"step": 4000, "historical_validation_loss": 3.17, "preservation_gate_passed": False},
+    ]
+
+    selected = select_lowest_qualifying_historical_row(
+        history=history,
+        baseline_metrics=baseline,
+        config=config,
+    )
+
+    assert selected is history[1]

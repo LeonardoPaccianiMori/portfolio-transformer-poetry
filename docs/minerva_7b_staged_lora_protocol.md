@@ -76,9 +76,20 @@ validation-loss candidates are compared on the eight frozen validation prompts
 before one model is selected. Validation loss alone does not choose the final
 adapter.
 
-Stage B's executable checkpoint will be implemented after Stage A qualification
-so it can pin the actual selected parent hash. This is a scheduled dependency,
-not an open modeling decision.
+Stage A completed on 2026-08-09 after 4,000 updates. Step 4,000 is the selected
+parent because its historical validation loss of `3.187692` is the lowest among
+all candidates that passed both preservation gates. Its adapter SHA-256 is
+`acfad4d442ac8ea7349dcb1bd379c9b41859027ab45daac54c6b6aa35e0bbc63`.
+The retained result is `reports/minerva_7b_historical_fp16_lora_result.md`.
+
+Stage B is implemented in `scripts/train_minerva_7b_sonnet_lora.py`. The
+executable refuses any Stage A adapter or V6 manifest whose SHA-256 differs from
+the selected artifacts above. It loads only V6 train and validation poems;
+final-test poems remain unavailable until selection is frozen. Every epoch
+writes an adapter candidate and an optimizer-bearing resume checkpoint. The
+result retains the three lowest validation-loss candidates that still satisfy
+the original Minerva modern-Italian and instruction-loss limits for subsequent
+generation review.
 
 ## Runtime And Interruption Policy
 

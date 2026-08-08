@@ -131,6 +131,26 @@ def preservation_gate(
     )
 
 
+def select_lowest_qualifying_historical_row(
+    *,
+    history: Sequence[dict[str, Any]],
+    baseline_metrics: dict[str, float],
+    config: Minerva7BHistoricalLoRAConfig,
+) -> dict[str, Any] | None:
+    """Select the lowest-loss candidate satisfying every declared Stage A gate."""
+    qualifying = [
+        row
+        for row in history
+        if row.get("preservation_gate_passed") is True
+        and float(row["historical_validation_loss"])
+        <= baseline_metrics["historical_validation_loss"]
+        - config.min_historical_improvement
+    ]
+    if not qualifying:
+        return None
+    return min(qualifying, key=lambda row: float(row["historical_validation_loss"]))
+
+
 def validate_historical_config(config: Minerva7BHistoricalLoRAConfig) -> None:
     expected = Minerva7BHistoricalLoRAConfig()
     if config != expected:
@@ -461,6 +481,19 @@ def train_minerva_7b_historical_lora(
             stop_reason = "early_stopping"
             break
 
+    selected_row = select_lowest_qualifying_historical_row(
+        history=history,
+        baseline_metrics=baseline_metrics,
+        config=config,
+    )
+    if selected_row is not None:
+        selected_candidate = (
+            output_dir
+            / "checkpoints"
+            / f"adapter_step_{int(selected_row['step']):06d}.pt"
+        )
+        _copy_checkpoint(selected_candidate, output_dir / "best_adapter.pt")
+
     _save_adapter_checkpoint(
         path=output_dir / "final_adapter.pt",
         model=model,
@@ -481,10 +514,10 @@ def train_minerva_7b_historical_lora(
         "planned_updates": plan.planned_updates,
         "stop_reason": stop_reason,
         "baseline_metrics": baseline_metrics,
-        "best_validation_row": best_row,
-        "qualified_checkpoint": best_row is not None,
+        "best_validation_row": selected_row,
+        "qualified_checkpoint": selected_row is not None,
         "best_checkpoint_path": (
-            str(output_dir / "best_adapter.pt") if best_row is not None else None
+            str(output_dir / "best_adapter.pt") if selected_row is not None else None
         ),
         "final_checkpoint_path": str(output_dir / "final_adapter.pt"),
         "resume_checkpoint_path": str(output_dir / "resume.pt"),
