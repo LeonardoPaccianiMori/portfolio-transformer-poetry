@@ -40,6 +40,11 @@ def parse_args() -> argparse.Namespace:
         default=Path("reports/minerva_v5_training_text_review_sample.md"),
     )
     parser.add_argument("--review-sample-size", type=int, default=24)
+    parser.add_argument(
+        "--corpus-label",
+        default="V5",
+        help="Version label used in report titles and deterministic sampling.",
+    )
     return parser.parse_args()
 
 
@@ -66,6 +71,7 @@ def main() -> None:
         markdown_report_path=args.markdown_report,
         review_sample_path=args.review_sample,
         review_sample_size=args.review_sample_size,
+        corpus_label=args.corpus_label,
         progress=progress,
     )
     print(
@@ -82,4 +88,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

@@ -87,3 +87,22 @@ def test_minerva_sft_audit_flags_duplicate_and_markup(tmp_path):
         issue["issue_type"] == "marker:wiki_template"
         for issue in report["structural_issues"]
     )
+
+
+def test_minerva_sft_audit_uses_explicit_corpus_version(tmp_path):
+    manifest_path = _write_fixture(tmp_path)
+    report = audit_minerva_sft_corpus(
+        repo_root=tmp_path,
+        manifest_path=manifest_path,
+        dataset="expanded_with_petrarch",
+        json_report_path=Path("report.json"),
+        markdown_report_path=Path("report.md"),
+        review_sample_path=Path("review.md"),
+        corpus_label="V6",
+    )
+
+    assert report["audit_version"] == "minerva_v6_sft_corpus_audit_v1"
+    assert "Minerva V6 SFT Corpus Audit" in (tmp_path / "report.md").read_text()
+    assert "Minerva V6 Training-Text Review Sample" in (
+        tmp_path / "review.md"
+    ).read_text()

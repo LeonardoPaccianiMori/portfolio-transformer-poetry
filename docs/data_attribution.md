@@ -14,15 +14,18 @@ source-specific attribution are in `data/metadata/sonnets_expanded_v2_manifest.c
 `data/metadata/wikisource_snapshots/ws_alfieri_rime_1912.json`, and
 `data/metadata/sonnets_expanded_v2_attribution.md`.
 
-`sonnets_expanded_v5` is the current expanded corpus with 1,875 processed
-poems: the unchanged 1,011-poem v4 corpus plus 864 revision-pinned sonnets by
-Isabella Andreini, Vittoria Colonna, Gaspara Stampa, Ludovico Ariosto, and
-Jacopo Sannazaro. Its manifest, source snapshots, exact source revisions,
-per-source counts, and reuse notices are in
-`data/metadata/sonnets_expanded_v5_manifest.csv`,
+`sonnets_expanded_v6` is the current expanded corpus with 1,868 processed
+poems. It is the V5 corpus after removing one editorial apparatus page and six
+exact duplicate records while preserving every frozen validation and final-test
+prompt in its original split. Its automated audit found no structural defects,
+exact duplicates, cross-split duplicate leakage, or suspicious markup; a
+deterministic 24-poem editorial sample was also accepted in full. Its manifest,
+source snapshots, correction report, audit, and reuse notices are in
+`data/metadata/sonnets_expanded_v6_manifest.csv`,
 `data/metadata/wikisource_snapshots/`,
-`data/metadata/sonnets_expanded_v5_build_report.json`, and
-`data/metadata/sonnets_expanded_v5_attribution.md`.
+`data/metadata/sonnets_expanded_v6_build_report.json`,
+`reports/minerva_v6_sft_corpus_audit.md`, and
+`data/metadata/sonnets_expanded_v6_attribution.md`.
 
 Italian Wikisource pages used in this project generally expose Creative Commons Attribution-ShareAlike and/or GFDL metadata. The exact source page URL and license notes should be preserved in the manifest for every processed poem.
 

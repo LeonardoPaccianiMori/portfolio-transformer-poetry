@@ -39,11 +39,15 @@ def audit_minerva_sft_corpus(
     markdown_report_path: Path,
     review_sample_path: Path,
     review_sample_size: int = 24,
+    corpus_label: str = "V5",
     progress: Callable[[str], None] | None = None,
 ) -> dict[str, Any]:
     """Audit every selected poem and write public evidence plus a review sample."""
     if review_sample_size <= 0:
         raise ValueError("review_sample_size must be greater than 0")
+    normalized_label = corpus_label.strip().upper()
+    if not re.fullmatch(r"V[1-9][0-9]*", normalized_label):
+        raise ValueError("corpus_label must be a version such as V5 or V6")
     resolved_manifest = _resolve_path(repo_root, manifest_path)
     rows = read_manifest_rows(resolved_manifest)
     validate_manifest_rows(rows, dataset)
@@ -55,7 +59,7 @@ def audit_minerva_sft_corpus(
         raise ValueError("Minerva SFT audit requires non-empty train/validation/test splits")
 
     selected_rows = [row for split in SPLITS for row in split_rows[split]]
-    _report(progress, f"loading {len(selected_rows)} selected V5 poems")
+    _report(progress, f"loading {len(selected_rows)} selected {normalized_label} poems")
     text_by_id: dict[str, str] = {}
     issues: list[dict[str, str]] = []
     fingerprints: dict[str, list[str]] = defaultdict(list)
@@ -88,7 +92,8 @@ def audit_minerva_sft_corpus(
     ]
     duplicates.sort(key=lambda row: (-row["count"], row["poem_ids"]))
     report = {
-        "audit_version": "minerva_v5_sft_corpus_audit_v1",
+        "audit_version": f"minerva_{normalized_label.lower()}_sft_corpus_audit_v1",
+        "corpus_label": normalized_label,
         "dataset": dataset,
         "manifest_path": _portable_path(resolved_manifest, repo_root),
         "manifest_sha256": _file_sha256(resolved_manifest),
@@ -140,7 +145,11 @@ def audit_minerva_sft_corpus(
         ),
     }
 
-    sample_rows = _select_review_sample(split_rows["train"], review_sample_size)
+    sample_rows = _select_review_sample(
+        split_rows["train"],
+        review_sample_size,
+        sample_salt=f"minerva-{normalized_label.lower()}-audit",
+    )
     _write_json(_resolve_path(repo_root, json_report_path), report)
     _write_text(
         _resolve_path(repo_root, markdown_report_path),
@@ -148,7 +157,11 @@ def audit_minerva_sft_corpus(
     )
     _write_text(
         _resolve_path(repo_root, review_sample_path),
-        _render_review_sample(sample_rows, text_by_id),
+        _render_review_sample(
+            sample_rows,
+            text_by_id,
+            corpus_label=normalized_label,
+        ),
     )
     _report(progress, f"wrote audit report: {markdown_report_path}")
     _report(progress, f"wrote review sample: {review_sample_path}")
@@ -225,12 +238,14 @@ def _true_count(rows: Sequence[dict[str, str]], field: str) -> int:
 def _select_review_sample(
     train_rows: Sequence[dict[str, str]],
     sample_size: int,
+    *,
+    sample_salt: str,
 ) -> list[dict[str, str]]:
     by_period: dict[str, list[dict[str, str]]] = defaultdict(list)
     for row in train_rows:
         by_period[row.get("period", "(missing)")].append(row)
     for rows in by_period.values():
-        rows.sort(key=lambda row: _sample_key(row["poem_id"]))
+        rows.sort(key=lambda row: _sample_key(row["poem_id"], sample_salt))
 
     sample: list[dict[str, str]] = []
     periods = sorted(by_period)
@@ -250,13 +265,13 @@ def _select_review_sample(
     return sample
 
 
-def _sample_key(poem_id: str) -> str:
-    return hashlib.sha256(f"minerva-v5-audit:{poem_id}".encode("utf-8")).hexdigest()
+def _sample_key(poem_id: str, sample_salt: str) -> str:
+    return hashlib.sha256(f"{sample_salt}:{poem_id}".encode("utf-8")).hexdigest()
 
 
 def _render_markdown_report(report: dict[str, Any]) -> str:
     lines = [
-        "# Minerva V5 SFT Corpus Audit",
+        f"# Minerva {report['corpus_label']} SFT Corpus Audit",
         "",
         "## Scope",
         "",
@@ -331,7 +346,8 @@ def _render_markdown_report(report: dict[str, Any]) -> str:
         "",
         report["editorial_conclusion"],
         "The companion review sample is not training data duplication; it is a "
-        "deterministic view of committed V5 texts for editorial inspection.",
+        f"deterministic view of committed {report['corpus_label']} texts for "
+        "editorial inspection.",
     ])
     if report["structural_issues"]:
         lines.extend([
@@ -365,9 +381,11 @@ def _render_markdown_report(report: dict[str, Any]) -> str:
 def _render_review_sample(
     rows: Sequence[dict[str, str]],
     text_by_id: dict[str, str],
+    *,
+    corpus_label: str,
 ) -> str:
     sections = [
-        "# Minerva V5 Training-Text Review Sample",
+        f"# Minerva {corpus_label} Training-Text Review Sample",
         "",
         "This deterministic, period-stratified sample supports editorial review "
         "of syntax, edition quality, and cleaning artifacts before another run.",

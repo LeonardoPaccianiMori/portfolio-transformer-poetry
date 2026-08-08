@@ -159,10 +159,11 @@ adapter protocol; a larger GPU is not required for memory. The public evidence
 is in `reports/minerva_7b_instruct_fp16_validation_evaluation.md` and
 `reports/minerva_7b_fp16_lora_calibration.md`.
 
-The next authorized checkpoint is the corrected V6 corpus. After V6 is frozen,
-the project may predeclare one conservative full FP16 LoRA run. The failed
-prompt-only gate remains part of the evidence and must not be rewritten as a
-successful untouched baseline.
+The corrected V6 corpus is now frozen. The next checkpoint is to predeclare a
+two-stage FP16 LoRA lineage: historical-Italian prose continued pretraining,
+then V6 sonnet instruction fine-tuning. The failed prompt-only gate remains
+part of the evidence and must not be rewritten as a successful untouched
+baseline.
 
 ## V5 Data Audit
 
@@ -196,6 +197,40 @@ the editorial page and assign each exact-text group wholly to one split before
 another Minerva training recipe is frozen. This correction requires a separate
 approved data-version checkpoint.
 
+## Completed V6 Correction
+
+V6 removes exactly the one editorial apparatus page and six duplicate or
+mislabeled V5 records. It retains the stronger Cino attributions for the four
+Dante/Cino duplicate pairs, retains the Guittone records whose identifiers
+match their actual first lines, and does not move any retained poem between
+splits. The resulting corpus contains 1,868 poems: 1,481 train, 190 validation,
+and 197 test. Its manifest SHA-256 is
+`994c4c374f42ba26f1c352d7ad7c3adec7ec4671507770bd7c485cb6f977a4fa`.
+
+The V6 automated gate passes with zero structural issues, zero exact duplicate
+groups, zero cross-split duplicate groups, and no suspicious markers. All
+frozen validation and final-test prompts remain present in their original
+splits. A deterministic period-stratified editorial review accepted all 24
+sampled poems without finding residual apparatus or cleaning contamination.
+The retained evidence is `reports/minerva_v6_sft_corpus_audit.md` and
+`reports/minerva_v6_training_text_review_sample.md`.
+
+## Approved Two-Stage Direction
+
+The 7B repair run will test domain-adaptive continued pretraining before sonnet
+specialization. Stage A starts from the pinned Minerva 7B Instruct checkpoint
+and trains unquantized FP16 LoRA adapters on the historical Italian prose
+corpus. Stage B continues the same adapter lineage with instruction-formatted
+V6 sonnet examples. This adapts historical vocabulary and syntax before the
+narrow form task while leaving the 7.4-billion-parameter parent weights frozen.
+
+The exact learning rates, adapter scope, token budget, replay or preservation
+mixture, validation gates, checkpoint cadence, and stopping rules are not yet
+authorized. They must be frozen in the next design checkpoint. Stage A must
+include modern-Italian and instruction-following preservation checks because
+raw-text adaptation of an instruct model can weaken abilities already present
+in the parent.
+
 ## Isolation And Exit Rules
 
 - Use only training and validation records for repair design and checkpoint
@@ -203,9 +238,8 @@ approved data-version checkpoint.
 - Do not expose or regenerate the fixed final-test prompts during calibration.
 - Do not use final-test results to tune prompts, adapter strength, or decoding.
 - QLoRA is treated as a memory mechanism, not as one immutable training recipe.
-- After the local and remote 7B baselines/calibrations and V5 audit, predeclare
-  the exact 3B recipe and, if remote hardware permits, the exact 7B recipe
-  before either full run.
+- Predeclare the exact two-stage 7B recipe, including preservation controls,
+  before either historical adaptation or sonnet fine-tuning begins.
 - Run at most one full repaired 3B experiment and one full 7B experiment.
 - Evaluate every surviving model under one shared protocol before deciding
   whether to resume the judge/DPO/GRPO branch.

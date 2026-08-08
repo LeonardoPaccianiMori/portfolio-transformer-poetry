@@ -1,0 +1,188 @@
+{
+  "audit_version": "minerva_v6_sft_corpus_audit_v1",
+  "corpus_label": "V6",
+  "dataset": "expanded_with_petrarch",
+  "manifest_path": "data/metadata/sonnets_expanded_v6_manifest.csv",
+  "manifest_sha256": "994c4c374f42ba26f1c352d7ad7c3adec7ec4671507770bd7c485cb6f977a4fa",
+  "selected_poem_count": 1868,
+  "split_poem_counts": {
+    "train": 1481,
+    "validation": 190,
+    "test": 197
+  },
+  "period_counts": {
+    "XVI secolo": 701,
+    "XIII secolo": 484,
+    "XIV secolo": 430,
+    "XVII secolo": 196,
+    "XVIII secolo": 45,
+    "XIX secolo": 12
+  },
+  "author_counts": {
+    "Vittoria Colonna": 336,
+    "Francesco Petrarca": 313,
+    "Gaspara Stampa": 282,
+    "Guittone d'Arezzo": 208,
+    "Isabella Andreini": 196,
+    "Cecco Angiolieri": 123,
+    "Cino da Pistoia": 81,
+    "Dante Alighieri": 80,
+    "Vittorio Alfieri": 45,
+    "Guido Cavalcanti": 44,
+    "Folgore da San Gimignano": 36,
+    "Benedetto Varchi": 33,
+    "Ludovico Ariosto": 29,
+    "Giacomo da Lentini": 24,
+    "Jacopo Sannazaro": 21,
+    "Ugo Foscolo": 12,
+    "Abate di Tivoli": 3,
+    "Iacopo Mostacci": 1,
+    "Pier della Vigna": 1
+  },
+  "source_archive_counts": {
+    "Italian Wikisource": 1868
+  },
+  "source_collection_counts": {
+    "Rime (Vittoria Colonna)": 336,
+    "Canzoniere (Rerum vulgarium fragmenta)": 313,
+    "Rime (Stampa)": 282,
+    "Rime (Guittone d'Arezzo)": 208,
+    "Rime (Andreini)": 196,
+    "Rime (Angiolieri)": 123,
+    "Rime (Cino da Pistoia)": 81,
+    "Rime (Dante)": 80,
+    "Rime varie (Alfieri, 1912)": 45,
+    "Rime (Cavalcanti)": 44,
+    "Folgore da San Gimignano sonnet cycles": 36,
+    "Sonetti per la infermità, e guarigione di Cosimo I dei Medici": 33,
+    "Opere minori (Ariosto)/Rime varie": 29,
+    "Poesie (Giacomo da Lentini)": 29,
+    "Rime disperse": 21,
+    "Sonetti (Foscolo)": 12
+  },
+  "train_author_concentration": [
+    {
+      "name": "Vittoria Colonna",
+      "count": 268,
+      "share": 0.18095881161377447
+    },
+    {
+      "name": "Francesco Petrarca",
+      "count": 253,
+      "share": 0.17083051991897366
+    },
+    {
+      "name": "Gaspara Stampa",
+      "count": 217,
+      "share": 0.14652261985145174
+    },
+    {
+      "name": "Guittone d'Arezzo",
+      "count": 162,
+      "share": 0.10938555030384875
+    },
+    {
+      "name": "Isabella Andreini",
+      "count": 151,
+      "share": 0.10195813639432816
+    },
+    {
+      "name": "Cecco Angiolieri",
+      "count": 102,
+      "share": 0.0688723835246455
+    },
+    {
+      "name": "Cino da Pistoia",
+      "count": 65,
+      "share": 0.04388926401080351
+    },
+    {
+      "name": "Dante Alighieri",
+      "count": 64,
+      "share": 0.04321404456448346
+    },
+    {
+      "name": "Vittorio Alfieri",
+      "count": 36,
+      "share": 0.024307900067521943
+    },
+    {
+      "name": "Guido Cavalcanti",
+      "count": 35,
+      "share": 0.02363268062120189
+    }
+  ],
+  "train_source_concentration": [
+    {
+      "name": "Rime (Vittoria Colonna)",
+      "count": 268,
+      "share": 0.18095881161377447
+    },
+    {
+      "name": "Canzoniere (Rerum vulgarium fragmenta)",
+      "count": 253,
+      "share": 0.17083051991897366
+    },
+    {
+      "name": "Rime (Stampa)",
+      "count": 217,
+      "share": 0.14652261985145174
+    },
+    {
+      "name": "Rime (Guittone d'Arezzo)",
+      "count": 162,
+      "share": 0.10938555030384875
+    },
+    {
+      "name": "Rime (Andreini)",
+      "count": 151,
+      "share": 0.10195813639432816
+    },
+    {
+      "name": "Rime (Angiolieri)",
+      "count": 102,
+      "share": 0.0688723835246455
+    },
+    {
+      "name": "Rime (Cino da Pistoia)",
+      "count": 65,
+      "share": 0.04388926401080351
+    },
+    {
+      "name": "Rime (Dante)",
+      "count": 64,
+      "share": 0.04321404456448346
+    },
+    {
+      "name": "Rime varie (Alfieri, 1912)",
+      "count": 36,
+      "share": 0.024307900067521943
+    },
+    {
+      "name": "Rime (Cavalcanti)",
+      "count": 35,
+      "share": 0.02363268062120189
+    }
+  ],
+  "cleaning_metadata": {
+    "editorial_brackets_removed": 1868,
+    "line_markers_removed": 1868,
+    "rows_with_cleaning_notes": 1868,
+    "rows_with_audit_notes": 996
+  },
+  "structural_issue_count": 0,
+  "structural_issues": [],
+  "suspicious_marker_counts": {},
+  "exact_normalized_duplicate_group_count": 0,
+  "cross_split_duplicate_group_count": 0,
+  "exact_normalized_duplicate_groups": [],
+  "line_length_characters": {
+    "minimum": 9,
+    "maximum": 53,
+    "mean": 36.92222392168859,
+    "lines_over_120": 0,
+    "lines_under_4": 0
+  },
+  "automated_structural_gate": "pass",
+  "editorial_conclusion": "Automated checks cannot certify historical grammar; review the deterministic sample before freezing another Minerva recipe."
+}

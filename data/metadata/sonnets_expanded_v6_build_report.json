@@ -1,0 +1,64 @@
+{
+  "dataset_id": "sonnets_expanded_v6",
+  "correction_version": "sonnets_expanded_v6_correction_v1",
+  "source_manifest_path": "data/metadata/sonnets_expanded_v5_manifest.csv",
+  "source_manifest_sha256": "d71abe5bbc048392b7579702124f25bd6dedb400a47a0c171e3f4e6e0aae6275",
+  "output_manifest_path": "data/metadata/sonnets_expanded_v6_manifest.csv",
+  "source_poem_count": 1875,
+  "removed_poem_count": 7,
+  "output_poem_count": 1868,
+  "split_counts": {
+    "train": 1481,
+    "validation": 190,
+    "test": 197
+  },
+  "removed_records": [
+    {
+      "poem_id": "cavalcanti_la_genealogia_dei_manoscritti",
+      "split": "train",
+      "reason": "editorial apparatus page misclassified as a sonnet"
+    },
+    {
+      "poem_id": "dante_cx_dante_quando_per_caso_s_abbandona",
+      "split": "validation",
+      "reason": "exact duplicate; retained stronger Cino attribution"
+    },
+    {
+      "poem_id": "dante_cxii_cercando_di_trovar_minera_in_oro",
+      "split": "test",
+      "reason": "exact duplicate; retained stronger Cino attribution"
+    },
+    {
+      "poem_id": "dante_xcvii_dante_i_non_so_in_qual_albergo_soni",
+      "split": "train",
+      "reason": "exact duplicate; retained stronger Cino attribution"
+    },
+    {
+      "poem_id": "dante_xcviii_dante_i_ho_preso_l_abito_di_doglia",
+      "split": "train",
+      "reason": "exact duplicate; retained stronger Cino attribution"
+    },
+    {
+      "poem_id": "guittone_ben_si_conosce_lo_servente_e_vede",
+      "split": "train",
+      "reason": "exact duplicate whose ID and title do not match the retained text"
+    },
+    {
+      "poem_id": "guittone_de_vertù_de_scienzia_il_cui_podere",
+      "split": "train",
+      "reason": "exact duplicate whose ID and title do not match the retained text"
+    }
+  ],
+  "canonical_duplicate_records": [
+    "cino_rime_dantecx_dante_quando_per_caso_s_abbandona",
+    "cino_rime_dantecxii_cercando_di_trovar_minera_in_oro",
+    "cino_rime_dantexcvii_dante_i_non_so_in_qual_albergo_soni",
+    "cino_rime_dantexcviii_dante_i_ho_preso_l_abito_di_doglia",
+    "guittone_non_per_meo_fallo_lasso_mi_convene",
+    "guittone_tu_costante_e_sicuro_fondamento"
+  ],
+  "validation_prompt_count": 8,
+  "final_test_prompt_count": 10,
+  "exact_duplicate_group_count": 0,
+  "output_manifest_sha256": "994c4c374f42ba26f1c352d7ad7c3adec7ec4671507770bd7c485cb6f977a4fa"
+}
