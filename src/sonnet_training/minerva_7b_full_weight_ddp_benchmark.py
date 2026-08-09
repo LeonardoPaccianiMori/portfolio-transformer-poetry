@@ -7,6 +7,7 @@ import math
 import os
 import time
 from collections.abc import Callable, Mapping
+from contextlib import nullcontext
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
@@ -45,6 +46,9 @@ H100_BENCHMARK_VERSION = "minerva_7b_full_weight_dual_h100_sxm_ddp_v1"
 H100_INTERMEDIATE_BENCHMARK_VERSION = (
     "minerva_7b_full_weight_dual_h100_sxm_intermediate_ddp_v1"
 )
+H100_MAX_UTILIZATION_BENCHMARK_VERSION = (
+    "minerva_7b_full_weight_dual_h100_sxm_max_utilization_ddp_v1"
+)
 EXPECTED_WORLD_SIZE = 2
 MINIMUM_GPU_MEMORY_MIB = 90 * 1024
 MINIMUM_H100_GPU_MEMORY_MIB = 75 * 1024
@@ -69,6 +73,9 @@ class Minerva7BFullWeightDdpBenchmarkConfig:
     world_size: int = EXPECTED_WORLD_SIZE
     global_sequence_counts: tuple[int, ...] = (8, 16)
     bucket_cap_mib: tuple[int, ...] = (25, 100, 250)
+    fixed_local_microbatch_size: int | None = None
+    gradient_accumulation_options: tuple[int, ...] = (1,)
+    ddp_static_graph: bool = False
     warmup_updates: int = 1
     timed_updates: int = 5
     learning_rate: float = 1e-6
@@ -118,6 +125,26 @@ class Minerva7BDualH100IntermediateDdpBenchmarkConfig(
 
 
 @dataclass(frozen=True)
+class Minerva7BDualH100MaxUtilizationDdpBenchmarkConfig(
+    Minerva7BDualH100DdpBenchmarkConfig
+):
+    """Maximize useful H100 work while holding local activation memory fixed."""
+
+    output_path: str = (
+        "data/local/minerva_7b_full_weight/"
+        "full_weight_dual_h100_sxm_max_utilization_benchmark.json"
+    )
+    benchmark_version: str = H100_MAX_UTILIZATION_BENCHMARK_VERSION
+    global_sequence_counts: tuple[int, ...] = ()
+    bucket_cap_mib: tuple[int, ...] = (25, 250)
+    fixed_local_microbatch_size: int | None = 8
+    gradient_accumulation_options: tuple[int, ...] = (1, 2, 4, 8)
+    ddp_static_graph: bool = True
+    timed_updates: int = 10
+    minimum_headroom_mib: int = 6 * 1024
+
+
+@dataclass(frozen=True)
 class DdpThroughputCandidate:
     candidate_id: str
     global_sequences_per_update: int
@@ -134,6 +161,7 @@ def validate_full_weight_ddp_benchmark_config(
         Minerva7BFullWeightDdpBenchmarkConfig(),
         Minerva7BDualH100DdpBenchmarkConfig(),
         Minerva7BDualH100IntermediateDdpBenchmarkConfig(),
+        Minerva7BDualH100MaxUtilizationDdpBenchmarkConfig(),
     )
     if config not in approved_configs:
         raise ValueError("Minerva 7B DDP benchmark configuration is locked")
@@ -144,6 +172,28 @@ def build_ddp_throughput_candidates(
 ) -> tuple[DdpThroughputCandidate, ...]:
     """Compare equal-work DDP bucket sizes at two approved global batches."""
     candidates = []
+    if config.fixed_local_microbatch_size is not None:
+        local_microbatch = config.fixed_local_microbatch_size
+        if local_microbatch <= 0:
+            raise ValueError("fixed local microbatch must be positive")
+        for accumulation in config.gradient_accumulation_options:
+            if accumulation <= 0:
+                raise ValueError("gradient accumulation must be positive")
+            global_sequences = local_microbatch * config.world_size * accumulation
+            for bucket_cap_mib in config.bucket_cap_mib:
+                candidates.append(DdpThroughputCandidate(
+                    candidate_id=(
+                        f"global{global_sequences * config.context_length}_"
+                        f"micro{local_microbatch}_accum{accumulation}_"
+                        f"bucket{bucket_cap_mib}"
+                    ),
+                    global_sequences_per_update=global_sequences,
+                    local_microbatch_size=local_microbatch,
+                    gradient_accumulation_steps=accumulation,
+                    bucket_cap_mib=bucket_cap_mib,
+                    tokens_per_update=global_sequences * config.context_length,
+                ))
+        return tuple(candidates)
     for global_sequences in config.global_sequence_counts:
         if global_sequences % config.world_size:
             raise ValueError("global sequence count must divide across DDP ranks")
@@ -245,7 +295,10 @@ def benchmark_minerva_7b_full_weight_ddp(
         windows = load_full_weight_calibration_windows(
             _resolve(repo_root, config.calibration_windows_path)
         )
-        maximum_sequences = max(config.global_sequence_counts)
+        candidates = build_ddp_throughput_candidates(config)
+        maximum_sequences = max(
+            candidate.global_sequences_per_update for candidate in candidates
+        )
         sequence_pool = _build_sequence_pool(
             windows["training_windows"],
             sequence_count=maximum_sequences,
@@ -281,7 +334,6 @@ def benchmark_minerva_7b_full_weight_ddp(
             weight_decay=config.weight_decay,
         )
 
-        candidates = build_ddp_throughput_candidates(config)
         rows = []
         benchmark_started_at = time.monotonic()
         for index, candidate in enumerate(candidates, start=1):
@@ -299,6 +351,7 @@ def benchmark_minerva_7b_full_weight_ddp(
                 bucket_cap_mb=candidate.bucket_cap_mib,
                 gradient_as_bucket_view=True,
                 find_unused_parameters=False,
+                static_graph=config.ddp_static_graph,
             )
             row = _benchmark_candidate(
                 ddp_model=ddp_model,
@@ -552,12 +605,24 @@ def _run_update(
 ) -> tuple[float, float]:
     ddp_model.train()
     optimizer.zero_grad(set_to_none=True)
-    batch = input_ids.to(device=device, dtype=torch.long)
-    loss = ddp_model(input_ids=batch, labels=batch).loss
-    loss_value = float(loss.detach().item())
-    if not math.isfinite(loss_value):
-        raise FloatingPointError("DDP benchmark produced a non-finite loss")
-    loss.backward()
+    if input_ids.ndim != 3:
+        raise ValueError("local DDP inputs must have shape (accumulation, batch, tokens)")
+    losses = []
+    accumulation_steps = input_ids.shape[0]
+    for microbatch_index, microbatch in enumerate(input_ids):
+        synchronize_context = (
+            ddp_model.no_sync()
+            if microbatch_index < accumulation_steps - 1
+            else nullcontext()
+        )
+        with synchronize_context:
+            batch = microbatch.to(device=device, dtype=torch.long)
+            loss = ddp_model(input_ids=batch, labels=batch).loss
+            loss_value = float(loss.detach().item())
+            if not math.isfinite(loss_value):
+                raise FloatingPointError("DDP benchmark produced a non-finite loss")
+            (loss / accumulation_steps).backward()
+            losses.append(loss_value)
     gradient_norm = torch.nn.utils.clip_grad_norm_(
         parameters,
         config.max_gradient_norm,
@@ -567,7 +632,7 @@ def _run_update(
         raise FloatingPointError("DDP benchmark produced a non-finite gradient norm")
     optimizer.step()
     synchronize_cuda(device)
-    return loss_value, gradient_norm_value
+    return sum(losses) / len(losses), gradient_norm_value
 
 
 def _local_sequences(
@@ -580,8 +645,18 @@ def _local_sequences(
     if candidate.global_sequences_per_update % world_size:
         raise ValueError("candidate cannot be divided across DDP ranks")
     local_count = candidate.global_sequences_per_update // world_size
+    expected_local_count = (
+        candidate.local_microbatch_size * candidate.gradient_accumulation_steps
+    )
+    if local_count != expected_local_count:
+        raise ValueError("candidate local work does not match microbatch accumulation")
     start = rank * local_count
-    return sequence_pool[start:start + local_count].contiguous()
+    local = sequence_pool[start:start + local_count].contiguous()
+    return local.reshape(
+        candidate.gradient_accumulation_steps,
+        candidate.local_microbatch_size,
+        local.shape[-1],
+    )
 
 
 def _build_sequence_pool(windows: torch.Tensor, *, sequence_count: int) -> torch.Tensor:
