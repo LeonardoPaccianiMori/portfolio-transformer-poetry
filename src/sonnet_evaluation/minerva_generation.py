@@ -43,6 +43,8 @@ def generate_minerva_continuation(
     seed: int,
     temperature: float = ACCEPTANCE_TEMPERATURE,
     top_k: int | None = ACCEPTANCE_TOP_K,
+    top_p: float = 1.0,
+    repetition_penalty: float = 1.0,
     continuation_line_target: int = TASK_CONTINUATION_LINE_TARGET,
     conditioning_prompt: str | None = None,
 ) -> dict[str, Any]:
@@ -55,6 +57,10 @@ def generate_minerva_continuation(
         raise ValueError("temperature must be greater than 0")
     if top_k is not None and top_k <= 0:
         raise ValueError("top_k must be greater than 0 when provided")
+    if not 0 < top_p <= 1:
+        raise ValueError("top_p must be in the interval (0, 1]")
+    if repetition_penalty < 1:
+        raise ValueError("repetition_penalty must be at least 1")
     if continuation_line_target <= 0:
         raise ValueError("continuation_line_target must be greater than 0")
 
@@ -111,14 +117,18 @@ def generate_minerva_continuation(
                 past_key_values=past_key_values,
                 use_cache=True,
             )
-            logits = outputs.logits[:, -1, :].float() / temperature
+            logits = outputs.logits[:, -1, :].float()
             past_key_values = outputs.past_key_values
             if special_token_ids:
                 logits[:, list(special_token_ids)] = -torch.inf
-            if top_k is not None:
-                retained_count = min(top_k, logits.shape[-1])
-                threshold = torch.topk(logits, retained_count, dim=-1).values[:, -1:]
-                logits = logits.masked_fill(logits < threshold, -torch.inf)
+            logits = prepare_minerva_sampling_logits(
+                logits,
+                generated_token_ids=generated_ids,
+                temperature=temperature,
+                top_k=top_k,
+                top_p=top_p,
+                repetition_penalty=repetition_penalty,
+            )
 
             probabilities = torch.softmax(logits, dim=-1)
             if not torch.isfinite(probabilities).all():
@@ -172,6 +182,8 @@ def generate_minerva_variant_for_prompts(
     device: torch.device | str,
     temperature: float = ACCEPTANCE_TEMPERATURE,
     top_k: int | None = ACCEPTANCE_TOP_K,
+    top_p: float = 1.0,
+    repetition_penalty: float = 1.0,
     continuation_line_target: int = TASK_CONTINUATION_LINE_TARGET,
     adapter_checkpoint_path: Path | None = None,
     prompt_config_path: Path | None = None,
@@ -211,6 +223,8 @@ def generate_minerva_variant_for_prompts(
                 seed=seed,
                 temperature=temperature,
                 top_k=top_k,
+                top_p=top_p,
+                repetition_penalty=repetition_penalty,
                 continuation_line_target=continuation_line_target,
                 conditioning_prompt=(
                     conditioning_prompt_builder(prompt["opening_line"])
@@ -268,6 +282,8 @@ def generate_minerva_variant_for_prompts(
         "device": str(device),
         "temperature": temperature,
         "top_k": top_k,
+        "top_p": top_p,
+        "repetition_penalty": repetition_penalty,
         "stop_text": getattr(tokenizer, "eos_token", None),
         "continuation_line_target": continuation_line_target,
         "total_line_target": continuation_line_target + 1,
@@ -281,6 +297,72 @@ def generate_minerva_variant_for_prompts(
         encoding="utf-8",
     )
     return metadata
+
+
+def prepare_minerva_sampling_logits(
+    logits: torch.Tensor,
+    *,
+    generated_token_ids: Sequence[int],
+    temperature: float,
+    top_k: int | None,
+    top_p: float,
+    repetition_penalty: float,
+) -> torch.Tensor:
+    """Apply continuation-only repetition, temperature, top-k, and top-p."""
+    if logits.ndim != 2 or logits.shape[0] != 1:
+        raise ValueError("Minerva sampling logits must have shape (1, vocabulary)")
+    if temperature <= 0:
+        raise ValueError("temperature must be greater than 0")
+    if top_k is not None and top_k <= 0:
+        raise ValueError("top_k must be greater than 0 when provided")
+    if not 0 < top_p <= 1:
+        raise ValueError("top_p must be in the interval (0, 1]")
+    if repetition_penalty < 1:
+        raise ValueError("repetition_penalty must be at least 1")
+
+    filtered = logits.clone()
+    if repetition_penalty != 1 and generated_token_ids:
+        repeated_ids = sorted({
+            token_id
+            for token_id in generated_token_ids
+            if 0 <= token_id < filtered.shape[-1]
+        })
+        if repeated_ids:
+            repeated_logits = filtered[:, repeated_ids]
+            filtered[:, repeated_ids] = torch.where(
+                repeated_logits < 0,
+                repeated_logits * repetition_penalty,
+                repeated_logits / repetition_penalty,
+            )
+
+    filtered = filtered / temperature
+    if top_k is not None:
+        retained_count = min(top_k, filtered.shape[-1])
+        threshold = torch.topk(
+            filtered, retained_count, dim=-1
+        ).values[:, -1:]
+        filtered = filtered.masked_fill(filtered < threshold, -torch.inf)
+
+    if top_p < 1:
+        sorted_logits, sorted_indices = torch.sort(
+            filtered, descending=True, dim=-1
+        )
+        cumulative_probabilities = torch.softmax(
+            sorted_logits, dim=-1
+        ).cumsum(dim=-1)
+        sorted_remove = cumulative_probabilities > top_p
+        sorted_remove[:, 1:] = sorted_remove[:, :-1].clone()
+        sorted_remove[:, 0] = False
+        remove = torch.zeros_like(sorted_remove).scatter(
+            dim=-1,
+            index=sorted_indices,
+            src=sorted_remove,
+        )
+        filtered = filtered.masked_fill(remove, -torch.inf)
+
+    if not torch.isfinite(filtered).any(dim=-1).all():
+        raise RuntimeError("Minerva sampling filters removed every token")
+    return filtered
 
 
 def generate_fixed_minerva_comparison(

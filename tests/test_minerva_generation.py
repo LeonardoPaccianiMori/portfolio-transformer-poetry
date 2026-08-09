@@ -8,6 +8,7 @@ from sonnet_evaluation.minerva_generation import (
     _validate_adapter_checkpoint,
     generate_minerva_continuation,
     generate_minerva_variant_for_prompts,
+    prepare_minerva_sampling_logits,
 )
 
 
@@ -134,6 +135,8 @@ def test_minerva_variant_writes_task_format_compatible_metadata(tmp_path):
     assert metadata["model_id"] == "example/model"
     assert metadata["revision"] == "example-revision"
     assert metadata["total_line_target"] == 2
+    assert metadata["top_p"] == 1.0
+    assert metadata["repetition_penalty"] == 1.0
     assert metadata["generated_files"][0]["source_prompt_id"] == "first"
     assert (output_dir / "first__seed_1337.txt").read_text(encoding="utf-8") == (
         "Prima\nSeconda\n"
@@ -161,3 +164,55 @@ def test_minerva_generation_rejects_non_selected_adapter_checkpoint():
         _validate_adapter_checkpoint(checkpoint)
 
     _validate_adapter_checkpoint(checkpoint, require_selected=False)
+
+
+def test_minerva_sampling_applies_continuation_only_repetition_penalty():
+    logits = torch.tensor([[4.0, 3.0, -2.0, -1.0]])
+
+    filtered = prepare_minerva_sampling_logits(
+        logits,
+        generated_token_ids=[0, 2, 2],
+        temperature=1.0,
+        top_k=None,
+        top_p=1.0,
+        repetition_penalty=2.0,
+    )
+
+    assert filtered.tolist() == [[2.0, 3.0, -4.0, -1.0]]
+    assert logits.tolist() == [[4.0, 3.0, -2.0, -1.0]]
+
+
+def test_minerva_sampling_combines_top_k_and_top_p_without_emptying_distribution():
+    filtered = prepare_minerva_sampling_logits(
+        torch.tensor([[5.0, 4.0, 1.0, 0.0]]),
+        generated_token_ids=[],
+        temperature=1.0,
+        top_k=3,
+        top_p=0.9,
+        repetition_penalty=1.0,
+    )
+
+    assert torch.isfinite(filtered[0, :2]).all()
+    assert torch.isneginf(filtered[0, 2:]).all()
+
+
+@pytest.mark.parametrize(
+    ("top_p", "repetition_penalty", "message"),
+    [
+        (0.0, 1.0, "top_p"),
+        (1.1, 1.0, "top_p"),
+        (1.0, 0.9, "repetition_penalty"),
+    ],
+)
+def test_minerva_sampling_rejects_invalid_recovery_controls(
+    top_p, repetition_penalty, message
+):
+    with pytest.raises(ValueError, match=message):
+        prepare_minerva_sampling_logits(
+            torch.tensor([[1.0, 0.0]]),
+            generated_token_ids=[],
+            temperature=1.0,
+            top_k=None,
+            top_p=top_p,
+            repetition_penalty=repetition_penalty,
+        )

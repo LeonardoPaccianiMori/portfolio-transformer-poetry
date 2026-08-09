@@ -1,0 +1,117 @@
+{
+  "recovery_version": "minerva_7b_quality_recovery_v1",
+  "status": "predeclared_before_gpu_generation",
+  "model_id": "sapienzanlp/Minerva-7B-instruct-v1.0",
+  "revision": "d1fc0f0e589ae879c5ac763e0e4206a4d14a3f6d",
+  "manifest_path": "data/metadata/sonnets_expanded_v6_manifest.csv",
+  "manifest_sha256": "994c4c374f42ba26f1c352d7ad7c3adec7ec4671507770bd7c485cb6f977a4fa",
+  "prompt_path": "configs/minerva_7b_quality_recovery_prompts.json",
+  "prompt_sha256": "25a6e70babf20a10722ca171fddb087c5052c4d54624017283ada864616d0856",
+  "prompt_count": 12,
+  "excluded_prompt_sets": [
+    {
+      "path": "configs/minerva_3b_validation_sanity_prompts.json",
+      "sha256": "8d451030331c2ccd104e0ff9a4c24253f54fd27b3a956120192ebc28db5b62f7"
+    },
+    {
+      "path": "configs/task_format_acceptance_prompts.json",
+      "sha256": "e27c74248870bbe72cce4f87cf6563480e42651e991a3135747ee7f13ced5117"
+    }
+  ],
+  "stage_a_checkpoint_path": "runs/minerva_7b_historical_fp16_lora_001/checkpoints/adapter_step_004000.pt",
+  "stage_a_checkpoint_sha256": "acfad4d442ac8ea7349dcb1bd379c9b41859027ab45daac54c6b6aa35e0bbc63",
+  "stage_b_checkpoint_path": "runs/minerva_7b_v6_sonnet_fp16_lora_001/checkpoints/adapter_epoch_04.pt",
+  "stage_b_checkpoint_sha256": "aff3f2c4d193ce880ec9c7a6df6373f433001662c3ca78d7f915890733cb0df3",
+  "stage_b_selection_path": "configs/minerva_7b_v6_selected_adapter.json",
+  "stage_b_selection_sha256": "4c9e7da2b94717a004c1a8c3bfc5f883e0889e73e442450272677dbddccea6da",
+  "generation": {
+    "load_mode": "nf4",
+    "seed": 2029,
+    "max_new_tokens": 512,
+    "continuation_line_target": 13,
+    "conditioning_format": "minerva_chat_complete_sonnet_v1",
+    "conditions": [
+      {
+        "condition_id": "untouched_control",
+        "model_state": "untouched",
+        "temperature": 0.8,
+        "top_k": 50,
+        "top_p": 1.0,
+        "repetition_penalty": 1.0
+      },
+      {
+        "condition_id": "stage_a_control",
+        "model_state": "stage_a",
+        "temperature": 0.8,
+        "top_k": 50,
+        "top_p": 1.0,
+        "repetition_penalty": 1.0
+      },
+      {
+        "condition_id": "stage_b_control",
+        "model_state": "stage_b",
+        "temperature": 0.8,
+        "top_k": 50,
+        "top_p": 1.0,
+        "repetition_penalty": 1.0
+      },
+      {
+        "condition_id": "stage_b_conservative",
+        "model_state": "stage_b",
+        "temperature": 0.65,
+        "top_k": 40,
+        "top_p": 0.92,
+        "repetition_penalty": 1.05
+      },
+      {
+        "condition_id": "stage_b_low_temperature",
+        "model_state": "stage_b",
+        "temperature": 0.55,
+        "top_k": 30,
+        "top_p": 0.9,
+        "repetition_penalty": 1.05
+      },
+      {
+        "condition_id": "stage_b_anti_repeat",
+        "model_state": "stage_b",
+        "temperature": 0.7,
+        "top_k": 50,
+        "top_p": 0.92,
+        "repetition_penalty": 1.1
+      },
+      {
+        "condition_id": "stage_b_nucleus",
+        "model_state": "stage_b",
+        "temperature": 0.7,
+        "top_k": null,
+        "top_p": 0.9,
+        "repetition_penalty": 1.05
+      }
+    ]
+  },
+  "judge": {
+    "judge_version": "minerva_7b_instruction_judge_v1",
+    "load_mode": "nf4",
+    "score_range": [0, 4],
+    "max_new_tokens": 96,
+    "do_sample": false,
+    "human_case_count": 56,
+    "human_mapping_path": "outputs/generations/minerva_3b_validation_sanity_v1/blind_mapping.json",
+    "human_mapping_sha256": "56d9435b92dcfe64ffa09861efd63a89d2579479ceeca3cbc275ee52917f1e40",
+    "human_judgments_path": "reports/minerva_3b_validation_sanity_blinded_judgments.md",
+    "human_judgments_sha256": "fca814d8a16f5d67375b8f67b24b53d969e3c7ae896eb004f4c68306c7eeda3e",
+    "thresholds": {
+      "parse_rate": 0.98,
+      "grammar_auroc": 0.75,
+      "topic_auroc": 0.7,
+      "noncollapse_auroc": 0.75,
+      "human_ordinal_pairwise_concordance": 0.65
+    },
+    "remote_fp16_authorization": {
+      "required_checks": ["parse_rate", "noncollapse_auroc"],
+      "minimum_total_passed_checks": 4
+    }
+  },
+  "final_test_allowed": false,
+  "training_allowed": false
+}

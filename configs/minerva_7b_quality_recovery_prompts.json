@@ -1,0 +1,86 @@
+[
+  {
+    "id": "abate_oi_deo",
+    "poem_id": "giacomo_oi_deo_d_amore",
+    "author": "Abate di Tivoli",
+    "period": "XIII secolo",
+    "opening_line": "Oi deo d'amore, a te faccio preghera"
+  },
+  {
+    "id": "giacomo_feruto",
+    "poem_id": "giacomo_feruto_sono_isvarïatamente",
+    "author": "Giacomo da Lentini",
+    "period": "XIII secolo",
+    "opening_line": "Feruto sono isvarïatamente:"
+  },
+  {
+    "id": "guittone_amor_merzede",
+    "poem_id": "guittone_amor_merzede_intende_s_eo_ragione",
+    "author": "Guittone d'Arezzo",
+    "period": "XIII secolo",
+    "opening_line": "Amor, merzede, intende s'eo ragione"
+  },
+  {
+    "id": "cino_ahime",
+    "poem_id": "cino_ahimè_ch_io_veggio_ch_una_donna_viene",
+    "author": "Cino da Pistoia",
+    "period": "XIV secolo",
+    "opening_line": "Ahimè! ch'io veggio ch'una donna viene"
+  },
+  {
+    "id": "folgore_marzo",
+    "poem_id": "folgore_006",
+    "author": "Folgore da San Gimignano",
+    "period": "XIV secolo",
+    "opening_line": "Di marzo sí vi do una peschiera"
+  },
+  {
+    "id": "petrarca_occhi_miei",
+    "poem_id": "petrarca_occhi_miei_lassi_mentre_ch_io_vi_giro",
+    "author": "Francesco Petrarca",
+    "period": "XIV secolo",
+    "opening_line": "Occhi miei lassi, mentre ch'io vi giro"
+  },
+  {
+    "id": "varchi_quanto_amor",
+    "poem_id": "varchi_sonetto_vi",
+    "author": "Benedetto Varchi",
+    "period": "XVI secolo",
+    "opening_line": "Quanto all'amor di voi! Quanto Arno deve,"
+  },
+  {
+    "id": "ariosto_altri_lodera",
+    "poem_id": "ariosto_sonetto_xii",
+    "author": "Ludovico Ariosto",
+    "period": "XVI secolo",
+    "opening_line": "Altri loderà il viso, altri le chiome"
+  },
+  {
+    "id": "sannazaro_spargi",
+    "poem_id": "sannazaro_spargi_di_lauri_palme_e_mirti_foglie",
+    "author": "Jacopo Sannazaro",
+    "period": "XVI secolo",
+    "opening_line": "Spargi di lauri, palme e mirti foglie,"
+  },
+  {
+    "id": "stampa_perche_tardo",
+    "poem_id": "stampa_rime_d_amore_xii",
+    "author": "Gaspara Stampa",
+    "period": "XVI secolo",
+    "opening_line": "Deh, perché cosí tardo gli occhi apersi"
+  },
+  {
+    "id": "andreini_aure_placide",
+    "poem_id": "andreini_sonetto_v",
+    "author": "Isabella Andreini",
+    "period": "XVII secolo",
+    "opening_line": "SPirando l'aure placide, e seconde"
+  },
+  {
+    "id": "alfieri_ora_appressa",
+    "poem_id": "alfieri_xiv_si_duole_perche_non_puo_andar_dalla_sua_donna",
+    "author": "Vittorio Alfieri",
+    "period": "XVIII secolo",
+    "opening_line": "Ecco, già l'ora appressa, ond'io trar soglio"
+  }
+]
