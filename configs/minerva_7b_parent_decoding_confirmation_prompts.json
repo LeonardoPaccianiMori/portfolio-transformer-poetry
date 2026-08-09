@@ -1,0 +1,170 @@
+[
+  {
+    "id": "dante_volgete_occhi",
+    "poem_id": "dante_lix_volgete_li_occhi_a_veder_chi_mi_tira",
+    "author": "Dante Alighieri",
+    "period": "XIII secolo",
+    "opening_line": "Volgete li occhi a veder chi mi tira,"
+  },
+  {
+    "id": "dante_gran_tosse",
+    "poem_id": "dante_lxxiv_l_altra_notte_mi_venne_una_gran_tosse",
+    "author": "Dante Alighieri",
+    "period": "XIII secolo",
+    "opening_line": "L'altra notte mi venne una gran tosse,"
+  },
+  {
+    "id": "cavalcanti_anima_presa",
+    "poem_id": "cavalcanti_dante_ai_poeti",
+    "author": "Guido Cavalcanti",
+    "period": "XIII secolo",
+    "opening_line": "A ciascun' alma presa e gentil core"
+  },
+  {
+    "id": "cavalcanti_ogni_valore",
+    "poem_id": "cavalcanti_vedeste_al_mio_parere_ogni_valore",
+    "author": "Guido Cavalcanti",
+    "period": "XIII secolo",
+    "opening_line": "Vedeste, al mio parere, ogni valore"
+  },
+  {
+    "id": "cecco_non_trovo_messo",
+    "poem_id": "cecco_xxv_sonetto_da_poi_ch_i_non_trovo_messo",
+    "author": "Cecco Angiolieri",
+    "period": "XIII secolo",
+    "opening_line": "Sonetto, da poi ch'i' non trovo messo"
+  },
+  {
+    "id": "cecco_oncia_carne",
+    "poem_id": "cecco_xxvii_oncia_di_carne_libra_di_malizia",
+    "author": "Cecco Angiolieri",
+    "period": "XIII secolo",
+    "opening_line": "– Oncia di carne, libra di malizia,"
+  },
+  {
+    "id": "cino_donna_io_vi_miro",
+    "poem_id": "cino_donna_io_vi_miro_e_non_è_chi_vi_guidi",
+    "author": "Cino da Pistoia",
+    "period": "XIV secolo",
+    "opening_line": "Donna, io vi miro; e non è chi vi guidi"
+  },
+  {
+    "id": "cino_giusto_dolore",
+    "poem_id": "cino_giusto_dolore_alla_morte_m_invita",
+    "author": "Cino da Pistoia",
+    "period": "XIV secolo",
+    "opening_line": "Giusto dolore alla morte m'invita;"
+  },
+  {
+    "id": "folgore_settembre",
+    "poem_id": "folgore_012",
+    "author": "Folgore da San Gimignano",
+    "period": "XIV secolo",
+    "opening_line": "Di settembre vi do diletti tanti"
+  },
+  {
+    "id": "folgore_dicembre",
+    "poem_id": "folgore_015",
+    "author": "Folgore da San Gimignano",
+    "period": "XIV secolo",
+    "opening_line": "E di dicembre una cittá in piano:"
+  },
+  {
+    "id": "petrarca_piovonmi_lagrime",
+    "poem_id": "petrarca_piovonmi_amare_lagrime_dal_viso",
+    "author": "Francesco Petrarca",
+    "period": "XIV secolo",
+    "opening_line": "Piovonmi amare lagrime dal viso"
+  },
+  {
+    "id": "petrarca_tesaglia",
+    "poem_id": "petrarca_que_che_n_tesaglia_ebbe_le_man_sí_pronte",
+    "author": "Francesco Petrarca",
+    "period": "XIV secolo",
+    "opening_line": "Que'che 'n Tesaglia ebbe le man' sí pronte"
+  },
+  {
+    "id": "varchi_neri",
+    "poem_id": "varchi_sonetto_xxii",
+    "author": "Benedetto Varchi",
+    "period": "XVI secolo",
+    "opening_line": "Neri, io so ben, che poco giova, o nulla"
+  },
+  {
+    "id": "varchi_salviati",
+    "poem_id": "varchi_sonetto_xxviii",
+    "author": "Benedetto Varchi",
+    "period": "XVI secolo",
+    "opening_line": "Salviati mio, se voi sapete quanto"
+  },
+  {
+    "id": "colonna_mortal_salma",
+    "poem_id": "colonna_sonetto_xvi",
+    "author": "Vittoria Colonna",
+    "period": "XVI secolo",
+    "opening_line": "COme non depos'io la mortal salma"
+  },
+  {
+    "id": "colonna_mio_sole",
+    "poem_id": "colonna_sonetto_lii",
+    "author": "Vittoria Colonna",
+    "period": "XVI secolo",
+    "opening_line": "SPerando di veder là su 'l mio Sole,"
+  },
+  {
+    "id": "stampa_abietta_vile",
+    "poem_id": "stampa_rime_d_amore_viii",
+    "author": "Gaspara Stampa",
+    "period": "XVI secolo",
+    "opening_line": "Se, cosí come sono abietta e vile"
+  },
+  {
+    "id": "stampa_lingue_ingegni",
+    "poem_id": "stampa_rime_d_amore_xxiv",
+    "author": "Gaspara Stampa",
+    "period": "XVI secolo",
+    "opening_line": "Vengan quante fûr mai lingue ed ingegni,"
+  },
+  {
+    "id": "ariosto_tenebroso_velo",
+    "poem_id": "ariosto_sonetto_xvii",
+    "author": "Ludovico Ariosto",
+    "period": "XVI secolo",
+    "opening_line": "Chiuso era il sol da un tenebroso velo,"
+  },
+  {
+    "id": "ariosto_nodi_capelli",
+    "poem_id": "ariosto_sonetto_xxiii",
+    "author": "Ludovico Ariosto",
+    "period": "XVI secolo",
+    "opening_line": "Son questi i nodi d'ôr, questi i capelli,"
+  },
+  {
+    "id": "andreini_che_piango",
+    "poem_id": "andreini_sonetto_xxiv",
+    "author": "Isabella Andreini",
+    "period": "XVII secolo",
+    "opening_line": "A Che piango infelice? à che sospiro?"
+  },
+  {
+    "id": "andreini_disperata_doglia",
+    "poem_id": "andreini_sonetto_xlv",
+    "author": "Isabella Andreini",
+    "period": "XVII secolo",
+    "opening_line": "DIsperata mia doglia, disperate"
+  },
+  {
+    "id": "alfieri_cupola",
+    "poem_id": "alfieri_xxxi_la_cupola_di_san_pietro",
+    "author": "Vittorio Alfieri",
+    "period": "XVIII secolo",
+    "opening_line": "Immensa mole, che nel ciel torreggi,"
+  },
+  {
+    "id": "alfieri_deboli_speranze",
+    "poem_id": "alfieri_xciv_deboli_speranze_e_dolore_certo",
+    "author": "Vittorio Alfieri",
+    "period": "XVIII secolo",
+    "opening_line": "Donna mia, che di' tu? ch'io men dolente"
+  }
+]
