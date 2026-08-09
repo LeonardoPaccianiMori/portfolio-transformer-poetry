@@ -87,7 +87,7 @@ def test_dual_h100_max_utilization_profile_accumulates_fixed_microbatch():
     assert config.benchmark_version == H100_MAX_UTILIZATION_BENCHMARK_VERSION
     assert config.fixed_local_microbatch_size == 8
     assert config.gradient_accumulation_options == (1, 2, 4, 8)
-    assert config.ddp_static_graph is True
+    assert config.ddp_static_graph is False
     assert config.minimum_headroom_mib == 6 * 1024
     assert len(candidates) == 8
     assert [row.gradient_accumulation_steps for row in candidates] == [

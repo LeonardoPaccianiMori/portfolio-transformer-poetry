@@ -35,7 +35,7 @@ def main() -> None:
     if rank == 0:
         print(
             "minerva-h100-max-util | start ranks=2 candidates=8 local_micro=8 "
-            "accumulation=1,2,4,8 buckets_mib=25,250 static_graph=true "
+            "accumulation=1,2,4,8 buckets_mib=25,250 static_graph=false "
             "warmup_updates=1 timed_updates=10 "
             "estimated_runtime=3m-10m_cached",
             flush=True,

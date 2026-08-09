@@ -139,7 +139,9 @@ class Minerva7BDualH100MaxUtilizationDdpBenchmarkConfig(
     bucket_cap_mib: tuple[int, ...] = (25, 250)
     fixed_local_microbatch_size: int | None = 8
     gradient_accumulation_options: tuple[int, ...] = (1, 2, 4, 8)
-    ddp_static_graph: bool = True
+    # PyTorch 2.12's static reducer asserts internally when no_sync() begins.
+    # Keep accumulation on the normal reducer and measure static graph separately.
+    ddp_static_graph: bool = False
     timed_updates: int = 10
     minimum_headroom_mib: int = 6 * 1024
 
