@@ -432,6 +432,8 @@ def build_judge_gate_report(result: Mapping[str, Any]) -> str:
         f"- Validation triplets: {result['gate']['triplet_count']}.",
         f"- Blinded human-labelled controls: {result['gate']['human_case_count']}.",
         "- Final-test material used: no.",
+        f"- GPU: {result['gpu_name']} with FP16 CPU layer offload.",
+        f"- Peak CUDA reservation: {result['peak_cuda_reserved_mib']:.1f} MiB.",
         "",
         "## Gate Checks",
         "",
@@ -444,6 +446,51 @@ def build_judge_gate_report(result: Mapping[str, Any]) -> str:
             f">= {check['threshold']:.4f} | "
             f"{'pass' if check['passed'] else 'fail'} |"
         )
+    scored_cases = result["scored_cases"]
+    triplet_means = {
+        variant: _mean([
+            float(row["mean_continuation_nll"])
+            for row in scored_cases
+            if row["family"] == "triplet" and row["variant"] == variant
+        ])
+        for variant in ("genuine", "generated", "corrupted")
+    }
+    grammar_yes = _mean([
+        float(row["mean_continuation_nll"])
+        for row in scored_cases
+        if row["family"] == "human" and row["grammar"]
+    ])
+    grammar_no = _mean([
+        float(row["mean_continuation_nll"])
+        for row in scored_cases
+        if row["family"] == "human" and not row["grammar"]
+    ])
+    collapse_yes = _mean([
+        float(row["mean_continuation_nll"])
+        for row in scored_cases
+        if row["family"] == "human" and row["collapse"]
+    ])
+    collapse_no = _mean([
+        float(row["mean_continuation_nll"])
+        for row in scored_cases
+        if row["family"] == "human" and not row["collapse"]
+    ])
+    lines.extend([
+        "",
+        "## Diagnostic Mean NLL",
+        "",
+        "Lower NLL means Minerva assigns higher likelihood.",
+        "",
+        "| Group | Mean NLL |",
+        "| --- | ---: |",
+        f"| Genuine validation sonnets | {triplet_means['genuine']:.4f} |",
+        f"| From-scratch generated controls | {triplet_means['generated']:.4f} |",
+        f"| Word-order corruptions | {triplet_means['corrupted']:.4f} |",
+        f"| Human grammar: yes | {grammar_yes:.4f} |",
+        f"| Human grammar: no | {grammar_no:.4f} |",
+        f"| Human collapse: yes | {collapse_yes:.4f} |",
+        f"| Human collapse: no | {collapse_no:.4f} |",
+    ])
     passed = bool(result["gate"]["gate_passed"])
     lines.extend([
         "",
@@ -485,6 +532,12 @@ def _ranking_credit(preferred: float, rejected: float) -> float:
     if preferred == rejected:
         return 0.5
     return 0.0
+
+
+def _mean(values: Sequence[float]) -> float:
+    if not values:
+        raise ValueError("mean requires at least one value")
+    return sum(values) / len(values)
 
 
 def _token_ids(tokenizer: Any, text: str) -> list[int]:

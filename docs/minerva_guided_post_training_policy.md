@@ -2,10 +2,11 @@
 
 Decision approved: 2026-08-08.
 
-Status update: **current after completion of the bounded Minerva repair
-programme.** The judge gate remains mandatory before DPO or GRPO. See
-[`minerva_repair_policy.md`](minerva_repair_policy.md). No final-test isolation
-or branch-independence rule below is changed.
+Status update: **completed negative result.** The bounded Minerva repair
+programme completed, then the mandatory judge gate failed. Under this policy,
+neither DPO nor GRPO is authorized. See
+[`minerva_3b_judge_gate_protocol.md`](minerva_3b_judge_gate_protocol.md) and
+[`minerva_repair_policy.md`](minerva_repair_policy.md).
 
 ## Purpose And Order
 
@@ -16,13 +17,14 @@ validation-only diagnostic in
 qualifying QLoRA adapter strength. The later repair-policy experiment is now
 complete: the selected Minerva 7B V6 adapter passed structure, topic, and
 memorization controls but missed the grammar and collapse thresholds. The
-project may now test whether feedback from the untouched Minerva 3B base model
-improves the selected from-scratch model through two bounded post-training
-methods: DPO and GRPO.
+project then tested whether the untouched Minerva 3B base model was reliable
+enough to guide two bounded post-training methods. The mandatory gate failed,
+so no DPO or GRPO training followed.
 
-These experiments do not replace or retroactively redefine the corpus-only
-from-scratch result. They must be reported as Minerva-guided post-training of a
-model whose weights were originally trained from scratch.
+Had they been authorized, these experiments would not have replaced or
+retroactively redefined the corpus-only from-scratch result. They would have
+been reported as Minerva-guided post-training of a model whose weights were
+originally trained from scratch.
 
 ## Required Judge Gate
 
@@ -75,6 +77,12 @@ associated with the post-training method rather than with sequential training.
 The exact judge score, validation-only cases, and pass thresholds are now
 frozen in [`minerva_3b_judge_gate_protocol.md`](minerva_3b_judge_gate_protocol.md).
 Candidate counts, DPO and GRPO hyperparameters, compute budgets, and checkpoint
-selection rules still require a separate predeclared design checkpoint, and
-only if the judge gate passes. This policy authorizes those two bounded
-branches; it does not silently choose their unmeasured implementation details.
+selection rules would have required a separate predeclared design checkpoint
+if the judge gate passed. The policy did not silently choose those unmeasured
+implementation details.
+
+The fixed gate subsequently failed three of six requirements. In particular,
+the score preferred every from-scratch generation to its authentic sonnet and
+strongly preferred human-labelled collapsed outputs to non-collapsed outputs.
+This makes the signal unsuitable for optimization. DPO and GRPO are therefore
+cancelled rather than run with a reward that points in the wrong direction.

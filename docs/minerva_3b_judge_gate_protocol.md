@@ -70,3 +70,20 @@ in for all aspects of sonnet quality.
 
 The complete machine-readable lock is
 `configs/minerva_3b_judge_gate.json`.
+
+## Completed Result
+
+The fixed gate ran on 2026-08-09 using the local RTX 3060 with the same FP16
+weights split between GPU and CPU memory. It passed genuine-over-corrupted,
+generated-over-corrupted, and grammar AUROC. It failed the other three checks:
+
+- genuine-over-generated accuracy: `0.0000` against `0.7500` required;
+- non-collapse AUROC: `0.1241` against `0.6500` required;
+- human ordinal concordance: `0.4003` against `0.6500` required.
+
+Mean NLL was `3.4274` for from-scratch generations and `3.8121` for genuine
+sonnets, so every generated control outranked its authentic counterpart.
+Collapsed human controls also received lower mean NLL (`2.0091`) than
+non-collapsed controls (`2.7601`). This is a reward-misalignment failure, not a
+borderline sample-size decision. Under the frozen policy, both DPO and GRPO are
+cancelled. The public result is `reports/minerva_3b_judge_gate.md`.
