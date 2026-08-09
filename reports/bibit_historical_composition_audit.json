@@ -1,0 +1,345 @@
+{
+  "audit_version": "bibit_historical_composition_audit_v1",
+  "started_at_utc": "2026-08-09T16:14:21+00:00",
+  "finished_at_utc": "2026-08-09T16:14:39+00:00",
+  "source_archive": "Biblioteca Italiana / BibIt",
+  "source_landing_page": "http://www.bibliotecaitaliana.it/",
+  "source_project_page": "https://bibliodlcm.web.uniroma1.it/it/biblioteca-italiana",
+  "source_faq": "http://backend.bibliotecaitaliana.it/faq/",
+  "source_api": "http://backend.bibliotecaitaliana.it/wp-json/muruca-core/v1",
+  "reuse_terms": {
+    "status": "copyrighted digital editions permitted for personal/scientific non-commercial use",
+    "public_reuse_requirement": "cite Biblioteca Italiana as the source",
+    "commercial_reuse": "prohibited",
+    "downstream_decision": "non-commercial model/data lineage; retain work-level edition and contributor attribution"
+  },
+  "catalog_record_count": 1387,
+  "historical_catalog_record_count": 1042,
+  "nineteenth_century_candidate_count": 345,
+  "period_counts": {
+    "Origini": 9,
+    "Duecento": 27,
+    "Trecento": 92,
+    "Quattrocento": 233,
+    "Cinquecento": 407,
+    "Seicento": 135,
+    "Settecento": 139,
+    "Ottocento": 345
+  },
+  "genre_counts": {
+    "Poesia": 491,
+    "Trattati": 318,
+    "Documenti": 151,
+    "Letteratura teatrale": 146,
+    "Narrativa": 93,
+    "Lettere ed epistolari": 59,
+    "Testi storici e storiografici": 30,
+    "Memorialistica": 27,
+    "Oratoria": 23,
+    "Traduzioni e volgarizzamenti": 23,
+    "Commenti, traduzioni e volgarizzamenti": 21,
+    "Prosa scientifica, morale e d'invenzione": 3,
+    "memorialistica": 1,
+    "oratoria": 1
+  },
+  "largest_authors": [
+    {
+      "author": "Leopardi, Giacomo",
+      "record_count": 138,
+      "catalog_share": 0.09949531362653208
+    },
+    {
+      "author": "Non definito",
+      "record_count": 130,
+      "catalog_share": 0.09372746935832732
+    },
+    {
+      "author": "Tasso, Torquato",
+      "record_count": 80,
+      "catalog_share": 0.05767844268204758
+    },
+    {
+      "author": "Foscolo, Ugo",
+      "record_count": 69,
+      "catalog_share": 0.04974765681326604
+    },
+    {
+      "author": "Manzoni, Alessandro",
+      "record_count": 48,
+      "catalog_share": 0.03460706560922855
+    },
+    {
+      "author": "Alberti, Leon Battista",
+      "record_count": 22,
+      "catalog_share": 0.015861571737563085
+    },
+    {
+      "author": "Metastasio, Pietro",
+      "record_count": 22,
+      "catalog_share": 0.015861571737563085
+    },
+    {
+      "author": "Monti, Vincenzo",
+      "record_count": 22,
+      "catalog_share": 0.015861571737563085
+    },
+    {
+      "author": "Alfieri, Vittorio",
+      "record_count": 21,
+      "catalog_share": 0.01514059120403749
+    },
+    {
+      "author": "Ariosto, Ludovico",
+      "record_count": 19,
+      "catalog_share": 0.0136986301369863
+    },
+    {
+      "author": "Giraldi Cinzio, Giambattista",
+      "record_count": 19,
+      "catalog_share": 0.0136986301369863
+    },
+    {
+      "author": "Boccaccio, Giovanni",
+      "record_count": 17,
+      "catalog_share": 0.012256669069935111
+    },
+    {
+      "author": "Goldoni, Carlo",
+      "record_count": 14,
+      "catalog_share": 0.010093727469358327
+    },
+    {
+      "author": "Verga, Giovanni",
+      "record_count": 14,
+      "catalog_share": 0.010093727469358327
+    },
+    {
+      "author": "Botero, Giovanni",
+      "record_count": 13,
+      "catalog_share": 0.009372746935832732
+    },
+    {
+      "author": "Machiavelli, Niccolò",
+      "record_count": 12,
+      "catalog_share": 0.008651766402307137
+    },
+    {
+      "author": "Alighieri, Dante",
+      "record_count": 10,
+      "catalog_share": 0.007209805335255948
+    },
+    {
+      "author": "Carducci, Giosue",
+      "record_count": 9,
+      "catalog_share": 0.006488824801730353
+    },
+    {
+      "author": "Castiglione, Baldassarre",
+      "record_count": 8,
+      "catalog_share": 0.005767844268204758
+    },
+    {
+      "author": "Parini, Giuseppe",
+      "record_count": 8,
+      "catalog_share": 0.005767844268204758
+    }
+  ],
+  "stratum_count": 75,
+  "estimation_sample_count": 186,
+  "inspection_sample_count": 195,
+  "estimation_sample_rendered_characters": 57309184,
+  "empty_rendered_sample_ids": [
+    "bibit000964",
+    "bibit001307"
+  ],
+  "representative_inspections": [
+    {
+      "object_id": "bibit000019",
+      "title": "Commedia",
+      "authors": [
+        "Alighieri, Dante"
+      ],
+      "rendered_characters": 510780
+    },
+    {
+      "object_id": "bibit000049",
+      "title": "Orlando innamorato",
+      "authors": [
+        "Boiardo, Matteo Maria"
+      ],
+      "rendered_characters": 1301590
+    },
+    {
+      "object_id": "bibit001135",
+      "title": "Orlando Furioso 1532",
+      "authors": [
+        "Ariosto, Ludovico"
+      ],
+      "rendered_characters": 1433624
+    },
+    {
+      "object_id": "bibit001501",
+      "title": "Gerusalemme liberata",
+      "authors": [
+        "Tasso, Torquato"
+      ],
+      "rendered_characters": 597020
+    },
+    {
+      "object_id": "bibit000099",
+      "title": "Rime",
+      "authors": [
+        "Tasso, Torquato"
+      ],
+      "rendered_characters": 1166168
+    },
+    {
+      "object_id": "bibit000760",
+      "title": "Canzoniere",
+      "authors": [
+        "Petrarca, Francesco"
+      ],
+      "rendered_characters": 290949
+    },
+    {
+      "object_id": "bibit000666",
+      "title": "Promessi Sposi",
+      "authors": [
+        "Manzoni, Alessandro"
+      ],
+      "rendered_characters": 1299361
+    },
+    {
+      "object_id": "bibit001238",
+      "title": "Confessioni di un Italiano",
+      "authors": [
+        "Nievo, Ippolito"
+      ],
+      "rendered_characters": 2010770
+    },
+    {
+      "object_id": "bibit001705",
+      "title": "Zibaldone di pensieri",
+      "authors": [
+        "Leopardi, Giacomo"
+      ],
+      "rendered_characters": 5795448
+    }
+  ],
+  "estimated_total_characters": 224458967,
+  "estimated_historical_active_characters": 160888763,
+  "estimated_historical_active_min_tokens": 40222190,
+  "estimated_historical_active_max_tokens": 53629588,
+  "token_estimation_assumption": {
+    "minimum_characters_per_token": 3.0,
+    "maximum_characters_per_token": 4.0
+  },
+  "role_projection": {
+    "excluded": {
+      "record_count": 14,
+      "estimated_characters": 4556235,
+      "estimated_active_share": 0.0
+    },
+    "historical_general": {
+      "record_count": 638,
+      "estimated_characters": 126012816,
+      "estimated_active_share": 0.5730388833914078
+    },
+    "historical_non_sonnet_poetry": {
+      "record_count": 176,
+      "estimated_characters": 12313259,
+      "estimated_active_share": 0.0559941156165354
+    },
+    "nineteenth_century_bridge": {
+      "record_count": 323,
+      "estimated_characters": 59013969,
+      "estimated_active_share": 0.2683639646641589
+    },
+    "sonnet_only": {
+      "record_count": 236,
+      "estimated_characters": 22562688,
+      "estimated_active_share": 0.10260303632789791
+    }
+  },
+  "duplicate_edition_family_count": 3,
+  "duplicate_edition_families": [
+    {
+      "family_key": "ariosto ludovico::orlando furioso",
+      "author": "Ariosto, Ludovico",
+      "normalized_title": "orlando furioso",
+      "record_count": 4,
+      "canonical_object_id": "bibit001135",
+      "canonical_title": "Orlando Furioso 1532",
+      "selection_reason": "project override selects Ariosto's final 1532 authorial edition",
+      "alternates": [
+        {
+          "object_id": "bibit000319",
+          "title": "Orlando Furioso 1521",
+          "source_publication_date": "1521",
+          "source_identifier": "IT\\ICCU\\CNCE\\002542"
+        },
+        {
+          "object_id": "bibit000553",
+          "title": "Orlando Furioso 1516",
+          "source_publication_date": "1516",
+          "source_identifier": "IT\\ICCU\\CFIE\\001471"
+        },
+        {
+          "object_id": "bibit001301",
+          "title": "Orlando Furioso",
+          "source_publication_date": "[1966]",
+          "source_identifier": "IT\\ICCU\\TO0\\0036355"
+        }
+      ]
+    },
+    {
+      "family_key": "da morrona alessandro::pisa illustrata nelle arti del disegno",
+      "author": "Da Morrona, Alessandro",
+      "normalized_title": "pisa illustrata nelle arti del disegno",
+      "record_count": 2,
+      "canonical_object_id": "bibit000155",
+      "canonical_title": "Pisa illustrata nelle arti del disegno",
+      "selection_reason": "metadata-completeness tie-breaker; verify before activation",
+      "alternates": [
+        {
+          "object_id": "bibit000153",
+          "title": "Pisa illustrata nelle arti del disegno",
+          "source_publication_date": "1812",
+          "source_identifier": "IT\\ICCU\\VEAE\\005950"
+        }
+      ]
+    },
+    {
+      "family_key": "manzoni alessandro::promessi sposi",
+      "author": "Manzoni, Alessandro",
+      "normalized_title": "promessi sposi",
+      "record_count": 2,
+      "canonical_object_id": "bibit000666",
+      "canonical_title": "Promessi Sposi",
+      "selection_reason": "project override selects Manzoni's later standard text over the 1827 redaction",
+      "alternates": [
+        {
+          "object_id": "bibit000484",
+          "title": "I promessi sposi [redazione 1827]",
+          "source_publication_date": "2002",
+          "source_identifier": "IT\\ICCU\\VEA\\0135083"
+        }
+      ]
+    }
+  ],
+  "bridge_share_recommendation": 0.1,
+  "bridge_policy_status": "recommendation_pending_final_training-mixture freeze",
+  "corpus_activation_status": "composition_gate_passed_audit_required_before_activation",
+  "curriculum_decision": [
+    "Stage 1: historical prose/general adaptation with limited preservation replay.",
+    "Stage 2: historical non-sonnet poetry adaptation with prose and preservation replay.",
+    "Stage 3: low-learning-rate sonnet specialization with author/epoch-balanced sampling."
+  ],
+  "leakage_rule": "Explicit sonnets and mixed collections that may contain sonnets are excluded from historical pretraining; held-out validation/test sonnets must be absent from every earlier stage.",
+  "artifacts": {
+    "catalog_snapshot": "data/metadata/bibit_catalog_origins_through_ottocento_v1.json",
+    "decision_csv": "data/metadata/bibit_historical_composition_decisions.csv",
+    "json_report": "reports/bibit_historical_composition_audit.json",
+    "markdown_report": "reports/bibit_historical_composition_audit.md"
+  }
+}

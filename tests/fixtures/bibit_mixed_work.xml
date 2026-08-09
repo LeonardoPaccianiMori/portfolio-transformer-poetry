@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE TEI.2 SYSTEM "http://backend.bibliotecaitaliana.it/DTD/bibit.dtd">
+<TEI.2>
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Opera mista</title>
+        <author>Autore Esempio</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>Biblioteca Italiana</publisher>
+        <pubPlace>Roma</pubPlace>
+        <date>2003</date>
+        <idno>bibit000001</idno>
+        <availability>
+          <p>Risorsa accessibile per uso personale o scientifico; uso commerciale vietato.</p>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <bibl>
+          <title>Edizione delle opere</title>
+          <title type="part">Opera mista</title>
+          <author>Esempio, Autore</author>
+          <editor>Curatrice, Ada</editor>
+          <publisher>Editore di prova</publisher>
+          <pubPlace>Firenze</pubPlace>
+          <date>1999</date>
+          <idno>TEST-001</idno>
+        </bibl>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <samplingDecl><p>Il paratesto moderno è stato soppresso.</p></samplingDecl>
+    </encodingDesc>
+    <profileDesc>
+      <creation><date>500</date></creation>
+      <langUsage><language id="ita">Italiano</language></langUsage>
+      <textClass><keywords><term>Poesia</term></keywords></textClass>
+    </profileDesc>
+    <revisionDesc>
+      <change><date>2003-01-01</date><item>Codifica XML</item></change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <front><p>Introduzione editoriale da escludere.</p></front>
+    <body>
+      <div1 type="sezione">
+        <head>PROSA</head>
+        <p>Questa è la prosa <note>nota editoriale</note>principale.</p>
+        <p>La lezione <app><lem>scelta</lem><rdg>rifiutata</rdg></app> conserva
+          l'<choice><orig>antica</orig><reg>moderna</reg></choice> grafia.</p>
+      </div1>
+      <div1 type="sezione">
+        <head>RIME</head>
+        <div2 type="poesia">
+          <head>1</head>
+          <argument><p>Commento moderno al sonetto.</p></argument>
+          <lg type="sonetto">
+            <lg>
+              <l>Verso primo del sonetto</l>
+              <l>Verso secondo del sonetto</l>
+            </lg>
+            <lg>
+              <l>Verso terzo del sonetto</l>
+              <l>Verso quarto del sonetto</l>
+            </lg>
+          </lg>
+        </div2>
+        <div2 type="canto">
+          <head>Canto non sonetto</head>
+          <lg type="ottava">
+            <l>Primo verso del canto</l>
+            <l>Secondo verso del canto</l>
+          </lg>
+        </div2>
+      </div1>
+    </body>
+    <back><p>Indice editoriale da escludere.</p></back>
+  </text>
+</TEI.2>

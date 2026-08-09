@@ -83,10 +83,12 @@ Use one of:
 - `poetry`
 - `drama`
 
-The first broader pretraining corpus is prose-only. Poetry and drama rows must
-be excluded or deferred. Mixed rows are allowed only when `inclusion_status` is
-`conditional_extract_prose` and `mixed_text_strategy` explains how poetry is
-removed.
+The original broader pretraining corpus is prose-only. The expanded staged
+curriculum also inventories poetry, drama, and mixed archives before activation.
+Poetry and drama rows remain excluded or deferred until assigned to a named
+stage. A mixed row may be deferred as an archive-level inventory; an active
+mixed row must use `conditional_extract_prose`, and `mixed_text_strategy` must
+explain how explicit sonnets and other forms are routed without leakage.
 
 ### `inclusion_status`
 

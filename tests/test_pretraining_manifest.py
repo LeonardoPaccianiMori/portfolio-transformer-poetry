@@ -86,6 +86,21 @@ def test_pretraining_manifest_validation_requires_mixed_text_strategy():
         row.validate()
 
 
+def test_pretraining_manifest_validation_allows_deferred_mixed_archive():
+    row = make_row(
+        source_id="bibit_historical_collection",
+        title="Biblioteca Italiana historical collection",
+        author="Multiple authors",
+        source_archive="Biblioteca Italiana",
+        text_kind="mixed",
+        inclusion_status="defer",
+        split="excluded",
+        mixed_text_strategy="Route TEI units by form before activation.",
+    )
+
+    row.validate()
+
+
 def test_pretraining_manifest_validation_requires_gutenberg_ebook_id():
     row = make_row(ebook_id="")
 

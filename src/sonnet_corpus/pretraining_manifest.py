@@ -152,9 +152,14 @@ class PretrainingSourceRow:
         if self.text_kind == "drama" and self.inclusion_status not in {"exclude", "defer"}:
             raise ValueError(f"drama source must be excluded or deferred: {self.source_id}")
 
-        if self.text_kind == "mixed" and self.inclusion_status != "conditional_extract_prose":
+        if self.text_kind == "mixed" and self.inclusion_status not in {
+            "conditional_extract_prose",
+            "defer",
+            "exclude",
+        }:
             raise ValueError(
-                f"mixed source must use conditional_extract_prose: {self.source_id}"
+                "active mixed source must use conditional_extract_prose: "
+                f"{self.source_id}"
             )
 
         if self.inclusion_status == "conditional_extract_prose" and self.mixed_text_strategy == "":

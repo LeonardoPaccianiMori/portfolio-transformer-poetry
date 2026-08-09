@@ -1,0 +1,85 @@
+# Exhaustive Corpus Expansion Policy
+
+## Objective
+
+The corpus track now aims to maximize **eligible, usable, non-duplicate Italian
+training tokens**, rather than stopping after a shortlist of famous works. This
+applies equally to:
+
+1. historical general text;
+2. historical non-sonnet poetry;
+3. verified sonnets for specialization and evaluation.
+
+"Exhaustive" has an operational meaning: enumerate every record exposed by the
+major reusable archives in the committed archive registry, record every archive
+checked, and continue archive discovery until the next pass finds no material
+new eligible source. It cannot mean a provable crawl of every page on the web.
+
+## Candidate Pool Versus Training Corpus
+
+Maximizing the candidate pool does not mean concatenating every download.
+Every candidate must retain source and license evidence, then pass:
+
+- primary-text availability and non-empty extraction;
+- Italian language-variety review;
+- editorial-apparatus and OCR-quality review;
+- exact and near-duplicate edition checks;
+- author, source, period, genre, and form concentration measurement;
+- sonnet train/validation/test leakage checks.
+
+The project keeps rejected and blocked sources in the registry so a failed
+archive is not repeatedly rediscovered and silently reconsidered.
+
+## Three Corpus Outputs
+
+### Historical General Text
+
+Includes prose, narrative, theatre, letters, treatises, histories, documents,
+memoirs, translations/volgarizzamenti, and other usable historical registers.
+Core coverage is origins through 1800. Selected standard-literary nineteenth-
+century text is retained as a separately capped bridge.
+
+### Historical Non-Sonnet Poetry
+
+Includes long poems and all other eligible non-sonnet poetic forms. Canonical
+works such as the *Commedia*, *Orlando innamorato*, *Orlando Furioso 1532*, and
+*Gerusalemme liberata* enter this stage. Mixed lyric collections enter only
+after explicit sonnet units have been removed.
+
+### Sonnets
+
+Every archive is searched for explicit or structurally verifiable sonnets, not
+only famous collections. A poem enters only after form, line structure,
+language variety, duplicate status, and provenance are verified. Existing V6
+validation/test identities remain held out from every training stage. Training
+sampling is balanced by author and epoch so a large collection such as Tasso's
+*Rime* cannot dominate merely because it is easy to extract.
+
+## Staged Curriculum
+
+1. Historical general adaptation with limited modern/instruction preservation replay.
+2. Historical non-sonnet poetry adaptation with historical prose and preservation replay.
+3. Low-learning-rate sonnet specialization with author/epoch-balanced sampling.
+
+The nineteenth-century bridge candidate pool may be large, including Manzoni's
+*Promessi Sposi*, Nievo's *Confessioni di un Italiano*, Leopardi's *Zibaldone*,
+and Artusi's *La scienza in cucina*. Its exposure share remains separately
+capped; the current recommendation is at most 10%, with the exact value frozen
+after full cleaning and deduplication. Long works are measured individually so
+random sample medians do not hide author/source concentration.
+
+## Archive Order
+
+1. Complete canonical BibIt TEI extraction across all assigned roles.
+2. Enumerate all Italian Project Gutenberg records and deduplicate against BibIt.
+3. Enumerate Italian Wikisource work roots from API/dump metadata.
+4. Enumerate the complete Liber Liber catalog under its non-commercial share-alike terms.
+5. Audit ELTeC, Internet Archive, Gallica, Internet Culturale, BEIC, OVI/TLIO,
+   MIDIA, DiaCORIS, and other registry candidates for exact permission and bulk access.
+6. Use scan OCR only when corrected text is unavailable, rights are explicit,
+   and measured OCR quality passes a separate gate.
+
+The canonical archive list and status are maintained in
+[`data/metadata/corpus_archive_expansion_registry.csv`](../data/metadata/corpus_archive_expansion_registry.csv).
+No GPU training restarts until this expansion, cleaning, deduplication, split,
+and final mixture freeze are complete.
