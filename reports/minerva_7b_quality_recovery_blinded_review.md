@@ -4,90 +4,90 @@ Do not open the local blind mapping before completing every row. `Grammar` means
 
 | Blind ID | Grammar | Topic | Collapse | Evidence |
 | --- | --- | --- | --- | --- |
-| `096ebceec9b4` | TODO | TODO | TODO | TODO |
-| `0d491d34a07c` | TODO | TODO | TODO | TODO |
-| `0f1c7da84a37` | TODO | TODO | TODO | TODO |
-| `184ce11fb884` | TODO | TODO | TODO | TODO |
-| `18a794518a40` | TODO | TODO | TODO | TODO |
-| `19f56746e4d6` | TODO | TODO | TODO | TODO |
-| `1d296672a16f` | TODO | TODO | TODO | TODO |
-| `20a81e383184` | TODO | TODO | TODO | TODO |
-| `20ff93e59e14` | TODO | TODO | TODO | TODO |
-| `23387272197a` | TODO | TODO | TODO | TODO |
-| `26e7d3b1fd4f` | TODO | TODO | TODO | TODO |
-| `2ad05c6e71c5` | TODO | TODO | TODO | TODO |
-| `304150436744` | TODO | TODO | TODO | TODO |
-| `31ce6665d6b7` | TODO | TODO | TODO | TODO |
-| `3368d7857020` | TODO | TODO | TODO | TODO |
-| `375a8286665b` | TODO | TODO | TODO | TODO |
-| `3bdee31b94ef` | TODO | TODO | TODO | TODO |
-| `3c0327c300b5` | TODO | TODO | TODO | TODO |
-| `3caa65b398c1` | TODO | TODO | TODO | TODO |
-| `3d0a1f1717e4` | TODO | TODO | TODO | TODO |
-| `3e415989586a` | TODO | TODO | TODO | TODO |
-| `403de03386e9` | TODO | TODO | TODO | TODO |
-| `4f91445db83e` | TODO | TODO | TODO | TODO |
-| `5410150f0a07` | TODO | TODO | TODO | TODO |
-| `57fe822c2ded` | TODO | TODO | TODO | TODO |
-| `5b9696615c63` | TODO | TODO | TODO | TODO |
-| `5dd81894750c` | TODO | TODO | TODO | TODO |
-| `5f41e3d92d29` | TODO | TODO | TODO | TODO |
-| `5fcdda9df692` | TODO | TODO | TODO | TODO |
-| `6b564e3b943a` | TODO | TODO | TODO | TODO |
-| `748e28b7a4c7` | TODO | TODO | TODO | TODO |
-| `755df903cbfc` | TODO | TODO | TODO | TODO |
-| `757575595192` | TODO | TODO | TODO | TODO |
-| `77306dbb1012` | TODO | TODO | TODO | TODO |
-| `77a3a6fe354a` | TODO | TODO | TODO | TODO |
-| `78699d65c384` | TODO | TODO | TODO | TODO |
-| `7f6ef29b0564` | TODO | TODO | TODO | TODO |
-| `8531f62619de` | TODO | TODO | TODO | TODO |
-| `858e54d51adc` | TODO | TODO | TODO | TODO |
-| `85bcd505fa71` | TODO | TODO | TODO | TODO |
-| `8acfddf8db27` | TODO | TODO | TODO | TODO |
-| `8d7231d2514b` | TODO | TODO | TODO | TODO |
-| `91170d1c3e1e` | TODO | TODO | TODO | TODO |
-| `92131e27446f` | TODO | TODO | TODO | TODO |
-| `92a4747e2022` | TODO | TODO | TODO | TODO |
-| `94bdb88af4f5` | TODO | TODO | TODO | TODO |
-| `967416016e38` | TODO | TODO | TODO | TODO |
-| `9ab6cbf67f47` | TODO | TODO | TODO | TODO |
-| `9eb72ebbad04` | TODO | TODO | TODO | TODO |
-| `a33c876a40f7` | TODO | TODO | TODO | TODO |
-| `a657284b58fe` | TODO | TODO | TODO | TODO |
-| `a8c7c1c88bef` | TODO | TODO | TODO | TODO |
-| `a91b96f69d3b` | TODO | TODO | TODO | TODO |
-| `a9584d239f45` | TODO | TODO | TODO | TODO |
-| `a978f01011b3` | TODO | TODO | TODO | TODO |
-| `b01d3ce3343e` | TODO | TODO | TODO | TODO |
-| `b2ba423af3c4` | TODO | TODO | TODO | TODO |
-| `b60d4aaa6df4` | TODO | TODO | TODO | TODO |
-| `b7d33765d95f` | TODO | TODO | TODO | TODO |
-| `bb057bd4dc45` | TODO | TODO | TODO | TODO |
-| `bf8d7063f18a` | TODO | TODO | TODO | TODO |
-| `bfd9ede9210b` | TODO | TODO | TODO | TODO |
-| `c0c414ce8c4d` | TODO | TODO | TODO | TODO |
-| `c18fd819900c` | TODO | TODO | TODO | TODO |
-| `c1935e21c29d` | TODO | TODO | TODO | TODO |
-| `ce0eab8fabc9` | TODO | TODO | TODO | TODO |
-| `d1399dcfc0dd` | TODO | TODO | TODO | TODO |
-| `d14a8a35c76d` | TODO | TODO | TODO | TODO |
-| `d17e20a5bac7` | TODO | TODO | TODO | TODO |
-| `d1f5c0967261` | TODO | TODO | TODO | TODO |
-| `d22c9dcf19ff` | TODO | TODO | TODO | TODO |
-| `d6ec55a5ebf8` | TODO | TODO | TODO | TODO |
-| `da17970e0ac7` | TODO | TODO | TODO | TODO |
-| `da53bbe43447` | TODO | TODO | TODO | TODO |
-| `dbd5459eea43` | TODO | TODO | TODO | TODO |
-| `e27ab537498c` | TODO | TODO | TODO | TODO |
-| `e8deced910d3` | TODO | TODO | TODO | TODO |
-| `e9b96ad9f87c` | TODO | TODO | TODO | TODO |
-| `eb63c4c7befd` | TODO | TODO | TODO | TODO |
-| `edde9d029e21` | TODO | TODO | TODO | TODO |
-| `eefa84496e96` | TODO | TODO | TODO | TODO |
-| `f3a17edaa3a6` | TODO | TODO | TODO | TODO |
-| `f6e700e43951` | TODO | TODO | TODO | TODO |
-| `fef19efcb34c` | TODO | TODO | TODO | TODO |
+| `096ebceec9b4` | no | yes | no | Broken opening syntax; nature and fishpond imagery remain sustained. |
+| `0d491d34a07c` | no | yes | no | Fragments and missing predicates; garden and love imagery persist. |
+| `0f1c7da84a37` | yes | yes | no | Mostly complete clauses sustain longing and amorous address. |
+| `184ce11fb884` | no | yes | no | Several malformed clauses; meditation on fate remains recognizable. |
+| `18a794518a40` | yes | yes | no | Coherent archaic lament about a woman, passion, and grief. |
+| `19f56746e4d6` | no | yes | yes | Broken syntax and cyclic repetitions of world and wounded. |
+| `1d296672a16f` | no | yes | no | Referents and clause structure break, though praise remains the topic. |
+| `20a81e383184` | no | yes | yes | Coherent love opening degenerates into an extreme repeated-tu loop. |
+| `20ff93e59e14` | no | yes | no | Double negatives and malformed clauses; suffering in love is sustained. |
+| `23387272197a` | no | yes | no | Fragmented syntax; weary eyes and sorrow remain recognizable. |
+| `26e7d3b1fd4f` | yes | yes | no | Coherent floral offering despite an unfinished final line. |
+| `2ad05c6e71c5` | no | yes | no | Broken agreement and code-switching; praise of the beloved persists. |
+| `304150436744` | yes | yes | no | Fluent Italian sustains contemplation of the fishpond and its beauty. |
+| `31ce6665d6b7` | no | yes | no | Malformed clauses; accusation, lost light, and love remain recognizable. |
+| `3368d7857020` | no | yes | no | Fragments and agreement errors; celestial love imagery is sustained. |
+| `375a8286665b` | no | yes | no | Broken clauses and awkward repetitions; the lament to the eyes persists. |
+| `3bdee31b94ef` | yes | yes | no | Broadly coherent archaic address about friendship and love. |
+| `3c0327c300b5` | no | yes | no | Malformed transitions and clauses; amorous suffering remains clear. |
+| `3caa65b398c1` | no | yes | no | Pronouns and predicates are malformed; delayed love remains the topic. |
+| `3d0a1f1717e4` | no | yes | no | Broken clauses and pronouns; wounded devotion to a woman remains clear. |
+| `3e415989586a` | yes | yes | yes | Fluent floral love poem repeats one complete stanza exactly. |
+| `403de03386e9` | yes | yes | yes | Grammatical anguish degenerates into an exact repeated death wish. |
+| `4f91445db83e` | no | yes | no | Recurrent missing links and predicates; offering and courtship persist. |
+| `5410150f0a07` | yes | yes | yes | Grammatical prose replaces the poem and loops through meta-commentary. |
+| `57fe822c2ded` | no | yes | no | Malformed opening and subjunctive chains; spiritual light is sustained. |
+| `5b9696615c63` | yes | yes | no | Broadly coherent archaic meditation on departure and hope. |
+| `5dd81894750c` | yes | yes | no | Coherent mortality prayer with only an unfinished ending. |
+| `5f41e3d92d29` | no | yes | no | Broken comparisons and clauses; love and torment remain sustained. |
+| `5fcdda9df692` | no | yes | yes | Malformed verse repeatedly cycles through the same stanza pattern. |
+| `6b564e3b943a` | yes | yes | no | Broadly coherent archaic narrative about a returning woman. |
+| `748e28b7a4c7` | no | yes | no | Broken predicates; light, vision, and the beloved remain the topic. |
+| `755df903cbfc` | yes | yes | no | Coherent rhetorical catalogue of the absent beloved. |
+| `757575595192` | yes | yes | no | Mostly coherent praise of outward and inward beauty. |
+| `77306dbb1012` | no | yes | yes | Malformed flower clauses repeat in a cyclic permutation. |
+| `77a3a6fe354a` | no | yes | no | Broken opening syntax; celestial longing remains recognizable. |
+| `78699d65c384` | no | yes | yes | Four verse lines decay into incoherent metrical commentary. |
+| `7f6ef29b0564` | yes | yes | no | Broadly coherent rhetorical praise of the beloved. |
+| `8531f62619de` | no | yes | no | Malformed comparisons; the woman's death and grief remain sustained. |
+| `858e54d51adc` | no | yes | no | Repeated malformed veil clauses; the solar-beloved theme persists. |
+| `85bcd505fa71` | no | yes | yes | Coherent opening degenerates into an extended non-furo loop. |
+| `8acfddf8db27` | yes | yes | yes | Grammatical verse turns into long fabricated meta-analysis. |
+| `8d7231d2514b` | yes | yes | yes | Grammatical gift imagery collapses into exact four-line repetition. |
+| `91170d1c3e1e` | no | yes | no | Fragmented predicates; celestial soul and love remain recognizable. |
+| `92131e27446f` | no | yes | yes | A prayer opening degenerates into a malformed analytical template. |
+| `92a4747e2022` | no | yes | no | Malformed transitions; departure and difficult love remain clear. |
+| `94bdb88af4f5` | no | yes | no | Multiple broken predicates; prayer and love remain sustained. |
+| `967416016e38` | yes | yes | no | Coherent reflection on transient beauty and love. |
+| `9ab6cbf67f47` | no | yes | no | Broken antecedents and predicates; physical love remains the topic. |
+| `9eb72ebbad04` | yes | yes | no | Coherent free-verse meditation on hardship and life. |
+| `a33c876a40f7` | no | yes | no | Fragments and agreement errors; celestial love remains recognizable. |
+| `a657284b58fe` | no | yes | no | Broken agreement and clause joins; death and departure are sustained. |
+| `a8c7c1c88bef` | no | yes | yes | Pervasive malformed recursive phrasing about love and value. |
+| `a91b96f69d3b` | yes | yes | no | Broadly coherent meditation on death and the afterlife. |
+| `a9584d239f45` | no | yes | yes | Malformed prayer phrases repeat and progressively degenerate. |
+| `a978f01011b3` | no | yes | yes | An exact enclosure-and-prayer loop dominates the output. |
+| `b01d3ce3343e` | yes | yes | no | Broadly coherent floral invocation and amorous desire. |
+| `b2ba423af3c4` | no | yes | no | Several malformed clauses; beauty and rejection remain sustained. |
+| `b60d4aaa6df4` | no | yes | no | Pervasive syntax errors and editorial corruption; fruits remain the topic. |
+| `b7d33765d95f` | no | yes | no | Incomplete predicates; justice and wounded love remain sustained. |
+| `bb057bd4dc45` | yes | yes | no | Coherent fruit-and-beloved metaphor throughout. |
+| `bf8d7063f18a` | yes | yes | no | Broadly coherent praise despite occasional surreal imagery. |
+| `bfd9ede9210b` | no | yes | no | Malformed clauses and repetitive logic; love remains the topic. |
+| `c0c414ce8c4d` | yes | yes | no | Broadly coherent lament addressed to weary eyes. |
+| `c18fd819900c` | yes | yes | no | Coherent spiritual meditation on departure and peace. |
+| `c1935e21c29d` | no | yes | no | Malformed predicates; light and vision remain the sustained theme. |
+| `ce0eab8fabc9` | yes | yes | no | Broadly coherent prayer about love, suffering, and death. |
+| `d1399dcfc0dd` | yes | yes | no | Coherent free verse despite one corrupted final label. |
+| `d14a8a35c76d` | yes | yes | no | Broadly coherent shared lament despite archaic irregularities. |
+| `d17e20a5bac7` | no | yes | no | Malformed clauses; solar and amorous imagery remain sustained. |
+| `d1f5c0967261` | no | yes | no | Broken negations and predicates; wounded love and light remain clear. |
+| `d22c9dcf19ff` | yes | yes | no | Broadly coherent meditation on celestial peace and love. |
+| `d6ec55a5ebf8` | no | yes | yes | A forcing-word loop overwhelms both syntax and meaning. |
+| `da17970e0ac7` | yes | yes | no | Coherent floral praise with only minor line repetition. |
+| `da53bbe43447` | no | no | yes | Function-word recursion destroys syntax and any sustained subject. |
+| `dbd5459eea43` | no | yes | yes | Love-and-reason recursion degenerates into a malformed loop. |
+| `e27ab537498c` | yes | yes | no | Coherent journey and sunset imagery despite numbering labels. |
+| `e8deced910d3` | yes | yes | no | Broadly coherent lament of weary eyes, fire, and sorrow. |
+| `e9b96ad9f87c` | no | no | yes | An exact on-the-edge loop destroys syntax and sustained meaning. |
+| `eb63c4c7befd` | yes | yes | no | Fluent devotional poem with a stable prayer topic. |
+| `edde9d029e21` | no | yes | yes | The mala-vita phrase loops into contradiction and broken syntax. |
+| `eefa84496e96` | yes | yes | no | Coherent archaic lament about darkness and lost light. |
+| `f3a17edaa3a6` | yes | yes | no | Coherent meditation on beauty, time, and mortality. |
+| `f6e700e43951` | no | yes | yes | Pena recursion breaks syntax and dominates the final lines. |
+| `fef19efcb34c` | no | yes | no | Malformed enumerations and comparisons; beloved-gift imagery persists. |
 
 ## Output `096ebceec9b4`
 
