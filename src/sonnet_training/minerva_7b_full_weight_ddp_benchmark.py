@@ -42,6 +42,9 @@ from sonnet_training.minerva_7b_qlora import (
 
 BENCHMARK_VERSION = "minerva_7b_full_weight_dual_rtx_pro_ddp_v1"
 H100_BENCHMARK_VERSION = "minerva_7b_full_weight_dual_h100_sxm_ddp_v1"
+H100_INTERMEDIATE_BENCHMARK_VERSION = (
+    "minerva_7b_full_weight_dual_h100_sxm_intermediate_ddp_v1"
+)
 EXPECTED_WORLD_SIZE = 2
 MINIMUM_GPU_MEMORY_MIB = 90 * 1024
 MINIMUM_H100_GPU_MEMORY_MIB = 75 * 1024
@@ -100,6 +103,21 @@ class Minerva7BDualH100DdpBenchmarkConfig(
 
 
 @dataclass(frozen=True)
+class Minerva7BDualH100IntermediateDdpBenchmarkConfig(
+    Minerva7BDualH100DdpBenchmarkConfig
+):
+    """Find the largest safe batch between the two H100 endpoint probes."""
+
+    output_path: str = (
+        "data/local/minerva_7b_full_weight/"
+        "full_weight_dual_h100_sxm_intermediate_benchmark.json"
+    )
+    benchmark_version: str = H100_INTERMEDIATE_BENCHMARK_VERSION
+    global_sequence_counts: tuple[int, ...] = (10, 12, 14)
+    bucket_cap_mib: tuple[int, ...] = (25, 250)
+
+
+@dataclass(frozen=True)
 class DdpThroughputCandidate:
     candidate_id: str
     global_sequences_per_update: int
@@ -115,6 +133,7 @@ def validate_full_weight_ddp_benchmark_config(
     approved_configs = (
         Minerva7BFullWeightDdpBenchmarkConfig(),
         Minerva7BDualH100DdpBenchmarkConfig(),
+        Minerva7BDualH100IntermediateDdpBenchmarkConfig(),
     )
     if config not in approved_configs:
         raise ValueError("Minerva 7B DDP benchmark configuration is locked")

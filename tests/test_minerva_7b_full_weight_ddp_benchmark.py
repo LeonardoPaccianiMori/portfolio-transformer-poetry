@@ -4,7 +4,9 @@ import pytest
 
 from sonnet_training.minerva_7b_full_weight_ddp_benchmark import (
     H100_BENCHMARK_VERSION,
+    H100_INTERMEDIATE_BENCHMARK_VERSION,
     Minerva7BDualH100DdpBenchmarkConfig,
+    Minerva7BDualH100IntermediateDdpBenchmarkConfig,
     Minerva7BFullWeightDdpBenchmarkConfig,
     build_ddp_throughput_candidates,
     project_distributed_full_run,
@@ -56,6 +58,20 @@ def test_dual_h100_profile_is_separately_locked():
         validate_full_weight_ddp_benchmark_config(
             replace(config, hourly_rate_usd=3.0)
         )
+
+
+def test_dual_h100_intermediate_profile_tests_three_local_batches():
+    config = Minerva7BDualH100IntermediateDdpBenchmarkConfig()
+
+    validate_full_weight_ddp_benchmark_config(config)
+    candidates = build_ddp_throughput_candidates(config)
+
+    assert config.benchmark_version == H100_INTERMEDIATE_BENCHMARK_VERSION
+    assert config.global_sequence_counts == (10, 12, 14)
+    assert config.bucket_cap_mib == (25, 250)
+    assert len(candidates) == 6
+    assert [row.local_microbatch_size for row in candidates] == [5, 5, 6, 6, 7, 7]
+    assert {row.tokens_per_update for row in candidates} == {5120, 6144, 7168}
 
 
 def test_ddp_projection_and_selection_use_fastest_fitting_candidate():
