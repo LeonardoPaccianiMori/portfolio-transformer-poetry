@@ -1,0 +1,516 @@
+{
+  "probe_version": "project_gutenberg_fulltext_probe_v1",
+  "created_at_utc": "2026-08-09T19:35:45+00:00",
+  "candidate_count": 416,
+  "probe_status_counts": {
+    "quality_pass": 413,
+    "review_quality": 3
+  },
+  "probe_decision_counts": {
+    "exclude_cross_corpus_duplicate_candidate": 15,
+    "exclude_standard_italian_core_language_composition": 1,
+    "quality_pass_pending_editorial_activation_review": 391,
+    "quarantine_embedded_duplicate_segments_before_activation": 6,
+    "quarantine_heldout_sonnet_segment_before_activation": 1,
+    "source_specific_language_extraction_before_activation": 2
+  },
+  "quality_flag_counts": {
+    "high_digit_character_ratio": 3
+  },
+  "manual_review_resolution_counts": {
+    "accept_dense_historical_dates": 2,
+    "accept_dense_historical_dates_and_notes": 1,
+    "accept_standard_italian_context": 4,
+    "accept_standard_tuscan_with_vocabulary_notes": 1,
+    "accept_standardized_tuscan_text": 1,
+    "exclude_standard_italian_core_macaronic": 1,
+    "extract_italian_parallel_text_only": 1,
+    "extract_one_italian_primary_edition_only": 1
+  },
+  "cleaned_character_count": 244408789,
+  "cleaned_word_count": 39263769,
+  "role_summary": {
+    "historical_general_candidate": {
+      "record_count": 66,
+      "successful_record_count": 66,
+      "cleaned_character_count": 50615207,
+      "quality_pass_count": 65
+    },
+    "historical_non_sonnet_poetry_candidate": {
+      "record_count": 41,
+      "successful_record_count": 41,
+      "cleaned_character_count": 14372546,
+      "quality_pass_count": 41
+    },
+    "nineteenth_century_bridge_candidate": {
+      "record_count": 308,
+      "successful_record_count": 308,
+      "cleaned_character_count": 179277028,
+      "quality_pass_count": 306
+    },
+    "sonnet_specialization_candidate": {
+      "record_count": 1,
+      "successful_record_count": 1,
+      "cleaned_character_count": 144008,
+      "quality_pass_count": 1
+    }
+  },
+  "intra_gutenberg_exact_duplicate_groups": [],
+  "intra_gutenberg_near_duplicate_pairs": [
+    {
+      "left_id": "997",
+      "right_id": "1000",
+      "containment": 0.999534,
+      "matching_shingles": 34291,
+      "denominator": 34307
+    },
+    {
+      "left_id": "997",
+      "right_id": "1009",
+      "containment": 0.992807,
+      "matching_shingles": 33955,
+      "denominator": 34201
+    },
+    {
+      "left_id": "997",
+      "right_id": "1012",
+      "containment": 0.997464,
+      "matching_shingles": 34220,
+      "denominator": 34307
+    },
+    {
+      "left_id": "998",
+      "right_id": "1000",
+      "containment": 0.999503,
+      "matching_shingles": 34206,
+      "denominator": 34223
+    },
+    {
+      "left_id": "998",
+      "right_id": "1010",
+      "containment": 0.99775,
+      "matching_shingles": 34146,
+      "denominator": 34223
+    },
+    {
+      "left_id": "998",
+      "right_id": "1012",
+      "containment": 0.99775,
+      "matching_shingles": 34146,
+      "denominator": 34223
+    },
+    {
+      "left_id": "999",
+      "right_id": "1000",
+      "containment": 0.999523,
+      "matching_shingles": 33562,
+      "denominator": 33578
+    },
+    {
+      "left_id": "999",
+      "right_id": "1011",
+      "containment": 0.997707,
+      "matching_shingles": 33501,
+      "denominator": 33578
+    },
+    {
+      "left_id": "999",
+      "right_id": "1012",
+      "containment": 0.997707,
+      "matching_shingles": 33501,
+      "denominator": 33578
+    },
+    {
+      "left_id": "1000",
+      "right_id": "1009",
+      "containment": 0.992807,
+      "matching_shingles": 33955,
+      "denominator": 34201
+    },
+    {
+      "left_id": "1000",
+      "right_id": "1010",
+      "containment": 0.997109,
+      "matching_shingles": 34146,
+      "denominator": 34245
+    },
+    {
+      "left_id": "1000",
+      "right_id": "1011",
+      "containment": 0.997054,
+      "matching_shingles": 33501,
+      "denominator": 33600
+    },
+    {
+      "left_id": "1000",
+      "right_id": "1012",
+      "containment": 0.999059,
+      "matching_shingles": 101881,
+      "denominator": 101977
+    },
+    {
+      "left_id": "1009",
+      "right_id": "1012",
+      "containment": 0.99307,
+      "matching_shingles": 33964,
+      "denominator": 34201
+    },
+    {
+      "left_id": "1010",
+      "right_id": "1012",
+      "containment": 0.999299,
+      "matching_shingles": 34221,
+      "denominator": 34245
+    },
+    {
+      "left_id": "1011",
+      "right_id": "1012",
+      "containment": 0.999464,
+      "matching_shingles": 33582,
+      "denominator": 33600
+    }
+  ],
+  "cross_corpus_duplicate_pairs": [
+    {
+      "ebook_id": "997",
+      "reference_id": "bibit:bibit000019",
+      "source_kind": "bibit",
+      "containment": 0.982044,
+      "candidate_containment": 0.982044,
+      "reference_containment": 0.331268,
+      "duplicate_scope": "candidate_covered",
+      "exact_normalized_text": false,
+      "matching_shingles": 33691,
+      "denominator": 34307
+    },
+    {
+      "ebook_id": "998",
+      "reference_id": "bibit:bibit000019",
+      "source_kind": "bibit",
+      "containment": 0.981679,
+      "candidate_containment": 0.981679,
+      "reference_containment": 0.330334,
+      "duplicate_scope": "candidate_covered",
+      "exact_normalized_text": false,
+      "matching_shingles": 33596,
+      "denominator": 34223
+    },
+    {
+      "ebook_id": "999",
+      "reference_id": "bibit:bibit000019",
+      "source_kind": "bibit",
+      "containment": 0.978528,
+      "candidate_containment": 0.978528,
+      "reference_containment": 0.323068,
+      "duplicate_scope": "candidate_covered",
+      "exact_normalized_text": false,
+      "matching_shingles": 32857,
+      "denominator": 33578
+    },
+    {
+      "ebook_id": "1000",
+      "reference_id": "bibit:bibit000019",
+      "source_kind": "bibit",
+      "containment": 0.984681,
+      "candidate_containment": 0.981997,
+      "reference_containment": 0.984681,
+      "duplicate_scope": "candidate_covered",
+      "exact_normalized_text": false,
+      "matching_shingles": 100145,
+      "denominator": 101703
+    },
+    {
+      "ebook_id": "1009",
+      "reference_id": "bibit:bibit000019",
+      "source_kind": "bibit",
+      "containment": 0.985351,
+      "candidate_containment": 0.985351,
+      "reference_containment": 0.331357,
+      "duplicate_scope": "candidate_covered",
+      "exact_normalized_text": false,
+      "matching_shingles": 33700,
+      "denominator": 34201
+    },
+    {
+      "ebook_id": "1010",
+      "reference_id": "bibit:bibit000019",
+      "source_kind": "bibit",
+      "containment": 0.981048,
+      "candidate_containment": 0.981048,
+      "reference_containment": 0.330334,
+      "duplicate_scope": "candidate_covered",
+      "exact_normalized_text": false,
+      "matching_shingles": 33596,
+      "denominator": 34245
+    },
+    {
+      "ebook_id": "1011",
+      "reference_id": "bibit:bibit000019",
+      "source_kind": "bibit",
+      "containment": 0.977887,
+      "candidate_containment": 0.977887,
+      "reference_containment": 0.323068,
+      "duplicate_scope": "candidate_covered",
+      "exact_normalized_text": false,
+      "matching_shingles": 32857,
+      "denominator": 33600
+    },
+    {
+      "ebook_id": "1012",
+      "reference_id": "bibit:bibit000019",
+      "source_kind": "bibit",
+      "containment": 0.984769,
+      "candidate_containment": 0.982123,
+      "reference_containment": 0.984769,
+      "duplicate_scope": "candidate_covered",
+      "exact_normalized_text": false,
+      "matching_shingles": 100154,
+      "denominator": 101703
+    },
+    {
+      "ebook_id": "6938",
+      "reference_id": "bibit:bibit000859",
+      "source_kind": "bibit",
+      "containment": 0.939929,
+      "candidate_containment": 0.30055,
+      "reference_containment": 0.939929,
+      "duplicate_scope": "embedded_reference_only",
+      "exact_normalized_text": false,
+      "matching_shingles": 12236,
+      "denominator": 13018
+    },
+    {
+      "ebook_id": "21424",
+      "reference_id": "bibit:bibit000101",
+      "source_kind": "bibit",
+      "containment": 0.804008,
+      "candidate_containment": 0.186594,
+      "reference_containment": 0.804008,
+      "duplicate_scope": "embedded_reference_only",
+      "exact_normalized_text": false,
+      "matching_shingles": 16491,
+      "denominator": 20511
+    },
+    {
+      "ebook_id": "21424",
+      "reference_id": "current:ll_boccaccio_trattatello",
+      "source_kind": "current_corpus",
+      "containment": 0.865536,
+      "candidate_containment": 0.202695,
+      "reference_containment": 0.865536,
+      "duplicate_scope": "embedded_reference_only",
+      "exact_normalized_text": false,
+      "matching_shingles": 17914,
+      "denominator": 20697
+    },
+    {
+      "ebook_id": "29082",
+      "reference_id": "bibit:bibit001581",
+      "source_kind": "bibit",
+      "containment": 0.870649,
+      "candidate_containment": 0.071851,
+      "reference_containment": 0.870649,
+      "duplicate_scope": "embedded_reference_only",
+      "exact_normalized_text": false,
+      "matching_shingles": 15232,
+      "denominator": 17495
+    },
+    {
+      "ebook_id": "31079",
+      "reference_id": "bibit:bibit000014",
+      "source_kind": "bibit",
+      "containment": 0.873114,
+      "candidate_containment": 0.837124,
+      "reference_containment": 0.873114,
+      "duplicate_scope": "candidate_covered",
+      "exact_normalized_text": false,
+      "matching_shingles": 10012,
+      "denominator": 11467
+    },
+    {
+      "ebook_id": "31080",
+      "reference_id": "bibit:bibit000681",
+      "source_kind": "bibit",
+      "containment": 0.836652,
+      "candidate_containment": 0.815965,
+      "reference_containment": 0.836652,
+      "duplicate_scope": "candidate_covered",
+      "exact_normalized_text": false,
+      "matching_shingles": 7227,
+      "denominator": 8638
+    },
+    {
+      "ebook_id": "38012",
+      "reference_id": "bibit:bibit001054",
+      "source_kind": "bibit",
+      "containment": 0.827985,
+      "candidate_containment": 0.80943,
+      "reference_containment": 0.827985,
+      "duplicate_scope": "candidate_covered",
+      "exact_normalized_text": false,
+      "matching_shingles": 9030,
+      "denominator": 10906
+    },
+    {
+      "ebook_id": "38509",
+      "reference_id": "bibit:bibit001560",
+      "source_kind": "bibit",
+      "containment": 0.894043,
+      "candidate_containment": 0.185842,
+      "reference_containment": 0.894043,
+      "duplicate_scope": "embedded_reference_only",
+      "exact_normalized_text": false,
+      "matching_shingles": 7054,
+      "denominator": 7890
+    },
+    {
+      "ebook_id": "45334",
+      "reference_id": "bibit:bibit000666",
+      "source_kind": "bibit",
+      "containment": 0.986853,
+      "candidate_containment": 0.922185,
+      "reference_containment": 0.986853,
+      "duplicate_scope": "candidate_covered",
+      "exact_normalized_text": false,
+      "matching_shingles": 220464,
+      "denominator": 223401
+    },
+    {
+      "ebook_id": "52484",
+      "reference_id": "bibit:bibit000139",
+      "source_kind": "bibit",
+      "containment": 0.895087,
+      "candidate_containment": 0.87435,
+      "reference_containment": 0.895087,
+      "duplicate_scope": "candidate_covered",
+      "exact_normalized_text": false,
+      "matching_shingles": 36345,
+      "denominator": 40605
+    },
+    {
+      "ebook_id": "55236",
+      "reference_id": "bibit:bibit000469",
+      "source_kind": "bibit",
+      "containment": 0.929104,
+      "candidate_containment": 0.774023,
+      "reference_containment": 0.929104,
+      "duplicate_scope": "embedded_reference_only",
+      "exact_normalized_text": false,
+      "matching_shingles": 20798,
+      "denominator": 22385
+    },
+    {
+      "ebook_id": "55236",
+      "reference_id": "bibit:bibit000850",
+      "source_kind": "bibit",
+      "containment": 0.938127,
+      "candidate_containment": 0.859397,
+      "reference_containment": 0.938127,
+      "duplicate_scope": "candidate_covered",
+      "exact_normalized_text": false,
+      "matching_shingles": 23092,
+      "denominator": 24615
+    },
+    {
+      "ebook_id": "57565",
+      "reference_id": "bibit:bibit000612",
+      "source_kind": "bibit",
+      "containment": 0.866889,
+      "candidate_containment": 0.073127,
+      "reference_containment": 0.866889,
+      "duplicate_scope": "embedded_reference_only",
+      "exact_normalized_text": false,
+      "matching_shingles": 13253,
+      "denominator": 15288
+    },
+    {
+      "ebook_id": "57565",
+      "reference_id": "bibit:bibit000620",
+      "source_kind": "bibit",
+      "containment": 0.83119,
+      "candidate_containment": 0.074876,
+      "reference_containment": 0.83119,
+      "duplicate_scope": "embedded_reference_only",
+      "exact_normalized_text": false,
+      "matching_shingles": 13570,
+      "denominator": 16326
+    },
+    {
+      "ebook_id": "57565",
+      "reference_id": "bibit:bibit000695",
+      "source_kind": "bibit",
+      "containment": 0.938596,
+      "candidate_containment": 0.023616,
+      "reference_containment": 0.938596,
+      "duplicate_scope": "embedded_reference_only",
+      "exact_normalized_text": false,
+      "matching_shingles": 4280,
+      "denominator": 4560
+    },
+    {
+      "ebook_id": "57565",
+      "reference_id": "bibit:bibit000930",
+      "source_kind": "bibit",
+      "containment": 0.830969,
+      "candidate_containment": 0.064315,
+      "reference_containment": 0.830969,
+      "duplicate_scope": "embedded_reference_only",
+      "exact_normalized_text": false,
+      "matching_shingles": 11656,
+      "denominator": 14027
+    },
+    {
+      "ebook_id": "57565",
+      "reference_id": "bibit:bibit001524",
+      "source_kind": "bibit",
+      "containment": 0.968523,
+      "candidate_containment": 0.160612,
+      "reference_containment": 0.968523,
+      "duplicate_scope": "embedded_reference_only",
+      "exact_normalized_text": false,
+      "matching_shingles": 29108,
+      "denominator": 30054
+    },
+    {
+      "ebook_id": "57787",
+      "reference_id": "bibit:bibit000049",
+      "source_kind": "bibit",
+      "containment": 0.977245,
+      "candidate_containment": 0.977205,
+      "reference_containment": 0.977245,
+      "duplicate_scope": "candidate_covered",
+      "exact_normalized_text": false,
+      "matching_shingles": 239378,
+      "denominator": 244952
+    },
+    {
+      "ebook_id": "76738",
+      "reference_id": "bibit:bibit001479",
+      "source_kind": "bibit",
+      "containment": 0.952426,
+      "candidate_containment": 0.681009,
+      "reference_containment": 0.952426,
+      "duplicate_scope": "embedded_reference_only",
+      "exact_normalized_text": false,
+      "matching_shingles": 79740,
+      "denominator": 83723
+    }
+  ],
+  "cross_corpus_reference_count": 1352,
+  "heldout_sonnet_reference_count": 387,
+  "outputs": {
+    "probe_csv_path": "data/metadata/project_gutenberg_fulltext_probe_v1.csv",
+    "probe_csv_sha256": "bf35b9b38112ed987f98b7c20eb44ebe864eafc35b4a6cc7e2af7b419b9b7984",
+    "json_report_path": "reports/project_gutenberg_fulltext_probe_v1.json",
+    "markdown_report_path": "reports/project_gutenberg_fulltext_probe_v1.md",
+    "local_cache_path": "data/local/gutenberg/fulltext_gate_v1"
+  },
+  "policy": {
+    "activation_authorized": false,
+    "v7_split_authorized": false,
+    "mixture_weight_authorized": false,
+    "normalized_8word_shingle_near_duplicate_threshold": 0.8,
+    "heldout_sonnet_containment_threshold": 0.8,
+    "raw_text_cache_is_machine_local": true
+  }
+}

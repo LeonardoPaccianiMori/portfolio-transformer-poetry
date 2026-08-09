@@ -93,8 +93,14 @@ and final mixture freeze are complete.
   signals. A 42-text deterministic value gate passed coarse availability,
   encoding, Italian-language, and alphabetic-content checks for every sample;
   it projects approximately 215.5 million cleaned characters across 416
-  eligible probe candidates. Five of six sampled BibIt metadata overlaps are
-  strong text-level duplicate signals. The complete 416-record quality and
-  cross-corpus deduplication probe remains pending; no Gutenberg text is active.
+  eligible probe candidates. The subsequent complete probe acquired all 416
+  texts and measured 244.4 million cleaned characters. It resolves the flagged
+  language and numeric-content cases, separates full-source duplicates from
+  embedded duplicate segments, and detects one protected held-out-sonnet
+  occurrence. Fifteen full-source duplicate candidates and one macaronic work
+  remain outside the core; six embedded-work sources, one held-out-overlap
+  source, and two bilingual/multilingual editions require source-specific
+  extraction. The remaining 613 date, language, translation, rights, and scope
+  reviews must still be resolved; no Gutenberg text is active.
 - Italian Wikisource, Liber Liber, and the remaining registry archives: archive-
   scale inventory pending.
