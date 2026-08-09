@@ -1,0 +1,66 @@
+{
+  "resolution_version": "bibit_review_resolution_v1",
+  "inputs": {
+    "record_audit_csv_path": "data/metadata/bibit_tei_audit_records.csv",
+    "sonnet_audit_csv_path": "data/metadata/bibit_sonnet_candidates_audit.csv",
+    "local_tei_cache_path": "data/local/bibit/tei"
+  },
+  "outputs": {
+    "record_decision_csv_path": "data/metadata/bibit_record_activation_decisions.csv",
+    "sonnet_decision_csv_path": "data/metadata/bibit_sonnet_activation_decisions.csv",
+    "json_report_path": "reports/bibit_review_resolution.json",
+    "markdown_report_path": "reports/bibit_review_resolution.md"
+  },
+  "record_count": 1373,
+  "record_decision_counts": {
+    "activate_as_non_sonnet_poetry": 25,
+    "activate_as_non_sonnet_poetry_with_bracket_cleanup": 1,
+    "activate_core": 1205,
+    "activate_core_with_bracket_cleanup": 86,
+    "exclude_core_language_variety": 14,
+    "exclude_duplicate_document": 16,
+    "exclude_empty_or_too_short": 3,
+    "exclude_empty_or_unavailable": 1,
+    "exclude_missing_source_provenance": 15,
+    "exclude_non_italian": 7
+  },
+  "activated_record_characters_by_role": {
+    "historical_general": 126721674,
+    "historical_non_sonnet_poetry": 41408267,
+    "nineteenth_century_bridge": 60722622
+  },
+  "sonnet_candidate_count": 24538,
+  "sonnet_decision_counts": {
+    "activate_explicit_sonnet_variant": 961,
+    "activate_heading_backed_sonnet_variant": 99,
+    "activate_inferred_standard_sonnet": 3063,
+    "activate_standard_explicit_sonnet": 16208,
+    "exclude_exact_duplicate": 202,
+    "exclude_held_out_identity": 411,
+    "exclude_near_active_duplicate": 1629,
+    "exclude_unhandled_form": 9,
+    "exclude_unverified_structural_14_line_unit": 1432,
+    "exclude_with_source_record": 405,
+    "excluded_implausible_sonnet_length": 119
+  },
+  "activated_sonnet_counts_by_role": {
+    "sonnet_core_inferred_14_line": 3063,
+    "sonnet_core_standard_14_line": 16208,
+    "sonnet_variant_conditioned_auxiliary": 1060
+  },
+  "activated_sonnet_characters_by_role": {
+    "sonnet_core_inferred_14_line": 1619696,
+    "sonnet_core_standard_14_line": 8750919,
+    "sonnet_variant_conditioned_auxiliary": 670175
+  },
+  "unresolved_record_count": 0,
+  "unresolved_sonnet_count": 0,
+  "policy": {
+    "near_active_duplicates_excluded": true,
+    "held_out_identities_excluded": true,
+    "language_variety_excluded_from_core": true,
+    "explicit_nonstandard_sonnets_conditioned_separately": true,
+    "structural_14_line_units_require_additional_form_evidence": true,
+    "editorial_square_brackets_use_documented_cleanup": true
+  }
+}

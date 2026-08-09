@@ -39,15 +39,19 @@ ACTIVE_ROLES = {
     ROLE_SONNET_ONLY,
     ROLE_BRIDGE,
 }
+KNOWN_EMPTY_TEI_RECORDS = {
+    "bibit00332": "archive returned empty TEI under catalog and padded identifiers",
+}
 HELD_OUT_SPLITS = {"validation", "test"}
 _DIALECT_METADATA = re.compile(
-    r"\b(?:dialett\w*|romanes\w*)\b",
+    r"\b(?:dialett\w*|romanes\w*|vernacol\w*)\b",
     re.IGNORECASE,
 )
 _KNOWN_DIALECT_WORK = re.compile(
     r"\b(?:lo cunto de li cunti|le muse napolitane|comedia di malpratico|"
     r"legenda de misier sento alban|testi veneziani|rainaldo e lesengrino|"
-    r"rimatori bolognesi|commento di jacopo di giovanni dalla lana bolognese)\b",
+    r"rimatori bolognesi|commento di jacopo di giovanni dalla lana bolognese|"
+    r"la tiorba a taccone|la chanson de roland)\b",
     re.IGNORECASE,
 )
 _BRACKETED_TEXT = re.compile(r"\[[^\]\n]{1,160}\]")
@@ -77,6 +81,7 @@ RECORD_FIELDS = (
     "non_sonnet_verse_characters",
     "explicit_sonnet_count",
     "structural_14_line_candidate_count",
+    "structural_sonnet_variant_count",
     "eligible_new_sonnet_count",
     "held_out_text_hits",
     "bracketed_text_markers",
@@ -108,6 +113,7 @@ SONNET_FIELDS = (
     "tei_type",
     "heading_path",
     "line_count",
+    "stanza_pattern",
     "character_count",
     "status",
     "exact_active_duplicate_poem_ids",
@@ -203,9 +209,15 @@ def audit_bibit_tei_roles(
     for index, decision in enumerate(decisions, start=1):
         object_id = decision["object_id"]
         cache_path = config.tei_cache_dir / f"{object_id}.xml"
-        cache_status = "hit" if cache_path.is_file() else "miss"
+        cache_status = (
+            "known_empty"
+            if object_id in KNOWN_EMPTY_TEI_RECORDS
+            else "hit" if cache_path.is_file() else "miss"
+        )
         error = ""
         try:
+            if object_id in KNOWN_EMPTY_TEI_RECORDS:
+                raise ValueError(KNOWN_EMPTY_TEI_RECORDS[object_id])
             if cache_path.is_file():
                 xml = cache_path.read_bytes()
             else:
@@ -249,6 +261,7 @@ def audit_bibit_tei_roles(
                 decision,
                 parsed_sonnets=parsed.sonnets,
                 structural_candidates=parsed.structural_sonnet_candidates,
+                structural_variants=parsed.structural_sonnet_variants,
                 references=references,
                 reference_ngram_index=reference_ngram_index,
                 exact_bibit_sonnets=exact_bibit_sonnets,
@@ -438,8 +451,11 @@ def _record_flags(
         flags.append("held_out_sonnet_text_in_earlier_stage")
     if decision["role"] != ROLE_SONNET_ONLY and len(training_text.strip()) < min_training_characters:
         flags.append("empty_or_too_short_after_sonnet_quarantine")
-    if decision["role"] == ROLE_SONNET_ONLY and not parsed.sonnets and not any(
-        parsed.structural_sonnet_candidates
+    if (
+        decision["role"] == ROLE_SONNET_ONLY
+        and not parsed.sonnets
+        and not parsed.structural_sonnet_candidates
+        and not parsed.structural_sonnet_variants
     ):
         flags.append("review_no_sonnet_candidates")
     if len(_BRACKETED_TEXT.findall(training_text)) >= 20:
@@ -488,6 +504,7 @@ def _audit_record_sonnet_candidates(
     *,
     parsed_sonnets: tuple[BibItSonnetUnit, ...],
     structural_candidates: tuple[BibItVerseUnit, ...],
+    structural_variants: tuple[BibItVerseUnit, ...],
     references: list[ReferenceSonnet],
     reference_ngram_index: dict[str, set[int]],
     exact_bibit_sonnets: dict[str, str],
@@ -495,17 +512,55 @@ def _audit_record_sonnet_candidates(
     near_overlap_threshold: float,
     near_sequence_threshold: float,
 ) -> list[dict[str, Any]]:
-    candidates: list[tuple[str, str, str, tuple[str, ...], str, int]] = []
+    candidates: list[
+        tuple[str, str, str, tuple[str, ...], str, int, tuple[int, ...]]
+    ] = []
     candidates.extend(
-        (unit.unit_id, "explicit_tei_sonnet", unit.sonnet_type, unit.heading_path, unit.text, unit.line_count)
+        (
+            unit.unit_id,
+            "explicit_tei_sonnet",
+            unit.sonnet_type,
+            unit.heading_path,
+            unit.text,
+            unit.line_count,
+            unit.stanza_line_counts,
+        )
         for unit in parsed_sonnets
     )
     candidates.extend(
-        (unit.unit_id, "structural_14_line", unit.verse_type, unit.heading_path, unit.text, unit.line_count)
+        (
+            unit.unit_id,
+            "structural_14_line",
+            unit.verse_type,
+            unit.heading_path,
+            unit.text,
+            unit.line_count,
+            unit.stanza_line_counts,
+        )
         for unit in structural_candidates
     )
+    candidates.extend(
+        (
+            unit.unit_id,
+            "structural_sonnet_variant",
+            unit.verse_type,
+            unit.heading_path,
+            unit.text,
+            unit.line_count,
+            unit.stanza_line_counts,
+        )
+        for unit in structural_variants
+    )
     rows: list[dict[str, Any]] = []
-    for unit_id, source_kind, tei_type, heading_path, text, line_count in candidates:
+    for (
+        unit_id,
+        source_kind,
+        tei_type,
+        heading_path,
+        text,
+        line_count,
+        stanza_line_counts,
+    ) in candidates:
         candidate_id = f"{decision['object_id']}:{unit_id}"
         exact = normalize_exact_text(text)
         loose = normalize_loose_text(text)
@@ -537,8 +592,6 @@ def _audit_record_sonnet_candidates(
         )
         if not text.strip():
             status = "excluded_empty"
-        elif line_count != 14:
-            status = "excluded_not_14_lines"
         elif held_out_matches:
             status = "excluded_held_out_identity_conflict"
         elif exact_matches:
@@ -553,6 +606,13 @@ def _audit_record_sonnet_candidates(
             status = "review_candidate_editorial_markers"
         elif source_blocked:
             status = "review_source_blocked"
+        elif line_count != 14:
+            if source_kind == "explicit_tei_sonnet" and 15 <= line_count <= 32:
+                status = "eligible_explicit_sonnet_variant"
+            elif source_kind == "structural_sonnet_variant":
+                status = "review_structural_sonnet_variant"
+            else:
+                status = "excluded_implausible_sonnet_length"
         elif source_kind == "structural_14_line":
             status = "review_structural_form"
         else:
@@ -569,6 +629,7 @@ def _audit_record_sonnet_candidates(
                 "tei_type": tei_type,
                 "heading_path": " > ".join(heading_path),
                 "line_count": line_count,
+                "stanza_pattern": "+".join(map(str, stanza_line_counts)),
                 "character_count": len(text),
                 "status": status,
                 "exact_active_duplicate_poem_ids": ";".join(sorted(exact_matches)),
@@ -688,6 +749,7 @@ def _record_result(
         "structural_14_line_candidate_count": sum(
             1 for _ in parsed.structural_sonnet_candidates
         ),
+        "structural_sonnet_variant_count": len(parsed.structural_sonnet_variants),
         "eligible_new_sonnet_count": eligible_sonnets,
         "held_out_text_hits": ";".join(held_out_hits),
         "bracketed_text_markers": len(_BRACKETED_TEXT.findall(training_text)),
@@ -768,7 +830,11 @@ def _apply_near_document_duplicates(
 ) -> None:
     by_author: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for row in records:
-        if row["error"] or not row["routed_training_characters"]:
+        if (
+            row["error"]
+            or not row["routed_training_characters"]
+            or row["assigned_role"] == ROLE_SONNET_ONLY
+        ):
             continue
         by_author[normalize_loose_text(str(row["authors"]))].append(row)
     for author_rows in by_author.values():
@@ -937,6 +1003,9 @@ def build_bibit_role_report(
         "structural_sonnet_candidate_count": sum(
             row["source_kind"] == "structural_14_line" for row in sonnet_rows
         ),
+        "structural_sonnet_variant_count": sum(
+            row["source_kind"] == "structural_sonnet_variant" for row in sonnet_rows
+        ),
         "held_out_identity_conflict_count": sum(
             bool(row["held_out_duplicate_poem_ids"]) for row in sonnet_rows
         ),
@@ -1008,6 +1077,7 @@ def render_bibit_role_markdown(report: dict[str, Any]) -> str:
             "",
             f"- Explicit TEI sonnets: {report['explicit_sonnet_candidate_count']:,}.",
             f"- Unverified structural 14-line candidates: {report['structural_sonnet_candidate_count']:,}.",
+            f"- Heading-backed structural sonnet variants: {report['structural_sonnet_variant_count']:,}.",
             f"- Held-out identity conflicts: {report['held_out_identity_conflict_count']:,}.",
             "",
             "| Status | Candidates |",

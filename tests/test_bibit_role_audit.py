@@ -211,6 +211,13 @@ def test_bibit_role_audit_routes_all_three_corpora_and_blocks_held_out(tmp_path)
     assert records["bibit000003"]["route"] == ROLE_HISTORICAL_POETRY
     assert int(records["bibit000003"]["routed_training_characters"]) > 0
 
+    with config.sonnet_csv_path.open(encoding="utf-8", newline="") as handle:
+        candidates = list(csv.DictReader(handle))
+    structural = next(
+        row for row in candidates if row["source_kind"] == "structural_14_line"
+    )
+    assert structural["stanza_pattern"] == "14"
+
 
 def test_bibit_role_audit_reuses_cached_tei_without_network(tmp_path):
     decisions = tmp_path / "decisions.csv"
@@ -238,6 +245,113 @@ def test_bibit_role_audit_reuses_cached_tei_without_network(tmp_path):
         assert {row["cache_status"] for row in csv.DictReader(handle)} == {"hit"}
 
 
+def test_bibit_role_audit_records_known_empty_tei_without_network(tmp_path):
+    decisions = tmp_path / "decisions.csv"
+    with decisions.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=[
+                "object_id",
+                "canonical_status",
+                "role",
+                "title",
+                "authors",
+            ],
+            lineterminator="\n",
+        )
+        writer.writeheader()
+        writer.writerow(
+            {
+                "object_id": "bibit00332",
+                "canonical_status": "selected",
+                "role": ROLE_HISTORICAL_GENERAL,
+                "title": "Esperimento di traduzione dell'Iliade di Omero",
+                "authors": "Foscolo, Ugo",
+            }
+        )
+    manifest = _write_sonnet_manifest(tmp_path, _lines("Held out"))
+    config = _config(tmp_path, decisions, manifest)
+
+    def unexpected_fetch(*args, **kwargs):
+        raise AssertionError("known empty records must not be fetched again")
+
+    report = audit_bibit_tei_roles(config, fetch_tei=unexpected_fetch)
+
+    assert report["record_status_counts"] == {"error": 1}
+    with config.record_csv_path.open(encoding="utf-8", newline="") as handle:
+        record = next(csv.DictReader(handle))
+    assert record["cache_status"] == "known_empty"
+    assert "archive returned empty TEI" in record["error"]
+
+
+def test_bibit_role_audit_keeps_explicit_variants_but_prioritizes_held_out_identity(
+    tmp_path,
+):
+    decisions = tmp_path / "decisions.csv"
+    fields = [
+        "object_id",
+        "canonical_status",
+        "role",
+        "title",
+        "authors",
+    ]
+    with decisions.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
+        writer.writeheader()
+        for object_id in ("bibit000001", "bibit000002", "bibit000003"):
+            writer.writerow(
+                {
+                    "object_id": object_id,
+                    "canonical_status": "selected",
+                    "role": ROLE_SONNET_ONLY,
+                    "title": "Sonetti caudati",
+                    "authors": "Autore Test",
+                }
+            )
+    held_out = _lines("Held out")
+    manifest = _write_sonnet_manifest(tmp_path, held_out)
+    documents = {
+        "bibit000001": _tei(
+            "bibit000001",
+            "Sonetto caudato nuovo",
+            explicit_sonnet=_lines("Variant", 17),
+        ),
+        "bibit000002": _tei(
+            "bibit000002",
+            "Sonetto caudato held out",
+            explicit_sonnet=held_out + _lines("Coda", 3),
+        ),
+        "bibit000003": (
+            "<TEI.2><teiHeader><fileDesc><titleStmt>"
+            "<title>Sonetti caudati</title><author>Autore Test</author>"
+            "</titleStmt><publicationStmt><availability><p>Uso scientifico."
+            "</p></availability></publicationStmt><sourceDesc><bibl>"
+            "<title>Edizione test</title>"
+            "</bibl></sourceDesc></fileDesc></teiHeader><text><body>"
+            "<div1><head>Sonetti</head><div2><head>I</head><lg>"
+            + "".join(f"<l>{line}</l>" for line in _lines("Structural variant", 17))
+            + "</lg></div2></div1></body></text></TEI.2>"
+        ).encode(),
+    }
+    config = _config(tmp_path, decisions, manifest)
+
+    report = audit_bibit_tei_roles(
+        config,
+        fetch_tei=lambda object_id, **_: documents[object_id],
+        sleep=lambda _: None,
+    )
+
+    assert report["sonnet_status_counts"]["eligible_explicit_sonnet_variant"] == 1
+    assert report["sonnet_status_counts"]["excluded_held_out_identity_conflict"] == 1
+    assert report["sonnet_status_counts"]["review_structural_sonnet_variant"] == 1
+    with config.sonnet_csv_path.open(encoding="utf-8", newline="") as handle:
+        rows = list(csv.DictReader(handle))
+    assert {row["stanza_pattern"] for row in rows} == {"17"}
+    with config.record_csv_path.open(encoding="utf-8", newline="") as handle:
+        records = {row["object_id"]: row for row in csv.DictReader(handle)}
+    assert "review_no_sonnet_candidates" not in records["bibit000003"]["audit_flags"]
+
+
 def test_bibit_duplicate_normalizers_distinguish_exact_from_edition_level_text():
     first = "Perché l'amore è forte.\nSecondo verso."
     second = "Perche l amore e forte! Secondo verso."
@@ -256,4 +370,19 @@ def test_language_variety_review_avoids_geographic_false_positives():
         "Saggio storico sulla rivoluzione napoletana del 1799",
         ("Italiano", "Latino", "Francese"),
         ("Testi storici",),
+    )
+    assert requires_language_variety_review(
+        "Cento sonetti in vernacolo pisano",
+        ("Italiano",),
+        ("Poesia",),
+    )
+    assert requires_language_variety_review(
+        "La Tiorba a Taccone",
+        ("Italiano",),
+        ("Poesia",),
+    )
+    assert requires_language_variety_review(
+        "La Chanson de Roland (testo franco-italiano)",
+        ("Italiano",),
+        ("Poesia",),
     )

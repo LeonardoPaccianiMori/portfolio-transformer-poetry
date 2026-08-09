@@ -26,12 +26,14 @@ def test_parse_bibit_tei_separates_explicit_sonnets_and_provenance():
     assert parsed.sonnets[0].sonnet_type == "sonetto"
     assert parsed.sonnets[0].heading_path == ("RIME", "1")
     assert parsed.sonnets[0].line_count == 4
+    assert parsed.sonnets[0].stanza_line_counts == (2, 2)
     assert "Verso secondo del sonetto\n\nVerso terzo" in parsed.sonnets[0].text
     assert len(parsed.non_sonnet_verse) == 1
     assert parsed.structural_sonnet_candidates == ()
     assert parsed.non_sonnet_verse[0].verse_type == "ottava"
     assert parsed.non_sonnet_verse[0].heading_path == ("RIME", "Canto non sonetto")
     assert parsed.non_sonnet_verse[0].line_count == 2
+    assert parsed.non_sonnet_verse[0].stanza_line_counts == (2,)
 
 
 def test_parse_bibit_tei_preserves_structure_and_excludes_apparatus():
@@ -72,6 +74,7 @@ def test_parse_bibit_tei_quarantines_untyped_fourteen_line_verse():
     assert parsed.non_sonnet_verse[0].line_count == 14
     assert len(parsed.structural_sonnet_candidates) == 1
     assert parsed.structural_sonnet_candidates[0].unit_id == "structural_0001"
+    assert parsed.structural_sonnet_candidates[0].stanza_line_counts == (14,)
     assert "Verso 1" in parsed.non_sonnet_text
     assert "Verso 1" not in parsed.sonnet_candidate_safe_text
     assert parsed.sonnet_candidate_safe_text == "Prosa sicura.\n"
@@ -92,6 +95,7 @@ def test_parse_bibit_tei_quarantines_nested_structural_sonnet_only_once():
     assert len(parsed.non_sonnet_verse) == 1
     assert len(parsed.structural_sonnet_candidates) == 1
     assert parsed.structural_sonnet_candidates[0].line_count == 14
+    assert parsed.structural_sonnet_candidates[0].stanza_line_counts == (14,)
     assert "Verso 1" not in parsed.sonnet_candidate_safe_text
     assert "Verso non sonetto uno" in parsed.sonnet_candidate_safe_text
 
@@ -118,8 +122,30 @@ def test_parse_bibit_tei_quarantines_four_stanza_sonnet_container():
 
     assert len(parsed.structural_sonnet_candidates) == 1
     assert parsed.structural_sonnet_candidates[0].line_count == 14
+    assert parsed.structural_sonnet_candidates[0].stanza_line_counts == (4, 4, 3, 3)
     assert "Verso 1" not in parsed.sonnet_candidate_safe_text
     assert "Verso non sonetto" in parsed.sonnet_candidate_safe_text
+
+
+def test_parse_bibit_tei_quarantines_heading_backed_sonnet_variant():
+    lines = "".join(f"<l>Verso {index}</l>" for index in range(1, 18))
+    xml = f"""<TEI.2>
+      <teiHeader><fileDesc><titleStmt><title>Rime</title></titleStmt></fileDesc></teiHeader>
+      <text><body>
+        <div1><head>Sonetti</head><div2><head>I</head><lg>{lines}</lg></div2></div1>
+        <p>Prosa sicura.</p>
+      </body></text>
+    </TEI.2>"""
+
+    parsed = parse_bibit_tei(xml)
+
+    assert parsed.sonnets == ()
+    assert parsed.structural_sonnet_candidates == ()
+    assert len(parsed.structural_sonnet_variants) == 1
+    assert parsed.structural_sonnet_variants[0].line_count == 17
+    assert parsed.structural_sonnet_variants[0].heading_path == ("Sonetti", "I")
+    assert "Verso 1" not in parsed.sonnet_candidate_safe_text
+    assert parsed.sonnet_candidate_safe_text.endswith("Prosa sicura.\n")
 
 
 def test_parse_bibit_tei_rejects_entity_declarations():

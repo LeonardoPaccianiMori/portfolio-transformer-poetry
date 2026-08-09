@@ -42,10 +42,11 @@ evidence but deliberately not downloaded as canonical training candidates.
 
 The full audit routes material into all three intended corpus stages: historical
 general text, historical non-sonnet poetry, and sonnet specialization, plus a
-separately capped nineteenth-century bridge. It reports 1,204 automatic record
-candidates and 168 review-required records; `bibit00332` is the only parse
+separately capped nineteenth-century bridge. It reports 1,207 automatic record
+candidates and 165 review-required records; `bibit00332` is the only parse
 error because both known archive identifiers return an empty TEI document.
-Review status is not activation.
+The subsequent deterministic resolution closes every review row while retaining
+all exclusions and their reasons as public evidence.
 
 ## Implemented Transformations
 
@@ -67,15 +68,17 @@ Review status is not activation.
 
 ## Full TEI Audit Results
 
-- General historical route: 562 automatic candidates and 74,532,753
-  candidate characters.
-- Historical non-sonnet poetry route: 340 automatic candidates and 37,953,293
-  candidate characters.
-- Nineteenth-century bridge: 302 automatic candidates and 41,036,542 candidate
-  characters; final mixture weighting is still pending.
-- Sonnet audit: 18,742 explicit TEI candidates and 5,596 structural 14-line
-  candidates. Of these, 13,037 explicit non-duplicates are automatically
-  eligible for the next composition stage.
+- General historical route after review resolution: 126,721,674 included
+  characters.
+- Historical non-sonnet poetry route after review resolution: 41,408,267
+  included characters, including 26 false sonnet-composition guesses rerouted
+  as non-sonnet verse.
+- Nineteenth-century bridge after review resolution: 60,722,622 eligible
+  characters; this is available source volume, not the final mixture weight.
+- Sonnet audit: 18,742 explicit TEI candidates, 5,596 structural 14-line
+  candidates, and 200 heading-backed structural variants. Resolution retains
+  16,208 explicit standard sonnets, 3,063 evidence-backed inferred standard
+  sonnets, and 1,060 explicitly separated non-14-line variants.
 - All 1,868 active V6 sonnets were used for duplicate checks. All 411 conflicts
   with the 387 V6 validation/test identities are explicitly excluded, and no
   explicit or structurally inferred sonnet remains in an earlier-stage route.
@@ -111,3 +114,7 @@ redaction from the same training mixture.
 - [`bibit_sonnet_candidates_audit.csv`](bibit_sonnet_candidates_audit.csv)
 - [`../../reports/bibit_tei_role_audit.md`](../../reports/bibit_tei_role_audit.md)
 - [`../../reports/bibit_tei_role_audit.json`](../../reports/bibit_tei_role_audit.json)
+- [`bibit_record_activation_decisions.csv`](bibit_record_activation_decisions.csv)
+- [`bibit_sonnet_activation_decisions.csv`](bibit_sonnet_activation_decisions.csv)
+- [`../../reports/bibit_review_resolution.md`](../../reports/bibit_review_resolution.md)
+- [`../../reports/bibit_review_resolution.json`](../../reports/bibit_review_resolution.json)

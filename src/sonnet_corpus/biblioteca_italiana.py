@@ -145,6 +145,7 @@ class BibItSonnetUnit:
     heading_path: tuple[str, ...]
     text: str
     line_count: int
+    stanza_line_counts: tuple[int, ...]
 
 
 @dataclass(frozen=True)
@@ -156,6 +157,7 @@ class BibItVerseUnit:
     heading_path: tuple[str, ...]
     text: str
     line_count: int
+    stanza_line_counts: tuple[int, ...]
 
 
 @dataclass(frozen=True)
@@ -170,6 +172,7 @@ class ParsedBibItTEI:
     sonnets: tuple[BibItSonnetUnit, ...]
     non_sonnet_verse: tuple[BibItVerseUnit, ...]
     structural_sonnet_candidates: tuple[BibItVerseUnit, ...]
+    structural_sonnet_variants: tuple[BibItVerseUnit, ...]
 
 
 CatalogProgress = Callable[[str], None]
@@ -373,16 +376,38 @@ def parse_bibit_tei(xml: bytes | str, *, object_id: str = "") -> ParsedBibItTEI:
         )
         for index, element in enumerate(structural_candidate_elements, start=1)
     )
+    structural_variant_elements = _structural_sonnet_variant_elements(
+        body,
+        sonnet_elements,
+        parent_by_id,
+    )
+    structural_sonnet_variants = tuple(
+        _parse_verse_unit(
+            element,
+            index,
+            parent_by_id,
+            body,
+            unit_prefix="structural_variant",
+        )
+        for index, element in enumerate(structural_variant_elements, start=1)
+    )
     sonnet_ids = {id(element) for element in sonnet_elements}
     verse_ids = {id(element) for element in verse_elements}
     structural_sonnet_candidate_ids = {
         id(element) for element in structural_candidate_elements
     }
+    structural_sonnet_variant_ids = {
+        id(element) for element in structural_variant_elements
+    }
     body_text = _render_body(body, excluded_elements=set())
     non_sonnet_text = _render_body(body, excluded_elements=sonnet_ids)
     sonnet_candidate_safe_text = _render_body(
         body,
-        excluded_elements=sonnet_ids | structural_sonnet_candidate_ids,
+        excluded_elements=(
+            sonnet_ids
+            | structural_sonnet_candidate_ids
+            | structural_sonnet_variant_ids
+        ),
     )
     residual_text = _render_body(
         body,
@@ -397,6 +422,7 @@ def parse_bibit_tei(xml: bytes | str, *, object_id: str = "") -> ParsedBibItTEI:
         sonnets=sonnets,
         non_sonnet_verse=non_sonnet_verse,
         structural_sonnet_candidates=structural_sonnet_candidates,
+        structural_sonnet_variants=structural_sonnet_variants,
     )
 
 
@@ -441,7 +467,7 @@ def _parse_sonnet_unit(
     parent_by_id: dict[int, ET.Element],
     body: ET.Element,
 ) -> BibItSonnetUnit:
-    text, line_count = _render_verse_unit(element)
+    text, line_count, stanza_line_counts = _render_verse_unit(element)
     heading_path = _heading_path(element, parent_by_id, body)
     return BibItSonnetUnit(
         unit_id=f"sonnet_{index:04d}",
@@ -449,6 +475,7 @@ def _parse_sonnet_unit(
         heading_path=heading_path,
         text=text,
         line_count=line_count,
+        stanza_line_counts=stanza_line_counts,
     )
 
 
@@ -459,17 +486,18 @@ def _parse_verse_unit(
     body: ET.Element,
     unit_prefix: str = "verse",
 ) -> BibItVerseUnit:
-    text, line_count = _render_verse_unit(element)
+    text, line_count, stanza_line_counts = _render_verse_unit(element)
     return BibItVerseUnit(
         unit_id=f"{unit_prefix}_{index:04d}",
         verse_type=element.attrib.get("type", "verse") or "verse",
         heading_path=_heading_path(element, parent_by_id, body),
         text=text,
         line_count=line_count,
+        stanza_line_counts=stanza_line_counts,
     )
 
 
-def _render_verse_unit(element: ET.Element) -> tuple[str, int]:
+def _render_verse_unit(element: ET.Element) -> tuple[str, int, tuple[int, ...]]:
     lines = [_inline_text(line) for line in _descendants(element, "l")]
     lines = [line for line in lines if line]
     rendered_lines: list[str] = []
@@ -489,7 +517,36 @@ def _render_verse_unit(element: ET.Element) -> tuple[str, int]:
     else:
         rendered_lines = lines
     text = "\n".join(rendered_lines).strip()
-    return (text + "\n" if text else "", len(lines))
+    return (
+        text + "\n" if text else "",
+        len(lines),
+        _stanza_line_counts(element, len(lines)),
+    )
+
+
+def _stanza_line_counts(element: ET.Element, total_lines: int) -> tuple[int, ...]:
+    """Return the innermost TEI verse groups that preserve stanza evidence."""
+
+    stanzas: list[int] = []
+    for candidate in element.iter():
+        if _local_name(candidate.tag) != "lg":
+            continue
+        nested_line_group = any(
+            descendant is not candidate
+            and _local_name(descendant.tag) == "lg"
+            and any(_inline_text(line) for line in _descendants(descendant, "l"))
+            for descendant in candidate.iter()
+        )
+        if nested_line_group:
+            continue
+        line_count = sum(
+            bool(_inline_text(line)) for line in _descendants(candidate, "l")
+        )
+        if line_count:
+            stanzas.append(line_count)
+    if stanzas and sum(stanzas) == total_lines:
+        return tuple(stanzas)
+    return (total_lines,) if total_lines else ()
 
 
 def _render_body(body: ET.Element, *, excluded_elements: set[int]) -> str:
@@ -643,6 +700,43 @@ def _structural_sonnet_candidate_elements(
         lines = [line for line in _descendants(element, "l") if _inline_text(line)]
         if len(lines) == 14:
             candidates.append(element)
+    candidate_ids = {id(element) for element in candidates}
+    return [
+        element
+        for element in candidates
+        if not any(
+            id(descendant) in candidate_ids and descendant is not element
+            for descendant in element.iter()
+        )
+    ]
+
+
+def _structural_sonnet_variant_elements(
+    body: ET.Element,
+    sonnet_elements: Iterable[ET.Element],
+    parent_by_id: dict[int, ET.Element],
+) -> list[ET.Element]:
+    """Return 15-32-line units explicitly nested under a sonnet heading."""
+
+    sonnet_ids = {id(element) for element in sonnet_elements}
+    candidates: list[ET.Element] = []
+    for element in body.iter():
+        name = _local_name(element.tag)
+        if not (name == "lg" or name.startswith("div")) or id(element) in sonnet_ids:
+            continue
+        if any(id(descendant) in sonnet_ids for descendant in element.iter()):
+            continue
+        line_count = sum(
+            bool(_inline_text(line)) for line in _descendants(element, "l")
+        )
+        if not 15 <= line_count <= 32:
+            continue
+        evidence = " ".join(
+            (*_heading_path(element, parent_by_id, body), element.attrib.get("type", ""))
+        )
+        if not re.search(r"\bsonett\w*\b", evidence, re.IGNORECASE):
+            continue
+        candidates.append(element)
     candidate_ids = {id(element) for element in candidates}
     return [
         element
