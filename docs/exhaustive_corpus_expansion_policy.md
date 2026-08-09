@@ -83,3 +83,14 @@ The canonical archive list and status are maintained in
 [`data/metadata/corpus_archive_expansion_registry.csv`](../data/metadata/corpus_archive_expansion_registry.csv).
 No GPU training restarts until this expansion, cleaning, deduplication, split,
 and final mixture freeze are complete.
+
+## Current Coverage
+
+- Biblioteca Italiana: role-specific TEI audit, review resolution, and bounded
+  processed build complete.
+- Project Gutenberg Italian: all 1,112 records in the 2026-08-09 Gutendex
+  snapshot enumerated with conservative metadata-only routing and overlap
+  signals. Full-text quality, edition-date review, and text deduplication remain
+  pending.
+- Italian Wikisource, Liber Liber, and the remaining registry archives: archive-
+  scale inventory pending.

@@ -1,0 +1,54 @@
+{
+  "inventory_version": "project_gutenberg_italian_catalog_v1",
+  "fetched_at_utc": "2026-08-09T18:35:32+00:00",
+  "catalog_url": "https://gutendex.com/books/?languages=it",
+  "record_count": 1112,
+  "page_count": 35,
+  "preliminary_role_counts": {
+    "date_and_role_review": 613,
+    "excluded_language_variety_metadata": 7,
+    "excluded_non_text_or_non_italian": 6,
+    "historical_general_candidate": 73,
+    "historical_non_sonnet_poetry_candidate": 84,
+    "language_variety_review_required": 6,
+    "nineteenth_century_bridge_candidate": 321,
+    "sonnet_specialization_candidate": 2
+  },
+  "period_bucket_counts": {
+    "author_died_after_1900_review": 584,
+    "nineteenth_century_bridge": 339,
+    "origins_through_1800": 101,
+    "unknown": 88
+  },
+  "inventory_status_counts": {
+    "already_registered_project_gutenberg_source": 10,
+    "audit_then_deduplicate": 410,
+    "deduplicate_before_full_text_audit": 6,
+    "exclude_core_language_variety_metadata": 7,
+    "exclude_metadata_scope": 6,
+    "review_language_variety_before_download": 6,
+    "review_missing_period_evidence": 79,
+    "review_translation_edition_date": 25,
+    "review_work_publication_date": 563
+  },
+  "records_with_plain_text_url": 1112,
+  "records_with_existing_project_source_id": 10,
+  "records_with_possible_existing_work_match": 11,
+  "records_with_intra_gutenberg_duplicate": 0,
+  "outputs": {
+    "snapshot_path": "data/metadata/project_gutenberg_italian_catalog_v1.json",
+    "snapshot_sha256": "c121ebd0fe903be542e5c12ab05b10532660d1d54ff1036cb0eae6cf026bd67e",
+    "inventory_csv_path": "data/metadata/project_gutenberg_italian_inventory_v1.csv",
+    "inventory_csv_sha256": "6bbc24673b72e4aadeb90dde29693a16be6e83226f28b559facf287e4029dae0",
+    "json_report_path": "reports/project_gutenberg_italian_inventory_v1.json",
+    "markdown_report_path": "reports/project_gutenberg_italian_inventory_v1.md"
+  },
+  "policy": {
+    "metadata_only": true,
+    "full_text_downloaded": false,
+    "activation_authorized": false,
+    "translations_require_edition_date_review": true,
+    "dialect_metadata_excluded_from_unconditioned_core": true,
+    "possible_duplicates_require_text_level_resolution": true
+  }
+}
