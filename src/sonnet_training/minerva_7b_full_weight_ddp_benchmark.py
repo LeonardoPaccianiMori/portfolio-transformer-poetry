@@ -52,6 +52,9 @@ H100_MAX_UTILIZATION_BENCHMARK_VERSION = (
 H100_ACCUM8_ENDURANCE_VERSION = (
     "minerva_7b_full_weight_dual_h100_sxm_accum8_endurance_v1"
 )
+H100_ACCUM8_COMPILE_PROBE_VERSION = (
+    "minerva_7b_full_weight_dual_h100_sxm_accum8_compile_probe_v1"
+)
 EXPECTED_WORLD_SIZE = 2
 MINIMUM_GPU_MEMORY_MIB = 90 * 1024
 MINIMUM_H100_GPU_MEMORY_MIB = 75 * 1024
@@ -96,6 +99,7 @@ class Minerva7BFullWeightDdpBenchmarkConfig:
     progress_interval_updates: int = 0
     evaluate_validation_transition: bool = False
     release_cached_memory_before_final_sample: bool = False
+    torch_compile_mode: str | None = None
     seed: int = 1337
 
 
@@ -177,6 +181,30 @@ class Minerva7BDualH100Accum8EnduranceConfig(
 
 
 @dataclass(frozen=True)
+class Minerva7BDualH100Accum8CompileProbeConfig(
+    Minerva7BDualH100DdpBenchmarkConfig
+):
+    """Measure one compiled variant of the qualified accumulation recipe."""
+
+    output_path: str = (
+        "data/local/minerva_7b_full_weight/"
+        "full_weight_dual_h100_sxm_accum8_compile_probe.json"
+    )
+    benchmark_version: str = H100_ACCUM8_COMPILE_PROBE_VERSION
+    global_sequence_counts: tuple[int, ...] = ()
+    bucket_cap_mib: tuple[int, ...] = (25,)
+    fixed_local_microbatch_size: int | None = 8
+    gradient_accumulation_options: tuple[int, ...] = (8,)
+    ddp_static_graph: bool = False
+    warmup_updates: int = 2
+    timed_updates: int = 10
+    minimum_headroom_mib: int = 0
+    progress_interval_updates: int = 2
+    release_cached_memory_before_final_sample: bool = True
+    torch_compile_mode: str | None = "default"
+
+
+@dataclass(frozen=True)
 class DdpThroughputCandidate:
     candidate_id: str
     global_sequences_per_update: int
@@ -195,6 +223,7 @@ def validate_full_weight_ddp_benchmark_config(
         Minerva7BDualH100IntermediateDdpBenchmarkConfig(),
         Minerva7BDualH100MaxUtilizationDdpBenchmarkConfig(),
         Minerva7BDualH100Accum8EnduranceConfig(),
+        Minerva7BDualH100Accum8CompileProbeConfig(),
     )
     if config not in approved_configs:
         raise ValueError("Minerva 7B DDP benchmark configuration is locked")
@@ -360,6 +389,18 @@ def benchmark_minerva_7b_full_weight_ddp(
             == {"bfloat16": model_audit["total_parameter_count"]}
         ):
             raise ValueError("DDP benchmark model failed the full-weight BF16 audit")
+        if config.torch_compile_mode is not None:
+            if rank == 0:
+                _report(
+                    progress,
+                    f"compiling model mode={config.torch_compile_mode}",
+                )
+            model = torch.compile(
+                model,
+                mode=config.torch_compile_mode,
+                fullgraph=False,
+                dynamic=False,
+            )
         parameters = list(model.parameters())
         optimizer = dependencies["bitsandbytes"].optim.PagedAdamW8bit(
             parameters,
@@ -451,6 +492,10 @@ def benchmark_minerva_7b_full_weight_ddp(
                     torch.backends.cuda.mem_efficient_sdp_enabled()
                 ),
                 "torch_math_sdp_enabled": torch.backends.cuda.math_sdp_enabled(),
+            },
+            "torch_compile": {
+                "enabled": config.torch_compile_mode is not None,
+                "mode": config.torch_compile_mode,
             },
             "candidates": rows,
             "selected_candidate": selected,
