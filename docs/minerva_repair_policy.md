@@ -10,9 +10,9 @@ and topic persistence but damaged grammatical composition. The project will
 therefore run one bounded repair programme before returning to Minerva-guided
 DPO and GRPO for the from-scratch model.
 
-The untouched-Minerva judge gate and both dependent post-training branches are
-paused. They are not cancelled, and none of their final-test isolation rules
-change.
+The untouched-Minerva judge gate and both dependent post-training branches were
+paused while this repair programme ran. The repair programme is now complete,
+so the judge gate resumes under its original final-test isolation rules.
 
 ## Model Roles
 
@@ -236,6 +236,26 @@ tokens per second, with 14,786.0 MiB peak reserved memory and 33,405.4 MiB free
 after a standard AdamW update. The planned 6,762-update command is estimated at
 7–9 hours including validation and checkpoint overhead. Evidence is in
 `reports/minerva_7b_historical_fp16_lora_calibration.md`.
+
+## Completed Two-Stage Result
+
+Stage A stopped after update 4,000 through patience and selected that checkpoint
+at historical validation loss `3.187692` after both preservation gates passed.
+Stage B stopped after epoch seven and retained epochs five, four, and three for
+frozen validation generation. Epoch four was selected for the best qualitative
+stability and lowest mean repetition while remaining near the minimum
+validation loss. Its adapter SHA-256 is
+`aff3f2c4d193ce880ec9c7a6df6373f433001662c3ca78d7f915890733cb0df3`.
+
+On the unopened V6 final test, epoch four reached loss `3.212791` over 197
+poems. All 20 generated outputs preserved the requested opening, reached the
+decoder-controlled fourteen-line form, sustained a topic for at least seven
+lines, and avoided high-risk training overlap. It did not pass the complete
+acceptable-quality gate: 8/20 outputs were generally grammatical and 5/20
+severely collapsed. The bounded repair programme therefore ends with a mixed
+negative result rather than another tuning round. Full evidence is in
+`reports/minerva_7b_v6_final_evaluation.md`; the next checkpoint is the
+predeclared untouched-Minerva judge gate.
 
 ## Isolation And Exit Rules
 

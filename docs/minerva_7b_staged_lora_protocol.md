@@ -91,6 +91,25 @@ result retains the three lowest validation-loss candidates that still satisfy
 the original Minerva modern-Italian and instruction-loss limits for subsequent
 generation review.
 
+Stage B completed on 2026-08-09 after epoch seven through the declared
+patience-three rule. Epochs five, four, and three were the three qualifying
+lowest-loss candidates. Frozen validation generation selected epoch four: it
+had the lowest mean repetition (`0.2208`) and better qualitative stability than
+epochs three and five while remaining only `0.0063` above epoch five's
+validation loss. The selected validation loss is `3.171254`; the adapter is
+pinned by SHA-256
+`aff3f2c4d193ce880ec9c7a6df6373f433001662c3ca78d7f915890733cb0df3` in
+`configs/minerva_7b_v6_selected_adapter.json`.
+
+The final test was opened only after that selection was hash-frozen. Loss over
+all 197 V6 final-test poems is `3.212791`. All 20 generated outputs preserved
+the exact opening and decoder-controlled fourteen-line form, all sustained a
+topic for at least seven lines, and none had high-risk training overlap. The
+strict acceptable-quality gate nevertheless failed: 8/20 outputs were
+generally grammatical against a 12/20 requirement, and 5/20 severely collapsed
+against a maximum of 2/20. The retained final result is
+`reports/minerva_7b_v6_final_evaluation.md`.
+
 ## Runtime And Interruption Policy
 
 The exact twelve-update calibration passed on the rented 48 GiB Quadro RTX
@@ -101,7 +120,7 @@ expected to take roughly 7–9 hours after validation and checkpoint overhead.
 The retained report is
 `reports/minerva_7b_historical_fp16_lora_calibration.md`.
 
-The long command is run by the user directly in the VM terminal. It writes
+The long command was run by the user directly in the VM terminal. It writes
 `resume.pt` every 100 updates, so an interruption loses at most the work since
 the most recent resume checkpoint. The resume command must use the same output
 directory and explicitly name that checkpoint.
@@ -109,3 +128,7 @@ directory and explicitly name that checkpoint.
 All selected adapters, interval candidates, configuration, logs, data hashes,
 baseline measurements, and final result files must be copied off the temporary
 Vast instance before it is destroyed or recycled.
+
+Both complete run directories and their generated evidence were copied to the
+local repository workspace and hash-verified before the Vast instance was
+stopped on 2026-08-09.
