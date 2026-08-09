@@ -1,0 +1,119 @@
+{
+  "gate_version": "project_gutenberg_fulltext_gate_v1",
+  "created_at_utc": "2026-08-09T18:53:53+00:00",
+  "inventory_csv_path": "data/metadata/project_gutenberg_italian_inventory_v1.csv",
+  "eligible_probe_candidate_count": 416,
+  "sample_count": 42,
+  "sample_status_counts": {
+    "sample_quality_pass": 42
+  },
+  "sample_cleaned_character_count": 22147767,
+  "sample_metadata_overlap_count": 6,
+  "sample_content_duplicate_signal_count": 5,
+  "sample_reference_overlaps": [
+    {
+      "ebook_id": "31079",
+      "title": "Agide",
+      "possible_existing_work_matches": "bibit:bibit000014",
+      "reference_overlap_metrics": "bibit:bibit000014|containment=0.873114|jaccard=0.746329|exact=false",
+      "max_reference_8gram_containment": 0.873114,
+      "content_duplicate_signal": true
+    },
+    {
+      "ebook_id": "31080",
+      "title": "Sofonisba",
+      "possible_existing_work_matches": "bibit:bibit000681",
+      "reference_overlap_metrics": "bibit:bibit000681|containment=0.836652|jaccard=0.703837|exact=false",
+      "max_reference_8gram_containment": 0.836652,
+      "content_duplicate_signal": true
+    },
+    {
+      "ebook_id": "38012",
+      "title": "Ottavia",
+      "possible_existing_work_matches": "bibit:bibit001054",
+      "reference_overlap_metrics": "bibit:bibit001054|containment=0.827985|jaccard=0.692910|exact=false",
+      "max_reference_8gram_containment": 0.827985,
+      "content_duplicate_signal": true
+    },
+    {
+      "ebook_id": "57787",
+      "title": "Orlando innamorato",
+      "possible_existing_work_matches": "bibit:bibit000049",
+      "reference_overlap_metrics": "bibit:bibit000049|containment=0.977245|jaccard=0.955463|exact=false",
+      "max_reference_8gram_containment": 0.977245,
+      "content_duplicate_signal": true
+    },
+    {
+      "ebook_id": "76738",
+      "title": "Delle speranze d'Italia",
+      "possible_existing_work_matches": "bibit:bibit001479",
+      "reference_overlap_metrics": "bibit:bibit001479|containment=0.952426|jaccard=0.658605|exact=false",
+      "max_reference_8gram_containment": 0.952426,
+      "content_duplicate_signal": true
+    },
+    {
+      "ebook_id": "77167",
+      "title": "L'Acerba",
+      "possible_existing_work_matches": "bibit:bibit001436",
+      "reference_overlap_metrics": "bibit:bibit001436|containment=0.046238|jaccard=0.019397|exact=false",
+      "max_reference_8gram_containment": 0.046238,
+      "content_duplicate_signal": false
+    }
+  ],
+  "role_projections": {
+    "historical_general_candidate": {
+      "candidate_count": 66,
+      "sample_count": 10,
+      "successful_sample_count": 10,
+      "mean_cleaned_characters": 955230,
+      "median_cleaned_characters": 849642,
+      "projected_cleaned_characters": 63045206
+    },
+    "historical_non_sonnet_poetry_candidate": {
+      "candidate_count": 41,
+      "sample_count": 14,
+      "successful_sample_count": 14,
+      "mean_cleaned_characters": 344672,
+      "median_cleaned_characters": 166628,
+      "projected_cleaned_characters": 14131540
+    },
+    "nineteenth_century_bridge_candidate": {
+      "candidate_count": 308,
+      "sample_count": 17,
+      "successful_sample_count": 17,
+      "mean_cleaned_characters": 448591,
+      "median_cleaned_characters": 309155,
+      "projected_cleaned_characters": 138166100
+    },
+    "sonnet_specialization_candidate": {
+      "candidate_count": 1,
+      "sample_count": 1,
+      "successful_sample_count": 1,
+      "mean_cleaned_characters": 144008,
+      "median_cleaned_characters": 144008,
+      "projected_cleaned_characters": 144008
+    }
+  },
+  "projected_total_cleaned_characters": 215486854,
+  "full_probe_runtime_estimate": {
+    "request_delay_seconds": 1.0,
+    "minimum_request_delay_seconds": 416.0,
+    "range": "10m-90m network-dependent"
+  },
+  "outputs": {
+    "sample_csv_path": "data/metadata/project_gutenberg_fulltext_gate_sample_v1.csv",
+    "sample_csv_sha256": "29f096760e4a78af56e63264f883010bc59678da21dc595bcc8eec6e43ba0051",
+    "json_report_path": "reports/project_gutenberg_fulltext_gate_v1.json",
+    "markdown_report_path": "reports/project_gutenberg_fulltext_gate_v1.md",
+    "local_cache_path": "data/local/gutenberg/fulltext_gate_v1"
+  },
+  "policy": {
+    "sample_is_deterministic_and_role_stratified": true,
+    "all_metadata_overlap_signals_included": true,
+    "all_sonnet_candidates_included": true,
+    "sample_text_is_machine_local": true,
+    "activation_authorized": false,
+    "projected_volume_is_approximate": true,
+    "content_duplicate_signal_minimum_8gram_containment": 0.8
+  }
+}

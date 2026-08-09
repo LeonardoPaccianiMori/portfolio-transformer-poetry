@@ -90,7 +90,11 @@ and final mixture freeze are complete.
   processed build complete.
 - Project Gutenberg Italian: all 1,112 records in the 2026-08-09 Gutendex
   snapshot enumerated with conservative metadata-only routing and overlap
-  signals. Full-text quality, edition-date review, and text deduplication remain
-  pending.
+  signals. A 42-text deterministic value gate passed coarse availability,
+  encoding, Italian-language, and alphabetic-content checks for every sample;
+  it projects approximately 215.5 million cleaned characters across 416
+  eligible probe candidates. Five of six sampled BibIt metadata overlaps are
+  strong text-level duplicate signals. The complete 416-record quality and
+  cross-corpus deduplication probe remains pending; no Gutenberg text is active.
 - Italian Wikisource, Liber Liber, and the remaining registry archives: archive-
   scale inventory pending.
