@@ -4,9 +4,11 @@ import pytest
 import torch
 
 from sonnet_training.minerva_7b_full_weight_ddp_benchmark import (
+    H100_ACCUM8_ENDURANCE_VERSION,
     H100_BENCHMARK_VERSION,
     H100_INTERMEDIATE_BENCHMARK_VERSION,
     H100_MAX_UTILIZATION_BENCHMARK_VERSION,
+    Minerva7BDualH100Accum8EnduranceConfig,
     Minerva7BDualH100DdpBenchmarkConfig,
     Minerva7BDualH100IntermediateDdpBenchmarkConfig,
     Minerva7BDualH100MaxUtilizationDdpBenchmarkConfig,
@@ -124,6 +126,23 @@ def test_max_utilization_candidate_splits_rank_work_into_microbatches():
     assert rank_one.shape == (4, 8, 512)
     assert torch.equal(rank_zero.reshape(-1, 512), sequence_pool[:32])
     assert torch.equal(rank_one.reshape(-1, 512), sequence_pool[32:64])
+
+
+def test_dual_h100_accum8_endurance_profile_uses_one_fresh_candidate():
+    config = Minerva7BDualH100Accum8EnduranceConfig()
+
+    validate_full_weight_ddp_benchmark_config(config)
+    candidates = build_ddp_throughput_candidates(config)
+
+    assert config.benchmark_version == H100_ACCUM8_ENDURANCE_VERSION
+    assert len(candidates) == 1
+    assert candidates[0].candidate_id == "global65536_micro8_accum8_bucket25"
+    assert config.warmup_updates == 5
+    assert config.timed_updates == 100
+    assert config.progress_interval_updates == 10
+    assert config.minimum_headroom_mib == 0
+    assert config.evaluate_validation_transition is True
+    assert config.release_cached_memory_before_final_sample is True
 
 
 def test_ddp_projection_and_selection_use_fastest_fitting_candidate():

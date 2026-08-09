@@ -49,6 +49,9 @@ H100_INTERMEDIATE_BENCHMARK_VERSION = (
 H100_MAX_UTILIZATION_BENCHMARK_VERSION = (
     "minerva_7b_full_weight_dual_h100_sxm_max_utilization_ddp_v1"
 )
+H100_ACCUM8_ENDURANCE_VERSION = (
+    "minerva_7b_full_weight_dual_h100_sxm_accum8_endurance_v1"
+)
 EXPECTED_WORLD_SIZE = 2
 MINIMUM_GPU_MEMORY_MIB = 90 * 1024
 MINIMUM_H100_GPU_MEMORY_MIB = 75 * 1024
@@ -90,6 +93,9 @@ class Minerva7BFullWeightDdpBenchmarkConfig:
     communication_payload_mib: int = 512
     communication_warmup_iterations: int = 3
     communication_timed_iterations: int = 10
+    progress_interval_updates: int = 0
+    evaluate_validation_transition: bool = False
+    release_cached_memory_before_final_sample: bool = False
     seed: int = 1337
 
 
@@ -147,6 +153,30 @@ class Minerva7BDualH100MaxUtilizationDdpBenchmarkConfig(
 
 
 @dataclass(frozen=True)
+class Minerva7BDualH100Accum8EnduranceConfig(
+    Minerva7BDualH100DdpBenchmarkConfig
+):
+    """Qualify the fastest eager recipe without a fixed free-memory rejection."""
+
+    output_path: str = (
+        "data/local/minerva_7b_full_weight/"
+        "full_weight_dual_h100_sxm_accum8_endurance.json"
+    )
+    benchmark_version: str = H100_ACCUM8_ENDURANCE_VERSION
+    global_sequence_counts: tuple[int, ...] = ()
+    bucket_cap_mib: tuple[int, ...] = (25,)
+    fixed_local_microbatch_size: int | None = 8
+    gradient_accumulation_options: tuple[int, ...] = (8,)
+    ddp_static_graph: bool = False
+    warmup_updates: int = 5
+    timed_updates: int = 100
+    minimum_headroom_mib: int = 0
+    progress_interval_updates: int = 10
+    evaluate_validation_transition: bool = True
+    release_cached_memory_before_final_sample: bool = True
+
+
+@dataclass(frozen=True)
 class DdpThroughputCandidate:
     candidate_id: str
     global_sequences_per_update: int
@@ -164,6 +194,7 @@ def validate_full_weight_ddp_benchmark_config(
         Minerva7BDualH100DdpBenchmarkConfig(),
         Minerva7BDualH100IntermediateDdpBenchmarkConfig(),
         Minerva7BDualH100MaxUtilizationDdpBenchmarkConfig(),
+        Minerva7BDualH100Accum8EnduranceConfig(),
     )
     if config not in approved_configs:
         raise ValueError("Minerva 7B DDP benchmark configuration is locked")
@@ -335,6 +366,16 @@ def benchmark_minerva_7b_full_weight_ddp(
             lr=config.learning_rate,
             weight_decay=config.weight_decay,
         )
+        validation_transition = None
+        if config.evaluate_validation_transition:
+            if rank == 0:
+                _report(progress, "measuring pre-endurance validation losses")
+            initial_validation = _evaluate_validation_windows(
+                model=model,
+                windows=windows["validation_windows"],
+                sources=windows["validation_sources"],
+                device=device,
+            )
 
         rows = []
         benchmark_started_at = time.monotonic()
@@ -364,6 +405,7 @@ def benchmark_minerva_7b_full_weight_ddp(
                 config=config,
                 device=device,
                 rank=rank,
+                progress=progress,
             )
             del ddp_model
             dist.barrier()
@@ -374,6 +416,20 @@ def benchmark_minerva_7b_full_weight_ddp(
                     f"candidate {candidate.candidate_id}: fit={row['fit_decision']} "
                     f"throughput={row['tokens_per_second']:.1f} tokens/s",
                 )
+
+        if config.evaluate_validation_transition:
+            if rank == 0:
+                _report(progress, "measuring post-endurance validation losses")
+            final_validation = _evaluate_validation_windows(
+                model=model,
+                windows=windows["validation_windows"],
+                sources=windows["validation_sources"],
+                device=device,
+            )
+            validation_transition = {
+                "initial": initial_validation,
+                "final": final_validation,
+            }
 
         if rank != 0:
             return None
@@ -398,6 +454,7 @@ def benchmark_minerva_7b_full_weight_ddp(
             },
             "candidates": rows,
             "selected_candidate": selected,
+            "validation_transition": validation_transition,
             "elapsed_seconds": time.monotonic() - benchmark_started_at,
             "retained_model_checkpoint": False,
             "long_training_automatically_authorized": False,
@@ -505,6 +562,7 @@ def _benchmark_candidate(
     config: Minerva7BFullWeightDdpBenchmarkConfig,
     device: torch.device,
     rank: int,
+    progress: Callable[[str], None] | None,
 ) -> dict[str, Any]:
     local_sequences = _local_sequences(
         sequence_pool,
@@ -528,7 +586,8 @@ def _benchmark_candidate(
     timed_started_at = time.monotonic()
     losses = []
     gradient_norms = []
-    for _ in range(config.timed_updates):
+    memory_samples = []
+    for update_index in range(1, config.timed_updates + 1):
         loss, gradient_norm = _run_update(
             ddp_model=ddp_model,
             optimizer=optimizer,
@@ -539,6 +598,40 @@ def _benchmark_candidate(
         )
         losses.append(loss)
         gradient_norms.append(gradient_norm)
+        if (
+            config.progress_interval_updates > 0
+            and (
+                update_index == 1
+                or update_index % config.progress_interval_updates == 0
+                or update_index == config.timed_updates
+            )
+        ):
+            free_bytes, _ = cuda_memory_info(device)
+            elapsed = time.monotonic() - timed_started_at
+            sample = {
+                "update": update_index,
+                "loss": loss,
+                "gradient_norm": gradient_norm,
+                "free_memory_mib": free_bytes / (1024**2),
+                "elapsed_seconds": elapsed,
+            }
+            memory_samples.append(sample)
+            if rank == 0:
+                remaining = (
+                    elapsed / update_index * (config.timed_updates - update_index)
+                )
+                _report(
+                    progress,
+                    "update {update}/{total} loss={loss:.4f} "
+                    "free={free:.1f}MiB elapsed={elapsed} eta={eta}".format(
+                        update=update_index,
+                        total=config.timed_updates,
+                        loss=loss,
+                        free=sample["free_memory_mib"],
+                        elapsed=_format_duration(elapsed),
+                        eta=_format_duration(remaining),
+                    ),
+                )
     synchronize_cuda(device)
     dist.barrier()
     local_timed_seconds = time.monotonic() - timed_started_at
@@ -547,12 +640,19 @@ def _benchmark_candidate(
     timed_seconds = float(timed_tensor.item())
     optimizer.zero_grad(set_to_none=True)
     synchronize_cuda(device)
-    free_bytes, _ = cuda_memory_info(device)
+    free_before_cache_release_bytes, _ = cuda_memory_info(device)
+    if config.release_cached_memory_before_final_sample:
+        torch.cuda.empty_cache()
+        synchronize_cuda(device)
+    free_after_cache_release_bytes, _ = cuda_memory_info(device)
     local_metrics = {
         "rank": rank,
         "peak_allocated_mib": max_cuda_memory_allocated(device) / (1024**2),
         "peak_reserved_mib": max_cuda_memory_reserved(device) / (1024**2),
-        "free_memory_after_mib": free_bytes / (1024**2),
+        "free_memory_before_cache_release_mib": (
+            free_before_cache_release_bytes / (1024**2)
+        ),
+        "free_memory_after_mib": free_after_cache_release_bytes / (1024**2),
         "mean_loss": sum(losses) / len(losses),
         "mean_gradient_norm": sum(gradient_norms) / len(gradient_norms),
     }
@@ -582,6 +682,7 @@ def _benchmark_candidate(
         "timed_updates": config.timed_updates,
         "timed_seconds": timed_seconds,
         "tokens_per_second": tokens_per_second,
+        "memory_samples": memory_samples,
         "rank_metrics": rank_metrics,
         "peak_reserved_mib": peak_reserved_mib,
         "reserved_headroom_mib": reserved_headroom_mib,
@@ -666,6 +767,39 @@ def _build_sequence_pool(windows: torch.Tensor, *, sequence_count: int) -> torch
         raise ValueError("benchmark windows must have shape (rows, 512)")
     repeats = math.ceil(sequence_count / windows.shape[0])
     return windows.repeat((repeats, 1))[:sequence_count].contiguous()
+
+
+def _evaluate_validation_windows(
+    *,
+    model: torch.nn.Module,
+    windows: torch.Tensor,
+    sources: list[str],
+    device: torch.device,
+) -> dict[str, Any]:
+    model.eval()
+    rows = []
+    with torch.no_grad():
+        for index, source in enumerate(sources):
+            input_ids = windows[index].to(device=device, dtype=torch.long).unsqueeze(0)
+            loss = float(model(input_ids=input_ids, labels=input_ids).loss.item())
+            if not math.isfinite(loss):
+                raise FloatingPointError(f"non-finite validation loss for {source}")
+            rows.append({"source_split": source, "loss": loss})
+    return {
+        "rows": rows,
+        "mean_loss": sum(float(row["loss"]) for row in rows) / len(rows),
+    }
+
+
+def _format_duration(seconds: float) -> str:
+    total = max(0, round(seconds))
+    hours, remainder = divmod(total, 3600)
+    minutes, secs = divmod(remainder, 60)
+    if hours:
+        return f"{hours}h{minutes:02d}m{secs:02d}s"
+    if minutes:
+        return f"{minutes}m{secs:02d}s"
+    return f"{secs}s"
 
 
 def _load_dependencies() -> dict[str, Any]:
