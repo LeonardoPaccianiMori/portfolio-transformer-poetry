@@ -1,0 +1,2 @@
+# Preserve audited source whitespace without weakening checks for code or metadata.
+data/processed/bibit_resolved_v1/**/*.txt -whitespace

@@ -87,6 +87,29 @@ The raw TEI cache remains machine-local under `data/local/bibit/tei`. Public
 records retain each downloaded TEI SHA-256, extraction status, routed character
 counts, review flags, provenance, and poem-level decisions.
 
+## Processed Corpus Build
+
+The resolved `bibit_resolved_v1` build materializes the final decisions into
+eight bounded plain-UTF-8 shards plus two manifests. Each manifest row records
+the exact shard byte range and cleaned-text SHA-256, so every work or poem can
+be recovered and verified independently without duplicating the text into a
+combined corpus or creating more than 20,000 small files.
+
+After the approved editorial-square-bracket cleanup, the build contains:
+
+- 609 historical-general texts with 126,643,238 characters;
+- 385 non-empty historical non-sonnet poetry texts with 41,401,123 characters;
+- 322 nineteenth-century bridge texts with 60,709,570 characters;
+- 16,208 explicit and 3,063 inferred standard 14-line sonnets;
+- 1,060 conditioned nonstandard or tailed sonnet variants.
+
+One activated sonnet-only source, `bibit000728`, has no residual record text
+after all 111 poem candidates are quarantined; its source lineage remains in
+the record manifest and its eligible poems remain independently materialized.
+The build does not assign V7 splits or authorize mixture weights. The bridge
+volume therefore remains available evidence under the pending cap rather than
+an instruction to consume all bridge text during training.
+
 ## Measured Representative Works
 
 | Work | BibIt ID | Rendered characters | Planned role |
@@ -118,3 +141,7 @@ redaction from the same training mixture.
 - [`bibit_sonnet_activation_decisions.csv`](bibit_sonnet_activation_decisions.csv)
 - [`../../reports/bibit_review_resolution.md`](../../reports/bibit_review_resolution.md)
 - [`../../reports/bibit_review_resolution.json`](../../reports/bibit_review_resolution.json)
+- [`../processed/bibit_resolved_v1/records_manifest.csv`](../processed/bibit_resolved_v1/records_manifest.csv)
+- [`../processed/bibit_resolved_v1/sonnets_manifest.csv`](../processed/bibit_resolved_v1/sonnets_manifest.csv)
+- [`../processed/bibit_resolved_v1/build_report.json`](../processed/bibit_resolved_v1/build_report.json)
+- [`../../reports/bibit_resolved_v1_build.md`](../../reports/bibit_resolved_v1_build.md)

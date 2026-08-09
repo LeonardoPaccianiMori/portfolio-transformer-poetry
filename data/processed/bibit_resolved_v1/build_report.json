@@ -1,0 +1,117 @@
+{
+  "build_version": "bibit_resolved_v1",
+  "inputs": {
+    "record_decisions_path": "data/metadata/bibit_record_activation_decisions.csv",
+    "record_decisions_sha256": "92086215dd6a74f7731433c044f5fddf8100374d0772be78bcfffc7720200e8e",
+    "sonnet_decisions_path": "data/metadata/bibit_sonnet_activation_decisions.csv",
+    "sonnet_decisions_sha256": "1bdf37715a768ada878bca6530a4f1d85385884b53894a3dfa4f37bd9d0d680e",
+    "tei_cache_path": "data/local/bibit/tei"
+  },
+  "outputs": {
+    "output_dir": "data/processed/bibit_resolved_v1",
+    "record_manifest_path": "data/processed/bibit_resolved_v1/records_manifest.csv",
+    "record_manifest_sha256": "916ccb2b52b29f562348afa4828665b177b2a51eb988f9a974b88f584349a3f7",
+    "sonnet_manifest_path": "data/processed/bibit_resolved_v1/sonnets_manifest.csv",
+    "sonnet_manifest_sha256": "28d135cc6695d9c6c0c2bbc81664d9bd5a506a9a05a5c030857d69de3280ce24",
+    "markdown_report_path": "reports/bibit_resolved_v1_build.md"
+  },
+  "max_shard_bytes": 50331648,
+  "record_count": 1317,
+  "record_text_count": 1316,
+  "empty_record_text_count": 1,
+  "record_counts_by_role": {
+    "historical_general": 609,
+    "historical_non_sonnet_poetry": 386,
+    "nineteenth_century_bridge": 322
+  },
+  "record_text_counts_by_role": {
+    "historical_general": 609,
+    "historical_non_sonnet_poetry": 385,
+    "nineteenth_century_bridge": 322
+  },
+  "record_characters_by_role": {
+    "historical_general": 126643238,
+    "historical_non_sonnet_poetry": 41401123,
+    "nineteenth_century_bridge": 60709570
+  },
+  "sonnet_count": 20331,
+  "sonnet_counts_by_role": {
+    "sonnet_core_inferred_14_line": 3063,
+    "sonnet_core_standard_14_line": 16208,
+    "sonnet_variant_conditioned_auxiliary": 1060
+  },
+  "sonnet_characters_by_role": {
+    "sonnet_core_inferred_14_line": 1619327,
+    "sonnet_core_standard_14_line": 8750705,
+    "sonnet_variant_conditioned_auxiliary": 670075
+  },
+  "shards": {
+    "historical_general": [
+      {
+        "path": "data/processed/bibit_resolved_v1/historical_general/part-0001.txt",
+        "item_count": 217,
+        "byte_count": 49975689,
+        "sha256": "9d798cd2a69a7ab7da0ff1272a81160aff00b7ac18617dddee557c564dfb7f0a"
+      },
+      {
+        "path": "data/processed/bibit_resolved_v1/historical_general/part-0002.txt",
+        "item_count": 272,
+        "byte_count": 43632509,
+        "sha256": "712be7d67049bf0f92e0e4ea4ddbefe689ea907caca636506b19a8dd84d2f19e"
+      },
+      {
+        "path": "data/processed/bibit_resolved_v1/historical_general/part-0003.txt",
+        "item_count": 120,
+        "byte_count": 34397646,
+        "sha256": "058b3f9565bb01dd526ef6a161a2e08f469f05682a124b74cf4aa9e62cc20739"
+      }
+    ],
+    "historical_non_sonnet_poetry": [
+      {
+        "path": "data/processed/bibit_resolved_v1/historical_non_sonnet_poetry/part-0001.txt",
+        "item_count": 385,
+        "byte_count": 41835563,
+        "sha256": "4bfbb270aa56f69b30096f4121ca11a51bf2a2070deacf9b286fc4c205087a6c"
+      }
+    ],
+    "nineteenth_century_bridge": [
+      {
+        "path": "data/processed/bibit_resolved_v1/nineteenth_century_bridge/part-0001.txt",
+        "item_count": 281,
+        "byte_count": 49891779,
+        "sha256": "ee447e65c2ce1e1ac950b8c4d7faaa7474fd0606c31deaabbca36011431829a1"
+      },
+      {
+        "path": "data/processed/bibit_resolved_v1/nineteenth_century_bridge/part-0002.txt",
+        "item_count": 41,
+        "byte_count": 11673412,
+        "sha256": "a9a625d154312bcc38baec808eb58ada278aacd564d45864c4af185aae99c07d"
+      }
+    ],
+    "standard_sonnets": [
+      {
+        "path": "data/processed/bibit_resolved_v1/standard_sonnets/part-0001.txt",
+        "item_count": 19271,
+        "byte_count": 10508400,
+        "sha256": "08e941306a36c013b24e87f5837c2f297b886597ac9f35d0280e0a4e9ca84f74"
+      }
+    ],
+    "conditioned_sonnet_variants": [
+      {
+        "path": "data/processed/bibit_resolved_v1/conditioned_sonnet_variants/part-0001.txt",
+        "item_count": 1060,
+        "byte_count": 677948,
+        "sha256": "786b57e2586fc08ae4bd0f14ecf8513e096c84c367c6ece4257950a45bca1aac"
+      }
+    ]
+  },
+  "policy": {
+    "text_storage": "plain_utf8_shards_with_manifest_byte_ranges",
+    "source_spelling_and_punctuation_preserved": true,
+    "activated_sonnets_quarantined_from_record_text": true,
+    "all_audited_sonnet_candidates_quarantined_from_record_text": true,
+    "held_out_v6_identities_excluded": true,
+    "v7_split_assigned": false,
+    "training_mixture_weight_assigned": false
+  }
+}
