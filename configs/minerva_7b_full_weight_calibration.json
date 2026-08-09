@@ -1,0 +1,54 @@
+{
+  "protocol_id": "minerva_7b_bf16_full_weight_five_update_v1",
+  "model_id": "sapienzanlp/Minerva-7B-instruct-v1.0",
+  "revision": "d1fc0f0e589ae879c5ac763e0e4206a4d14a3f6d",
+  "data_version": "minerva_7b_full_weight_mixed_corpus_v1",
+  "data": {
+    "splits": [
+      "paisa_train",
+      "paisa_validation",
+      "historical_train",
+      "historical_validation"
+    ],
+    "training_window_order": [
+      "paisa_train",
+      "historical_train",
+      "paisa_train",
+      "historical_train",
+      "paisa_train"
+    ],
+    "context_length": 512,
+    "document_boundary": "one Minerva eos_token_id after each source document",
+    "sonnet_material_included": false
+  },
+  "hardware": {
+    "gpu": "one NVIDIA H100 80 GB; SXM preferred",
+    "minimum_total_memory_mib": 76800,
+    "native_bf16_required": true,
+    "minimum_post_optimizer_headroom_mib": 8192
+  },
+  "training": {
+    "all_model_weights_trainable": true,
+    "quantization": false,
+    "adapters": false,
+    "parameter_dtype": "bfloat16",
+    "microbatch_size": 1,
+    "gradient_accumulation_steps": 1,
+    "optimizer_updates": 5,
+    "optimizer": "PagedAdamW8bit",
+    "learning_rate": 1e-06,
+    "weight_decay": 0.01,
+    "max_gradient_norm": 1.0,
+    "gradient_checkpointing": true,
+    "gradient_checkpointing_use_reentrant": false,
+    "seed": 1337
+  },
+  "pass_gate": {
+    "all_losses_finite": true,
+    "all_gradient_norms_finite": true,
+    "trainable_parameter_fraction": 1.0,
+    "minimum_post_optimizer_headroom_mib": 8192,
+    "trained_checkpoint_retained": false
+  },
+  "long_training_automatically_authorized": false
+}

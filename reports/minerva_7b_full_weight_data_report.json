@@ -1,0 +1,662 @@
+{
+  "data_version": "minerva_7b_full_weight_mixed_corpus_v1",
+  "status": "complete",
+  "started_at_utc": "2026-08-09T10:46:13+00:00",
+  "finished_at_utc": "2026-08-09T11:39:07+00:00",
+  "model_id": "sapienzanlp/Minerva-7B-instruct-v1.0",
+  "revision": "d1fc0f0e589ae879c5ac763e0e4206a4d14a3f6d",
+  "config": {
+    "model_id": "sapienzanlp/Minerva-7B-instruct-v1.0",
+    "revision": "d1fc0f0e589ae879c5ac763e0e4206a4d14a3f6d",
+    "curriculum_report_path": "data/local/pretraining/paisa_historical_rescue_v1/curriculum_report.json",
+    "paisa_build_report_path": "data/local/pretraining/paisa/paisa_modern_italian_v1/build_report.json",
+    "tokenizer_cache_dir": "data/local/minerva_qlora/huggingface",
+    "output_dir": "data/local/minerva_7b_full_weight/encoded",
+    "public_report_path": "reports/minerva_7b_full_weight_data_report.json",
+    "context_length": 512,
+    "shard_target_tokens": 8388608,
+    "progress_interval_documents": 5000,
+    "checkpoint_interval_documents": 500,
+    "max_documents_per_split_run": null,
+    "seed": 1337
+  },
+  "tokenizer": {
+    "class": "LlamaTokenizerFast",
+    "vocab_size": 51203,
+    "eos_token_id": 51202,
+    "serialized_sha256": "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c"
+  },
+  "provenance": {
+    "curriculum_report_path": "data/local/pretraining/paisa_historical_rescue_v1/curriculum_report.json",
+    "curriculum_report_sha256": "580651936d9b628c6ee16667d209ce3dd7462e9d46797bd43cb314837266b785",
+    "paisa_build_report_path": "data/local/pretraining/paisa/paisa_modern_italian_v1/build_report.json",
+    "paisa_build_report_sha256": "c7b15593ab5daa893d3515a480a6f643ea4ad9a38ee6f63048f2301792f5a6d7",
+    "license_lineage": "PAISA CC BY-NC-SA plus the historical source-specific public-domain or licensed lineage recorded by the curriculum and attribution index"
+  },
+  "split_policy": "preserve the existing PAISA fingerprint split and all 36 existing historical source-suffix splits; no sonnet or final-test material",
+  "document_encoding_policy": "tokenize one existing document at a time without special-token insertion, then append exactly one Minerva EOS token",
+  "format": {
+    "name": "little_endian_int32_shards",
+    "dtype": "torch.int32",
+    "bytes_per_token": 4,
+    "loader": "torch.from_file",
+    "shard_target_tokens": 8388608
+  },
+  "totals": {
+    "documents": 375460,
+    "characters": 1470141526,
+    "tokens": 354860471,
+    "eos_tokens": 375460,
+    "shards": 45
+  },
+  "splits": [
+    {
+      "split_id": "paisa_train",
+      "corpus_role": "modern_italian",
+      "status": "complete",
+      "source_path": "data/local/pretraining/paisa/paisa_modern_italian_v1/train.txt",
+      "source_size": 1426466138,
+      "source_mtime_ns": 1785420751375816015,
+      "source_sha256": "d0b7b7a3500c8538138e10e119980e13c2681cb06c4d8eafbe9c9bff47ad52f3",
+      "expected_documents": 371612,
+      "documents": 371612,
+      "characters": 1407676908,
+      "tokens": 339147183,
+      "eos_tokens": 371612,
+      "characters_per_token": 4.150637182205344,
+      "tokenizer_sha256": "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c",
+      "shard_target_tokens": 8388608,
+      "shards": [
+        {
+          "shard_index": 0,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00000.int32.bin",
+          "token_count": 8388412,
+          "bytes": 33553648,
+          "sha256": "a6da08035d31cfec2ac0c43d2a57debb408673cac342d668dc0e4bcf1dbb2a05",
+          "global_token_start": 0,
+          "global_token_end": 8388412
+        },
+        {
+          "shard_index": 1,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00001.int32.bin",
+          "token_count": 8388008,
+          "bytes": 33552032,
+          "sha256": "51f65efbb74c3df4b97a8264e11cc019d8359696d9e1f5ae8dfecaf0a8cf2037",
+          "global_token_start": 8388412,
+          "global_token_end": 16776420
+        },
+        {
+          "shard_index": 2,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00002.int32.bin",
+          "token_count": 8384503,
+          "bytes": 33538012,
+          "sha256": "403820f9411431560fc961d5bb339b17ecc6b41501e515cb62854572146b60cc",
+          "global_token_start": 16776420,
+          "global_token_end": 25160923
+        },
+        {
+          "shard_index": 3,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00003.int32.bin",
+          "token_count": 8388172,
+          "bytes": 33552688,
+          "sha256": "3b9556b11fc394d5314e6247956ad6c8f4e2999bb54b64b7e38b7803fe766521",
+          "global_token_start": 25160923,
+          "global_token_end": 33549095
+        },
+        {
+          "shard_index": 4,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00004.int32.bin",
+          "token_count": 8388095,
+          "bytes": 33552380,
+          "sha256": "c4530be92e1f140ea0b924f967ba024fe9e584255681d9e167c7d97ca729f446",
+          "global_token_start": 33549095,
+          "global_token_end": 41937190
+        },
+        {
+          "shard_index": 5,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00005.int32.bin",
+          "token_count": 8388496,
+          "bytes": 33553984,
+          "sha256": "61055745e5435847a611f33aa2f6e5bdeb955099427fe2dd7a6ed375d43e2a6c",
+          "global_token_start": 41937190,
+          "global_token_end": 50325686
+        },
+        {
+          "shard_index": 6,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00006.int32.bin",
+          "token_count": 8387870,
+          "bytes": 33551480,
+          "sha256": "86d78fffdbaff9eac0977f140a6b1208a910b777a011410d7bbeef3e7da984cc",
+          "global_token_start": 50325686,
+          "global_token_end": 58713556
+        },
+        {
+          "shard_index": 7,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00007.int32.bin",
+          "token_count": 8384451,
+          "bytes": 33537804,
+          "sha256": "d3c793ab65c681385c28b94131e28208103111ba66870c3b2d45e45a0581961c",
+          "global_token_start": 58713556,
+          "global_token_end": 67098007
+        },
+        {
+          "shard_index": 8,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00008.int32.bin",
+          "token_count": 8386616,
+          "bytes": 33546464,
+          "sha256": "ad71fc02839992ada763a128dc73b1366d3cf2ac4700506ef1e1ceba94275261",
+          "global_token_start": 67098007,
+          "global_token_end": 75484623
+        },
+        {
+          "shard_index": 9,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00009.int32.bin",
+          "token_count": 8387020,
+          "bytes": 33548080,
+          "sha256": "82053396f0da5b72b405e61db45815cdf571fa8c0bf469e0489ea62e0af86e21",
+          "global_token_start": 75484623,
+          "global_token_end": 83871643
+        },
+        {
+          "shard_index": 10,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00010.int32.bin",
+          "token_count": 8385140,
+          "bytes": 33540560,
+          "sha256": "76eedfac499ade3737c07105b526d8450bfb40f399346dcb7f22e0f4ca6860aa",
+          "global_token_start": 83871643,
+          "global_token_end": 92256783
+        },
+        {
+          "shard_index": 11,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00011.int32.bin",
+          "token_count": 8387387,
+          "bytes": 33549548,
+          "sha256": "159e58d26598c4e935fd495c5eb001b7abd03cc6043173097878cadd0e10bf46",
+          "global_token_start": 92256783,
+          "global_token_end": 100644170
+        },
+        {
+          "shard_index": 12,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00012.int32.bin",
+          "token_count": 8385084,
+          "bytes": 33540336,
+          "sha256": "574100e1a9d8e5b549182a59676ff20ed21a6153546e781861761dd8199e19cf",
+          "global_token_start": 100644170,
+          "global_token_end": 109029254
+        },
+        {
+          "shard_index": 13,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00013.int32.bin",
+          "token_count": 8384110,
+          "bytes": 33536440,
+          "sha256": "b95852c90add978ebba9a0767fbd96a0848d86bbe64cf52ad13d57df88c85f3c",
+          "global_token_start": 109029254,
+          "global_token_end": 117413364
+        },
+        {
+          "shard_index": 14,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00014.int32.bin",
+          "token_count": 8387329,
+          "bytes": 33549316,
+          "sha256": "2ae5f6f0d0731346b6c60f1d56c5bfae3d504f2ae3dbd59ca193f8c194412eec",
+          "global_token_start": 117413364,
+          "global_token_end": 125800693
+        },
+        {
+          "shard_index": 15,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00015.int32.bin",
+          "token_count": 8388366,
+          "bytes": 33553464,
+          "sha256": "9f8e5552868d25b0e174350244dfb9533d3812371f93f39c4c536bbbc023d117",
+          "global_token_start": 125800693,
+          "global_token_end": 134189059
+        },
+        {
+          "shard_index": 16,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00016.int32.bin",
+          "token_count": 8388269,
+          "bytes": 33553076,
+          "sha256": "2eac2d8a2a7133a6fd8cc6b6e8cd3c3cb65516db9783107a17081c6a3c987b44",
+          "global_token_start": 134189059,
+          "global_token_end": 142577328
+        },
+        {
+          "shard_index": 17,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00017.int32.bin",
+          "token_count": 8387384,
+          "bytes": 33549536,
+          "sha256": "ccada43e9763fbffce905517f77299f829e7122b93ba5967a2df0531daaf50a4",
+          "global_token_start": 142577328,
+          "global_token_end": 150964712
+        },
+        {
+          "shard_index": 18,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00018.int32.bin",
+          "token_count": 8388106,
+          "bytes": 33552424,
+          "sha256": "49807233561754f96209f6be9f24405a34d420fe404ca367f9be86de71afa936",
+          "global_token_start": 150964712,
+          "global_token_end": 159352818
+        },
+        {
+          "shard_index": 19,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00019.int32.bin",
+          "token_count": 8383784,
+          "bytes": 33535136,
+          "sha256": "8cc2a5d804e0196256d63eb1c4f9b112cc1c2420a7956e03613c8f26428b0e16",
+          "global_token_start": 159352818,
+          "global_token_end": 167736602
+        },
+        {
+          "shard_index": 20,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00020.int32.bin",
+          "token_count": 8388353,
+          "bytes": 33553412,
+          "sha256": "b2a527da14f86fb7a8326e97d959281716df3d73a71c4d14e0596b03a94dc647",
+          "global_token_start": 167736602,
+          "global_token_end": 176124955
+        },
+        {
+          "shard_index": 21,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00021.int32.bin",
+          "token_count": 8386366,
+          "bytes": 33545464,
+          "sha256": "e38a1ca09e10b9ea7aab648742bce0aa625c75c044d9b9d178e6dfad77a3e138",
+          "global_token_start": 176124955,
+          "global_token_end": 184511321
+        },
+        {
+          "shard_index": 22,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00022.int32.bin",
+          "token_count": 8388040,
+          "bytes": 33552160,
+          "sha256": "4ef9fcb3451ee9a1928c8e249f62c8a4023523f00dd724b1e092d21a83e22890",
+          "global_token_start": 184511321,
+          "global_token_end": 192899361
+        },
+        {
+          "shard_index": 23,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00023.int32.bin",
+          "token_count": 8388529,
+          "bytes": 33554116,
+          "sha256": "50ab5a5af81fb76d1bfe345941b46ce2d10d23e301c70c171054281f10831cc2",
+          "global_token_start": 192899361,
+          "global_token_end": 201287890
+        },
+        {
+          "shard_index": 24,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00024.int32.bin",
+          "token_count": 8388455,
+          "bytes": 33553820,
+          "sha256": "bc090c35b4ec1a801329b05bcdd14cff7db8655c14ab5458735741ed7e0a3e57",
+          "global_token_start": 201287890,
+          "global_token_end": 209676345
+        },
+        {
+          "shard_index": 25,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00025.int32.bin",
+          "token_count": 8384021,
+          "bytes": 33536084,
+          "sha256": "9debdfa7cac7e0294d10a49d3194363a97e570079e64b28b0777de36f876f6ab",
+          "global_token_start": 209676345,
+          "global_token_end": 218060366
+        },
+        {
+          "shard_index": 26,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00026.int32.bin",
+          "token_count": 8388119,
+          "bytes": 33552476,
+          "sha256": "ba0949ca7a9dfb206f62889eeaa463250b503371ad2ba87c844b535bffbd47d4",
+          "global_token_start": 218060366,
+          "global_token_end": 226448485
+        },
+        {
+          "shard_index": 27,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00027.int32.bin",
+          "token_count": 8388251,
+          "bytes": 33553004,
+          "sha256": "2a7b0842dbbd6ddfb6dc446baf24cbc38589b916df10e7079c09f87fe34dcd1c",
+          "global_token_start": 226448485,
+          "global_token_end": 234836736
+        },
+        {
+          "shard_index": 28,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00028.int32.bin",
+          "token_count": 8388215,
+          "bytes": 33552860,
+          "sha256": "d0656b41376c445f4088dc48d7f74f1a0cd59923fc7edfbb8651154661354700",
+          "global_token_start": 234836736,
+          "global_token_end": 243224951
+        },
+        {
+          "shard_index": 29,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00029.int32.bin",
+          "token_count": 8387946,
+          "bytes": 33551784,
+          "sha256": "b5179eb56bd201add41140a01ab012795aa2d15f02851b3a47e5a6c4995c53f4",
+          "global_token_start": 243224951,
+          "global_token_end": 251612897
+        },
+        {
+          "shard_index": 30,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00030.int32.bin",
+          "token_count": 8388584,
+          "bytes": 33554336,
+          "sha256": "23aebdbaec595adbb34767b8d09b5ca0980f02c5c0ca7f6fea8b39b5653c2ac6",
+          "global_token_start": 251612897,
+          "global_token_end": 260001481
+        },
+        {
+          "shard_index": 31,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00031.int32.bin",
+          "token_count": 8384947,
+          "bytes": 33539788,
+          "sha256": "bd5050c81e6d9ff502b8f1aac320b3b2e67349c26772a8f6a759351499475d89",
+          "global_token_start": 260001481,
+          "global_token_end": 268386428
+        },
+        {
+          "shard_index": 32,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00032.int32.bin",
+          "token_count": 8388429,
+          "bytes": 33553716,
+          "sha256": "9a50ccba25e1edc1a0980c0f7a3b0413d92fd401540813df0f7fae25d5586d5c",
+          "global_token_start": 268386428,
+          "global_token_end": 276774857
+        },
+        {
+          "shard_index": 33,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00033.int32.bin",
+          "token_count": 8386995,
+          "bytes": 33547980,
+          "sha256": "dbaa7149254801cd1feccbc9764b0c4ffee9f4f1c614f6d3023df09d0b0d3c56",
+          "global_token_start": 276774857,
+          "global_token_end": 285161852
+        },
+        {
+          "shard_index": 34,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00034.int32.bin",
+          "token_count": 8388262,
+          "bytes": 33553048,
+          "sha256": "90a32bddb8360404056713b7340f5604307ade59826e695dbea6aa6b232ab8e0",
+          "global_token_start": 285161852,
+          "global_token_end": 293550114
+        },
+        {
+          "shard_index": 35,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00035.int32.bin",
+          "token_count": 8388485,
+          "bytes": 33553940,
+          "sha256": "6963f27c041c477201fb51215a7207d9cbb384442394cc5c562ba6cabbec0516",
+          "global_token_start": 293550114,
+          "global_token_end": 301938599
+        },
+        {
+          "shard_index": 36,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00036.int32.bin",
+          "token_count": 8382450,
+          "bytes": 33529800,
+          "sha256": "c4bacb851204bc7ce86713fd184fa138b4241102e411355eb6e083694333e057",
+          "global_token_start": 301938599,
+          "global_token_end": 310321049
+        },
+        {
+          "shard_index": 37,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00037.int32.bin",
+          "token_count": 8388502,
+          "bytes": 33554008,
+          "sha256": "b85098fe721c6b97beedb9276393ec8b72abee1a73a2b4011abcdd658af084d3",
+          "global_token_start": 310321049,
+          "global_token_end": 318709551
+        },
+        {
+          "shard_index": 38,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00038.int32.bin",
+          "token_count": 8388488,
+          "bytes": 33553952,
+          "sha256": "0cb101a3c7fa8c2e982f5ca69b29a45f4f99a2dc4000d3387a15a10d09e630d8",
+          "global_token_start": 318709551,
+          "global_token_end": 327098039
+        },
+        {
+          "shard_index": 39,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00039.int32.bin",
+          "token_count": 8383818,
+          "bytes": 33535272,
+          "sha256": "8d8d1d046a3d7a2eb4a244780da21533d4ad1e54295ed3ef8e531784f561d825",
+          "global_token_start": 327098039,
+          "global_token_end": 335481857
+        },
+        {
+          "shard_index": 40,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_train-00040.int32.bin",
+          "token_count": 3665326,
+          "bytes": 14661304,
+          "sha256": "b9b6db966b1fda100bebf5cc795e4cb5124bf7a19274564d4e369037ab2c67df",
+          "global_token_start": 335481857,
+          "global_token_end": 339147183
+        }
+      ],
+      "document_index": {
+        "path": "data/local/minerva_7b_full_weight/encoded/paisa_train.documents.jsonl",
+        "sha256": "4f52ac1c03aff1c554b3583e7764dac5de1737ff727bf5d92cf4731d85773f87",
+        "bytes": 129343021,
+        "contains_paisa_document_ids": true,
+        "public": false
+      },
+      "attribution_inventory_path": "data/local/pretraining/paisa/paisa_modern_italian_v1/document_attribution.jsonl",
+      "historical_source_ids": []
+    },
+    {
+      "split_id": "paisa_validation",
+      "corpus_role": "modern_italian",
+      "status": "complete",
+      "source_path": "data/local/pretraining/paisa/paisa_modern_italian_v1/validation.txt",
+      "source_size": 14648042,
+      "source_mtime_ns": 1785420751375816015,
+      "source_sha256": "7b2035c3b4e4aa925fd98c48f5d9b670d74834849612cc5b573c1fb1821db05b",
+      "expected_documents": 3776,
+      "documents": 3776,
+      "characters": 14459681,
+      "tokens": 3475648,
+      "eos_tokens": 3776,
+      "characters_per_token": 4.160283492459536,
+      "tokenizer_sha256": "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c",
+      "shard_target_tokens": 8388608,
+      "shards": [
+        {
+          "shard_index": 0,
+          "path": "data/local/minerva_7b_full_weight/encoded/paisa_validation-00000.int32.bin",
+          "token_count": 3475648,
+          "bytes": 13902592,
+          "sha256": "808e73b9a72072c247c89e4d6cbd36adc2c7c8afb1ff1f7c7fcdfbb4315cb81e",
+          "global_token_start": 0,
+          "global_token_end": 3475648
+        }
+      ],
+      "document_index": {
+        "path": "data/local/minerva_7b_full_weight/encoded/paisa_validation.documents.jsonl",
+        "sha256": "cec90e09d0b74274544bcf3a198d4fef74d474e44d34041a46b72944a7022e23",
+        "bytes": 1318631,
+        "contains_paisa_document_ids": true,
+        "public": false
+      },
+      "attribution_inventory_path": "data/local/pretraining/paisa/paisa_modern_italian_v1/document_attribution.jsonl",
+      "historical_source_ids": []
+    },
+    {
+      "split_id": "historical_train",
+      "corpus_role": "historical_italian",
+      "status": "complete",
+      "source_path": "data/local/pretraining/paisa_historical_rescue_v1/historical_train.txt",
+      "source_size": 48071132,
+      "source_mtime_ns": 1785421527884257635,
+      "source_sha256": "0c7d3004073debfb7c653541cf93c86b44f44bf2cf304d6f4c620d705f92d387",
+      "expected_documents": 36,
+      "documents": 36,
+      "characters": 47559476,
+      "tokens": 12124114,
+      "eos_tokens": 36,
+      "characters_per_token": 3.9227176517805753,
+      "tokenizer_sha256": "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c",
+      "shard_target_tokens": 8388608,
+      "shards": [
+        {
+          "shard_index": 0,
+          "path": "data/local/minerva_7b_full_weight/encoded/historical_train-00000.int32.bin",
+          "token_count": 7327985,
+          "bytes": 29311940,
+          "sha256": "4f3d7e1c1a309d28a060bc0619c39645eaf1f1729cbf2e4814bbf5ad67d5b3a4",
+          "global_token_start": 0,
+          "global_token_end": 7327985
+        },
+        {
+          "shard_index": 1,
+          "path": "data/local/minerva_7b_full_weight/encoded/historical_train-00001.int32.bin",
+          "token_count": 4796129,
+          "bytes": 19184516,
+          "sha256": "b53034f5ac870d2fe103dca57cc93131d83a1fd0aa672df29c90a9f8eb34692c",
+          "global_token_start": 7327985,
+          "global_token_end": 12124114
+        }
+      ],
+      "document_index": {
+        "path": "data/local/minerva_7b_full_weight/encoded/historical_train.documents.jsonl",
+        "sha256": "d33c6b993edf9ba38b242872fe44149ec7fb734d2697938b183b91c21a508fdd",
+        "bytes": 11265,
+        "contains_paisa_document_ids": false,
+        "public": false
+      },
+      "attribution_inventory_path": null,
+      "historical_source_ids": [
+        "pg_villani_cronica_vol1_69898",
+        "pg_jacopo_alighieri_chiose_30766",
+        "pg_caterina_dialogo_26961",
+        "pg_villani_cronica_vol2_69899",
+        "pg_villani_cronica_vol3_69900",
+        "pg_villani_cronica_vol4_69901",
+        "pg_villani_cronica_vol5_69902",
+        "ll_novellino",
+        "ll_giovanni_villani_nuova_cronica",
+        "ll_dino_compagni_cronica",
+        "ll_boccaccio_decameron_mondadori",
+        "ll_boccaccio_filocolo",
+        "ll_boccaccio_elegia_fiammetta",
+        "ll_boccaccio_trattatello",
+        "ll_sacchetti_trecentonovelle",
+        "ll_bandello_novelle",
+        "ll_bembo_asolani",
+        "ll_bembo_prose_volgar_lingua",
+        "ll_castiglione_cortegiano",
+        "ll_machiavelli_discorsi",
+        "ll_machiavelli_istorie_fiorentine",
+        "ll_machiavelli_arte_guerra",
+        "ll_machiavelli_principe",
+        "ll_guicciardini_storia_italia",
+        "ll_guicciardini_storie_fiorentine",
+        "ll_guicciardini_discorsi_politici",
+        "ll_guicciardini_ricordi",
+        "ll_vasari_vite_1568",
+        "ll_masuccio_novellino",
+        "ll_ramusio_navigazioni_viaggi",
+        "ws_galileo_saggiatore",
+        "ws_galileo_dialogo",
+        "ll_vico_principj_scienza_nuova",
+        "ws_sarpi_istoria_concilio",
+        "ws_verri_storia_milano",
+        "ws_verri_osservazioni_tortura"
+      ]
+    },
+    {
+      "split_id": "historical_validation",
+      "corpus_role": "historical_italian",
+      "status": "complete",
+      "source_path": "data/local/pretraining/paisa_historical_rescue_v1/historical_validation.txt",
+      "source_size": 450521,
+      "source_mtime_ns": 1785421527884257635,
+      "source_sha256": "b002fee75fbb7aab1033a02db75290bdc1cac2f9f2609126875d1915cbd0c59c",
+      "expected_documents": 36,
+      "documents": 36,
+      "characters": 445461,
+      "tokens": 113526,
+      "eos_tokens": 36,
+      "characters_per_token": 3.923867660271656,
+      "tokenizer_sha256": "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c",
+      "shard_target_tokens": 8388608,
+      "shards": [
+        {
+          "shard_index": 0,
+          "path": "data/local/minerva_7b_full_weight/encoded/historical_validation-00000.int32.bin",
+          "token_count": 113526,
+          "bytes": 454104,
+          "sha256": "e25832f16209a8333ae4dd692084bb857c09f53d90098638b63ca7adf01fe991",
+          "global_token_start": 0,
+          "global_token_end": 113526
+        }
+      ],
+      "document_index": {
+        "path": "data/local/minerva_7b_full_weight/encoded/historical_validation.documents.jsonl",
+        "sha256": "750dfa3b8999012849326cf9dfdcedd304e3da9e01937fcb2c3f91fa671fe012",
+        "bytes": 11168,
+        "contains_paisa_document_ids": false,
+        "public": false
+      },
+      "attribution_inventory_path": null,
+      "historical_source_ids": [
+        "pg_villani_cronica_vol1_69898",
+        "pg_jacopo_alighieri_chiose_30766",
+        "pg_caterina_dialogo_26961",
+        "pg_villani_cronica_vol2_69899",
+        "pg_villani_cronica_vol3_69900",
+        "pg_villani_cronica_vol4_69901",
+        "pg_villani_cronica_vol5_69902",
+        "ll_novellino",
+        "ll_giovanni_villani_nuova_cronica",
+        "ll_dino_compagni_cronica",
+        "ll_boccaccio_decameron_mondadori",
+        "ll_boccaccio_filocolo",
+        "ll_boccaccio_elegia_fiammetta",
+        "ll_boccaccio_trattatello",
+        "ll_sacchetti_trecentonovelle",
+        "ll_bandello_novelle",
+        "ll_bembo_asolani",
+        "ll_bembo_prose_volgar_lingua",
+        "ll_castiglione_cortegiano",
+        "ll_machiavelli_discorsi",
+        "ll_machiavelli_istorie_fiorentine",
+        "ll_machiavelli_arte_guerra",
+        "ll_machiavelli_principe",
+        "ll_guicciardini_storia_italia",
+        "ll_guicciardini_storie_fiorentine",
+        "ll_guicciardini_discorsi_politici",
+        "ll_guicciardini_ricordi",
+        "ll_vasari_vite_1568",
+        "ll_masuccio_novellino",
+        "ll_ramusio_navigazioni_viaggi",
+        "ws_galileo_saggiatore",
+        "ws_galileo_dialogo",
+        "ll_vico_principj_scienza_nuova",
+        "ws_sarpi_istoria_concilio",
+        "ws_verri_storia_milano",
+        "ws_verri_osservazioni_tortura"
+      ]
+    }
+  ],
+  "resumption_policy": "checkpoint only completed document boundaries; truncate the active shard and identity index to the last durable checkpoint when resuming",
+  "public_repository_policy": "This report contains aggregate metadata and hashes only. PAISA text, document identities, Minerva-token shards, and calibration windows stay local.",
+  "calibration_windows": {
+    "path": "data/local/minerva_7b_full_weight/encoded/calibration_windows.pt",
+    "sha256": "10cad87d37c6606d7d203264e91e21b049646bdf3996b336a599649441dc2856",
+    "training_sources": [
+      "paisa_train",
+      "historical_train",
+      "paisa_train",
+      "historical_train",
+      "paisa_train"
+    ],
+    "validation_sources": [
+      "paisa_validation",
+      "historical_validation"
+    ]
+  }
+}
