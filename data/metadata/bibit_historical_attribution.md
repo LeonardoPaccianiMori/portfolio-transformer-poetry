@@ -35,14 +35,26 @@ record to one of five roles:
 - capped nineteenth-century bridge;
 - excluded duplicate, dialect-heavy, or empty record.
 
-The composition audit does not itself activate the texts. Canonical TEI
-extraction, language and editorial review, deduplication, and final mixture
-approval are still required.
+The role-specific TEI audit subsequently processed all 1,373 selected canonical
+records. The difference from the 1,387-record catalog snapshot is the 14
+alternate or composition-excluded records, which were retained in the decision
+evidence but deliberately not downloaded as canonical training candidates.
 
-## Planned Transformations
+The full audit routes material into all three intended corpus stages: historical
+general text, historical non-sonnet poetry, and sonnet specialization, plus a
+separately capped nineteenth-century bridge. It reports 1,204 automatic record
+candidates and 168 review-required records; `bibit00332` is the only parse
+error because both known archive identifiers return an empty TEI document.
+Review status is not activation.
+
+## Implemented Transformations
 
 - Parse only the TEI body with external DTD and network resolution disabled.
-- Resolve only a controlled set of standard named character entities.
+- Resolve standard HTML/XML entities plus a static allowlist of the 75 legacy
+  Greek entities encountered in the audited snapshot. The values are pinned to
+  the public BibIt numeric-entity DTD with SHA-256
+  `2073624517861fd673fba09b8153e0d481e058cb091dd17e59262bb04b9c1aa5`;
+  the parser never loads the DTD, and unknown named entities fail closed.
 - Exclude the TEI header, generated wrappers, page markers, editorial notes,
   arguments, alternate apparatus readings, and deleted text.
 - Preserve source spelling, punctuation, paragraph boundaries, verse lines,
@@ -52,6 +64,25 @@ approval are still required.
 - Keep one canonical edition per work and retain all alternate-edition
   decisions in the public metadata.
 - Exclude dialect-heavy works from the unconditioned standard-Italian core.
+
+## Full TEI Audit Results
+
+- General historical route: 562 automatic candidates and 74,532,753
+  candidate characters.
+- Historical non-sonnet poetry route: 340 automatic candidates and 37,953,293
+  candidate characters.
+- Nineteenth-century bridge: 302 automatic candidates and 41,036,542 candidate
+  characters; final mixture weighting is still pending.
+- Sonnet audit: 18,742 explicit TEI candidates and 5,596 structural 14-line
+  candidates. Of these, 13,037 explicit non-duplicates are automatically
+  eligible for the next composition stage.
+- All 1,868 active V6 sonnets were used for duplicate checks. All 411 conflicts
+  with the 387 V6 validation/test identities are explicitly excluded, and no
+  explicit or structurally inferred sonnet remains in an earlier-stage route.
+
+The raw TEI cache remains machine-local under `data/local/bibit/tei`. Public
+records retain each downloaded TEI SHA-256, extraction status, routed character
+counts, review flags, provenance, and poem-level decisions.
 
 ## Measured Representative Works
 
@@ -76,3 +107,7 @@ redaction from the same training mixture.
 - [`bibit_catalog_origins_through_ottocento_v1.json`](bibit_catalog_origins_through_ottocento_v1.json)
 - [`bibit_historical_composition_decisions.csv`](bibit_historical_composition_decisions.csv)
 - [`../../reports/bibit_historical_composition_audit.md`](../../reports/bibit_historical_composition_audit.md)
+- [`bibit_tei_audit_records.csv`](bibit_tei_audit_records.csv)
+- [`bibit_sonnet_candidates_audit.csv`](bibit_sonnet_candidates_audit.csv)
+- [`../../reports/bibit_tei_role_audit.md`](../../reports/bibit_tei_role_audit.md)
+- [`../../reports/bibit_tei_role_audit.json`](../../reports/bibit_tei_role_audit.json)

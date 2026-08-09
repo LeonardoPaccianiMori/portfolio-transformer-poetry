@@ -1,0 +1,169 @@
+{
+  "audit_version": "bibit_role_specific_tei_audit_v1",
+  "started_at_utc": "2026-08-09T17:08:40+00:00",
+  "finished_at_utc": "2026-08-09T17:12:41+00:00",
+  "elapsed_seconds": 241.1,
+  "inputs": {
+    "decision_csv_path": "data/metadata/bibit_historical_composition_decisions.csv",
+    "sonnet_manifest_path": "data/metadata/sonnets_expanded_v6_manifest.csv",
+    "reference_sonnet_count": 1868,
+    "held_out_reference_sonnet_count": 387
+  },
+  "outputs": {
+    "record_csv_path": "data/metadata/bibit_tei_audit_records.csv",
+    "sonnet_csv_path": "data/metadata/bibit_sonnet_candidates_audit.csv",
+    "json_report_path": "reports/bibit_tei_role_audit.json",
+    "markdown_report_path": "reports/bibit_tei_role_audit.md",
+    "local_tei_cache_path": "data/local/bibit/tei"
+  },
+  "record_count": 1373,
+  "record_status_counts": {
+    "activation_candidate": 1204,
+    "error": 1,
+    "review_required": 168
+  },
+  "record_flag_counts": {
+    "duplicate_exact_bibit_document": 16,
+    "empty_or_too_short_after_sonnet_quarantine": 3,
+    "fetch_or_parse_error": 1,
+    "note_multilingual_metadata": 575,
+    "review_editorial_brackets": 88,
+    "review_editorial_references": 1,
+    "review_language_variety": 10,
+    "review_missing_source_edition": 15,
+    "review_near_duplicate": 6,
+    "review_no_sonnet_candidates": 27,
+    "review_non_italian_language": 7
+  },
+  "route_summary": {
+    "historical_general": {
+      "record_count": 638,
+      "activation_candidate_count": 562,
+      "review_or_error_count": 76,
+      "all_routed_characters": 131868374,
+      "candidate_routed_characters": 74532753
+    },
+    "historical_non_sonnet_poetry": {
+      "record_count": 412,
+      "activation_candidate_count": 340,
+      "review_or_error_count": 72,
+      "all_routed_characters": 42029510,
+      "candidate_routed_characters": 37953293
+    },
+    "nineteenth_century_bridge": {
+      "record_count": 322,
+      "activation_candidate_count": 302,
+      "review_or_error_count": 20,
+      "all_routed_characters": 60754449,
+      "candidate_routed_characters": 41036542
+    }
+  },
+  "body_character_count": 249791226,
+  "routed_training_character_count": 234652333,
+  "sonnet_candidate_count": 24338,
+  "sonnet_status_counts": {
+    "eligible_explicit_nonduplicate": 13037,
+    "excluded_exact_active_duplicate": 24,
+    "excluded_exact_bibit_duplicate": 169,
+    "excluded_held_out_identity_conflict": 411,
+    "excluded_not_14_lines": 1105,
+    "review_candidate_editorial_markers": 120,
+    "review_missing_author_attribution": 3592,
+    "review_near_active_duplicate": 1625,
+    "review_source_blocked_post_dedup": 293,
+    "review_structural_form": 3962
+  },
+  "explicit_sonnet_candidate_count": 18742,
+  "structural_sonnet_candidate_count": 5596,
+  "held_out_identity_conflict_count": 411,
+  "top_candidate_authors_by_characters": [
+    {
+      "author": "Non definito",
+      "characters": 7309944
+    },
+    {
+      "author": "Manzoni, Alessandro",
+      "characters": 6931175
+    },
+    {
+      "author": "Tasso, Torquato",
+      "characters": 6628203
+    },
+    {
+      "author": "Foscolo, Ugo",
+      "characters": 5888370
+    },
+    {
+      "author": "Leopardi, Giacomo",
+      "characters": 4661029
+    },
+    {
+      "author": "Boccaccio, Giovanni",
+      "characters": 4462004
+    },
+    {
+      "author": "Gioberti, Vincenzo",
+      "characters": 3853366
+    },
+    {
+      "author": "Verga, Giovanni",
+      "characters": 3413454
+    },
+    {
+      "author": "Vellutello, Alessandro",
+      "characters": 3216487
+    },
+    {
+      "author": "Ariosto, Ludovico",
+      "characters": 2460591
+    },
+    {
+      "author": "Machiavelli, Niccolò",
+      "characters": 2364923
+    },
+    {
+      "author": "Petrarca, Francesco",
+      "characters": 2258114
+    },
+    {
+      "author": "Marino, Giovambattista",
+      "characters": 2144479
+    },
+    {
+      "author": "Aretino, Pietro",
+      "characters": 2019116
+    },
+    {
+      "author": "Giraldi Cinzio, Giambattista",
+      "characters": 2010021
+    },
+    {
+      "author": "Nievo, Ippolito",
+      "characters": 2007316
+    },
+    {
+      "author": "Alamanni, Luigi",
+      "characters": 1975930
+    },
+    {
+      "author": "Boccalini, Traiano",
+      "characters": 1762520
+    },
+    {
+      "author": "Vasari, Giorgio",
+      "characters": 1673705
+    },
+    {
+      "author": "De Sanctis, Francesco",
+      "characters": 1661172
+    }
+  ],
+  "corpus_activation_status": "audit_complete_manual_review_required",
+  "policy": {
+    "explicit_sonnets_removed_from_earlier_stages": true,
+    "structural_14_line_units_quarantined": true,
+    "v6_validation_test_text_blocked_from_earlier_stages": true,
+    "dialect_heavy_material_requires_separate_conditioned_role": true,
+    "raw_tei_cache_is_machine_local": true
+  }
+}

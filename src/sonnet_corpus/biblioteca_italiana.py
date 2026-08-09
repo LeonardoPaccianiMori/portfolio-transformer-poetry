@@ -12,6 +12,8 @@ from urllib.parse import quote
 
 import requests
 
+from .bibit_legacy_entities import BIBIT_LEGACY_ENTITIES
+
 
 BIBIT_ARCHIVE_NAME = "Biblioteca Italiana"
 BIBIT_CATALOG_URL = (
@@ -28,6 +30,7 @@ _SONNET_TYPE = re.compile(r"^sonett", re.IGNORECASE)
 _EXPLICIT_LINE_BREAK = "\ue000"
 _NAMED_ENTITY = re.compile(r"&([A-Za-z][A-Za-z0-9._:-]*);")
 _XML_ENTITIES = {"amp", "apos", "gt", "lt", "quot"}
+_INVALID_XML_CONTROL = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f]")
 
 _OMITTED_ELEMENTS = {
     "argument",
@@ -145,13 +148,28 @@ class BibItSonnetUnit:
 
 
 @dataclass(frozen=True)
+class BibItVerseUnit:
+    """One maximal line-preserving TEI verse unit that is not a sonnet."""
+
+    unit_id: str
+    verse_type: str
+    heading_path: tuple[str, ...]
+    text: str
+    line_count: int
+
+
+@dataclass(frozen=True)
 class ParsedBibItTEI:
-    """A BibIt TEI document rendered both with and without explicit sonnets."""
+    """A BibIt TEI document split into non-overlapping structural views."""
 
     provenance: BibItProvenance
     body_text: str
     non_sonnet_text: str
+    sonnet_candidate_safe_text: str
+    residual_text: str
     sonnets: tuple[BibItSonnetUnit, ...]
+    non_sonnet_verse: tuple[BibItVerseUnit, ...]
+    structural_sonnet_candidates: tuple[BibItVerseUnit, ...]
 
 
 CatalogProgress = Callable[[str], None]
@@ -314,6 +332,7 @@ def parse_bibit_tei(xml: bytes | str, *, object_id: str = "") -> ParsedBibItTEI:
     secured_text = _remove_doctype(text)
     if re.search(r"<!ENTITY\b", secured_text, re.IGNORECASE):
         raise ValueError("TEI entity declarations are not permitted")
+    secured_text = _INVALID_XML_CONTROL.sub("", secured_text)
     secured_text = _replace_known_named_entities(secured_text)
     try:
         root = ET.fromstring(secured_text)
@@ -335,13 +354,49 @@ def parse_bibit_tei(xml: bytes | str, *, object_id: str = "") -> ParsedBibItTEI:
         _parse_sonnet_unit(element, index, parent_by_id, body)
         for index, element in enumerate(sonnet_elements, start=1)
     )
+    verse_elements = _non_sonnet_verse_elements(body, sonnet_elements)
+    non_sonnet_verse = tuple(
+        _parse_verse_unit(element, index, parent_by_id, body)
+        for index, element in enumerate(verse_elements, start=1)
+    )
+    structural_candidate_elements = _structural_sonnet_candidate_elements(
+        body,
+        sonnet_elements,
+    )
+    structural_sonnet_candidates = tuple(
+        _parse_verse_unit(
+            element,
+            index,
+            parent_by_id,
+            body,
+            unit_prefix="structural",
+        )
+        for index, element in enumerate(structural_candidate_elements, start=1)
+    )
+    sonnet_ids = {id(element) for element in sonnet_elements}
+    verse_ids = {id(element) for element in verse_elements}
+    structural_sonnet_candidate_ids = {
+        id(element) for element in structural_candidate_elements
+    }
     body_text = _render_body(body, excluded_elements=set())
-    non_sonnet_text = _render_body(body, excluded_elements={id(el) for el in sonnet_elements})
+    non_sonnet_text = _render_body(body, excluded_elements=sonnet_ids)
+    sonnet_candidate_safe_text = _render_body(
+        body,
+        excluded_elements=sonnet_ids | structural_sonnet_candidate_ids,
+    )
+    residual_text = _render_body(
+        body,
+        excluded_elements=sonnet_ids | verse_ids,
+    )
     return ParsedBibItTEI(
         provenance=provenance,
         body_text=body_text,
         non_sonnet_text=non_sonnet_text,
+        sonnet_candidate_safe_text=sonnet_candidate_safe_text,
+        residual_text=residual_text,
         sonnets=sonnets,
+        non_sonnet_verse=non_sonnet_verse,
+        structural_sonnet_candidates=structural_sonnet_candidates,
     )
 
 
@@ -373,7 +428,7 @@ def _parse_provenance(header: ET.Element, object_id: str) -> BibItProvenance:
         source_publication_date=_first_text(_children(source_bibl, "date")),
         source_identifier=_first_text(_children(source_bibl, "idno")),
         creation_date=_compact_text(_first_descendant(profile_desc, "creation")),
-        languages=_texts(_descendants(profile_desc, "language")),
+        languages=_languages(profile_desc),
         genres=_texts(_descendants(profile_desc, "term")),
         editorial_notes=_editorial_notes(encoding_desc),
         revisions=_revisions(revision_desc),
@@ -386,27 +441,55 @@ def _parse_sonnet_unit(
     parent_by_id: dict[int, ET.Element],
     body: ET.Element,
 ) -> BibItSonnetUnit:
-    lines = [_inline_text(line) for line in _descendants(element, "l")]
-    lines = [line for line in lines if line]
-    stanza_lines: list[str] = []
-    child_stanzas = [child for child in list(element) if _local_name(child.tag) == "lg"]
-    if child_stanzas:
-        for stanza_index, stanza in enumerate(child_stanzas):
-            if stanza_index:
-                stanza_lines.append("")
-            stanza_lines.extend(
-                line for line in (_inline_text(item) for item in _descendants(stanza, "l")) if line
-            )
-    else:
-        stanza_lines = lines
+    text, line_count = _render_verse_unit(element)
     heading_path = _heading_path(element, parent_by_id, body)
     return BibItSonnetUnit(
         unit_id=f"sonnet_{index:04d}",
         sonnet_type=element.attrib.get("type", "sonetto"),
         heading_path=heading_path,
-        text="\n".join(stanza_lines).strip() + "\n",
-        line_count=len(lines),
+        text=text,
+        line_count=line_count,
     )
+
+
+def _parse_verse_unit(
+    element: ET.Element,
+    index: int,
+    parent_by_id: dict[int, ET.Element],
+    body: ET.Element,
+    unit_prefix: str = "verse",
+) -> BibItVerseUnit:
+    text, line_count = _render_verse_unit(element)
+    return BibItVerseUnit(
+        unit_id=f"{unit_prefix}_{index:04d}",
+        verse_type=element.attrib.get("type", "verse") or "verse",
+        heading_path=_heading_path(element, parent_by_id, body),
+        text=text,
+        line_count=line_count,
+    )
+
+
+def _render_verse_unit(element: ET.Element) -> tuple[str, int]:
+    lines = [_inline_text(line) for line in _descendants(element, "l")]
+    lines = [line for line in lines if line]
+    rendered_lines: list[str] = []
+    child_stanzas = [child for child in list(element) if _local_name(child.tag) == "lg"]
+    if child_stanzas:
+        for stanza_index, stanza in enumerate(child_stanzas):
+            stanza_lines = [
+                line
+                for line in (_inline_text(item) for item in _descendants(stanza, "l"))
+                if line
+            ]
+            if not stanza_lines:
+                continue
+            if stanza_index and rendered_lines:
+                rendered_lines.append("")
+            rendered_lines.extend(stanza_lines)
+    else:
+        rendered_lines = lines
+    text = "\n".join(rendered_lines).strip()
+    return (text + "\n" if text else "", len(lines))
 
 
 def _render_body(body: ET.Element, *, excluded_elements: set[int]) -> str:
@@ -516,6 +599,61 @@ def _top_level_sonnet_elements(
     ]
 
 
+def _non_sonnet_verse_elements(
+    body: ET.Element,
+    sonnet_elements: Iterable[ET.Element],
+) -> list[ET.Element]:
+    """Select maximal verse subtrees while excluding every explicit sonnet."""
+
+    sonnet_ids = {id(element) for element in sonnet_elements}
+    selected: list[ET.Element] = []
+
+    def visit(element: ET.Element) -> None:
+        if id(element) in sonnet_ids:
+            return
+        name = _local_name(element.tag)
+        if name in _OMITTED_ELEMENTS:
+            return
+        if name == "lg":
+            contains_sonnet = any(id(descendant) in sonnet_ids for descendant in element.iter())
+            if not contains_sonnet:
+                selected.append(element)
+                return
+        for child in list(element):
+            visit(child)
+
+    visit(body)
+    return selected
+
+
+def _structural_sonnet_candidate_elements(
+    body: ET.Element,
+    sonnet_elements: Iterable[ET.Element],
+) -> list[ET.Element]:
+    """Return innermost untyped verse containers containing exactly 14 lines."""
+
+    sonnet_ids = {id(element) for element in sonnet_elements}
+    candidates: list[ET.Element] = []
+    for element in body.iter():
+        name = _local_name(element.tag)
+        if not (name == "lg" or name.startswith("div")) or id(element) in sonnet_ids:
+            continue
+        if any(id(descendant) in sonnet_ids for descendant in element.iter()):
+            continue
+        lines = [line for line in _descendants(element, "l") if _inline_text(line)]
+        if len(lines) == 14:
+            candidates.append(element)
+    candidate_ids = {id(element) for element in candidates}
+    return [
+        element
+        for element in candidates
+        if not any(
+            id(descendant) in candidate_ids and descendant is not element
+            for descendant in element.iter()
+        )
+    ]
+
+
 def _has_ancestor_in(
     element: ET.Element,
     candidate_ids: set[int],
@@ -586,6 +724,8 @@ def _replace_known_named_entities(text: str) -> str:
             return match.group(0)
         value = html_entities.html5.get(f"{name};")
         if value is None:
+            value = BIBIT_LEGACY_ENTITIES.get(name)
+        if value is None:
             raise ValueError(f"unsupported TEI named entity: &{name};")
         return "".join(f"&#{ord(character)};" for character in value)
 
@@ -612,6 +752,21 @@ def _revisions(revision_desc: ET.Element | None) -> tuple[str, ...]:
         for value in (_compact_text(change) for change in _children(revision_desc, "change"))
         if value
     )
+
+
+def _languages(profile_desc: ET.Element | None) -> tuple[str, ...]:
+    values: list[str] = []
+    for element in _descendants(profile_desc, "language"):
+        value = _compact_text(element)
+        if not value:
+            value = (
+                element.attrib.get("id", "")
+                or element.attrib.get("ident", "")
+                or element.attrib.get("{http://www.w3.org/XML/1998/namespace}lang", "")
+            ).strip()
+        if value and value not in values:
+            values.append(value)
+    return tuple(values)
 
 
 def _solr_docs(payload: Any) -> list[dict[str, Any]]:
