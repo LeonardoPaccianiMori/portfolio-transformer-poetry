@@ -72,8 +72,9 @@ associated with the post-training method rather than with sequential training.
   and qualitative criteria for the shared parent, DPO, and GRPO outputs.
 - Compare all three against the separately fine-tuned Minerva QLoRA model.
 
-Exact judge scoring, candidate counts, DPO and GRPO hyperparameters, compute
-budgets, and checkpoint selection rules belong to a later predeclared design
-checkpoint after Minerva QLoRA evaluation. This policy authorizes those two
-bounded branches; it does not silently choose their unmeasured implementation
-details.
+The exact judge score, validation-only cases, and pass thresholds are now
+frozen in [`minerva_3b_judge_gate_protocol.md`](minerva_3b_judge_gate_protocol.md).
+Candidate counts, DPO and GRPO hyperparameters, compute budgets, and checkpoint
+selection rules still require a separate predeclared design checkpoint, and
+only if the judge gate passes. This policy authorizes those two bounded
+branches; it does not silently choose their unmeasured implementation details.

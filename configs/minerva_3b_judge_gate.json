@@ -1,0 +1,42 @@
+{
+  "gate_version": "minerva_3b_judge_gate_v1",
+  "status": "predeclared_before_gpu_scoring",
+  "model_id": "sapienzanlp/Minerva-3B-base-v1.0",
+  "revision": "129ae5366bae3611a1c9f8c68606c38b7de8b055",
+  "model_precision": "float16",
+  "context_length": 512,
+  "score_definition": "negative_mean_continuation_nll",
+  "manifest_path": "data/metadata/sonnets_expanded_v6_manifest.csv",
+  "manifest_sha256": "994c4c374f42ba26f1c352d7ad7c3adec7ec4671507770bd7c485cb6f977a4fa",
+  "validation_prompt_path": "configs/minerva_3b_validation_sanity_prompts.json",
+  "validation_prompt_sha256": "8d451030331c2ccd104e0ff9a4c24253f54fd27b3a956120192ebc28db5b62f7",
+  "from_scratch_run_dir": "runs/sonnet_task_format_paisa_historical_rescue_v1_v5_12k_001",
+  "from_scratch_checkpoint_path": "runs/sonnet_task_format_paisa_historical_rescue_v1_v5_12k_001/best_validation.pt",
+  "from_scratch_checkpoint_sha256": "156a92343d81f140971f14dcbedfb111629e95b8e17b7365ed85bf8bbfa05b87",
+  "control_generation": {
+    "seed": 2027,
+    "temperature": 0.8,
+    "top_k": 50,
+    "max_new_tokens": 900,
+    "continuation_line_target": 13
+  },
+  "corruption": "reverse_word_order_in_each_continuation_line_v1",
+  "human_mapping_path": "outputs/generations/minerva_3b_validation_sanity_v1/blind_mapping.json",
+  "human_mapping_sha256": "56d9435b92dcfe64ffa09861efd63a89d2579479ceeca3cbc275ee52917f1e40",
+  "human_judgments_path": "reports/minerva_3b_validation_sanity_blinded_judgments.md",
+  "human_judgments_sha256": "fca814d8a16f5d67375b8f67b24b53d969e3c7ae896eb004f4c68306c7eeda3e",
+  "human_quality_weights": {
+    "grammar": 2,
+    "topic": 1,
+    "noncollapse": 2
+  },
+  "thresholds": {
+    "genuine_over_corrupted_accuracy": 0.875,
+    "genuine_over_generated_accuracy": 0.75,
+    "generated_over_corrupted_accuracy": 0.625,
+    "grammar_auroc": 0.7,
+    "noncollapse_auroc": 0.65,
+    "human_ordinal_pairwise_concordance": 0.65
+  },
+  "final_test_allowed": false
+}
