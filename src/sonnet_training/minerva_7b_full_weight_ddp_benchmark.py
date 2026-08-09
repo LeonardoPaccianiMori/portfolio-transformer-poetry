@@ -41,8 +41,10 @@ from sonnet_training.minerva_7b_qlora import (
 
 
 BENCHMARK_VERSION = "minerva_7b_full_weight_dual_rtx_pro_ddp_v1"
+H100_BENCHMARK_VERSION = "minerva_7b_full_weight_dual_h100_sxm_ddp_v1"
 EXPECTED_WORLD_SIZE = 2
 MINIMUM_GPU_MEMORY_MIB = 90 * 1024
+MINIMUM_H100_GPU_MEMORY_MIB = 75 * 1024
 
 
 @dataclass(frozen=True)
@@ -58,6 +60,8 @@ class Minerva7BFullWeightDdpBenchmarkConfig:
     output_path: str = (
         "data/local/minerva_7b_full_weight/full_weight_dual_rtx_pro_benchmark.json"
     )
+    benchmark_version: str = BENCHMARK_VERSION
+    expected_gpu_name_substring: str = "rtx pro 6000 blackwell"
     context_length: int = 512
     world_size: int = EXPECTED_WORLD_SIZE
     global_sequence_counts: tuple[int, ...] = (8, 16)
@@ -69,6 +73,7 @@ class Minerva7BFullWeightDdpBenchmarkConfig:
     max_gradient_norm: float = 1.0
     minimum_total_memory_mib: int = MINIMUM_GPU_MEMORY_MIB
     minimum_headroom_mib: int = MINIMUM_POST_OPTIMIZER_HEADROOM_MIB
+    minimum_communication_gigabytes_per_second: float = 30.0
     hourly_rate_usd: float = 2.162
     full_training_token_count: int = FULL_TRAINING_TOKEN_COUNT
     projected_overhead_multiplier: float = 1.15
@@ -76,6 +81,22 @@ class Minerva7BFullWeightDdpBenchmarkConfig:
     communication_warmup_iterations: int = 3
     communication_timed_iterations: int = 10
     seed: int = 1337
+
+
+@dataclass(frozen=True)
+class Minerva7BDualH100DdpBenchmarkConfig(
+    Minerva7BFullWeightDdpBenchmarkConfig
+):
+    """Freeze the directly comparable dual-H100 SXM benchmark profile."""
+
+    output_path: str = (
+        "data/local/minerva_7b_full_weight/full_weight_dual_h100_sxm_benchmark.json"
+    )
+    benchmark_version: str = H100_BENCHMARK_VERSION
+    expected_gpu_name_substring: str = "h100 80gb hbm3"
+    minimum_total_memory_mib: int = MINIMUM_H100_GPU_MEMORY_MIB
+    minimum_communication_gigabytes_per_second: float = 100.0
+    hourly_rate_usd: float = 3.495
 
 
 @dataclass(frozen=True)
@@ -91,7 +112,11 @@ class DdpThroughputCandidate:
 def validate_full_weight_ddp_benchmark_config(
     config: Minerva7BFullWeightDdpBenchmarkConfig,
 ) -> None:
-    if config != Minerva7BFullWeightDdpBenchmarkConfig():
+    approved_configs = (
+        Minerva7BFullWeightDdpBenchmarkConfig(),
+        Minerva7BDualH100DdpBenchmarkConfig(),
+    )
+    if config not in approved_configs:
         raise ValueError("Minerva 7B DDP benchmark configuration is locked")
 
 
@@ -181,6 +206,11 @@ def benchmark_minerva_7b_full_weight_ddp(
             device=device,
             rank=rank,
         )
+        if (
+            communication["algorithmic_gigabytes_per_second"]
+            < config.minimum_communication_gigabytes_per_second
+        ):
+            raise RuntimeError("measured NCCL bandwidth failed the hardware gate")
         if rank == 0:
             _report(
                 progress,
@@ -275,7 +305,7 @@ def benchmark_minerva_7b_full_weight_ddp(
             return None
         selected = select_fastest_ddp_candidate(rows)
         report = {
-            "benchmark_version": BENCHMARK_VERSION,
+            "benchmark_version": config.benchmark_version,
             "status": "complete",
             "config": asdict(config),
             "world_size": world_size,
@@ -332,12 +362,12 @@ def _validate_hardware(
         raise RuntimeError("failed to gather hardware details from every DDP rank")
     for row in rows:
         if (
-            "rtx pro 6000 blackwell" not in str(row["gpu_name"]).lower()
+            config.expected_gpu_name_substring not in str(row["gpu_name"]).lower()
             or float(row["total_memory_mib"]) < config.minimum_total_memory_mib
             or not bool(row["native_bf16_supported"])
         ):
             raise RuntimeError(
-                "benchmark requires two RTX PRO 6000 Blackwell 96 GB BF16 GPUs"
+                "GPU does not satisfy the locked dual-GPU benchmark profile"
             )
     if not torch.cuda.can_device_access_peer(0, 1):
         raise RuntimeError("CUDA peer access is unavailable between the two GPUs")

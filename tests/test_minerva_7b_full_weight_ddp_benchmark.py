@@ -3,6 +3,8 @@ from dataclasses import replace
 import pytest
 
 from sonnet_training.minerva_7b_full_weight_ddp_benchmark import (
+    H100_BENCHMARK_VERSION,
+    Minerva7BDualH100DdpBenchmarkConfig,
     Minerva7BFullWeightDdpBenchmarkConfig,
     build_ddp_throughput_candidates,
     project_distributed_full_run,
@@ -37,6 +39,22 @@ def test_ddp_benchmark_recipe_is_locked():
     with pytest.raises(ValueError, match="locked"):
         validate_full_weight_ddp_benchmark_config(
             replace(config, timed_updates=2)
+        )
+
+
+def test_dual_h100_profile_is_separately_locked():
+    config = Minerva7BDualH100DdpBenchmarkConfig()
+
+    validate_full_weight_ddp_benchmark_config(config)
+
+    assert config.benchmark_version == H100_BENCHMARK_VERSION
+    assert config.expected_gpu_name_substring == "h100 80gb hbm3"
+    assert config.minimum_total_memory_mib == 75 * 1024
+    assert config.minimum_communication_gigabytes_per_second == 100.0
+    assert config.hourly_rate_usd == 3.495
+    with pytest.raises(ValueError, match="locked"):
+        validate_full_weight_ddp_benchmark_config(
+            replace(config, hourly_rate_usd=3.0)
         )
 
 
