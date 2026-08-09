@@ -76,6 +76,15 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--device", default="cuda:0")
     parser.add_argument("--progress-interval", type=int, default=8)
+    parser.add_argument(
+        "--max-gpu-memory-mib",
+        type=int,
+        default=None,
+        help=(
+            "Keep the untouched FP16 judge but offload overflow layers to CPU "
+            "when the complete model does not fit in GPU memory."
+        ),
+    )
     return parser.parse_args()
 
 
@@ -83,6 +92,8 @@ def main() -> None:
     args = parse_args()
     if args.progress_interval <= 0:
         raise ValueError("--progress-interval must be positive")
+    if args.max_gpu_memory_mib is not None and args.max_gpu_memory_mib <= 0:
+        raise ValueError("--max-gpu-memory-mib must be positive")
     device = torch.device(args.device)
     if device.type != "cuda" or not torch.cuda.is_available():
         raise ValueError("the frozen FP16 Minerva judge gate requires CUDA")
@@ -151,12 +162,27 @@ def main() -> None:
     )
     prepare_cuda_memory_measurement(device)
     print("judge-gate | loading untouched Minerva 3B in FP16", flush=True)
+    if args.max_gpu_memory_mib is None:
+        device_map: str | dict[str, int] = {"": device.index or 0}
+        max_memory = None
+    else:
+        device_map = "auto"
+        max_memory = {
+            device.index or 0: f"{args.max_gpu_memory_mib}MiB",
+            "cpu": "48GiB",
+        }
+        print(
+            "judge-gate | enabling FP16 CPU layer offload "
+            f"gpu_limit={args.max_gpu_memory_mib}MiB",
+            flush=True,
+        )
     model = dependencies["AutoModelForCausalLM"].from_pretrained(
         config["model_id"],
         revision=config["revision"],
         cache_dir=cache_dir,
         dtype=torch.float16,
-        device_map={"": device.index or 0},
+        device_map=device_map,
+        max_memory=max_memory,
         low_cpu_mem_usage=True,
     )
     model.eval()
@@ -205,6 +231,8 @@ def main() -> None:
         "model_precision": config["model_precision"],
         "device": str(device),
         "gpu_name": cuda_device_name(device),
+        "max_gpu_memory_mib": args.max_gpu_memory_mib,
+        "model_device_map": getattr(model, "hf_device_map", None),
         "peak_cuda_allocated_mib": max_cuda_memory_allocated(device) / (1024**2),
         "peak_cuda_reserved_mib": max_cuda_memory_reserved(device) / (1024**2),
         "final_test_used": False,
