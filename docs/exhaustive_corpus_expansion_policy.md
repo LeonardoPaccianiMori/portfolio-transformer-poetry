@@ -100,7 +100,11 @@ and final mixture freeze are complete.
   occurrence. Fifteen full-source duplicate candidates and one macaronic work
   remain outside the core; six embedded-work sources, one held-out-overlap
   source, and two bilingual/multilingual editions require source-specific
-  extraction. The remaining 613 date, language, translation, rights, and scope
-  reviews must still be resolved; no Gutenberg text is active.
+  extraction. The exact unresolved queue contains 673 records: 563 work-date,
+  79 missing-period, 25 translation-edition, and six language-variety reviews.
+  The earlier 613 figure is only the preliminary `date_and_role_review` role
+  count and excludes other roles that still carry review statuses. The queue is
+  frozen in `data/metadata/project_gutenberg_metadata_review_queue_v1.csv`; no
+  Gutenberg text is active.
 - Italian Wikisource, Liber Liber, and the remaining registry archives: archive-
   scale inventory pending.

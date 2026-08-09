@@ -1,0 +1,51 @@
+{
+  "queue_version": "project_gutenberg_metadata_review_queue_v1",
+  "inventory_record_count": 1112,
+  "review_record_count": 673,
+  "review_status_counts": {
+    "review_language_variety_before_download": 6,
+    "review_missing_period_evidence": 79,
+    "review_translation_edition_date": 25,
+    "review_work_publication_date": 563
+  },
+  "inventory_status_counts": {
+    "already_registered_project_gutenberg_source": 10,
+    "audit_then_deduplicate": 410,
+    "deduplicate_before_full_text_audit": 6,
+    "exclude_core_language_variety_metadata": 7,
+    "exclude_metadata_scope": 6,
+    "review_language_variety_before_download": 6,
+    "review_missing_period_evidence": 79,
+    "review_translation_edition_date": 25,
+    "review_work_publication_date": 563
+  },
+  "inventory_accounting": {
+    "eligible_fulltext_probe": 416,
+    "metadata_review_queue": 673,
+    "already_registered": 10,
+    "metadata_exclusions": 13
+  },
+  "preliminary_role_count_is_not_queue_count": true,
+  "preliminary_date_and_role_review_count": 613,
+  "required_evidence_by_status": {
+    "review_work_publication_date": "work first-publication year from a title page, catalog record, or authoritative bibliography",
+    "review_missing_period_evidence": "author/work dates from a title page, catalog record, or authoritative bibliography",
+    "review_translation_edition_date": "Italian translation edition date and source-language/translator evidence",
+    "review_language_variety_before_download": "primary-text evidence for standard Italian, dialect, or mixed-language routing",
+    "review_rights": "record-level public-domain or compatible reuse evidence"
+  },
+  "outputs": {
+    "inventory_csv_path": "data/metadata/project_gutenberg_italian_inventory_v1.csv",
+    "inventory_csv_sha256": "6bbc24673b72e4aadeb90dde29693a16be6e83226f28b559facf287e4029dae0",
+    "queue_csv_path": "data/metadata/project_gutenberg_metadata_review_queue_v1.csv",
+    "queue_csv_sha256": "6bbf0275d137ad14fff04c0811f1b265a3da3234e43d9709707577429ea25e9d",
+    "json_report_path": "reports/project_gutenberg_metadata_review_queue_v1.json",
+    "markdown_report_path": "reports/project_gutenberg_metadata_review_queue_v1.md"
+  },
+  "policy": {
+    "metadata_only": true,
+    "full_text_downloaded": false,
+    "activation_authorized": false,
+    "queue_resolution_required_before_new_fulltext_probe": true
+  }
+}
