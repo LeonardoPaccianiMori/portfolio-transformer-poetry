@@ -40,13 +40,19 @@ lineage.
 
 | Model | Exact revision | Source and role | License and required record |
 | --- | --- | --- | --- |
-| `sapienzanlp/Minerva-3B-base-v1.0` | `129ae5366bae3611a1c9f8c68606c38b7de8b055` | [Hugging Face model card](https://huggingface.co/sapienzanlp/Minerva-3B-base-v1.0); frozen 4-bit parent for the completed QLoRA comparison and candidate for repair | Apache License 2.0; retain model identifier, revision, model-card link, Sapienza NLP attribution, and license notice in released reports or adapters |
-| `sapienzanlp/Minerva-7B-instruct-v1.0` | `d1fc0f0e589ae879c5ac763e0e4206a4d14a3f6d` | [Hugging Face model card](https://huggingface.co/sapienzanlp/Minerva-7B-instruct-v1.0); 4-bit prompt baseline and conditional QLoRA candidate | Apache License 2.0; derived by Sapienza NLP from Minerva 7B Base through SFT and online DPO; retain model identifier, revision, source link, attribution, and license notice |
+| `sapienzanlp/Minerva-3B-base-v1.0` | `129ae5366bae3611a1c9f8c68606c38b7de8b055` | [Hugging Face model card](https://huggingface.co/sapienzanlp/Minerva-3B-base-v1.0); frozen 4-bit parent for the completed QLoRA comparison and validation-only AI-judge gate | Apache License 2.0; retain model identifier, revision, model-card link, Sapienza NLP attribution, and license notice in released reports or adapters |
+| `sapienzanlp/Minerva-7B-instruct-v1.0` | `d1fc0f0e589ae879c5ac763e0e4206a4d14a3f6d` | [Hugging Face model card](https://huggingface.co/sapienzanlp/Minerva-7B-instruct-v1.0); frozen parent for the completed two-stage unquantized FP16 LoRA experiment and 4-bit NF4 local demo inference | Apache License 2.0; derived by Sapienza NLP from Minerva 7B Base through SFT and online DPO; retain model identifier, revision, source link, attribution, and license notice |
 
 Minerva 7B Instruct's model card identifies its instruction and preference
 datasets. This project consumes the released checkpoint rather than copying
 those datasets into its corpus. Any future direct use of those datasets would
 require a separate source-by-source license audit before activation.
+
+The selected Minerva 7B adapter is retained locally and is not committed or
+published by this project. Its Stage A lineage includes PAISÀ CC BY-NC-SA replay,
+and the repository policy withholds PAISÀ-derived checkpoints. Public reports
+retain the exact parent revision, adapter hash, data lineage, training protocol,
+and evaluation results without distributing the weights.
 
 ## Active License Policy
 

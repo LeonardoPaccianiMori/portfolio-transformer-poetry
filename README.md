@@ -1,50 +1,134 @@
-# Teaching a Tiny Transformer to Write Classical Italian Sonnets
+# Teaching Transformers To Write Classical Italian Sonnets
 
-This project builds a small GPT-style causal language model from scratch in PyTorch and trains it to generate classical Italian sonnets.
+This repository is a learning-by-doing language-model project: implement a
+GPT-style causal transformer from scratch in PyTorch, build licensed Italian
+corpora, train under laptop-scale constraints, and compare the result with
+parameter-efficient adaptation of open Minerva models.
 
-The goal is educational and experimental: understand the internals of language modeling, transformer training, tokenization, evaluation, and generation under local laptop-scale GPU constraints. The model is not intended to be a general-purpose language model.
+The project is complete as an experimental pipeline. No tested model passed the
+full acceptable-quality gate. The selected Minerva 7B adapter is the strongest
+system and powers the local demo, but it remains explicitly experimental.
 
-## Project Goals
+## Final Result
 
-- Build an inspectable causal transformer implementation in PyTorch.
-- Construct a reproducible corpus of Italian sonnets from public-domain and
-  explicitly licensed reusable sources.
-- Compare tokenization, architecture, training, and decoding choices on a small model.
-- Evaluate generated text with fixed prompts, automatic metrics, qualitative notes, and memorization checks.
-- Document the process clearly enough to support a technical portfolio artifact.
+| System | Form | Grammar | Topic | Collapse | High-risk overlap |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 70M from scratch | 20/20 | 0/20 | 0/20 | 20/20 | 0/20 |
+| Minerva 3B QLoRA | 20/20 | 2/20 | 13/20 | 7/20 | 0/20 |
+| Minerva 7B staged LoRA | 20/20 | 8/20 | 20/20 | 5/20 | 0/20 |
+| Required | at least 18 | at least 12 | at least 10 | at most 2 | exactly 0 |
 
-## Research Question
+`Form` means exact opening-line preservation and decoder-controlled fourteen
+lines. It does not prove metre or rhyme.
 
-Can a tiny transformer learn enough early Italian poetic language and sonnet structure from a curated sonnet corpus to generate plausible classical Italian sonnets?
+The 7B path adapted a frozen Minerva Instruct parent through historical-Italian
+prose LoRA followed by V6 sonnet specialization. It improved every qualitative
+dimension but still failed grammar and repetition thresholds. The complete
+comparison is in [Final Model Comparison](reports/final_model_comparison.md).
 
-## Planned Scope
+## What This Project Covers
 
-The project will progress in stages:
+- Character and Unicode BPE tokenization
+- Causal masks, self-attention, multi-head attention, residual blocks, and loss
+- LayerNorm, RMSNorm, RoPE, SwiGLU, and weight tying
+- Optimizers, warmup/cosine schedules, gradient clipping, mixed precision,
+  checkpointing, and interruption-safe resume
+- Public-domain, Creative Commons, and other permitted non-commercial corpora
+- Source attribution, split leakage, duplicate audits, and corpus versioning
+- Fixed prompts, automatic controls, memorization heuristics, blinded review,
+  and neighboring-checkpoint selection
+- 4-bit QLoRA and unquantized FP16 LoRA on Minerva 3B and 7B
+- A predeclared AI-judge gate that correctly cancelled unsafe DPO/GRPO branches
+- A standard-library local web server and responsive UI for the selected adapter
 
-1. Corpus source audit and data provenance.
-2. Reproducible raw/interim/processed data pipeline.
-3. Character tokenizer, random batching, and PyTorch tensor/data-loading exercises.
-4. Character-level from-scratch base pretraining with a classic GPT-style causal transformer.
-5. BPE tokenization experiments and direct comparison against the character baseline.
-6. Modern transformer components such as RMSNorm, RoPE, SwiGLU, weight tying, and improved training schedules.
-7. Corpus mixture and curriculum experiments, including core, expanded, and conditioned sonnet variants.
-8. Lightweight task-format post-training for sonnet continuation or metadata-controlled generation.
-9. Repeatable evaluation harness, fixed-prompt samples, memorization checks, and comparison reports.
-10. Local open-source pretrained causal LM fine-tuning as a comparison baseline.
-11. Lightweight local generation demo.
+The core from-scratch transformer, training loop, and decoding logic remain
+inspectable project code rather than wrappers around Hugging Face models.
+Hugging Face, PEFT, Accelerate, and bitsandbytes are used only for the external
+Minerva comparison.
 
-## Constraints
+## Local Demo
 
-- Python and PyTorch.
-- From-scratch model implementation for the core transformer.
-- Local training target: NVIDIA GeForce RTX 3060 Laptop GPU with 6 GB VRAM.
-- Preserve original spelling and punctuation unless a specific experiment says otherwise.
-- Track processed corpus files in the repo with source attribution; keep raw/interim extraction files temporary.
-- Track source provenance and licensing before using texts for training.
+The demo requires the authenticated Minerva cache and retained local epoch-4
+adapter artifacts. It loads the 7B parent in 4-bit NF4 for inference on a 6 GiB
+GPU while keeping the selected adapter unchanged.
 
-See [Data Sources And Attribution](DATA_SOURCES_AND_ATTRIBUTION.md) for the
-public source index, licensing policy, and required credit records.
+Expected cached startup: about 20 seconds to several minutes. A verified
+205-token generation took 18.4 seconds on the RTX 3060 Laptop GPU. Progress is
+printed during model loading; the ready URL appears at the end.
 
-## Status
+```bash
+.venv/bin/python -u scripts/serve_sonnet_demo.py --device cuda:0
+```
 
-Corpus-builder implementation is in progress. The current generated corpus includes processed sonnet files and metadata for the planned Wikisource sources.
+Open [http://127.0.0.1:8000](http://127.0.0.1:8000). Enter one opening line,
+choose temperature and seed, and generate a controlled fourteen-line output.
+
+For a UI-only check that does not allocate model weights:
+
+```bash
+python3 -u scripts/serve_sonnet_demo.py --static-only
+```
+
+Startup is normally under two seconds. Generation intentionally returns an
+unavailable status in this mode.
+
+## Verification
+
+The complete CPU test suite normally finishes in 15–30 seconds:
+
+```bash
+python3 -m pytest
+```
+
+Long-running corpus, training, fine-tuning, benchmarking, and evaluation CLIs
+print flushed progress, elapsed time, ETA, validation results, and checkpoint
+events by default.
+
+## Repository Map
+
+| Path | Responsibility |
+| --- | --- |
+| `src/sonnet_model/` | From-scratch transformer modules and generation |
+| `src/sonnet_training/` | Training, fine-tuning, checkpoints, and schedules |
+| `src/sonnet_corpus/` | Acquisition, cleaning, manifests, splits, and encoding |
+| `src/sonnet_evaluation/` | Metrics, memorization, selection, and Minerva evaluation |
+| `src/sonnet_demo/` | Local selected-model web server |
+| `scripts/` | Reproducible command-line entry points |
+| `configs/` | Frozen prompts, selections, and experiment policies |
+| `data/metadata/` | Corpus and attribution metadata |
+| `reports/` | Public experiment evidence, including failed samples |
+| `demo/` | Responsive local demo interface |
+| `tests/` | Unit and integration tests |
+
+## Primary Artifacts
+
+- [Technical Report](reports/technical_report.md)
+- [Model Card](MODEL_CARD.md)
+- [Final Model Comparison](reports/final_model_comparison.md)
+- [Minerva 7B Final Evaluation](reports/minerva_7b_v6_final_evaluation.md)
+- [Minerva Judge Gate](reports/minerva_3b_judge_gate.md)
+- [Data Sources And Attribution](DATA_SOURCES_AND_ATTRIBUTION.md)
+
+## Data And Licensing
+
+The project does not restrict discovery to public-domain text. A source may be
+used when its terms explicitly permit this non-commercial research/training
+workflow and every attribution, share-alike, notice, source-link, or downstream
+restriction is recorded.
+
+The data and model lineage includes public-domain works, Italian Wikisource,
+Liber Liber CC BY-NC-SA editions, PAISÀ CC BY-NC-SA text, and Apache-2.0 Minerva
+parents. See [Data Sources And Attribution](DATA_SOURCES_AND_ATTRIBUTION.md) for
+the exact records.
+
+The selected adapter is not committed publicly because its lineage includes
+PAISÀ replay and the project policy withholds PAISÀ-derived checkpoints. This
+repository does not apply one blanket license over third-party data, models, or
+generated artifacts; downstream users must follow each recorded source term.
+
+## Honest Scope
+
+This is not a production LLM and not a claim of solved poetry generation. The
+from-scratch branch demonstrates transformer and data-pipeline engineering. The
+Minerva branch demonstrates practical transfer and parameter-efficient
+adaptation. The fixed evaluations show exactly where both approaches fail.

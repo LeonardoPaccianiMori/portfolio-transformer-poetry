@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title>Sonetto Lab</title>
+    <link rel="stylesheet" href="/assets/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="project-label">Transformer Poetry</p>
+        <h1>Sonetto Lab</h1>
+      </div>
+      <div class="model-status" aria-live="polite">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span id="statusText">Connecting</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="composer" aria-labelledby="composerHeading">
+        <div class="section-heading">
+          <p class="step-label">Opening line</p>
+          <h2 id="composerHeading">Compose a continuation</h2>
+        </div>
+
+        <form id="generationForm">
+          <label for="openingLine">First verse</label>
+          <textarea
+            id="openingLine"
+            name="opening_line"
+            rows="3"
+            maxlength="240"
+            required
+          >Amor mi guida per l'antica via</textarea>
+
+          <div class="controls-row">
+            <div class="control-group temperature-group">
+              <div class="control-label-row">
+                <label for="temperature">Temperature</label>
+                <output id="temperatureValue" for="temperature">0.8</output>
+              </div>
+              <input
+                id="temperature"
+                name="temperature"
+                type="range"
+                min="0.5"
+                max="1.2"
+                step="0.1"
+                value="0.8"
+              >
+            </div>
+
+            <div class="control-group seed-group">
+              <label for="seed">Seed</label>
+              <input
+                id="seed"
+                name="seed"
+                type="number"
+                min="0"
+                max="2147483647"
+                value="1337"
+              >
+            </div>
+          </div>
+
+          <button id="generateButton" type="submit">Generate sonnet</button>
+        </form>
+      </section>
+
+      <section class="result" aria-labelledby="resultHeading">
+        <div class="section-heading result-heading">
+          <div>
+            <p class="step-label">Generated text</p>
+            <h2 id="resultHeading">Selected Minerva 7B adapter</h2>
+          </div>
+          <dl class="run-metrics">
+            <div>
+              <dt>Lines</dt>
+              <dd id="lineCount">--</dd>
+            </div>
+            <div>
+              <dt>Time</dt>
+              <dd id="elapsedTime">--</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div id="resultState" class="result-state" aria-live="polite">
+          <p>No generation yet.</p>
+        </div>
+        <ol id="sonnetLines" class="sonnet-lines" hidden></ol>
+      </section>
+    </main>
+
+    <footer>
+      <p>Experimental model. Fourteen-line stopping is decoder-controlled; metre and rhyme are not certified.</p>
+    </footer>
+
+    <script src="/assets/app.js" defer></script>
+  </body>
+</html>
