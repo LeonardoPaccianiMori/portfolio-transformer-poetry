@@ -223,13 +223,16 @@ def _build_review_scaffold(mapping: Mapping[str, Mapping[str, Any]]) -> str:
             f"| `{blind_id}` | TODO | TODO | TODO | TODO |"
         )
     for blind_id, row in mapping.items():
+        display_text = "\n".join(
+            line.rstrip() for line in str(row["text"]).splitlines()
+        )
         lines.extend([
             "",
             f"## Output `{blind_id}`",
             "",
             f"Opening line: `{row['opening_line']}`",
             "",
-            fenced_text_block(str(row["text"])),
+            fenced_text_block(display_text),
         ])
     return "\n".join(lines) + "\n"
 

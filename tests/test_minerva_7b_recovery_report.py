@@ -26,7 +26,8 @@ def test_recovery_report_builds_blinded_scaffold_then_final_result(tmp_path: Pat
             opening = f"Opening {index}"
             output_path.write_text(
                 opening + "\n" + "\n".join(
-                    f"Verso {line} della prova" for line in range(1, 14)
+                    f"Verso {line} della prova{'  ' if line == 1 else ''}"
+                    for line in range(1, 14)
                 ) + "\n",
                 encoding="utf-8",
             )
@@ -87,6 +88,7 @@ def test_recovery_report_builds_blinded_scaffold_then_final_result(tmp_path: Pat
     assert len(json.loads(mapping_path.read_text())) == RECOVERY_OUTPUT_COUNT
     review_text = review_path.read_text(encoding="utf-8")
     assert review_text.count("| TODO | TODO | TODO | TODO |") == RECOVERY_OUTPUT_COUNT
+    assert not any(line.endswith(" ") for line in review_text.splitlines())
     assert "stage_b_control" not in review_text
     assert "Controlled form" in automatic_path.read_text(encoding="utf-8")
 
