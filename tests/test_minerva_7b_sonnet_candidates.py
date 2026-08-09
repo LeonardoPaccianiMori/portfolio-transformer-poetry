@@ -1,5 +1,6 @@
 import pytest
 
+from sonnet_evaluation.metrics import resolve_generated_path
 from sonnet_evaluation.minerva_7b_sonnet_candidates import (
     build_sonnet_candidate_prompt,
     validate_candidate_checkpoint,
@@ -50,3 +51,17 @@ def test_candidate_checkpoint_requires_matching_lineage_and_gate():
         validate_candidate_checkpoint(_checkpoint(gate=False), expected_epoch=3)
     with pytest.raises(ValueError, match="epoch"):
         validate_candidate_checkpoint(_checkpoint(), expected_epoch=2)
+
+
+def test_downloaded_remote_generation_path_relocates_beside_metadata(tmp_path):
+    generation_dir = tmp_path / "candidate"
+    generation_dir.mkdir()
+    local_output = generation_dir / "output.txt"
+    local_output.write_text("sonnet")
+
+    resolved = resolve_generated_path(
+        "/workspace/remote/output.txt",
+        generation_dir / "metadata.json",
+    )
+
+    assert resolved == local_output

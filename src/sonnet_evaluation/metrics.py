@@ -51,7 +51,7 @@ def repeated_ngram_ratio(text: str, ngram_size: int = 4) -> float:
 def resolve_generated_path(path_text: str, metadata_path: Path) -> Path:
     path = Path(path_text)
 
-    if path.is_absolute() or path.is_file():
+    if path.is_file():
         return path
 
     candidate = metadata_path.parent / path.name

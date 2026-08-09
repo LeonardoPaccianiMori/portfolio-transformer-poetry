@@ -1,0 +1,12 @@
+{
+  "selection_version": "minerva_7b_v6_validation_selection_v1",
+  "stage_b_run_version": "minerva_7b_v6_sonnet_fp16_lora_v1",
+  "selection_frozen": true,
+  "final_test_used": false,
+  "selected_epoch": 4,
+  "selected_checkpoint_path": "runs/minerva_7b_v6_sonnet_fp16_lora_001/checkpoints/adapter_epoch_04.pt",
+  "selected_checkpoint_sha256": "aff3f2c4d193ce880ec9c7a6df6373f433001662c3ca78d7f915890733cb0df3",
+  "candidate_summary_path": "outputs/generations/minerva_7b_v6_candidates_001/candidate_summary.json",
+  "candidate_summary_sha256": "451f83f94c52c1dc5554d9c1a329330e2b80ff772f1c9e991bac94845641ce20",
+  "selection_basis": "Frozen validation prompts: best qualitative stability and lowest repetition among the three qualifying candidates, with near-minimum validation loss and clean memorization checks."
+}
