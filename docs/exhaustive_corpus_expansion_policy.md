@@ -103,14 +103,16 @@ and final mixture freeze are complete.
   extraction. The frozen metadata queue contains 673 records: 563 work-date,
   79 missing-period, 25 translation-edition, and six language-variety reviews.
   Metadata-resolution pass 1A acquired all 673 primary texts without error and
-  conservatively resolved 309 records from direct evidence: three historical
-  core candidates, 245 Ottocento or period-tagged candidates, and 61 post-1900
-  exclusions. The remaining 364 records require authoritative review; generic
-  first-edition references remain non-decisive because front matter can refer
-  to another work or language edition. The earlier 613 figure is only the
-  preliminary `date_and_role_review` role count and excludes other roles that
-  still carry review statuses. Evidence is frozen in
-  `data/metadata/project_gutenberg_metadata_resolution_v1.csv`; no Gutenberg
-  text is active.
+  conservatively resolved 309 records from direct evidence. Authoritative pass
+  1B then closed all 364 holds through SBN/ICCU, strictly corroborated Wikidata,
+  or narrow primary-text evidence. Its final accounting contains 415 eligible
+  probes, four separately conditioned records, 88 post-1900 exclusions, and
+  166 documented unresolved exclusions. The subsequent pass-1B full-text probe
+  audits exactly 167 `pass_1b`/`eligible_probe` records from cache: 56,807,893
+  cleaned characters, no exact or near duplicates internally, no overlap above
+  the frozen threshold with the prior 416 Gutenberg probes, BibIt, or existing
+  corpora, and no protected V6 held-out-sonnet overlap. Five bounded anomalies
+  are resolved; one Venetian-dialect poetry source is outside the standard core.
+  No Gutenberg text, V7 split, or mixture weight is active.
 - Italian Wikisource, Liber Liber, and the remaining registry archives: archive-
   scale inventory pending.

@@ -1,0 +1,6 @@
+ebook_id,title,quality_review_flags,language_variety_flags,manual_review_resolution,manual_review_rationale
+19894,In gondoleta: Barcarole e Rime Veneziane,,review_language_variety_marker,exclude_standard_italian_core_venetian_dialect,The preface explicitly identifies the primary verse as dialetto veneziano; keep it outside the standard-Italian core.
+29037,Baby,,review_language_variety_marker,accept_standard_italian_context,The Venetian-dialect phrase names another play in the author's front-matter bibliography; the primary novel is standard Italian.
+37931,Un'avventura di viaggio,low_alphabetic_character_ratio,,accept_theatrical_formatting_density,"The low ratio is caused by leading indentation, speaker layout, and stage directions in a legible standard-Italian play, not OCR corruption."
+37936,Dopo il veglione o viceversa,low_alphabetic_character_ratio,,accept_theatrical_formatting_density,"The low ratio is caused by leading indentation, speaker layout, and stage directions in a legible standard-Italian play, not OCR corruption."
+43316,Serate d'inverno,,review_language_variety_marker,accept_standard_italian_context,The word dialetto occurs in standard-Italian narration about a character's habitual proverbs; it does not identify the work's language variety.

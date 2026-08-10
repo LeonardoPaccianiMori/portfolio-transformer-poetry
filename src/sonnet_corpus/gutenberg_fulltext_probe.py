@@ -31,6 +31,12 @@ PROBE_FIELDS = (
     "preliminary_role",
     "period_bucket",
     "inventory_status",
+    "resolution_pass",
+    "final_period_bucket",
+    "final_role",
+    "metadata_final_decision",
+    "final_resolution_status",
+    "final_activation_class",
     "landing_page_url",
     "fetched_url",
     "cache_status",
@@ -54,6 +60,8 @@ PROBE_FIELDS = (
     "metadata_intra_gutenberg_duplicate_ids",
     "intra_gutenberg_exact_duplicate_ids",
     "intra_gutenberg_near_duplicate_metrics",
+    "prior_gutenberg_overlap_metrics",
+    "prior_gutenberg_duplicate_scope",
     "bibit_overlap_metrics",
     "current_corpus_overlap_metrics",
     "cross_corpus_duplicate_scope",
@@ -61,6 +69,15 @@ PROBE_FIELDS = (
     "manual_review_resolution",
     "manual_review_rationale",
     "probe_decision",
+)
+
+REVIEW_FIELDS = (
+    "ebook_id",
+    "title",
+    "quality_review_flags",
+    "language_variety_flags",
+    "manual_review_resolution",
+    "manual_review_rationale",
 )
 
 _WORD = re.compile(r"[^\W\d_]+", re.UNICODE)
@@ -171,6 +188,18 @@ class GutenbergFullTextProbeConfig:
     bibit_record_manifest_path: Path
     broader_sources_manifest_path: Path
     sonnet_manifest_path: Path
+    authoritative_resolution_csv_path: Path | None = None
+    required_resolution_pass: str | None = None
+    required_activation_class: str | None = None
+    expected_candidate_count: int | None = None
+    conditioned_activation_class: str | None = None
+    expected_conditioned_count: int | None = None
+    prior_gutenberg_probe_csv_path: Path | None = None
+    prior_gutenberg_cache_dir: Path | None = None
+    expected_prior_gutenberg_count: int | None = None
+    review_decisions_csv_path: Path | None = None
+    require_review_resolutions: bool = True
+    probe_version: str = "project_gutenberg_fulltext_probe_v1"
     request_delay_seconds: float = 1.0
     request_timeout_seconds: float = 60.0
     min_cleaned_characters: int = 1_000
@@ -197,14 +226,21 @@ class TextReference:
     path: Path
     byte_start: int = 0
     byte_end: int | None = None
+    cleaning: str = "identity"
 
     def read_text(self) -> str:
         if self.byte_end is None:
-            return self.path.read_text(encoding="utf-8")
-        with self.path.open("rb") as handle:
-            handle.seek(self.byte_start)
-            payload = handle.read(self.byte_end - self.byte_start)
-        return payload.decode("utf-8")
+            text = self.path.read_text(encoding="utf-8")
+        else:
+            with self.path.open("rb") as handle:
+                handle.seek(self.byte_start)
+                payload = handle.read(self.byte_end - self.byte_start)
+            text = payload.decode("utf-8")
+        if self.cleaning == "gutenberg_boilerplate":
+            return strip_gutenberg_boilerplate(text)
+        if self.cleaning != "identity":
+            raise ValueError(f"unsupported text-reference cleaning mode: {self.cleaning}")
+        return text
 
 
 FetchText = Callable[..., FetchedGutenbergText]
@@ -293,9 +329,18 @@ def run_gutenberg_fulltext_probe(
 
     _validate_config(config)
     inventory = _read_csv(config.inventory_csv_path)
-    candidates = sorted(
-        (row for row in inventory if row["inventory_status"] in PROBE_STATUSES),
-        key=lambda row: int(row["ebook_id"]),
+    candidates, selection_summary = select_authoritative_probe_candidates(
+        inventory,
+        authoritative_rows=(
+            _read_csv(config.authoritative_resolution_csv_path)
+            if config.authoritative_resolution_csv_path is not None
+            else None
+        ),
+        required_resolution_pass=config.required_resolution_pass,
+        required_activation_class=config.required_activation_class,
+        expected_candidate_count=config.expected_candidate_count,
+        conditioned_activation_class=config.conditioned_activation_class,
+        expected_conditioned_count=config.expected_conditioned_count,
     )
     config.cache_dir.mkdir(parents=True, exist_ok=True)
     heldout_watch, heldout_denominators = _load_heldout_sonnet_watch(config)
@@ -360,6 +405,7 @@ def run_gutenberg_fulltext_probe(
     )
 
     references = _load_cross_corpus_references(config)
+    references.update(_load_prior_gutenberg_references(config))
     reference_fingerprints = _fingerprint_references(
         references,
         config,
@@ -373,6 +419,7 @@ def run_gutenberg_fulltext_probe(
         reference_fingerprints,
         progress=progress,
     )
+    review_rows = _apply_manual_review_resolutions(config, results)
     _finalize_probe_decisions(results)
     _write_csv(config.output_csv_path, PROBE_FIELDS, results)
     report = _build_report(
@@ -380,8 +427,12 @@ def run_gutenberg_fulltext_probe(
         results=results,
         intra_pairs=intra_pairs,
         cross_pairs=cross_pairs,
-        reference_count=len(references),
+        reference_kind_counts=Counter(
+            reference.source_kind for reference in references.values()
+        ),
         heldout_count=len(heldout_denominators),
+        selection_summary=selection_summary,
+        manual_review_rows=review_rows,
     )
     _write_json(config.json_report_path, report)
     config.markdown_report_path.parent.mkdir(parents=True, exist_ok=True)
@@ -390,6 +441,110 @@ def run_gutenberg_fulltext_probe(
         encoding="utf-8",
     )
     return report
+
+
+def select_authoritative_probe_candidates(
+    inventory_rows: list[dict[str, str]],
+    *,
+    authoritative_rows: list[dict[str, str]] | None,
+    required_resolution_pass: str | None,
+    required_activation_class: str | None,
+    expected_candidate_count: int | None,
+    conditioned_activation_class: str | None,
+    expected_conditioned_count: int | None,
+) -> tuple[list[dict[str, str]], dict[str, Any]]:
+    """Select an optional authoritative subqueue and join inventory-only fields."""
+
+    inventory_by_id = _unique_rows_by_id(inventory_rows, label="inventory")
+    if authoritative_rows is None:
+        if required_resolution_pass or required_activation_class:
+            raise ValueError(
+                "authoritative selection fields require authoritative_resolution_csv_path"
+            )
+        candidates = [
+            dict(row)
+            for row in inventory_rows
+            if row["inventory_status"] in PROBE_STATUSES
+        ]
+        if expected_candidate_count is not None and len(candidates) != expected_candidate_count:
+            raise ValueError(
+                f"expected {expected_candidate_count} probe candidates, found {len(candidates)}"
+            )
+        return sorted(candidates, key=lambda row: int(row["ebook_id"])), {
+            "selection_mode": "inventory_probe_status",
+            "selected_count": len(candidates),
+            "conditioned_count": 0,
+            "conditioned_records": [],
+        }
+
+    if not required_resolution_pass or not required_activation_class:
+        raise ValueError(
+            "authoritative selection requires resolution pass and activation class"
+        )
+    _unique_rows_by_id(authoritative_rows, label="authoritative resolution")
+    selected_rows = [
+        row
+        for row in authoritative_rows
+        if row["resolution_pass"] == required_resolution_pass
+        and row["final_activation_class"] == required_activation_class
+    ]
+    if expected_candidate_count is not None and len(selected_rows) != expected_candidate_count:
+        raise ValueError(
+            f"expected {expected_candidate_count} authoritative probe candidates, "
+            f"found {len(selected_rows)}"
+        )
+    conditioned_rows = (
+        [
+            row
+            for row in authoritative_rows
+            if row["final_activation_class"] == conditioned_activation_class
+        ]
+        if conditioned_activation_class
+        else []
+    )
+    if (
+        expected_conditioned_count is not None
+        and len(conditioned_rows) != expected_conditioned_count
+    ):
+        raise ValueError(
+            f"expected {expected_conditioned_count} conditioned records, "
+            f"found {len(conditioned_rows)}"
+        )
+
+    candidates = []
+    for selected in selected_rows:
+        ebook_id = selected["ebook_id"]
+        if ebook_id not in inventory_by_id:
+            raise ValueError(
+                f"authoritative probe record is absent from inventory: {ebook_id}"
+            )
+        joined = dict(inventory_by_id[ebook_id])
+        joined.update(selected)
+        candidates.append(joined)
+    selected_ids = {row["ebook_id"] for row in candidates}
+    conditioned_ids = {row["ebook_id"] for row in conditioned_rows}
+    overlap = sorted(selected_ids & conditioned_ids, key=int)
+    if overlap:
+        raise ValueError(
+            "conditioned records leaked into the standard probe queue: " + ";".join(overlap)
+        )
+    return sorted(candidates, key=lambda row: int(row["ebook_id"])), {
+        "selection_mode": "authoritative_resolution",
+        "required_resolution_pass": required_resolution_pass,
+        "required_activation_class": required_activation_class,
+        "selected_count": len(candidates),
+        "conditioned_activation_class": conditioned_activation_class or "",
+        "conditioned_count": len(conditioned_rows),
+        "conditioned_records": [
+            {
+                "ebook_id": row["ebook_id"],
+                "title": row["title"],
+                "final_role": row["final_role"],
+                "final_decision": row["final_decision"],
+            }
+            for row in sorted(conditioned_rows, key=lambda row: int(row["ebook_id"]))
+        ],
+    }
 
 
 def _inspect_candidate(
@@ -441,6 +596,12 @@ def _inspect_candidate(
         "preliminary_role": row["preliminary_role"],
         "period_bucket": row["period_bucket"],
         "inventory_status": row["inventory_status"],
+        "resolution_pass": row.get("resolution_pass", ""),
+        "final_period_bucket": row.get("final_period_bucket", ""),
+        "final_role": row.get("final_role", ""),
+        "metadata_final_decision": row.get("final_decision", ""),
+        "final_resolution_status": row.get("final_resolution_status", ""),
+        "final_activation_class": row.get("final_activation_class", ""),
         "landing_page_url": row["landing_page_url"],
         "fetched_url": "",
         "cache_status": "",
@@ -468,6 +629,8 @@ def _inspect_candidate(
         ],
         "intra_gutenberg_exact_duplicate_ids": "",
         "intra_gutenberg_near_duplicate_metrics": "",
+        "prior_gutenberg_overlap_metrics": "",
+        "prior_gutenberg_duplicate_scope": "",
         "bibit_overlap_metrics": "",
         "current_corpus_overlap_metrics": "",
         "cross_corpus_duplicate_scope": "",
@@ -488,6 +651,12 @@ def _error_result(row: dict[str, str], error: Exception) -> dict[str, Any]:
             "preliminary_role": row["preliminary_role"],
             "period_bucket": row["period_bucket"],
             "inventory_status": row["inventory_status"],
+            "resolution_pass": row.get("resolution_pass", ""),
+            "final_period_bucket": row.get("final_period_bucket", ""),
+            "final_role": row.get("final_role", ""),
+            "metadata_final_decision": row.get("final_decision", ""),
+            "final_resolution_status": row.get("final_resolution_status", ""),
+            "final_activation_class": row.get("final_activation_class", ""),
             "landing_page_url": row["landing_page_url"],
             "probe_status": "error",
             "error": f"{type(error).__name__}: {error}",
@@ -623,6 +792,43 @@ def _load_cross_corpus_references(
     return references
 
 
+def _load_prior_gutenberg_references(
+    config: GutenbergFullTextProbeConfig,
+) -> dict[str, TextReference]:
+    if config.prior_gutenberg_probe_csv_path is None:
+        return {}
+    if config.prior_gutenberg_cache_dir is None:
+        raise ValueError(
+            "prior_gutenberg_cache_dir is required with prior_gutenberg_probe_csv_path"
+        )
+    rows = _read_csv(config.prior_gutenberg_probe_csv_path)
+    _unique_rows_by_id(rows, label="prior Gutenberg probe")
+    if (
+        config.expected_prior_gutenberg_count is not None
+        and len(rows) != config.expected_prior_gutenberg_count
+    ):
+        raise ValueError(
+            f"expected {config.expected_prior_gutenberg_count} prior Gutenberg records, "
+            f"found {len(rows)}"
+        )
+    references = {}
+    for row in rows:
+        ebook_id = row["ebook_id"]
+        path = config.prior_gutenberg_cache_dir / f"pg{ebook_id}.txt"
+        if not path.is_file():
+            raise FileNotFoundError(
+                f"prior Gutenberg cache entry is missing for eBook {ebook_id}: {path}"
+            )
+        reference_id = f"prior_gutenberg:pg{ebook_id}"
+        references[reference_id] = TextReference(
+            reference_id=reference_id,
+            source_kind="prior_gutenberg",
+            path=path,
+            cleaning="gutenberg_boilerplate",
+        )
+    return references
+
+
 def _fingerprint_references(
     references: dict[str, TextReference],
     config: GutenbergFullTextProbeConfig,
@@ -657,6 +863,10 @@ def _attach_cross_corpus_duplicates(
         for match in row["possible_existing_work_matches"].split(";"):
             if match in references:
                 candidates.add((ebook_id, match))
+        for other_id in row["metadata_intra_gutenberg_duplicate_ids"].split(";"):
+            reference_id = f"prior_gutenberg:pg{other_id}"
+            if other_id and reference_id in references:
+                candidates.add((ebook_id, reference_id))
     exact_map: dict[str, list[str]] = defaultdict(list)
     for reference_id, fingerprint in reference_fingerprints.items():
         exact_map[fingerprint.normalized_word_sha256].append(reference_id)
@@ -698,11 +908,11 @@ def _attach_cross_corpus_duplicates(
                 "denominator": metric["denominator"],
             }
             pairs.append(record)
-            field = (
-                "bibit_overlap_metrics"
-                if references[reference_id].source_kind == "bibit"
-                else "current_corpus_overlap_metrics"
-            )
+            field = {
+                "bibit": "bibit_overlap_metrics",
+                "current_corpus": "current_corpus_overlap_metrics",
+                "prior_gutenberg": "prior_gutenberg_overlap_metrics",
+            }[references[reference_id].source_kind]
             _append_metric(
                 results[ebook_id],
                 field,
@@ -710,10 +920,15 @@ def _attach_cross_corpus_duplicates(
                 f"reference_containment={reference_containment:.6f}|"
                 f"exact={str(exact).lower()}",
             )
-            scopes = set(results[ebook_id]["cross_corpus_duplicate_scope"].split(";"))
+            scope_field = (
+                "prior_gutenberg_duplicate_scope"
+                if references[reference_id].source_kind == "prior_gutenberg"
+                else "cross_corpus_duplicate_scope"
+            )
+            scopes = set(results[ebook_id][scope_field].split(";"))
             scopes.discard("")
             scopes.add(scope)
-            results[ebook_id]["cross_corpus_duplicate_scope"] = ";".join(sorted(scopes))
+            results[ebook_id][scope_field] = ";".join(sorted(scopes))
         _progress_phase(progress, "cross-dedup", index, len(ordered), started)
     return pairs
 
@@ -767,23 +982,85 @@ def _discover_cross_candidates(
     return discovered
 
 
+def _apply_manual_review_resolutions(
+    config: GutenbergFullTextProbeConfig,
+    results: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    anomalies = [
+        row
+        for row in results
+        if row["probe_status"] != "error"
+        and (row["quality_review_flags"] or row["language_variety_flags"])
+    ]
+    decisions: dict[str, tuple[str, str]] = dict(_MANUAL_REVIEW_RESOLUTIONS)
+    if config.review_decisions_csv_path is not None and config.review_decisions_csv_path.is_file():
+        with config.review_decisions_csv_path.open(encoding="utf-8", newline="") as handle:
+            reader = csv.DictReader(handle)
+            review_rows = list(reader)
+            review_fields = tuple(reader.fieldnames or ())
+        if review_fields != REVIEW_FIELDS:
+            raise ValueError(
+                "manual review CSV fields do not match the required schema: "
+                + ",".join(REVIEW_FIELDS)
+            )
+        review_by_id = _unique_rows_by_id(review_rows, label="manual review")
+        anomaly_ids = {row["ebook_id"] for row in anomalies}
+        unexpected = sorted(set(review_by_id) - anomaly_ids, key=int)
+        if unexpected:
+            raise ValueError(
+                "manual review contains records not flagged by the automated probe: "
+                + ";".join(unexpected)
+            )
+        for ebook_id, row in review_by_id.items():
+            decisions[ebook_id] = (
+                row["manual_review_resolution"].strip(),
+                row["manual_review_rationale"].strip(),
+            )
+
+    output_rows = []
+    unresolved = []
+    for row in anomalies:
+        resolution, rationale = decisions.get(row["ebook_id"], ("", ""))
+        if bool(resolution) != bool(rationale):
+            raise ValueError(
+                f"manual review resolution and rationale must both be set for {row['ebook_id']}"
+            )
+        row["manual_review_resolution"] = resolution
+        row["manual_review_rationale"] = rationale
+        if not resolution:
+            unresolved.append(row["ebook_id"])
+        output_rows.append({field: row[field] for field in REVIEW_FIELDS})
+
+    if config.review_decisions_csv_path is not None:
+        _write_csv(
+            config.review_decisions_csv_path,
+            REVIEW_FIELDS,
+            sorted(output_rows, key=lambda row: int(row["ebook_id"])),
+        )
+    if config.require_review_resolutions and unresolved:
+        raise ValueError(
+            "manual review decisions are required for automated anomalies: "
+            + ";".join(sorted(unresolved, key=int))
+        )
+    return output_rows
+
+
 def _finalize_probe_decisions(results: list[dict[str, Any]]) -> None:
     for row in results:
         if row["probe_status"] == "error":
             continue
-        manual_resolution, rationale = _MANUAL_REVIEW_RESOLUTIONS.get(
-            row["ebook_id"],
-            ("", ""),
-        )
-        row["manual_review_resolution"] = manual_resolution
-        row["manual_review_rationale"] = rationale
+        manual_resolution = row["manual_review_resolution"]
         if "candidate_covered" in row["cross_corpus_duplicate_scope"]:
             decision = "exclude_cross_corpus_duplicate_candidate"
         elif row["heldout_sonnet_overlap_metrics"]:
             decision = "quarantine_heldout_sonnet_segment_before_activation"
         elif "embedded_reference_only" in row["cross_corpus_duplicate_scope"]:
             decision = "quarantine_embedded_duplicate_segments_before_activation"
-        elif manual_resolution == "exclude_standard_italian_core_macaronic":
+        elif "candidate_covered" in row["prior_gutenberg_duplicate_scope"]:
+            decision = "resolve_cross_pool_gutenberg_canonical_edition"
+        elif "embedded_reference_only" in row["prior_gutenberg_duplicate_scope"]:
+            decision = "quarantine_cross_pool_gutenberg_duplicate_segments_before_activation"
+        elif manual_resolution.startswith("exclude_standard_italian_core_"):
             decision = "exclude_standard_italian_core_language_composition"
         elif manual_resolution in {
             "extract_italian_parallel_text_only",
@@ -811,8 +1088,10 @@ def _build_report(
     results: list[dict[str, Any]],
     intra_pairs: list[dict[str, Any]],
     cross_pairs: list[dict[str, Any]],
-    reference_count: int,
+    reference_kind_counts: Counter[str],
     heldout_count: int,
+    selection_summary: dict[str, Any],
+    manual_review_rows: list[dict[str, Any]],
 ) -> dict[str, Any]:
     status_counts = Counter(row["probe_status"] for row in results)
     decision_counts = Counter(row["probe_decision"] for row in results)
@@ -841,17 +1120,24 @@ def _build_report(
         },
         key=lambda group: tuple(map(int, group)),
     )
-    for role in sorted({row["preliminary_role"] for row in results}):
-        rows = [row for row in results if row["preliminary_role"] == role]
+    for role in sorted({_probe_role(row) for row in results}):
+        rows = [row for row in results if _probe_role(row) == role]
         role_summary[role] = {
             "record_count": len(rows),
             "successful_record_count": sum(row["probe_status"] != "error" for row in rows),
             "cleaned_character_count": sum(int(row["cleaned_character_count"] or 0) for row in rows),
             "quality_pass_count": sum(row["probe_status"] == "quality_pass" for row in rows),
         }
-    return {
-        "probe_version": "project_gutenberg_fulltext_probe_v1",
+    prior_pairs = [
+        pair for pair in cross_pairs if pair["source_kind"] == "prior_gutenberg"
+    ]
+    corpus_pairs = [
+        pair for pair in cross_pairs if pair["source_kind"] != "prior_gutenberg"
+    ]
+    report = {
+        "probe_version": config.probe_version,
         "created_at_utc": _utc_now(),
+        "selection": selection_summary,
         "candidate_count": len(results),
         "probe_status_counts": dict(sorted(status_counts.items())),
         "probe_decision_counts": dict(sorted(decision_counts.items())),
@@ -862,9 +1148,22 @@ def _build_report(
         "role_summary": role_summary,
         "intra_gutenberg_exact_duplicate_groups": [list(group) for group in exact_groups],
         "intra_gutenberg_near_duplicate_pairs": intra_pairs,
-        "cross_corpus_duplicate_pairs": cross_pairs,
-        "cross_corpus_reference_count": reference_count,
+        "prior_gutenberg_duplicate_pairs": prior_pairs,
+        "cross_corpus_duplicate_pairs": corpus_pairs,
+        "prior_gutenberg_reference_count": reference_kind_counts.get(
+            "prior_gutenberg", 0
+        ),
+        "cross_corpus_reference_count": sum(
+            count
+            for kind, count in reference_kind_counts.items()
+            if kind != "prior_gutenberg"
+        ),
+        "reference_kind_counts": dict(sorted(reference_kind_counts.items())),
         "heldout_sonnet_reference_count": heldout_count,
+        "manual_review_anomaly_count": len(manual_review_rows),
+        "manual_review_unresolved_count": sum(
+            not row["manual_review_resolution"] for row in manual_review_rows
+        ),
         "outputs": {
             "probe_csv_path": _portable(config.output_csv_path, config.repo_root),
             "probe_csv_sha256": _sha256_file(config.output_csv_path),
@@ -879,13 +1178,58 @@ def _build_report(
             "normalized_8word_shingle_near_duplicate_threshold": config.near_duplicate_containment,
             "heldout_sonnet_containment_threshold": config.heldout_containment,
             "raw_text_cache_is_machine_local": True,
+            "prior_gutenberg_canonical_selection_authorized": False,
         },
     }
+    if config.authoritative_resolution_csv_path is not None:
+        report["inputs"] = {
+            "authoritative_resolution_csv_path": _portable(
+                config.authoritative_resolution_csv_path,
+                config.repo_root,
+            ),
+            "authoritative_resolution_csv_sha256": _sha256_file(
+                config.authoritative_resolution_csv_path
+            ),
+        }
+    if config.prior_gutenberg_probe_csv_path is not None:
+        report.setdefault("inputs", {}).update(
+            {
+                "prior_gutenberg_probe_csv_path": _portable(
+                    config.prior_gutenberg_probe_csv_path,
+                    config.repo_root,
+                ),
+                "prior_gutenberg_probe_csv_sha256": _sha256_file(
+                    config.prior_gutenberg_probe_csv_path
+                ),
+                "prior_gutenberg_cache_path": _portable(
+                    config.prior_gutenberg_cache_dir,
+                    config.repo_root,
+                ),
+            }
+        )
+    if config.review_decisions_csv_path is not None:
+        report["outputs"].update(
+            {
+                "manual_review_csv_path": _portable(
+                    config.review_decisions_csv_path,
+                    config.repo_root,
+                ),
+                "manual_review_csv_sha256": _sha256_file(
+                    config.review_decisions_csv_path
+                ),
+            }
+        )
+    return report
 
 
 def render_gutenberg_fulltext_probe_markdown(report: dict[str, Any]) -> str:
+    pass_1b_probe = report["probe_version"] == "project_gutenberg_fulltext_probe_pass_1b_v1"
     lines = [
-        "# Complete Italian Project Gutenberg Full-Text Probe",
+        (
+            "# Pass-1B Newly Eligible Italian Project Gutenberg Full-Text Probe"
+            if pass_1b_probe
+            else "# Complete Italian Project Gutenberg Full-Text Probe"
+        ),
         "",
         "## Result",
         "",
@@ -934,9 +1278,13 @@ def render_gutenberg_fulltext_probe_markdown(report: dict[str, Any]) -> str:
             "",
             f"- Intra-Gutenberg normalized exact-duplicate groups: {len(report['intra_gutenberg_exact_duplicate_groups']):,}.",
             f"- Intra-Gutenberg near-duplicate pairs: {len(report['intra_gutenberg_near_duplicate_pairs']):,}.",
+            f"- Previous-pool Gutenberg overlap pairs: {len(report['prior_gutenberg_duplicate_pairs']):,}.",
             f"- Cross-corpus duplicate pairs: {len(report['cross_corpus_duplicate_pairs']):,}.",
+            f"- Indexed previous-pool Gutenberg references: {report['prior_gutenberg_reference_count']:,}.",
             f"- Indexed existing-corpus references: {report['cross_corpus_reference_count']:,}.",
             f"- Protected V6 validation/test sonnets: {report['heldout_sonnet_reference_count']:,}.",
+            f"- Bounded automated anomalies manually reviewed: {report['manual_review_anomaly_count']:,}.",
+            f"- Unresolved automated anomalies: {report['manual_review_unresolved_count']:,}.",
             "",
             "## Boundaries",
             "",
@@ -946,7 +1294,28 @@ def render_gutenberg_fulltext_probe_markdown(report: dict[str, Any]) -> str:
             "",
         ]
     )
+    if report["selection"]["selection_mode"] == "authoritative_resolution":
+        conditioned = report["selection"]["conditioned_records"]
+        selection_lines = [
+            "## Frozen Queue",
+            "",
+            f"- Resolution pass: `{report['selection']['required_resolution_pass']}`.",
+            f"- Activation class: `{report['selection']['required_activation_class']}`.",
+            f"- Selected standard-core probe records: {report['selection']['selected_count']:,}.",
+            f"- Separately conditioned records excluded from this queue: {report['selection']['conditioned_count']:,}.",
+        ]
+        selection_lines.extend(
+            f"  - `pg{row['ebook_id']}` — {row['title']} (`{row['final_role']}`)."
+            for row in conditioned
+        )
+        selection_lines.append("")
+        boundary_index = lines.index("## Boundaries")
+        lines[boundary_index:boundary_index] = selection_lines
     return "\n".join(lines)
+
+
+def _probe_role(row: dict[str, Any]) -> str:
+    return str(row.get("final_role") or row["preliminary_role"])
 
 
 def _rolling_shingle_hashes(words: list[str]) -> Iterable[int]:
@@ -1041,6 +1410,33 @@ def _validate_config(config: GutenbergFullTextProbeConfig) -> None:
     for value in (config.near_duplicate_containment, config.heldout_containment):
         if not 0 <= value <= 1:
             raise ValueError("containment thresholds must be between zero and one")
+    for name, value in (
+        ("expected_candidate_count", config.expected_candidate_count),
+        ("expected_conditioned_count", config.expected_conditioned_count),
+        ("expected_prior_gutenberg_count", config.expected_prior_gutenberg_count),
+    ):
+        if value is not None and value <= 0:
+            raise ValueError(f"{name} must be positive when provided")
+    if bool(config.prior_gutenberg_probe_csv_path) != bool(
+        config.prior_gutenberg_cache_dir
+    ):
+        raise ValueError(
+            "prior Gutenberg probe CSV and cache directory must be configured together"
+        )
+    if config.expected_prior_gutenberg_count is not None and (
+        config.prior_gutenberg_probe_csv_path is None
+    ):
+        raise ValueError(
+            "expected_prior_gutenberg_count requires prior Gutenberg inputs"
+        )
+    if config.expected_conditioned_count is not None and not (
+        config.conditioned_activation_class
+    ):
+        raise ValueError(
+            "expected_conditioned_count requires conditioned_activation_class"
+        )
+    if not config.probe_version.strip():
+        raise ValueError("probe_version cannot be empty")
 
 
 def _read_csv(path: Path) -> list[dict[str, str]]:
@@ -1049,6 +1445,22 @@ def _read_csv(path: Path) -> list[dict[str, str]]:
     if not rows:
         raise ValueError(f"CSV is empty: {path}")
     return rows
+
+
+def _unique_rows_by_id(
+    rows: list[dict[str, str]],
+    *,
+    label: str,
+) -> dict[str, dict[str, str]]:
+    by_id: dict[str, dict[str, str]] = {}
+    for row in rows:
+        ebook_id = row.get("ebook_id", "")
+        if not ebook_id:
+            raise ValueError(f"{label} row is missing ebook_id")
+        if ebook_id in by_id:
+            raise ValueError(f"duplicate {label} ebook_id: {ebook_id}")
+        by_id[ebook_id] = row
+    return by_id
 
 
 def _write_csv(path: Path, fields: tuple[str, ...], rows: list[dict[str, Any]]) -> None:

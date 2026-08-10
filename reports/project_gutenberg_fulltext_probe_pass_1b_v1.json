@@ -1,0 +1,122 @@
+{
+  "probe_version": "project_gutenberg_fulltext_probe_pass_1b_v1",
+  "created_at_utc": "2026-08-10T16:30:08+00:00",
+  "selection": {
+    "selection_mode": "authoritative_resolution",
+    "required_resolution_pass": "pass_1b",
+    "required_activation_class": "eligible_probe",
+    "selected_count": 167,
+    "conditioned_activation_class": "conditioned_probe",
+    "conditioned_count": 4,
+    "conditioned_records": [
+      {
+        "ebook_id": "29873",
+        "title": "Mattinate napoletane",
+        "final_role": "conditioned_mixed_language_prose_candidate",
+        "final_decision": "route_mixed_language_segment_review"
+      },
+      {
+        "ebook_id": "34734",
+        "title": "Sonetti",
+        "final_role": "conditioned_romanesco_sonnet_candidate",
+        "final_decision": "route_conditioned_romanesco_sonnets"
+      },
+      {
+        "ebook_id": "48542",
+        "title": "Èl Sgner Pirein",
+        "final_role": "conditioned_bolognese_prose_and_drama_candidate",
+        "final_decision": "route_conditioned_bolognese_prose_and_drama"
+      },
+      {
+        "ebook_id": "57040",
+        "title": "Novelle Napolitane",
+        "final_role": "conditioned_mixed_language_prose_candidate",
+        "final_decision": "route_mixed_language_segment_review"
+      }
+    ]
+  },
+  "candidate_count": 167,
+  "probe_status_counts": {
+    "quality_pass": 165,
+    "review_quality": 2
+  },
+  "probe_decision_counts": {
+    "exclude_standard_italian_core_language_composition": 1,
+    "quality_pass_pending_editorial_activation_review": 166
+  },
+  "quality_flag_counts": {
+    "low_alphabetic_character_ratio": 2
+  },
+  "manual_review_resolution_counts": {
+    "accept_standard_italian_context": 2,
+    "accept_theatrical_formatting_density": 2,
+    "exclude_standard_italian_core_venetian_dialect": 1
+  },
+  "cleaned_character_count": 56807893,
+  "cleaned_word_count": 9097308,
+  "role_summary": {
+    "historical_general_candidate": {
+      "record_count": 7,
+      "successful_record_count": 7,
+      "cleaned_character_count": 1950801,
+      "quality_pass_count": 7
+    },
+    "historical_non_sonnet_poetry_candidate": {
+      "record_count": 16,
+      "successful_record_count": 16,
+      "cleaned_character_count": 3237247,
+      "quality_pass_count": 16
+    },
+    "nineteenth_century_bridge_candidate": {
+      "record_count": 143,
+      "successful_record_count": 143,
+      "cleaned_character_count": 51590740,
+      "quality_pass_count": 141
+    },
+    "sonnet_specialization_candidate": {
+      "record_count": 1,
+      "successful_record_count": 1,
+      "cleaned_character_count": 29105,
+      "quality_pass_count": 1
+    }
+  },
+  "intra_gutenberg_exact_duplicate_groups": [],
+  "intra_gutenberg_near_duplicate_pairs": [],
+  "prior_gutenberg_duplicate_pairs": [],
+  "cross_corpus_duplicate_pairs": [],
+  "prior_gutenberg_reference_count": 416,
+  "cross_corpus_reference_count": 1352,
+  "reference_kind_counts": {
+    "bibit": 1316,
+    "current_corpus": 36,
+    "prior_gutenberg": 416
+  },
+  "heldout_sonnet_reference_count": 387,
+  "manual_review_anomaly_count": 5,
+  "manual_review_unresolved_count": 0,
+  "outputs": {
+    "probe_csv_path": "data/metadata/project_gutenberg_fulltext_probe_pass_1b_v1.csv",
+    "probe_csv_sha256": "fc28ad8064b4ebddad0c79ec8b20eb74dee8e0322e976fece9da78c466fc12cf",
+    "json_report_path": "reports/project_gutenberg_fulltext_probe_pass_1b_v1.json",
+    "markdown_report_path": "reports/project_gutenberg_fulltext_probe_pass_1b_v1.md",
+    "local_cache_path": "data/local/gutenberg/metadata_review_v1",
+    "manual_review_csv_path": "data/metadata/project_gutenberg_fulltext_probe_pass_1b_review_v1.csv",
+    "manual_review_csv_sha256": "a68392f40b0733a4955f352ca6c46e9bc48a9bde6c7c0ca7a59b442c6b2722cb"
+  },
+  "policy": {
+    "activation_authorized": false,
+    "v7_split_authorized": false,
+    "mixture_weight_authorized": false,
+    "normalized_8word_shingle_near_duplicate_threshold": 0.8,
+    "heldout_sonnet_containment_threshold": 0.8,
+    "raw_text_cache_is_machine_local": true,
+    "prior_gutenberg_canonical_selection_authorized": false
+  },
+  "inputs": {
+    "authoritative_resolution_csv_path": "data/metadata/project_gutenberg_metadata_final_resolution_v1.csv",
+    "authoritative_resolution_csv_sha256": "c74bd1dd9ff40b0abb900eaf4bfe6ee459103db65bd40b55a48865148b396680",
+    "prior_gutenberg_probe_csv_path": "data/metadata/project_gutenberg_fulltext_probe_v1.csv",
+    "prior_gutenberg_probe_csv_sha256": "bf35b9b38112ed987f98b7c20eb44ebe864eafc35b4a6cc7e2af7b419b9b7984",
+    "prior_gutenberg_cache_path": "data/local/gutenberg/fulltext_gate_v1"
+  }
+}
