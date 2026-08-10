@@ -1,0 +1,54 @@
+{
+  "resolution_version": "project_gutenberg_metadata_resolution_v1",
+  "record_count": 673,
+  "automatic_resolved_count": 309,
+  "manual_review_count": 364,
+  "resolution_status_counts": {
+    "automatic_resolved": 309,
+    "manual_review": 364
+  },
+  "automatic_decision_counts": {
+    "eligible_historical_core_candidate": 3,
+    "eligible_nineteenth_century_candidate": 245,
+    "exclude_post_1900_original_text": 61
+  },
+  "manual_review_reason_counts": {
+    "edition_proves_pre_1901_eligibility_but_work_period_is_ambiguous": 39,
+    "no_direct_period_evidence": 150,
+    "post_1900_edition_does_not_prove_work_first_publication": 164,
+    "post_1900_translation_edition_requires_authoritative_review": 1,
+    "primary_text_language_variety_review_required": 6,
+    "translation_edition_date_not_found": 4
+  },
+  "selected_evidence_kind_counts": {
+    "gutenberg_original_publication": 129,
+    "title_page_edition_year": 177,
+    "title_work_period": 3
+  },
+  "cache_status_counts": {
+    "hit": 673
+  },
+  "resolved_role_counts": {
+    "excluded_post_1900_original_text": 61,
+    "historical_general_candidate": 3,
+    "historical_non_sonnet_poetry_candidate": 15,
+    "nineteenth_century_bridge_candidate": 230
+  },
+  "outputs": {
+    "queue_csv_path": "data/metadata/project_gutenberg_metadata_review_queue_v1.csv",
+    "queue_csv_sha256": "6bbf0275d137ad14fff04c0811f1b265a3da3234e43d9709707577429ea25e9d",
+    "output_csv_path": "data/metadata/project_gutenberg_metadata_resolution_v1.csv",
+    "output_csv_sha256": "1093b7b55050d5ad1d6b8bfce4c505becad56c8f91f4ec8dba15046fb183bb2d",
+    "manual_review_csv_path": "data/metadata/project_gutenberg_metadata_manual_review_v1.csv",
+    "manual_review_csv_sha256": "995500c9de99e3de094b3969520dc5b9880757dfa5725d969b4490879908c0d4",
+    "json_report_path": "reports/project_gutenberg_metadata_resolution_v1.json",
+    "markdown_report_path": "reports/project_gutenberg_metadata_resolution_v1.md"
+  },
+  "policy": {
+    "activation_authorized": false,
+    "release_dates_used_as_period_evidence": false,
+    "ambiguous_rows_require_authoritative_review": true,
+    "translations_use_italian_edition_period": true,
+    "language_varieties_excluded_from_standard_core": true
+  }
+}
