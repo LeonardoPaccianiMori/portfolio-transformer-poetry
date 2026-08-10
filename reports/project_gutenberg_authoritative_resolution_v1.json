@@ -1,0 +1,76 @@
+{
+  "resolution_version": "project_gutenberg_authoritative_resolution_v1",
+  "pass_1b_record_count": 364,
+  "final_record_count": 673,
+  "explicit_unresolved_or_exclusion_count": 258,
+  "final_decision_counts": {
+    "eligible_historical_core_candidate": 14,
+    "eligible_nineteenth_century_candidate": 401,
+    "exclude_post_1900_original_text": 88,
+    "exclude_unresolved_authoritative_metadata": 166,
+    "route_conditioned_bolognese_prose_and_drama": 1,
+    "route_conditioned_romanesco_sonnets": 1,
+    "route_mixed_language_segment_review": 2
+  },
+  "final_resolution_status_counts": {
+    "pass_1a_resolved": 309,
+    "pass_1b_authoritative_resolved": 193,
+    "pass_1b_documented_exclusion": 166,
+    "pass_1b_policy_routed": 5
+  },
+  "final_activation_class_counts": {
+    "conditioned_probe": 4,
+    "eligible_probe": 415,
+    "excluded": 254
+  },
+  "final_role_counts": {
+    "conditioned_bolognese_prose_and_drama_candidate": 1,
+    "conditioned_mixed_language_prose_candidate": 2,
+    "conditioned_romanesco_sonnet_candidate": 1,
+    "excluded_post_1900_original_text": 88,
+    "excluded_unresolved_authoritative_metadata": 166,
+    "historical_general_candidate": 10,
+    "historical_non_sonnet_poetry_candidate": 31,
+    "nineteenth_century_bridge_candidate": 373,
+    "sonnet_specialization_candidate": 1
+  },
+  "pass_1b_exclusion_reason_counts": {
+    "authoritative_date_after_1900": 27,
+    "bolognese_dialect_collection_is_outside_standard_italian_core": 1,
+    "italian_translation_edition_date_not_authoritatively_resolved": 1,
+    "mixed_standard_italian_and_neapolitan_segments_require_extraction": 2,
+    "no_direct_sbn_title_author_match": 11,
+    "post_1900_or_undated_sbn_edition_does_not_prove_work_date": 154,
+    "romanesco_sonnets_are_outside_the_standard_italian_core": 1
+  },
+  "cache_status_counts": {
+    "sbn_detail_hit": 324,
+    "sbn_search_hit": 445,
+    "wikidata_entity_hit": 51,
+    "wikidata_search_hit": 321
+  },
+  "elapsed_seconds": 0.907,
+  "outputs": {
+    "pass_1a_csv_path": "data/metadata/project_gutenberg_metadata_resolution_v1.csv",
+    "pass_1a_csv_sha256": "1093b7b55050d5ad1d6b8bfce4c505becad56c8f91f4ec8dba15046fb183bb2d",
+    "manual_csv_path": "data/metadata/project_gutenberg_metadata_manual_review_v1.csv",
+    "manual_csv_sha256": "995500c9de99e3de094b3969520dc5b9880757dfa5725d969b4490879908c0d4",
+    "final_csv_path": "data/metadata/project_gutenberg_metadata_final_resolution_v1.csv",
+    "final_csv_sha256": "c74bd1dd9ff40b0abb900eaf4bfe6ee459103db65bd40b55a48865148b396680",
+    "exclusion_csv_path": "data/metadata/project_gutenberg_metadata_final_exclusions_v1.csv",
+    "exclusion_csv_sha256": "dc51e2582f163ed830859ec7e8c201ff18aa5cdb05465f80a4863da9320cc536",
+    "json_report_path": "reports/project_gutenberg_authoritative_resolution_v1.json",
+    "markdown_report_path": "reports/project_gutenberg_authoritative_resolution_v1.md"
+  },
+  "policy": {
+    "activation_authorized": false,
+    "sbn_iccu_is_primary_authority": true,
+    "wikidata_is_corroborating_only": true,
+    "open_library_is_deciding_evidence": false,
+    "post_1900_sbn_reprint_proves_work_date": false,
+    "record_specific_primary_text_resolution_count": 17,
+    "conflicts_and_unresolved_rows_are_excluded": true,
+    "translations_use_italian_edition_period": true,
+    "language_varieties_are_separate_from_standard_core": true
+  }
+}
