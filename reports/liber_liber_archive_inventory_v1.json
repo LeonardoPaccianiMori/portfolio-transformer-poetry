@@ -1,0 +1,563 @@
+{
+  "book_work_count": 6928,
+  "checkpoint": "5A-liber-liber-archive-inventory-composition-gate",
+  "composition_gate_rows": [
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "conditioned_language_candidate_inactive",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "conditioned_language_variants",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 151,
+      "top_author": "Salvatore Di Giacomo",
+      "top_author_record_count": 9,
+      "top_author_share": "0.059603"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "eligible_fulltext_probe_inactive",
+      "fulltext_audit_runtime_lower_minutes": 1,
+      "fulltext_audit_runtime_upper_minutes": 1,
+      "fulltext_audit_value": "high_metadata_gate_pass",
+      "preliminary_role": "historical_general",
+      "projected_cleaned_characters": 1419616,
+      "projected_share_of_resulting_corpus": "0.002566",
+      "record_count": 2,
+      "top_author": "Marco Polo",
+      "top_author_record_count": 1,
+      "top_author_share": "0.500000"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "eligible_fulltext_probe_inactive",
+      "fulltext_audit_runtime_lower_minutes": 1,
+      "fulltext_audit_runtime_upper_minutes": 4,
+      "fulltext_audit_value": "high_metadata_gate_pass",
+      "preliminary_role": "historical_non_sonnet_poetry",
+      "projected_cleaned_characters": 13486352,
+      "projected_share_of_resulting_corpus": "0.023855",
+      "record_count": 19,
+      "top_author": "Dante Alighieri",
+      "top_author_record_count": 3,
+      "top_author_share": "0.157895"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "eligible_fulltext_probe_inactive",
+      "fulltext_audit_runtime_lower_minutes": 6,
+      "fulltext_audit_runtime_upper_minutes": 21,
+      "fulltext_audit_value": "high_metadata_gate_pass",
+      "preliminary_role": "nineteenth_century_bridge",
+      "projected_cleaned_characters": 73820032,
+      "projected_share_of_resulting_corpus": "0.117984",
+      "record_count": 104,
+      "top_author": "Salvatore Farina",
+      "top_author_record_count": 9,
+      "top_author_share": "0.086538"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "eligible_fulltext_probe_inactive",
+      "fulltext_audit_runtime_lower_minutes": 1,
+      "fulltext_audit_runtime_upper_minutes": 1,
+      "fulltext_audit_value": "high_metadata_gate_pass",
+      "preliminary_role": "standard_sonnets",
+      "projected_cleaned_characters": 2839232,
+      "projected_share_of_resulting_corpus": "0.005119",
+      "record_count": 4,
+      "top_author": "Dante Alighieri",
+      "top_author_record_count": 2,
+      "top_author_share": "0.500000"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "exclude_post_1900_metadata",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "historical_non_sonnet_poetry",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 37,
+      "top_author": "Olinto Dini",
+      "top_author_record_count": 6,
+      "top_author_share": "0.162162"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "exclude_post_1900_metadata",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "review_unassigned",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 243,
+      "top_author": "Luigi Pirandello",
+      "top_author_record_count": 14,
+      "top_author_share": "0.057613"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "exclude_post_1900_metadata",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "standard_sonnets",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 1,
+      "top_author": "Giovanni Cena",
+      "top_author_record_count": 1,
+      "top_author_share": "1.000000"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "existing_project_corpus_reference",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "conditioned_language_variants",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 2,
+      "top_author": "Franco Sacchetti",
+      "top_author_record_count": 1,
+      "top_author_share": "0.500000"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "existing_project_corpus_reference",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "review_unassigned",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 24,
+      "top_author": "Giovanni Boccaccio",
+      "top_author_record_count": 4,
+      "top_author_share": "0.166667"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "hold_drama_prose_verse_review",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "review_unassigned",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 16,
+      "top_author": "Carlo Goldoni",
+      "top_author_record_count": 2,
+      "top_author_share": "0.125000"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "hold_no_supported_primary_text_format",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "review_unassigned",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 15,
+      "top_author": "Marco Calvo",
+      "top_author_record_count": 6,
+      "top_author_share": "0.400000"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "hold_rights_or_item_license_unclear",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "conditioned_language_variants",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 6,
+      "top_author": "Giuseppe Verdi",
+      "top_author_record_count": 4,
+      "top_author_share": "0.666667"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "hold_rights_or_item_license_unclear",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "historical_general",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 1,
+      "top_author": "Voltaire (alias François Marie Arouet)",
+      "top_author_record_count": 1,
+      "top_author_share": "1.000000"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "hold_rights_or_item_license_unclear",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "historical_non_sonnet_poetry",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 51,
+      "top_author": "Fryderyk Franciszek Chopin",
+      "top_author_record_count": 4,
+      "top_author_share": "0.078431"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "hold_rights_or_item_license_unclear",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "nineteenth_century_bridge",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 10,
+      "top_author": "Carlo Collodi (alias Carlo Lorenzini)",
+      "top_author_record_count": 3,
+      "top_author_share": "0.300000"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "hold_rights_or_item_license_unclear",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "review_unassigned",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 1833,
+      "top_author": "Johann Sebastian Bach",
+      "top_author_record_count": 263,
+      "top_author_share": "0.143481"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "hold_rights_or_item_license_unclear",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "standard_sonnets",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 1,
+      "top_author": "Franz Liszt",
+      "top_author_record_count": 1,
+      "top_author_share": "1.000000"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "hold_translation_edition_review",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "historical_general",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 3,
+      "top_author": "Voltaire (alias François Marie Arouet)",
+      "top_author_record_count": 2,
+      "top_author_share": "0.666667"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "hold_translation_edition_review",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "historical_non_sonnet_poetry",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 21,
+      "top_author": "Chanson de Roland",
+      "top_author_record_count": 1,
+      "top_author_share": "0.047619"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "hold_translation_edition_review",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "nineteenth_century_bridge",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 10,
+      "top_author": "Sinclair Lewis",
+      "top_author_record_count": 2,
+      "top_author_share": "0.200000"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "hold_translation_edition_review",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "review_unassigned",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 675,
+      "top_author": "William Shakespeare",
+      "top_author_record_count": 35,
+      "top_author_share": "0.051852"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "hold_work_language_review",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "historical_general",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 1,
+      "top_author": "Voltaire (alias François Marie Arouet)",
+      "top_author_record_count": 1,
+      "top_author_share": "1.000000"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "hold_work_language_review",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "historical_non_sonnet_poetry",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 84,
+      "top_author": "Giovanni Pascoli",
+      "top_author_record_count": 6,
+      "top_author_share": "0.071429"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "hold_work_language_review",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "nineteenth_century_bridge",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 10,
+      "top_author": "Lodovico Muratori",
+      "top_author_record_count": 3,
+      "top_author_share": "0.300000"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "hold_work_language_review",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "review_unassigned",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 3570,
+      "top_author": "Carlo Goldoni",
+      "top_author_record_count": 174,
+      "top_author_share": "0.048739"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "hold_work_language_review",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "standard_sonnets",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 14,
+      "top_author": "Giuseppe Gioachino Belli",
+      "top_author_record_count": 2,
+      "top_author_share": "0.142857"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "hold_work_period_review",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "historical_non_sonnet_poetry",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 7,
+      "top_author": "Vincenzo Monti",
+      "top_author_record_count": 2,
+      "top_author_share": "0.285714"
+    },
+    {
+      "activation_status": "inactive_metadata_only",
+      "composition_decision": "hold_work_period_review",
+      "fulltext_audit_runtime_lower_minutes": 0,
+      "fulltext_audit_runtime_upper_minutes": 0,
+      "fulltext_audit_value": "not_authorized_or_requires_review",
+      "preliminary_role": "review_unassigned",
+      "projected_cleaned_characters": 0,
+      "projected_share_of_resulting_corpus": "0.000000",
+      "record_count": 13,
+      "top_author": "Paolo Agaraff",
+      "top_author_record_count": 3,
+      "top_author_share": "0.230769"
+    }
+  ],
+  "content_error_page_count": 1,
+  "decision_counts": {
+    "conditioned_language_candidate_inactive": 151,
+    "eligible_fulltext_probe_inactive": 129,
+    "exclude_post_1900_metadata": 281,
+    "existing_project_corpus_reference": 26,
+    "hold_drama_prose_verse_review": 16,
+    "hold_no_supported_primary_text_format": 15,
+    "hold_rights_or_item_license_unclear": 1902,
+    "hold_translation_edition_review": 709,
+    "hold_work_language_review": 3679,
+    "hold_work_period_review": 20
+  },
+  "eligible_fulltext_probe_count": 129,
+  "eligible_top_authors": [
+    {
+      "author": "Salvatore Farina",
+      "record_count": 9,
+      "record_share": 0.06976744186046512
+    },
+    {
+      "author": "Emilio Salgari",
+      "record_count": 8,
+      "record_share": 0.06201550387596899
+    },
+    {
+      "author": "Giovanni Verga",
+      "record_count": 6,
+      "record_share": 0.046511627906976744
+    },
+    {
+      "author": "Dante Alighieri",
+      "record_count": 5,
+      "record_share": 0.03875968992248062
+    },
+    {
+      "author": "Anton Giulio Barrili",
+      "record_count": 5,
+      "record_share": 0.03875968992248062
+    },
+    {
+      "author": "Cordelia (alias Virginia Tedeschi Treves)",
+      "record_count": 4,
+      "record_share": 0.031007751937984496
+    },
+    {
+      "author": "Giuseppe Cesare Abba",
+      "record_count": 3,
+      "record_share": 0.023255813953488372
+    },
+    {
+      "author": "Luigi Capuana",
+      "record_count": 3,
+      "record_share": 0.023255813953488372
+    },
+    {
+      "author": "Carlo Collodi (alias Carlo Lorenzini)",
+      "record_count": 3,
+      "record_share": 0.023255813953488372
+    },
+    {
+      "author": "Jarro (alias Giulio Piccini)",
+      "record_count": 3,
+      "record_share": 0.023255813953488372
+    }
+  ],
+  "existing_project_reference_count": 26,
+  "fetched_at_utc": "2026-08-11T13:13:58+00:00",
+  "genre_counts": {
+    "drama_form_review": 187,
+    "general_text": 6376,
+    "mixed_form_review": 102,
+    "non_sonnet_poetry_review": 237,
+    "poetry_subject_or_form_review": 3,
+    "standard_sonnet_review": 23
+  },
+  "input_sha256": {
+    "broader_sources_manifest": "007abcf67793077eafa30cfc84abc8a9da5ee26704cd5058ed5e11605b149ac6",
+    "local_catalog_cache": "0f72839ffed77970d03abf6b0945e2911b83a8e1217ab6bc167562c204402e12",
+    "prior_probe_report": "2e83b717969b1ca03fbc952bc1127b1c6235be4937a4d26e80c0ac11c47e2c8a"
+  },
+  "language_counts": {
+    "conditioned_language_review": 159,
+    "italian_unresolved": 5537,
+    "standard_italian_metadata": 475,
+    "translation_review": 757
+  },
+  "license_policy": {
+    "approved_item_license": "CC BY-NC-SA 4.0",
+    "book_license_page_id": 2013151,
+    "book_license_page_modified": "2021-02-25T17:40:34",
+    "book_license_url": "https://liberliber.it/opere/libri/licenze/",
+    "item_level_status_required": true,
+    "personal_use_only_text_excluded": true
+  },
+  "output_sha256": {
+    "composition_gate": "bca5d4fbe33622054bc67e93e0a7b58fe1d9bd5faca6cc81e79dab6452fdb9d6",
+    "inventory": "8b92c8cf99786f6bec86b74a23ffe718007a943536956d95b86a99203183223d",
+    "rights": "197215a1edf77259166c1ffd0db30a6959520e0b930477d866dc318e858d3eb6"
+  },
+  "outputs": {
+    "composition_gate": "data/metadata/liber_liber_composition_gate_v1.csv",
+    "inventory": "data/metadata/liber_liber_archive_inventory_v1.csv",
+    "rights": "data/metadata/liber_liber_source_rights_v1.csv"
+  },
+  "period_counts": {
+    "nineteenth_century": 172,
+    "origins_through_1800": 30,
+    "period_review": 14,
+    "post_1900": 315,
+    "unknown": 6397
+  },
+  "policy": {
+    "cache_deleted": false,
+    "fulltext_acquired": false,
+    "gpu_work_started": false,
+    "metadata_only": true,
+    "mixture_assigned": false,
+    "text_activated": false,
+    "v7_created": false
+  },
+  "projection": {
+    "current_frozen_archive_characters": 551859713,
+    "eligible_projected_cleaned_characters": 91565232,
+    "eligible_projected_share_of_resulting_corpus": 0.14230911112717273,
+    "prior_probe_mean_characters": 1624733,
+    "prior_probe_median_characters": 709808,
+    "prior_probe_record_count": 23,
+    "prior_probe_total_characters": 37368858,
+    "projection_basis": "Prior 23-record Liber Liber probe median; planning estimate, not acquired text or tokens."
+  },
+  "records_with_supported_primary_text": 5011,
+  "rights_decision_counts": {
+    "rights_hold_item_status_or_license_unclear": 1902,
+    "rights_pass_metadata_gate": 5026
+  },
+  "role_counts": {
+    "conditioned_language_variants": 159,
+    "historical_general": 7,
+    "historical_non_sonnet_poetry": 219,
+    "nineteenth_century_bridge": 134,
+    "review_unassigned": 6389,
+    "standard_sonnets": 20
+  },
+  "runtime_estimate": {
+    "assumption": "Three polite sequential requests per work at 1-4 seconds each, excluding manual review and overlap analysis.",
+    "fulltext_probe_lower_minutes": 7,
+    "fulltext_probe_upper_minutes": 26
+  },
+  "wordpress_api_page_count": 94,
+  "wordpress_page_count": 9332
+}

@@ -1,0 +1,30 @@
+composition_decision,preliminary_role,record_count,projected_cleaned_characters,projected_share_of_resulting_corpus,top_author,top_author_record_count,top_author_share,fulltext_audit_value,fulltext_audit_runtime_lower_minutes,fulltext_audit_runtime_upper_minutes,activation_status
+conditioned_language_candidate_inactive,conditioned_language_variants,151,0,0.000000,Salvatore Di Giacomo,9,0.059603,not_authorized_or_requires_review,0,0,inactive_metadata_only
+eligible_fulltext_probe_inactive,historical_general,2,1419616,0.002566,Marco Polo,1,0.500000,high_metadata_gate_pass,1,1,inactive_metadata_only
+eligible_fulltext_probe_inactive,historical_non_sonnet_poetry,19,13486352,0.023855,Dante Alighieri,3,0.157895,high_metadata_gate_pass,1,4,inactive_metadata_only
+eligible_fulltext_probe_inactive,nineteenth_century_bridge,104,73820032,0.117984,Salvatore Farina,9,0.086538,high_metadata_gate_pass,6,21,inactive_metadata_only
+eligible_fulltext_probe_inactive,standard_sonnets,4,2839232,0.005119,Dante Alighieri,2,0.500000,high_metadata_gate_pass,1,1,inactive_metadata_only
+exclude_post_1900_metadata,historical_non_sonnet_poetry,37,0,0.000000,Olinto Dini,6,0.162162,not_authorized_or_requires_review,0,0,inactive_metadata_only
+exclude_post_1900_metadata,review_unassigned,243,0,0.000000,Luigi Pirandello,14,0.057613,not_authorized_or_requires_review,0,0,inactive_metadata_only
+exclude_post_1900_metadata,standard_sonnets,1,0,0.000000,Giovanni Cena,1,1.000000,not_authorized_or_requires_review,0,0,inactive_metadata_only
+existing_project_corpus_reference,conditioned_language_variants,2,0,0.000000,Franco Sacchetti,1,0.500000,not_authorized_or_requires_review,0,0,inactive_metadata_only
+existing_project_corpus_reference,review_unassigned,24,0,0.000000,Giovanni Boccaccio,4,0.166667,not_authorized_or_requires_review,0,0,inactive_metadata_only
+hold_drama_prose_verse_review,review_unassigned,16,0,0.000000,Carlo Goldoni,2,0.125000,not_authorized_or_requires_review,0,0,inactive_metadata_only
+hold_no_supported_primary_text_format,review_unassigned,15,0,0.000000,Marco Calvo,6,0.400000,not_authorized_or_requires_review,0,0,inactive_metadata_only
+hold_rights_or_item_license_unclear,conditioned_language_variants,6,0,0.000000,Giuseppe Verdi,4,0.666667,not_authorized_or_requires_review,0,0,inactive_metadata_only
+hold_rights_or_item_license_unclear,historical_general,1,0,0.000000,Voltaire (alias François Marie Arouet),1,1.000000,not_authorized_or_requires_review,0,0,inactive_metadata_only
+hold_rights_or_item_license_unclear,historical_non_sonnet_poetry,51,0,0.000000,Fryderyk Franciszek Chopin,4,0.078431,not_authorized_or_requires_review,0,0,inactive_metadata_only
+hold_rights_or_item_license_unclear,nineteenth_century_bridge,10,0,0.000000,Carlo Collodi (alias Carlo Lorenzini),3,0.300000,not_authorized_or_requires_review,0,0,inactive_metadata_only
+hold_rights_or_item_license_unclear,review_unassigned,1833,0,0.000000,Johann Sebastian Bach,263,0.143481,not_authorized_or_requires_review,0,0,inactive_metadata_only
+hold_rights_or_item_license_unclear,standard_sonnets,1,0,0.000000,Franz Liszt,1,1.000000,not_authorized_or_requires_review,0,0,inactive_metadata_only
+hold_translation_edition_review,historical_general,3,0,0.000000,Voltaire (alias François Marie Arouet),2,0.666667,not_authorized_or_requires_review,0,0,inactive_metadata_only
+hold_translation_edition_review,historical_non_sonnet_poetry,21,0,0.000000,Chanson de Roland,1,0.047619,not_authorized_or_requires_review,0,0,inactive_metadata_only
+hold_translation_edition_review,nineteenth_century_bridge,10,0,0.000000,Sinclair Lewis,2,0.200000,not_authorized_or_requires_review,0,0,inactive_metadata_only
+hold_translation_edition_review,review_unassigned,675,0,0.000000,William Shakespeare,35,0.051852,not_authorized_or_requires_review,0,0,inactive_metadata_only
+hold_work_language_review,historical_general,1,0,0.000000,Voltaire (alias François Marie Arouet),1,1.000000,not_authorized_or_requires_review,0,0,inactive_metadata_only
+hold_work_language_review,historical_non_sonnet_poetry,84,0,0.000000,Giovanni Pascoli,6,0.071429,not_authorized_or_requires_review,0,0,inactive_metadata_only
+hold_work_language_review,nineteenth_century_bridge,10,0,0.000000,Lodovico Muratori,3,0.300000,not_authorized_or_requires_review,0,0,inactive_metadata_only
+hold_work_language_review,review_unassigned,3570,0,0.000000,Carlo Goldoni,174,0.048739,not_authorized_or_requires_review,0,0,inactive_metadata_only
+hold_work_language_review,standard_sonnets,14,0,0.000000,Giuseppe Gioachino Belli,2,0.142857,not_authorized_or_requires_review,0,0,inactive_metadata_only
+hold_work_period_review,historical_non_sonnet_poetry,7,0,0.000000,Vincenzo Monti,2,0.285714,not_authorized_or_requires_review,0,0,inactive_metadata_only
+hold_work_period_review,review_unassigned,13,0,0.000000,Paolo Agaraff,3,0.230769,not_authorized_or_requires_review,0,0,inactive_metadata_only
