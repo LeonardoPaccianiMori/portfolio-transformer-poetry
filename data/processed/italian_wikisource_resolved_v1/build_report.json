@@ -1,0 +1,74 @@
+{
+  "attribution_count": 2674,
+  "checkpoint": "4D-processed-build",
+  "manifest_sha256": {
+    "attribution_manifest.csv": "53ca101b59e2b4375213ae1bb6a1d677ee2ecb233063eeb7fefb923e35258129",
+    "records_manifest.csv": "b871d41cbe9dcbe9a068d32f55a1d5747aa0c31c6300d4051e7108d4235b27e4",
+    "segments_manifest.csv": "3a41c16bac36b8dcad0a9a7104ea2963f8ee67a6232d2d58a50ba425944d58c7",
+    "sonnets_manifest.csv": "20ef84f7409cdb101be8da57213ca1444d7564b089aedd740772ba9aa85e7293"
+  },
+  "materialized_broader_character_count": 30751389,
+  "materialized_record_count": 2452,
+  "materialized_role_counts": {
+    "historical_general": 837,
+    "historical_non_sonnet_poetry": 1115,
+    "nineteenth_century_bridge": 500
+  },
+  "materialized_sonnet_character_count": 516711,
+  "materialized_sonnet_count": 987,
+  "policy": {
+    "cache_deleted": false,
+    "conditioned_material_excluded": true,
+    "gpu_work_started": false,
+    "mixture_assigned": false,
+    "text_activated": false,
+    "text_materialized_inactive": true,
+    "v7_created": false
+  },
+  "root_count": 4641,
+  "shard_count": 4,
+  "shards": {
+    "historical_general": [
+      {
+        "byte_count": 7804363,
+        "item_count": 837,
+        "path": "data/processed/italian_wikisource_resolved_v1/historical_general/part-0001.txt",
+        "sha256": "43d70572e3772e78efd831b26a7d5d735539423ad99aa79a46a9603849bd2dec"
+      }
+    ],
+    "historical_non_sonnet_poetry": [
+      {
+        "byte_count": 2772045,
+        "item_count": 1115,
+        "path": "data/processed/italian_wikisource_resolved_v1/historical_non_sonnet_poetry/part-0001.txt",
+        "sha256": "f6cf95ec535f0a49a5c11e3050e6a699bd4347bed6425547ac627c077a3985e2"
+      }
+    ],
+    "nineteenth_century_bridge": [
+      {
+        "byte_count": 20940269,
+        "item_count": 500,
+        "path": "data/processed/italian_wikisource_resolved_v1/nineteenth_century_bridge/part-0001.txt",
+        "sha256": "a9e864f08cd6a1fe9762a8bad86ace3f3618a1fdd738c1a40573db0d3481ebc9"
+      }
+    ],
+    "standard_sonnets": [
+      {
+        "byte_count": 539118,
+        "item_count": 987,
+        "path": "data/processed/italian_wikisource_resolved_v1/standard_sonnets/part-0001.txt",
+        "sha256": "d024425a956849226891ec5c2ea6ce7e434715e7ba49e52d8745b496833467ec"
+      }
+    ]
+  },
+  "sonnet_candidate_count": 1270,
+  "verification": {
+    "cross_candidate_pairs_checked": 45,
+    "cross_duplicate_count": 0,
+    "exact_duplicate_count": 0,
+    "internal_candidate_pairs_checked": 54,
+    "near_duplicate_count": 0,
+    "protected_candidate_pairs_checked": 2,
+    "protected_overlap_count": 0
+  }
+}

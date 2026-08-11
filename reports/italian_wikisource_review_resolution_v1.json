@@ -1,0 +1,78 @@
+{
+  "checkpoint": "4D-review-resolution",
+  "eligible_broader_root_count": 2452,
+  "eligible_role_counts": {
+    "historical_general": 837,
+    "historical_non_sonnet_poetry": 1115,
+    "nineteenth_century_bridge": 500
+  },
+  "eligible_root_count": 2674,
+  "eligible_sonnet_count": 987,
+  "eligible_sonnet_only_root_count": 222,
+  "input_sha256": {
+    "boundaries": "da2bf6b7662231a7a334f44e24204bfcda09ab478c4ba631a93d1d6944508bbf",
+    "candidate_resolution": "20c99fae6b35111a85a423e59370621c10344240fec1637887fe712f36d69923",
+    "extraction": "0924e49573f4ae8163306ed3ce663d76b99a247e8fac9e988a4b056e79611f0e",
+    "inventory": "ae4d737be6721eb2b8834a712c5120c39a2f7f27bb1fb09aaac5af7353054d1f",
+    "review": "69d8c4957829c55197501d30129f27aeb9190eb1c2008328e51df378229b28b5",
+    "scan_links": "c0d76052484b38baa247dd958babdccf5857ed758772a409d230b86dbac820ca"
+  },
+  "output_sha256": {
+    "reviews": "9c2d5143daee426e118309f095cd38dc2cf426675b5e3151f393bf8196deb8b9",
+    "roots": "af4cacc47dc52d4231e16fd1cefe50f6e9371c96c543ae7f6644b940e4f0e2d9",
+    "scan_rights": "851089135fea3805c76b4a75e23b661683611f38a4be8b67950bbde620bc1eb0",
+    "segments": "bd86f9f43e8586133f26f0640faf19ea80b1b42e717513eb84a2a77da28b362f",
+    "sonnets": "a38dcd3c4e0876cc6c54339e2c6236926e2ed18aadb2251009b2b20d11992244"
+  },
+  "outputs": {
+    "reviews": "data/metadata/italian_wikisource_review_resolution_v1.csv",
+    "roots": "data/metadata/italian_wikisource_root_decisions_v1.csv",
+    "scan_rights": "data/metadata/italian_wikisource_source_rights_v1.csv",
+    "segments": "data/metadata/italian_wikisource_segment_decisions_v1.csv",
+    "sonnets": "data/metadata/italian_wikisource_sonnet_decisions_v1.csv"
+  },
+  "policy": {
+    "cache_deleted": false,
+    "canonical_precedence": "protected V6 > current corpora/BibIt/resolved Gutenberg > complete clean rights-cleared Wikisource > stable root ID",
+    "conditioned_material_excluded": true,
+    "gpu_work_started": false,
+    "mixture_assigned": false,
+    "rights_fail_closed": true,
+    "text_activated": false,
+    "v7_created": false
+  },
+  "retained_broader_character_count": 30749328,
+  "review_count": 2095,
+  "rights_decision_counts": {
+    "rights_hold_incompatible_or_unclear_scan_license": 30,
+    "rights_hold_incomplete_index_provenance": 47,
+    "rights_hold_modern_edition_contributor": 30,
+    "rights_pass": 1175
+  },
+  "rights_pass_scan_count": 1175,
+  "root_count": 4641,
+  "root_decision_counts": {
+    "eligible_inactive_processed_build": 2452,
+    "eligible_sonnets_only_inactive": 222,
+    "exclude_canonical_cross_corpus_duplicate": 61,
+    "exclude_empty_extraction": 9,
+    "exclude_incomplete_transcription": 88,
+    "exclude_internal_exact_duplicate": 449,
+    "exclude_internal_near_duplicate": 50,
+    "exclude_no_unique_material_after_segmentation": 68,
+    "exclude_post_segmentation_duplicate": 2,
+    "exclude_quality_language_or_editorial_hold": 453,
+    "exclude_rendered_boundary_failure": 1,
+    "exclude_revision_mismatch": 1,
+    "exclude_source_rights_unresolved": 310,
+    "exclude_unresolved_markup": 475
+  },
+  "scan_rights_count": 1282,
+  "segment_count": 6254,
+  "sonnet_candidate_count": 1270,
+  "sonnet_decision_counts": {
+    "eligible_standard_sonnet_inactive_pending_v7": 987,
+    "exclude_canonical_sonnet_duplicate": 271,
+    "exclude_protected_v6_sonnet": 12
+  }
+}
