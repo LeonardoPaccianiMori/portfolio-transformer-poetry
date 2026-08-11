@@ -1,0 +1,167 @@
+{
+  "build_version": "project_gutenberg_resolved_v1",
+  "inputs": {
+    "source_decisions_path": "data/metadata/project_gutenberg_extraction_decisions_v1.csv",
+    "source_decisions_sha256": "33f221ef6cb87827df485f011c5b49c1c81c7fa311a02adf3a9d54cd24857384",
+    "segment_decisions_path": "data/metadata/project_gutenberg_segment_decisions_v1.csv",
+    "segment_decisions_sha256": "4f2c263e12b0973acd0a1d982ccbe39b52827cd4865cb2346a309f7f6dd4da7a",
+    "sonnet_decisions_path": "data/metadata/project_gutenberg_sonnet_candidates_v1.csv",
+    "sonnet_decisions_sha256": "372f0abd61bf9367844ac4d9c1db8fd2549f2b26a628c365e7edcdb178fc60ec",
+    "sonnet_review_path": "data/metadata/project_gutenberg_sonnet_review_v1.csv",
+    "sonnet_review_sha256": "95b962dfa1c6f29201ed5f9daadd0a3fa93eb59a7d71c78f2b422cb1badd3db6",
+    "audit_report_path": "reports/project_gutenberg_extraction_audit_v1.json",
+    "audit_report_sha256": "2b455b0790b221586e8400787ed63f1095a2ba72804e098e98795d86c2e954b4",
+    "inventory_path": "data/metadata/project_gutenberg_italian_inventory_v1.csv",
+    "inventory_sha256": "6bbc24673b72e4aadeb90dde29693a16be6e83226f28b559facf287e4029dae0",
+    "bibit_record_manifest_sha256": "916ccb2b52b29f562348afa4828665b177b2a51eb988f9a974b88f584349a3f7",
+    "broader_sources_manifest_sha256": "007abcf67793077eafa30cfc84abc8a9da5ee26704cd5058ed5e11605b149ac6"
+  },
+  "outputs": {
+    "output_dir": "data/processed/project_gutenberg_resolved_v1",
+    "record_manifest_path": "data/processed/project_gutenberg_resolved_v1/records_manifest.csv",
+    "record_manifest_sha256": "2dd7b1700bcaab69f196e7f99febcc4013068a2d0567eb0e413299cd9f0ab7f4",
+    "segment_manifest_path": "data/processed/project_gutenberg_resolved_v1/segments_manifest.csv",
+    "segment_manifest_sha256": "55f18c675164cbf70175f757ae29bad100852d775f85d21b23fec26a04b5d72a",
+    "sonnet_manifest_path": "data/processed/project_gutenberg_resolved_v1/sonnets_manifest.csv",
+    "sonnet_manifest_sha256": "91f391c52a1bdbc069c14d162fe4752cbb486c453c946273f93d1f85f301d99f",
+    "attribution_manifest_path": "data/processed/project_gutenberg_resolved_v1/attribution_manifest.csv",
+    "attribution_manifest_sha256": "1cb85d346330d2c3e21c974801bdfeff754dfa7395f283d42ea5f2f6c38ea370",
+    "markdown_report_path": "reports/project_gutenberg_resolved_v1_build.md"
+  },
+  "max_shard_bytes": 67108864,
+  "source_count": 587,
+  "materialized_source_count": 572,
+  "record_artifact_status_counts": {
+    "conditioned_text_materialized_inactive": 6,
+    "not_materialized_canonical_duplicate": 15,
+    "text_materialized_pending_v7": 566
+  },
+  "record_characters_by_role": {
+    "conditioned_source_variants": 2291790,
+    "historical_general": 52431698,
+    "historical_non_sonnet_poetry": 11495264,
+    "nineteenth_century_bridge": 228427431
+  },
+  "retained_source_characters_by_role": {
+    "conditioned_source_variants": 2291790,
+    "historical_general": 52431696,
+    "historical_non_sonnet_poetry": 11494505,
+    "nineteenth_century_bridge": 228427424
+  },
+  "segment_count": 2527,
+  "segment_artifact_status_counts": {
+    "materialized_in_record_artifact": 1340,
+    "materialized_in_sonnet_artifact": 501,
+    "not_materialized_by_segment_decision": 682,
+    "not_materialized_exclude_existing_corpus_sonnet_duplicate": 3,
+    "not_materialized_exclude_intra_gutenberg_sonnet_duplicate": 1
+  },
+  "sonnet_candidate_count": 611,
+  "materialized_sonnet_count": 501,
+  "sonnet_artifact_status_counts": {
+    "conditioned_sonnet_materialized_inactive": 2,
+    "not_materialized_exclude_existing_corpus_sonnet_duplicate": 3,
+    "not_materialized_exclude_intra_gutenberg_sonnet_duplicate": 1,
+    "not_materialized_exclude_manual_not_sonnet": 106,
+    "standard_sonnet_materialized_pending_v7": 499
+  },
+  "sonnet_characters_by_role": {
+    "conditioned_sonnet_variants": 1035,
+    "standard_sonnets": 252284
+  },
+  "pending_poem_attribution_count": 501,
+  "deduplication": {
+    "threshold": 0.8,
+    "standard_record_count": 566,
+    "normalized_exact_duplicate_group_count": 0,
+    "internal_candidate_pair_count": 4,
+    "internal_near_duplicate_pair_count": 0,
+    "cross_reference_count": 1352,
+    "cross_candidate_pair_count": 13,
+    "cross_near_duplicate_pair_count": 0,
+    "protected_v6_verification": "hash-pinned checkpoint-3A reconstruction with zero residual source overlap and no materialized held-out candidate"
+  },
+  "shards": {
+    "historical_general": [
+      {
+        "path": "data/processed/project_gutenberg_resolved_v1/historical_general/part-0001.txt",
+        "item_count": 73,
+        "byte_count": 52910094,
+        "sha256": "76b5f99ce75c60b4bd515e7960ebb2a84ff99c275a112ecd5f08f266eae12f38"
+      }
+    ],
+    "historical_non_sonnet_poetry": [
+      {
+        "path": "data/processed/project_gutenberg_resolved_v1/historical_non_sonnet_poetry/part-0001.txt",
+        "item_count": 44,
+        "byte_count": 11626719,
+        "sha256": "8ebfb10ce1bfa2ac43f4c8fb06c2a853702bf85e572b7db6df70dcbad8169bbc"
+      }
+    ],
+    "nineteenth_century_bridge": [
+      {
+        "path": "data/processed/project_gutenberg_resolved_v1/nineteenth_century_bridge/part-0001.txt",
+        "item_count": 170,
+        "byte_count": 66962386,
+        "sha256": "c3f93c9c94edcf4768e57876d5d95c8f8c32782a8f9e28ba261ac40be8e6d191"
+      },
+      {
+        "path": "data/processed/project_gutenberg_resolved_v1/nineteenth_century_bridge/part-0002.txt",
+        "item_count": 109,
+        "byte_count": 66969019,
+        "sha256": "89e7b9087423f998dd9ca06751d94ae0801fbb190488e005c0b762bd738a3fd8"
+      },
+      {
+        "path": "data/processed/project_gutenberg_resolved_v1/nineteenth_century_bridge/part-0003.txt",
+        "item_count": 115,
+        "byte_count": 67035079,
+        "sha256": "be853b682756b8ff5e977960df8d7d4553aab03bc93c0c521f404d4cccf15cb4"
+      },
+      {
+        "path": "data/processed/project_gutenberg_resolved_v1/nineteenth_century_bridge/part-0004.txt",
+        "item_count": 55,
+        "byte_count": 30307145,
+        "sha256": "03ac93c4da39bc9e6a81c9b16ae2502a49423f7da612dd2ca8069b22ea4c3195"
+      }
+    ],
+    "standard_sonnets": [
+      {
+        "path": "data/processed/project_gutenberg_resolved_v1/standard_sonnets/part-0001.txt",
+        "item_count": 499,
+        "byte_count": 257747,
+        "sha256": "0bb1c58ac6c809db65aac6d058b9ededbf89c7e3b05a7729945cef4fcd3b902b"
+      }
+    ],
+    "conditioned_source_variants": [
+      {
+        "path": "data/processed/project_gutenberg_resolved_v1/conditioned_source_variants/part-0001.txt",
+        "item_count": 6,
+        "byte_count": 2310916,
+        "sha256": "51971cc02dda6fa5bd3fdb63233267bf89e88e4b3d1365cb7e10e2e0a1c9988a"
+      }
+    ],
+    "conditioned_sonnet_variants": [
+      {
+        "path": "data/processed/project_gutenberg_resolved_v1/conditioned_sonnet_variants/part-0001.txt",
+        "item_count": 2,
+        "byte_count": 1055,
+        "sha256": "d990070c8479e2514ce4cf7d63800e5b1807e962e3b392ae542331641d26c9b7"
+      }
+    ]
+  },
+  "policy": {
+    "text_storage": "bounded_plain_utf8_shards_with_exact_manifest_byte_ranges",
+    "source_spelling_and_punctuation_preserved": true,
+    "confirmed_sonnets_absent_from_broader_text": true,
+    "manual_non_sonnet_false_positives_retained_in_broader_text": true,
+    "conditioned_artifacts_materialized_but_inactive": true,
+    "conditioned_experiment_authorized": false,
+    "nineteenth_century_bridge_cap_applied": false,
+    "nineteenth_century_bridge_cap_deferred_to_checkpoint_8": true,
+    "poem_author_inferred_from_source_record": false,
+    "v7_split_assigned": false,
+    "training_mixture_weight_assigned": false,
+    "local_primary_text_caches_deleted": false,
+    "gpu_work_started": false
+  }
+}
