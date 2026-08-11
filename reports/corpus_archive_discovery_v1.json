@@ -1,0 +1,65 @@
+{
+  "activated_corpus_characters": 0,
+  "artifact_sha256": {
+    "decision_csv": "dcffc0e95e0ac259aae4a959d52d5d57c420bd986ccb0d32fed1bf091a17881c",
+    "evidence_csv": "7f059f8c0f9968f3f499fd965315eb5df450f2fa8586190fb094bf8906237efd",
+    "query_csv": "90af6233c12a44fdff6e8ef12e6e49885a130a3e4db0545dddf0f5f80170830c",
+    "registry_csv": "361ae524282c259b75b1780c491f7ed76277f914ea4dcd73dec2201a32cf43de"
+  },
+  "audit_date": "2026-08-11",
+  "base_corpus_characters": 626379622,
+  "cache_deleted": false,
+  "candidate_decision_count": 16,
+  "closed_or_excluded_count": 11,
+  "composition_role_counts": {
+    "auxiliary": 3,
+    "core_training": 2,
+    "excluded": 11
+  },
+  "conditioned_auxiliary_count": 1,
+  "corpus_text_acquired": false,
+  "eligible_standard_audit_count": 4,
+  "eligible_standard_candidate_ids": [
+    "ilc_cnr_rosmini",
+    "ilc_cnr_opera_libretti",
+    "ilc_cnr_bellini",
+    "oxford_text_archive_italian"
+  ],
+  "evidence_count": 16,
+  "gpu_work_started": false,
+  "materiality_hold_count": 0,
+  "mixture_weights_assigned": false,
+  "next_checkpoint": "6D bounded ILC-CNR and Oxford Text Archive source audit",
+  "query_count": 35,
+  "registry_addition_count": 2,
+  "registry_addition_ids": [
+    "ilc_cnr_historical_corpora",
+    "oxford_text_archive"
+  ],
+  "report_version": "corpus_archive_discovery_v1",
+  "status_counts": {
+    "closed_access_and_overlap_exclusion": 2,
+    "closed_annotation_and_period_exclusion": 1,
+    "closed_below_materiality_conditioned_htr": 1,
+    "closed_canonical_derivative_exclusion": 2,
+    "closed_discovery_surface_no_material_candidate": 4,
+    "closed_no_primary_text_exclusion": 1,
+    "conditioned_auxiliary_experiment_required_inactive": 1,
+    "eligible_bounded_source_audit_inactive": 4
+  },
+  "stop_rule_result": "material_archives_found_schedule_checkpoint_6D_before_checkpoint_7",
+  "surface_count": 9,
+  "surface_ids": [
+    "clarin_it",
+    "clarin_resource_family",
+    "dalia",
+    "eurac_clarin",
+    "github",
+    "oxford_text_archive",
+    "phaidra_unipd",
+    "re3data",
+    "zenodo"
+  ],
+  "text_activated": false,
+  "v7_created": false
+}

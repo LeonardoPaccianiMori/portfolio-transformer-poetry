@@ -111,6 +111,24 @@ ignored local cache. No corpus text, activation, V7 split, mixture weight, cache
 deletion, or GPU work is part of checkpoint 6B. The next registry step is the
 final open-ended archive-discovery pass in checkpoint 6C.
 
+Checkpoint 6C completes that frozen discovery pass with 35 metadata queries
+across nine independent repository, dataset, code, and curated-index surfaces.
+Its [`query matrix`](../data/metadata/corpus_archive_discovery_queries_v1.csv),
+[`official evidence`](../data/metadata/corpus_archive_discovery_evidence_v1.csv),
+[`candidate decisions`](../data/metadata/corpus_archive_discovery_decisions_v1.csv),
+and [`checkpoint report`](../reports/corpus_archive_discovery_v1.md) resolve 16
+candidate or surface decisions. The approved stop rule found material new
+source boundaries, so it does not release the project directly to checkpoint
+7. ILC-CNR contributes three standard-queue audit candidates: the 4,311,182-word
+Rosmini corpus and 40 Bellini letters as capped Ottocento auxiliaries, plus 56
+opera libretti from 1636-1705 as a core-compatible historical verse/drama
+source. The Oxford Text Archive contributes a 43-record Italian-language item
+inventory. At least ten works cover an underrepresented early-modern register.
+Codice Pelavicino remains separately
+conditioned because it mixes Italian and Latin. Checkpoint 6D must resolve these
+bounded source audits before cross-archive canonicalization. No corpus text is
+acquired or activated by discovery.
+
 ## Current Coverage
 
 - Biblioteca Italiana: role-specific TEI audit, review resolution, and bounded
@@ -188,7 +206,8 @@ final open-ended archive-discovery pass in checkpoint 6C.
   pinned page-boundary extraction and the full BibIt/Gutenberg/current-corpus/
   protected-V6 overlap probe for the 4B-eligible queue.
 - Liber Liber: complete through its deterministic inactive resolved build.
-- Remaining registry archives: checkpoint 6B's six bounded metadata/source
-  inventories are complete. The final open-ended archive-discovery pass remains
-  checkpoint 6C. None of the 4,634 inventory candidates authorizes corpus-text
+- Remaining registry archives: checkpoints 6A-6C are complete. The final
+  discovery pass added inactive ILC-CNR and Oxford Text Archive boundaries and
+  scheduled their bounded checkpoint-6D audits. None of the 4,634 checkpoint-6B
+  inventory candidates or the checkpoint-6C discoveries authorizes corpus-text
   download or activation.
