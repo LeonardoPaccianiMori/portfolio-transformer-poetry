@@ -1,0 +1,103 @@
+{
+  "attribution_count": 92,
+  "checkpoint": "5C-resolved-build",
+  "decision_sha256": {
+    "canonical_editions": "2248d47c78a252f4e251a1d2247d9b894a4f980fd71cf6a6f8f190f90caed1bd",
+    "segments": "a3190646bdbc46a23d6e8ba2bb9b3c4d2c6e4452e5df5302e111c829f58ffd4f",
+    "sonnet_review": "c75c351f91d20f47a5337b9f8b3e827c84a3985d2ccb8655d5fdbc08cb88483f",
+    "sonnets": "2e83e8fc980ac85c918ed2109977d56085bb8fb48c572f89b1180c24430fff21",
+    "sources": "2cc4f2773087d6d60a9ea8d976445da16858617942703ef905d864f58f8ddf8f"
+  },
+  "excluded_source_count": 37,
+  "inputs": {
+    "archive_inventory_sha256": "8b92c8cf99786f6bec86b74a23ffe718007a943536956d95b86a99203183223d",
+    "probe_review_sha256": "ced2c7ceabc01a0006393fefcd555db6ab05ca17ffaada865809abe52c13f692",
+    "probe_sha256": "2215ac3668a7704abc84bebc01a18f89ca262c8c9666eda343834252ae784371",
+    "source_rights_sha256": "197215a1edf77259166c1ffd0db30a6959520e0b930477d866dc318e858d3eb6"
+  },
+  "manifest_sha256": {
+    "attribution_manifest.csv": "5c431b63d8773c2dee1c7509319adeec0b69daba787948967367dfb5b6db5fcc",
+    "records_manifest.csv": "019dcba5c298520ff9d3c0ad782a65f3bb997a23dd0f61de6ea4bba356a86159",
+    "segments_manifest.csv": "c50961c5d6a5d5543212126acb023e368a8002e5695ec73444d5e822edfbc2c6",
+    "sonnets_manifest.csv": "e8f99462c59364bc98f435023282f9d782ab37b306a37fd05971da0f086e1379"
+  },
+  "materialized_broader_character_count": 26515621,
+  "materialized_record_count": 91,
+  "materialized_role_counts": {
+    "historical_general": 2,
+    "historical_non_sonnet_poetry": 14,
+    "nineteenth_century_bridge": 75
+  },
+  "materialized_sonnet_character_count": 20017,
+  "materialized_sonnet_count": 40,
+  "policy": {
+    "cache_deleted": false,
+    "conditioned_material_excluded": true,
+    "dialogue_terminal_hyphens_preserved": true,
+    "gpu_work_started": false,
+    "mixture_assigned": false,
+    "spelling_and_punctuation_preserved": true,
+    "text_activated": false,
+    "text_materialized_inactive": true,
+    "v7_created": false
+  },
+  "retained_source_span_character_count": 26515596,
+  "shard_count": 4,
+  "shards": {
+    "historical_general": [
+      {
+        "byte_count": 560056,
+        "item_count": 2,
+        "path": "data/processed/liber_liber_resolved_v1/historical_general/part-0001.txt",
+        "sha256": "4a637346a1b3322e31fe6e28a2ddb9199ec5b047715ecdad03feb409096def49"
+      }
+    ],
+    "historical_non_sonnet_poetry": [
+      {
+        "byte_count": 986915,
+        "item_count": 14,
+        "path": "data/processed/liber_liber_resolved_v1/historical_non_sonnet_poetry/part-0001.txt",
+        "sha256": "82b8a7a9ea2dbdd9d48e68c2adf71571ce2cfde9c5f4607f079a7362869195e7"
+      }
+    ],
+    "nineteenth_century_bridge": [
+      {
+        "byte_count": 25450384,
+        "item_count": 75,
+        "path": "data/processed/liber_liber_resolved_v1/nineteenth_century_bridge/part-0001.txt",
+        "sha256": "f4f9f4c104e60ffda8978ab354d6a7f5c54b6ba3480b5605415c767e65f9a5db"
+      }
+    ],
+    "standard_sonnets": [
+      {
+        "byte_count": 20591,
+        "item_count": 40,
+        "path": "data/processed/liber_liber_resolved_v1/standard_sonnets/part-0001.txt",
+        "sha256": "11d1f7bf50705a9768b1988bc8dc545709e8c980c95b3b896eb26a260ec47b10"
+      }
+    ]
+  },
+  "sonnet_candidate_count": 64,
+  "sonnet_decision_counts": {
+    "eligible_standard_sonnet_inactive_pending_checkpoint7": 40,
+    "exclude_existing_corpus_sonnet_duplicate": 22,
+    "exclude_protected_v6_sonnet": 2
+  },
+  "source_count": 129,
+  "source_decision_counts": {
+    "eligible_inactive_processed_build": 91,
+    "eligible_sonnet_only_inactive_processed_build": 1,
+    "exclude_alternate_vita_nuova_edition": 3,
+    "exclude_canonical_cross_corpus_duplicate": 30,
+    "exclude_composite_source_covered_by_existing_corpora": 4
+  },
+  "verification": {
+    "cross_candidate_pairs_checked": 3,
+    "cross_duplicate_count": 0,
+    "internal_candidate_pairs_checked": 0,
+    "near_duplicate_count": 0,
+    "normalized_exact_duplicate_count": 0,
+    "protected_candidate_pairs_checked": 0,
+    "protected_overlap_count": 0
+  }
+}

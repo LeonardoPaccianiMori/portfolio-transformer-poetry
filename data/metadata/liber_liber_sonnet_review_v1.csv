@@ -1,0 +1,3 @@
+review_id,record_id,candidate_id,review_type,evidence_sha256,review_resolution,review_rationale
+ll-review:2344098:structural-sonnet,ll:2344098,ll:2344098:char8339-8994,structural_sonnet,5265519fba15d3f75cd8dbdeba7d7fd8ec00989148a2cfbe41e8096210ce77c9,accept_structurally_verified_standard_sonnet,The bounded 4-4-3-3 window is exactly fourteen verse lines and is a complete sonnet embedded in the authorial poetry collection.
+ll-review:2344942:source-form,ll:2344942,,source_form,914888c9d087c753a021d3757a26e9b2f71491fc496ebba07a5c380ac6f8ee3a,retain_as_historical_non_sonnet_poetry,"The source title says Sonetti, but its labeled riddle units contain 17 or 20 lines with codas; none qualifies for the exact fourteen-line target-sonnet artifact."
