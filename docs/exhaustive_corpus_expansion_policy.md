@@ -99,6 +99,18 @@ with high canonical-overlap risk, and Google Books remains discovery-only. The
 full accounting and constraints are in the
 [`checkpoint-6A report`](../reports/corpus_archive_registry_resolution_v1.md).
 
+Checkpoint 6B completes those six bounded inventories. The normalized
+[`candidate ledger`](../data/metadata/corpus_archive_candidate_inventory_v1.csv),
+compact [`archive summary`](../data/metadata/corpus_archive_inventory_summary_v1.csv),
+and [`checkpoint report`](../reports/corpus_archive_candidate_inventory_v1.md)
+account for 114,971 published decision rows and every record filtered outside
+the public historical boundary. Exactly 4,634 rows are inactive candidates for
+later archive-specific source/rights/quality audits; 4,393 conditioned-language
+rows remain outside the standard queue. Complete raw responses remain in the
+ignored local cache. No corpus text, activation, V7 split, mixture weight, cache
+deletion, or GPU work is part of checkpoint 6B. The next registry step is the
+final open-ended archive-discovery pass in checkpoint 6C.
+
 ## Current Coverage
 
 - Biblioteca Italiana: role-specific TEI audit, review resolution, and bounded
@@ -176,7 +188,7 @@ full accounting and constraints are in the
   pinned page-boundary extraction and the full BibIt/Gutenberg/current-corpus/
   protected-V6 overlap probe for the 4B-eligible queue.
 - Liber Liber: complete through its deterministic inactive resolved build.
-- Remaining registry archives: checkpoint 6A terms/access/value closure is
-  complete. Six bounded metadata/source inventories remain for checkpoint 6B;
-  the final open-ended archive-discovery pass remains checkpoint 6C. No 6A row
-  authorizes corpus-text download or activation.
+- Remaining registry archives: checkpoint 6B's six bounded metadata/source
+  inventories are complete. The final open-ended archive-discovery pass remains
+  checkpoint 6C. None of the 4,634 inventory candidates authorizes corpus-text
+  download or activation.
