@@ -129,5 +129,20 @@ and final mixture freeze are complete.
   Manifests retain byte ranges, hashes, source rights, and the unresolved
   candidate-level poem-author status. No Gutenberg text has a V7 split,
   training-mixture weight, or Ottocento exposure yet, and no GPU work is active.
-- Italian Wikisource, Liber Liber, and the remaining registry archives: archive-
-  scale inventory pending.
+- Italian Wikisource: checkpoint 4A inventory and composition gate complete
+  against the SHA-1-pinned `20260801` `page`, `categorylinks`, and `linktarget`
+  metadata dumps. The inventory accounts for 117,297 main-namespace pages in
+  22,165 structural work roots and projects 225,685,176 wikitext bytes. It
+  identifies 6,863 provisional historical/Ottocento candidates projecting
+  64,834,722 bytes (28.7% of the archive projection), while 382 explicit
+  language-variety roots remain conditioned and 14,920 roots remain held,
+  excluded, or cross-archive references. A stratified 30-revision inspection
+  produces 17 primary-text signals and 13 page-level reviews. Candidate author
+  proxies already show concentration risk: Emilio Salgari projects 13.5% of
+  candidate bytes before cleaning and deduplication. Wikitext bytes are not
+  cleaned characters or tokens, current CC BY-SA 4.0 site terms do not replace
+  underlying-work/source-scan verification, and no text is activated. Next,
+  resolve bounded metadata/source-scan holds and approve only composition-
+  compatible roots for page-level extraction.
+- Liber Liber and the remaining registry archives: archive-scale inventory
+  pending.

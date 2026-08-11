@@ -1,0 +1,329 @@
+{
+  "inventory_version": "italian_wikisource_archive_inventory_v1",
+  "dump": {
+    "date": "20260801",
+    "base_url": "https://dumps.wikimedia.org/itwikisource/20260801",
+    "files": {
+      "page": {
+        "filename": "itwikisource-20260801-page.sql.gz",
+        "byte_count": 23112310,
+        "sha1": "d346505404381269c65d933c2c1d65031693c615",
+        "cache_path": "data/local/wikisource/archive_inventory_v1/itwikisource-20260801-page.sql.gz"
+      },
+      "categorylinks": {
+        "filename": "itwikisource-20260801-categorylinks.sql.gz",
+        "byte_count": 29158069,
+        "sha1": "016f85f2a180861a59a673fd17b1021da23f44c7",
+        "cache_path": "data/local/wikisource/archive_inventory_v1/itwikisource-20260801-categorylinks.sql.gz"
+      },
+      "linktarget": {
+        "filename": "itwikisource-20260801-linktarget.sql.gz",
+        "byte_count": 11140707,
+        "sha1": "ba38f03d8c0127667d614e36a11f24ee40bb56f4",
+        "cache_path": "data/local/wikisource/archive_inventory_v1/itwikisource-20260801-linktarget.sql.gz"
+      }
+    },
+    "full_page_text_dump_downloaded": false
+  },
+  "rights": {
+    "site_license": "Creative Commons Attribution-Share Alike 4.0",
+    "site_license_url": "https://creativecommons.org/licenses/by-sa/4.0/deed.it",
+    "underlying_work_and_scan_status": "record-level public-domain or compatible-license and source-scan verification remains required before extraction"
+  },
+  "main_namespace_page_count": 117297,
+  "main_namespace_nonredirect_page_count": 107766,
+  "work_root_count": 22165,
+  "root_with_page_count": 22060,
+  "hierarchy_only_root_count": 105,
+  "projected_wikitext_bytes": 225685176,
+  "decision_counts": {
+    "conditioned_language_candidate": 382,
+    "exclude_explicit_non_italian": 35,
+    "exclude_post_1900_scope": 2491,
+    "existing_project_reference": 176,
+    "historical_core_metadata_candidate": 3775,
+    "hold_language_variety_review": 3883,
+    "hold_period_or_work_identity": 7003,
+    "hold_translation_edition_review": 1332,
+    "nineteenth_century_bridge_metadata_candidate": 3088
+  },
+  "role_counts": {
+    "conditioned_language_variant": 382,
+    "cross_archive_reference_only": 176,
+    "excluded": 2526,
+    "historical_general": 1788,
+    "historical_non_sonnet_poetry": 1987,
+    "metadata_hold": 12218,
+    "nineteenth_century_bridge": 1599,
+    "standard_sonnets": 1489
+  },
+  "projected_wikitext_bytes_by_role": {
+    "conditioned_language_variant": 1847821,
+    "cross_archive_reference_only": 2951080,
+    "excluded": 100763991,
+    "historical_general": 24015936,
+    "historical_non_sonnet_poetry": 7063060,
+    "metadata_hold": 55287562,
+    "nineteenth_century_bridge": 32835373,
+    "standard_sonnets": 920353
+  },
+  "candidate_work_root_count": 6863,
+  "candidate_projected_wikitext_bytes": 64834722,
+  "candidate_projected_archive_share": 0.28727949,
+  "existing_project_reference_count": 176,
+  "bounded_inspection": {
+    "sample_size": 30,
+    "primary_text_signal_pass_count": 17,
+    "review_count": 13,
+    "sample_csv_path": "data/metadata/italian_wikisource_inspection_sample_v1.csv",
+    "sample_csv_sha256": "3d8eb04615e9282954a0fbff53c0cebe6646ee30d98605d539b4c320da44ec74"
+  },
+  "concentration": {
+    "top_author_proxies": [
+      {
+        "author": "Emilio Salgari",
+        "projected_wikitext_bytes": 8755725,
+        "share": 0.13504685
+      },
+      {
+        "author": "Niccolò Machiavelli",
+        "projected_wikitext_bytes": 3045994,
+        "share": 0.04698091
+      },
+      {
+        "author": "Giovanni Villani",
+        "projected_wikitext_bytes": 2812924,
+        "share": 0.04338607
+      },
+      {
+        "author": "Giacomo Leopardi",
+        "projected_wikitext_bytes": 2178263,
+        "share": 0.03359717
+      },
+      {
+        "author": "Giorgio Vasari",
+        "projected_wikitext_bytes": 1785596,
+        "share": 0.02754074
+      },
+      {
+        "author": "Alessandro Manzoni",
+        "projected_wikitext_bytes": 1550839,
+        "share": 0.02391988
+      },
+      {
+        "author": "Giovanni Boccaccio",
+        "projected_wikitext_bytes": 1498071,
+        "share": 0.023106
+      },
+      {
+        "author": "Luigi Pulci",
+        "projected_wikitext_bytes": 1449899,
+        "share": 0.022363
+      },
+      {
+        "author": "Dante Alighieri",
+        "projected_wikitext_bytes": 1309471,
+        "share": 0.02019706
+      },
+      {
+        "author": "Emma Perodi",
+        "projected_wikitext_bytes": 1246235,
+        "share": 0.01922172
+      },
+      {
+        "author": "Pellegrino Artusi",
+        "projected_wikitext_bytes": 1227213,
+        "share": 0.01892833
+      },
+      {
+        "author": "Edmondo De Amicis",
+        "projected_wikitext_bytes": 1156845,
+        "share": 0.01784299
+      },
+      {
+        "author": "Benvenuto Cellini",
+        "projected_wikitext_bytes": 1025541,
+        "share": 0.01581777
+      },
+      {
+        "author": "Pietro Aretino",
+        "projected_wikitext_bytes": 1021106,
+        "share": 0.01574937
+      },
+      {
+        "author": "Galileo Galilei",
+        "projected_wikitext_bytes": 952049,
+        "share": 0.01468425
+      },
+      {
+        "author": "Pietro Bembo",
+        "projected_wikitext_bytes": 859195,
+        "share": 0.01325208
+      },
+      {
+        "author": "Leopoldo Franchetti",
+        "projected_wikitext_bytes": 765076,
+        "share": 0.01180041
+      },
+      {
+        "author": "Giuseppe Gioachino Belli",
+        "projected_wikitext_bytes": 721391,
+        "share": 0.01112662
+      },
+      {
+        "author": "Cesare Lombroso",
+        "projected_wikitext_bytes": 647015,
+        "share": 0.00997945
+      },
+      {
+        "author": "Autori vari",
+        "projected_wikitext_bytes": 629319,
+        "share": 0.00970651
+      }
+    ],
+    "largest_candidate_roots": [
+      {
+        "work_root_id": "itws:65002",
+        "root_title": "Nuova Cronica",
+        "proposed_role": "historical_general",
+        "projected_wikitext_bytes": 2791817
+      },
+      {
+        "work_root_id": "itws:65062",
+        "root_title": "Le vite de' più eccellenti pittori, scultori e architettori (1550)",
+        "proposed_role": "historical_general",
+        "projected_wikitext_bytes": 1766437
+      },
+      {
+        "work_root_id": "itws:12284",
+        "root_title": "Istorie fiorentine",
+        "proposed_role": "historical_general",
+        "projected_wikitext_bytes": 1724698
+      },
+      {
+        "work_root_id": "itws:121680",
+        "root_title": "Pensieri di varia filosofia e di bella letteratura",
+        "proposed_role": "nineteenth_century_bridge",
+        "projected_wikitext_bytes": 1462623
+      },
+      {
+        "work_root_id": "itws:13762",
+        "root_title": "Morgante",
+        "proposed_role": "historical_non_sonnet_poetry",
+        "projected_wikitext_bytes": 1440360
+      },
+      {
+        "work_root_id": "itws:3153",
+        "root_title": "Fermo e Lucia",
+        "proposed_role": "nineteenth_century_bridge",
+        "projected_wikitext_bytes": 1368424
+      },
+      {
+        "work_root_id": "itws:23166",
+        "root_title": "Filocolo",
+        "proposed_role": "historical_general",
+        "projected_wikitext_bytes": 1316026
+      },
+      {
+        "work_root_id": "itws:35461",
+        "root_title": "Le novelle della nonna",
+        "proposed_role": "nineteenth_century_bridge",
+        "projected_wikitext_bytes": 1234140
+      },
+      {
+        "work_root_id": "itws:24277",
+        "root_title": "Scienza in cucina e l'arte di mangiar bene",
+        "proposed_role": "nineteenth_century_bridge",
+        "projected_wikitext_bytes": 1216440
+      },
+      {
+        "work_root_id": "itws:76773",
+        "root_title": "La vita di Benvenuto di Maestro Giovanni Cellini fiorentino, scritta, per lui medesimo, in Firenze",
+        "proposed_role": "historical_general",
+        "projected_wikitext_bytes": 1025541
+      },
+      {
+        "work_root_id": "itws:33571",
+        "root_title": "Primo maggio",
+        "proposed_role": "nineteenth_century_bridge",
+        "projected_wikitext_bytes": 960808
+      },
+      {
+        "work_root_id": "itws:12711",
+        "root_title": "Discorsi sopra la prima Deca di Tito Livio",
+        "proposed_role": "historical_general",
+        "projected_wikitext_bytes": 794052
+      },
+      {
+        "work_root_id": "itws:87840",
+        "root_title": "Condizioni politiche e amministrative della Sicilia",
+        "proposed_role": "nineteenth_century_bridge",
+        "projected_wikitext_bytes": 765076
+      },
+      {
+        "work_root_id": "itws:1548",
+        "root_title": "Divina Commedia",
+        "proposed_role": "historical_non_sonnet_poetry",
+        "projected_wikitext_bytes": 745034
+      },
+      {
+        "work_root_id": "itws:74074",
+        "root_title": "Ragionamenti",
+        "proposed_role": "historical_general",
+        "projected_wikitext_bytes": 727559
+      },
+      {
+        "work_root_id": "itws:256961",
+        "root_title": "L'uomo delinquente",
+        "proposed_role": "nineteenth_century_bridge",
+        "projected_wikitext_bytes": 647015
+      },
+      {
+        "work_root_id": "itws:31872",
+        "root_title": "Il Corsaro Nero",
+        "proposed_role": "nineteenth_century_bridge",
+        "projected_wikitext_bytes": 638413
+      },
+      {
+        "work_root_id": "itws:27292",
+        "root_title": "Mastro Titta, il boia di Roma",
+        "proposed_role": "nineteenth_century_bridge",
+        "projected_wikitext_bytes": 624966
+      },
+      {
+        "work_root_id": "itws:491756",
+        "root_title": "Gli orrori della Siberia",
+        "proposed_role": "nineteenth_century_bridge",
+        "projected_wikitext_bytes": 610857
+      },
+      {
+        "work_root_id": "itws:90634",
+        "root_title": "Le tigri di Mompracem",
+        "proposed_role": "nineteenth_century_bridge",
+        "projected_wikitext_bytes": 562680
+      }
+    ],
+    "warning": "wikitext bytes are metadata projections, not cleaned characters or tokens; unknown and multi-author rows prevent final concentration claims"
+  },
+  "outputs": {
+    "inventory_path": "data/metadata/italian_wikisource_archive_inventory_v1.csv",
+    "inventory_sha256": "ae4d737be6721eb2b8834a712c5120c39a2f7f27bb1fb09aaac5af7353054d1f",
+    "page_hierarchy_path": "data/metadata/italian_wikisource_page_hierarchy_v1.csv",
+    "page_hierarchy_sha256": "d266e543833aef401421193e0d8c3480001ffbc6d13dbbe97da2845fc25428f8",
+    "composition_gate_path": "data/metadata/italian_wikisource_composition_gate_v1.csv",
+    "composition_gate_sha256": "78ebf28ebf301262d80a3e3514b3b19004fe3dbe6cfaff80a435bf883419479e",
+    "json_report_path": "reports/italian_wikisource_archive_inventory_v1.json",
+    "markdown_report_path": "reports/italian_wikisource_archive_inventory_v1.md"
+  },
+  "policy": {
+    "metadata_only": true,
+    "source_text_extracted": false,
+    "corpus_text_activated": false,
+    "v7_split_assigned": false,
+    "training_mixture_weight_assigned": false,
+    "gpu_work_started": false,
+    "conditioned_material_standard_core_eligible": false,
+    "full_page_audit_requires_gate_decision": true
+  },
+  "next_checkpoint": "Resolve bounded metadata holds and approve only composition-compatible work roots for page-level extraction and cross-corpus deduplication."
+}
