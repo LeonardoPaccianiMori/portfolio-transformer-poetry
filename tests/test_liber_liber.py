@@ -127,6 +127,23 @@ Solone fu reputato sapiente.
     assert "progetto Manuzio" not in cleaned
 
 
+def test_strip_liber_liber_boilerplate_falls_back_after_split_title_wrapper():
+    text = """Autore
+Titolo non ripetuto
+Questo e-book è distribuito da Liber Liber.
+Informazioni sul progetto Manuzio: https://www.liberliber.it/
+Aiuta anche tu il progetto Manuzio.
+
+TITOLO
+NON RIPETUTO
+Corpo del testo.
+"""
+
+    cleaned = strip_liber_liber_boilerplate(text, title="Titolo non ripetuto")
+
+    assert cleaned == "TITOLO\nNON RIPETUTO\nCorpo del testo.\n"
+
+
 def test_fetch_liber_liber_text_follows_two_step_download():
     archive_bytes = make_zip(
         "opera.txt",

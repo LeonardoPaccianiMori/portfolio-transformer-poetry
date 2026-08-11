@@ -163,6 +163,8 @@ def strip_liber_liber_boilerplate(text: str, *, title: str) -> str:
         return _normalize_text("\n".join(lines[matching_indexes[1] :]))
     if matching_indexes and matching_indexes[0] > 5:
         return _normalize_text("\n".join(lines[matching_indexes[0] :]))
+    if wrapper_end >= 0:
+        return _normalize_text("\n".join(lines[wrapper_end + 1 :]))
 
     return normalized
 
