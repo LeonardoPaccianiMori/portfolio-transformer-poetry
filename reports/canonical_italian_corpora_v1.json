@@ -1,0 +1,7353 @@
+{
+  "activation_status": "inactive_pending_v7",
+  "attribution_count": 6582,
+  "author_character_shares": [
+    {
+      "character_count": 28090980,
+      "label": "Antonio Rosmini",
+      "share": 0.04363158
+    },
+    {
+      "character_count": 22216890,
+      "label": "Cantù, Cesare",
+      "share": 0.0345078
+    },
+    {
+      "character_count": 17666276,
+      "label": "Muratori, Lodovico Antonio",
+      "share": 0.02743968
+    },
+    {
+      "character_count": 16250483,
+      "label": "Guerrazzi, Francesco Domenico",
+      "share": 0.02524064
+    },
+    {
+      "character_count": 14460668,
+      "label": "Leopardi, Giacomo",
+      "share": 0.02246065
+    },
+    {
+      "character_count": 12424658,
+      "label": "Foscolo, Ugo",
+      "share": 0.01929828
+    },
+    {
+      "character_count": 11966998,
+      "label": "Giovan Battista Ramusio",
+      "share": 0.01858743
+    },
+    {
+      "character_count": 11855480,
+      "label": "Manzoni, Alessandro",
+      "share": 0.01841421
+    },
+    {
+      "character_count": 10905429,
+      "label": "Tasso, Torquato",
+      "share": 0.01693857
+    },
+    {
+      "character_count": 10376884,
+      "label": "Gibbon, Edward",
+      "share": 0.01611762
+    },
+    {
+      "character_count": 9967678,
+      "label": "Non definito",
+      "share": 0.01548204
+    },
+    {
+      "character_count": 9881092,
+      "label": "Sismondi, J.-C.-L. Simonde de (Jean-Charles-Léonard Simonde)",
+      "share": 0.01534755
+    },
+    {
+      "character_count": 8783265,
+      "label": "Gregorovius, Ferdinand",
+      "share": 0.01364238
+    },
+    {
+      "character_count": 7596783,
+      "label": "Various",
+      "share": 0.0117995
+    },
+    {
+      "character_count": 7552923,
+      "label": "Giannone, Pietro",
+      "share": 0.01173138
+    },
+    {
+      "character_count": 6629380,
+      "label": "Bersezio, Vittorio",
+      "share": 0.01029691
+    },
+    {
+      "character_count": 6039696,
+      "label": "Botta, Carlo",
+      "share": 0.009381
+    },
+    {
+      "character_count": 5899591,
+      "label": "Amari, Michele",
+      "share": 0.00916339
+    },
+    {
+      "character_count": 5255056,
+      "label": "Monti, Vincenzo",
+      "share": 0.00816228
+    },
+    {
+      "character_count": 5196365,
+      "label": "Boccaccio, Giovanni",
+      "share": 0.00807112
+    },
+    {
+      "character_count": 4969701,
+      "label": "Francesco Guicciardini",
+      "share": 0.00771906
+    },
+    {
+      "character_count": 4949949,
+      "label": "Emilio Salgari",
+      "share": 0.00768838
+    },
+    {
+      "character_count": 4649351,
+      "label": "Dumas, Alexandre;Maquet, Auguste",
+      "share": 0.00722148
+    },
+    {
+      "character_count": 4359397,
+      "label": "Giorgio Vasari",
+      "share": 0.00677112
+    },
+    {
+      "character_count": 4354638,
+      "label": "Giovanni Boccaccio",
+      "share": 0.00676373
+    },
+    {
+      "character_count": 4275092,
+      "label": "Gioberti, Vincenzo",
+      "share": 0.00664018
+    },
+    {
+      "character_count": 4212911,
+      "label": "Matteo Bandello",
+      "share": 0.00654359
+    },
+    {
+      "character_count": 4077541,
+      "label": "Petruccelli della Gattina, Ferdinando",
+      "share": 0.00633333
+    },
+    {
+      "character_count": 3997639,
+      "label": "Barrili, Anton Giulio",
+      "share": 0.00620923
+    },
+    {
+      "character_count": 3957203,
+      "label": "Scott, Walter",
+      "share": 0.00614642
+    },
+    {
+      "character_count": 3944139,
+      "label": "Oriani, Alfredo",
+      "share": 0.00612613
+    },
+    {
+      "character_count": 3935963,
+      "label": "Landino, Cristoforo",
+      "share": 0.00611343
+    },
+    {
+      "character_count": 3820158,
+      "label": "Villari, Pasquale",
+      "share": 0.00593356
+    },
+    {
+      "character_count": 3413454,
+      "label": "Verga, Giovanni",
+      "share": 0.00530186
+    },
+    {
+      "character_count": 3216487,
+      "label": "Vellutello, Alessandro",
+      "share": 0.00499592
+    },
+    {
+      "character_count": 3195721,
+      "label": "Capponi, Gino",
+      "share": 0.00496367
+    },
+    {
+      "character_count": 3133126,
+      "label": "Mazzini, Giuseppe",
+      "share": 0.00486645
+    },
+    {
+      "character_count": 3105911,
+      "label": "Rovetta, Gerolamo",
+      "share": 0.00482418
+    },
+    {
+      "character_count": 3101273,
+      "label": "Guerzoni, Giuseppe",
+      "share": 0.00481697
+    },
+    {
+      "character_count": 3092492,
+      "label": "unresolved",
+      "share": 0.00480333
+    },
+    {
+      "character_count": 2916727,
+      "label": "Ariosto, Ludovico",
+      "share": 0.00453033
+    },
+    {
+      "character_count": 2824039,
+      "label": "Ghislanzoni, Antonio",
+      "share": 0.00438636
+    },
+    {
+      "character_count": 2815896,
+      "label": "Paolo Sarpi",
+      "share": 0.00437372
+    },
+    {
+      "character_count": 2762809,
+      "label": "Sarpi, Paolo",
+      "share": 0.00429126
+    },
+    {
+      "character_count": 2739186,
+      "label": "Macaulay, Thomas Babington Macaulay, Baron",
+      "share": 0.00425457
+    },
+    {
+      "character_count": 2713993,
+      "label": "Giovanni Villani",
+      "share": 0.00421544
+    },
+    {
+      "character_count": 2687539,
+      "label": "Amabile, Luigi",
+      "share": 0.00417435
+    },
+    {
+      "character_count": 2686403,
+      "label": "Giraldi Cinzio, Giambattista",
+      "share": 0.00417259
+    },
+    {
+      "character_count": 2550979,
+      "label": "Imbriani, Vittorio",
+      "share": 0.00396224
+    },
+    {
+      "character_count": 2547537,
+      "label": "Guglielmotti, Alberto P.",
+      "share": 0.0039569
+    },
+    {
+      "character_count": 2522386,
+      "label": "Ariosto, Lodovico",
+      "share": 0.00391783
+    },
+    {
+      "character_count": 2410370,
+      "label": "Petrarca, Francesco",
+      "share": 0.00374384
+    },
+    {
+      "character_count": 2383678,
+      "label": "Gelli, Giovan Battista",
+      "share": 0.00370239
+    },
+    {
+      "character_count": 2374537,
+      "label": "Muratori, Lodovico Antonio;Coppi, Antonio",
+      "share": 0.00368819
+    },
+    {
+      "character_count": 2363324,
+      "label": "Marino, Giovambattista",
+      "share": 0.00367077
+    },
+    {
+      "character_count": 2351180,
+      "label": "Garibaldi, Giuseppe",
+      "share": 0.00365191
+    },
+    {
+      "character_count": 2322005,
+      "label": "Niccolò Machiavelli",
+      "share": 0.00360659
+    },
+    {
+      "character_count": 2298149,
+      "label": "Matteo Villani",
+      "share": 0.00356954
+    },
+    {
+      "character_count": 2297285,
+      "label": "Azeglio, Massimo d'",
+      "share": 0.0035682
+    },
+    {
+      "character_count": 2270243,
+      "label": "Verri, Pietro",
+      "share": 0.0035262
+    },
+    {
+      "character_count": 2232663,
+      "label": "Curti, Pier Ambrogio",
+      "share": 0.00346783
+    },
+    {
+      "character_count": 2183769,
+      "label": "Boiardo, Matteo Maria",
+      "share": 0.00339188
+    },
+    {
+      "character_count": 2132681,
+      "label": "Anton Giulio Barrili",
+      "share": 0.00331253
+    },
+    {
+      "character_count": 2094150,
+      "label": "Alamanni, Luigi",
+      "share": 0.00325268
+    },
+    {
+      "character_count": 2050705,
+      "label": "Aretino, Pietro",
+      "share": 0.0031852
+    },
+    {
+      "character_count": 2048540,
+      "label": "Balbo, Cesare, conte",
+      "share": 0.00318184
+    },
+    {
+      "character_count": 2024699,
+      "label": "Rovani, Giuseppe",
+      "share": 0.00314481
+    },
+    {
+      "character_count": 2007316,
+      "label": "Nievo, Ippolito",
+      "share": 0.00311781
+    },
+    {
+      "character_count": 1913580,
+      "label": "De Sanctis, Francesco",
+      "share": 0.00297222
+    },
+    {
+      "character_count": 1771043,
+      "label": "Pietro Verri",
+      "share": 0.00275083
+    },
+    {
+      "character_count": 1762520,
+      "label": "Boccalini, Traiano",
+      "share": 0.00273759
+    },
+    {
+      "character_count": 1721832,
+      "label": "Enrico Castelnuovo",
+      "share": 0.00267439
+    },
+    {
+      "character_count": 1721415,
+      "label": "Sanudo, Marino",
+      "share": 0.00267374
+    },
+    {
+      "character_count": 1694739,
+      "label": "Bertini, Giuseppe",
+      "share": 0.00263231
+    },
+    {
+      "character_count": 1690866,
+      "label": "Galileo Galilei",
+      "share": 0.00262629
+    },
+    {
+      "character_count": 1674270,
+      "label": "Vasari, Giorgio",
+      "share": 0.00260052
+    },
+    {
+      "character_count": 1660422,
+      "label": "Alberti, Leon Battista",
+      "share": 0.00257901
+    },
+    {
+      "character_count": 1644802,
+      "label": "Giuseppe Cesare Abba",
+      "share": 0.00255475
+    },
+    {
+      "character_count": 1614441,
+      "label": "Masuccio Salernitano",
+      "share": 0.00250759
+    },
+    {
+      "character_count": 1573630,
+      "label": "Balbo, Cesare",
+      "share": 0.0024442
+    },
+    {
+      "character_count": 1560379,
+      "label": "Castiglione, Baldassarre",
+      "share": 0.00242362
+    },
+    {
+      "character_count": 1559899,
+      "label": "Thucydides",
+      "share": 0.00242287
+    },
+    {
+      "character_count": 1554688,
+      "label": "Goldoni, Carlo",
+      "share": 0.00241478
+    },
+    {
+      "character_count": 1532472,
+      "label": "Emma Perodi",
+      "share": 0.00238027
+    },
+    {
+      "character_count": 1531193,
+      "label": "Cavallotti, Felice",
+      "share": 0.00237829
+    },
+    {
+      "character_count": 1507524,
+      "label": "Jarro (alias Giulio Piccini)",
+      "share": 0.00234152
+    },
+    {
+      "character_count": 1504408,
+      "label": "Anguillara, Giovanni Andrea dell'",
+      "share": 0.00233668
+    },
+    {
+      "character_count": 1483545,
+      "label": "Bazzoni, Giambattista",
+      "share": 0.00230428
+    },
+    {
+      "character_count": 1474956,
+      "label": "Dumas, Alexandre",
+      "share": 0.00229094
+    },
+    {
+      "character_count": 1469228,
+      "label": "Gabriello Chiabrera",
+      "share": 0.00228204
+    },
+    {
+      "character_count": 1468036,
+      "label": "Frari, A. A. (Angelo Antonio)",
+      "share": 0.00228019
+    },
+    {
+      "character_count": 1453671,
+      "label": "Guido da Pisa",
+      "share": 0.00225788
+    },
+    {
+      "character_count": 1429875,
+      "label": "Alfieri, Vittorio",
+      "share": 0.00222092
+    },
+    {
+      "character_count": 1425525,
+      "label": "Salvatore Farina",
+      "share": 0.00221416
+    },
+    {
+      "character_count": 1406704,
+      "label": "Muzio, Girolamo",
+      "share": 0.00218493
+    },
+    {
+      "character_count": 1393885,
+      "label": "Carcano, Giulio",
+      "share": 0.00216502
+    },
+    {
+      "character_count": 1393827,
+      "label": "Belgiojoso, Carlo",
+      "share": 0.00216493
+    },
+    {
+      "character_count": 1383562,
+      "label": "Luigi Capuana",
+      "share": 0.00214898
+    },
+    {
+      "character_count": 1382825,
+      "label": "Fogazzaro, Antonio",
+      "share": 0.00214784
+    },
+    {
+      "character_count": 1342185,
+      "label": "Metastasio, Pietro",
+      "share": 0.00208471
+    },
+    {
+      "character_count": 1318172,
+      "label": "Salimbene, da Parma",
+      "share": 0.00204742
+    },
+    {
+      "character_count": 1291482,
+      "label": "Farina, Salvatore",
+      "share": 0.00200596
+    },
+    {
+      "character_count": 1289271,
+      "label": "Neera",
+      "share": 0.00200253
+    },
+    {
+      "character_count": 1285506,
+      "label": "Porta, Giambattista della",
+      "share": 0.00199668
+    },
+    {
+      "character_count": 1279650,
+      "label": "Alighieri, Dante",
+      "share": 0.00198758
+    },
+    {
+      "character_count": 1266797,
+      "label": "Pitrè, Giuseppe",
+      "share": 0.00196762
+    },
+    {
+      "character_count": 1254518,
+      "label": "Burckhardt, Jacob",
+      "share": 0.00194855
+    },
+    {
+      "character_count": 1254230,
+      "label": "Filarete (Antonio Averlino detto il)",
+      "share": 0.0019481
+    },
+    {
+      "character_count": 1242130,
+      "label": "Barzizza, Guiniforte",
+      "share": 0.00192931
+    },
+    {
+      "character_count": 1218960,
+      "label": "Capefigue, M. (Jean Baptiste Honoré Raymond)",
+      "share": 0.00189332
+    },
+    {
+      "character_count": 1207428,
+      "label": "Swift, Jonathan",
+      "share": 0.00187541
+    },
+    {
+      "character_count": 1207006,
+      "label": "Pulci, Luigi",
+      "share": 0.00187475
+    },
+    {
+      "character_count": 1203652,
+      "label": "Trissino, Gian Giorgio",
+      "share": 0.00186954
+    },
+    {
+      "character_count": 1201339,
+      "label": "Cordelia (alias Virginia Tedeschi Treves)",
+      "share": 0.00186595
+    },
+    {
+      "character_count": 1179999,
+      "label": "De Amicis, Edmondo",
+      "share": 0.0018328
+    },
+    {
+      "character_count": 1179209,
+      "label": "Thouar, Pietro",
+      "share": 0.00183158
+    },
+    {
+      "character_count": 1173520,
+      "label": "Forteguerri, Niccolò",
+      "share": 0.00182274
+    },
+    {
+      "character_count": 1143241,
+      "label": "Mamiani della Rovere, Terenzio, conte",
+      "share": 0.00177571
+    },
+    {
+      "character_count": 1131127,
+      "label": "Michelangelo Buonarroti",
+      "share": 0.00175689
+    },
+    {
+      "character_count": 1124114,
+      "label": "Ferrari, Giuseppe",
+      "share": 0.001746
+    },
+    {
+      "character_count": 1119339,
+      "label": "Memini",
+      "share": 0.00173858
+    },
+    {
+      "character_count": 1117832,
+      "label": "Ali Bey",
+      "share": 0.00173624
+    },
+    {
+      "character_count": 1106016,
+      "label": "Arienti, Giovanni Sabadino degli",
+      "share": 0.00171789
+    },
+    {
+      "character_count": 1096655,
+      "label": "Belgioioso, Cristina",
+      "share": 0.00170335
+    },
+    {
+      "character_count": 1088487,
+      "label": "Botero, Giovanni",
+      "share": 0.00169066
+    },
+    {
+      "character_count": 1073927,
+      "label": "Franco Sacchetti",
+      "share": 0.00166805
+    },
+    {
+      "character_count": 1068844,
+      "label": "Francesco Mastriani",
+      "share": 0.00166015
+    },
+    {
+      "character_count": 1064079,
+      "label": "Piccolomini, Alessandro",
+      "share": 0.00165275
+    },
+    {
+      "character_count": 1059527,
+      "label": "Cummins, Maria S. (Maria Susanna)",
+      "share": 0.00164568
+    },
+    {
+      "character_count": 1038716,
+      "label": "Mastriani, Francesco",
+      "share": 0.00161336
+    },
+    {
+      "character_count": 1036792,
+      "label": "Serao, Matilde",
+      "share": 0.00161037
+    },
+    {
+      "character_count": 1028496,
+      "label": "Radcliffe, Ann Ward",
+      "share": 0.00159748
+    },
+    {
+      "character_count": 1014772,
+      "label": "Pellico, Silvio",
+      "share": 0.00157617
+    },
+    {
+      "character_count": 1011633,
+      "label": "Bracco, Roberto",
+      "share": 0.00157129
+    },
+    {
+      "character_count": 1010239,
+      "label": "Da Ponte, Lorenzo",
+      "share": 0.00156913
+    },
+    {
+      "character_count": 1004261,
+      "label": "Cellini, Benvenuto",
+      "share": 0.00155984
+    },
+    {
+      "character_count": 987136,
+      "label": "Benamozegh, Elia",
+      "share": 0.00153324
+    },
+    {
+      "character_count": 978390,
+      "label": "Treitschke, Heinrich von",
+      "share": 0.00151966
+    },
+    {
+      "character_count": 975699,
+      "label": "Fernando, Aron",
+      "share": 0.00151548
+    },
+    {
+      "character_count": 971643,
+      "label": "Gualdo, Luigi",
+      "share": 0.00150918
+    },
+    {
+      "character_count": 970419,
+      "label": "Ines Benaglio Castellani-Fantoni (alias Memini)",
+      "share": 0.00150728
+    },
+    {
+      "character_count": 967856,
+      "label": "Antoniano, Silvio",
+      "share": 0.0015033
+    },
+    {
+      "character_count": 962927,
+      "label": "Percoto, Caterina",
+      "share": 0.00149564
+    },
+    {
+      "character_count": 960764,
+      "label": "Caterina da Siena",
+      "share": 0.00149228
+    },
+    {
+      "character_count": 952622,
+      "label": "Tommaseo, Niccolò",
+      "share": 0.00147964
+    },
+    {
+      "character_count": 943504,
+      "label": "Giambattista Vico",
+      "share": 0.00146547
+    },
+    {
+      "character_count": 935409,
+      "label": "Carrera, Valentino",
+      "share": 0.0014529
+    },
+    {
+      "character_count": 916861,
+      "label": "Guazzo, Stefano",
+      "share": 0.00142409
+    },
+    {
+      "character_count": 894754,
+      "label": "Varchi, Benedetto",
+      "share": 0.00138975
+    },
+    {
+      "character_count": 876138,
+      "label": "Fanfani, Pietro",
+      "share": 0.00136084
+    },
+    {
+      "character_count": 873103,
+      "label": "Jatta, Giovanni",
+      "share": 0.00135612
+    },
+    {
+      "character_count": 870806,
+      "label": "Bianco, Carlo",
+      "share": 0.00135256
+    },
+    {
+      "character_count": 840945,
+      "label": "Giovanni Verga",
+      "share": 0.00130618
+    },
+    {
+      "character_count": 839605,
+      "label": "Graf, Arturo",
+      "share": 0.00130409
+    },
+    {
+      "character_count": 834582,
+      "label": "Leone Ebreo",
+      "share": 0.00129629
+    },
+    {
+      "character_count": 832191,
+      "label": "Guerrini, Olindo",
+      "share": 0.00129258
+    },
+    {
+      "character_count": 815359,
+      "label": "Bruno, Giordano",
+      "share": 0.00126644
+    },
+    {
+      "character_count": 813646,
+      "label": "Tasso, Bernardo",
+      "share": 0.00126377
+    },
+    {
+      "character_count": 812682,
+      "label": "Crispi, Francesco",
+      "share": 0.00126228
+    },
+    {
+      "character_count": 811654,
+      "label": "De Roberto, Federico",
+      "share": 0.00126068
+    },
+    {
+      "character_count": 807339,
+      "label": "Montanari, Geminiano;Scaruffi, Gasparo;Serra, Antonio, active 1613",
+      "share": 0.00125398
+    },
+    {
+      "character_count": 802763,
+      "label": "Bazzero, Ambrogio",
+      "share": 0.00124687
+    },
+    {
+      "character_count": 800508,
+      "label": "Luigi Pirandello",
+      "share": 0.00124337
+    },
+    {
+      "character_count": 799493,
+      "label": "Pisacane, Carlo, 1818-1857",
+      "share": 0.00124179
+    },
+    {
+      "character_count": 794430,
+      "label": "Ubaldini, Petruccio, 1524?-1600?",
+      "share": 0.00123393
+    },
+    {
+      "character_count": 785427,
+      "label": "ILC-CNR digital edition",
+      "share": 0.00121994
+    },
+    {
+      "character_count": 779555,
+      "label": "Baldassarre Castiglione",
+      "share": 0.00121082
+    },
+    {
+      "character_count": 777774,
+      "label": "De Filippi, Filippo",
+      "share": 0.00120806
+    },
+    {
+      "character_count": 763210,
+      "label": "Parmenio Bettoli",
+      "share": 0.00118544
+    },
+    {
+      "character_count": 760029,
+      "label": "Pascoli, Giovanni",
+      "share": 0.0011805
+    },
+    {
+      "character_count": 750242,
+      "label": "Tansillo, Luigi",
+      "share": 0.00116529
+    },
+    {
+      "character_count": 745219,
+      "label": "Nicolò da Lonigo",
+      "share": 0.00115749
+    },
+    {
+      "character_count": 744914,
+      "label": "Mulazzi, Virginia",
+      "share": 0.00115702
+    },
+    {
+      "character_count": 740144,
+      "label": "Dall'Ongaro, Francesco",
+      "share": 0.00114961
+    },
+    {
+      "character_count": 732219,
+      "label": "Rossetti, Gabriele, 1783-1854",
+      "share": 0.0011373
+    },
+    {
+      "character_count": 729827,
+      "label": "Pietro Bembo",
+      "share": 0.00113358
+    },
+    {
+      "character_count": 729369,
+      "label": "Cartari, Vincenzo",
+      "share": 0.00113287
+    },
+    {
+      "character_count": 729315,
+      "label": "Vecchi, Candido Augusto",
+      "share": 0.00113279
+    },
+    {
+      "character_count": 720941,
+      "label": "Guarini, Battista",
+      "share": 0.00111978
+    },
+    {
+      "character_count": 719913,
+      "label": "Medici, Lorenzo de'",
+      "share": 0.00111819
+    },
+    {
+      "character_count": 719722,
+      "label": "Campiglio, Giovanni",
+      "share": 0.00111789
+    },
+    {
+      "character_count": 714824,
+      "label": "Untersteiner, Alfredo",
+      "share": 0.00111028
+    },
+    {
+      "character_count": 712071,
+      "label": "Praga, Emilio",
+      "share": 0.00110601
+    },
+    {
+      "character_count": 707398,
+      "label": "Colombi, marchesa",
+      "share": 0.00109875
+    },
+    {
+      "character_count": 706020,
+      "label": "Dante Alighieri,  1265-1321",
+      "share": 0.00109661
+    },
+    {
+      "character_count": 705027,
+      "label": "Landi, Ortensio",
+      "share": 0.00109506
+    },
+    {
+      "character_count": 704849,
+      "label": "Salgari, Emilio",
+      "share": 0.00109479
+    },
+    {
+      "character_count": 702880,
+      "label": "Giustino Ferri",
+      "share": 0.00109173
+    },
+    {
+      "character_count": 701828,
+      "label": "Svevo, Italo",
+      "share": 0.0010901
+    },
+    {
+      "character_count": 684623,
+      "label": "Lucchesini, Cesare",
+      "share": 0.00106337
+    },
+    {
+      "character_count": 674634,
+      "label": "Castiglione, Baldassare,  conte,  1478-1529",
+      "share": 0.00104786
+    },
+    {
+      "character_count": 670998,
+      "label": "Ripamonti, Giuseppe",
+      "share": 0.00104221
+    },
+    {
+      "character_count": 662812,
+      "label": "Machiavelli, Niccolò",
+      "share": 0.0010295
+    },
+    {
+      "character_count": 655159,
+      "label": "Monteverde, Cesare",
+      "share": 0.00101761
+    },
+    {
+      "character_count": 650888,
+      "label": "Guidetti, Corrado",
+      "share": 0.00101097
+    },
+    {
+      "character_count": 647058,
+      "label": "Zùccoli, Luciano",
+      "share": 0.00100503
+    },
+    {
+      "character_count": 646277,
+      "label": "Pigna (Giovan Battista Nicolucci, detto il)",
+      "share": 0.00100381
+    },
+    {
+      "character_count": 640840,
+      "label": "Rustichello da Pisa",
+      "share": 0.00099537
+    },
+    {
+      "character_count": 631524,
+      "label": "Giacosa, Giuseppe",
+      "share": 0.0009809
+    },
+    {
+      "character_count": 631459,
+      "label": "Maramauro, Guglielmo",
+      "share": 0.0009808
+    },
+    {
+      "character_count": 630030,
+      "label": "Emilio De Marchi",
+      "share": 0.00097858
+    },
+    {
+      "character_count": 629067,
+      "label": "Frezzi, Federico",
+      "share": 0.00097708
+    },
+    {
+      "character_count": 624534,
+      "label": "Firenzuola, Agnolo",
+      "share": 0.00097004
+    },
+    {
+      "character_count": 619040,
+      "label": "Tebaldeo, Antonio",
+      "share": 0.00096151
+    },
+    {
+      "character_count": 618575,
+      "label": "Giambullari, Pier Francesco",
+      "share": 0.00096079
+    },
+    {
+      "character_count": 608676,
+      "label": "Sacchetti, Roberto",
+      "share": 0.00094541
+    },
+    {
+      "character_count": 607413,
+      "label": "Blanch, Luigi",
+      "share": 0.00094345
+    },
+    {
+      "character_count": 602144,
+      "label": "Tigri, Giuseppe",
+      "share": 0.00093526
+    },
+    {
+      "character_count": 600471,
+      "label": "Da Morrona, Alessandro",
+      "share": 0.00093267
+    },
+    {
+      "character_count": 597291,
+      "label": "Berchet, Giovanni",
+      "share": 0.00092773
+    },
+    {
+      "character_count": 586814,
+      "label": "Savonarola, Michele",
+      "share": 0.00091145
+    },
+    {
+      "character_count": 585998,
+      "label": "Capranica, Luigi",
+      "share": 0.00091019
+    },
+    {
+      "character_count": 585182,
+      "label": "Bini, Carlo",
+      "share": 0.00090892
+    },
+    {
+      "character_count": 579559,
+      "label": "Beatrice Speraz",
+      "share": 0.00090018
+    },
+    {
+      "character_count": 577765,
+      "label": "Grassi, Ranieri",
+      "share": 0.0008974
+    },
+    {
+      "character_count": 575281,
+      "label": "Coppi, Ettore",
+      "share": 0.00089354
+    },
+    {
+      "character_count": 573708,
+      "label": "Cesarotti, Melchiorre",
+      "share": 0.0008911
+    },
+    {
+      "character_count": 568572,
+      "label": "Ranieri, Antonio",
+      "share": 0.00088312
+    },
+    {
+      "character_count": 567614,
+      "label": "Tarchetti, Iginio Ugo",
+      "share": 0.00088163
+    },
+    {
+      "character_count": 562957,
+      "label": "Equicola, Mario",
+      "share": 0.0008744
+    },
+    {
+      "character_count": 560534,
+      "label": "Romei, Annibale",
+      "share": 0.00087063
+    },
+    {
+      "character_count": 559417,
+      "label": "Uccellini, Primo",
+      "share": 0.0008689
+    },
+    {
+      "character_count": 555337,
+      "label": "Raga, Emilio",
+      "share": 0.00086256
+    },
+    {
+      "character_count": 554669,
+      "label": "Enrico Annibale Butti",
+      "share": 0.00086153
+    },
+    {
+      "character_count": 551592,
+      "label": "Torelli, Luigi",
+      "share": 0.00085675
+    },
+    {
+      "character_count": 551143,
+      "label": "About, Edmond",
+      "share": 0.00085605
+    },
+    {
+      "character_count": 550251,
+      "label": "Guicciardini, Francesco",
+      "share": 0.00085466
+    },
+    {
+      "character_count": 546012,
+      "label": "Antonio Fogazzaro",
+      "share": 0.00084808
+    },
+    {
+      "character_count": 540945,
+      "label": "Matilde Serao",
+      "share": 0.00084021
+    },
+    {
+      "character_count": 535694,
+      "label": "Enrico Costa",
+      "share": 0.00083205
+    },
+    {
+      "character_count": 535638,
+      "label": "Spaventa, Bertrando",
+      "share": 0.00083197
+    },
+    {
+      "character_count": 533975,
+      "label": "Contarini, Alvise",
+      "share": 0.00082938
+    },
+    {
+      "character_count": 533647,
+      "label": "Castellani, Francesco",
+      "share": 0.00082887
+    },
+    {
+      "character_count": 533093,
+      "label": "Chiabrera, Gabriello",
+      "share": 0.00082801
+    },
+    {
+      "character_count": 515377,
+      "label": "Neera (alias Anna Radius Zuccari)",
+      "share": 0.0008005
+    },
+    {
+      "character_count": 514258,
+      "label": "Guicciardini, Ludovico",
+      "share": 0.00079876
+    },
+    {
+      "character_count": 511135,
+      "label": "Ottolini, V. (Vittore)",
+      "share": 0.00079391
+    },
+    {
+      "character_count": 510747,
+      "label": "Maria Antonietta Torriani",
+      "share": 0.0007933
+    },
+    {
+      "character_count": 508846,
+      "label": "Carducci, Giosue",
+      "share": 0.00079035
+    },
+    {
+      "character_count": 505471,
+      "label": "Fregoso, Antonio Fileremo",
+      "share": 0.00078511
+    },
+    {
+      "character_count": 501516,
+      "label": "Regina di Luanto (alias Anna Guendalina Lipparini sposata Roti)",
+      "share": 0.00077897
+    },
+    {
+      "character_count": 500253,
+      "label": "Socci, Ettore",
+      "share": 0.000777
+    },
+    {
+      "character_count": 497948,
+      "label": "Tettoni, Leone",
+      "share": 0.00077342
+    },
+    {
+      "character_count": 497944,
+      "label": "D'Ambra, Lucio",
+      "share": 0.00077342
+    },
+    {
+      "character_count": 497467,
+      "label": "Niccolò da Correggio",
+      "share": 0.00077268
+    },
+    {
+      "character_count": 494215,
+      "label": "Contile, Luca",
+      "share": 0.00076763
+    },
+    {
+      "character_count": 493023,
+      "label": "Landucci, Luca",
+      "share": 0.00076578
+    },
+    {
+      "character_count": 492967,
+      "label": "Boghen Conigliani, Emma",
+      "share": 0.00076569
+    },
+    {
+      "character_count": 491931,
+      "label": "Galilei, Galileo",
+      "share": 0.00076408
+    },
+    {
+      "character_count": 491136,
+      "label": "Bonfadini, Romualdo",
+      "share": 0.00076284
+    },
+    {
+      "character_count": 487536,
+      "label": "Rossi, Pasquale",
+      "share": 0.00075725
+    },
+    {
+      "character_count": 483524,
+      "label": "Pascarella, Cesare",
+      "share": 0.00075102
+    },
+    {
+      "character_count": 482597,
+      "label": "Rossi, Emanuele",
+      "share": 0.00074958
+    },
+    {
+      "character_count": 480755,
+      "label": "Leonardo, da Vinci",
+      "share": 0.00074672
+    },
+    {
+      "character_count": 477156,
+      "label": "Jacopone, da Todi",
+      "share": 0.00074113
+    },
+    {
+      "character_count": 471401,
+      "label": "Giovanni Milani",
+      "share": 0.00073219
+    },
+    {
+      "character_count": 469666,
+      "label": "Edoardo Arbib",
+      "share": 0.0007295
+    },
+    {
+      "character_count": 468503,
+      "label": "Silva, Ercole",
+      "share": 0.00072769
+    },
+    {
+      "character_count": 461489,
+      "label": "Mandeville, John, Sir",
+      "share": 0.0007168
+    },
+    {
+      "character_count": 460465,
+      "label": "Giuseppe Vigoni",
+      "share": 0.00071521
+    },
+    {
+      "character_count": 459218,
+      "label": "Gozzi, Carlo",
+      "share": 0.00071327
+    },
+    {
+      "character_count": 456842,
+      "label": "Bembo, Pietro",
+      "share": 0.00070958
+    },
+    {
+      "character_count": 456283,
+      "label": "Minghetti, Marco",
+      "share": 0.00070871
+    },
+    {
+      "character_count": 451037,
+      "label": "Luigia Codemo",
+      "share": 0.00070056
+    },
+    {
+      "character_count": 450281,
+      "label": "Dino Compagni",
+      "share": 0.00069939
+    },
+    {
+      "character_count": 449462,
+      "label": "Datini, Francesco",
+      "share": 0.00069812
+    },
+    {
+      "character_count": 447881,
+      "label": "Regaldi, Giuseppe",
+      "share": 0.00069566
+    },
+    {
+      "character_count": 446617,
+      "label": "Giusti, Giuseppe",
+      "share": 0.0006937
+    },
+    {
+      "character_count": 446198,
+      "label": "Parini, Giuseppe",
+      "share": 0.00069305
+    },
+    {
+      "character_count": 444730,
+      "label": "Castelnuovo, Enrico",
+      "share": 0.00069077
+    },
+    {
+      "character_count": 441020,
+      "label": "Engels, Friedrich",
+      "share": 0.000685
+    },
+    {
+      "character_count": 439216,
+      "label": "Cattaneo, Carlo",
+      "share": 0.0006822
+    },
+    {
+      "character_count": 436809,
+      "label": "Virginia Tedeschi Treves",
+      "share": 0.00067846
+    },
+    {
+      "character_count": 431377,
+      "label": "Sanvittore, Gaetano",
+      "share": 0.00067003
+    },
+    {
+      "character_count": 430496,
+      "label": "Lessona, Michele",
+      "share": 0.00066866
+    },
+    {
+      "character_count": 429985,
+      "label": "Mocenigo, Alvise",
+      "share": 0.00066786
+    },
+    {
+      "character_count": 429122,
+      "label": "Edmondo De Amicis",
+      "share": 0.00066652
+    },
+    {
+      "character_count": 426803,
+      "label": "Verne, Jules",
+      "share": 0.00066292
+    },
+    {
+      "character_count": 421601,
+      "label": "Aleardo Aleardi",
+      "share": 0.00065484
+    },
+    {
+      "character_count": 420131,
+      "label": "Niccolò Tommaseo",
+      "share": 0.00065256
+    },
+    {
+      "character_count": 420099,
+      "label": "Volta, Alessandro",
+      "share": 0.00065251
+    },
+    {
+      "character_count": 418156,
+      "label": "Bronzino, Agnolo",
+      "share": 0.00064949
+    },
+    {
+      "character_count": 406022,
+      "label": "Merlini, Domenico",
+      "share": 0.00063064
+    },
+    {
+      "character_count": 405872,
+      "label": "Mozzoni, Anna Maria",
+      "share": 0.00063041
+    },
+    {
+      "character_count": 405204,
+      "label": "Beltrame, G. (Gianni)",
+      "share": 0.00062937
+    },
+    {
+      "character_count": 403968,
+      "label": "Nicola Del Vecchio",
+      "share": 0.00062745
+    },
+    {
+      "character_count": 402158,
+      "label": "Mario Rapisardi",
+      "share": 0.00062464
+    },
+    {
+      "character_count": 401782,
+      "label": "Luigi Carrer",
+      "share": 0.00062406
+    },
+    {
+      "character_count": 399332,
+      "label": "Tronci, Paolo",
+      "share": 0.00062025
+    },
+    {
+      "character_count": 398118,
+      "label": "Porcacchi, Tommaso",
+      "share": 0.00061837
+    },
+    {
+      "character_count": 396609,
+      "label": "Galli, Angelo",
+      "share": 0.00061602
+    },
+    {
+      "character_count": 396101,
+      "label": "Barbieri, Ulisse",
+      "share": 0.00061523
+    },
+    {
+      "character_count": 391890,
+      "label": "Gallo, Filenio",
+      "share": 0.00060869
+    },
+    {
+      "character_count": 391244,
+      "label": "Manso, Giovan Battista",
+      "share": 0.00060769
+    },
+    {
+      "character_count": 389749,
+      "label": "Cuoco, Vincenzo",
+      "share": 0.00060537
+    },
+    {
+      "character_count": 388283,
+      "label": "Macinghi Strozzi, Alessandra",
+      "share": 0.00060309
+    },
+    {
+      "character_count": 387063,
+      "label": "Chaucer, Geoffrey",
+      "share": 0.0006012
+    },
+    {
+      "character_count": 380977,
+      "label": "Gaetano Carlo Chelli",
+      "share": 0.00059174
+    },
+    {
+      "character_count": 378429,
+      "label": "Betussi, Giuseppe",
+      "share": 0.00058778
+    },
+    {
+      "character_count": 377218,
+      "label": "Federico De Roberto",
+      "share": 0.0005859
+    },
+    {
+      "character_count": 372833,
+      "label": "Mario, Alberto",
+      "share": 0.00057909
+    },
+    {
+      "character_count": 371967,
+      "label": "Albertazzi, Adolfo",
+      "share": 0.00057775
+    },
+    {
+      "character_count": 371078,
+      "label": "Tronconi, Cesare",
+      "share": 0.00057637
+    },
+    {
+      "character_count": 370727,
+      "label": "Serafino Aquilano",
+      "share": 0.00057582
+    },
+    {
+      "character_count": 370687,
+      "label": "Nannini, Remigio",
+      "share": 0.00057576
+    },
+    {
+      "character_count": 369115,
+      "label": "Acerbi, Giuseppe",
+      "share": 0.00057332
+    },
+    {
+      "character_count": 367664,
+      "label": "Morelli, Giovanni di Pagolo",
+      "share": 0.00057106
+    },
+    {
+      "character_count": 366443,
+      "label": "Jolanda",
+      "share": 0.00056917
+    },
+    {
+      "character_count": 366364,
+      "label": "Anonimo romano",
+      "share": 0.00056905
+    },
+    {
+      "character_count": 365772,
+      "label": "De Marchi, Emilio",
+      "share": 0.00056813
+    },
+    {
+      "character_count": 362533,
+      "label": "Jarro",
+      "share": 0.00056309
+    },
+    {
+      "character_count": 361770,
+      "label": "Adolfo Albertazzi",
+      "share": 0.00056191
+    },
+    {
+      "character_count": 359545,
+      "label": "Simone da Cascina",
+      "share": 0.00055845
+    },
+    {
+      "character_count": 357404,
+      "label": "Capasso, Bartolommeo",
+      "share": 0.00055513
+    },
+    {
+      "character_count": 353185,
+      "label": "Boito, Camillo",
+      "share": 0.00054858
+    },
+    {
+      "character_count": 351016,
+      "label": "Carlo Collodi (alias Carlo Lorenzini)",
+      "share": 0.00054521
+    },
+    {
+      "character_count": 349997,
+      "label": "Cagna, Achille Giovanni",
+      "share": 0.00054362
+    },
+    {
+      "character_count": 346527,
+      "label": "Latini, Brunetto",
+      "share": 0.00053823
+    },
+    {
+      "character_count": 345121,
+      "label": "Alessandro Piccolomini",
+      "share": 0.00053605
+    },
+    {
+      "character_count": 344544,
+      "label": "Carlo Goldoni",
+      "share": 0.00053515
+    },
+    {
+      "character_count": 344517,
+      "label": "Dolce, Lodovico",
+      "share": 0.00053511
+    },
+    {
+      "character_count": 342292,
+      "label": "Chariteo (Benedetto Gareth, detto il)",
+      "share": 0.00053166
+    },
+    {
+      "character_count": 339357,
+      "label": "Cagni, Manfredo",
+      "share": 0.0005271
+    },
+    {
+      "character_count": 339129,
+      "label": "Enrico Panzacchi",
+      "share": 0.00052674
+    },
+    {
+      "character_count": 338762,
+      "label": "Sannazaro, Iacopo",
+      "share": 0.00052617
+    },
+    {
+      "character_count": 338652,
+      "label": "Girolamo Apolloni | Giuseppe Marchi | Pietro Tessieri",
+      "share": 0.000526
+    },
+    {
+      "character_count": 338324,
+      "label": "Tarchetti, Ugo Iginio",
+      "share": 0.00052549
+    },
+    {
+      "character_count": 338025,
+      "label": "San Martino, Matteo",
+      "share": 0.00052503
+    },
+    {
+      "character_count": 330783,
+      "label": "Sofia Bisi Albini",
+      "share": 0.00051378
+    },
+    {
+      "character_count": 329374,
+      "label": "Sacchi, Defendente",
+      "share": 0.00051159
+    },
+    {
+      "character_count": 328450,
+      "label": "Cantù, Ignazio",
+      "share": 0.00051016
+    },
+    {
+      "character_count": 325621,
+      "label": "Giacomo Zanella",
+      "share": 0.00050576
+    },
+    {
+      "character_count": 322930,
+      "label": "Pirandello, Luigi",
+      "share": 0.00050158
+    },
+    {
+      "character_count": 322739,
+      "label": "Cortese, Giulio Cesare",
+      "share": 0.00050129
+    },
+    {
+      "character_count": 319710,
+      "label": "Gabriele D'Annunzio",
+      "share": 0.00049658
+    },
+    {
+      "character_count": 319095,
+      "label": "Antonio Abati",
+      "share": 0.00049563
+    },
+    {
+      "character_count": 318349,
+      "label": "Marco Polo",
+      "share": 0.00049447
+    },
+    {
+      "character_count": 317449,
+      "label": "Luigi Bertelli (detto Vamba)",
+      "share": 0.00049307
+    },
+    {
+      "character_count": 315945,
+      "label": "Polo, Marco",
+      "share": 0.00049073
+    },
+    {
+      "character_count": 313368,
+      "label": "Brisighella, Carlo",
+      "share": 0.00048673
+    },
+    {
+      "character_count": 313070,
+      "label": "Bouvier, J. B. (Jean Baptiste)",
+      "share": 0.00048627
+    },
+    {
+      "character_count": 310767,
+      "label": "Bianchi, Arturo",
+      "share": 0.00048269
+    },
+    {
+      "character_count": 308105,
+      "label": "Labriola, Antonio",
+      "share": 0.00047856
+    },
+    {
+      "character_count": 306047,
+      "label": "Marx, Karl",
+      "share": 0.00047536
+    },
+    {
+      "character_count": 305646,
+      "label": "Giannotti, Donato",
+      "share": 0.00047474
+    },
+    {
+      "character_count": 305132,
+      "label": "Rota, Berardino",
+      "share": 0.00047394
+    },
+    {
+      "character_count": 304746,
+      "label": "Sacchetti, Franco",
+      "share": 0.00047334
+    },
+    {
+      "character_count": 304274,
+      "label": "Boito, Arrigo",
+      "share": 0.00047261
+    },
+    {
+      "character_count": 301550,
+      "label": "Tassoni, Alessandro",
+      "share": 0.00046837
+    },
+    {
+      "character_count": 297548,
+      "label": "Carlo Gozzi",
+      "share": 0.00046216
+    },
+    {
+      "character_count": 297515,
+      "label": "Antona-Traversi, Camillo",
+      "share": 0.00046211
+    },
+    {
+      "character_count": 296195,
+      "label": "Folengo, Teofilo",
+      "share": 0.00046006
+    },
+    {
+      "character_count": 296120,
+      "label": "Contarini, Simone",
+      "share": 0.00045994
+    },
+    {
+      "character_count": 295984,
+      "label": "Mill, John Stuart",
+      "share": 0.00045973
+    },
+    {
+      "character_count": 294970,
+      "label": "Armaroli, Leopoldo;Verri, Carlo, conte",
+      "share": 0.00045815
+    },
+    {
+      "character_count": 293429,
+      "label": "Machiavelli, Bernardo",
+      "share": 0.00045576
+    },
+    {
+      "character_count": 292693,
+      "label": "Bresadola, Giacomo",
+      "share": 0.00045462
+    },
+    {
+      "character_count": 291406,
+      "label": "Lazari, Vincenzo",
+      "share": 0.00045262
+    },
+    {
+      "character_count": 291214,
+      "label": "Giovanni Prati",
+      "share": 0.00045232
+    },
+    {
+      "character_count": 290397,
+      "label": "Giovan Battista Marino",
+      "share": 0.00045105
+    },
+    {
+      "character_count": 289216,
+      "label": "Cecco, d'Ascoli",
+      "share": 0.00044922
+    },
+    {
+      "character_count": 287160,
+      "label": "Magno, Celio",
+      "share": 0.00044602
+    },
+    {
+      "character_count": 284715,
+      "label": "Franco, Nicolò",
+      "share": 0.00044223
+    },
+    {
+      "character_count": 281834,
+      "label": "Roncioni, Raffaello",
+      "share": 0.00043775
+    },
+    {
+      "character_count": 280832,
+      "label": "Fontanella, Girolamo",
+      "share": 0.00043619
+    },
+    {
+      "character_count": 280603,
+      "label": "Malipiero, Girolamo",
+      "share": 0.00043584
+    },
+    {
+      "character_count": 280175,
+      "label": "Badoer, Federico",
+      "share": 0.00043517
+    },
+    {
+      "character_count": 278189,
+      "label": "Rossi, Adolfo",
+      "share": 0.00043209
+    },
+    {
+      "character_count": 276679,
+      "label": "Campanella, Tommaso",
+      "share": 0.00042974
+    },
+    {
+      "character_count": 273276,
+      "label": "Bolognetti, Francesco",
+      "share": 0.00042446
+    },
+    {
+      "character_count": 273116,
+      "label": "Soave, Francesco",
+      "share": 0.00042421
+    },
+    {
+      "character_count": 272110,
+      "label": "Torelli, Pomponio",
+      "share": 0.00042265
+    },
+    {
+      "character_count": 272063,
+      "label": "Evangelista Torricelli",
+      "share": 0.00042257
+    },
+    {
+      "character_count": 271378,
+      "label": "D'Annunzio, Gabriele",
+      "share": 0.00042151
+    },
+    {
+      "character_count": 270633,
+      "label": "Florio, John",
+      "share": 0.00042035
+    },
+    {
+      "character_count": 268291,
+      "label": "Iacopone da Todi",
+      "share": 0.00041672
+    },
+    {
+      "character_count": 267027,
+      "label": "Verri, Alessandro",
+      "share": 0.00041475
+    },
+    {
+      "character_count": 262987,
+      "label": "Beccuti, Francesco (detto il Coppetta)",
+      "share": 0.00040848
+    },
+    {
+      "character_count": 261541,
+      "label": "Ficino, Marsilio",
+      "share": 0.00040623
+    },
+    {
+      "character_count": 258022,
+      "label": "Vittorio Bersezio",
+      "share": 0.00040077
+    },
+    {
+      "character_count": 257759,
+      "label": "Alfredo Oriani",
+      "share": 0.00040036
+    },
+    {
+      "character_count": 257744,
+      "label": "Anonimo",
+      "share": 0.00040033
+    },
+    {
+      "character_count": 257145,
+      "label": "Porati, R. A.",
+      "share": 0.0003994
+    },
+    {
+      "character_count": 253606,
+      "label": "Giovanni Faldella",
+      "share": 0.00039391
+    },
+    {
+      "character_count": 251891,
+      "label": "Achille Giovanni Cagna",
+      "share": 0.00039124
+    },
+    {
+      "character_count": 251163,
+      "label": "Nani, Giovan Battista",
+      "share": 0.00039011
+    },
+    {
+      "character_count": 251007,
+      "label": "Borghi, Camillo Ranier",
+      "share": 0.00038987
+    },
+    {
+      "character_count": 250196,
+      "label": "Paolo Mantegazza",
+      "share": 0.00038861
+    },
+    {
+      "character_count": 249777,
+      "label": "Ruzini, Carlo",
+      "share": 0.00038796
+    },
+    {
+      "character_count": 246053,
+      "label": "Pitti, Bonaccorso",
+      "share": 0.00038218
+    },
+    {
+      "character_count": 243545,
+      "label": "Leonardo da Vinci",
+      "share": 0.00037828
+    },
+    {
+      "character_count": 243358,
+      "label": "Capuana, Luigi",
+      "share": 0.00037799
+    },
+    {
+      "character_count": 243219,
+      "label": "Docteur Jaf",
+      "share": 0.00037777
+    },
+    {
+      "character_count": 242857,
+      "label": "Betussi, Giuseppe - Boccaccio, Giovanni",
+      "share": 0.00037721
+    },
+    {
+      "character_count": 242560,
+      "label": "Magnanini, Orazio, 16th/17th cent",
+      "share": 0.00037675
+    },
+    {
+      "character_count": 242055,
+      "label": "Vico, Giambattista",
+      "share": 0.00037597
+    },
+    {
+      "character_count": 241438,
+      "label": "Della Casa, Giovanni",
+      "share": 0.00037501
+    },
+    {
+      "character_count": 239854,
+      "label": "Collodi, Carlo",
+      "share": 0.00037255
+    },
+    {
+      "character_count": 238567,
+      "label": "Tiepolo, Niccolò",
+      "share": 0.00037055
+    },
+    {
+      "character_count": 238214,
+      "label": "Galeazzo Flavio Capella",
+      "share": 0.00037
+    },
+    {
+      "character_count": 236786,
+      "label": "Bon, Ottaviano",
+      "share": 0.00036778
+    },
+    {
+      "character_count": 236150,
+      "label": "Serdini, Simone (detto il Saviozzo)",
+      "share": 0.00036679
+    },
+    {
+      "character_count": 234160,
+      "label": "Rossi, Niccolò de'",
+      "share": 0.0003637
+    },
+    {
+      "character_count": 233606,
+      "label": "Evelina Cattermole",
+      "share": 0.00036284
+    },
+    {
+      "character_count": 232756,
+      "label": "Jacini, Stefano",
+      "share": 0.00036152
+    },
+    {
+      "character_count": 232114,
+      "label": "Aurelio Bertola de' Giorgi",
+      "share": 0.00036053
+    },
+    {
+      "character_count": 232050,
+      "label": "Pico della Mirandola, Giovanni",
+      "share": 0.00036043
+    },
+    {
+      "character_count": 231605,
+      "label": "Sforza, Alessandro",
+      "share": 0.00035973
+    },
+    {
+      "character_count": 230678,
+      "label": "Jacopo Alighieri",
+      "share": 0.00035829
+    },
+    {
+      "character_count": 228822,
+      "label": "Guadagnoli, Antonio",
+      "share": 0.00035541
+    },
+    {
+      "character_count": 228209,
+      "label": "Barbaro, Daniele Matteo Alvise",
+      "share": 0.00035446
+    },
+    {
+      "character_count": 226272,
+      "label": "Guittone d'Arezzo",
+      "share": 0.00035145
+    },
+    {
+      "character_count": 225701,
+      "label": "Andreini, Giovan Battista",
+      "share": 0.00035056
+    },
+    {
+      "character_count": 224020,
+      "label": "Pietro Thouar",
+      "share": 0.00034795
+    },
+    {
+      "character_count": 223761,
+      "label": "Croce, Giulio Cesare",
+      "share": 0.00034755
+    },
+    {
+      "character_count": 223592,
+      "label": "Morosini, Giovanni",
+      "share": 0.00034729
+    },
+    {
+      "character_count": 223148,
+      "label": "Michiel, Zuan",
+      "share": 0.0003466
+    },
+    {
+      "character_count": 220836,
+      "label": "Ubaldini, Petruccio",
+      "share": 0.00034301
+    },
+    {
+      "character_count": 220637,
+      "label": "Giulia Turco Turcati Lazzari",
+      "share": 0.0003427
+    },
+    {
+      "character_count": 220003,
+      "label": "Giamboni, Bono",
+      "share": 0.00034171
+    },
+    {
+      "character_count": 219779,
+      "label": "Mantelli di Canobio, Giovanni de",
+      "share": 0.00034137
+    },
+    {
+      "character_count": 218189,
+      "label": "Marchesa Colombi (alias Maria Antonietta Torriani Torelli-Viollier)",
+      "share": 0.0003389
+    },
+    {
+      "character_count": 217549,
+      "label": "Anonymous / multiple traditions",
+      "share": 0.0003379
+    },
+    {
+      "character_count": 216969,
+      "label": "Beccari, Agostino",
+      "share": 0.000337
+    },
+    {
+      "character_count": 214216,
+      "label": "Niccolini de' Sirigatti, Lapo",
+      "share": 0.00033273
+    },
+    {
+      "character_count": 214087,
+      "label": "Fiorillo, Silvio",
+      "share": 0.00033253
+    },
+    {
+      "character_count": 212916,
+      "label": "Scala, Flaminio",
+      "share": 0.00033071
+    },
+    {
+      "character_count": 210271,
+      "label": "Troya, Carlo",
+      "share": 0.0003266
+    },
+    {
+      "character_count": 209455,
+      "label": "Priuli, Pietro",
+      "share": 0.00032533
+    },
+    {
+      "character_count": 207946,
+      "label": "Erizzo, Nicolò",
+      "share": 0.00032299
+    },
+    {
+      "character_count": 206479,
+      "label": "Scipione Maffei",
+      "share": 0.00032071
+    },
+    {
+      "character_count": 204349,
+      "label": "Cesare Arici",
+      "share": 0.0003174
+    },
+    {
+      "character_count": 204267,
+      "label": "Ricchi, Agostino",
+      "share": 0.00031727
+    },
+    {
+      "character_count": 204152,
+      "label": "Alfredo Panzini",
+      "share": 0.00031709
+    },
+    {
+      "character_count": 202754,
+      "label": "Manin, Leonardo",
+      "share": 0.00031492
+    },
+    {
+      "character_count": 202374,
+      "label": "Tommaso Campanella",
+      "share": 0.00031433
+    },
+    {
+      "character_count": 200633,
+      "label": "Alberti, Tommaso",
+      "share": 0.00031163
+    },
+    {
+      "character_count": 200622,
+      "label": "Marchese, Annibale",
+      "share": 0.00031161
+    },
+    {
+      "character_count": 200515,
+      "label": "Badoer, Angelo",
+      "share": 0.00031144
+    },
+    {
+      "character_count": 199555,
+      "label": "Barbieri, Nicolò",
+      "share": 0.00030995
+    },
+    {
+      "character_count": 199435,
+      "label": "Michiel, Francesco",
+      "share": 0.00030977
+    },
+    {
+      "character_count": 192222,
+      "label": "Venier, Girolamo",
+      "share": 0.00029856
+    },
+    {
+      "character_count": 190952,
+      "label": "Domenico da Prato",
+      "share": 0.00029659
+    },
+    {
+      "character_count": 190910,
+      "label": "Bandello, Matteo",
+      "share": 0.00029653
+    },
+    {
+      "character_count": 190027,
+      "label": "Vertua Gentile, Anna",
+      "share": 0.00029515
+    },
+    {
+      "character_count": 189104,
+      "label": "Foscarini, Sebastiano",
+      "share": 0.00029372
+    },
+    {
+      "character_count": 187777,
+      "label": "Rossi, Nicolò",
+      "share": 0.00029166
+    },
+    {
+      "character_count": 187314,
+      "label": "Scarlatti, Filippo",
+      "share": 0.00029094
+    },
+    {
+      "character_count": 185022,
+      "label": "Muzzarelli, Giovanni",
+      "share": 0.00028738
+    },
+    {
+      "character_count": 183510,
+      "label": "Soranzo, Giacomo",
+      "share": 0.00028503
+    },
+    {
+      "character_count": 183202,
+      "label": "Notturno, Napolitano",
+      "share": 0.00028455
+    },
+    {
+      "character_count": 183078,
+      "label": "Pico della Mirandola, Giovanni Francesco",
+      "share": 0.00028436
+    },
+    {
+      "character_count": 181265,
+      "label": "Grimani, Giovanni",
+      "share": 0.00028155
+    },
+    {
+      "character_count": 180760,
+      "label": "Mezzanotte, Adolfo",
+      "share": 0.00028076
+    },
+    {
+      "character_count": 180395,
+      "label": "Lionardi, Alessandro",
+      "share": 0.00028019
+    },
+    {
+      "character_count": 177901,
+      "label": "Caro, Annibale",
+      "share": 0.00027632
+    },
+    {
+      "character_count": 177720,
+      "label": "Di Giacomo, Salvatore",
+      "share": 0.00027604
+    },
+    {
+      "character_count": 176879,
+      "label": "Savonarola, Girolamo",
+      "share": 0.00027473
+    },
+    {
+      "character_count": 175629,
+      "label": "Burghley, William Cecil, Baron, 1520-1598.",
+      "share": 0.00027279
+    },
+    {
+      "character_count": 175489,
+      "label": "Cecco d'Ascoli",
+      "share": 0.00027257
+    },
+    {
+      "character_count": 174567,
+      "label": "Shakespeare, William",
+      "share": 0.00027114
+    },
+    {
+      "character_count": 174419,
+      "label": "Guidi, Iacopo d'Albizzotto",
+      "share": 0.00027091
+    },
+    {
+      "character_count": 173460,
+      "label": "Maragone, Bernardo",
+      "share": 0.00026942
+    },
+    {
+      "character_count": 173334,
+      "label": "Carmignani, Giovanni",
+      "share": 0.00026923
+    },
+    {
+      "character_count": 172777,
+      "label": "Giovanni Magherini Graziani",
+      "share": 0.00026836
+    },
+    {
+      "character_count": 172687,
+      "label": "Luigi Arnaldo Vassallo",
+      "share": 0.00026822
+    },
+    {
+      "character_count": 172265,
+      "label": "Celesia, Emanuele",
+      "share": 0.00026757
+    },
+    {
+      "character_count": 171610,
+      "label": "Setaioli, Giuseppe",
+      "share": 0.00026655
+    },
+    {
+      "character_count": 171095,
+      "label": "Zuccolo, Ludovico",
+      "share": 0.00026575
+    },
+    {
+      "character_count": 171004,
+      "label": "Cesare Beccaria",
+      "share": 0.00026561
+    },
+    {
+      "character_count": 170127,
+      "label": "Francesco Petrarca",
+      "share": 0.00026425
+    },
+    {
+      "character_count": 170017,
+      "label": "Denores, Giason",
+      "share": 0.00026407
+    },
+    {
+      "character_count": 169728,
+      "label": "Alighieri, Jacopo",
+      "share": 0.00026363
+    },
+    {
+      "character_count": 169610,
+      "label": "Conti, Giusto de'",
+      "share": 0.00026344
+    },
+    {
+      "character_count": 168885,
+      "label": "Comune di Firenze. Commissione storico-archeologica comunale",
+      "share": 0.00026232
+    },
+    {
+      "character_count": 168712,
+      "label": "Guelfi, Guelfo",
+      "share": 0.00026205
+    },
+    {
+      "character_count": 167581,
+      "label": "Bettoni, Paolo",
+      "share": 0.00026029
+    },
+    {
+      "character_count": 164488,
+      "label": "Sarnelli, Pompeo",
+      "share": 0.00025549
+    },
+    {
+      "character_count": 164472,
+      "label": "Barbaro, Francesco",
+      "share": 0.00025546
+    },
+    {
+      "character_count": 164361,
+      "label": "Leporeo, Ludovico",
+      "share": 0.00025529
+    },
+    {
+      "character_count": 163322,
+      "label": "Beccaria, Cesare",
+      "share": 0.00025368
+    },
+    {
+      "character_count": 162815,
+      "label": "Debay, A. (Auguste)",
+      "share": 0.00025289
+    },
+    {
+      "character_count": 159832,
+      "label": "Baccio Emanuele Maineri",
+      "share": 0.00024825
+    },
+    {
+      "character_count": 159668,
+      "label": "Ugo Foscolo",
+      "share": 0.000248
+    },
+    {
+      "character_count": 159144,
+      "label": "Contarini, Lorenzo",
+      "share": 0.00024719
+    },
+    {
+      "character_count": 158073,
+      "label": "Daniello, Bernardino",
+      "share": 0.00024552
+    },
+    {
+      "character_count": 157889,
+      "label": "Franco, Veronica",
+      "share": 0.00024524
+    },
+    {
+      "character_count": 157753,
+      "label": "Baldi, Bernardino",
+      "share": 0.00024503
+    },
+    {
+      "character_count": 157534,
+      "label": "Carlo Innocenzo Frugoni",
+      "share": 0.00024469
+    },
+    {
+      "character_count": 157320,
+      "label": "Preti, Girolamo",
+      "share": 0.00024435
+    },
+    {
+      "character_count": 156533,
+      "label": "Fortunio, Giovanni Francesco",
+      "share": 0.00024313
+    },
+    {
+      "character_count": 156427,
+      "label": "Verne, Jules;Polo, Marco",
+      "share": 0.00024297
+    },
+    {
+      "character_count": 155315,
+      "label": "Portoveneri, Giovanni",
+      "share": 0.00024124
+    },
+    {
+      "character_count": 154090,
+      "label": "Bruni, Leonardo",
+      "share": 0.00023934
+    },
+    {
+      "character_count": 152905,
+      "label": "Nencioni, Enrico",
+      "share": 0.0002375
+    },
+    {
+      "character_count": 149784,
+      "label": "Epicuro, Marc'Antonio",
+      "share": 0.00023265
+    },
+    {
+      "character_count": 149572,
+      "label": "Contarini, Domenico",
+      "share": 0.00023232
+    },
+    {
+      "character_count": 149446,
+      "label": "Carroll, Lewis",
+      "share": 0.00023212
+    },
+    {
+      "character_count": 148295,
+      "label": "Dante Alighieri",
+      "share": 0.00023034
+    },
+    {
+      "character_count": 148275,
+      "label": "Giovanni Battista Gelli",
+      "share": 0.0002303
+    },
+    {
+      "character_count": 147374,
+      "label": "Vittoria Colonna",
+      "share": 0.0002289
+    },
+    {
+      "character_count": 146153,
+      "label": "Silvio Pellico",
+      "share": 0.00022701
+    },
+    {
+      "character_count": 146058,
+      "label": "Anonymous",
+      "share": 0.00022686
+    },
+    {
+      "character_count": 145036,
+      "label": "Minturno, Antonio",
+      "share": 0.00022527
+    },
+    {
+      "character_count": 144754,
+      "label": "Cappello, Giovanni",
+      "share": 0.00022484
+    },
+    {
+      "character_count": 143443,
+      "label": "Boece, Hector, 1465?-1536.",
+      "share": 0.0002228
+    },
+    {
+      "character_count": 142748,
+      "label": "Matraini Contarini, Chiara",
+      "share": 0.00022172
+    },
+    {
+      "character_count": 142317,
+      "label": "Cuneo, Gian Battista",
+      "share": 0.00022105
+    },
+    {
+      "character_count": 142278,
+      "label": "Ida Baccini",
+      "share": 0.00022099
+    },
+    {
+      "character_count": 140528,
+      "label": "Cavalli, Marino",
+      "share": 0.00021827
+    },
+    {
+      "character_count": 139725,
+      "label": "Bonghi, Ruggero",
+      "share": 0.00021702
+    },
+    {
+      "character_count": 139399,
+      "label": "Enrico Morselli",
+      "share": 0.00021652
+    },
+    {
+      "character_count": 139323,
+      "label": "Emma Arnaud",
+      "share": 0.0002164
+    },
+    {
+      "character_count": 139230,
+      "label": "Tiepolo, Antonio",
+      "share": 0.00021626
+    },
+    {
+      "character_count": 138629,
+      "label": "Cesari, Antonio",
+      "share": 0.00021532
+    },
+    {
+      "character_count": 138525,
+      "label": "Prati, Giovanni",
+      "share": 0.00021516
+    },
+    {
+      "character_count": 138154,
+      "label": "Beccari, Antonio (detto Antonio da Ferrara)",
+      "share": 0.00021458
+    },
+    {
+      "character_count": 137742,
+      "label": "Grioni, Franceschino",
+      "share": 0.00021394
+    },
+    {
+      "character_count": 137335,
+      "label": "Giovio, Paolo",
+      "share": 0.00021331
+    },
+    {
+      "character_count": 137139,
+      "label": "Frescobaldi, Leonardo",
+      "share": 0.00021301
+    },
+    {
+      "character_count": 135965,
+      "label": "Valier, Cristoforo",
+      "share": 0.00021118
+    },
+    {
+      "character_count": 135887,
+      "label": "Paolo da Certaldo",
+      "share": 0.00021106
+    },
+    {
+      "character_count": 135783,
+      "label": "Giovanni Berchet",
+      "share": 0.0002109
+    },
+    {
+      "character_count": 135606,
+      "label": "Faccio, Domenico",
+      "share": 0.00021063
+    },
+    {
+      "character_count": 135011,
+      "label": "Donado, Giambattista",
+      "share": 0.0002097
+    },
+    {
+      "character_count": 134706,
+      "label": "Molin, Alvise",
+      "share": 0.00020923
+    },
+    {
+      "character_count": 134608,
+      "label": "Dal Carretto, Galeotto",
+      "share": 0.00020908
+    },
+    {
+      "character_count": 134489,
+      "label": "Poliziano, Angelo",
+      "share": 0.00020889
+    },
+    {
+      "character_count": 134128,
+      "label": "Carlo Righetti",
+      "share": 0.00020833
+    },
+    {
+      "character_count": 133875,
+      "label": "Seneca, Federico",
+      "share": 0.00020794
+    },
+    {
+      "character_count": 133677,
+      "label": "Casa, Giovanni della, 1503-1556",
+      "share": 0.00020763
+    },
+    {
+      "character_count": 133601,
+      "label": "Tesauro, Alessandro",
+      "share": 0.00020751
+    },
+    {
+      "character_count": 133066,
+      "label": "Buonarroti, Michelangelo",
+      "share": 0.00020668
+    },
+    {
+      "character_count": 132580,
+      "label": "Commissarij",
+      "share": 0.00020593
+    },
+    {
+      "character_count": 132557,
+      "label": "Dovizi, Bernardo,‏ da Bibbiena",
+      "share": 0.00020589
+    },
+    {
+      "character_count": 132398,
+      "label": "Giambullari, Bernardo",
+      "share": 0.00020564
+    },
+    {
+      "character_count": 132325,
+      "label": "Vittorio Betteloni",
+      "share": 0.00020553
+    },
+    {
+      "character_count": 132313,
+      "label": "Berni, Francesco",
+      "share": 0.00020551
+    },
+    {
+      "character_count": 132298,
+      "label": "Speroni, Sperone",
+      "share": 0.00020549
+    },
+    {
+      "character_count": 132269,
+      "label": "Tullia d'Aragona",
+      "share": 0.00020544
+    },
+    {
+      "character_count": 131881,
+      "label": "Barbieri, Gaetano",
+      "share": 0.00020484
+    },
+    {
+      "character_count": 131866,
+      "label": "Gabrio Piola",
+      "share": 0.00020482
+    },
+    {
+      "character_count": 131716,
+      "label": "Foscarini, Marco",
+      "share": 0.00020458
+    },
+    {
+      "character_count": 131489,
+      "label": "Schiaparelli, G. V. (Giovanni Virginio)",
+      "share": 0.00020423
+    },
+    {
+      "character_count": 130861,
+      "label": "Alessandro Verri",
+      "share": 0.00020326
+    },
+    {
+      "character_count": 129978,
+      "label": "Soriano, Michele",
+      "share": 0.00020188
+    },
+    {
+      "character_count": 129208,
+      "label": "Cattani da Diacceto, Francesco",
+      "share": 0.00020069
+    },
+    {
+      "character_count": 129021,
+      "label": "Cominelli, A. (Alfredo)",
+      "share": 0.0002004
+    },
+    {
+      "character_count": 128646,
+      "label": "De Jennaro, Pietro Jacopo",
+      "share": 0.00019982
+    },
+    {
+      "character_count": 128383,
+      "label": "Giovio, Giambatista, conte",
+      "share": 0.00019941
+    },
+    {
+      "character_count": 127732,
+      "label": "Stati vari",
+      "share": 0.0001984
+    },
+    {
+      "character_count": 126484,
+      "label": "Giuseppe Parini",
+      "share": 0.00019646
+    },
+    {
+      "character_count": 126363,
+      "label": "Carbone, Ludovico",
+      "share": 0.00019627
+    },
+    {
+      "character_count": 125653,
+      "label": "Valenziano, Luca",
+      "share": 0.00019517
+    },
+    {
+      "character_count": 125572,
+      "label": "Cossa, Pietro",
+      "share": 0.00019504
+    },
+    {
+      "character_count": 124627,
+      "label": "Venier, Sebastiano",
+      "share": 0.00019357
+    },
+    {
+      "character_count": 123514,
+      "label": "Praga, Marco",
+      "share": 0.00019184
+    },
+    {
+      "character_count": 123032,
+      "label": "Paciaudi, Pietro",
+      "share": 0.0001911
+    },
+    {
+      "character_count": 122510,
+      "label": "Malvezzi, Virgilio",
+      "share": 0.00019029
+    },
+    {
+      "character_count": 122102,
+      "label": "Grazzini, Anton Francesco",
+      "share": 0.00018965
+    },
+    {
+      "character_count": 121732,
+      "label": "Marinetti, F. T.;Corra, Bruno;Settimelli, Emilio",
+      "share": 0.00018908
+    },
+    {
+      "character_count": 120304,
+      "label": "Guidi, Tommasina",
+      "share": 0.00018686
+    },
+    {
+      "character_count": 119411,
+      "label": "Pulci, Bernardo",
+      "share": 0.00018547
+    },
+    {
+      "character_count": 118929,
+      "label": "Teofilo Folengo",
+      "share": 0.00018472
+    },
+    {
+      "character_count": 118695,
+      "label": "Arrigo Boito | Emilio Praga",
+      "share": 0.00018436
+    },
+    {
+      "character_count": 118575,
+      "label": "Angelo Messedaglia",
+      "share": 0.00018417
+    },
+    {
+      "character_count": 118187,
+      "label": "Ludovico Ariosto",
+      "share": 0.00018357
+    },
+    {
+      "character_count": 117793,
+      "label": "Francesco Acri",
+      "share": 0.00018296
+    },
+    {
+      "character_count": 117546,
+      "label": "Navagero, Bernardo",
+      "share": 0.00018258
+    },
+    {
+      "character_count": 117344,
+      "label": "Gaspara Stampa",
+      "share": 0.00018226
+    },
+    {
+      "character_count": 117275,
+      "label": "Fontana, Ferdinando",
+      "share": 0.00018215
+    },
+    {
+      "character_count": 117197,
+      "label": "Strozzi, Giovan Battista, il Vecchio",
+      "share": 0.00018203
+    },
+    {
+      "character_count": 116919,
+      "label": "Gasparo Gozzi",
+      "share": 0.0001816
+    },
+    {
+      "character_count": 116208,
+      "label": "Levi, David",
+      "share": 0.0001805
+    },
+    {
+      "character_count": 114971,
+      "label": "Vigri, Caterina",
+      "share": 0.00017858
+    },
+    {
+      "character_count": 114427,
+      "label": "Meglio, Antonio di",
+      "share": 0.00017773
+    },
+    {
+      "character_count": 113586,
+      "label": "Mantegna, Giovanni Alfonso",
+      "share": 0.00017642
+    },
+    {
+      "character_count": 112785,
+      "label": "Bianca Laura Saibante",
+      "share": 0.00017518
+    },
+    {
+      "character_count": 112505,
+      "label": "Quirini, Vincenzo",
+      "share": 0.00017475
+    },
+    {
+      "character_count": 111929,
+      "label": "Lorenzo de' Medici",
+      "share": 0.00017385
+    },
+    {
+      "character_count": 111910,
+      "label": "Cino da Pistoia",
+      "share": 0.00017382
+    },
+    {
+      "character_count": 111122,
+      "label": "Volpi, Gaetano",
+      "share": 0.0001726
+    },
+    {
+      "character_count": 109617,
+      "label": "Giordano Bruno",
+      "share": 0.00017026
+    },
+    {
+      "character_count": 108632,
+      "label": "Novaro, Angiolo Silvio",
+      "share": 0.00016873
+    },
+    {
+      "character_count": 108322,
+      "label": "Sigoli, Simone",
+      "share": 0.00016825
+    },
+    {
+      "character_count": 107067,
+      "label": "Corazzini, Sergio",
+      "share": 0.0001663
+    },
+    {
+      "character_count": 106851,
+      "label": "Contarini, Tommaso",
+      "share": 0.00016596
+    },
+    {
+      "character_count": 106818,
+      "label": "Cecco Angiolieri",
+      "share": 0.00016591
+    },
+    {
+      "character_count": 106608,
+      "label": "Foscarini, Pietro",
+      "share": 0.00016559
+    },
+    {
+      "character_count": 105439,
+      "label": "Suriano, Michele",
+      "share": 0.00016377
+    },
+    {
+      "character_count": 104407,
+      "label": "Strozzi, Giovan Battista, il Giovane",
+      "share": 0.00016217
+    },
+    {
+      "character_count": 103907,
+      "label": "Giovanni Francesco Bellentani",
+      "share": 0.00016139
+    },
+    {
+      "character_count": 102625,
+      "label": "Grimani, Alvise",
+      "share": 0.0001594
+    },
+    {
+      "character_count": 102200,
+      "label": "Giacomini, Lorenzo",
+      "share": 0.00015874
+    },
+    {
+      "character_count": 102194,
+      "label": "Contarini, Gaspare",
+      "share": 0.00015873
+    },
+    {
+      "character_count": 101507,
+      "label": "Grazia Deledda",
+      "share": 0.00015766
+    },
+    {
+      "character_count": 101506,
+      "label": "Dottori, Carlo de'",
+      "share": 0.00015766
+    },
+    {
+      "character_count": 100227,
+      "label": "Raffaello Giovagnoli",
+      "share": 0.00015567
+    },
+    {
+      "character_count": 99798,
+      "label": "Francesco Moneti",
+      "share": 0.00015501
+    },
+    {
+      "character_count": 98310,
+      "label": "Ferrari, Paolo",
+      "share": 0.0001527
+    },
+    {
+      "character_count": 98149,
+      "label": "Ada Negri",
+      "share": 0.00015245
+    },
+    {
+      "character_count": 97817,
+      "label": "Venier, Maffio",
+      "share": 0.00015193
+    },
+    {
+      "character_count": 97282,
+      "label": "Negri, Ada",
+      "share": 0.0001511
+    },
+    {
+      "character_count": 96087,
+      "label": "Corner, Federico",
+      "share": 0.00014924
+    },
+    {
+      "character_count": 95792,
+      "label": "Dolfin, Daniele",
+      "share": 0.00014879
+    },
+    {
+      "character_count": 95232,
+      "label": "Della Santa, Leopoldo",
+      "share": 0.00014792
+    },
+    {
+      "character_count": 94164,
+      "label": "Giuseppe Pasta",
+      "share": 0.00014626
+    },
+    {
+      "character_count": 93569,
+      "label": "Tullio Giordana",
+      "share": 0.00014533
+    },
+    {
+      "character_count": 93036,
+      "label": "Corraro, Giovanni",
+      "share": 0.00014451
+    },
+    {
+      "character_count": 92324,
+      "label": "Alberti, Francesco d'Altobianco",
+      "share": 0.0001434
+    },
+    {
+      "character_count": 91969,
+      "label": "Jeremy Bentham",
+      "share": 0.00014285
+    },
+    {
+      "character_count": 91276,
+      "label": "Emilio Praga",
+      "share": 0.00014177
+    },
+    {
+      "character_count": 90676,
+      "label": "Autori vari",
+      "share": 0.00014084
+    },
+    {
+      "character_count": 90586,
+      "label": "Vittorio Alfieri",
+      "share": 0.0001407
+    },
+    {
+      "character_count": 90157,
+      "label": "Aragona, Tullia d'",
+      "share": 0.00014003
+    },
+    {
+      "character_count": 88463,
+      "label": "Borlandi, Antonia",
+      "share": 0.0001374
+    },
+    {
+      "character_count": 88348,
+      "label": "Mocenigo, Leonardo",
+      "share": 0.00013722
+    },
+    {
+      "character_count": 87527,
+      "label": "Pignatelli, Ascanio",
+      "share": 0.00013595
+    },
+    {
+      "character_count": 87350,
+      "label": "Cimino, Tommaso",
+      "share": 0.00013567
+    },
+    {
+      "character_count": 87342,
+      "label": "Mariannina Coffa Caruso",
+      "share": 0.00013566
+    },
+    {
+      "character_count": 87296,
+      "label": "Diego Angeli",
+      "share": 0.00013559
+    },
+    {
+      "character_count": 87163,
+      "label": "Capriano, Giovan Pietro",
+      "share": 0.00013538
+    },
+    {
+      "character_count": 86648,
+      "label": "Giovanni Brevio",
+      "share": 0.00013458
+    },
+    {
+      "character_count": 85973,
+      "label": "Soranzo, Gerolamo",
+      "share": 0.00013354
+    },
+    {
+      "character_count": 85437,
+      "label": "Martelli, Lodovico",
+      "share": 0.0001327
+    },
+    {
+      "character_count": 85260,
+      "label": "Isabella Andreini",
+      "share": 0.00013243
+    },
+    {
+      "character_count": 84664,
+      "label": "Wessely, Naphtali Herz;Morpurgo, Elia",
+      "share": 0.0001315
+    },
+    {
+      "character_count": 84625,
+      "label": "Zinano, Gabriele",
+      "share": 0.00013144
+    },
+    {
+      "character_count": 84350,
+      "label": "Camilla Pisana",
+      "share": 0.00013101
+    },
+    {
+      "character_count": 84233,
+      "label": "Sagredo, Alvise",
+      "share": 0.00013083
+    },
+    {
+      "character_count": 83919,
+      "label": "Priuli, Lorenzo",
+      "share": 0.00013034
+    },
+    {
+      "character_count": 83833,
+      "label": "Guidiccioni, Giovanni",
+      "share": 0.00013021
+    },
+    {
+      "character_count": 82326,
+      "label": "Caliari, Pietro",
+      "share": 0.00012787
+    },
+    {
+      "character_count": 82167,
+      "label": "Maffei, Scipione",
+      "share": 0.00012762
+    },
+    {
+      "character_count": 80393,
+      "label": "Giovanni Orlandi",
+      "share": 0.00012487
+    },
+    {
+      "character_count": 80371,
+      "label": "Della Valle, Federico",
+      "share": 0.00012483
+    },
+    {
+      "character_count": 80100,
+      "label": "Giuseppe Marcotti",
+      "share": 0.00012441
+    },
+    {
+      "character_count": 79709,
+      "label": "Giuseppe Antonio Landriani",
+      "share": 0.00012381
+    },
+    {
+      "character_count": 79415,
+      "label": "Capra, Galeazzo Flavio",
+      "share": 0.00012335
+    },
+    {
+      "character_count": 78871,
+      "label": "Valvasone, Erasmo da",
+      "share": 0.0001225
+    },
+    {
+      "character_count": 78356,
+      "label": "Di Leo, Mario",
+      "share": 0.0001217
+    },
+    {
+      "character_count": 78288,
+      "label": "Errico, Scipione",
+      "share": 0.0001216
+    },
+    {
+      "character_count": 78069,
+      "label": "Davide Bertolotti",
+      "share": 0.00012126
+    },
+    {
+      "character_count": 78052,
+      "label": "Giustinian, Marcantonio",
+      "share": 0.00012123
+    },
+    {
+      "character_count": 77546,
+      "label": "Giuseppe Pinamonti",
+      "share": 0.00012045
+    },
+    {
+      "character_count": 76906,
+      "label": "De Luca, Giambattista",
+      "share": 0.00011945
+    },
+    {
+      "character_count": 76665,
+      "label": "Cecchini, Pier Maria",
+      "share": 0.00011908
+    },
+    {
+      "character_count": 76017,
+      "label": "Magalotti, Lorenzo",
+      "share": 0.00011807
+    },
+    {
+      "character_count": 75891,
+      "label": "Galdi, Matteo Angelo",
+      "share": 0.00011788
+    },
+    {
+      "character_count": 75787,
+      "label": "Redaelli, Carlo",
+      "share": 0.00011771
+    },
+    {
+      "character_count": 75456,
+      "label": "Guido Carocci",
+      "share": 0.0001172
+    },
+    {
+      "character_count": 74854,
+      "label": "Barignano, Pietro",
+      "share": 0.00011627
+    },
+    {
+      "character_count": 74812,
+      "label": "Lubrano, Giacomo",
+      "share": 0.0001162
+    },
+    {
+      "character_count": 74669,
+      "label": "Tacitus, Cornelius.",
+      "share": 0.00011598
+    },
+    {
+      "character_count": 74506,
+      "label": "Borghini, Vincenzio",
+      "share": 0.00011572
+    },
+    {
+      "character_count": 74017,
+      "label": "Giuseppe Mazzini",
+      "share": 0.00011496
+    },
+    {
+      "character_count": 73482,
+      "label": "Regno di Sardegna",
+      "share": 0.00011413
+    },
+    {
+      "character_count": 72646,
+      "label": "Giustinian, Ascanio",
+      "share": 0.00011284
+    },
+    {
+      "character_count": 72152,
+      "label": "Lucini, Gian Pietro",
+      "share": 0.00011207
+    },
+    {
+      "character_count": 72116,
+      "label": "Partenio, Bernardino",
+      "share": 0.00011201
+    },
+    {
+      "character_count": 72094,
+      "label": "Giacomo Leopardi",
+      "share": 0.00011198
+    },
+    {
+      "character_count": 72017,
+      "label": "Pellegrino, Camillo",
+      "share": 0.00011186
+    },
+    {
+      "character_count": 71919,
+      "label": "Ascoli, Graziadio Isaia",
+      "share": 0.00011171
+    },
+    {
+      "character_count": 71558,
+      "label": "Leonardo Fibonacci",
+      "share": 0.00011115
+    },
+    {
+      "character_count": 71540,
+      "label": "Vivanti, Annie",
+      "share": 0.00011112
+    },
+    {
+      "character_count": 71174,
+      "label": "Civran, Pietro",
+      "share": 0.00011055
+    },
+    {
+      "character_count": 70866,
+      "label": "Gherardi, Giovanni",
+      "share": 0.00011007
+    },
+    {
+      "character_count": 70309,
+      "label": "Luigi Galvani",
+      "share": 0.00010921
+    },
+    {
+      "character_count": 70231,
+      "label": "Guglielminetti, Amalia",
+      "share": 0.00010908
+    },
+    {
+      "character_count": 69877,
+      "label": "Valeriano Canati",
+      "share": 0.00010853
+    },
+    {
+      "character_count": 69316,
+      "label": "Correr, Angelo",
+      "share": 0.00010766
+    },
+    {
+      "character_count": 69268,
+      "label": "Borso e Leonello d'Este",
+      "share": 0.00010759
+    },
+    {
+      "character_count": 68937,
+      "label": "Salfi, Francesco Saverio",
+      "share": 0.00010707
+    },
+    {
+      "character_count": 68456,
+      "label": "Leone Carpi",
+      "share": 0.00010633
+    },
+    {
+      "character_count": 67941,
+      "label": "Ammirato, Scipione",
+      "share": 0.00010553
+    },
+    {
+      "character_count": 66273,
+      "label": "Malatesti, Malatesta",
+      "share": 0.00010294
+    },
+    {
+      "character_count": 65113,
+      "label": "Genovesi, Antonio",
+      "share": 0.00010114
+    },
+    {
+      "character_count": 64370,
+      "label": "Francesco Rapisardi",
+      "share": 9.998e-05
+    },
+    {
+      "character_count": 63849,
+      "label": "Giustiniano, Marino",
+      "share": 9.917e-05
+    },
+    {
+      "character_count": 63683,
+      "label": "Cieco, Niccolò",
+      "share": 9.891e-05
+    },
+    {
+      "character_count": 63271,
+      "label": "Nani, Agostino",
+      "share": 9.827e-05
+    },
+    {
+      "character_count": 63207,
+      "label": "Cavalli, Sigismondo",
+      "share": 9.817e-05
+    },
+    {
+      "character_count": 62594,
+      "label": "Rustico Filippi",
+      "share": 9.722e-05
+    },
+    {
+      "character_count": 62027,
+      "label": "Castelli, Benedetto",
+      "share": 9.634e-05
+    },
+    {
+      "character_count": 61875,
+      "label": "Pistoia (Antonio Cammelli, detto il)",
+      "share": 9.611e-05
+    },
+    {
+      "character_count": 61588,
+      "label": "Sandoval De Castro, Diego",
+      "share": 9.566e-05
+    },
+    {
+      "character_count": 61308,
+      "label": "Apostolo Zeno",
+      "share": 9.523e-05
+    },
+    {
+      "character_count": 61283,
+      "label": "Summo, Faustino",
+      "share": 9.519e-05
+    },
+    {
+      "character_count": 61257,
+      "label": "Roselli, Rosello",
+      "share": 9.515e-05
+    },
+    {
+      "character_count": 61152,
+      "label": "Del Bene, Giulio",
+      "share": 9.498e-05
+    },
+    {
+      "character_count": 60563,
+      "label": "Innocenzo a Prato",
+      "share": 9.407e-05
+    },
+    {
+      "character_count": 60452,
+      "label": "Pietro Aretino",
+      "share": 9.39e-05
+    },
+    {
+      "character_count": 59562,
+      "label": "Borra, Luigi",
+      "share": 9.251e-05
+    },
+    {
+      "character_count": 58993,
+      "label": "Michelangelo Buonarroti, 1475-1564",
+      "share": 9.163e-05
+    },
+    {
+      "character_count": 58419,
+      "label": "Carriero, Alessandro",
+      "share": 9.074e-05
+    },
+    {
+      "character_count": 57308,
+      "label": "Da Porto, Luigi",
+      "share": 8.901e-05
+    },
+    {
+      "character_count": 56801,
+      "label": "Perrot, François, b. 1530?",
+      "share": 8.822e-05
+    },
+    {
+      "character_count": 56504,
+      "label": "Camillo, Giulio (detto Delminio)",
+      "share": 8.776e-05
+    },
+    {
+      "character_count": 56346,
+      "label": "Giustiniani, Girolamo",
+      "share": 8.752e-05
+    },
+    {
+      "character_count": 56021,
+      "label": "Alessandri, Baldassarre Olimpo degli",
+      "share": 8.701e-05
+    },
+    {
+      "character_count": 56006,
+      "label": "Contarini, Pietro",
+      "share": 8.699e-05
+    },
+    {
+      "character_count": 55992,
+      "label": "Betteloni, Vittorio",
+      "share": 8.697e-05
+    },
+    {
+      "character_count": 55847,
+      "label": "Pagano, Francesco Mario",
+      "share": 8.674e-05
+    },
+    {
+      "character_count": 54918,
+      "label": "Salviati, Lionardo",
+      "share": 8.53e-05
+    },
+    {
+      "character_count": 54558,
+      "label": "Pitti, Vincenzo",
+      "share": 8.474e-05
+    },
+    {
+      "character_count": 54166,
+      "label": "Teresa Giraud Spaur",
+      "share": 8.413e-05
+    },
+    {
+      "character_count": 53509,
+      "label": "Manzoni, Giacomo",
+      "share": 8.311e-05
+    },
+    {
+      "character_count": 53231,
+      "label": "Domenico Ciampoli",
+      "share": 8.268e-05
+    },
+    {
+      "character_count": 53043,
+      "label": "Zorzi, Marino",
+      "share": 8.239e-05
+    },
+    {
+      "character_count": 52915,
+      "label": "Girolamo Parabosco",
+      "share": 8.219e-05
+    },
+    {
+      "character_count": 52890,
+      "label": "Tiepolo, Paolo",
+      "share": 8.215e-05
+    },
+    {
+      "character_count": 52551,
+      "label": "Fulvio Testi",
+      "share": 8.162e-05
+    },
+    {
+      "character_count": 51703,
+      "label": "Pindemonte, Ippolito",
+      "share": 8.031e-05
+    },
+    {
+      "character_count": 51068,
+      "label": "Carlo Cattaneo",
+      "share": 7.932e-05
+    },
+    {
+      "character_count": 50945,
+      "label": "Basile, Giovan Battista",
+      "share": 7.913e-05
+    },
+    {
+      "character_count": 50617,
+      "label": "Braccesi, Alessandro",
+      "share": 7.862e-05
+    },
+    {
+      "character_count": 50243,
+      "label": "Montanelli, Giuseppe",
+      "share": 7.804e-05
+    },
+    {
+      "character_count": 50211,
+      "label": "Guidalotti, Diomede",
+      "share": 7.799e-05
+    },
+    {
+      "character_count": 50017,
+      "label": "Peretto, Francesco.",
+      "share": 7.769e-05
+    },
+    {
+      "character_count": 49942,
+      "label": "Sabino Stella",
+      "share": 7.757e-05
+    },
+    {
+      "character_count": 49776,
+      "label": "Ludovico Savioli",
+      "share": 7.731e-05
+    },
+    {
+      "character_count": 49676,
+      "label": "Martirano, Bernardino",
+      "share": 7.716e-05
+    },
+    {
+      "character_count": 49548,
+      "label": "Ippolito Nievo",
+      "share": 7.696e-05
+    },
+    {
+      "character_count": 49530,
+      "label": "Agrippa, Camillo",
+      "share": 7.693e-05
+    },
+    {
+      "character_count": 48982,
+      "label": "Iginio Ugo Tarchetti",
+      "share": 7.608e-05
+    },
+    {
+      "character_count": 48809,
+      "label": "Traiano Boccalini",
+      "share": 7.581e-05
+    },
+    {
+      "character_count": 48222,
+      "label": "Meglio, Giovan Matteo di",
+      "share": 7.49e-05
+    },
+    {
+      "character_count": 47850,
+      "label": "Paolo Bondi",
+      "share": 7.432e-05
+    },
+    {
+      "character_count": 47449,
+      "label": "Colonna, Vittoria",
+      "share": 7.37e-05
+    },
+    {
+      "character_count": 47057,
+      "label": "Di Costanzo, Angelo",
+      "share": 7.309e-05
+    },
+    {
+      "character_count": 46455,
+      "label": "Accetto, Torquato",
+      "share": 7.216e-05
+    },
+    {
+      "character_count": 46426,
+      "label": "Patrizi, Francesco",
+      "share": 7.211e-05
+    },
+    {
+      "character_count": 46016,
+      "label": "Giustinian, Ascanio II",
+      "share": 7.147e-05
+    },
+    {
+      "character_count": 45508,
+      "label": "Luigi Tansillo",
+      "share": 7.068e-05
+    },
+    {
+      "character_count": 45329,
+      "label": "Visconti, Gasparo",
+      "share": 7.041e-05
+    },
+    {
+      "character_count": 45278,
+      "label": "Andrea da Grosseto",
+      "share": 7.033e-05
+    },
+    {
+      "character_count": 44799,
+      "label": "Davide Riccardi",
+      "share": 6.958e-05
+    },
+    {
+      "character_count": 44778,
+      "label": "Rucellai, Giovanni",
+      "share": 6.955e-05
+    },
+    {
+      "character_count": 44318,
+      "label": "Gussoni, Vincenzo",
+      "share": 6.884e-05
+    },
+    {
+      "character_count": 44178,
+      "label": "Michelangelo Buonarroti il Giovane",
+      "share": 6.862e-05
+    },
+    {
+      "character_count": 43619,
+      "label": "Niccolò da Verona",
+      "share": 6.775e-05
+    },
+    {
+      "character_count": 43463,
+      "label": "Amoruso, Gilio de",
+      "share": 6.751e-05
+    },
+    {
+      "character_count": 43358,
+      "label": "Luigi Novarini",
+      "share": 6.734e-05
+    },
+    {
+      "character_count": 43279,
+      "label": "Ippolito Pindemonte",
+      "share": 6.722e-05
+    },
+    {
+      "character_count": 42818,
+      "label": "Antonietta Pozzolini",
+      "share": 6.651e-05
+    },
+    {
+      "character_count": 41956,
+      "label": "Niccolò de' Rossi",
+      "share": 6.517e-05
+    },
+    {
+      "character_count": 41922,
+      "label": "Sagredo, Giovanni",
+      "share": 6.511e-05
+    },
+    {
+      "character_count": 41752,
+      "label": "Pino, Bernardino",
+      "share": 6.485e-05
+    },
+    {
+      "character_count": 40575,
+      "label": "Luigi Tosti",
+      "share": 6.302e-05
+    },
+    {
+      "character_count": 40312,
+      "label": "Vincenzo Bellini",
+      "share": 6.261e-05
+    },
+    {
+      "character_count": 40225,
+      "label": "Stefano Gavuzzi",
+      "share": 6.248e-05
+    },
+    {
+      "character_count": 40072,
+      "label": "Vincenzo Monti",
+      "share": 6.224e-05
+    },
+    {
+      "character_count": 39898,
+      "label": "Raffaello Sanzio",
+      "share": 6.197e-05
+    },
+    {
+      "character_count": 39860,
+      "label": "Donado, Francesco",
+      "share": 6.191e-05
+    },
+    {
+      "character_count": 39712,
+      "label": "Orsini, Flavio",
+      "share": 6.168e-05
+    },
+    {
+      "character_count": 39665,
+      "label": "Giambattista Felice Zappi",
+      "share": 6.161e-05
+    },
+    {
+      "character_count": 39092,
+      "label": "Di Tarsia, Galeazzo",
+      "share": 6.072e-05
+    },
+    {
+      "character_count": 38821,
+      "label": "Lorenzo Mascheroni",
+      "share": 6.03e-05
+    },
+    {
+      "character_count": 38642,
+      "label": "Leon Battista Alberti",
+      "share": 6.002e-05
+    },
+    {
+      "character_count": 38590,
+      "label": "Pegolotti, Giovanni",
+      "share": 5.994e-05
+    },
+    {
+      "character_count": 38431,
+      "label": "Davanzati, Mariotto",
+      "share": 5.969e-05
+    },
+    {
+      "character_count": 37486,
+      "label": "Alfonso Varano",
+      "share": 5.822e-05
+    },
+    {
+      "character_count": 37401,
+      "label": "Bocchi, Francesco",
+      "share": 5.809e-05
+    },
+    {
+      "character_count": 37378,
+      "label": "Gianni, Francesco Maria",
+      "share": 5.806e-05
+    },
+    {
+      "character_count": 36733,
+      "label": "Carlotta Ferrari",
+      "share": 5.705e-05
+    },
+    {
+      "character_count": 36495,
+      "label": "Giuseppe Ferrari [1720 - 1773]",
+      "share": 5.668e-05
+    },
+    {
+      "character_count": 36075,
+      "label": "Cino Rinuccini",
+      "share": 5.603e-05
+    },
+    {
+      "character_count": 35420,
+      "label": "Guidi, Alessandro",
+      "share": 5.502e-05
+    },
+    {
+      "character_count": 35268,
+      "label": "Pellegrino Salandri",
+      "share": 5.478e-05
+    },
+    {
+      "character_count": 35177,
+      "label": "Servi, Flaminio",
+      "share": 5.464e-05
+    },
+    {
+      "character_count": 35128,
+      "label": "Stampa, Gaspara",
+      "share": 5.456e-05
+    },
+    {
+      "character_count": 35066,
+      "label": "Luca Beltrami",
+      "share": 5.447e-05
+    },
+    {
+      "character_count": 35035,
+      "label": "Celestino Cavedoni",
+      "share": 5.442e-05
+    },
+    {
+      "character_count": 34937,
+      "label": "Pietro Metastasio",
+      "share": 5.426e-05
+    },
+    {
+      "character_count": 34483,
+      "label": "Vincenzo Maria Imperiali",
+      "share": 5.356e-05
+    },
+    {
+      "character_count": 34304,
+      "label": "Venier, Lorenzo",
+      "share": 5.328e-05
+    },
+    {
+      "character_count": 34142,
+      "label": "Poesie anonime",
+      "share": 5.303e-05
+    },
+    {
+      "character_count": 34047,
+      "label": "Della Barba, Pompeo",
+      "share": 5.288e-05
+    },
+    {
+      "character_count": 33965,
+      "label": "Varie Rime degli Arcadi",
+      "share": 5.276e-05
+    },
+    {
+      "character_count": 33810,
+      "label": "Francesco Piranesi",
+      "share": 5.251e-05
+    },
+    {
+      "character_count": 33564,
+      "label": "Carlo De Lellis",
+      "share": 5.213e-05
+    },
+    {
+      "character_count": 33450,
+      "label": "Salvioni, Agostino",
+      "share": 5.196e-05
+    },
+    {
+      "character_count": 33400,
+      "label": "Bonciani, Antonio",
+      "share": 5.188e-05
+    },
+    {
+      "character_count": 33196,
+      "label": "Taccone, Baldassare",
+      "share": 5.156e-05
+    },
+    {
+      "character_count": 32811,
+      "label": "Agli, Antonio degli",
+      "share": 5.096e-05
+    },
+    {
+      "character_count": 32459,
+      "label": "Minio, Polo",
+      "share": 5.042e-05
+    },
+    {
+      "character_count": 32210,
+      "label": "Arturo Issel",
+      "share": 5.003e-05
+    },
+    {
+      "character_count": 32195,
+      "label": "Giacomo da Lentini",
+      "share": 5.001e-05
+    },
+    {
+      "character_count": 32088,
+      "label": "Anicio Traustio",
+      "share": 4.984e-05
+    },
+    {
+      "character_count": 32034,
+      "label": "Brocardo, Antonio",
+      "share": 4.976e-05
+    },
+    {
+      "character_count": 31985,
+      "label": "Verga, Giovanni, 1840-1922",
+      "share": 4.968e-05
+    },
+    {
+      "character_count": 31724,
+      "label": "Monaldo Leopardi",
+      "share": 4.927e-05
+    },
+    {
+      "character_count": 31473,
+      "label": "Antonio di Guido",
+      "share": 4.888e-05
+    },
+    {
+      "character_count": 31353,
+      "label": "Biagio Camagna | Serafino Barbaro",
+      "share": 4.87e-05
+    },
+    {
+      "character_count": 30748,
+      "label": "Belcari, Feo",
+      "share": 4.776e-05
+    },
+    {
+      "character_count": 30573,
+      "label": "Alessi Cillenio",
+      "share": 4.749e-05
+    },
+    {
+      "character_count": 30497,
+      "label": "Marsili, Giovanni",
+      "share": 4.737e-05
+    },
+    {
+      "character_count": 30469,
+      "label": "Alessandro Tassoni",
+      "share": 4.733e-05
+    },
+    {
+      "character_count": 30184,
+      "label": "Dareno Minteo",
+      "share": 4.688e-05
+    },
+    {
+      "character_count": 30094,
+      "label": "Lapaccini, Filippo",
+      "share": 4.674e-05
+    },
+    {
+      "character_count": 30012,
+      "label": "Alessandro Manzoni",
+      "share": 4.662e-05
+    },
+    {
+      "character_count": 29903,
+      "label": "Neroni, Baccio",
+      "share": 4.645e-05
+    },
+    {
+      "character_count": 29107,
+      "label": "Jacopo Pirona",
+      "share": 4.521e-05
+    },
+    {
+      "character_count": 28990,
+      "label": "Siralgo Ninfasio",
+      "share": 4.503e-05
+    },
+    {
+      "character_count": 28921,
+      "label": "Giuseppe da Forio",
+      "share": 4.492e-05
+    },
+    {
+      "character_count": 28721,
+      "label": "Eustasio Oeio",
+      "share": 4.461e-05
+    },
+    {
+      "character_count": 28678,
+      "label": "Bragadin, Daniele",
+      "share": 4.454e-05
+    },
+    {
+      "character_count": 28670,
+      "label": "Niccolò Franco",
+      "share": 4.453e-05
+    },
+    {
+      "character_count": 28662,
+      "label": "Casti, Giovanni Battista",
+      "share": 4.452e-05
+    },
+    {
+      "character_count": 28541,
+      "label": "Biagio Camagna",
+      "share": 4.433e-05
+    },
+    {
+      "character_count": 28362,
+      "label": "Sansovino, Francesco",
+      "share": 4.405e-05
+    },
+    {
+      "character_count": 28302,
+      "label": "Bartolomeo Pacca",
+      "share": 4.396e-05
+    },
+    {
+      "character_count": 28121,
+      "label": "”Amico Di Dante”: Corona Di Casistica Amorosa",
+      "share": 4.368e-05
+    },
+    {
+      "character_count": 27892,
+      "label": "Navagero, Andrea",
+      "share": 4.332e-05
+    },
+    {
+      "character_count": 27819,
+      "label": "Buonamico Buonamici",
+      "share": 4.321e-05
+    },
+    {
+      "character_count": 27811,
+      "label": "Cortese, Giulio",
+      "share": 4.32e-05
+    },
+    {
+      "character_count": 27758,
+      "label": "Haym, Nicola Francesco",
+      "share": 4.311e-05
+    },
+    {
+      "character_count": 27713,
+      "label": "Giovanni Battista Angelini",
+      "share": 4.304e-05
+    },
+    {
+      "character_count": 27683,
+      "label": "Benvenuto Robbio",
+      "share": 4.3e-05
+    },
+    {
+      "character_count": 27512,
+      "label": "Angelo Cenni",
+      "share": 4.273e-05
+    },
+    {
+      "character_count": 27396,
+      "label": "Marcantonio da Mula",
+      "share": 4.255e-05
+    },
+    {
+      "character_count": 27263,
+      "label": "Saverio Bettinelli",
+      "share": 4.235e-05
+    },
+    {
+      "character_count": 27130,
+      "label": "Adalsio Metoneo",
+      "share": 4.214e-05
+    },
+    {
+      "character_count": 26929,
+      "label": "Lorenzo Pignotti",
+      "share": 4.183e-05
+    },
+    {
+      "character_count": 26909,
+      "label": "Mina Siri",
+      "share": 4.18e-05
+    },
+    {
+      "character_count": 26895,
+      "label": "Beltrami, Fabrizio",
+      "share": 4.177e-05
+    },
+    {
+      "character_count": 26873,
+      "label": "Peleo Bacci",
+      "share": 4.174e-05
+    },
+    {
+      "character_count": 26771,
+      "label": "Costanza Monti",
+      "share": 4.158e-05
+    },
+    {
+      "character_count": 26543,
+      "label": "Matteo Camera",
+      "share": 4.123e-05
+    },
+    {
+      "character_count": 26489,
+      "label": "Ferdinando I, Grand-Duke of Tuscany",
+      "share": 4.114e-05
+    },
+    {
+      "character_count": 26447,
+      "label": "Giovanni Sabadino degli Arienti",
+      "share": 4.108e-05
+    },
+    {
+      "character_count": 26398,
+      "label": "Machiavelli, Niccolò, 1469-1527",
+      "share": 4.1e-05
+    },
+    {
+      "character_count": 26154,
+      "label": "Scroffa, Camillo",
+      "share": 4.062e-05
+    },
+    {
+      "character_count": 25900,
+      "label": "Cambini, Bernardo di Piero",
+      "share": 4.023e-05
+    },
+    {
+      "character_count": 25824,
+      "label": "Foscarini, Nicolò",
+      "share": 4.011e-05
+    },
+    {
+      "character_count": 25743,
+      "label": "Pieraccio Tedaldi",
+      "share": 3.998e-05
+    },
+    {
+      "character_count": 25483,
+      "label": "Marabottino Manetti",
+      "share": 3.958e-05
+    },
+    {
+      "character_count": 25395,
+      "label": "Francesco di Giorgio Martini",
+      "share": 3.944e-05
+    },
+    {
+      "character_count": 25338,
+      "label": "Gaetano Guttierez del Hoyo",
+      "share": 3.936e-05
+    },
+    {
+      "character_count": 25283,
+      "label": "Guido Cavalcanti",
+      "share": 3.927e-05
+    },
+    {
+      "character_count": 25212,
+      "label": "Muzi, Piero di Mariano",
+      "share": 3.916e-05
+    },
+    {
+      "character_count": 25134,
+      "label": "Carlo Emanuele Muzzarelli",
+      "share": 3.904e-05
+    },
+    {
+      "character_count": 25123,
+      "label": "Menotti Bianchi",
+      "share": 3.902e-05
+    },
+    {
+      "character_count": 25122,
+      "label": "Giuseppe Luigi Pellegrini",
+      "share": 3.902e-05
+    },
+    {
+      "character_count": 24717,
+      "label": "Valla, Lorenzo",
+      "share": 3.839e-05
+    },
+    {
+      "character_count": 24673,
+      "label": "Treves, Vittorio",
+      "share": 3.832e-05
+    },
+    {
+      "character_count": 24485,
+      "label": "Giovanni Marchetti",
+      "share": 3.803e-05
+    },
+    {
+      "character_count": 24478,
+      "label": "Pico della Mirandola, Gianfrancesco",
+      "share": 3.802e-05
+    },
+    {
+      "character_count": 24136,
+      "label": "Tinucci, Niccolò",
+      "share": 3.749e-05
+    },
+    {
+      "character_count": 23872,
+      "label": "Anton Francesco Grazzini",
+      "share": 3.708e-05
+    },
+    {
+      "character_count": 23853,
+      "label": "Luigi Alamanni",
+      "share": 3.705e-05
+    },
+    {
+      "character_count": 23644,
+      "label": "Malatesta Strinati",
+      "share": 3.672e-05
+    },
+    {
+      "character_count": 23567,
+      "label": "Giulio Barluzzi",
+      "share": 3.66e-05
+    },
+    {
+      "character_count": 23067,
+      "label": "Cecco Nuccoli",
+      "share": 3.583e-05
+    },
+    {
+      "character_count": 22964,
+      "label": "Accolti, Bernardo",
+      "share": 3.567e-05
+    },
+    {
+      "character_count": 22962,
+      "label": "Vincenzo Leonio",
+      "share": 3.567e-05
+    },
+    {
+      "character_count": 22807,
+      "label": "Giovanni Battista Bossi",
+      "share": 3.542e-05
+    },
+    {
+      "character_count": 22637,
+      "label": "Barnaba di Nanni di Barnaba",
+      "share": 3.516e-05
+    },
+    {
+      "character_count": 22403,
+      "label": "Polibo Emonio",
+      "share": 3.48e-05
+    },
+    {
+      "character_count": 22382,
+      "label": "Parabosco, Girolamo",
+      "share": 3.476e-05
+    },
+    {
+      "character_count": 22277,
+      "label": "Bellincioni, Bernardo",
+      "share": 3.46e-05
+    },
+    {
+      "character_count": 22193,
+      "label": "Ludovico Dolce",
+      "share": 3.447e-05
+    },
+    {
+      "character_count": 22179,
+      "label": "Vincenzo da Filicaja",
+      "share": 3.445e-05
+    },
+    {
+      "character_count": 22150,
+      "label": "Priuli, Giovanni",
+      "share": 3.44e-05
+    },
+    {
+      "character_count": 21914,
+      "label": "Uranio Tegeo",
+      "share": 3.404e-05
+    },
+    {
+      "character_count": 21601,
+      "label": "Alberto Brandani",
+      "share": 3.355e-05
+    },
+    {
+      "character_count": 21594,
+      "label": "Baldassarre Stampa",
+      "share": 3.354e-05
+    },
+    {
+      "character_count": 21569,
+      "label": "Montano Falanzio",
+      "share": 3.35e-05
+    },
+    {
+      "character_count": 21145,
+      "label": "Pietro Andrea Mattioli",
+      "share": 3.284e-05
+    },
+    {
+      "character_count": 21076,
+      "label": "Dondi Dall'Orologio, Giovanni",
+      "share": 3.274e-05
+    },
+    {
+      "character_count": 20998,
+      "label": "Aurisco Elafio",
+      "share": 3.261e-05
+    },
+    {
+      "character_count": 20889,
+      "label": "Gaetano Guasti",
+      "share": 3.245e-05
+    },
+    {
+      "character_count": 20863,
+      "label": "Alessandro Guidi",
+      "share": 3.24e-05
+    },
+    {
+      "character_count": 20578,
+      "label": "Burchiello (Domenico di Giovanni detto il)",
+      "share": 3.196e-05
+    },
+    {
+      "character_count": 20574,
+      "label": "Calderoni, Anselmo",
+      "share": 3.196e-05
+    },
+    {
+      "character_count": 20322,
+      "label": "Orialo Minieiano",
+      "share": 3.156e-05
+    },
+    {
+      "character_count": 20243,
+      "label": "Salvatore Fenicia",
+      "share": 3.144e-05
+    },
+    {
+      "character_count": 20039,
+      "label": "Tirsi Leucasio",
+      "share": 3.113e-05
+    },
+    {
+      "character_count": 19966,
+      "label": "Giovanni Lami",
+      "share": 3.101e-05
+    },
+    {
+      "character_count": 19865,
+      "label": "Conradin de Flugi",
+      "share": 3.085e-05
+    },
+    {
+      "character_count": 19833,
+      "label": "Giovanni di Bertazzo Montolini",
+      "share": 3.081e-05
+    },
+    {
+      "character_count": 19723,
+      "label": "Francesco Berni",
+      "share": 3.063e-05
+    },
+    {
+      "character_count": 19405,
+      "label": "Malecarni, Francesco",
+      "share": 3.014e-05
+    },
+    {
+      "character_count": 19393,
+      "label": "Ila Orestasio",
+      "share": 3.012e-05
+    },
+    {
+      "character_count": 19300,
+      "label": "Eritro Faresio",
+      "share": 2.998e-05
+    },
+    {
+      "character_count": 19117,
+      "label": "Fulvio Testi | Gabriello Chiabrera",
+      "share": 2.969e-05
+    },
+    {
+      "character_count": 19079,
+      "label": "Elenco Bocalide",
+      "share": 2.963e-05
+    },
+    {
+      "character_count": 18906,
+      "label": "Crispolti, Cesare",
+      "share": 2.937e-05
+    },
+    {
+      "character_count": 18857,
+      "label": "Tron, Vincenzo",
+      "share": 2.929e-05
+    },
+    {
+      "character_count": 18783,
+      "label": "Giorgio Interiano",
+      "share": 2.917e-05
+    },
+    {
+      "character_count": 18613,
+      "label": "Fidalma Partenide",
+      "share": 2.891e-05
+    },
+    {
+      "character_count": 18528,
+      "label": "Morosini, Domenico",
+      "share": 2.878e-05
+    },
+    {
+      "character_count": 18450,
+      "label": "Aci Delpusiano",
+      "share": 2.866e-05
+    },
+    {
+      "character_count": 18086,
+      "label": "Dati, Leonardo",
+      "share": 2.809e-05
+    },
+    {
+      "character_count": 18075,
+      "label": "Ilindo Paragenite",
+      "share": 2.807e-05
+    },
+    {
+      "character_count": 17884,
+      "label": "Società anonima cooperativa di consumo di Castelleone di Suasa",
+      "share": 2.778e-05
+    },
+    {
+      "character_count": 17787,
+      "label": "Alterio Eleo",
+      "share": 2.763e-05
+    },
+    {
+      "character_count": 17776,
+      "label": "Alfesibeo Cario",
+      "share": 2.761e-05
+    },
+    {
+      "character_count": 17661,
+      "label": "Pellegrino da Castiglion Fiorentino",
+      "share": 2.743e-05
+    },
+    {
+      "character_count": 17654,
+      "label": "Marino Ceccoli",
+      "share": 2.742e-05
+    },
+    {
+      "character_count": 17586,
+      "label": "Ascanio Ginevri Blasi",
+      "share": 2.731e-05
+    },
+    {
+      "character_count": 17535,
+      "label": "Estrio Cauntino",
+      "share": 2.724e-05
+    },
+    {
+      "character_count": 17501,
+      "label": "Nicio Meneladio",
+      "share": 2.718e-05
+    },
+    {
+      "character_count": 17494,
+      "label": "Venuti, Comedio",
+      "share": 2.717e-05
+    },
+    {
+      "character_count": 17347,
+      "label": "Antonio Pucci",
+      "share": 2.694e-05
+    },
+    {
+      "character_count": 17324,
+      "label": "Arnaldo Fusinato",
+      "share": 2.691e-05
+    },
+    {
+      "character_count": 17323,
+      "label": "Trisalgo Larisseate",
+      "share": 2.691e-05
+    },
+    {
+      "character_count": 17197,
+      "label": "Guinizzelli, Guido",
+      "share": 2.671e-05
+    },
+    {
+      "character_count": 17184,
+      "label": "Eneto Ereo",
+      "share": 2.669e-05
+    },
+    {
+      "character_count": 17116,
+      "label": "Giovanni Rizzi",
+      "share": 2.658e-05
+    },
+    {
+      "character_count": 17054,
+      "label": "Gaetano Trezza",
+      "share": 2.649e-05
+    },
+    {
+      "character_count": 16947,
+      "label": "Mirtilo Dianidio",
+      "share": 2.632e-05
+    },
+    {
+      "character_count": 16706,
+      "label": "Eubeno Buprastio",
+      "share": 2.595e-05
+    },
+    {
+      "character_count": 16705,
+      "label": "Gradenigo, Giorgio",
+      "share": 2.595e-05
+    },
+    {
+      "character_count": 16510,
+      "label": "Aglauro Cidonia",
+      "share": 2.564e-05
+    },
+    {
+      "character_count": 16472,
+      "label": "Bernardo Morando",
+      "share": 2.558e-05
+    },
+    {
+      "character_count": 16459,
+      "label": "Bindo Bonichi",
+      "share": 2.556e-05
+    },
+    {
+      "character_count": 16383,
+      "label": "Filotima Innia",
+      "share": 2.545e-05
+    },
+    {
+      "character_count": 16382,
+      "label": "Comune di Viarigi",
+      "share": 2.544e-05
+    },
+    {
+      "character_count": 16381,
+      "label": "Orsatto Cidario",
+      "share": 2.544e-05
+    },
+    {
+      "character_count": 16260,
+      "label": "Jacopo Sannazaro",
+      "share": 2.526e-05
+    },
+    {
+      "character_count": 16063,
+      "label": "Pisandro Antiniano",
+      "share": 2.495e-05
+    },
+    {
+      "character_count": 16016,
+      "label": "Giambattista Roberti",
+      "share": 2.488e-05
+    },
+    {
+      "character_count": 15992,
+      "label": "Nadasto Licoate",
+      "share": 2.484e-05
+    },
+    {
+      "character_count": 15969,
+      "label": "Siringo Reteo",
+      "share": 2.48e-05
+    },
+    {
+      "character_count": 15950,
+      "label": "Cascina, Pietro",
+      "share": 2.477e-05
+    },
+    {
+      "character_count": 15902,
+      "label": "Giuseppe Torelli",
+      "share": 2.47e-05
+    },
+    {
+      "character_count": 15891,
+      "label": "Pietro Ercole Visconti",
+      "share": 2.468e-05
+    },
+    {
+      "character_count": 15715,
+      "label": "Verildo Eleuterio",
+      "share": 2.441e-05
+    },
+    {
+      "character_count": 15566,
+      "label": "Carlo Bossi",
+      "share": 2.418e-05
+    },
+    {
+      "character_count": 15433,
+      "label": "Nidalmo Tiseo",
+      "share": 2.397e-05
+    },
+    {
+      "character_count": 15063,
+      "label": "Fuscano, Giovanni Berardino",
+      "share": 2.34e-05
+    },
+    {
+      "character_count": 15025,
+      "label": "Aristeo Cratio",
+      "share": 2.334e-05
+    },
+    {
+      "character_count": 15016,
+      "label": "Autone Manturese",
+      "share": 2.332e-05
+    },
+    {
+      "character_count": 14873,
+      "label": "Giovanni Antonio Volpi",
+      "share": 2.31e-05
+    },
+    {
+      "character_count": 14857,
+      "label": "Alindo Scirtoniano",
+      "share": 2.308e-05
+    },
+    {
+      "character_count": 14827,
+      "label": "Buonaccorso da Montemagno il Giovane",
+      "share": 2.303e-05
+    },
+    {
+      "character_count": 14822,
+      "label": "Giovanni Salvatore de Coureil",
+      "share": 2.302e-05
+    },
+    {
+      "character_count": 14703,
+      "label": "Vittoria Madurelli Berti",
+      "share": 2.284e-05
+    },
+    {
+      "character_count": 14638,
+      "label": "Vendramin, Giovanni",
+      "share": 2.274e-05
+    },
+    {
+      "character_count": 14546,
+      "label": "Alarco Erinnidio",
+      "share": 2.259e-05
+    },
+    {
+      "character_count": 14535,
+      "label": "Eustachio Manfredi",
+      "share": 2.258e-05
+    },
+    {
+      "character_count": 14514,
+      "label": "Elettra Citeria",
+      "share": 2.254e-05
+    },
+    {
+      "character_count": 14490,
+      "label": "Brancaleone da Faenza",
+      "share": 2.251e-05
+    },
+    {
+      "character_count": 14421,
+      "label": "Repubblica Romana (1849)",
+      "share": 2.24e-05
+    },
+    {
+      "character_count": 14383,
+      "label": "Benedetto Varchi",
+      "share": 2.234e-05
+    },
+    {
+      "character_count": 14379,
+      "label": "Roselli, Giovanni",
+      "share": 2.233e-05
+    },
+    {
+      "character_count": 14327,
+      "label": "Elagildo Leuconio",
+      "share": 2.225e-05
+    },
+    {
+      "character_count": 14184,
+      "label": "Gabriele Rossetti",
+      "share": 2.203e-05
+    },
+    {
+      "character_count": 14054,
+      "label": "Giogante, Michele del",
+      "share": 2.183e-05
+    },
+    {
+      "character_count": 13996,
+      "label": "Morra, Isabella di",
+      "share": 2.174e-05
+    },
+    {
+      "character_count": 13967,
+      "label": "Giovanni Canale",
+      "share": 2.169e-05
+    },
+    {
+      "character_count": 13959,
+      "label": "Folgore da San Gimignano",
+      "share": 2.168e-05
+    },
+    {
+      "character_count": 13890,
+      "label": "Silvia Licoatide",
+      "share": 2.157e-05
+    },
+    {
+      "character_count": 13885,
+      "label": "Tirinto Trofeio",
+      "share": 2.157e-05
+    },
+    {
+      "character_count": 13743,
+      "label": "Vallesio Gareatico",
+      "share": 2.135e-05
+    },
+    {
+      "character_count": 13569,
+      "label": "Morley, Thomas, 1557-1603?",
+      "share": 2.108e-05
+    },
+    {
+      "character_count": 13427,
+      "label": "Giovanni Battista Ciapetti",
+      "share": 2.086e-05
+    },
+    {
+      "character_count": 13360,
+      "label": "Pompeo Rinaldi",
+      "share": 2.075e-05
+    },
+    {
+      "character_count": 13326,
+      "label": "Cromeno Tegeatico",
+      "share": 2.07e-05
+    },
+    {
+      "character_count": 13258,
+      "label": "Verdizzotti, Giovan Mario",
+      "share": 2.059e-05
+    },
+    {
+      "character_count": 13254,
+      "label": "Giovanni Battista Casti",
+      "share": 2.059e-05
+    },
+    {
+      "character_count": 13143,
+      "label": "Pietro Michiele",
+      "share": 2.041e-05
+    },
+    {
+      "character_count": 13132,
+      "label": "Antonio Ottoboni",
+      "share": 2.04e-05
+    },
+    {
+      "character_count": 13004,
+      "label": "Clidemo Trivio",
+      "share": 2.02e-05
+    },
+    {
+      "character_count": 12797,
+      "label": "Giuseppe Ranieri Sanesi",
+      "share": 1.988e-05
+    },
+    {
+      "character_count": 12734,
+      "label": "Algarotti, Francesco",
+      "share": 1.978e-05
+    },
+    {
+      "character_count": 12668,
+      "label": "Contarini, Marcantonio",
+      "share": 1.968e-05
+    },
+    {
+      "character_count": 12659,
+      "label": "Acasto Lampeatico",
+      "share": 1.966e-05
+    },
+    {
+      "character_count": 12649,
+      "label": "Faustina Maratti",
+      "share": 1.965e-05
+    },
+    {
+      "character_count": 12646,
+      "label": "Buonaccorso da Montemagno il Vecchio",
+      "share": 1.964e-05
+    },
+    {
+      "character_count": 12615,
+      "label": "Giovanni Rosini",
+      "share": 1.959e-05
+    },
+    {
+      "character_count": 12531,
+      "label": "Carlo Alberto di Savoia | Regno di Sardegna",
+      "share": 1.946e-05
+    },
+    {
+      "character_count": 12244,
+      "label": "Gigli, Girolamo",
+      "share": 1.902e-05
+    },
+    {
+      "character_count": 12240,
+      "label": "Frescobaldi, Giovanni",
+      "share": 1.901e-05
+    },
+    {
+      "character_count": 12195,
+      "label": "Graziolo Bambaglioli",
+      "share": 1.894e-05
+    },
+    {
+      "character_count": 12044,
+      "label": "Regno d'Italia",
+      "share": 1.871e-05
+    },
+    {
+      "character_count": 12008,
+      "label": "Collaltino di Collalto",
+      "share": 1.865e-05
+    },
+    {
+      "character_count": 11943,
+      "label": "Francesco Algarotti",
+      "share": 1.855e-05
+    },
+    {
+      "character_count": 11891,
+      "label": "Peregrino da Ferrara, Giovanni",
+      "share": 1.847e-05
+    },
+    {
+      "character_count": 11888,
+      "label": "Vergerio, Pietro Paolo, 1498-1565.",
+      "share": 1.846e-05
+    },
+    {
+      "character_count": 11869,
+      "label": "Giuseppe Artale",
+      "share": 1.844e-05
+    },
+    {
+      "character_count": 11807,
+      "label": "Foscarini, Antonio",
+      "share": 1.834e-05
+    },
+    {
+      "character_count": 11477,
+      "label": "Diodata Saluzzo",
+      "share": 1.783e-05
+    },
+    {
+      "character_count": 11463,
+      "label": "Agesilo Brentico",
+      "share": 1.78e-05
+    },
+    {
+      "character_count": 11390,
+      "label": "Onemio Dianio",
+      "share": 1.769e-05
+    },
+    {
+      "character_count": 11291,
+      "label": "Neralco Castrimeniano",
+      "share": 1.754e-05
+    },
+    {
+      "character_count": 11232,
+      "label": "Domenico Lazzarini",
+      "share": 1.745e-05
+    },
+    {
+      "character_count": 11169,
+      "label": "Toscanella, Orazio",
+      "share": 1.735e-05
+    },
+    {
+      "character_count": 11154,
+      "label": "Antonio Muscettola",
+      "share": 1.732e-05
+    },
+    {
+      "character_count": 11059,
+      "label": "Fioretti, D.",
+      "share": 1.718e-05
+    },
+    {
+      "character_count": 11032,
+      "label": "Fazio degli Uberti",
+      "share": 1.714e-05
+    },
+    {
+      "character_count": 11029,
+      "label": "Modesta Pozzo",
+      "share": 1.713e-05
+    },
+    {
+      "character_count": 10917,
+      "label": "Muzio Oddi",
+      "share": 1.696e-05
+    },
+    {
+      "character_count": 10851,
+      "label": "Giuseppe Muratori",
+      "share": 1.685e-05
+    },
+    {
+      "character_count": 10807,
+      "label": "Pietro dei Faitinelli",
+      "share": 1.679e-05
+    },
+    {
+      "character_count": 10617,
+      "label": "Citisso Bleninio",
+      "share": 1.649e-05
+    },
+    {
+      "character_count": 10541,
+      "label": "Vincenzo Marenco",
+      "share": 1.637e-05
+    },
+    {
+      "character_count": 10411,
+      "label": "Francesco di Cambio",
+      "share": 1.617e-05
+    },
+    {
+      "character_count": 10388,
+      "label": "Ottinio Corineo",
+      "share": 1.613e-05
+    },
+    {
+      "character_count": 10365,
+      "label": "Teleste Ciparissiano",
+      "share": 1.61e-05
+    },
+    {
+      "character_count": 10317,
+      "label": "Scambrilla, Francesco",
+      "share": 1.602e-05
+    },
+    {
+      "character_count": 10258,
+      "label": "Giuseppe Bertoldi",
+      "share": 1.593e-05
+    },
+    {
+      "character_count": 10210,
+      "label": "Filippo Artico",
+      "share": 1.586e-05
+    },
+    {
+      "character_count": 10138,
+      "label": "Arpalio Abeatide",
+      "share": 1.575e-05
+    },
+    {
+      "character_count": 10128,
+      "label": "Torquato Tasso",
+      "share": 1.573e-05
+    },
+    {
+      "character_count": 10118,
+      "label": "Orito Piliaco",
+      "share": 1.572e-05
+    },
+    {
+      "character_count": 10115,
+      "label": "Vincenzo Bertoni",
+      "share": 1.571e-05
+    },
+    {
+      "character_count": 10113,
+      "label": "Eureno Licio",
+      "share": 1.571e-05
+    },
+    {
+      "character_count": 10110,
+      "label": "Lorenzo Magalotti",
+      "share": 1.57e-05
+    },
+    {
+      "character_count": 10074,
+      "label": "Matteo Frescobaldi",
+      "share": 1.565e-05
+    },
+    {
+      "character_count": 10010,
+      "label": "Perideo Trapezunzio",
+      "share": 1.555e-05
+    },
+    {
+      "character_count": 9939,
+      "label": "Vincenzo Zito",
+      "share": 1.544e-05
+    },
+    {
+      "character_count": 9937,
+      "label": "Petronilla Paolini Massimi",
+      "share": 1.543e-05
+    },
+    {
+      "character_count": 9921,
+      "label": "Benedetto Menzini",
+      "share": 1.541e-05
+    },
+    {
+      "character_count": 9918,
+      "label": "Filippo da Massa",
+      "share": 1.54e-05
+    },
+    {
+      "character_count": 9823,
+      "label": "Coreso Evanziano",
+      "share": 1.526e-05
+    },
+    {
+      "character_count": 9822,
+      "label": "Alisco Tortunio",
+      "share": 1.526e-05
+    },
+    {
+      "character_count": 9808,
+      "label": "Antonio Pantanelli",
+      "share": 1.523e-05
+    },
+    {
+      "character_count": 9795,
+      "label": "Nostradamus",
+      "share": 1.521e-05
+    },
+    {
+      "character_count": 9777,
+      "label": "Curti, Lancino",
+      "share": 1.519e-05
+    },
+    {
+      "character_count": 9776,
+      "label": "Tegeso Acroniano",
+      "share": 1.518e-05
+    },
+    {
+      "character_count": 9753,
+      "label": "Entello Epiano",
+      "share": 1.515e-05
+    },
+    {
+      "character_count": 9732,
+      "label": "Palemone Licurio",
+      "share": 1.512e-05
+    },
+    {
+      "character_count": 9643,
+      "label": "Quirico Rossi",
+      "share": 1.498e-05
+    },
+    {
+      "character_count": 9569,
+      "label": "Badoer, Alberto",
+      "share": 1.486e-05
+    },
+    {
+      "character_count": 9536,
+      "label": "Bellacci, Andrea",
+      "share": 1.481e-05
+    },
+    {
+      "character_count": 9460,
+      "label": "Mireo Rofeatico",
+      "share": 1.469e-05
+    },
+    {
+      "character_count": 9369,
+      "label": "Francesco Bonafide",
+      "share": 1.455e-05
+    },
+    {
+      "character_count": 9324,
+      "label": "Griseldo Toledermio",
+      "share": 1.448e-05
+    },
+    {
+      "character_count": 9101,
+      "label": "Ormonte Pereteo",
+      "share": 1.414e-05
+    },
+    {
+      "character_count": 8953,
+      "label": "Federigo Meninni",
+      "share": 1.391e-05
+    },
+    {
+      "character_count": 8905,
+      "label": "Dalete Carnasio",
+      "share": 1.383e-05
+    },
+    {
+      "character_count": 8744,
+      "label": "Idaste Pauntino",
+      "share": 1.358e-05
+    },
+    {
+      "character_count": 8682,
+      "label": "Arezio Gateatico",
+      "share": 1.349e-05
+    },
+    {
+      "character_count": 8606,
+      "label": "Francesco De Lemene",
+      "share": 1.337e-05
+    },
+    {
+      "character_count": 8506,
+      "label": "Carlo Alestra",
+      "share": 1.321e-05
+    },
+    {
+      "character_count": 8501,
+      "label": "Ciai, Giovanni",
+      "share": 1.32e-05
+    },
+    {
+      "character_count": 8476,
+      "label": "Giovanni Soster",
+      "share": 1.317e-05
+    },
+    {
+      "character_count": 8452,
+      "label": "Silvio Stampiglia",
+      "share": 1.313e-05
+    },
+    {
+      "character_count": 8404,
+      "label": "Araste Ceraunio",
+      "share": 1.305e-05
+    },
+    {
+      "character_count": 8215,
+      "label": "Dolcibene de' Tori",
+      "share": 1.276e-05
+    },
+    {
+      "character_count": 8161,
+      "label": "Logisto Nemeo",
+      "share": 1.268e-05
+    },
+    {
+      "character_count": 8094,
+      "label": "Giovanni Battista Amalteo",
+      "share": 1.257e-05
+    },
+    {
+      "character_count": 8079,
+      "label": "Euganio Libade",
+      "share": 1.255e-05
+    },
+    {
+      "character_count": 8072,
+      "label": "Vincenzo Sisco",
+      "share": 1.254e-05
+    },
+    {
+      "character_count": 8070,
+      "label": "Altemio Leucianitico",
+      "share": 1.253e-05
+    },
+    {
+      "character_count": 8063,
+      "label": "Paolo Luigi Raby",
+      "share": 1.252e-05
+    },
+    {
+      "character_count": 8047,
+      "label": "Giovanni Domenico Buonmattei Pioli",
+      "share": 1.25e-05
+    },
+    {
+      "character_count": 8043,
+      "label": "Angelo Poliziano",
+      "share": 1.249e-05
+    },
+    {
+      "character_count": 7996,
+      "label": "Filomolpo Corebio",
+      "share": 1.242e-05
+    },
+    {
+      "character_count": 7990,
+      "label": "Anton Maria Salvini",
+      "share": 1.241e-05
+    },
+    {
+      "character_count": 7981,
+      "label": "Bettino Ricasoli",
+      "share": 1.24e-05
+    },
+    {
+      "character_count": 7950,
+      "label": "Giuseppe Alborghetti",
+      "share": 1.235e-05
+    },
+    {
+      "character_count": 7855,
+      "label": "Niccolò Peirani",
+      "share": 1.22e-05
+    },
+    {
+      "character_count": 7846,
+      "label": "Ridolfo Campeggi",
+      "share": 1.219e-05
+    },
+    {
+      "character_count": 7816,
+      "label": "Pigli, Giovanni di Iacopo",
+      "share": 1.214e-05
+    },
+    {
+      "character_count": 7764,
+      "label": "Benci, Tommaso",
+      "share": 1.206e-05
+    },
+    {
+      "character_count": 7725,
+      "label": "Giuseppe Zanardelli",
+      "share": 1.2e-05
+    },
+    {
+      "character_count": 7690,
+      "label": "Simandro Inachio",
+      "share": 1.194e-05
+    },
+    {
+      "character_count": 7675,
+      "label": "Diante Prosense",
+      "share": 1.192e-05
+    },
+    {
+      "character_count": 7654,
+      "label": "Amiro Citeriano",
+      "share": 1.189e-05
+    },
+    {
+      "character_count": 7484,
+      "label": "Giulio Cesare Cordara",
+      "share": 1.162e-05
+    },
+    {
+      "character_count": 7405,
+      "label": "F. Franceschini",
+      "share": 1.15e-05
+    },
+    {
+      "character_count": 7282,
+      "label": "Un Poeta Lombardo",
+      "share": 1.131e-05
+    },
+    {
+      "character_count": 7278,
+      "label": "Giuseppe Maria Ercolani",
+      "share": 1.13e-05
+    },
+    {
+      "character_count": 7208,
+      "label": "Almaspe Steniclerio",
+      "share": 1.12e-05
+    },
+    {
+      "character_count": 7193,
+      "label": "Giuseppe Aurelio Costanzo",
+      "share": 1.117e-05
+    },
+    {
+      "character_count": 7186,
+      "label": "Ercole Maria Zanotti",
+      "share": 1.116e-05
+    },
+    {
+      "character_count": 7126,
+      "label": "Leonte Prineo",
+      "share": 1.107e-05
+    },
+    {
+      "character_count": 7109,
+      "label": "Tommaso Gaudiosi",
+      "share": 1.104e-05
+    },
+    {
+      "character_count": 7041,
+      "label": "Luigi Mercantini",
+      "share": 1.094e-05
+    },
+    {
+      "character_count": 6971,
+      "label": "Gabriele Fiamma",
+      "share": 1.083e-05
+    },
+    {
+      "character_count": 6962,
+      "label": "Erilo Cleoneo",
+      "share": 1.081e-05
+    },
+    {
+      "character_count": 6938,
+      "label": "Lambertuccio Frescobaldi",
+      "share": 1.078e-05
+    },
+    {
+      "character_count": 6921,
+      "label": "Girolamo Gigli",
+      "share": 1.075e-05
+    },
+    {
+      "character_count": 6869,
+      "label": "Cenne dalla Chitarra",
+      "share": 1.067e-05
+    },
+    {
+      "character_count": 6837,
+      "label": "Gesualdo Police",
+      "share": 1.062e-05
+    },
+    {
+      "character_count": 6756,
+      "label": "Francesco Maria Molza",
+      "share": 1.049e-05
+    },
+    {
+      "character_count": 6681,
+      "label": "Criseno Elissoneo",
+      "share": 1.038e-05
+    },
+    {
+      "character_count": 6614,
+      "label": "Alessandro Giribaldi",
+      "share": 1.027e-05
+    },
+    {
+      "character_count": 6578,
+      "label": "Lacone Cromizio",
+      "share": 1.022e-05
+    },
+    {
+      "character_count": 6545,
+      "label": "Eliso Euteio",
+      "share": 1.017e-05
+    },
+    {
+      "character_count": 6513,
+      "label": "Contarini, Carlo",
+      "share": 1.012e-05
+    },
+    {
+      "character_count": 6440,
+      "label": "Alessandro Varaldo",
+      "share": 1e-05
+    },
+    {
+      "character_count": 6423,
+      "label": "Mario Malfettani",
+      "share": 9.98e-06
+    },
+    {
+      "character_count": 6400,
+      "label": "Monte Andrea",
+      "share": 9.94e-06
+    },
+    {
+      "character_count": 6364,
+      "label": "Achille Giulio Danesi",
+      "share": 9.88e-06
+    },
+    {
+      "character_count": 6293,
+      "label": "Celisto Tegeatico",
+      "share": 9.77e-06
+    },
+    {
+      "character_count": 6288,
+      "label": "Lorenzo Casaburi Urries",
+      "share": 9.77e-06
+    },
+    {
+      "character_count": 6286,
+      "label": "Giovan Battista Catena",
+      "share": 9.76e-06
+    },
+    {
+      "character_count": 6262,
+      "label": "Celio Magno",
+      "share": 9.73e-06
+    },
+    {
+      "character_count": 6260,
+      "label": "Baldini, Sebastiano",
+      "share": 9.72e-06
+    },
+    {
+      "character_count": 6226,
+      "label": "Gelindo Teccaleio",
+      "share": 9.67e-06
+    },
+    {
+      "character_count": 6146,
+      "label": "Amaranto Sciaditico",
+      "share": 9.55e-06
+    },
+    {
+      "character_count": 6130,
+      "label": "Gian Pietro Riva",
+      "share": 9.52e-06
+    },
+    {
+      "character_count": 6115,
+      "label": "Rosindo Lisiade",
+      "share": 9.5e-06
+    },
+    {
+      "character_count": 6091,
+      "label": "Calzaiuolo, Giovanni di Gino",
+      "share": 9.46e-06
+    },
+    {
+      "character_count": 6028,
+      "label": "Pietro Aaron",
+      "share": 9.36e-06
+    },
+    {
+      "character_count": 6014,
+      "label": "Gantila Pelleneo",
+      "share": 9.34e-06
+    },
+    {
+      "character_count": 6000,
+      "label": "Romedio Callicioli",
+      "share": 9.32e-06
+    },
+    {
+      "character_count": 5978,
+      "label": "Carlo Alberto di Savoia",
+      "share": 9.29e-06
+    },
+    {
+      "character_count": 5972,
+      "label": "Gaspare Carpegna",
+      "share": 9.28e-06
+    },
+    {
+      "character_count": 5920,
+      "label": "Linco Telpusio",
+      "share": 9.2e-06
+    },
+    {
+      "character_count": 5909,
+      "label": "Figari, Pompeo",
+      "share": 9.18e-06
+    },
+    {
+      "character_count": 5893,
+      "label": "Vettori, Andrea",
+      "share": 9.15e-06
+    },
+    {
+      "character_count": 5853,
+      "label": "Malpigli, Nicolò",
+      "share": 9.09e-06
+    },
+    {
+      "character_count": 5799,
+      "label": "Finotti, P.G.",
+      "share": 9.01e-06
+    },
+    {
+      "character_count": 5795,
+      "label": "Altoviti, Bernardo",
+      "share": 9e-06
+    },
+    {
+      "character_count": 5772,
+      "label": "Agostino Paradisi",
+      "share": 8.97e-06
+    },
+    {
+      "character_count": 5753,
+      "label": "Iacinta Venetiana",
+      "share": 8.94e-06
+    },
+    {
+      "character_count": 5736,
+      "label": "Francesco Cipolla",
+      "share": 8.91e-06
+    },
+    {
+      "character_count": 5736,
+      "label": "Matteo Maria Boiardo",
+      "share": 8.91e-06
+    },
+    {
+      "character_count": 5727,
+      "label": "Pellegrino Gaudenzi",
+      "share": 8.9e-06
+    },
+    {
+      "character_count": 5673,
+      "label": "Giovanni Pindemonte",
+      "share": 8.81e-06
+    },
+    {
+      "character_count": 5663,
+      "label": "Brandaligio Venerosi",
+      "share": 8.8e-06
+    },
+    {
+      "character_count": 5633,
+      "label": "Teone Cleonense",
+      "share": 8.75e-06
+    },
+    {
+      "character_count": 5624,
+      "label": "Anton Giulio Brignole Sale",
+      "share": 8.74e-06
+    },
+    {
+      "character_count": 5613,
+      "label": "Giosuè Carducci",
+      "share": 8.72e-06
+    },
+    {
+      "character_count": 5584,
+      "label": "Antonio da San Miniato",
+      "share": 8.67e-06
+    },
+    {
+      "character_count": 5574,
+      "label": "Fronimo Epirio",
+      "share": 8.66e-06
+    },
+    {
+      "character_count": 5572,
+      "label": "Irene Pamisia",
+      "share": 8.65e-06
+    },
+    {
+      "character_count": 5556,
+      "label": "Sennuccio del Bene",
+      "share": 8.63e-06
+    },
+    {
+      "character_count": 5550,
+      "label": "Pieter Paul Rubens",
+      "share": 8.62e-06
+    },
+    {
+      "character_count": 5478,
+      "label": "Frondisio Leonideio",
+      "share": 8.51e-06
+    },
+    {
+      "character_count": 5464,
+      "label": "Leucride Ionide",
+      "share": 8.49e-06
+    },
+    {
+      "character_count": 5463,
+      "label": "Roselli, Antonio",
+      "share": 8.49e-06
+    },
+    {
+      "character_count": 5434,
+      "label": "Pompeo Figari",
+      "share": 8.44e-06
+    },
+    {
+      "character_count": 5430,
+      "label": "Ubertino Landi (1687-1760)",
+      "share": 8.43e-06
+    },
+    {
+      "character_count": 5402,
+      "label": "Velalbo Trifiliano",
+      "share": 8.39e-06
+    },
+    {
+      "character_count": 5387,
+      "label": "Scapuccini, Antonio",
+      "share": 8.37e-06
+    },
+    {
+      "character_count": 5385,
+      "label": "Antonio da Castello San Niccolò",
+      "share": 8.36e-06
+    },
+    {
+      "character_count": 5361,
+      "label": "Giuliano Sabbatini",
+      "share": 8.33e-06
+    },
+    {
+      "character_count": 5258,
+      "label": "Sanguinacci, Iacopo",
+      "share": 8.17e-06
+    },
+    {
+      "character_count": 5179,
+      "label": "England and Wales.",
+      "share": 8.04e-06
+    },
+    {
+      "character_count": 5171,
+      "label": "Andrea Rubbi",
+      "share": 8.03e-06
+    },
+    {
+      "character_count": 5145,
+      "label": "Giovanni Battista Recanati",
+      "share": 7.99e-06
+    },
+    {
+      "character_count": 5114,
+      "label": "Giuseppe Gavazzi",
+      "share": 7.94e-06
+    },
+    {
+      "character_count": 5110,
+      "label": "Michele Giuseppe Morei",
+      "share": 7.94e-06
+    },
+    {
+      "character_count": 5074,
+      "label": "Echeno Eurimedonzio",
+      "share": 7.88e-06
+    },
+    {
+      "character_count": 5043,
+      "label": "Nelindo Acontimacario",
+      "share": 7.83e-06
+    },
+    {
+      "character_count": 4973,
+      "label": "Torralbo Maloetide",
+      "share": 7.72e-06
+    },
+    {
+      "character_count": 4971,
+      "label": "Aurelio de' Giorgi Bertola",
+      "share": 7.72e-06
+    },
+    {
+      "character_count": 4970,
+      "label": "Antonio Basso",
+      "share": 7.72e-06
+    },
+    {
+      "character_count": 4965,
+      "label": "Clorasto Eubeio",
+      "share": 7.71e-06
+    },
+    {
+      "character_count": 4929,
+      "label": "Sant'Ignazio di Loyola",
+      "share": 7.66e-06
+    },
+    {
+      "character_count": 4916,
+      "label": "Guazzalotri, Antonio",
+      "share": 7.64e-06
+    },
+    {
+      "character_count": 4914,
+      "label": "Cresfonte Cauconeo",
+      "share": 7.63e-06
+    },
+    {
+      "character_count": 4908,
+      "label": "Enotro Pallanzio",
+      "share": 7.62e-06
+    },
+    {
+      "character_count": 4885,
+      "label": "Fertilio Lileo",
+      "share": 7.59e-06
+    },
+    {
+      "character_count": 4880,
+      "label": "Angelo Antonio Sacco",
+      "share": 7.58e-06
+    },
+    {
+      "character_count": 4854,
+      "label": "Medici, Carlo de'",
+      "share": 7.54e-06
+    },
+    {
+      "character_count": 4852,
+      "label": "Francesco Maria Gasparri",
+      "share": 7.54e-06
+    },
+    {
+      "character_count": 4839,
+      "label": "Niccolò Forteguerri",
+      "share": 7.52e-06
+    },
+    {
+      "character_count": 4828,
+      "label": "Efesio Arneo",
+      "share": 7.5e-06
+    },
+    {
+      "character_count": 4805,
+      "label": "Clarimbo Palladico",
+      "share": 7.46e-06
+    },
+    {
+      "character_count": 4779,
+      "label": "Luigi Tansillo | Niccolò Franco",
+      "share": 7.42e-06
+    },
+    {
+      "character_count": 4636,
+      "label": "Giovanni Guidiccioni",
+      "share": 7.2e-06
+    },
+    {
+      "character_count": 4626,
+      "label": "Giuseppe Giusti",
+      "share": 7.19e-06
+    },
+    {
+      "character_count": 4603,
+      "label": "Errardo di Aichelburg",
+      "share": 7.15e-06
+    },
+    {
+      "character_count": 4555,
+      "label": "Pietro Casaburi Urries",
+      "share": 7.07e-06
+    },
+    {
+      "character_count": 4516,
+      "label": "Cavalcanti, Guido",
+      "share": 7.01e-06
+    },
+    {
+      "character_count": 4454,
+      "label": "Mirtilide Langiano",
+      "share": 6.92e-06
+    },
+    {
+      "character_count": 4444,
+      "label": "Agero Nonacride",
+      "share": 6.9e-06
+    },
+    {
+      "character_count": 4432,
+      "label": "Giovanni Gherardo de Rossi",
+      "share": 6.88e-06
+    },
+    {
+      "character_count": 4402,
+      "label": "Antonio Cerati",
+      "share": 6.84e-06
+    },
+    {
+      "character_count": 4400,
+      "label": "Francesco Redi",
+      "share": 6.83e-06
+    },
+    {
+      "character_count": 4398,
+      "label": "Bartolomeo Dotti",
+      "share": 6.83e-06
+    },
+    {
+      "character_count": 4396,
+      "label": "Fedrio Epicuriano",
+      "share": 6.83e-06
+    },
+    {
+      "character_count": 4351,
+      "label": "Crateo Ericinio",
+      "share": 6.76e-06
+    },
+    {
+      "character_count": 4328,
+      "label": "Nosside Ecalia",
+      "share": 6.72e-06
+    },
+    {
+      "character_count": 4229,
+      "label": "Giacomo Antonelli | Papa Pio IX",
+      "share": 6.57e-06
+    },
+    {
+      "character_count": 4181,
+      "label": "Iacopo da Leona",
+      "share": 6.49e-06
+    },
+    {
+      "character_count": 4180,
+      "label": "Marcantonio Lavaiana",
+      "share": 6.49e-06
+    },
+    {
+      "character_count": 4159,
+      "label": "Bartolommeo Gamba",
+      "share": 6.46e-06
+    },
+    {
+      "character_count": 4109,
+      "label": "Giovanni Mario Crescimbeni",
+      "share": 6.38e-06
+    },
+    {
+      "character_count": 4042,
+      "label": "Martini, Giovanni",
+      "share": 6.28e-06
+    },
+    {
+      "character_count": 4004,
+      "label": "Risorboli, Niccolò",
+      "share": 6.22e-06
+    },
+    {
+      "character_count": 4004,
+      "label": "Tisameno Pelopide",
+      "share": 6.22e-06
+    },
+    {
+      "character_count": 3981,
+      "label": "Gaspare Murtola",
+      "share": 6.18e-06
+    },
+    {
+      "character_count": 3980,
+      "label": "Giovanni Visconti Venosta",
+      "share": 6.18e-06
+    },
+    {
+      "character_count": 3974,
+      "label": "Elmiro Miceneo",
+      "share": 6.17e-06
+    },
+    {
+      "character_count": 3939,
+      "label": "Tenzoni",
+      "share": 6.12e-06
+    },
+    {
+      "character_count": 3893,
+      "label": "Annibale Caro",
+      "share": 6.05e-06
+    },
+    {
+      "character_count": 3877,
+      "label": "Mirtinda Parraside",
+      "share": 6.02e-06
+    },
+    {
+      "character_count": 3867,
+      "label": "Elpina Aroete",
+      "share": 6.01e-06
+    },
+    {
+      "character_count": 3858,
+      "label": "Licida Orcomenio",
+      "share": 5.99e-06
+    },
+    {
+      "character_count": 3840,
+      "label": "Nice Euripiliana",
+      "share": 5.96e-06
+    },
+    {
+      "character_count": 3830,
+      "label": "Flamisto Termeo",
+      "share": 5.95e-06
+    },
+    {
+      "character_count": 3778,
+      "label": "Fenicio Larisseo",
+      "share": 5.87e-06
+    },
+    {
+      "character_count": 3749,
+      "label": "Olimpio Batilliano",
+      "share": 5.82e-06
+    },
+    {
+      "character_count": 3740,
+      "label": "Francesco Maria Deconti",
+      "share": 5.81e-06
+    },
+    {
+      "character_count": 3733,
+      "label": "Leonardo Quirini",
+      "share": 5.8e-06
+    },
+    {
+      "character_count": 3711,
+      "label": "Andrea Perrucci",
+      "share": 5.76e-06
+    },
+    {
+      "character_count": 3707,
+      "label": "Benci, Leonardo",
+      "share": 5.76e-06
+    },
+    {
+      "character_count": 3674,
+      "label": "Iacopo Angelo Nelli",
+      "share": 5.71e-06
+    },
+    {
+      "character_count": 3633,
+      "label": "Giovanni Mazier",
+      "share": 5.64e-06
+    },
+    {
+      "character_count": 3609,
+      "label": "Tedaldi, Francesco",
+      "share": 5.61e-06
+    },
+    {
+      "character_count": 3583,
+      "label": "Corsellini, Pietro (detto Canterino)",
+      "share": 5.57e-06
+    },
+    {
+      "character_count": 3546,
+      "label": "Jacopone da Todi",
+      "share": 5.51e-06
+    },
+    {
+      "character_count": 3528,
+      "label": "Regno di Sardegna | Vittorio Emanuele II di Savoia",
+      "share": 5.48e-06
+    },
+    {
+      "character_count": 3513,
+      "label": "Bernardo Tasso",
+      "share": 5.46e-06
+    },
+    {
+      "character_count": 3509,
+      "label": "Filippo Merlo",
+      "share": 5.45e-06
+    },
+    {
+      "character_count": 3495,
+      "label": "Pier Giuseppe Giustiniani",
+      "share": 5.43e-06
+    },
+    {
+      "character_count": 3476,
+      "label": "Filippo Ortensio Fabbri",
+      "share": 5.4e-06
+    },
+    {
+      "character_count": 3466,
+      "label": "Parlamento italiano",
+      "share": 5.38e-06
+    },
+    {
+      "character_count": 3404,
+      "label": "Niccolò da Uzzano",
+      "share": 5.29e-06
+    },
+    {
+      "character_count": 3403,
+      "label": "Cucco di Gualfreduccio",
+      "share": 5.29e-06
+    },
+    {
+      "character_count": 3369,
+      "label": "Giovanni Battista Cotta",
+      "share": 5.23e-06
+    },
+    {
+      "character_count": 3369,
+      "label": "Giuseppe Andrea Rocca",
+      "share": 5.23e-06
+    },
+    {
+      "character_count": 3333,
+      "label": "Emiro Plausteriano",
+      "share": 5.18e-06
+    },
+    {
+      "character_count": 3324,
+      "label": "Giacomo Lubrano",
+      "share": 5.16e-06
+    },
+    {
+      "character_count": 3289,
+      "label": "Lucinda Coritesia",
+      "share": 5.11e-06
+    },
+    {
+      "character_count": 3265,
+      "label": "Clarisco Egireo",
+      "share": 5.07e-06
+    },
+    {
+      "character_count": 3255,
+      "label": "Eurindo Olimpiaco",
+      "share": 5.06e-06
+    },
+    {
+      "character_count": 3230,
+      "label": "Albizzi, Piero degli",
+      "share": 5.02e-06
+    },
+    {
+      "character_count": 3229,
+      "label": "Salico Lepreonio",
+      "share": 5.02e-06
+    },
+    {
+      "character_count": 3225,
+      "label": "Biffoli, Benedetto",
+      "share": 5.01e-06
+    },
+    {
+      "character_count": 3225,
+      "label": "Monte Andrea | Schiatta Pallavillani",
+      "share": 5.01e-06
+    },
+    {
+      "character_count": 3223,
+      "label": "Roselli, Bernardo",
+      "share": 5.01e-06
+    },
+    {
+      "character_count": 3217,
+      "label": "John Milton",
+      "share": 5e-06
+    },
+    {
+      "character_count": 3214,
+      "label": "Pompeo di Montevecchio",
+      "share": 4.99e-06
+    },
+    {
+      "character_count": 3213,
+      "label": "Iacopo Vittorelli",
+      "share": 4.99e-06
+    },
+    {
+      "character_count": 3194,
+      "label": "Martelli, Carlo",
+      "share": 4.96e-06
+    },
+    {
+      "character_count": 3148,
+      "label": "Elmante Lirceate",
+      "share": 4.89e-06
+    },
+    {
+      "character_count": 3138,
+      "label": "Andrea Del Basso",
+      "share": 4.87e-06
+    },
+    {
+      "character_count": 3101,
+      "label": "Maria Alinda Bonacci Brunamonti",
+      "share": 4.82e-06
+    },
+    {
+      "character_count": 3101,
+      "label": "Riccardo degli Albizzi",
+      "share": 4.82e-06
+    },
+    {
+      "character_count": 3096,
+      "label": "Francesco d'Assisi",
+      "share": 4.81e-06
+    },
+    {
+      "character_count": 3082,
+      "label": "Maestro Torrigiano",
+      "share": 4.79e-06
+    },
+    {
+      "character_count": 3059,
+      "label": "Donato Antonio Leonardi",
+      "share": 4.75e-06
+    },
+    {
+      "character_count": 3050,
+      "label": "Paolo Rolli",
+      "share": 4.74e-06
+    },
+    {
+      "character_count": 3035,
+      "label": "Forese Donati",
+      "share": 4.71e-06
+    },
+    {
+      "character_count": 2905,
+      "label": "Cielo d'Alcamo",
+      "share": 4.51e-06
+    },
+    {
+      "character_count": 2845,
+      "label": "Melinto Leuttronio",
+      "share": 4.42e-06
+    },
+    {
+      "character_count": 2837,
+      "label": "Ferdinando I de' Medici",
+      "share": 4.41e-06
+    },
+    {
+      "character_count": 2773,
+      "label": "Felicio Orcomeniano",
+      "share": 4.31e-06
+    },
+    {
+      "character_count": 2771,
+      "label": "Eladio Maleo",
+      "share": 4.3e-06
+    },
+    {
+      "character_count": 2756,
+      "label": "Idalba Corinetea",
+      "share": 4.28e-06
+    },
+    {
+      "character_count": 2756,
+      "label": "Odalmo Apesanzio",
+      "share": 4.28e-06
+    },
+    {
+      "character_count": 2750,
+      "label": "Ofelte Nedeo",
+      "share": 4.27e-06
+    },
+    {
+      "character_count": 2747,
+      "label": "Pier Felice Balduzzi",
+      "share": 4.27e-06
+    },
+    {
+      "character_count": 2745,
+      "label": "Timaste Pisandeo",
+      "share": 4.26e-06
+    },
+    {
+      "character_count": 2725,
+      "label": "Nicandro Tueboate",
+      "share": 4.23e-06
+    },
+    {
+      "character_count": 2704,
+      "label": "Egeria Nestanea",
+      "share": 4.2e-06
+    },
+    {
+      "character_count": 2698,
+      "label": "Morandi, Niccolò",
+      "share": 4.19e-06
+    },
+    {
+      "character_count": 2693,
+      "label": "Ircano Lampeo",
+      "share": 4.18e-06
+    },
+    {
+      "character_count": 2605,
+      "label": "Ferrante Pallavicino",
+      "share": 4.05e-06
+    },
+    {
+      "character_count": 2541,
+      "label": "Guido Guinizelli",
+      "share": 3.95e-06
+    },
+    {
+      "character_count": 2521,
+      "label": "Maestro Francesco",
+      "share": 3.92e-06
+    },
+    {
+      "character_count": 2474,
+      "label": "Barducci, Ottavante",
+      "share": 3.84e-06
+    },
+    {
+      "character_count": 2441,
+      "label": "Betti, Giovanni",
+      "share": 3.79e-06
+    },
+    {
+      "character_count": 2386,
+      "label": "Pier Jacopo Martello",
+      "share": 3.71e-06
+    },
+    {
+      "character_count": 2303,
+      "label": "Cione di Baglione",
+      "share": 3.58e-06
+    },
+    {
+      "character_count": 2252,
+      "label": "Aurasco Pamisiano",
+      "share": 3.5e-06
+    },
+    {
+      "character_count": 2219,
+      "label": "Leandro Oresteo",
+      "share": 3.45e-06
+    },
+    {
+      "character_count": 2215,
+      "label": "Idalmo Trigonio",
+      "share": 3.44e-06
+    },
+    {
+      "character_count": 2209,
+      "label": "Roberto di Battifolle",
+      "share": 3.43e-06
+    },
+    {
+      "character_count": 2199,
+      "label": "Leucoto Gateate",
+      "share": 3.42e-06
+    },
+    {
+      "character_count": 2196,
+      "label": "Fortunio Maloetide",
+      "share": 3.41e-06
+    },
+    {
+      "character_count": 2187,
+      "label": "Ricci, Niccolò de'",
+      "share": 3.4e-06
+    },
+    {
+      "character_count": 2185,
+      "label": "Salenzio Itomeo",
+      "share": 3.39e-06
+    },
+    {
+      "character_count": 2173,
+      "label": "Adelindo Gerenio",
+      "share": 3.38e-06
+    },
+    {
+      "character_count": 2161,
+      "label": "Laristo Carmoneo",
+      "share": 3.36e-06
+    },
+    {
+      "character_count": 2141,
+      "label": "Angelo Teodoro Villa",
+      "share": 3.33e-06
+    },
+    {
+      "character_count": 2132,
+      "label": "Burchiello (Domenico di Giovanni, detto il)",
+      "share": 3.31e-06
+    },
+    {
+      "character_count": 2120,
+      "label": "Celiro Straziano",
+      "share": 3.29e-06
+    },
+    {
+      "character_count": 2118,
+      "label": "Medici, Cosimo de'",
+      "share": 3.29e-06
+    },
+    {
+      "character_count": 2050,
+      "label": "Giannina Bevilacqua",
+      "share": 3.18e-06
+    },
+    {
+      "character_count": 2033,
+      "label": "Goffredo Mameli",
+      "share": 3.16e-06
+    },
+    {
+      "character_count": 2006,
+      "label": "Tullio Dandolo",
+      "share": 3.12e-06
+    },
+    {
+      "character_count": 1984,
+      "label": "Giacomino Pugliese",
+      "share": 3.08e-06
+    },
+    {
+      "character_count": 1965,
+      "label": "Giovan Battista Guarini",
+      "share": 3.05e-06
+    },
+    {
+      "character_count": 1903,
+      "label": "Pier della Vigna",
+      "share": 2.96e-06
+    },
+    {
+      "character_count": 1897,
+      "label": "Gilio Lelli",
+      "share": 2.95e-06
+    },
+    {
+      "character_count": 1850,
+      "label": "Benci, Lorenzo",
+      "share": 2.87e-06
+    },
+    {
+      "character_count": 1840,
+      "label": "Re Enzo",
+      "share": 2.86e-06
+    },
+    {
+      "character_count": 1820,
+      "label": "Benuccio",
+      "share": 2.83e-06
+    },
+    {
+      "character_count": 1810,
+      "label": "Benino, Francesco del",
+      "share": 2.81e-06
+    },
+    {
+      "character_count": 1741,
+      "label": "Papa Urbano VIII",
+      "share": 2.7e-06
+    },
+    {
+      "character_count": 1730,
+      "label": "Ciacco dell'Anguillara",
+      "share": 2.69e-06
+    },
+    {
+      "character_count": 1727,
+      "label": "Mauro Colonnetti",
+      "share": 2.68e-06
+    },
+    {
+      "character_count": 1725,
+      "label": "Immanuel Romano",
+      "share": 2.68e-06
+    },
+    {
+      "character_count": 1703,
+      "label": "Aulideno Melichio",
+      "share": 2.65e-06
+    },
+    {
+      "character_count": 1689,
+      "label": "Franceschino degli Albizzi",
+      "share": 2.62e-06
+    },
+    {
+      "character_count": 1677,
+      "label": "Placisto Amitaonio",
+      "share": 2.6e-06
+    },
+    {
+      "character_count": 1675,
+      "label": "Guido delle Colonne",
+      "share": 2.6e-06
+    },
+    {
+      "character_count": 1673,
+      "label": "Amministrazione generale di bonificazione",
+      "share": 2.6e-06
+    },
+    {
+      "character_count": 1667,
+      "label": "Emaro Simbolio",
+      "share": 2.59e-06
+    },
+    {
+      "character_count": 1652,
+      "label": "Anton Maria Narducci",
+      "share": 2.57e-06
+    },
+    {
+      "character_count": 1652,
+      "label": "Getilde Faresia",
+      "share": 2.57e-06
+    },
+    {
+      "character_count": 1649,
+      "label": "Idalia Elisiana",
+      "share": 2.56e-06
+    },
+    {
+      "character_count": 1647,
+      "label": "Alasto Liconeo",
+      "share": 2.56e-06
+    },
+    {
+      "character_count": 1647,
+      "label": "Damiani, Lorenzo",
+      "share": 2.56e-06
+    },
+    {
+      "character_count": 1646,
+      "label": "Domenico Cavalca",
+      "share": 2.56e-06
+    },
+    {
+      "character_count": 1644,
+      "label": "Talete Elateo",
+      "share": 2.55e-06
+    },
+    {
+      "character_count": 1636,
+      "label": "Benalgo Chelidorio",
+      "share": 2.54e-06
+    },
+    {
+      "character_count": 1633,
+      "label": "Dafne Eurippea",
+      "share": 2.54e-06
+    },
+    {
+      "character_count": 1626,
+      "label": "Dalindo Cinosurio",
+      "share": 2.53e-06
+    },
+    {
+      "character_count": 1607,
+      "label": "Neri Muscoli",
+      "share": 2.5e-06
+    },
+    {
+      "character_count": 1606,
+      "label": "Eurinda Annomidia",
+      "share": 2.49e-06
+    },
+    {
+      "character_count": 1588,
+      "label": "Angelo Mazza",
+      "share": 2.47e-06
+    },
+    {
+      "character_count": 1567,
+      "label": "Federico II",
+      "share": 2.43e-06
+    },
+    {
+      "character_count": 1563,
+      "label": "Aldo Manuzio",
+      "share": 2.43e-06
+    },
+    {
+      "character_count": 1560,
+      "label": "Tommaso della Gazzaia",
+      "share": 2.42e-06
+    },
+    {
+      "character_count": 1545,
+      "label": "Angiolieri, Cecco",
+      "share": 2.4e-06
+    },
+    {
+      "character_count": 1526,
+      "label": "Donati, Jacopo",
+      "share": 2.37e-06
+    },
+    {
+      "character_count": 1495,
+      "label": "Poesie di dubbia attribuzione",
+      "share": 2.32e-06
+    },
+    {
+      "character_count": 1493,
+      "label": "Giovanni di Maffeo da Barberino",
+      "share": 2.32e-06
+    },
+    {
+      "character_count": 1418,
+      "label": "Rinaldo d'Aquino",
+      "share": 2.2e-06
+    },
+    {
+      "character_count": 1405,
+      "label": "Salutati, Coluccio",
+      "share": 2.18e-06
+    },
+    {
+      "character_count": 1350,
+      "label": "Odo delle Colonne",
+      "share": 2.1e-06
+    },
+    {
+      "character_count": 1349,
+      "label": "Orlanduccio Orafo | Pallamidesse di Bellindote del Perfetto",
+      "share": 2.1e-06
+    },
+    {
+      "character_count": 1345,
+      "label": "Ferdinando Antonio Ghedini",
+      "share": 2.09e-06
+    },
+    {
+      "character_count": 1333,
+      "label": "Francesco Dall'Ongaro",
+      "share": 2.07e-06
+    },
+    {
+      "character_count": 1315,
+      "label": "Eugenio Emanuele di Savoia-Villafranca | Regno di Sardegna",
+      "share": 2.04e-06
+    },
+    {
+      "character_count": 1310,
+      "label": "Benuccio Salimbeni",
+      "share": 2.03e-06
+    },
+    {
+      "character_count": 1303,
+      "label": "Giuseppe Ruggero",
+      "share": 2.02e-06
+    },
+    {
+      "character_count": 1270,
+      "label": "Monaldo da Sofena",
+      "share": 1.97e-06
+    },
+    {
+      "character_count": 1259,
+      "label": "Trebaldino Manfredini",
+      "share": 1.96e-06
+    },
+    {
+      "character_count": 1246,
+      "label": "Federico Gualterotti",
+      "share": 1.94e-06
+    },
+    {
+      "character_count": 1233,
+      "label": "Francesco Villardi",
+      "share": 1.92e-06
+    },
+    {
+      "character_count": 1204,
+      "label": "Cione di Baglione | Monte Andrea",
+      "share": 1.87e-06
+    },
+    {
+      "character_count": 1202,
+      "label": "Simone da Siena",
+      "share": 1.87e-06
+    },
+    {
+      "character_count": 1180,
+      "label": "Giuntino Lanfredi",
+      "share": 1.83e-06
+    },
+    {
+      "character_count": 1173,
+      "label": "Francesco di Vannozzo",
+      "share": 1.82e-06
+    },
+    {
+      "character_count": 1172,
+      "label": "Girardello",
+      "share": 1.82e-06
+    },
+    {
+      "character_count": 1165,
+      "label": "Lorenzo Fusconi",
+      "share": 1.81e-06
+    },
+    {
+      "character_count": 1146,
+      "label": "Rossi, Roberto de'",
+      "share": 1.78e-06
+    },
+    {
+      "character_count": 1135,
+      "label": "Giovanni Fratta",
+      "share": 1.76e-06
+    },
+    {
+      "character_count": 1131,
+      "label": "Calzaiuolo, Antonio",
+      "share": 1.76e-06
+    },
+    {
+      "character_count": 1128,
+      "label": "Gualpertino da Coderta",
+      "share": 1.75e-06
+    },
+    {
+      "character_count": 1125,
+      "label": "Vittoria Aganoor",
+      "share": 1.75e-06
+    },
+    {
+      "character_count": 1121,
+      "label": "Tommaso Grossi",
+      "share": 1.74e-06
+    },
+    {
+      "character_count": 1095,
+      "label": "Egone Cerausio",
+      "share": 1.7e-06
+    },
+    {
+      "character_count": 1083,
+      "label": "Lindoro Elateo",
+      "share": 1.68e-06
+    },
+    {
+      "character_count": 1079,
+      "label": "Angelo Di Costanzo",
+      "share": 1.68e-06
+    },
+    {
+      "character_count": 1078,
+      "label": "Paolo Onorato Vigliani | Regio Governo di Lombardia",
+      "share": 1.67e-06
+    },
+    {
+      "character_count": 1078,
+      "label": "Petroni, Ludovico",
+      "share": 1.67e-06
+    },
+    {
+      "character_count": 1076,
+      "label": "Gregorio d'Alessandria",
+      "share": 1.67e-06
+    },
+    {
+      "character_count": 1074,
+      "label": "Ateste Mirsinio",
+      "share": 1.67e-06
+    },
+    {
+      "character_count": 1071,
+      "label": "Berardino Rota",
+      "share": 1.66e-06
+    },
+    {
+      "character_count": 1045,
+      "label": "Abate di Tivoli",
+      "share": 1.62e-06
+    },
+    {
+      "character_count": 1026,
+      "label": "Ricci, Bernardo de'",
+      "share": 1.59e-06
+    },
+    {
+      "character_count": 1020,
+      "label": "Compiuta Donzella",
+      "share": 1.58e-06
+    },
+    {
+      "character_count": 1005,
+      "label": "Bondie Dietaiuti",
+      "share": 1.56e-06
+    },
+    {
+      "character_count": 992,
+      "label": "Ugo di Massa Conte di Santafiore",
+      "share": 1.54e-06
+    },
+    {
+      "character_count": 980,
+      "label": "Messer Rinaldo d'Aquino",
+      "share": 1.52e-06
+    },
+    {
+      "character_count": 967,
+      "label": "Folgore di San Gimignano",
+      "share": 1.5e-06
+    },
+    {
+      "character_count": 948,
+      "label": "Ridolfo di mastro Angelo",
+      "share": 1.47e-06
+    },
+    {
+      "character_count": 939,
+      "label": "Giovanni Della Casa",
+      "share": 1.46e-06
+    },
+    {
+      "character_count": 858,
+      "label": "Lapo Gianni",
+      "share": 1.33e-06
+    },
+    {
+      "character_count": 856,
+      "label": "Ercole Gnecchi",
+      "share": 1.33e-06
+    },
+    {
+      "character_count": 850,
+      "label": "Leonardo Giustinian",
+      "share": 1.32e-06
+    },
+    {
+      "character_count": 844,
+      "label": "Angelo Antonio Somai",
+      "share": 1.31e-06
+    },
+    {
+      "character_count": 829,
+      "label": "Borgianni, Iacopo",
+      "share": 1.29e-06
+    },
+    {
+      "character_count": 800,
+      "label": "Gilio Gelli",
+      "share": 1.24e-06
+    },
+    {
+      "character_count": 781,
+      "label": "Francesco Beccuti",
+      "share": 1.21e-06
+    },
+    {
+      "character_count": 775,
+      "label": "Gottfried Wilhelm von Leibniz",
+      "share": 1.2e-06
+    },
+    {
+      "character_count": 765,
+      "label": "Iacopo Sardini",
+      "share": 1.19e-06
+    },
+    {
+      "character_count": 753,
+      "label": "Giuseppe Giacosa",
+      "share": 1.17e-06
+    },
+    {
+      "character_count": 753,
+      "label": "Pietro de' Faitinelli",
+      "share": 1.17e-06
+    },
+    {
+      "character_count": 748,
+      "label": "Carlo Maria Maggi",
+      "share": 1.16e-06
+    },
+    {
+      "character_count": 681,
+      "label": "Luporo da Lucca",
+      "share": 1.06e-06
+    },
+    {
+      "character_count": 674,
+      "label": "Iacomo Tolomei",
+      "share": 1.05e-06
+    },
+    {
+      "character_count": 670,
+      "label": "Ceccolo",
+      "share": 1.04e-06
+    },
+    {
+      "character_count": 653,
+      "label": "Alessandro Verri | Vincenzo Maria Imperiali",
+      "share": 1.01e-06
+    },
+    {
+      "character_count": 652,
+      "label": "Fino d’Arezzo",
+      "share": 1.01e-06
+    },
+    {
+      "character_count": 650,
+      "label": "Santa Caterina da Siena",
+      "share": 1.01e-06
+    },
+    {
+      "character_count": 639,
+      "label": "Gaetana Passerini",
+      "share": 9.9e-07
+    },
+    {
+      "character_count": 638,
+      "label": "Regno Lombardo-Veneto",
+      "share": 9.9e-07
+    },
+    {
+      "character_count": 628,
+      "label": "Giacomo Savarese",
+      "share": 9.8e-07
+    },
+    {
+      "character_count": 627,
+      "label": "Famiano Nardini",
+      "share": 9.7e-07
+    },
+    {
+      "character_count": 625,
+      "label": "Aniello Sciavicco",
+      "share": 9.7e-07
+    },
+    {
+      "character_count": 619,
+      "label": "Veronica Gambara",
+      "share": 9.6e-07
+    },
+    {
+      "character_count": 614,
+      "label": "Alessandro Guarini",
+      "share": 9.5e-07
+    },
+    {
+      "character_count": 607,
+      "label": "Attaviano",
+      "share": 9.4e-07
+    },
+    {
+      "character_count": 599,
+      "label": "Mino da Colle",
+      "share": 9.3e-07
+    },
+    {
+      "character_count": 599,
+      "label": "Parlantino da Firenze",
+      "share": 9.3e-07
+    },
+    {
+      "character_count": 594,
+      "label": "Pietro di mastro Angelo",
+      "share": 9.2e-07
+    },
+    {
+      "character_count": 576,
+      "label": "Pallamidesse di Bellindote del Perfetto",
+      "share": 8.9e-07
+    },
+    {
+      "character_count": 576,
+      "label": "Paolo Falconieri",
+      "share": 8.9e-07
+    },
+    {
+      "character_count": 574,
+      "label": "Giovan Girolamo II Acquaviva d'Aragona",
+      "share": 8.9e-07
+    },
+    {
+      "character_count": 574,
+      "label": "Louise Labé",
+      "share": 8.9e-07
+    },
+    {
+      "character_count": 570,
+      "label": "Francesco Gianni",
+      "share": 8.9e-07
+    },
+    {
+      "character_count": 569,
+      "label": "Castruccio Castracani degli Antelminelli",
+      "share": 8.8e-07
+    },
+    {
+      "character_count": 563,
+      "label": "Paulo Gonçalves de Andrada",
+      "share": 8.7e-07
+    },
+    {
+      "character_count": 561,
+      "label": "Antonio da Bacchereto",
+      "share": 8.7e-07
+    },
+    {
+      "character_count": 561,
+      "label": "Olinto Arsenio",
+      "share": 8.7e-07
+    },
+    {
+      "character_count": 557,
+      "label": "Angelo Zanardini",
+      "share": 8.7e-07
+    },
+    {
+      "character_count": 557,
+      "label": "Antonio Bruni (poeta)",
+      "share": 8.7e-07
+    },
+    {
+      "character_count": 556,
+      "label": "Egeo Bufagiano",
+      "share": 8.6e-07
+    },
+    {
+      "character_count": 553,
+      "label": "Giovambattista Marino",
+      "share": 8.6e-07
+    },
+    {
+      "character_count": 544,
+      "label": "Doralgo Euritidio",
+      "share": 8.4e-07
+    },
+    {
+      "character_count": 543,
+      "label": "Juan Antonio de Vizarrón y Eguiarreta",
+      "share": 8.4e-07
+    },
+    {
+      "character_count": 540,
+      "label": "Giuliano Cassiani",
+      "share": 8.4e-07
+    },
+    {
+      "character_count": 539,
+      "label": "Giovanni Francesco Gemelli Careri",
+      "share": 8.4e-07
+    },
+    {
+      "character_count": 538,
+      "label": "Federigo d'Arezzo",
+      "share": 8.4e-07
+    },
+    {
+      "character_count": 537,
+      "label": "Cornelio Bentivoglio d'Aragona",
+      "share": 8.3e-07
+    },
+    {
+      "character_count": 537,
+      "label": "Onofrio Minzoni",
+      "share": 8.3e-07
+    },
+    {
+      "character_count": 535,
+      "label": "Cola di messer Alessandro",
+      "share": 8.3e-07
+    },
+    {
+      "character_count": 531,
+      "label": "Dino Frescobaldi",
+      "share": 8.2e-07
+    },
+    {
+      "character_count": 529,
+      "label": "Migliore degli Abati",
+      "share": 8.2e-07
+    },
+    {
+      "character_count": 529,
+      "label": "Prospero Valeriano Manara",
+      "share": 8.2e-07
+    },
+    {
+      "character_count": 527,
+      "label": "Coluccio Salutati",
+      "share": 8.2e-07
+    },
+    {
+      "character_count": 527,
+      "label": "Galeazzo di Tarsia",
+      "share": 8.2e-07
+    },
+    {
+      "character_count": 524,
+      "label": "Cleandro Elideo",
+      "share": 8.1e-07
+    },
+    {
+      "character_count": 523,
+      "label": "Filippo da Messina",
+      "share": 8.1e-07
+    },
+    {
+      "character_count": 519,
+      "label": "Pucciandone Martelli",
+      "share": 8.1e-07
+    },
+    {
+      "character_count": 516,
+      "label": "Malatesta IV Malatesta",
+      "share": 8e-07
+    },
+    {
+      "character_count": 514,
+      "label": "Elviro Triasio",
+      "share": 8e-07
+    },
+    {
+      "character_count": 510,
+      "label": "Giovanni Battista Pastorini",
+      "share": 7.9e-07
+    },
+    {
+      "character_count": 510,
+      "label": "Pietro Rosati",
+      "share": 7.9e-07
+    },
+    {
+      "character_count": 509,
+      "label": "Mazzeo di Ricco",
+      "share": 7.9e-07
+    },
+    {
+      "character_count": 498,
+      "label": "Anna Gallizier",
+      "share": 7.7e-07
+    },
+    {
+      "character_count": 480,
+      "label": "Nina siciliana",
+      "share": 7.5e-07
+    },
+    {
+      "character_count": 477,
+      "label": "Pellegrini, Giovanni",
+      "share": 7.4e-07
+    },
+    {
+      "character_count": 473,
+      "label": "Regno d'Italia | Vittorio Emanuele II di Savoia",
+      "share": 7.3e-07
+    },
+    {
+      "character_count": 457,
+      "label": "Iacopo Mostacci",
+      "share": 7.1e-07
+    },
+    {
+      "character_count": 446,
+      "label": "Antonio Ghislanzoni",
+      "share": 6.9e-07
+    },
+    {
+      "character_count": 432,
+      "label": "Enrico Golisciani",
+      "share": 6.7e-07
+    },
+    {
+      "character_count": 428,
+      "label": "Niccolò Maria Di Fusco",
+      "share": 6.6e-07
+    },
+    {
+      "character_count": 409,
+      "label": "Bernardino Biondelli",
+      "share": 6.4e-07
+    },
+    {
+      "character_count": 381,
+      "label": "Giovanni Marradi",
+      "share": 5.9e-07
+    },
+    {
+      "character_count": 377,
+      "label": "N. Dan",
+      "share": 5.9e-07
+    },
+    {
+      "character_count": 373,
+      "label": "Benedetto Bonelli",
+      "share": 5.8e-07
+    },
+    {
+      "character_count": 344,
+      "label": "Luigi Blanch",
+      "share": 5.3e-07
+    },
+    {
+      "character_count": 328,
+      "label": "Jacopo da Bibbiena",
+      "share": 5.1e-07
+    },
+    {
+      "character_count": 295,
+      "label": "Anselmo da Ferrara",
+      "share": 4.6e-07
+    },
+    {
+      "character_count": 295,
+      "label": "Ridolfo Castinelli",
+      "share": 4.6e-07
+    },
+    {
+      "character_count": 290,
+      "label": "Leone Livi",
+      "share": 4.5e-07
+    },
+    {
+      "character_count": 281,
+      "label": "Rime Dei Memoriali Bolognesi",
+      "share": 4.4e-07
+    },
+    {
+      "character_count": 219,
+      "label": "Girolamo Pompei",
+      "share": 3.4e-07
+    },
+    {
+      "character_count": 174,
+      "label": "Paolo Bisacco",
+      "share": 2.7e-07
+    },
+    {
+      "character_count": 153,
+      "label": "Bartolomeo Gottifredi",
+      "share": 2.4e-07
+    },
+    {
+      "character_count": 142,
+      "label": "Riccardo Brogi",
+      "share": 2.2e-07
+    },
+    {
+      "character_count": 138,
+      "label": "Salomone Fiorentino",
+      "share": 2.1e-07
+    },
+    {
+      "character_count": 105,
+      "label": "Giovanni Brevio | Marco Cademosto",
+      "share": 1.6e-07
+    },
+    {
+      "character_count": 28,
+      "label": "Ludovico Leporeo",
+      "share": 4e-08
+    },
+    {
+      "character_count": 6,
+      "label": "Tedaldi, Piero di Maffeo",
+      "share": 1e-08
+    }
+  ],
+  "build_date": "2026-08-11",
+  "build_version": "canonical_italian_corpora_v1",
+  "delta_logical_character_count": 37352309,
+  "delta_shard_byte_count": 37825563,
+  "delta_shard_count": 4,
+  "delta_slice_count": 282,
+  "epoch_character_shares": [
+    {
+      "character_count": 233701810,
+      "label": "nineteenth_century_bridge",
+      "share": 0.36299123
+    },
+    {
+      "character_count": 118436136,
+      "label": "origins_through_1800",
+      "share": 0.18395784
+    },
+    {
+      "character_count": 67458173,
+      "label": "500",
+      "share": 0.10477765
+    },
+    {
+      "character_count": 62479197,
+      "label": "800",
+      "share": 0.09704418
+    },
+    {
+      "character_count": 46184673,
+      "label": "nineteenth_century",
+      "share": 0.07173514
+    },
+    {
+      "character_count": 28895496,
+      "label": "ottocento_bridge",
+      "share": 0.04488117
+    },
+    {
+      "character_count": 24954089,
+      "label": "400",
+      "share": 0.03875929
+    },
+    {
+      "character_count": 18380158,
+      "label": "700",
+      "share": 0.0285485
+    },
+    {
+      "character_count": 18014677,
+      "label": "600",
+      "share": 0.02798083
+    },
+    {
+      "character_count": 15830150,
+      "label": "300",
+      "share": 0.02458777
+    },
+    {
+      "character_count": 3507482,
+      "label": "200",
+      "share": 0.0054479
+    },
+    {
+      "character_count": 3247314,
+      "label": "1501_to_1700",
+      "share": 0.00504381
+    },
+    {
+      "character_count": 1240692,
+      "label": "Origini",
+      "share": 0.00192707
+    },
+    {
+      "character_count": 706020,
+      "label": "origins_to_1500",
+      "share": 0.00109661
+    },
+    {
+      "character_count": 297928,
+      "label": "XVI secolo",
+      "share": 0.00046275
+    },
+    {
+      "character_count": 196851,
+      "label": "XIII secolo",
+      "share": 0.00030575
+    },
+    {
+      "character_count": 183950,
+      "label": "XIV secolo",
+      "share": 0.00028572
+    },
+    {
+      "character_count": 81491,
+      "label": "XVII secolo",
+      "share": 0.00012657
+    },
+    {
+      "character_count": 20035,
+      "label": "XVIII secolo",
+      "share": 3.112e-05
+    },
+    {
+      "character_count": 5865,
+      "label": "XIX secolo",
+      "share": 9.11e-06
+    }
+  ],
+  "excluded_record_count": 102,
+  "excluded_sonnet_count": 303,
+  "existing_slice_count": 26652,
+  "logical_character_count": 643822187,
+  "logical_role_characters": {
+    "historical_general": 210873928,
+    "historical_non_sonnet_poetry": 58032412,
+    "nineteenth_century_bridge": 363119974,
+    "standard_sonnets": 11795873
+  },
+  "modified_broader_protected_recheck_count": 71,
+  "new_standard_sonnet_count": 28,
+  "protected_pair_recheck_count": 27477,
+  "protected_v6_sonnet_count": 387,
+  "record_universe_count": 4646,
+  "routing_row_count": 737,
+  "segment_range_count": 187,
+  "segment_review_count": 264,
+  "sonnet_universe_count": 22693,
+  "source_group_characters": {
+    "bibit": 211864618,
+    "existing_historical": 48005056,
+    "gutenberg": 292603095,
+    "ilc_ota": 32848830,
+    "liber_liber": 26534611,
+    "v6_sonnets": 786120,
+    "wikisource": 31179857
+  },
+  "token_count_status": "not_measured_pending_checkpoint_8_minerva_tokenization",
+  "training_record_count": 4544,
+  "training_sonnet_count": 22003,
+  "verification": {
+    "all_264_reviews_accounted": true,
+    "conditioned_material_included": false,
+    "gpu_work_started": false,
+    "mixture_weights_assigned": false,
+    "protected_v6_count_preserved": true,
+    "v7_created": false
+  }
+}
