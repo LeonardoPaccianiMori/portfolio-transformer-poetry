@@ -1,0 +1,108 @@
+{
+  "artifact_sha256": {
+    "data/metadata/cross_archive_canonical_decisions_v1.csv": "72f896cef137bda935b95046d13047cbe2c6a24e538edd4f95e5bf9c30ec230b",
+    "data/metadata/cross_archive_canonical_review_v1.csv": "4c4387919773fcb7ebbe1b0a4ef204defc34cc6aed5dcb34ad6f52bae68e460d",
+    "data/metadata/cross_archive_canonical_units_v1.csv": "8cb0604c5463d27a795fa98f86dfa9a52dc6b4c3351e03da0a6c6fa7736e3a16",
+    "data/metadata/cross_archive_overlap_v1.csv": "e34f7b4612ba462d2fd77b832951f6cbbfa6658c16f817881e34199c16fcbafa"
+  },
+  "audit_date": "2026-08-11",
+  "broader_unit_count": 4646,
+  "cache_deleted": false,
+  "canonical_precedence": [
+    "protected_and_existing_v6_or_existing_historical",
+    "bibit",
+    "project_gutenberg",
+    "italian_wikisource",
+    "liber_liber",
+    "ilc_ota",
+    "stable_unit_id_tiebreak"
+  ],
+  "characters_by_role": {
+    "historical_general": 237633922,
+    "historical_non_sonnet_poetry": 58165612,
+    "nineteenth_century_bridge": 363467516,
+    "standard_sonnets": 12150786
+  },
+  "characters_by_source_group": {
+    "bibit": 239123963,
+    "existing_historical": 48005056,
+    "gutenberg": 292606677,
+    "ilc_ota": 32886660,
+    "liber_liber": 26535638,
+    "v6_sonnets": 991742,
+    "wikisource": 31268100
+  },
+  "conditioned_material_included": false,
+  "containment_method": "normalized_directional_8_word_shingles",
+  "containment_threshold": 0.8,
+  "decision_status_counts": {
+    "exclude_broader_unit_misrouted_as_sonnet": 75,
+    "exclude_fully_covered_by_preferred_canonical": 330,
+    "retain_canonical_candidate_7b": 24931,
+    "retain_existing_canonical_locked": 1517,
+    "retain_protected_v6_split_locked": 387,
+    "retain_unique_after_canonical_segment_quarantine_7b": 71
+  },
+  "final_corpus_materialized": false,
+  "gpu_work_started": false,
+  "input_sha256": {
+    "data/metadata/ilc_ota_text_units_v1.csv": "f52cecfcd7387d8290e671421b354d5d1f45ab6bdf658646a0c2062cdd30d224",
+    "data/metadata/sonnets_expanded_v6_manifest.csv": "994c4c374f42ba26f1c352d7ad7c3adec7ec4671507770bd7c485cb6f977a4fa",
+    "data/processed/bibit_resolved_v1/records_manifest.csv": "916ccb2b52b29f562348afa4828665b177b2a51eb988f9a974b88f584349a3f7",
+    "data/processed/bibit_resolved_v1/sonnets_manifest.csv": "28d135cc6695d9c6c0c2bbc81664d9bd5a506a9a05a5c030857d69de3280ce24",
+    "data/processed/expanded_italian_1200_1800_v1/expanded_italian_1200_1800_v1_build_report.json": "25cb4b04715a19787611c7cd62474e293a905d7010c142d594ea07fa982c835f",
+    "data/processed/italian_wikisource_resolved_v1/records_manifest.csv": "b871d41cbe9dcbe9a068d32f55a1d5747aa0c31c6300d4051e7108d4235b27e4",
+    "data/processed/italian_wikisource_resolved_v1/sonnets_manifest.csv": "20ef84f7409cdb101be8da57213ca1444d7564b089aedd740772ba9aa85e7293",
+    "data/processed/liber_liber_resolved_v1/records_manifest.csv": "019dcba5c298520ff9d3c0ad782a65f3bb997a23dd0f61de6ea4bba356a86159",
+    "data/processed/liber_liber_resolved_v1/sonnets_manifest.csv": "e8f99462c59364bc98f435023282f9d782ab37b306a37fd05971da0f086e1379",
+    "data/processed/pretraining_historical_wikisource_v1/pretraining_historical_wikisource_v1_build_report.json": "cd7de4ad072381f8007fb7cfb75fc6caff7fbda0beba991411ed3655a44301f0",
+    "data/processed/project_gutenberg_resolved_v1/records_manifest.csv": "2dd7b1700bcaab69f196e7f99febcc4013068a2d0567eb0e413299cd9f0ab7f4",
+    "data/processed/project_gutenberg_resolved_v1/sonnets_manifest.csv": "91f391c52a1bdbc069c14d162fe4752cbb486c453c946273f93d1f85f301d99f"
+  },
+  "metadata_only_archives_included": false,
+  "mixture_weights_assigned": false,
+  "next_checkpoint": "7B role-specific extraction, segment quarantine, and inactive final builds",
+  "overlap_counts_by_scope": {
+    "same_role": 346,
+    "sonnet_cross_role": 258
+  },
+  "overlap_pair_count": 604,
+  "protected_v6_unit_count": 387,
+  "report_version": "cross_archive_canonicalization_v1",
+  "review_row_count": 264,
+  "segment_removal_character_count_frozen": false,
+  "standard_sonnet_unit_count": 22665,
+  "text_activated": false,
+  "unit_count": 27311,
+  "unit_counts_by_role": {
+    "historical_general": 1576,
+    "historical_non_sonnet_poetry": 1619,
+    "nineteenth_century_bridge": 1451,
+    "standard_sonnets": 22665
+  },
+  "unit_counts_by_source_group": {
+    "bibit": 20587,
+    "existing_historical": 36,
+    "gutenberg": 1065,
+    "ilc_ota": 185,
+    "liber_liber": 131,
+    "v6_sonnets": 1868,
+    "wikisource": 3439
+  },
+  "v7_created": false,
+  "whole_unit_character_count": 671417836,
+  "whole_unit_retained_character_count_before_segment_removal": 644304926,
+  "whole_unit_retained_characters_by_role_before_segment_removal": {
+    "historical_general": 210938100,
+    "historical_non_sonnet_poetry": 58120746,
+    "nineteenth_century_bridge": 363259940,
+    "standard_sonnets": 11986140
+  },
+  "whole_unit_training_character_count_before_segment_removal": 644099304,
+  "whole_unit_training_characters_by_role_before_segment_removal": {
+    "historical_general": 210938100,
+    "historical_non_sonnet_poetry": 58120746,
+    "nineteenth_century_bridge": 363259940,
+    "standard_sonnets": 11780518
+  }
+}

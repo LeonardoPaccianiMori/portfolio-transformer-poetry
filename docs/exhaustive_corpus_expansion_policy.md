@@ -145,6 +145,23 @@ Codice Pelavicino and Oxford dialect material remain outside the standard
 queue. The ignored 215 MB cache is retained, and no V7 split, mixture weight,
 cache deletion, or GPU work occurs.
 
+Checkpoint 7A freezes the global canonical universe without building final
+corpora. It indexes 27,311 completed-audit units: 4,646 broader units and 22,665
+standard sonnets, including all 1,868 V6 identities and exactly 387 protected
+validation/test sonnets. Exact normalized hashes plus directional normalized
+eight-word-shingle containment at `0.8` identify 604 threshold pairs. The
+canonical precedence is protected/existing V6 and existing historical text,
+then BibIt, Project Gutenberg, Italian Wikisource, Liber Liber, ILC/OTA, and a
+stable unit-ID tie-break. This excludes 330 fully covered lower-priority units,
+reroutes 75 Wikisource roots that are themselves sonnets, and carries 71 larger
+unique units into checkpoint 7B for hash-pinned canonical/sonnet span removal.
+No broader unit contains protected V6 validation/test material at threshold.
+Whole-unit exclusions leave 644,304,926 characters before segment removal,
+including protected evaluation sonnets; this is a ceiling rather than a final
+corpus count. Conditioned material and metadata-only archive inventories remain
+outside the index, and no corpus activation, V7 split, mixture, cache deletion,
+or GPU work occurs.
+
 ## Current Coverage
 
 - Biblioteca Italiana: role-specific TEI audit, review resolution, and bounded
@@ -227,3 +244,7 @@ cache deletion, or GPU work occurs.
   their bounded source audit leaves 185 units / 32,886,660 characters eligible
   but inactive for checkpoint 7. None of the 4,634 checkpoint-6B inventory
   candidates or checkpoint-6D audit results authorizes corpus activation.
+- Cross-archive checkpoint 7A is complete. Its 27,311-unit decision freeze
+  resolves 604 threshold overlaps and schedules bounded span removal for 71
+  retained unique units in checkpoint 7B. The 644,304,926-character whole-unit
+  ceiling is not a final processed-corpus count.
