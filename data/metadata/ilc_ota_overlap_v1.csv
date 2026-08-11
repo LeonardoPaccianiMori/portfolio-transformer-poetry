@@ -1,0 +1,13 @@
+candidate_unit_id,reference_id,reference_kind,pair_scope,left_containment,right_containment,matching_shingles,decision_scope
+ilc_rosmini:Antonio_Rosmini_R0B,ilc_rosmini:Antonio_Rosmini_R0L,candidate,internal,0.996503,0.993251,88896,candidate_fully_covered
+ota_0305:vergaguerra-0305,bibit:bibit000092,bibit,cross,0.848997,0.079092,2412,candidate_fully_covered
+ota_0305:vergalupa-0305,bibit:bibit000092,bibit,cross,0.899329,0.043940,1340,candidate_fully_covered
+ota_0305:vergareveren-0305,bibit:bibit001123,bibit,cross,0.954530,0.074279,2876,candidate_fully_covered
+ota_0871:tassolib-0871,bibit:bibit001501,bibit,cross,0.937724,0.941220,107541,candidate_fully_covered
+ota_0872:tassocon-0872,bibit:bibit000260,bibit,cross,0.899790,0.909786,149375,candidate_fully_covered
+ota_1041:furioso-1041,gutenberg_previous:pg3747,gutenberg_previous,cross,0.888849,0.894343,250187,candidate_fully_covered
+ota_1041:furioso-1041,gutenberg_resolved:3747,gutenberg_resolved,cross,0.888849,0.894343,250187,candidate_fully_covered
+ota_1099:teseide-1099,bibit:bibit000041,bibit,cross,0.939090,0.986856,65171,candidate_fully_covered
+ota_1100:boiardo-1100,bibit:bibit000049,bibit,cross,0.868760,0.879580,215455,candidate_fully_covered
+ota_1100:boiardo-1100,gutenberg_previous:pg57787,gutenberg_previous,cross,0.884009,0.894984,219237,candidate_fully_covered
+ota_1390:pulci-1390,bibit:bibit000363,bibit,cross,0.800400,0.840910,171248,candidate_fully_covered

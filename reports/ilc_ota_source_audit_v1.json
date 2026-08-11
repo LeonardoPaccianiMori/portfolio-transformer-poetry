@@ -1,0 +1,241 @@
+{
+  "acquired_file_count": 75,
+  "acquisition_error_count": 0,
+  "artifact_sha256": {
+    "decision_csv": "aaf147aad863b4c2255980e947d608f04347d96c6f0077e58a14c29c4dc06c34",
+    "file_csv": "b2006e17ec4ea4b9d852fc25ba96b24ec836f495e43de2ac8b0286854a1ef44e",
+    "inventory_csv": "97b1027430c7b7970b253b6ecc77f10f26549d5f01af17aa5cf9592a5ceb37c7",
+    "overlap_csv": "769c567b22a7a04e5064498ceacade013933b922bfdd6dcefe0176edb58ccecb",
+    "review_csv": "f552891f82ae3775d966e25e3fd416c28c80c76ef7cc849cf4908de357eb7140",
+    "unit_csv": "f52cecfcd7387d8290e671421b354d5d1f45ab6bdf658646a0c2062cdd30d224"
+  },
+  "audit_date": "2026-08-11",
+  "base_corpus_characters": 626379622,
+  "cache_deleted": false,
+  "candidate_character_count": 40572741,
+  "candidate_word_count": 6689757,
+  "conditioned_pelavicino_in_standard_queue": false,
+  "cross_overlap_pair_count": 11,
+  "decision_status_counts": {
+    "closed_no_extractable_primary_text_format": 1,
+    "closed_no_unique_eligible_text": 9,
+    "conditioned_language_excluded_inactive": 1,
+    "eligible_checkpoint_7_canonicalization_inactive": 29,
+    "excluded_not_primary_text": 4,
+    "excluded_post_1900": 2
+  },
+  "eligible_archive_character_counts": {
+    "ilc_cnr_historical_corpora": 28916569,
+    "oxford_text_archive": 3970091
+  },
+  "eligible_character_count": 32886660,
+  "eligible_role_character_counts": {
+    "historical_general": 2389394,
+    "historical_non_sonnet_poetry": 1601875,
+    "ottocento_bridge_capped": 28895391
+  },
+  "eligible_unit_count": 185,
+  "extractable_file_count": 55,
+  "extracted_unit_count": 203,
+  "gpu_work_started": false,
+  "ilc_record_count": 3,
+  "internal_overlap_pair_count": 1,
+  "inventory_record_count": 46,
+  "metadata_eligible_record_count": 39,
+  "mixture_weights_assigned": false,
+  "next_checkpoint": "7A cross-archive overlap and canonical decision freeze",
+  "no_extractable_primary_text_file_count": 3,
+  "ota_record_count": 43,
+  "overlap_pair_count": 12,
+  "protected_v6_unit_count": 0,
+  "redundant_representation_file_count": 17,
+  "report_version": "ilc_ota_source_audit_v1",
+  "review_row_count": 15,
+  "source_concentration": [
+    {
+      "eligible_characters": 28090926,
+      "record_id": "ilc_rosmini",
+      "share_of_resulting_eligible_pool": 0.04260937767783489,
+      "title": "Corpus Antonio Rosmini - Serbati"
+    },
+    {
+      "eligible_characters": 785371,
+      "record_id": "ilc_libretti",
+      "share_of_resulting_eligible_pool": 0.0011912803998066445,
+      "title": "Digital edition of opera libretti"
+    },
+    {
+      "eligible_characters": 732211,
+      "record_id": "ota_0702",
+      "share_of_resulting_eligible_pool": 0.0011106453037135608,
+      "title": "Lettere familiari : [lettere a Charles Lyell, 1826-49] / Gabriele Rossetti"
+    },
+    {
+      "eligible_characters": 674633,
+      "record_id": "ota_0302",
+      "share_of_resulting_eligible_pool": 0.001023308818332681,
+      "title": "Il libro del cortegiano  / compiled by J.R. Woodhouse"
+    },
+    {
+      "eligible_characters": 252217,
+      "record_id": "ota_1062",
+      "share_of_resulting_eligible_pool": 0.0003825722729742153,
+      "title": "Amori and Discorsi"
+    },
+    {
+      "eligible_characters": 236660,
+      "record_id": "ota_0694",
+      "share_of_resulting_eligible_pool": 0.00035897482771612456,
+      "title": "Purgatorio  / compiled by Antonio Zampolli for the Istituto di linguistica computazionale, Università di Pisa."
+    },
+    {
+      "eligible_characters": 235799,
+      "record_id": "ota_0695",
+      "share_of_resulting_eligible_pool": 0.00035766883039226933,
+      "title": "Paradiso / compiled by Antonio Zampolli for the Istituto di linguistica computazionale, Università di Pisa."
+    },
+    {
+      "eligible_characters": 233558,
+      "record_id": "ota_0693",
+      "share_of_resulting_eligible_pool": 0.00035426959693958684,
+      "title": "Inferno  / compiled by Antonio Zampolli for the Istituto di linguistica computazionale, Università di Pisa."
+    },
+    {
+      "eligible_characters": 206172,
+      "record_id": "ota_A14169",
+      "share_of_resulting_eligible_pool": 0.00031272947764678793,
+      "title": "La vita di Carlo Magno Imperadore, scritta in lingua italiana da Petruccio Vbaldino cittadin fiorentino"
+    },
+    {
+      "eligible_characters": 200595,
+      "record_id": "ota_B08182",
+      "share_of_resulting_eligible_pool": 0.0003042700733783318,
+      "title": "Le vite delle donne illustri. del regno d'Inghilterra, & del regno di Scotia, & di quelle, che d'altri paesi ne i due detti regni sono stato maritate. Doue si contengono tutte le cose degne di memoria da esse, ò da altri per i rispetti loro state operate, tanto di fuori, quanto di dentro de i due regni. / Scritte in lingua italiana da Petruccio Vbaldino cittadin Fiorentino.."
+    },
+    {
+      "eligible_characters": 143442,
+      "record_id": "ota_A14163",
+      "share_of_resulting_eligible_pool": 0.0002175782440516198,
+      "title": "Descrittione del regno di Scotia, et delle isole sue adiacenti di Petruccio Vbaldini cittadin Fiorentino. Nella quale si descriuono i confini di ciascuna prouincia, & i luoghi che visono, & le cose piu degne di memoria, che visi trouano tanto naturali, quanto marauigliose"
+    },
+    {
+      "eligible_characters": 133676,
+      "record_id": "ota_0407",
+      "share_of_resulting_eligible_pool": 0.00020276480634573088,
+      "title": "Galateo  / compiled by J.R. Woodhouse"
+    },
+    {
+      "eligible_characters": 125281,
+      "record_id": "ota_A14167",
+      "share_of_resulting_eligible_pool": 0.00019003095322869858,
+      "title": "Scelta di alcune attioni, et di varii accidenti occorsi tra alcune nationi differenti del mondo; cauati della selua dei case diuersi. Di Petruccio Vbaldino Fiorentino  ..."
+    },
+    {
+      "eligible_characters": 109136,
+      "record_id": "ota_A14162",
+      "share_of_resulting_eligible_pool": 0.0001655416073591945,
+      "title": "Parte prima delle brevi dimostrationi, et precetti vtilissimi ne i quali si trattano diuersi propositi morali, politici, & iconomici & che conuengono ancora ad ogni nobil Matrona. Cauati da una diligente osseruation di cose diuersʹe; et scritti al comun beneficio deli huomini ciuili. Da Petruccio Vbaldino cittadin Fiorentino."
+    },
+    {
+      "eligible_characters": 91769,
+      "record_id": "ota_A72536",
+      "share_of_resulting_eligible_pool": 0.0001391986857292362,
+      "title": "Essempio d'una lettera mandata d'Inghilterra a Don Bernardino Mendozza ambasciatore in Francia per lo re di Spagna nella quale si dichiara, lo stato del reame d'Inghilterra, contrario all'espettatione di Don Bernardino, di tutti gli spagnuoli fuoi conforti, & d'altri anchora / traslatata di francese in italiano ad instanza di chi desidera, che gl'Italici huomini conoscano quanti i romori, della vittoria dell'Armata spagnuola, sparti dal Mendozza, sieno bugiardi & falsi."
+    },
+    {
+      "eligible_characters": 87349,
+      "record_id": "ota_0304",
+      "share_of_resulting_eligible_pool": 0.000132494262765891,
+      "title": "Rime : 1-85 / Michelangelo Buonarroti"
+    },
+    {
+      "eligible_characters": 83858,
+      "record_id": "ota_A18325",
+      "share_of_resulting_eligible_pool": 0.00012719898209506792,
+      "title": "Atto della Giustitia d'Inghilterra, effeguito, per la coseruatione della commune [e] christiana pace contra alcuni feminatori di discordie, [e] seguaci de ribelli, [e] denemici del reame, [e] non per niuna perfecutione ... Traslatato d'inglese in vulgare ... Il 25.d Maggio 1584. [e] 26.del felicissimo regno d'Eliza ... tta, per gratia at Dio ... ."
+    },
+    {
+      "eligible_characters": 75508,
+      "record_id": "ota_A14165",
+      "share_of_resulting_eligible_pool": 0.00011453338667788868,
+      "title": "Militia del gran duca di Thoscana Capitoli, ordini, & priuilegij della militia, & bande di Sua Altezza Serenissima prima cosi ordinati dalla buona, & felice memoria di cosimo primo Gran Duca di Thoscana; et di poi corroborati da i successor i suoi figliuoli. Con l'aggiunta de i nuoui capitoli, & priuilegi concessi dallo illustrissimo & eccellentissimo Signor Don Francesco principe di Fiorenza, & di Siena pursuo figliuolo alla nuoua Militia de i Caualli armati all leggiera sino dall'anno 1566."
+    },
+    {
+      "eligible_characters": 74668,
+      "record_id": "ota_A13338",
+      "share_of_resulting_eligible_pool": 0.00011325924294729819,
+      "title": "La vita di Giulio Agricola scritta sincerissimamente. Da Cornelio Tacito suo genero. Et messa in volgare da Giouan. Maria Manelli"
+    },
+    {
+      "eligible_characters": 56800,
+      "record_id": "ota_A09485",
+      "share_of_resulting_eligible_pool": 8.615638559230912e-05,
+      "title": "Auiso piaceuole dato alla bella Italia, da vn nobile giovane Francese, sopra la mentita data dal serenissimo re di Nauarra a Papa Sisto V"
+    },
+    {
+      "eligible_characters": 54593,
+      "record_id": "ota_A14168",
+      "share_of_resulting_eligible_pool": 8.280872462396006e-05,
+      "title": "Lo stato delle tre corti Altrimenti: relationi di alcune qualita politiche con le loro dipendenze considerabili appresso di quei, che dei gouerni delli stati si dilettano; ritrouate nello stato della Corte Romana, nel regno di Napoli, & nelli stati del gran Duca di Thoscana, cagioni secondo la natura di quelle genti sicurissime della sermezza di quei gouerni. Di Petruccio Vbaldino, cittadin Fiorentino."
+    },
+    {
+      "eligible_characters": 50016,
+      "record_id": "ota_A09314",
+      "share_of_resulting_eligible_pool": 7.586615813001643e-05,
+      "title": "Gli occhi, oda all illustrissima & eccellentissima signora contessa Lucia Bedforde : con altri vari componimenti heroici regij / Di Francesco Peretto gentilhomo dottore Italiano."
+    },
+    {
+      "eligible_characters": 40272,
+      "record_id": "ilc_bellini",
+      "share_of_resulting_eligible_pool": 6.108609085516678e-05,
+      "title": "Bellini Digital Correspondence"
+    },
+    {
+      "eligible_characters": 31982,
+      "record_id": "ota_0305",
+      "share_of_resulting_eligible_pool": 4.851150570445828e-05,
+      "title": "Tutte le novelle / Giovanni Verga"
+    },
+    {
+      "eligible_characters": 26397,
+      "record_id": "ota_0303",
+      "share_of_resulting_eligible_pool": 4.003996673380605e-05,
+      "title": "Discorso o Dialogo intorno alla nostra lingua / Nicolò Machiavelli"
+    },
+    {
+      "eligible_characters": 23138,
+      "record_id": "ota_A14166",
+      "share_of_resulting_eligible_pool": 3.5096592426669866e-05,
+      "title": "Rime di Petruccio Vbaldino, cittadin Fiorentino"
+    },
+    {
+      "eligible_characters": 13568,
+      "record_id": "ota_A07736",
+      "share_of_resulting_eligible_pool": 2.0580454924585388e-05,
+      "title": "Di Tomasso Morlei il primo libro delle ballette a cinque voci"
+    },
+    {
+      "eligible_characters": 11887,
+      "record_id": "ota_A06105",
+      "share_of_resulting_eligible_pool": 1.8030650625629902e-05,
+      "title": "La forma delle publiche orationi et della co[n]fessione, & assolutione, la qual si usa nella chiesa de forestieri, che è nuouamente stata instituita in Londra (per gratia di Dio) con l'autorità & co[n]sentimento del Re."
+    },
+    {
+      "eligible_characters": 5178,
+      "record_id": "ota_A22695",
+      "share_of_resulting_eligible_pool": 7.854185996425645e-06,
+      "title": "Dichiaratione delle cause che hanno indotta la Serenissima Maestá, della Reina d'Ingilterra, di preparare & mandare sopra il mare vna armata per la difesa de i suoi regni contra le forze d'el Re di Spagna da esser publicata per i generali della detta armata, accioche sia conosciuto che sua Maestá, ha armato solamente per difenderse e offender li nemici, senza peró voler offender altri chi astenerannosi di adiuutari i suoi nemici, ma trattarli con tutte licite fauore amoreuolmente."
+    }
+  ],
+  "text_activated": false,
+  "uncapped_resulting_candidate_characters": 666952363,
+  "uncapped_resulting_eligible_characters": 659266282,
+  "unit_status_counts": {
+    "eligible_checkpoint_7_canonicalization_inactive": 185,
+    "excluded_cross_corpus_full_duplicate": 9,
+    "excluded_internal_canonical_duplicate": 1,
+    "excluded_nonstandard_or_unverified_language": 4,
+    "excluded_quality_or_parse_failure": 4
+  },
+  "v7_created": false
+}

@@ -129,6 +129,22 @@ conditioned because it mixes Italian and Latin. Checkpoint 6D must resolve these
 bounded source audits before cross-archive canonicalization. No corpus text is
 acquired or activated by discovery.
 
+Checkpoint 6D closes those two bounded source audits. The audit accounts for
+three compatible ILC-CNR records and all 43 Oxford Italian-facet records,
+acquires 75 files without error, and extracts 203 auditable units containing
+40,572,741 candidate characters. Source-level quality, language, overlap, and
+protected-V6 gates leave 185 units / 32,886,660 characters eligible but
+inactive for checkpoint 7. The uncapped projection would raise the frozen
+broader pool from 626,379,622 to 659,266,282 characters; that projection is not
+an activation decision or training weight. The ten-work scarcity threshold was
+only an audit-admission floor: the audit accounts for all 55 Rosmini TEI works,
+all 56 libretti, all 40 Bellini letters, and all 43 Oxford records. Twelve
+threshold overlap pairs identify one internal and eleven cross-corpus
+duplicates, while no unit overlaps protected V6 validation/test sonnets.
+Codice Pelavicino and Oxford dialect material remain outside the standard
+queue. The ignored 215 MB cache is retained, and no V7 split, mixture weight,
+cache deletion, or GPU work occurs.
+
 ## Current Coverage
 
 - Biblioteca Italiana: role-specific TEI audit, review resolution, and bounded
@@ -206,8 +222,8 @@ acquired or activated by discovery.
   pinned page-boundary extraction and the full BibIt/Gutenberg/current-corpus/
   protected-V6 overlap probe for the 4B-eligible queue.
 - Liber Liber: complete through its deterministic inactive resolved build.
-- Remaining registry archives: checkpoints 6A-6C are complete. The final
-  discovery pass added inactive ILC-CNR and Oxford Text Archive boundaries and
-  scheduled their bounded checkpoint-6D audits. None of the 4,634 checkpoint-6B
-  inventory candidates or the checkpoint-6C discoveries authorizes corpus-text
-  download or activation.
+- Remaining registry archives: checkpoints 6A-6D are complete. The final
+  discovery pass added inactive ILC-CNR and Oxford Text Archive boundaries;
+  their bounded source audit leaves 185 units / 32,886,660 characters eligible
+  but inactive for checkpoint 7. None of the 4,634 checkpoint-6B inventory
+  candidates or checkpoint-6D audit results authorizes corpus activation.
