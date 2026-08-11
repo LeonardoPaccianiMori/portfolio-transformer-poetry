@@ -84,6 +84,21 @@ The canonical archive list and status are maintained in
 No GPU training restarts until this expansion, cleaning, deduplication, split,
 and final mixture freeze are complete.
 
+Checkpoint 6A closes the terms, access, and composition decision for the twelve
+previously unresolved registry rows. Its official evidence, decisions, and
+composition gates are published in
+[`data/metadata/corpus_archive_terms_evidence_v1.csv`](../data/metadata/corpus_archive_terms_evidence_v1.csv),
+[`data/metadata/corpus_archive_resolution_v1.csv`](../data/metadata/corpus_archive_resolution_v1.csv),
+and
+[`data/metadata/corpus_archive_composition_gate_v1.csv`](../data/metadata/corpus_archive_composition_gate_v1.csv).
+Six rows may proceed only to bounded metadata/source inventory: ELTeC Italian,
+Internet Archive, Gallica, Internet Culturale, BEIC, and MIDIA. This status is
+not permission to acquire corpus text. Four rows retain concrete access,
+permission, or OCR blockers; BibIt Scrittori d'Italia is closed as scan-only
+with high canonical-overlap risk, and Google Books remains discovery-only. The
+full accounting and constraints are in the
+[`checkpoint-6A report`](../reports/corpus_archive_registry_resolution_v1.md).
+
 ## Current Coverage
 
 - Biblioteca Italiana: role-specific TEI audit, review resolution, and bounded
@@ -160,5 +175,8 @@ and final mixture freeze are complete.
   not authorize page-text acquisition or extraction. Next, propose revision-
   pinned page-boundary extraction and the full BibIt/Gutenberg/current-corpus/
   protected-V6 overlap probe for the 4B-eligible queue.
-- Liber Liber and the remaining registry archives: archive-scale inventory
-  pending.
+- Liber Liber: complete through its deterministic inactive resolved build.
+- Remaining registry archives: checkpoint 6A terms/access/value closure is
+  complete. Six bounded metadata/source inventories remain for checkpoint 6B;
+  the final open-ended archive-discovery pass remains checkpoint 6C. No 6A row
+  authorizes corpus-text download or activation.

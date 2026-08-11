@@ -1,0 +1,67 @@
+{
+  "activated_corpus_characters": 0,
+  "archive_count": 12,
+  "archive_ids": [
+    "bibit_scrittori_italia",
+    "bibit_incunaboli",
+    "eltec_italian",
+    "internet_archive",
+    "gallica",
+    "internet_culturale",
+    "beic",
+    "hathitrust",
+    "google_books",
+    "ovi_tlio",
+    "midia",
+    "diacoris"
+  ],
+  "artifact_sha256": {
+    "composition_gate_csv": "9c5bd5980ee1835b57258ca6545840d749bab586c5e5148d9f0f7bace9d9bd21",
+    "evidence_csv": "2391fd4fa7295fc66f6de1e3b67e6e3023fccee86b51d5f2d39a89535ee9a551",
+    "registry_csv": "90ff5a69069d0cb4e559a6898dc5a34d7ba93b376e333063401b02585317b1f0",
+    "resolution_csv": "8c3eaa2b5f9aeb8471f2bc5bde93a73d6f115f2297961713d4d861861489f331"
+  },
+  "assigned_role_counts": {
+    "auxiliary_capped_ottocento_bridge": 2,
+    "auxiliary_ocr_candidate": 1,
+    "core_training_candidate": 7,
+    "excluded": 2
+  },
+  "audit_date": "2026-08-11",
+  "base_corpus_characters": 626379622,
+  "blocked_count": 4,
+  "blocked_ids": [
+    "bibit_incunaboli",
+    "hathitrust",
+    "ovi_tlio",
+    "diacoris"
+  ],
+  "cache_deleted": false,
+  "closed_excluded_count": 2,
+  "eligible_bounded_inventory_count": 6,
+  "eligible_bounded_inventory_ids": [
+    "eltec_italian",
+    "internet_archive",
+    "gallica",
+    "internet_culturale",
+    "beic",
+    "midia"
+  ],
+  "evidence_count": 18,
+  "gpu_work_started": false,
+  "inaccessible_official_evidence_count": 1,
+  "mixture_weights_assigned": false,
+  "next_checkpoint": "6B bounded inventories for the six eligible rows; 6C final archive discovery remains deferred",
+  "official_first_party_evidence_count": 18,
+  "report_version": "corpus_archive_registry_resolution_v1",
+  "status_counts": {
+    "blocked_bulk_and_training_permission": 2,
+    "blocked_ocr_and_item_rights_gate": 1,
+    "blocked_official_terms_and_bulk_access": 1,
+    "closed_excluded_scan_only_overlap_risk": 1,
+    "discovery_only_closed": 1,
+    "eligible_bounded_inventory_inactive": 6
+  },
+  "text_downloads": 0,
+  "v7_split_created": false
+}
