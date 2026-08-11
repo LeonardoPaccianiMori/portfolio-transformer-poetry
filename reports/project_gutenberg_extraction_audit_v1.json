@@ -1,0 +1,89 @@
+{
+  "audit_version": "project_gutenberg_extraction_audit_v1",
+  "created_at_utc": "2026-08-11T07:28:29+00:00",
+  "source_count": 587,
+  "source_decision_counts": {
+    "conditioned_candidate_not_activated": 6,
+    "eligible_after_source_specific_extraction_pending_build": 2,
+    "eligible_standard_core_pending_processed_build": 564,
+    "exclude_canonical_cross_corpus_duplicate": 15
+  },
+  "segment_decision_counts": {
+    "conditioned_not_activated": 6,
+    "exclude_duplicate_modernized_edition": 1,
+    "exclude_embedded_canonical_text": 10,
+    "exclude_french_notice_and_front_matter": 1,
+    "exclude_full_source_duplicate": 15,
+    "exclude_non_primary_or_english_text": 2,
+    "exclude_parallel_english_translation": 252,
+    "exclude_protected_v6_sonnet": 1,
+    "exclude_terminal_transcriber_note": 400,
+    "include_record_text": 1334,
+    "quarantine_conditioned_sonnet_candidate": 2,
+    "quarantine_sonnet_candidate": 503
+  },
+  "role_summary": {
+    "historical_general": {
+      "record_count": 73,
+      "included_record_characters": 52431696
+    },
+    "historical_non_sonnet_poetry": {
+      "record_count": 44,
+      "included_record_characters": 11494505
+    },
+    "nineteenth_century_bridge": {
+      "record_count": 449,
+      "included_record_characters": 228427424
+    }
+  },
+  "sonnet_candidate_count": 611,
+  "sonnet_decision_counts": {
+    "conditioned_sonnet_candidate_not_activated": 2,
+    "eligible_standard_sonnet_pending_processed_build": 499,
+    "exclude_existing_corpus_sonnet_duplicate": 3,
+    "exclude_intra_gutenberg_sonnet_duplicate": 1,
+    "exclude_manual_not_sonnet": 106
+  },
+  "eligible_standard_sonnet_count": 499,
+  "unresolved_sonnet_review_count": 0,
+  "heldout_sonnet_conflict_count": 0,
+  "manual_review_count": 212,
+  "manual_review_resolution_counts": {
+    "accept_structurally_verified_standard_sonnet": 104,
+    "exclude_nonstandard_language_sonnet": 2,
+    "exclude_not_sonnet": 106
+  },
+  "outputs": {
+    "source_csv_path": "data/metadata/project_gutenberg_extraction_decisions_v1.csv",
+    "source_csv_sha256": "33f221ef6cb87827df485f011c5b49c1c81c7fa311a02adf3a9d54cd24857384",
+    "segment_csv_path": "data/metadata/project_gutenberg_segment_decisions_v1.csv",
+    "segment_csv_sha256": "4f2c263e12b0973acd0a1d982ccbe39b52827cd4865cb2346a309f7f6dd4da7a",
+    "sonnet_csv_path": "data/metadata/project_gutenberg_sonnet_candidates_v1.csv",
+    "sonnet_csv_sha256": "372f0abd61bf9367844ac4d9c1db8fd2549f2b26a628c365e7edcdb178fc60ec",
+    "review_csv_path": "data/metadata/project_gutenberg_sonnet_review_v1.csv",
+    "review_csv_sha256": "95b962dfa1c6f29201ed5f9daadd0a3fa93eb59a7d71c78f2b422cb1badd3db6",
+    "json_report_path": "reports/project_gutenberg_extraction_audit_v1.json",
+    "markdown_report_path": "reports/project_gutenberg_extraction_audit_v1.md"
+  },
+  "inputs": {
+    "prior_probe_csv_sha256": "bf35b9b38112ed987f98b7c20eb44ebe864eafc35b4a6cc7e2af7b419b9b7984",
+    "pass1b_probe_csv_sha256": "fc28ad8064b4ebddad0c79ec8b20eb74dee8e0322e976fece9da78c466fc12cf",
+    "final_resolution_csv_sha256": "c74bd1dd9ff40b0abb900eaf4bfe6ee459103db65bd40b55a48865148b396680",
+    "bibit_record_manifest_sha256": "916ccb2b52b29f562348afa4828665b177b2a51eb988f9a974b88f584349a3f7",
+    "broader_sources_manifest_sha256": "007abcf67793077eafa30cfc84abc8a9da5ee26704cd5058ed5e11605b149ac6",
+    "sonnet_manifest_sha256": "994c4c374f42ba26f1c352d7ad7c3adec7ec4671507770bd7c485cb6f977a4fa",
+    "bibit_sonnet_manifest_sha256": "28d135cc6695d9c6c0c2bbc81664d9bd5a506a9a05a5c030857d69de3280ce24"
+  },
+  "policy": {
+    "processed_text_materialized": false,
+    "v7_split_assigned": false,
+    "training_mixture_weight_assigned": false,
+    "conditioned_experiment_authorized": false,
+    "source_spelling_and_punctuation_preserved": true,
+    "confirmed_and_unresolved_sonnet_units_quarantined_from_broader_text": true,
+    "manual_non_sonnet_false_positives_retained_in_broader_text": true,
+    "heldout_containment_threshold": 0.8,
+    "near_sonnet_overlap_threshold": 0.72,
+    "near_sonnet_sequence_threshold": 0.86
+  }
+}

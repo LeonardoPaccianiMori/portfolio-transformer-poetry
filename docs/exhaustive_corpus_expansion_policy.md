@@ -113,6 +113,16 @@ and final mixture freeze are complete.
   the frozen threshold with the prior 416 Gutenberg probes, BibIt, or existing
   corpora, and no protected V6 held-out-sonnet overlap. Five bounded anomalies
   are resolved; one Venetian-dialect poetry source is outside the standard core.
-  No Gutenberg text, V7 split, or mixture weight is active.
+  The subsequent extraction and canonicalization audit accounts for the full
+  587-record cached extraction scope: 566 standard-core sources remain eligible
+  pending build, 15 fully covered editions remain excluded, and six conditioned
+  source records remain inactive. Ten embedded canonical segments are removed
+  while surrounding unique text is preserved; the two multilingual editions
+  retain only their selected Italian primary text; and the protected Cino V6
+  sonnet is quarantined. All 611 candidate fourteen-line windows are resolved:
+  499 standard sonnets remain eligible pending build, four duplicates are
+  excluded, 106 non-sonnet false positives stay in their broader-text role, and
+  two verified Occitan/Milanese sonnets remain conditioned and inactive. No
+  Gutenberg processed text, V7 split, mixture weight, or GPU work is active.
 - Italian Wikisource, Liber Liber, and the remaining registry archives: archive-
   scale inventory pending.
