@@ -1,0 +1,783 @@
+{
+  "activation_status": "active_for_local_training_data_use",
+  "broader_validation": {
+    "acceptance_tolerance_fraction": 0.005,
+    "author_work_components_disjoint": true,
+    "component_count": 1185,
+    "maximum_component_fraction_per_role": 0.02,
+    "oversize_training_component_count": 29,
+    "roles": {
+      "historical_general": {
+        "acceptance_maximum": 0.015,
+        "acceptance_minimum": 0.005,
+        "passes_tolerance": true,
+        "target_fraction": 0.01,
+        "total_tokens": 58105538,
+        "training_tokens": 57524476,
+        "validation_fraction": 0.01000011393062052,
+        "validation_tokens": 581062
+      },
+      "historical_non_sonnet_poetry": {
+        "acceptance_maximum": 0.015,
+        "acceptance_minimum": 0.005,
+        "passes_tolerance": true,
+        "target_fraction": 0.01,
+        "total_tokens": 18877139,
+        "training_tokens": 18688367,
+        "validation_fraction": 0.010000032314218803,
+        "validation_tokens": 188772
+      },
+      "nineteenth_century_bridge": {
+        "acceptance_maximum": 0.015,
+        "acceptance_minimum": 0.005,
+        "passes_tolerance": true,
+        "target_fraction": 0.01,
+        "total_tokens": 97763895,
+        "training_tokens": 96785953,
+        "validation_fraction": 0.01000309981512091,
+        "validation_tokens": 977942
+      }
+    },
+    "seed": 1337,
+    "selected_component_identity_sha256": "32bedd4b18c95d9233796ea1b76a316439aa1a0bb4b6dadf765e9fc793c6c387",
+    "target_fraction_per_role": 0.01,
+    "validation_component_count": 9
+  },
+  "build_date": "2026-08-12",
+  "data_version": "minerva_7b_v7_encoded_data_v1",
+  "encoded_content_identity_sha256": "e328bbb0f318800a6be9d114d9893b277a70df34c6b811b90b90bb7d65187504",
+  "format": {
+    "bytes_per_token": 4,
+    "document_boundary": "one Minerva EOS token",
+    "dtype": "int32",
+    "document_index_sampling_metadata": "author_key, work_key, and harmonized epoch_key per logical unit",
+    "materialization_level": "role_and_split_token_pools_not_sampled_windows",
+    "shard_target_tokens": 8388608,
+    "token_ids_public": false
+  },
+  "model_id": "sapienzanlp/Minerva-7B-instruct-v1.0",
+  "pools": [
+    {
+      "characters": 8372459,
+      "content_identity_sha256": "b8d17050d40283b6b3024b2ba0a050fb9cb2fde4b195f1fbdc250dea569beb87",
+      "corpus_role": "modern_preservation_replay",
+      "document_index": {
+        "bytes": 577,
+        "path": "data/local/minerva_7b_v7/encoded/modern_preservation_replay.documents.jsonl",
+        "public": false,
+        "sha256": "87c978f5f0b6a9c2d72f2370c716f358229682d6f830955d65b6ac67c404a954"
+      },
+      "documents": 1,
+      "eos_tokens": 1,
+      "pool_id": "modern_preservation_replay",
+      "pool_identity_sha256": "310e9984691c7b49e481d1b33fd7a0f4ba8178f6a99bda10e69196da95a6d742",
+      "shard_target_tokens": 8388608,
+      "shards": [
+        {
+          "bytes": 8139108,
+          "global_token_end": 2034777,
+          "global_token_start": 0,
+          "path": "data/local/minerva_7b_v7/encoded/modern_preservation_replay-00000.int32.bin",
+          "sha256": "f1576dc92d2c2c77e083b559f47eb17e1e7a44e4a394e8076d7151120f533d9c",
+          "shard_index": 0,
+          "token_count": 2034777
+        }
+      ],
+      "split": "train",
+      "status": "complete",
+      "tokenizer_sha256": "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c",
+      "tokens": 2034777
+    },
+    {
+      "characters": 655813,
+      "content_identity_sha256": "436a272e940d1afed7643941f7485982fd1346baba774a5f1fa9e910ee5b863e",
+      "corpus_role": "standard_sonnets",
+      "document_index": {
+        "bytes": 710614,
+        "path": "data/local/minerva_7b_v7/encoded/sonnets_test.documents.jsonl",
+        "public": false,
+        "sha256": "000b587a1e8b363c23a676ec10c1263fd913ccdf0def537f505ac85ccd717ce8"
+      },
+      "documents": 1244,
+      "eos_tokens": 1244,
+      "pool_id": "sonnets_test",
+      "pool_identity_sha256": "bdc8cecd8c77b8f517d95c4a99f57838e570ace22173a7d1041431e49b9c648d",
+      "shard_target_tokens": 8388608,
+      "shards": [
+        {
+          "bytes": 869456,
+          "global_token_end": 217364,
+          "global_token_start": 0,
+          "path": "data/local/minerva_7b_v7/encoded/sonnets_test-00000.int32.bin",
+          "sha256": "16f253f0ef85ed3bd2feda7f69ab07a82b60c019b1c1ad3e903196d4ab5ca5e1",
+          "shard_index": 0,
+          "token_count": 217364
+        }
+      ],
+      "split": "test",
+      "status": "complete",
+      "tokenizer_sha256": "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c",
+      "tokens": 217364
+    },
+    {
+      "characters": 10683314,
+      "content_identity_sha256": "39ac6606df9ae839b95b8fbffcd73d1c0c3f7b8f536eca467cae025035d584f6",
+      "corpus_role": "standard_sonnets",
+      "document_index": {
+        "bytes": 11365734,
+        "path": "data/local/minerva_7b_v7/encoded/sonnets_train.documents.jsonl",
+        "public": false,
+        "sha256": "3544154a798565caee80e89bd307840b5de0a8684288e6f6b164ac5c5d332dfa"
+      },
+      "documents": 19899,
+      "eos_tokens": 19899,
+      "pool_id": "sonnets_train",
+      "pool_identity_sha256": "8ebcd01d622ad3df5dde19dbde3c64f0bc061549f5aef7edf3695355df6ed4d1",
+      "shard_target_tokens": 8388608,
+      "shards": [
+        {
+          "bytes": 14204084,
+          "global_token_end": 3551021,
+          "global_token_start": 0,
+          "path": "data/local/minerva_7b_v7/encoded/sonnets_train-00000.int32.bin",
+          "sha256": "167da9677d44b6a50fa66afd68ede38be07bf3d951f20764c27692f801f7b341",
+          "shard_index": 0,
+          "token_count": 3551021
+        }
+      ],
+      "split": "train",
+      "status": "complete",
+      "tokenizer_sha256": "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c",
+      "tokens": 3551021
+    },
+    {
+      "characters": 662368,
+      "content_identity_sha256": "1c54330eea6ddbfb12be5ad8e9d500be570537cfe99f26d268bd29864399c8d9",
+      "corpus_role": "standard_sonnets",
+      "document_index": {
+        "bytes": 727797,
+        "path": "data/local/minerva_7b_v7/encoded/sonnets_validation.documents.jsonl",
+        "public": false,
+        "sha256": "51b0ee44e9d76e3fb5d4942fccedc9ba6a07e90778dc4340bdcedad3f7d0d192"
+      },
+      "documents": 1247,
+      "eos_tokens": 1247,
+      "pool_id": "sonnets_validation",
+      "pool_identity_sha256": "f416b1b2063402ae94967278aa3efacf124082c524371246422d3eb43ab56f03",
+      "shard_target_tokens": 8388608,
+      "shards": [
+        {
+          "bytes": 877880,
+          "global_token_end": 219470,
+          "global_token_start": 0,
+          "path": "data/local/minerva_7b_v7/encoded/sonnets_validation-00000.int32.bin",
+          "sha256": "4c9d9e071ac1a293e9831504d7e692ffbf7efeb587fb4f61d47eba6b175834f5",
+          "shard_index": 0,
+          "token_count": 219470
+        }
+      ],
+      "split": "validation",
+      "status": "complete",
+      "tokenizer_sha256": "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c",
+      "tokens": 219470
+    },
+    {
+      "characters": 208709683,
+      "content_identity_sha256": "7d779da1d217b6c8a480b8b04bc271e31e8ad5829ba2c177a63c740c3147917d",
+      "corpus_role": "historical_general",
+      "document_index": {
+        "bytes": 840320,
+        "path": "data/local/minerva_7b_v7/encoded/train_historical_general.documents.jsonl",
+        "public": false,
+        "sha256": "9bd94e2d1bfa1e096c673d93aef8541a62b63f57dd9570f3f180330c122f876f"
+      },
+      "documents": 1485,
+      "eos_tokens": 1485,
+      "pool_id": "train_historical_general",
+      "pool_identity_sha256": "935846577c533cafa2812d6f203b909aeef5e73deae35324587eff005100a50b",
+      "shard_target_tokens": 8388608,
+      "shards": [
+        {
+          "bytes": 33138148,
+          "global_token_end": 8284537,
+          "global_token_start": 0,
+          "path": "data/local/minerva_7b_v7/encoded/train_historical_general-00000.int32.bin",
+          "sha256": "099b6383be082af61eca808466bd5e5d26d208b18edbaf3b2a36ac6305c4b730",
+          "shard_index": 0,
+          "token_count": 8284537
+        },
+        {
+          "bytes": 33194880,
+          "global_token_end": 16583257,
+          "global_token_start": 8284537,
+          "path": "data/local/minerva_7b_v7/encoded/train_historical_general-00001.int32.bin",
+          "sha256": "ee9db56c77b4058c91ad66b73b57a91436ed67ec2db7a97e09bc2d55978113e1",
+          "shard_index": 1,
+          "token_count": 8298720
+        },
+        {
+          "bytes": 33541960,
+          "global_token_end": 24968747,
+          "global_token_start": 16583257,
+          "path": "data/local/minerva_7b_v7/encoded/train_historical_general-00002.int32.bin",
+          "sha256": "8ffd898ee7f04602e1c7f65cf702af2e3f96c593838e0062d02181e796756301",
+          "shard_index": 2,
+          "token_count": 8385490
+        },
+        {
+          "bytes": 28430856,
+          "global_token_end": 32076461,
+          "global_token_start": 24968747,
+          "path": "data/local/minerva_7b_v7/encoded/train_historical_general-00003.int32.bin",
+          "sha256": "b6f3015f36a72d73182aa293eaeb5f8c6fa167625811948dc60f39a78dd56de4",
+          "shard_index": 3,
+          "token_count": 7107714
+        },
+        {
+          "bytes": 32411460,
+          "global_token_end": 40179326,
+          "global_token_start": 32076461,
+          "path": "data/local/minerva_7b_v7/encoded/train_historical_general-00004.int32.bin",
+          "sha256": "f7c92e375af1e42b6d39a80924f8700f0b336d521a0430e30e8f52490e9ffd0d",
+          "shard_index": 4,
+          "token_count": 8102865
+        },
+        {
+          "bytes": 33042348,
+          "global_token_end": 48439913,
+          "global_token_start": 40179326,
+          "path": "data/local/minerva_7b_v7/encoded/train_historical_general-00005.int32.bin",
+          "sha256": "ceec21a643542db1a4a8e3f915141cf4826bf6577edff6b11f7f18b4c9f71d31",
+          "shard_index": 5,
+          "token_count": 8260587
+        },
+        {
+          "bytes": 33445400,
+          "global_token_end": 56801263,
+          "global_token_start": 48439913,
+          "path": "data/local/minerva_7b_v7/encoded/train_historical_general-00006.int32.bin",
+          "sha256": "1844f86e8148d46166640d8a69607ec08a3a88f89dea6894b7842889634bf850",
+          "shard_index": 6,
+          "token_count": 8361350
+        },
+        {
+          "bytes": 2892852,
+          "global_token_end": 57524476,
+          "global_token_start": 56801263,
+          "path": "data/local/minerva_7b_v7/encoded/train_historical_general-00007.int32.bin",
+          "sha256": "275e79985df87b1baeca0bf8dc8194a0c87a0d5b616168b7ec4ddaff37b3ad22",
+          "shard_index": 7,
+          "token_count": 723213
+        }
+      ],
+      "split": "train",
+      "status": "complete",
+      "tokenizer_sha256": "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c",
+      "tokens": 57524476
+    },
+    {
+      "characters": 57446230,
+      "content_identity_sha256": "da5b96aa1ec77e04b117b59d5a613ab5bc292c18c7e898c1d60619025b8b074b",
+      "corpus_role": "historical_non_sonnet_poetry",
+      "document_index": {
+        "bytes": 927951,
+        "path": "data/local/minerva_7b_v7/encoded/train_historical_non_sonnet_poetry.documents.jsonl",
+        "public": false,
+        "sha256": "9ace468284d009cee8f37c97491bd1f7799a74d674c83672e73ba2963bb3ea34"
+      },
+      "documents": 1577,
+      "eos_tokens": 1577,
+      "pool_id": "train_historical_non_sonnet_poetry",
+      "pool_identity_sha256": "8e92ac1721647557e918a2341e31a7d73dc3a864a439ee260c56266ce5819698",
+      "shard_target_tokens": 8388608,
+      "shards": [
+        {
+          "bytes": 33531868,
+          "global_token_end": 8382967,
+          "global_token_start": 0,
+          "path": "data/local/minerva_7b_v7/encoded/train_historical_non_sonnet_poetry-00000.int32.bin",
+          "sha256": "20cb5a22c778d0b21dd5cda33e7ab029a40760b7b2f9d610641df5fc6ce3e4b1",
+          "shard_index": 0,
+          "token_count": 8382967
+        },
+        {
+          "bytes": 33118188,
+          "global_token_end": 16662514,
+          "global_token_start": 8382967,
+          "path": "data/local/minerva_7b_v7/encoded/train_historical_non_sonnet_poetry-00001.int32.bin",
+          "sha256": "72e8c5a0ab8b9337419cfae0f7b02a4910e3d9dea6ec8ba7a5d95c54809365fa",
+          "shard_index": 1,
+          "token_count": 8279547
+        },
+        {
+          "bytes": 8103412,
+          "global_token_end": 18688367,
+          "global_token_start": 16662514,
+          "path": "data/local/minerva_7b_v7/encoded/train_historical_non_sonnet_poetry-00002.int32.bin",
+          "sha256": "9a1e3422775462a12c63c1f54af305a1a0dc4ad4194685d3b52d7fb2ee5476d1",
+          "shard_index": 2,
+          "token_count": 2025853
+        }
+      ],
+      "split": "train",
+      "status": "complete",
+      "tokenizer_sha256": "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c",
+      "tokens": 18688367
+    },
+    {
+      "characters": 359492337,
+      "content_identity_sha256": "2ad1ce2469850ec633806f00e66d5df365b784121dbb2c6d4800ba25f08b95e6",
+      "corpus_role": "nineteenth_century_bridge",
+      "document_index": {
+        "bytes": 813540,
+        "path": "data/local/minerva_7b_v7/encoded/train_nineteenth_century_bridge.documents.jsonl",
+        "public": false,
+        "sha256": "824030705df73e1689f6a5a4816fac68b4e1d616b8714888a6216bf33d8ca282"
+      },
+      "documents": 1393,
+      "eos_tokens": 1393,
+      "pool_id": "train_nineteenth_century_bridge",
+      "pool_identity_sha256": "e60bdf622a13f7f7b6674f9bb78e96e1aa540307cdc818ca2375baec044911e0",
+      "shard_target_tokens": 8388608,
+      "shards": [
+        {
+          "bytes": 32900556,
+          "global_token_end": 8225139,
+          "global_token_start": 0,
+          "path": "data/local/minerva_7b_v7/encoded/train_nineteenth_century_bridge-00000.int32.bin",
+          "sha256": "9d5ec4531b74d20fcb7e3e1cb26ba97ff9ae071132eaf7d26de70247218fbb62",
+          "shard_index": 0,
+          "token_count": 8225139
+        },
+        {
+          "bytes": 33427280,
+          "global_token_end": 16581959,
+          "global_token_start": 8225139,
+          "path": "data/local/minerva_7b_v7/encoded/train_nineteenth_century_bridge-00001.int32.bin",
+          "sha256": "0e2c093b8f23bde8a87064301bd7ae3a7926bca4ad47f95587935c3cd974eaf9",
+          "shard_index": 1,
+          "token_count": 8356820
+        },
+        {
+          "bytes": 33329928,
+          "global_token_end": 24914441,
+          "global_token_start": 16581959,
+          "path": "data/local/minerva_7b_v7/encoded/train_nineteenth_century_bridge-00002.int32.bin",
+          "sha256": "55e30bc3427e6d8dfb0aa6a3abde827f5c5975ca34d7e9a7185e1de2d5d99e91",
+          "shard_index": 2,
+          "token_count": 8332482
+        },
+        {
+          "bytes": 33399092,
+          "global_token_end": 33264214,
+          "global_token_start": 24914441,
+          "path": "data/local/minerva_7b_v7/encoded/train_nineteenth_century_bridge-00003.int32.bin",
+          "sha256": "ba48401987c14edd0b9c12db1139d8aee320ea9b35015bf6191194746d79c750",
+          "shard_index": 3,
+          "token_count": 8349773
+        },
+        {
+          "bytes": 33553620,
+          "global_token_end": 41652619,
+          "global_token_start": 33264214,
+          "path": "data/local/minerva_7b_v7/encoded/train_nineteenth_century_bridge-00004.int32.bin",
+          "sha256": "81c08925efb08ce59740bd624462b0456a47c3995bb4a8565ba2a7e0af1d668d",
+          "shard_index": 4,
+          "token_count": 8388405
+        },
+        {
+          "bytes": 33210540,
+          "global_token_end": 49955254,
+          "global_token_start": 41652619,
+          "path": "data/local/minerva_7b_v7/encoded/train_nineteenth_century_bridge-00005.int32.bin",
+          "sha256": "3bc79e386cc2f54c19ea98abfe1cebbf5bb69894d76f3dd73705d992c8ab6353",
+          "shard_index": 5,
+          "token_count": 8302635
+        },
+        {
+          "bytes": 33287956,
+          "global_token_end": 58277243,
+          "global_token_start": 49955254,
+          "path": "data/local/minerva_7b_v7/encoded/train_nineteenth_century_bridge-00006.int32.bin",
+          "sha256": "92e5390759807fd3181f184be0da935e80ca127547c8ee31e40b11bf2cb49fbc",
+          "shard_index": 6,
+          "token_count": 8321989
+        },
+        {
+          "bytes": 33341796,
+          "global_token_end": 66612692,
+          "global_token_start": 58277243,
+          "path": "data/local/minerva_7b_v7/encoded/train_nineteenth_century_bridge-00007.int32.bin",
+          "sha256": "3600fb93b6e95573333fb19a5b09b130a5e77c79cf58fec36b0786ed6e3e29ab",
+          "shard_index": 7,
+          "token_count": 8335449
+        },
+        {
+          "bytes": 33280160,
+          "global_token_end": 74932732,
+          "global_token_start": 66612692,
+          "path": "data/local/minerva_7b_v7/encoded/train_nineteenth_century_bridge-00008.int32.bin",
+          "sha256": "ff780d849f04b364a9f2925986f24f417aa4d0d0e8687911d344c02cf2261cb1",
+          "shard_index": 8,
+          "token_count": 8320040
+        },
+        {
+          "bytes": 33170576,
+          "global_token_end": 83225376,
+          "global_token_start": 74932732,
+          "path": "data/local/minerva_7b_v7/encoded/train_nineteenth_century_bridge-00009.int32.bin",
+          "sha256": "4663b03a7315ce3b01ac76900d55c9150848344f96c9f205d53645c0de47ca4b",
+          "shard_index": 9,
+          "token_count": 8292644
+        },
+        {
+          "bytes": 33487396,
+          "global_token_end": 91597225,
+          "global_token_start": 83225376,
+          "path": "data/local/minerva_7b_v7/encoded/train_nineteenth_century_bridge-00010.int32.bin",
+          "sha256": "8c85c9466a2f4ef0e6967230c0df45b58e47fd3f4bc1a4a24a17c6eab3562908",
+          "shard_index": 10,
+          "token_count": 8371849
+        },
+        {
+          "bytes": 20754912,
+          "global_token_end": 96785953,
+          "global_token_start": 91597225,
+          "path": "data/local/minerva_7b_v7/encoded/train_nineteenth_century_bridge-00011.int32.bin",
+          "sha256": "e3f60c21375a1b608c580ee862b6374dc0b4ccf25d09d7c912d715bdc766915c",
+          "shard_index": 11,
+          "token_count": 5188728
+        }
+      ],
+      "split": "train",
+      "status": "complete",
+      "tokenizer_sha256": "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c",
+      "tokens": 96785953
+    },
+    {
+      "characters": 2164245,
+      "content_identity_sha256": "5aa092b491afe7fa35d56cdec066370c2b20c43d1c65af1378232b7f8b415eda",
+      "corpus_role": "historical_general",
+      "document_index": {
+        "bytes": 6242,
+        "path": "data/local/minerva_7b_v7/encoded/validation_historical_general.documents.jsonl",
+        "public": false,
+        "sha256": "b5ac875199937104c38e4f31a44a9561ce98e4654965651dab916ae533d42efd"
+      },
+      "documents": 11,
+      "eos_tokens": 11,
+      "pool_id": "validation_historical_general",
+      "pool_identity_sha256": "8c81511f5c60633b010713d626f39654340d98cb485666ce992f7cfce9f98cfa",
+      "shard_target_tokens": 8388608,
+      "shards": [
+        {
+          "bytes": 2324248,
+          "global_token_end": 581062,
+          "global_token_start": 0,
+          "path": "data/local/minerva_7b_v7/encoded/validation_historical_general-00000.int32.bin",
+          "sha256": "65d541bc878e96d1d4e1c13ac34a7981a138489a1b85745d779db2cd6929cf1e",
+          "shard_index": 0,
+          "token_count": 581062
+        }
+      ],
+      "split": "validation",
+      "status": "complete",
+      "tokenizer_sha256": "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c",
+      "tokens": 581062
+    },
+    {
+      "characters": 586182,
+      "content_identity_sha256": "343040bb22cc3199ea309c2d62af65c478c77c198b7daff9150ecf31b9cd67c8",
+      "corpus_role": "historical_non_sonnet_poetry",
+      "document_index": {
+        "bytes": 14815,
+        "path": "data/local/minerva_7b_v7/encoded/validation_historical_non_sonnet_poetry.documents.jsonl",
+        "public": false,
+        "sha256": "c91167e8bb8637bc424590688dd75a1ee8e4c2cbf4f7b68981f028c0e84ca510"
+      },
+      "documents": 25,
+      "eos_tokens": 25,
+      "pool_id": "validation_historical_non_sonnet_poetry",
+      "pool_identity_sha256": "0e7746f4759f49b90cb561553b1438637ead66c96f5a540f1067efc9c56ce7a0",
+      "shard_target_tokens": 8388608,
+      "shards": [
+        {
+          "bytes": 755088,
+          "global_token_end": 188772,
+          "global_token_start": 0,
+          "path": "data/local/minerva_7b_v7/encoded/validation_historical_non_sonnet_poetry-00000.int32.bin",
+          "sha256": "f6c24569af6bc54c11d2e2353689a813f42603e73a8d2ebb3833bfccce993f99",
+          "shard_index": 0,
+          "token_count": 188772
+        }
+      ],
+      "split": "validation",
+      "status": "complete",
+      "tokenizer_sha256": "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c",
+      "tokens": 188772
+    },
+    {
+      "characters": 3627637,
+      "content_identity_sha256": "f5fd6387b3fd944feef10365ac5b993fc73cbd9882d2ecd81c31f0fc1dbe8bca",
+      "corpus_role": "nineteenth_century_bridge",
+      "document_index": {
+        "bytes": 31868,
+        "path": "data/local/minerva_7b_v7/encoded/validation_nineteenth_century_bridge.documents.jsonl",
+        "public": false,
+        "sha256": "8a24d0dc8ea56f6f8d437576d34dc03d869b43449829db6da3e22e857a7ad6fc"
+      },
+      "documents": 53,
+      "eos_tokens": 53,
+      "pool_id": "validation_nineteenth_century_bridge",
+      "pool_identity_sha256": "a7dc2552e80c8245d36e9b7f45bb94020a441639b996410d8451c06bf46bc062",
+      "shard_target_tokens": 8388608,
+      "shards": [
+        {
+          "bytes": 3911768,
+          "global_token_end": 977942,
+          "global_token_start": 0,
+          "path": "data/local/minerva_7b_v7/encoded/validation_nineteenth_century_bridge-00000.int32.bin",
+          "sha256": "e81cc403cd5ef5ab9c091e40a787225748f6d80cd82b9fff5184f914908160f0",
+          "shard_index": 0,
+          "token_count": 977942
+        }
+      ],
+      "split": "validation",
+      "status": "complete",
+      "tokenizer_sha256": "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c",
+      "tokens": 977942
+    }
+  ],
+  "provenance": {
+    "composition_policy_path": "data/metadata/minerva_7b_v7_composition_policy_v1.json",
+    "composition_policy_sha256": "7908a4ea10295a43799bea0188b12ca0c3db9cecbf46b164201f9fc864f09d00",
+    "composition_report_path": "reports/minerva_7b_v7_token_counts_v1.json",
+    "composition_report_sha256": "1a476d4da978e56d7b24691371797758c822657b9b5c87e7e48272b7c15c93dc",
+    "training_data_policy_path": "data/metadata/minerva_7b_v7_training_data_policy_v1.json",
+    "training_data_policy_sha256": "e36fcdac0e8c2f729408eb194df8908fc133c1efa6123c4545f69220bd4ba2dc",
+    "v7_manifest_path": "data/metadata/sonnets_expanded_v7_manifest.csv",
+    "v7_manifest_sha256": "6ad8833edff377322a52bc35e69f1e69eac7f9a98f3d1e9f241b74416ad82e52"
+  },
+  "reproduction": {
+    "content_identity_sha256": "e328bbb0f318800a6be9d114d9893b277a70df34c6b811b90b90bb7d65187504",
+    "independent_build_count": 2,
+    "match": true,
+    "pool_results": [
+      {
+        "match": true,
+        "pool_id": "modern_preservation_replay"
+      },
+      {
+        "match": true,
+        "pool_id": "sonnets_test"
+      },
+      {
+        "match": true,
+        "pool_id": "sonnets_train"
+      },
+      {
+        "match": true,
+        "pool_id": "sonnets_validation"
+      },
+      {
+        "match": true,
+        "pool_id": "train_historical_general"
+      },
+      {
+        "match": true,
+        "pool_id": "train_historical_non_sonnet_poetry"
+      },
+      {
+        "match": true,
+        "pool_id": "train_nineteenth_century_bridge"
+      },
+      {
+        "match": true,
+        "pool_id": "validation_historical_general"
+      },
+      {
+        "match": true,
+        "pool_id": "validation_historical_non_sonnet_poetry"
+      },
+      {
+        "match": true,
+        "pool_id": "validation_nineteenth_century_bridge"
+      }
+    ],
+    "primary_and_reproduction_paths_distinct": true,
+    "reproduction_artifacts_public": false
+  },
+  "revision": "d1fc0f0e589ae879c5ac763e0e4206a4d14a3f6d",
+  "stage_plan": {
+    "alignment_tokens": 40960,
+    "budget_mode": "one_primary_role_pass_floor_aligned",
+    "component_available_tokens": {
+      "historical_general": 57524476,
+      "historical_non_sonnet_poetry": 18688367,
+      "modern_preservation_replay": 2034777,
+      "nineteenth_century_bridge": 96785953,
+      "stage_1_historical_replay": 154310429,
+      "stage_2_historical_replay": 172998796,
+      "standard_sonnets_v7_train": 3551021
+    },
+    "context_length": 2048,
+    "modern_replay_available_tokens": 2034777,
+    "packing_policy": "pack only within one role and split using one EOS per logical document; extract 2,049-token source spans for 2,048 next-token targets",
+    "sampling_assignment_status": "pending_deterministic_training_sampler",
+    "sampling_constraints": {
+      "broader_author_maximum_share": 0.2,
+      "broader_work_maximum_share": 0.15,
+      "enforcement": "the later deterministic sampler must enforce these ceilings; this checkpoint materializes role/split pools, not sampled windows",
+      "sonnet_author_maximum_share": 0.05,
+      "sonnet_epoch_maximum_share": 0.3
+    },
+    "source_span_tokens": 2049,
+    "stages": [
+      {
+        "budget_tokens": 67665920,
+        "components": [
+          {
+            "available_tokens": 57524476,
+            "component": "historical_general",
+            "draw_to_available_ratio": 0.9998532103099905,
+            "draw_tokens": 57516032,
+            "draw_windows_2048": 28084,
+            "target_share": 0.85
+          },
+          {
+            "available_tokens": 96785953,
+            "component": "nineteenth_century_bridge",
+            "draw_to_available_ratio": 0.06991295524051926,
+            "draw_tokens": 6766592,
+            "draw_windows_2048": 3304,
+            "target_share": 0.1
+          },
+          {
+            "available_tokens": 2034777,
+            "component": "modern_preservation_replay",
+            "draw_to_available_ratio": 1.6627355233521905,
+            "draw_tokens": 3383296,
+            "draw_windows_2048": 1652,
+            "target_share": 0.05
+          }
+        ],
+        "primary_available_tokens": 57524476,
+        "primary_component": "historical_general",
+        "stage_id": "stage_1_historical_general",
+        "target_windows_2048": 33040,
+        "unused_primary_tail_tokens": 8444
+      },
+      {
+        "budget_tokens": 24903680,
+        "components": [
+          {
+            "available_tokens": 18688367,
+            "component": "historical_non_sonnet_poetry",
+            "draw_to_available_ratio": 0.9994324276701115,
+            "draw_tokens": 18677760,
+            "draw_windows_2048": 9120,
+            "target_share": 0.75
+          },
+          {
+            "available_tokens": 154310429,
+            "component": "stage_1_historical_replay",
+            "draw_to_available_ratio": 0.03227737770076448,
+            "draw_tokens": 4980736,
+            "draw_windows_2048": 2432,
+            "target_share": 0.2
+          },
+          {
+            "available_tokens": 2034777,
+            "component": "modern_preservation_replay",
+            "draw_to_available_ratio": 0.6119510884976584,
+            "draw_tokens": 1245184,
+            "draw_windows_2048": 608,
+            "target_share": 0.05
+          }
+        ],
+        "primary_available_tokens": 18688367,
+        "primary_component": "historical_non_sonnet_poetry",
+        "stage_id": "stage_2_non_sonnet_poetry",
+        "target_windows_2048": 12160,
+        "unused_primary_tail_tokens": 10607
+      },
+      {
+        "budget_tokens": 4423680,
+        "components": [
+          {
+            "available_tokens": 3551021,
+            "component": "standard_sonnets_v7_train",
+            "draw_to_available_ratio": 0.9965990063139587,
+            "draw_tokens": 3538944,
+            "draw_windows_2048": 1728,
+            "target_share": 0.8
+          },
+          {
+            "available_tokens": 172998796,
+            "component": "stage_2_historical_replay",
+            "draw_to_available_ratio": 0.003835587387556154,
+            "draw_tokens": 663552,
+            "draw_windows_2048": 324,
+            "target_share": 0.15
+          },
+          {
+            "available_tokens": 2034777,
+            "component": "modern_preservation_replay",
+            "draw_to_available_ratio": 0.10870183808839987,
+            "draw_tokens": 221184,
+            "draw_windows_2048": 108,
+            "target_share": 0.05
+          }
+        ],
+        "primary_available_tokens": 3551021,
+        "primary_component": "standard_sonnets_v7_train",
+        "stage_id": "stage_3_sonnets",
+        "target_windows_2048": 2160,
+        "unused_primary_tail_tokens": 12077
+      }
+    ],
+    "total_budget_tokens": 96993280,
+    "total_target_windows_2048": 47360
+  },
+  "status": "active_verified",
+  "tokenizer": {
+    "class": "LlamaTokenizerFast",
+    "eos_token_id": 51202,
+    "serialized_sha256": "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c",
+    "vocab_size": 51203
+  },
+  "totals": {
+    "characters": 652400268,
+    "documents": 26935,
+    "encoded_bytes": 723076816,
+    "eos_tokens": 26935,
+    "shards": 30,
+    "tokens": 180769204
+  },
+  "verification": {
+    "all_shards_int32_hash_verified": true,
+    "broader_roles_activated": true,
+    "broader_validation_author_work_disjoint": true,
+    "cache_deleted": false,
+    "composition_counts_reproduced": true,
+    "conditioned_material_included": false,
+    "context_length_frozen_2048": true,
+    "gpu_work_started": false,
+    "independent_content_identities_match": true,
+    "independent_encoded_build_count": 2,
+    "protected_v6_training_excluded": true,
+    "v7_training_sonnets_activated": true,
+    "v7_validation_test_training_excluded": true
+  },
+  "windowing": {
+    "budget_alignment_tokens": 40960,
+    "context_length": 2048,
+    "document_separator": "one Minerva EOS token",
+    "pack_within_same_role_and_split_only": true,
+    "sampling_assignment_status": "pending_deterministic_training_sampler",
+    "source_span_tokens": 2049,
+    "target_tokens_per_window": 2048,
+    "training_overlap_tokens": 0,
+    "validation_policy": "fixed non-overlapping windows; V7 validation and test remain separate"
+  }
+}

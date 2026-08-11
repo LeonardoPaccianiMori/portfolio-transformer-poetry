@@ -1,0 +1,47 @@
+{
+  "data_version": "minerva_7b_v7_encoded_data_v1",
+  "build_date": "2026-08-12",
+  "model_id": "sapienzanlp/Minerva-7B-instruct-v1.0",
+  "revision": "d1fc0f0e589ae879c5ac763e0e4206a4d14a3f6d",
+  "tokenizer_sha256": "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c",
+  "composition_report_sha256": "1a476d4da978e56d7b24691371797758c822657b9b5c87e7e48272b7c15c93dc",
+  "broader_validation": {
+    "target_fraction_per_role": 0.01,
+    "maximum_component_fraction_per_role": 0.02,
+    "acceptance_tolerance_fraction": 0.005,
+    "component_policy": "resolved authors are held out across all their works and roles; generic authors are grouped by complete source work",
+    "seed": 1337
+  },
+  "encoding": {
+    "add_special_tokens": false,
+    "append_eos_per_logical_unit": true,
+    "dtype": "int32",
+    "bytes_per_token": 4,
+    "shard_target_tokens": 8388608,
+    "checkpoint_interval_documents": 25,
+    "progress_interval_documents": 50
+  },
+  "windowing": {
+    "context_length": 2048,
+    "source_span_tokens": 2049,
+    "target_tokens_per_window": 2048,
+    "pack_within_same_role_and_split_only": true,
+    "document_separator": "one Minerva EOS token",
+    "training_overlap_tokens": 0,
+    "validation_policy": "fixed non-overlapping windows; V7 validation and test remain separate",
+    "budget_alignment_tokens": 40960
+  },
+  "budget_policy": {
+    "mode": "one_primary_role_pass_floor_aligned",
+    "stage_1_primary": "historical_general",
+    "stage_2_primary": "historical_non_sonnet_poetry",
+    "stage_3_primary": "standard_sonnets_v7_train"
+  },
+  "activation_policy": {
+    "requires_independent_encoded_builds": 2,
+    "requires_matching_content_identity": true,
+    "activate_after_verification": true,
+    "gpu_work_authorized": false,
+    "cache_deletion_authorized": false
+  }
+}
