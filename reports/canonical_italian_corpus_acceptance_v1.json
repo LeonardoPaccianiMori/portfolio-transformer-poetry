@@ -1,0 +1,47 @@
+{
+  "acceptance_date": "2026-08-11",
+  "acceptance_status": "pass",
+  "acceptance_version": "canonical_italian_corpus_acceptance_v1",
+  "activation_status": "inactive_pending_v7",
+  "corpus_build_version": "canonical_italian_corpora_v1",
+  "logical_identity_sha256": "0aeb0ee8ffed91c294b31f27fa85471418acf4e5ff47cf84a17a5e2deb666b57",
+  "manifest_sha256": {
+    "data/processed/canonical_italian_corpora_v1/attribution_manifest.csv": "3e294fa2e7fc23c74a1e865df806aa32d52a701467d781d798588fcc0d21a702",
+    "data/processed/canonical_italian_corpora_v1/build_report.json": "5eec8ca8ab7e4664a0b936cb97feeb6a0382c885b3fbc07dfa052767268c9d6e",
+    "data/processed/canonical_italian_corpora_v1/records_manifest.csv": "4766188eebdbd927d771c21c32aa99b7be4281e5719e798d35028dc7f3ce5616",
+    "data/processed/canonical_italian_corpora_v1/sonnets_manifest.csv": "e258bd25c9be485ff82dfd9bea8cc6321b7a11dab3279340069c1d85b75d6080",
+    "data/processed/canonical_italian_corpora_v1/storage_manifest.csv": "dfe370804c9700b43cbe6b030cc38bfe3c781e2512ee9901538efd18a37193c1"
+  },
+  "physical_bytes_verified": 684407041,
+  "physical_file_count": 1930,
+  "physical_identity_sha256": "749c585cc7d32687cb2196b742b2925135fd6bf35807e9f94abbb96fe5f82473",
+  "protected_v6_sonnet_count": 387,
+  "record_universe_count": 4646,
+  "sonnet_universe_count": 22693,
+  "stored_logical_byte_count": 652180211,
+  "stored_logical_character_count": 644027809,
+  "stored_unit_count": 26934,
+  "training_logical_character_count": 643822187,
+  "training_record_count": 4544,
+  "training_role_characters": {
+    "historical_general": 210873928,
+    "historical_non_sonnet_poetry": 58032412,
+    "nineteenth_century_bridge": 363119974,
+    "standard_sonnets": 11795873
+  },
+  "training_sonnet_count": 22003,
+  "verification": {
+    "all_attribution_links_resolved": true,
+    "all_logical_slices_hash_verified": true,
+    "all_paths_repository_relative": true,
+    "all_physical_files_hash_verified": true,
+    "all_utf8_boundaries_verified": true,
+    "conditioned_material_absent": true,
+    "gpu_work_started": false,
+    "local_cache_references_absent": true,
+    "mixture_weights_assigned": false,
+    "protected_v6_training_excluded": true,
+    "tokenization_performed": false,
+    "v7_created": false
+  }
+}
