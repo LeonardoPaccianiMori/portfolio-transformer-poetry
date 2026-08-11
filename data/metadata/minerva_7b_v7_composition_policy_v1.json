@@ -1,0 +1,72 @@
+{
+  "composition_version": "minerva_7b_v7_composition_gate_v1",
+  "build_date": "2026-08-11",
+  "v7_identity_sha256": "a636a1d62a624c300cc782bfc4fa1b54e77d5bea8b4e6783f77b8c618b845d1e",
+  "tokenizer": {
+    "model_id": "sapienzanlp/Minerva-7B-instruct-v1.0",
+    "revision": "d1fc0f0e589ae879c5ac763e0e4206a4d14a3f6d"
+  },
+  "token_accounting": {
+    "add_special_tokens": false,
+    "append_eos_per_logical_unit": true,
+    "protected_sonnets_audit_only": true
+  },
+  "stages": {
+    "stage_1_historical_general": {
+      "purpose": "historical general adaptation with bounded Ottocento exposure and modern-language preservation replay",
+      "components": {
+        "historical_general": 0.85,
+        "nineteenth_century_bridge": 0.1,
+        "modern_preservation_replay": 0.05
+      }
+    },
+    "stage_2_non_sonnet_poetry": {
+      "purpose": "historical non-sonnet poetry adaptation with stage-1 historical and modern-language replay",
+      "components": {
+        "historical_non_sonnet_poetry": 0.75,
+        "stage_1_historical_replay": 0.2,
+        "modern_preservation_replay": 0.05
+      }
+    },
+    "stage_3_sonnets": {
+      "purpose": "low-rate V7 sonnet specialization with stage-2 and modern-language replay",
+      "components": {
+        "standard_sonnets_v7_train": 0.8,
+        "stage_2_historical_replay": 0.15,
+        "modern_preservation_replay": 0.05
+      }
+    }
+  },
+  "concentration_ceilings": {
+    "nineteenth_century_bridge": 0.1,
+    "broader_work": 0.15,
+    "broader_author": 0.2,
+    "sonnet_author": 0.05,
+    "sonnet_epoch": 0.3
+  },
+  "sampling_policy": {
+    "broader": "sample without exceeding the recorded work and author token-share ceilings; redistribute excess proportionally across uncapped eligible groups",
+    "sonnets": "sample V7-train identities only; harmonize epoch labels, cap author and epoch token exposure, and redistribute excess proportionally across uncapped eligible groups",
+    "validation_test": "count for audit only and never expose to a training sampler",
+    "conditioned_material": "excluded"
+  },
+  "epoch_harmonization": {
+    "200": "13th_century",
+    "XIII secolo": "13th_century",
+    "300": "14th_century",
+    "XIV secolo": "14th_century",
+    "400": "15th_century",
+    "500": "16th_century",
+    "XVI secolo": "16th_century",
+    "600": "17th_century",
+    "XVII secolo": "17th_century",
+    "700": "18th_century",
+    "XVIII secolo": "18th_century",
+    "800": "19th_century",
+    "XIX secolo": "19th_century",
+    "nineteenth_century": "19th_century",
+    "nineteenth_century_bridge": "19th_century",
+    "1501_to_1700": "16th_to_17th_century_unresolved",
+    "origins_through_1800": "origins_through_18th_unresolved"
+  }
+}
