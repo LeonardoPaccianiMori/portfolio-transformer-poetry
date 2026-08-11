@@ -144,5 +144,21 @@ and final mixture freeze are complete.
   underlying-work/source-scan verification, and no text is activated. Next,
   resolve bounded metadata/source-scan holds and approve only composition-
   compatible roots for page-level extraction.
+- Italian Wikisource checkpoint 4B candidate resolution is complete. The pinned
+  `20260801` metadata link graph maps 6,092 of 6,863 candidates to 1,335 exact
+  `Indice:` scans; 242 scans support multiple candidate roots, so their shared-
+  edition boundaries remain explicit. A metadata-only page-level audit queue
+  contains 4,641 roots projecting 16,353,125 wikitext bytes: 1,413 historical-
+  general, 1,724 historical non-sonnet poetry, 1,245 Ottocento-bridge, and 259
+  standard-sonnet roots. Another 1,447 roots remain held for scan-level
+  language conflicts, 771 lack a direct scan link, three link to multiple
+  editions, and one links to a redirect. These 2,222 holds collapse into 823
+  review units. Of 3,883 checkpoint-4A language-review rows, 2,857 contain only
+  citation-index evidence and/or explicit standard Italian; 1,026 retain
+  genuine nonstandard or unresolved language evidence. This correction avoids
+  propagating false language hazards but promotes no held row. The queue does
+  not authorize page-text acquisition or extraction. Next, propose revision-
+  pinned page-boundary extraction and the full BibIt/Gutenberg/current-corpus/
+  protected-V6 overlap probe for the 4B-eligible queue.
 - Liber Liber and the remaining registry archives: archive-scale inventory
   pending.

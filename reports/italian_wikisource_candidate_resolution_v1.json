@@ -1,0 +1,313 @@
+{
+  "resolution_version": "italian_wikisource_candidate_resolution_v1",
+  "dump": {
+    "date": "20260801",
+    "base_url": "https://dumps.wikimedia.org/itwikisource/20260801",
+    "files": {
+      "page": {
+        "filename": "itwikisource-20260801-page.sql.gz",
+        "byte_count": 23112310,
+        "sha1": "d346505404381269c65d933c2c1d65031693c615",
+        "cache_path": "data/local/wikisource/archive_inventory_v1/itwikisource-20260801-page.sql.gz"
+      },
+      "linktarget": {
+        "filename": "itwikisource-20260801-linktarget.sql.gz",
+        "byte_count": 11140707,
+        "sha1": "ba38f03d8c0127667d614e36a11f24ee40bb56f4",
+        "cache_path": "data/local/wikisource/archive_inventory_v1/itwikisource-20260801-linktarget.sql.gz"
+      },
+      "pagelinks": {
+        "filename": "itwikisource-20260801-pagelinks.sql.gz",
+        "byte_count": 9788469,
+        "sha1": "9bd9baad4e69c014c9d390f6679a34c2b33e0792",
+        "cache_path": "data/local/wikisource/archive_inventory_v1/itwikisource-20260801-pagelinks.sql.gz"
+      },
+      "namespaces": {
+        "filename": "itwikisource-20260801-siteinfo-namespaces.json.gz",
+        "byte_count": 5976,
+        "sha1": "92c44b14e7bf9ef629d7ca421a3fe9b68d54d6c6",
+        "cache_path": "data/local/wikisource/archive_inventory_v1/itwikisource-20260801-siteinfo-namespaces.json.gz"
+      }
+    },
+    "full_page_text_dump_downloaded": false
+  },
+  "index_namespace": {
+    "id": 110,
+    "canonical_name": "Index",
+    "localized_name": "Indice"
+  },
+  "inputs": {
+    "inventory_path": "data/metadata/italian_wikisource_archive_inventory_v1.csv",
+    "inventory_sha256": "ae4d737be6721eb2b8834a712c5120c39a2f7f27bb1fb09aaac5af7353054d1f",
+    "inventory_row_count": 22165,
+    "hierarchy_path": "data/metadata/italian_wikisource_page_hierarchy_v1.csv",
+    "hierarchy_sha256": "d266e543833aef401421193e0d8c3480001ffbc6d13dbbe97da2845fc25428f8",
+    "hierarchy_row_count": 117297
+  },
+  "candidate_count": 6863,
+  "candidate_projected_wikitext_bytes": 64834722,
+  "direct_scan_linked_candidate_count": 6092,
+  "distinct_candidate_scan_count": 1335,
+  "shared_candidate_scan_count": 242,
+  "decision_counts": {
+    "eligible_page_level_audit_queue": 4641,
+    "hold_multiple_source_scans": 3,
+    "hold_no_direct_scan_link": 771,
+    "hold_redirected_index_page": 1,
+    "hold_scan_language_conflict": 1447
+  },
+  "projected_wikitext_bytes_by_decision": {
+    "eligible_page_level_audit_queue": 16353125,
+    "hold_multiple_source_scans": 195000,
+    "hold_no_direct_scan_link": 46976186,
+    "hold_redirected_index_page": 614,
+    "hold_scan_language_conflict": 1309797
+  },
+  "eligible_page_level_audit_count": 4641,
+  "eligible_projected_wikitext_bytes": 16353125,
+  "eligible_role_counts": {
+    "historical_general": 1413,
+    "historical_non_sonnet_poetry": 1724,
+    "nineteenth_century_bridge": 1245,
+    "standard_sonnets": 259
+  },
+  "eligible_projected_wikitext_bytes_by_role": {
+    "historical_general": 4274599,
+    "historical_non_sonnet_poetry": 2766081,
+    "nineteenth_century_bridge": 9130749,
+    "standard_sonnets": 181696
+  },
+  "review_unit_count": 823,
+  "language_evidence_audit": {
+    "hold_language_variety_row_count": 3883,
+    "citation_only_or_standard_row_count": 2857,
+    "citation_only_or_unmarked_row_count": 2804,
+    "standard_italian_explicit_row_count": 53,
+    "nonstandard_or_unknown_row_count": 1026,
+    "policy": "citation-index categories do not propagate language hazards; held rows are not promoted into the 4B candidate queue"
+  },
+  "concentration": {
+    "top_author_proxies": [
+      {
+        "author_evidence": "Giacomo Leopardi",
+        "projected_wikitext_bytes": 1585878,
+        "share": 0.09697706
+      },
+      {
+        "author_evidence": "Autori vari",
+        "projected_wikitext_bytes": 528996,
+        "share": 0.03234831
+      },
+      {
+        "author_evidence": "Gabriello Chiabrera",
+        "projected_wikitext_bytes": 455482,
+        "share": 0.0278529
+      },
+      {
+        "author_evidence": "Giovanni Battista Piranesi",
+        "projected_wikitext_bytes": 294785,
+        "share": 0.01802622
+      },
+      {
+        "author_evidence": "Carlo Goldoni",
+        "projected_wikitext_bytes": 282823,
+        "share": 0.01729474
+      },
+      {
+        "author_evidence": "Matteo Bandello",
+        "projected_wikitext_bytes": 256246,
+        "share": 0.01566954
+      },
+      {
+        "author_evidence": "Vittorio Alfieri",
+        "projected_wikitext_bytes": 237000,
+        "share": 0.01449264
+      },
+      {
+        "author_evidence": "Galileo Galilei",
+        "projected_wikitext_bytes": 210534,
+        "share": 0.01287424
+      },
+      {
+        "author_evidence": "Aristide Calani",
+        "projected_wikitext_bytes": 196423,
+        "share": 0.01201134
+      },
+      {
+        "author_evidence": "Cesare Campori",
+        "projected_wikitext_bytes": 189188,
+        "share": 0.01156892
+      },
+      {
+        "author_evidence": "Edmondo De Amicis",
+        "projected_wikitext_bytes": 183689,
+        "share": 0.01123265
+      },
+      {
+        "author_evidence": "Giovanni Boccaccio",
+        "projected_wikitext_bytes": 182045,
+        "share": 0.01113212
+      },
+      {
+        "author_evidence": "Giovanni Prati",
+        "projected_wikitext_bytes": 179922,
+        "share": 0.0110023
+      },
+      {
+        "author_evidence": "Giovan Battista Marino",
+        "projected_wikitext_bytes": 179316,
+        "share": 0.01096524
+      },
+      {
+        "author_evidence": "Francesco Petrarca",
+        "projected_wikitext_bytes": 176505,
+        "share": 0.01079335
+      }
+    ],
+    "largest_eligible_scan_groups": [
+      {
+        "scan_title": "Zibaldone di pensieri I.djvu",
+        "eligible_work_root_count": 1,
+        "projected_wikitext_bytes": 1462623,
+        "share": 0.08943997
+      },
+      {
+        "scan_title": "Opere (Chiabrera).djvu",
+        "eligible_work_root_count": 531,
+        "projected_wikitext_bytes": 445519,
+        "share": 0.02724366
+      },
+      {
+        "scan_title": "Guida del visitatore alla esposizione industriale italiana del 1881 in Milano.pdf",
+        "eligible_work_root_count": 1,
+        "projected_wikitext_bytes": 430391,
+        "share": 0.02631858
+      },
+      {
+        "scan_title": "AA. VV. – Sonetti burleschi e realistici dei primi due secoli, Vol. I, 1920 – BEIC 1928288.djvu",
+        "eligible_work_root_count": 381,
+        "projected_wikitext_bytes": 353090,
+        "share": 0.02159159
+      },
+      {
+        "scan_title": "Le antichita Romane (Piranesi)-1.pdf",
+        "eligible_work_root_count": 1,
+        "projected_wikitext_bytes": 294785,
+        "share": 0.01802622
+      },
+      {
+        "scan_title": "The Oxford book of Italian verse.djvu",
+        "eligible_work_root_count": 317,
+        "projected_wikitext_bytes": 227725,
+        "share": 0.01392547
+      },
+      {
+        "scan_title": "Calani - Il Parlamento del Regno d'Italia, vol 2.pdf",
+        "eligible_work_root_count": 1,
+        "projected_wikitext_bytes": 196423,
+        "share": 0.01201134
+      },
+      {
+        "scan_title": "Raimondo Montecuccoli, la sua famiglia e i suoi tempi.djvu",
+        "eligible_work_root_count": 1,
+        "projected_wikitext_bytes": 189188,
+        "share": 0.01156892
+      },
+      {
+        "scan_title": "Zappi, Maratti - Rime I.pdf",
+        "eligible_work_root_count": 98,
+        "projected_wikitext_bytes": 179303,
+        "share": 0.01096445
+      },
+      {
+        "scan_title": "Marino Poesie varie (1913).djvu",
+        "eligible_work_root_count": 238,
+        "projected_wikitext_bytes": 159910,
+        "share": 0.00977856
+      },
+      {
+        "scan_title": "Le rime di M. Francesco Petrarca I.djvu",
+        "eligible_work_root_count": 2,
+        "projected_wikitext_bytes": 154796,
+        "share": 0.00946584
+      },
+      {
+        "scan_title": "Opere (Dossi) I.djvu",
+        "eligible_work_root_count": 1,
+        "projected_wikitext_bytes": 142308,
+        "share": 0.00870219
+      },
+      {
+        "scan_title": "Guicciardini, Francesco – Storia d'Italia, Vol. I, 1929 – BEIC 1845433.djvu",
+        "eligible_work_root_count": 1,
+        "projected_wikitext_bytes": 130324,
+        "share": 0.00796936
+      },
+      {
+        "scan_title": "Buonarroti, Michelangelo – Rime, 1960 – BEIC 1775670.djvu",
+        "eligible_work_root_count": 1,
+        "projected_wikitext_bytes": 122581,
+        "share": 0.00749588
+      },
+      {
+        "scan_title": "Antoniani - Educazione christiana dei figliuoli.djvu",
+        "eligible_work_root_count": 1,
+        "projected_wikitext_bytes": 120230,
+        "share": 0.00735211
+      },
+      {
+        "scan_title": "Prati, Giovanni – Poesie varie, Vol. II, 1916 – BEIC 1901920.djvu",
+        "eligible_work_root_count": 169,
+        "projected_wikitext_bytes": 118706,
+        "share": 0.00725892
+      },
+      {
+        "scan_title": "Iacopone da Todi – Laude, 1974 – BEIC 1851919.djvu",
+        "eligible_work_root_count": 1,
+        "projected_wikitext_bytes": 117825,
+        "share": 0.00720504
+      },
+      {
+        "scan_title": "Il Canzoniere di Matteo Bandello.djvu",
+        "eligible_work_root_count": 1,
+        "projected_wikitext_bytes": 117364,
+        "share": 0.00717685
+      },
+      {
+        "scan_title": "Sannazzaro, Iacopo – Opere volgari, 1961 – BEIC 1914951.djvu",
+        "eligible_work_root_count": 142,
+        "projected_wikitext_bytes": 116043,
+        "share": 0.00709607
+      },
+      {
+        "scan_title": "La Cicceide legittima.djvu",
+        "eligible_work_root_count": 1,
+        "projected_wikitext_bytes": 115625,
+        "share": 0.00707051
+      }
+    ],
+    "warning": "wikitext bytes are projections; cleaned text, tokens, duplicate removal, and unknown/multi-author identities can change final concentration"
+  },
+  "outputs": {
+    "resolution_path": "data/metadata/italian_wikisource_candidate_resolution_v1.csv",
+    "resolution_sha256": "20c99fae6b35111a85a423e59370621c10344240fec1637887fe712f36d69923",
+    "scan_links_path": "data/metadata/italian_wikisource_source_scan_links_v1.csv",
+    "scan_links_sha256": "c0d76052484b38baa247dd958babdccf5857ed758772a409d230b86dbac820ca",
+    "review_path": "data/metadata/italian_wikisource_candidate_review_v1.csv",
+    "review_sha256": "9e357a17b13e4fb6d457616d75d7ac613999264a3393cff592a63bd28f265618",
+    "json_report_path": "reports/italian_wikisource_candidate_resolution_v1.json",
+    "markdown_report_path": "reports/italian_wikisource_candidate_resolution_v1.md"
+  },
+  "policy": {
+    "metadata_only": true,
+    "source_text_extracted": false,
+    "corpus_text_activated": false,
+    "conditioned_material_standard_core_eligible": false,
+    "v7_split_assigned": false,
+    "training_mixture_weight_assigned": false,
+    "cache_deleted": false,
+    "gpu_work_started": false,
+    "eligible_queue_authorizes_extraction": false
+  },
+  "next_checkpoint": "Propose revision-pinned page-boundary extraction and cross-corpus probe for the eligible 4B queue; keep every 4B hold inactive."
+}
