@@ -1,0 +1,126 @@
+{
+  "approved_new_legacy_author_training_count": 2118,
+  "author_group_manifest_row_count": 481,
+  "build_date": "2026-08-11",
+  "clean_heldout_epoch_counts": {
+    "1501_to_1700": {
+      "validation": 2
+    },
+    "200": {
+      "test": 41,
+      "validation": 55
+    },
+    "300": {
+      "test": 73,
+      "validation": 99
+    },
+    "400": {
+      "test": 193,
+      "validation": 182
+    },
+    "500": {
+      "test": 364,
+      "validation": 320
+    },
+    "600": {
+      "test": 61,
+      "validation": 79
+    },
+    "700": {
+      "test": 25,
+      "validation": 32
+    },
+    "800": {
+      "test": 77,
+      "validation": 33
+    },
+    "nineteenth_century": {
+      "validation": 2
+    },
+    "nineteenth_century_bridge": {
+      "test": 46,
+      "validation": 82
+    },
+    "origins_through_1800": {
+      "test": 167,
+      "validation": 171
+    }
+  },
+  "clean_heldout_source_counts": {
+    "bibit": {
+      "test": 834,
+      "validation": 800
+    },
+    "gutenberg": {
+      "test": 69,
+      "validation": 109
+    },
+    "ilc_ota": {
+      "validation": 2
+    },
+    "wikisource": {
+      "test": 144,
+      "validation": 146
+    }
+  },
+  "clean_test_count": 1047,
+  "clean_validation_count": 1057,
+  "generic_author_label_count": 4,
+  "heldout_tolerance": 0.005,
+  "input_sha256": {
+    "data/metadata/sonnets_expanded_v6_manifest.csv": "994c4c374f42ba26f1c352d7ad7c3adec7ec4671507770bd7c485cb6f977a4fa",
+    "data/processed/canonical_italian_corpora_v1/sonnets_manifest.csv": "e258bd25c9be485ff82dfd9bea8cc6321b7a11dab3279340069c1d85b75d6080"
+  },
+  "legacy_v6_train_author_overlap_count": 1479,
+  "max_heldout_component_size": 102,
+  "new_author_work_component_count": 602,
+  "new_candidate_count": 20522,
+  "new_split_counts": {
+    "test": 1047,
+    "train": 18418,
+    "validation": 1057
+  },
+  "new_target_fractions": {
+    "test": 0.05,
+    "train": 0.9,
+    "validation": 0.05
+  },
+  "oversize_component_training_count": 14348,
+  "protected_v6_author_group_count": 17,
+  "raw_author_label_count": 481,
+  "resolved_alias_group_count": 33,
+  "resolved_author_group_count": 443,
+  "seed": 1337,
+  "sonnet_universe_count": 22693,
+  "target_new_heldout_count": 1026,
+  "v6_author_group_count": 19,
+  "v6_split_counts": {
+    "test": 197,
+    "train": 1481,
+    "validation": 190
+  },
+  "v7_excluded_count": 303,
+  "v7_identity_sha256": "a636a1d62a624c300cc782bfc4fa1b54e77d5bea8b4e6783f77b8c618b845d1e",
+  "v7_included_count": 22390,
+  "v7_split_counts": {
+    "test": 1244,
+    "train": 19899,
+    "validation": 1247
+  },
+  "v7_version": "sonnets_expanded_v7",
+  "verification": {
+    "all_canonical_identities_accounted": true,
+    "all_v6_splits_preserved": true,
+    "cache_deleted": false,
+    "canonical_exclusions_preserved": true,
+    "clean_heldout_resolved_authors_absent_from_v6_and_training": true,
+    "conditioned_material_included": false,
+    "corpus_text_copied": false,
+    "generic_heldout_works_absent_from_training": true,
+    "gpu_work_started": false,
+    "legacy_v6_author_overlap_disclosed": true,
+    "minerva_tokenization_performed": false,
+    "mixture_weights_assigned": false,
+    "new_author_work_components_single_split": true
+  }
+}

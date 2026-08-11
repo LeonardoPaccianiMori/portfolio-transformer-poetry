@@ -1,0 +1,482 @@
+author_label_id,raw_author_label,canonical_author_key,author_group_id,representative_author_label,resolution_status,sonnet_universe_count,new_candidate_count,v6_presence,protected_v6_presence
+author_label:e3b0c44298fc1c14,,,,,generic_author_work_grouped,527,527,false,false
+author_label:395ad4305cc21194,Abate di Tivoli,abate tivoli,author:52aebd97d55c202c,Abate di Tivoli,deterministic_resolved_author,3,0,true,true
+author_label:039eeea89d4ed3d1,Acasto Lampeatico,acasto lampeatico,author:0d6b5047ad9531f4,Acasto Lampeatico,deterministic_resolved_author,23,23,false,false
+author_label:4b040f1f554b8843,Aci Delpusiano,aci delpusiano,author:e5e0cc41849bfac5,Aci Delpusiano,deterministic_resolved_author,34,33,false,false
+author_label:4cf0fc5724f6372d,Adalsio Metoneo,adalsio metoneo,author:452a90b79483e594,Adalsio Metoneo,deterministic_resolved_author,50,50,false,false
+author_label:fc84cc507e32c642,Adelindo Gerenio,adelindo gerenio,author:c408c4066206116a,Adelindo Gerenio,deterministic_resolved_author,4,4,false,false
+author_label:7d8840312c98ef9b,Agero Nonacride,agero nonacride,author:f89e9592930e3a94,Agero Nonacride,deterministic_resolved_author,8,8,false,false
+author_label:6db0379d7858101f,Agesilo Brentico,agesilo brentico,author:0e4b5ce071c1ffaa,Agesilo Brentico,deterministic_resolved_author,21,21,false,false
+author_label:74803d477b987ff7,Aglauro Cidonia,aglauro cidonia,author:674747852298d6b8,Aglauro Cidonia,deterministic_resolved_author,30,30,false,false
+author_label:56f71df03877ef69,"Alamanni, Luigi",alamanni luigi,author:a704f39d47f7a21b,Luigi Alamanni,deterministic_resolved_author_alias,219,219,false,false
+author_label:066d0850f3afb496,Alarco Erinnidio,alarco erinnidio,author:2bf3ec2f09588afb,Alarco Erinnidio,deterministic_resolved_author,26,26,false,false
+author_label:790296ee32d0d693,Alasto Liconeo,alasto liconeo,author:4b309150b1197ad0,Alasto Liconeo,deterministic_resolved_author,3,3,false,false
+author_label:294cfce15808063a,"Alberti, Francesco d'Altobianco",alberti altobianco francesco,author:49e0ad9093be0f00,"Alberti, Francesco d'Altobianco",deterministic_resolved_author,72,72,false,false
+author_label:9e24e09381c899cd,"Alberti, Leon Battista",alberti battista leon,author:1bd6f5a28f5458a9,"Alberti, Leon Battista",deterministic_resolved_author,4,4,false,false
+author_label:85c0b58ce3b21ec1,"Alessandri, Baldassarre Olimpo degli",alessandri baldassarre olimpo,author:fcbfc21e5bd27cbb,"Alessandri, Baldassarre Olimpo degli",deterministic_resolved_author,3,3,false,false
+author_label:1b2f39ae7d045885,Alessandro Giribaldi,alessandro giribaldi,author:05ba805bac4b8282,Alessandro Giribaldi,deterministic_resolved_author,13,13,false,false
+author_label:10a0d0b48dd8ee92,Alessandro Varaldo,alessandro varaldo,author:4d745c698bc05b87,Alessandro Varaldo,deterministic_resolved_author,13,13,false,false
+author_label:1d27c194411810a5,Alessi Cillenio,alessi cillenio,author:031633d595dcd4b7,Alessi Cillenio,deterministic_resolved_author,54,54,false,false
+author_label:7dde96f974c99800,Alfesibeo Cario,alfesibeo cario,author:2f33287f76012716,Alfesibeo Cario,deterministic_resolved_author,32,32,false,false
+author_label:be47795135fdd8ea,"Alighieri, Dante",alighieri dante,author:fe33126fbf7fa7f5,Dante Alighieri,deterministic_resolved_author_alias,250,250,true,true
+author_label:26ef6a9f83d72e10,Alindo Scirtoniano,alindo scirtoniano,author:d4928d6894867e14,Alindo Scirtoniano,deterministic_resolved_author,27,27,false,false
+author_label:3b3258fbc472a350,Alisco Tortunio,alisco tortunio,author:cf1f3b790bc40c21,Alisco Tortunio,deterministic_resolved_author,18,18,false,false
+author_label:f90a322c3b86523b,Almaspe Steniclerio,almaspe steniclerio,author:530b15945f18d763,Almaspe Steniclerio,deterministic_resolved_author,13,13,false,false
+author_label:f9bb6f0a3da627a8,Altemio Leucianitico,altemio leucianitico,author:23bb4c2a7a6bffce,Altemio Leucianitico,deterministic_resolved_author,15,15,false,false
+author_label:b838c4b6d00636df,Alterio Eleo,alterio eleo,author:60e397b79e7dd81f,Alterio Eleo,deterministic_resolved_author,32,32,false,false
+author_label:68c547bf7a13a089,"Altoviti, Bernardo",altoviti bernardo,author:39dd217e78c363a1,"Altoviti, Bernardo",deterministic_resolved_author,8,8,false,false
+author_label:0b8cb26eaeb36f6f,Amaranto Sciaditico,amaranto sciaditico,author:f7c687d39f3a3f1c,Amaranto Sciaditico,deterministic_resolved_author,11,11,false,false
+author_label:91f30a78a79bbe94,Amiro Citeriano,amiro citeriano,author:607e0c929bf8cdee,Amiro Citeriano,deterministic_resolved_author,14,14,false,false
+author_label:28d08061aef142ca,Andrea Perrucci,andrea perrucci,author:3a0baa6990ebe869,Andrea Perrucci,deterministic_resolved_author,1,1,false,false
+author_label:696a41beffe5e331,Angelo Di Costanzo,angelo costanzo,author:53fd4cabdde356f0,Angelo Di Costanzo,deterministic_resolved_author_alias,1,1,false,false
+author_label:d17fc25ab70195a8,Angelo Mazza,angelo mazza,author:251e0dbdfa5d6c76,Angelo Mazza,deterministic_resolved_author,3,3,false,false
+author_label:3857735e530d5cc0,Angelo Poliziano,angelo poliziano,author:2a33749392271cad,Angelo Poliziano,deterministic_resolved_author_alias,4,4,false,false
+author_label:4757fecf7eb0abc1,Angelo Teodoro Villa,angelo teodoro villa,author:5a1951ea0443a494,Angelo Teodoro Villa,deterministic_resolved_author,1,1,false,false
+author_label:24b8f52b0de6693a,"Angiolieri, Cecco",angiolieri cecco,author:a7505432789d5a56,Cecco Angiolieri,deterministic_resolved_author_alias,3,3,true,true
+author_label:1a5462c1b5246cbc,Anicio Traustio,anicio traustio,author:7ea23ea05f44d6e2,Anicio Traustio,deterministic_resolved_author,60,60,false,false
+author_label:e5ebb38e3ad5546e,Anonimo,,,,generic_author_work_grouped,482,482,false,false
+author_label:ae1c582437593deb,Anton Giulio Brignole Sale,anton brignole giulio sale,author:d1b682add9fac00f,Anton Giulio Brignole Sale,deterministic_resolved_author,5,5,false,false
+author_label:08bd8102ecd39d4b,Anton Maria Narducci,anton maria narducci,author:4021746b79302ad9,Anton Maria Narducci,deterministic_resolved_author,1,1,false,false
+author_label:06f5b4e2373eec5f,Anton Maria Salvini,anton maria salvini,author:9702cbcbffd31bd2,Anton Maria Salvini,deterministic_resolved_author,13,13,false,false
+author_label:ecfa9bc80e74c54e,Antonio Abati,abati antonio,author:56e96afbc365dc31,Antonio Abati,deterministic_resolved_author,1,1,false,false
+author_label:1940e0945cea6f48,Antonio Basso,antonio basso,author:e26a53647eceb461,Antonio Basso,deterministic_resolved_author,6,6,false,false
+author_label:e7364da223b75131,Antonio Bruni (poeta),antonio bruni poeta,author:48859fc8a8732eeb,Antonio Bruni (poeta),deterministic_resolved_author,1,1,false,false
+author_label:cfcdc20597011543,Antonio da Bacchereto,antonio bacchereto,author:56b4a3f9ba424347,Antonio da Bacchereto,deterministic_resolved_author,1,1,false,false
+author_label:be99b3273c3ffb96,Antonio di Guido,antonio guido,author:e278f681661eede2,Antonio di Guido,deterministic_resolved_author,9,9,false,false
+author_label:6c4ac3dd3692461b,Antonio Muscettola,antonio muscettola,author:be488ecdc73b19d1,Antonio Muscettola,deterministic_resolved_author,11,11,false,false
+author_label:e18be18e04543715,Antonio Pucci,antonio pucci,author:553d633cc1529ade,Antonio Pucci,deterministic_resolved_author,1,1,false,false
+author_label:4757f9217da9380d,Araste Ceraunio,araste ceraunio,author:9df41c548635ab14,Araste Ceraunio,deterministic_resolved_author,15,15,false,false
+author_label:19372bb0b6841323,"Aretino, Pietro",aretino pietro,author:a99295d5c34817d6,Pietro Aretino,deterministic_resolved_author_alias,60,60,false,false
+author_label:041faf6298c6f9b1,Arezio Gateatico,arezio gateatico,author:7c900fba93be4962,Arezio Gateatico,deterministic_resolved_author,16,16,false,false
+author_label:f1e3bc60db8997ba,"Arienti, Giovanni Sabadino degli",arienti giovanni sabadino,author:ea8b74f86b6bbe62,"Arienti, Giovanni Sabadino degli",deterministic_resolved_author,1,1,false,false
+author_label:47e8695f7bfa0ac3,"Ariosto, Ludovico",ariosto ludovico,author:506112ae4960c671,Ludovico Ariosto,deterministic_resolved_author_alias,12,12,true,true
+author_label:752151a0790e118d,Aristeo Cratio,aristeo cratio,author:050d2c9dd2143ab2,Aristeo Cratio,deterministic_resolved_author,28,28,false,false
+author_label:e4a72d55256d0a7a,Arpalio Abeatide,abeatide arpalio,author:cac368b03e93e71b,Arpalio Abeatide,deterministic_resolved_author,19,19,false,false
+author_label:b44bd047898ffc6e,Ateste Mirsinio,ateste mirsinio,author:c41ae50f1b114f56,Ateste Mirsinio,deterministic_resolved_author,2,2,false,false
+author_label:8af37ae1f8b60d74,Aulideno Melichio,aulideno melichio,author:b35399c5d413d5dc,Aulideno Melichio,deterministic_resolved_author,3,3,false,false
+author_label:98cf442c5e09040a,Aurasco Pamisiano,aurasco pamisiano,author:1642536e3b3e5dae,Aurasco Pamisiano,deterministic_resolved_author,4,4,false,false
+author_label:3e3bc422362e6f95,Aurisco Elafio,aurisco elafio,author:046720838b51a6cc,Aurisco Elafio,deterministic_resolved_author,39,39,false,false
+author_label:26960449624cda71,Autone Manturese,autone manturese,author:54d8df25d61a1d61,Autone Manturese,deterministic_resolved_author,28,28,false,false
+author_label:93205ca58d6f3b79,Baldassarre Castiglione,baldassarre castiglione,author:532e7e1e744c3699,Baldassarre Castiglione,deterministic_resolved_author_alias,1,1,false,false
+author_label:57c6ff00540e905e,Baldassarre Stampa,baldassarre stampa,author:98033b276e426964,Baldassarre Stampa,deterministic_resolved_author,33,33,false,false
+author_label:db4abce74f8364e8,"Bandello, Matteo",bandello matteo,author:17ee63410bda170f,"Bandello, Matteo",deterministic_resolved_author,191,191,false,false
+author_label:c446e6716d43f646,"Barducci, Ottavante",barducci ottavante,author:46e9148e0695882e,"Barducci, Ottavante",deterministic_resolved_author,4,4,false,false
+author_label:bb82893a69fff293,"Barignano, Pietro",barignano pietro,author:9dad6ace464cbc9a,"Barignano, Pietro",deterministic_resolved_author,66,66,false,false
+author_label:55c9a347ec87e632,Bartolomeo Dotti,bartolomeo dotti,author:b65baef3c04b9892,Bartolomeo Dotti,deterministic_resolved_author,8,8,false,false
+author_label:0ef50e93ffe10719,"Beccari, Agostino",agostino beccari,author:a5dcb10f69bf9c15,"Beccari, Agostino",deterministic_resolved_author,3,3,false,false
+author_label:bb5b136eaea26eb7,"Beccari, Antonio (detto Antonio da Ferrara)",antonio antonio beccari detto ferrara,author:998710c816f5b4a1,"Beccari, Antonio (detto Antonio da Ferrara)",deterministic_resolved_author,39,37,false,false
+author_label:9ffd345886eb0628,"Beccuti, Francesco (detto il Coppetta)",beccuti coppetta detto francesco,author:be519a613108c24e,"Beccuti, Francesco (detto il Coppetta)",deterministic_resolved_author,152,152,false,false
+author_label:15bbb29cb3efb170,"Belcari, Feo",belcari feo,author:6a66b8bf3e47df7f,"Belcari, Feo",deterministic_resolved_author,51,51,false,false
+author_label:ee2866fce35b70f2,"Bembo, Pietro",bembo pietro,author:80e9a2a4b40c4108,Pietro Bembo,deterministic_resolved_author_alias,147,147,false,false
+author_label:2b1c563424e9dc6a,Benalgo Chelidorio,benalgo chelidorio,author:61715b6ec8e38180,Benalgo Chelidorio,deterministic_resolved_author,3,3,false,false
+author_label:0e033a1954803c20,"Benci, Lorenzo",benci lorenzo,author:274b28cf70a435c2,"Benci, Lorenzo",deterministic_resolved_author,2,2,false,false
+author_label:3eec5921a310bd7d,"Benci, Tommaso",benci tommaso,author:fce4f472dfdb912e,"Benci, Tommaso",deterministic_resolved_author,5,5,false,false
+author_label:23c5f3d31e7f09dd,Benedetto Menzini,benedetto menzini,author:b45fd70cd13e3ccb,Benedetto Menzini,deterministic_resolved_author,1,1,false,false
+author_label:3b5fb1b9483ac207,Benedetto Varchi,benedetto varchi,author:750be1a2136c8b4c,Benedetto Varchi,deterministic_resolved_author_alias,33,0,true,true
+author_label:bb88c49f5e0adaf2,"Benino, Francesco del",benino francesco,author:2dc58f313b2bf0a4,"Benino, Francesco del",deterministic_resolved_author,1,1,false,false
+author_label:6b09ab050d87df0f,Benuccio Salimbeni,benuccio salimbeni,author:58ee6226d16fe0a7,Benuccio Salimbeni,deterministic_resolved_author,1,1,false,false
+author_label:0d8d562b021b7627,Berardino Rota,berardino rota,author:8d77706cf7e27285,Berardino Rota,deterministic_resolved_author_alias,1,1,false,false
+author_label:b82a8cf75009bda2,Bernardo Morando,bernardo morando,author:50953392f8c2f226,Bernardo Morando,deterministic_resolved_author,15,15,false,false
+author_label:ec348bfce6b04781,"Berni, Francesco",berni francesco,author:4b81dd83c7b4a008,Francesco Berni,deterministic_resolved_author_alias,11,11,false,false
+author_label:0bbec3b8246f7ed3,"Betti, Giovanni",betti giovanni,author:9c465061dfa7e325,"Betti, Giovanni",deterministic_resolved_author,3,3,false,false
+author_label:9e64631018cceac1,"Biffoli, Benedetto",benedetto biffoli,author:5dd171a715a02079,"Biffoli, Benedetto",deterministic_resolved_author,1,1,false,false
+author_label:618979688966d44c,Bindo Bonichi,bindo bonichi,author:c97eb15bdd596770,Bindo Bonichi,deterministic_resolved_author,3,3,false,false
+author_label:960334e7e45e9687,"Boccaccio, Giovanni",boccaccio giovanni,author:de1098d2ca3434b3,Giovanni Boccaccio,deterministic_resolved_author_alias,155,155,false,false
+author_label:01583aef908de570,"Boiardo, Matteo Maria",boiardo maria matteo,author:485f9103a1095092,Matteo Maria Boiardo,deterministic_resolved_author_alias,146,146,false,false
+author_label:bdaecd2cb3e2ab09,Bondie Dietaiuti,bondie dietaiuti,author:b62a5dbd8aedfad8,Bondie Dietaiuti,deterministic_resolved_author,2,2,false,false
+author_label:870603ce8cdf4e46,"Borra, Luigi",borra luigi,author:538ca30719bbad49,"Borra, Luigi",deterministic_resolved_author,63,63,false,false
+author_label:98ee36bdfcb6015a,"Botero, Giovanni",botero giovanni,author:40bc446fde9a26a2,"Botero, Giovanni",deterministic_resolved_author,1,1,false,false
+author_label:c4c98107cead49fc,"Brocardo, Antonio",antonio brocardo,author:e97ac276c807984b,"Brocardo, Antonio",deterministic_resolved_author,28,28,false,false
+author_label:28a4192a61fa3af1,"Bronzino, Agnolo",agnolo bronzino,author:a3ada273f6a103de,"Bronzino, Agnolo",deterministic_resolved_author,1,1,false,false
+author_label:58ecc902861c2e1a,"Bruni, Leonardo",bruni leonardo,author:b3401d4aa36e8961,"Bruni, Leonardo",deterministic_resolved_author,1,1,false,false
+author_label:945d02a3e5c777b6,"Bruno, Giordano",bruno giordano,author:c1346e503abd8411,"Bruno, Giordano",deterministic_resolved_author,45,45,false,false
+author_label:2b10186b912a4ede,Buonaccorso da Montemagno il Giovane,buonaccorso giovane montemagno,author:5cdebb8e9cb91ad8,Buonaccorso da Montemagno il Giovane,deterministic_resolved_author,26,26,false,false
+author_label:cb8c290a320af548,Buonaccorso da Montemagno il Vecchio,buonaccorso montemagno vecchio,author:6733d4b5f5e7d243,Buonaccorso da Montemagno il Vecchio,deterministic_resolved_author,23,23,false,false
+author_label:c90b6ada7bb9f788,"Buonarroti, Michelangelo",buonarroti michelangelo,author:4a3cbeb1e0ec0734,Michelangelo Buonarroti,deterministic_resolved_author_alias,85,85,false,false
+author_label:d93d0141bd8ad278,Burchiello (Domenico di Giovanni detto il),burchiello detto domenico giovanni,author:9df464e737d713fe,Burchiello (Domenico di Giovanni detto il),deterministic_resolved_author_alias,18,18,false,false
+author_label:43b171c5f99e6654,"Burchiello (Domenico di Giovanni, detto il)",burchiello detto domenico giovanni,author:9df464e737d713fe,Burchiello (Domenico di Giovanni detto il),deterministic_resolved_author_alias,4,4,false,false
+author_label:3d1c6f1493172abf,"Calderoni, Anselmo",anselmo calderoni,author:32e3a0f6c2781d0b,"Calderoni, Anselmo",deterministic_resolved_author,1,1,false,false
+author_label:66030e46b0056ac7,"Calzaiuolo, Antonio",antonio calzaiuolo,author:82040d63f58e8001,"Calzaiuolo, Antonio",deterministic_resolved_author,1,1,false,false
+author_label:8e38d4e09d11193e,"Cambini, Bernardo di Piero",bernardo cambini piero,author:fd0459da63fbb4db,"Cambini, Bernardo di Piero",deterministic_resolved_author,4,4,false,false
+author_label:d28150586742140d,"Campanella, Tommaso",campanella tommaso,author:08b48e27fb0a4ee1,"Campanella, Tommaso",deterministic_resolved_author,61,61,false,false
+author_label:b8bc237bb827391c,"Carducci, Giosue",carducci giosue,author:f4444d4a47d3ff1d,"Carducci, Giosue",deterministic_resolved_author,141,141,false,false
+author_label:9077aee17be253bb,Carlo Emanuele Muzzarelli,carlo emanuele muzzarelli,author:048b7177b8b0cf2c,Carlo Emanuele Muzzarelli,deterministic_resolved_author,9,9,false,false
+author_label:4ec98fbc02f477ca,Carlo Innocenzo Frugoni,carlo frugoni innocenzo,author:714053b50d6f9a56,Carlo Innocenzo Frugoni,deterministic_resolved_author,3,3,false,false
+author_label:111ba95b9cf74b03,"Castiglione, Baldassarre",baldassarre castiglione,author:532e7e1e744c3699,Baldassarre Castiglione,deterministic_resolved_author_alias,13,13,false,false
+author_label:4733c769ce1e13d2,Castruccio Castracani degli Antelminelli,antelminelli castracani castruccio,author:657b88d38041e03e,Castruccio Castracani degli Antelminelli,deterministic_resolved_author,1,1,false,false
+author_label:7674b46c7ccc86ac,"Cavalcanti, Guido",cavalcanti guido,author:697305c1c574a490,Guido Cavalcanti,deterministic_resolved_author_alias,9,9,true,true
+author_label:d582fc195cc3b726,Cecco Angiolieri,angiolieri cecco,author:a7505432789d5a56,Cecco Angiolieri,deterministic_resolved_author_alias,204,81,true,true
+author_label:9b985e56fe6ace15,Cecco Nuccoli,cecco nuccoli,author:dd9a4b3276b94779,Cecco Nuccoli,deterministic_resolved_author,8,8,false,false
+author_label:e6c9712ab584c5a2,Celio Magno,celio magno,author:261db6e52f5390b1,Celio Magno,deterministic_resolved_author_alias,2,2,false,false
+author_label:662cc4168492067d,Celiro Straziano,celiro straziano,author:e41308a33c28207f,Celiro Straziano,deterministic_resolved_author,4,4,false,false
+author_label:af3314174f35b1f7,Celisto Tegeatico,celisto tegeatico,author:95dec05055150661,Celisto Tegeatico,deterministic_resolved_author,11,11,false,false
+author_label:6282fc74510682ca,"Cellini, Benvenuto",benvenuto cellini,author:5535fb96bbe07a80,"Cellini, Benvenuto",deterministic_resolved_author,108,108,false,false
+author_label:0e64b770776d6413,Cenne dalla Chitarra,cenne chitarra dalla,author:525a846756ae019b,Cenne dalla Chitarra,deterministic_resolved_author,13,13,false,false
+author_label:ca39a9e3755558cb,"Chariteo (Benedetto Gareth, detto il)",benedetto chariteo detto gareth,author:05b65ac16c10cfb7,"Chariteo (Benedetto Gareth, detto il)",deterministic_resolved_author,214,214,false,false
+author_label:1ad2e5a78a06c239,"Ciai, Giovanni",ciai giovanni,author:caefdab64f4697d2,"Ciai, Giovanni",deterministic_resolved_author,2,2,false,false
+author_label:5206bd2163b59875,"Cieco, Niccolò",cieco niccolo,author:8037cb72d8146e5e,"Cieco, Niccolò",deterministic_resolved_author,8,8,false,false
+author_label:bdc2b111b4eb640e,Cino da Pistoia,cino pistoia,author:296cd329a6d9ab24,Cino da Pistoia,deterministic_resolved_author,157,76,true,true
+author_label:f4e4c4a278bc9864,Cino Rinuccini,cino rinuccini,author:4b42abf0534abe70,Cino Rinuccini,deterministic_resolved_author,36,36,false,false
+author_label:fd4176b8726ded73,Cione di Baglione,baglione cione,author:d2efff4c366b0aaf,Cione di Baglione,deterministic_resolved_author,2,2,false,false
+author_label:90563b4d1dad4aca,Citisso Bleninio,bleninio citisso,author:510ef9b80756b7f2,Citisso Bleninio,deterministic_resolved_author,19,19,false,false
+author_label:9fc37eb8f2813bc8,Clarimbo Palladico,clarimbo palladico,author:3225cee3093b5da2,Clarimbo Palladico,deterministic_resolved_author,9,9,false,false
+author_label:0af01c0a0a6cebae,Clarisco Egireo,clarisco egireo,author:9c6902f397a391f4,Clarisco Egireo,deterministic_resolved_author,6,6,false,false
+author_label:427245d38cb4521e,Cleandro Elideo,cleandro elideo,author:b8acddfbe2bf86ca,Cleandro Elideo,deterministic_resolved_author,1,1,false,false
+author_label:440dad3fb1ed1e46,Clidemo Trivio,clidemo trivio,author:0b3b66068d687089,Clidemo Trivio,deterministic_resolved_author,24,24,false,false
+author_label:e524913976974914,Clorasto Eubeio,clorasto eubeio,author:5867666f520c766a,Clorasto Eubeio,deterministic_resolved_author,9,9,false,false
+author_label:673a67e9d9ff0757,"Colonna, Vittoria",colonna vittoria,author:50c6accb5ff22f7a,Vittoria Colonna,deterministic_resolved_author_alias,58,58,true,true
+author_label:72c68b795139edd4,Coluccio Salutati,coluccio salutati,author:8d8d91ede68b3776,Coluccio Salutati,deterministic_resolved_author_alias,1,1,false,false
+author_label:7685e5f5dfe42ab7,Compiuta Donzella,compiuta donzella,author:b871fb0a6a31178d,Compiuta Donzella,deterministic_resolved_author,2,2,false,false
+author_label:03e8792e77c9b576,"Conti, Giusto de'",conti giusto,author:0405c51ecf9b69e8,"Conti, Giusto de'",deterministic_resolved_author,211,211,false,false
+author_label:e4fd2bceef497c4e,"Contile, Luca",contile luca,author:360465fd48ed50dc,"Contile, Luca",deterministic_resolved_author,134,134,false,false
+author_label:b6ca7403ad3964b0,"Corazzini, Sergio",corazzini sergio,author:f57e23de944459e9,"Corazzini, Sergio",deterministic_resolved_author,77,77,false,false
+author_label:e0797539a537b58f,Coreso Evanziano,coreso evanziano,author:85bd5892e8081546,Coreso Evanziano,deterministic_resolved_author,18,18,false,false
+author_label:9e1b25691cfbe34f,Cornelio Bentivoglio d'Aragona,aragona bentivoglio cornelio,author:0bbd032c187690ef,Cornelio Bentivoglio d'Aragona,deterministic_resolved_author,1,1,false,false
+author_label:fd86cfb8b1c17a8d,"Cortese, Giulio Cesare",cesare cortese giulio,author:1e048f485cf0a4d1,"Cortese, Giulio Cesare",deterministic_resolved_author,1,1,false,false
+author_label:0c9784a4ebd8413c,Crateo Ericinio,crateo ericinio,author:eca4e7505c69d58c,Crateo Ericinio,deterministic_resolved_author,8,8,false,false
+author_label:9c4695b4900ccf38,Cresfonte Cauconeo,cauconeo cresfonte,author:62c7a3e56a4fbb42,Cresfonte Cauconeo,deterministic_resolved_author,9,9,false,false
+author_label:bb2b78008c5e5efe,Criseno Elissoneo,criseno elissoneo,author:44adeff858b7295a,Criseno Elissoneo,deterministic_resolved_author,12,12,false,false
+author_label:1c26dd49f2472ab1,Cromeno Tegeatico,cromeno tegeatico,author:96b526f6e8b5a0b5,Cromeno Tegeatico,deterministic_resolved_author,24,24,false,false
+author_label:276e4f928a917df8,Cucco di Gualfreduccio,cucco gualfreduccio,author:45278e874a080804,Cucco di Gualfreduccio,deterministic_resolved_author,1,1,false,false
+author_label:ab449dfb9646f132,"Curti, Lancino",curti lancino,author:781038b0505fb174,"Curti, Lancino",deterministic_resolved_author,18,18,false,false
+author_label:def6961ea8f5cc78,"Da Ponte, Lorenzo",lorenzo ponte,author:086f366028f5479e,"Da Ponte, Lorenzo",deterministic_resolved_author,6,6,false,false
+author_label:5508eed0d62bd488,"Da Porto, Luigi",luigi porto,author:189a518e8b4e0749,"Da Porto, Luigi",deterministic_resolved_author,66,66,false,false
+author_label:eb8073c3e38be423,Dafne Eurippea,dafne eurippea,author:e89073319121b512,Dafne Eurippea,deterministic_resolved_author,3,3,false,false
+author_label:2e81725a445d44e1,Dalete Carnasio,carnasio dalete,author:b72b4e97cd10aad2,Dalete Carnasio,deterministic_resolved_author,16,16,false,false
+author_label:0190e1182ce9df81,Dalindo Cinosurio,cinosurio dalindo,author:844f7fb40bcaf1c3,Dalindo Cinosurio,deterministic_resolved_author,3,3,false,false
+author_label:ca89467ebce4b603,"Damiani, Lorenzo",damiani lorenzo,author:a6dd72f3ed4266e7,"Damiani, Lorenzo",deterministic_resolved_author,2,2,false,false
+author_label:6de53440686f707e,Dante Alighieri,alighieri dante,author:fe33126fbf7fa7f5,Dante Alighieri,deterministic_resolved_author_alias,91,11,true,true
+author_label:14afaa615e87cc28,Dareno Minteo,dareno minteo,author:b8eba556a65e0183,Dareno Minteo,deterministic_resolved_author,54,54,false,false
+author_label:3d54ea5be499cee6,"Dati, Leonardo",dati leonardo,author:b69ca05adc08118a,"Dati, Leonardo",deterministic_resolved_author,1,1,false,false
+author_label:828dc6998d6a5486,"Davanzati, Mariotto",davanzati mariotto,author:58851cf4d267ec55,"Davanzati, Mariotto",deterministic_resolved_author,36,36,false,false
+author_label:282dc8e590e08e02,"De Jennaro, Pietro Jacopo",jacopo jennaro pietro,author:5d03fe479d6cd4d7,"De Jennaro, Pietro Jacopo",deterministic_resolved_author,125,125,false,false
+author_label:84322b53b45924e0,"De Sanctis, Francesco",francesco sanctis,author:9f688e0631846143,"De Sanctis, Francesco",deterministic_resolved_author,7,7,false,false
+author_label:d0743c28dffbd59d,"Della Casa, Giovanni",casa giovanni,author:af0be86716dd80b8,Giovanni Della Casa,deterministic_resolved_author_alias,73,72,false,false
+author_label:fa75a30bd04dbff9,"Di Costanzo, Angelo",angelo costanzo,author:53fd4cabdde356f0,Angelo Di Costanzo,deterministic_resolved_author_alias,85,85,false,false
+author_label:7c677d85895777ef,"Di Tarsia, Galeazzo",galeazzo tarsia,author:0f348c3114010aec,"Di Tarsia, Galeazzo",deterministic_resolved_author,49,49,false,false
+author_label:d925037a7fd3d0a5,Diante Prosense,diante prosense,author:41bae0a7a91d948d,Diante Prosense,deterministic_resolved_author,14,14,false,false
+author_label:d7679bd5c3b84d45,Domenico Cavalca,cavalca domenico,author:93ab0d5c91eef851,Domenico Cavalca,deterministic_resolved_author,2,2,false,false
+author_label:9bf075e7f705113d,Domenico da Prato,domenico prato,author:208ef637fdb1fbe0,Domenico da Prato,deterministic_resolved_author,24,24,false,false
+author_label:43066fc040e93d3a,Domenico Lazzarini,domenico lazzarini,author:e7065433c9afa09a,Domenico Lazzarini,deterministic_resolved_author,2,2,false,false
+author_label:3df3dec7a3564d0b,"Donati, Jacopo",donati jacopo,author:7afa98413151d702,"Donati, Jacopo",deterministic_resolved_author,3,3,false,false
+author_label:0a9d7336625d550a,"Dondi Dall'Orologio, Giovanni",dall dondi giovanni orologio,author:4e3fd54ec3e7a0e5,"Dondi Dall'Orologio, Giovanni",deterministic_resolved_author,36,36,false,false
+author_label:3148a74c705829ed,Doralgo Euritidio,doralgo euritidio,author:e5bd00894ea0a954,Doralgo Euritidio,deterministic_resolved_author,1,1,false,false
+author_label:3242faee30fb8259,Echeno Eurimedonzio,echeno eurimedonzio,author:8b41a95487359192,Echeno Eurimedonzio,deterministic_resolved_author,9,9,false,false
+author_label:8a4f379e7a4581fe,Efesio Arneo,arneo efesio,author:02e243f04337473f,Efesio Arneo,deterministic_resolved_author,9,9,false,false
+author_label:bd8e8baa5b0cb3ba,Egeo Bufagiano,bufagiano egeo,author:7445275b47e2ce24,Egeo Bufagiano,deterministic_resolved_author,1,1,false,false
+author_label:d5e58b6dbba5af71,Egeria Nestanea,egeria nestanea,author:095add1b8824255a,Egeria Nestanea,deterministic_resolved_author,5,5,false,false
+author_label:9ff25976056095e1,Egone Cerausio,cerausio egone,author:6925a37d40f53aa7,Egone Cerausio,deterministic_resolved_author,2,2,false,false
+author_label:1562169afb4855da,Eladio Maleo,eladio maleo,author:d9c4d6db771165cf,Eladio Maleo,deterministic_resolved_author,5,5,false,false
+author_label:79490a97dc6b81b8,Elagildo Leuconio,elagildo leuconio,author:d16911f2377efe66,Elagildo Leuconio,deterministic_resolved_author,27,27,false,false
+author_label:fd0cd8fd665b2c72,Elenco Bocalide,bocalide elenco,author:764f419c35d1d562,Elenco Bocalide,deterministic_resolved_author,34,34,false,false
+author_label:813c87bd4ed23529,Elettra Citeria,citeria elettra,author:98490846bae1010b,Elettra Citeria,deterministic_resolved_author,26,26,false,false
+author_label:0522749d6ac7f4a2,Eliso Euteio,eliso euteio,author:eec8257cb81a2a83,Eliso Euteio,deterministic_resolved_author,12,12,false,false
+author_label:554d137e61849512,Elmante Lirceate,elmante lirceate,author:926788e0c9a9c2dd,Elmante Lirceate,deterministic_resolved_author,6,6,false,false
+author_label:258a9a28abca1f5f,Elmiro Miceneo,elmiro miceneo,author:bf368b216ef99810,Elmiro Miceneo,deterministic_resolved_author,7,7,false,false
+author_label:d4ffb35557afa3d3,Elpina Aroete,aroete elpina,author:68862804bd9b5e33,Elpina Aroete,deterministic_resolved_author,7,7,false,false
+author_label:82c073d703efceca,Elviro Triasio,elviro triasio,author:6258e2258bb003a6,Elviro Triasio,deterministic_resolved_author,1,1,false,false
+author_label:9375174b133d3d01,Emaro Simbolio,emaro simbolio,author:af9dfe6bb24e8ecb,Emaro Simbolio,deterministic_resolved_author,3,3,false,false
+author_label:99cb63e4ae0216d8,Emiro Plausteriano,emiro plausteriano,author:478cef0596132191,Emiro Plausteriano,deterministic_resolved_author,6,6,false,false
+author_label:2ee06f228b75fd7a,Eneto Ereo,eneto ereo,author:18da9d0e2d5c7d16,Eneto Ereo,deterministic_resolved_author,31,31,false,false
+author_label:7630387b7ba5d28f,Enotro Pallanzio,enotro pallanzio,author:e9954a2fb77fd2c9,Enotro Pallanzio,deterministic_resolved_author,9,9,false,false
+author_label:383e06567111c261,Entello Epiano,entello epiano,author:3e14df93da8485b0,Entello Epiano,deterministic_resolved_author,18,18,false,false
+author_label:f336eeff6f9fe5e8,"Epicuro, Marc'Antonio",antonio epicuro marc,author:cf58c1d8aa2fcc0d,"Epicuro, Marc'Antonio",deterministic_resolved_author,12,12,false,false
+author_label:9b7ff044f559141a,Erilo Cleoneo,cleoneo erilo,author:312096c49b81db68,Erilo Cleoneo,deterministic_resolved_author,13,13,false,false
+author_label:8cbee4611b1c977f,Eritro Faresio,eritro faresio,author:0ce606ab75c405d9,Eritro Faresio,deterministic_resolved_author,35,35,false,false
+author_label:9fe44f81435979d4,"Errico, Scipione",errico scipione,author:48608975ceef13fc,"Errico, Scipione",deterministic_resolved_author,44,44,false,false
+author_label:851057b9aaecfdb0,Estrio Cauntino,cauntino estrio,author:4231d3589e272e35,Estrio Cauntino,deterministic_resolved_author,32,32,false,false
+author_label:97222ea333aafc32,Eubeno Buprastio,buprastio eubeno,author:00a97e5ea5d41ec4,Eubeno Buprastio,deterministic_resolved_author,30,30,false,false
+author_label:6d0e74c5dfc8f666,Euganio Libade,euganio libade,author:4014ad43c05fb678,Euganio Libade,deterministic_resolved_author,15,15,false,false
+author_label:0c5e76a202022e82,Eureno Licio,eureno licio,author:51388203a28afd93,Eureno Licio,deterministic_resolved_author,18,18,false,false
+author_label:7637734494aafa3a,Eurinda Annomidia,annomidia eurinda,author:5e05327617cd1a2d,Eurinda Annomidia,deterministic_resolved_author,3,3,false,false
+author_label:64796c607a7d9d3d,Eurindo Olimpiaco,eurindo olimpiaco,author:94502f24d7bab55a,Eurindo Olimpiaco,deterministic_resolved_author,6,6,false,false
+author_label:c59d656a6af8d3e4,Eustachio Manfredi,eustachio manfredi,author:e87f85ad8e5ad71e,Eustachio Manfredi,deterministic_resolved_author,1,1,false,false
+author_label:a2df6eddefe20ac5,Eustasio Oeio,eustasio oeio,author:9e4b1478ce8512d6,Eustasio Oeio,deterministic_resolved_author,54,54,false,false
+author_label:917e23b608232662,Faustina Maratti,faustina maratti,author:aba31077aff00f47,Faustina Maratti,deterministic_resolved_author,13,13,false,false
+author_label:0ca8e74e9cfbcc93,Federico II,federico ii,author:27ecb4df5ec3912d,Federico II,deterministic_resolved_author,1,1,false,false
+author_label:bdc2ddcf553d9919,Federigo d'Arezzo,arezzo federigo,author:a7a8b1466d1b94b6,Federigo d'Arezzo,deterministic_resolved_author,1,1,false,false
+author_label:e43edfbd87f9d46c,Federigo Meninni,federigo meninni,author:2f69844fb5b734cf,Federigo Meninni,deterministic_resolved_author,9,9,false,false
+author_label:b4c94f7f4cef7c96,Fedrio Epicuriano,epicuriano fedrio,author:6b70575d97a5702b,Fedrio Epicuriano,deterministic_resolved_author,8,8,false,false
+author_label:a096f9d4ff188886,Felicio Orcomeniano,felicio orcomeniano,author:5b1b81c65374b9e4,Felicio Orcomeniano,deterministic_resolved_author,5,5,false,false
+author_label:3130c692380f5aac,Fenicio Larisseo,fenicio larisseo,author:827fa8e9442c5ad1,Fenicio Larisseo,deterministic_resolved_author,7,7,false,false
+author_label:36e81418573f9f10,Fertilio Lileo,fertilio lileo,author:8f62d662c56cb30c,Fertilio Lileo,deterministic_resolved_author,9,9,false,false
+author_label:7b42567f5d498e43,Fidalma Partenide,fidalma partenide,author:5a86c1f090a46c39,Fidalma Partenide,deterministic_resolved_author,37,37,false,false
+author_label:f443fe87520a7222,Filippo da Messina,filippo messina,author:cd754492ee61359d,Filippo da Messina,deterministic_resolved_author,1,1,false,false
+author_label:c8bf4a205610a25d,Filomolpo Corebio,corebio filomolpo,author:643dc06e34b9cdc3,Filomolpo Corebio,deterministic_resolved_author,15,15,false,false
+author_label:0e5e3931c1229394,Filotima Innia,filotima innia,author:6bd83f3b055b2c82,Filotima Innia,deterministic_resolved_author,30,30,false,false
+author_label:c31cb8485b42a3d5,Fino d’Arezzo,arezzo fino,author:58295c0072385b1a,Fino d’Arezzo,deterministic_resolved_author,1,1,false,false
+author_label:766bd4d1ed9648b8,"Firenzuola, Agnolo",agnolo firenzuola,author:2f14abafca2151fa,"Firenzuola, Agnolo",deterministic_resolved_author,49,49,false,false
+author_label:42f4b9c8bca1ab3e,Flamisto Termeo,flamisto termeo,author:8ff20daf1f4b851f,Flamisto Termeo,deterministic_resolved_author,7,7,false,false
+author_label:330918179227d677,Folgore da San Gimignano,folgore gimignano san,author:2714805d83ac1a08,Folgore da San Gimignano,deterministic_resolved_author_alias,37,1,true,true
+author_label:3d86222c42f24669,Folgore di San Gimignano,folgore gimignano san,author:2714805d83ac1a08,Folgore da San Gimignano,deterministic_resolved_author_alias,2,2,true,true
+author_label:4c808b3af92c3390,Forese Donati,donati forese,author:f9a871536f528131,Forese Donati,deterministic_resolved_author,4,4,false,false
+author_label:70a8128e89d64499,Fortunio Maloetide,fortunio maloetide,author:3eb9e75c8fb3c4a7,Fortunio Maloetide,deterministic_resolved_author,4,4,false,false
+author_label:1723127a49203142,"Foscolo, Ugo",foscolo ugo,author:1545ee91e935e5fe,Ugo Foscolo,deterministic_resolved_author_alias,33,33,true,true
+author_label:a7156008786e1822,Francesco Berni,berni francesco,author:4b81dd83c7b4a008,Francesco Berni,deterministic_resolved_author_alias,1,1,false,false
+author_label:f1b0ef868a0ceac6,Francesco di Vannozzo,francesco vannozzo,author:7bd41cfb107a9d39,Francesco di Vannozzo,deterministic_resolved_author,1,1,false,false
+author_label:f4de3fda1e8f8c14,Francesco Maria Molza,francesco maria molza,author:c9de6fa0c472edca,Francesco Maria Molza,deterministic_resolved_author,2,2,false,false
+author_label:2b8d4025a3168309,Francesco Petrarca,francesco petrarca,author:48812d65aff0d35e,Francesco Petrarca,deterministic_resolved_author_alias,333,20,true,true
+author_label:8761b95de15319e6,Francesco Villardi,francesco villardi,author:5247c8cb6f087311,Francesco Villardi,deterministic_resolved_author,1,1,false,false
+author_label:13311dd1e20a8de5,Franco Sacchetti,franco sacchetti,author:07aff2cf46790202,Franco Sacchetti,deterministic_resolved_author_alias,1,1,false,false
+author_label:74d8cbca44507e89,"Franco, Nicolò",franco nicolo,author:bb6b8683e900af6c,"Franco, Nicolò",deterministic_resolved_author,490,490,false,false
+author_label:9e3805a47a7c8596,"Franco, Veronica",franco veronica,author:5d2044669b9c1ec6,"Franco, Veronica",deterministic_resolved_author,16,16,false,false
+author_label:81b44acc987be7d8,"Fregoso, Antonio Fileremo",antonio fileremo fregoso,author:d3af081c13913c10,"Fregoso, Antonio Fileremo",deterministic_resolved_author,1,1,false,false
+author_label:c0f055e7126004a0,"Frescobaldi, Giovanni",frescobaldi giovanni,author:7cf4891f9b0cedeb,"Frescobaldi, Giovanni",deterministic_resolved_author,5,5,false,false
+author_label:c018a974a7157268,Frondisio Leonideio,frondisio leonideio,author:1d796c01caaeb7e2,Frondisio Leonideio,deterministic_resolved_author,10,10,false,false
+author_label:232c6f5555c7c3c3,Fronimo Epirio,epirio fronimo,author:df9f5e90c576533e,Fronimo Epirio,deterministic_resolved_author,10,10,false,false
+author_label:bf836e26726d90db,Gabriele Fiamma,fiamma gabriele,author:08467246a3373941,Gabriele Fiamma,deterministic_resolved_author,1,1,false,false
+author_label:6859270d52637949,Gabriello Chiabrera,chiabrera gabriello,author:de059c295e5c4bf3,Gabriello Chiabrera,deterministic_resolved_author,82,82,false,false
+author_label:f128f3c8fa7fdc73,"Galli, Angelo",angelo galli,author:10825627800146e2,"Galli, Angelo",deterministic_resolved_author,342,342,false,false
+author_label:172b0e6525008085,"Gallo, Filenio",filenio gallo,author:c1dec831224a6c63,"Gallo, Filenio",deterministic_resolved_author,396,396,false,false
+author_label:e8a65ec123743c0e,Gantila Pelleneo,gantila pelleneo,author:1fe5b9d1c7c8a9b8,Gantila Pelleneo,deterministic_resolved_author,11,11,false,false
+author_label:f025b168cc8de378,Gaspara Stampa,gaspara stampa,author:d5abb88cc8491986,Gaspara Stampa,deterministic_resolved_author,286,4,true,true
+author_label:9d768caeeeda8f0b,Gelindo Teccaleio,gelindo teccaleio,author:d599adaaed699910,Gelindo Teccaleio,deterministic_resolved_author,12,12,false,false
+author_label:5360218405fa27c2,Getilde Faresia,faresia getilde,author:c9c345a802cba321,Getilde Faresia,deterministic_resolved_author,3,3,false,false
+author_label:70d7ba7859eae4e6,"Gherardi, Giovanni",gherardi giovanni,author:41e32305d17ba4bd,"Gherardi, Giovanni",deterministic_resolved_author,28,28,false,false
+author_label:8fb7807cc93b0a01,Giacomo da Lentini,giacomo lentini,author:cb459d9195f90306,Giacomo da Lentini,deterministic_resolved_author,24,0,true,true
+author_label:572732c6fe96ccaf,Giambattista Felice Zappi,felice giambattista zappi,author:a2c144efe0e93df2,Giambattista Felice Zappi,deterministic_resolved_author,26,26,false,false
+author_label:02658271c7d314af,"Giambullari, Pier Francesco",francesco giambullari pier,author:9da112a7649d93c1,"Giambullari, Pier Francesco",deterministic_resolved_author,1,1,false,false
+author_label:6a7929d15320ad36,"Giogante, Michele del",giogante michele,author:5319da040847cfde,"Giogante, Michele del",deterministic_resolved_author,9,9,false,false
+author_label:5a09532d676adb7c,Giovambattista Marino,giovambattista marino,author:0909289fbfa28a9a,Giovambattista Marino,deterministic_resolved_author_alias,1,1,false,false
+author_label:3079a59cfa85420b,Giovan Battista Catena,battista catena giovan,author:d493e0a69312f9d9,Giovan Battista Catena,deterministic_resolved_author,1,1,false,false
+author_label:6c702c0018ca2ace,Giovan Battista Marino,battista giovan marino,author:33bafd567276538f,Giovan Battista Marino,deterministic_resolved_author,1,1,false,false
+author_label:e8feee1632c720bd,Giovanni Battista Amalteo,amalteo battista giovanni,author:d052dffd709f3a9b,Giovanni Battista Amalteo,deterministic_resolved_author,2,2,false,false
+author_label:c759b60f2b86624c,Giovanni Battista Pastorini,battista giovanni pastorini,author:d7457acd054f0e5a,Giovanni Battista Pastorini,deterministic_resolved_author,1,1,false,false
+author_label:07f635a099120296,Giovanni Boccaccio,boccaccio giovanni,author:de1098d2ca3434b3,Giovanni Boccaccio,deterministic_resolved_author_alias,10,10,false,false
+author_label:8cf5496fe8829528,Giovanni Canale,canale giovanni,author:fea89e00e5d0b551,Giovanni Canale,deterministic_resolved_author,10,10,false,false
+author_label:075bdf616540a4dc,Giovanni Della Casa,casa giovanni,author:af0be86716dd80b8,Giovanni Della Casa,deterministic_resolved_author_alias,1,1,false,false
+author_label:e389b393e4468fb3,Giovanni Fratta,fratta giovanni,author:d6dd2281052403cf,Giovanni Fratta,deterministic_resolved_author,1,1,false,false
+author_label:59d368c8422ac03f,Giovanni Guidiccioni,giovanni guidiccioni,author:540d43c68d00522b,Giovanni Guidiccioni,deterministic_resolved_author_alias,2,2,false,false
+author_label:e1946bc02941f294,Giovanni Prati,giovanni prati,author:2910cc492d7d7140,Giovanni Prati,deterministic_resolved_author_alias,56,56,false,false
+author_label:1d3aecee50f7d559,"Giraldi Cinzio, Giambattista",cinzio giambattista giraldi,author:3b419570ac882b14,"Giraldi Cinzio, Giambattista",deterministic_resolved_author,228,228,false,false
+author_label:06d77b739ae25b39,Giuliano Cassiani,cassiani giuliano,author:33554deff9f1636b,Giuliano Cassiani,deterministic_resolved_author,1,1,false,false
+author_label:7dd6ed1b2463d891,Giuntino Lanfredi,giuntino lanfredi,author:028040c1a175ce01,Giuntino Lanfredi,deterministic_resolved_author,2,2,false,false
+author_label:a350eb61387973bf,Giuseppe Artale,artale giuseppe,author:4d2c714439ef38ef,Giuseppe Artale,deterministic_resolved_author,14,14,false,false
+author_label:1d1045bc7ba2a147,"Giusti, Giuseppe",giuseppe giusti,author:e74979dd64c3378c,"Giusti, Giuseppe",deterministic_resolved_author,30,30,false,false
+author_label:fffb596b33ade05e,"Goldoni, Carlo",carlo goldoni,author:e1836c7d05f3e597,"Goldoni, Carlo",deterministic_resolved_author,1,1,false,false
+author_label:5f19eb8ea3128c0f,"Gradenigo, Giorgio",giorgio gradenigo,author:bd5e0fea26ac6966,"Gradenigo, Giorgio",deterministic_resolved_author,28,28,false,false
+author_label:46a7bdb377864443,"Grazzini, Anton Francesco",anton francesco grazzini,author:7d0721bbfacee2d0,"Grazzini, Anton Francesco",deterministic_resolved_author,4,4,false,false
+author_label:172e64cdb6cb54e8,Griseldo Toledermio,griseldo toledermio,author:d048c45f69380dc2,Griseldo Toledermio,deterministic_resolved_author,17,17,false,false
+author_label:97e7c2997323a84e,"Guadagnoli, Antonio",antonio guadagnoli,author:993f686f422f259c,"Guadagnoli, Antonio",deterministic_resolved_author,1,1,false,false
+author_label:766c1284c6da7f39,Gualpertino da Coderta,coderta gualpertino,author:3c8c9db33bb67ed2,Gualpertino da Coderta,deterministic_resolved_author,2,2,false,false
+author_label:de0bd3caf545684a,"Guarini, Battista",battista guarini,author:eafb50e68da50af5,"Guarini, Battista",deterministic_resolved_author,114,114,false,false
+author_label:953c755069c176e6,"Guidiccioni, Giovanni",giovanni guidiccioni,author:540d43c68d00522b,Giovanni Guidiccioni,deterministic_resolved_author_alias,110,110,false,false
+author_label:39d763389786395f,Guido Cavalcanti,cavalcanti guido,author:697305c1c574a490,Guido Cavalcanti,deterministic_resolved_author_alias,49,5,true,true
+author_label:ba46a3b3af7560aa,Guido Guinizelli,guido guinizelli,author:55a44e1b885cede8,Guido Guinizelli,deterministic_resolved_author,1,1,false,false
+author_label:d38bca5963d9441c,"Guinizzelli, Guido",guido guinizzelli,author:839a9c2f357297a4,"Guinizzelli, Guido",deterministic_resolved_author,15,15,false,false
+author_label:632e6d2c956a2484,Guittone d'Arezzo,arezzo guittone,author:7188ecfb018abd19,Guittone d'Arezzo,deterministic_resolved_author,251,43,true,true
+author_label:7f9fdce1b568f89c,Iacomo Tolomei,giacomo tolomei,author:893a10d0e3605983,Iacomo Tolomei,deterministic_resolved_author,1,1,false,false
+author_label:0b19c5d9dd8047b3,Iacopo da Leona,jacopo leona,author:396260fd250a3dca,Iacopo da Leona,deterministic_resolved_author,7,7,false,false
+author_label:3620acfeead6ceb1,Iacopo Mostacci,jacopo mostacci,author:461020cf9001e5d4,Iacopo Mostacci,deterministic_resolved_author,1,0,true,false
+author_label:e8bacd4b79c331d3,Iacopo Vittorelli,jacopo vittorelli,author:be14e786f852ccc1,Iacopo Vittorelli,deterministic_resolved_author,3,3,false,false
+author_label:aa36b1f5c7a886a8,Idalba Corinetea,corinetea idalba,author:765c6ea70a1a4000,Idalba Corinetea,deterministic_resolved_author,5,5,false,false
+author_label:a54ea035e497876a,Idalia Elisiana,elisiana idalia,author:929cf9232ce856cc,Idalia Elisiana,deterministic_resolved_author,3,3,false,false
+author_label:99969088332e2058,Idalmo Trigonio,idalmo trigonio,author:013b86b55324ff5f,Idalmo Trigonio,deterministic_resolved_author,4,4,false,false
+author_label:9c6669f9910e2477,Idaste Pauntino,idaste pauntino,author:1403c6b451b45d16,Idaste Pauntino,deterministic_resolved_author,16,16,false,false
+author_label:093f4b008e0b8942,Ila Orestasio,ila orestasio,author:81b657e4ed7f9ac9,Ila Orestasio,deterministic_resolved_author,35,35,false,false
+author_label:a0007a0060601c71,Ilindo Paragenite,ilindo paragenite,author:5683f445e33f2261,Ilindo Paragenite,deterministic_resolved_author,33,33,false,false
+author_label:e6d2a3abd63bbdd5,Immanuel Romano,immanuel romano,author:dd683a83221b7f1d,Immanuel Romano,deterministic_resolved_author,3,3,false,false
+author_label:7e1e5d9bb2b8029a,Ippolito Pindemonte,ippolito pindemonte,author:e1b933d4481cb31b,Ippolito Pindemonte,deterministic_resolved_author_alias,1,1,false,false
+author_label:7db132ed5c439ece,Ircano Lampeo,ircano lampeo,author:d32679fe3b13cf94,Ircano Lampeo,deterministic_resolved_author,5,5,false,false
+author_label:71367b0c0bcbfc8e,Irene Pamisia,irene pamisia,author:0685a94274a1000e,Irene Pamisia,deterministic_resolved_author,10,10,false,false
+author_label:59ea3252d2f6d81e,Isabella Andreini,andreini isabella,author:3239bd6eb754c7b7,Isabella Andreini,deterministic_resolved_author,198,2,true,true
+author_label:245eb2fa29b608ff,Jacopo Sannazaro,jacopo sannazaro,author:dfcb8cc2d6dcd92b,Jacopo Sannazaro,deterministic_resolved_author_alias,21,0,true,true
+author_label:4972531db9405dfc,John Milton,john milton,author:f3686fb04d0c3f79,John Milton,deterministic_resolved_author,3,3,false,false
+author_label:aead7ed2921ddf51,Juan Antonio de Vizarrón y Eguiarreta,antonio eguiarreta juan vizarron y,author:7bd4e5f5ba7da2bf,Juan Antonio de Vizarrón y Eguiarreta,deterministic_resolved_author,1,1,false,false
+author_label:1b227f1a9c25398e,Lacone Cromizio,cromizio lacone,author:f0f40e7b26ca8c90,Lacone Cromizio,deterministic_resolved_author,12,12,false,false
+author_label:94c29280a104ab4b,"Lapaccini, Filippo",filippo lapaccini,author:77450fcf3ded6fd5,"Lapaccini, Filippo",deterministic_resolved_author,1,1,false,false
+author_label:340bde3842c94a7b,Lapo Gianni,gianni lapo,author:f92d2d2417f9ed04,Lapo Gianni,deterministic_resolved_author,2,2,false,false
+author_label:2526306f59e8d9f7,Laristo Carmoneo,carmoneo laristo,author:c2bfcb338afd17cd,Laristo Carmoneo,deterministic_resolved_author,4,4,false,false
+author_label:8d00842e68989f70,Leandro Oresteo,leandro oresteo,author:c58070464c30e25c,Leandro Oresteo,deterministic_resolved_author,4,4,false,false
+author_label:643ec0f8942d959d,Leonardo Quirini,leonardo quirini,author:3a9376db42263827,Leonardo Quirini,deterministic_resolved_author,4,4,false,false
+author_label:87c7005027e139d4,Leonte Prineo,leonte prineo,author:39d34e3286f73ee6,Leonte Prineo,deterministic_resolved_author,13,13,false,false
+author_label:a4c99b990baa4c5c,"Leopardi, Giacomo",giacomo leopardi,author:bed9ab4c3908d2c2,"Leopardi, Giacomo",deterministic_resolved_author,169,165,false,false
+author_label:8b4c968085fcd168,"Leporeo, Ludovico",leporeo ludovico,author:46aac2a876c4b38f,"Leporeo, Ludovico",deterministic_resolved_author,249,249,false,false
+author_label:bcb3c34d8d0d654a,Leucoto Gateate,gateate leucoto,author:98909a4b059a4cac,Leucoto Gateate,deterministic_resolved_author,4,4,false,false
+author_label:5afece680718ac54,Leucride Ionide,ionide leucride,author:36902673b4e3e9d0,Leucride Ionide,deterministic_resolved_author,10,10,false,false
+author_label:12181fdb1273c895,Licida Orcomenio,licida orcomenio,author:4b62205c53e875b9,Licida Orcomenio,deterministic_resolved_author,7,7,false,false
+author_label:bf321b761162312f,Linco Telpusio,linco telpusio,author:614e46111ba04d7d,Linco Telpusio,deterministic_resolved_author,11,11,false,false
+author_label:42ebe9eccf4ad81b,Lindoro Elateo,elateo lindoro,author:8c00377087729b49,Lindoro Elateo,deterministic_resolved_author,2,2,false,false
+author_label:d88c8fa33e4821f4,Logisto Nemeo,logisto nemeo,author:da206f15a2b8528b,Logisto Nemeo,deterministic_resolved_author,16,16,false,false
+author_label:f26c9fde2548923c,Lorenzo Casaburi Urries,casaburi lorenzo urries,author:8b8f66b5144aee13,Lorenzo Casaburi Urries,deterministic_resolved_author,9,9,false,false
+author_label:ec3b5d541fa19fd4,Lorenzo de' Medici,lorenzo medici,author:706e4af9a271733d,Lorenzo de' Medici,deterministic_resolved_author_alias,14,14,false,false
+author_label:af1ba9d0d8909c4f,Lorenzo Magalotti,lorenzo magalotti,author:fa04976cc452031b,Lorenzo Magalotti,deterministic_resolved_author,1,1,false,false
+author_label:3e6a52a8601be588,"Lubrano, Giacomo",giacomo lubrano,author:a4f7d1469cebbe41,"Lubrano, Giacomo",deterministic_resolved_author,140,140,false,false
+author_label:df5a73aac95aae22,Lucinda Coritesia,coritesia lucinda,author:20a7bbbef38e4352,Lucinda Coritesia,deterministic_resolved_author,6,6,false,false
+author_label:d8e0bf4dfd5610ad,Ludovico Ariosto,ariosto ludovico,author:506112ae4960c671,Ludovico Ariosto,deterministic_resolved_author_alias,30,1,true,true
+author_label:a041ad7c9948c590,Luigi Alamanni,alamanni luigi,author:a704f39d47f7a21b,Luigi Alamanni,deterministic_resolved_author_alias,1,1,false,false
+author_label:c88f60795b5a30c2,Luporo da Lucca,lucca luporo,author:fce973a0c381a8cb,Luporo da Lucca,deterministic_resolved_author,1,1,false,false
+author_label:4354bf375c902f08,Maestro Francesco,francesco maestro,author:3c69bfcf0f7890ad,Maestro Francesco,deterministic_resolved_author,5,5,false,false
+author_label:a92b35684df2b9cf,Maestro Torrigiano,maestro torrigiano,author:93f35d298444d07d,Maestro Torrigiano,deterministic_resolved_author,6,6,false,false
+author_label:9d9d0576d10adc89,"Magnanini, Orazio, 16th/17th cent",cent magnanini orazio th th,author:d5e5d5e760df5b2a,"Magnanini, Orazio, 16th/17th cent",deterministic_resolved_author,26,26,false,false
+author_label:0037c9edfc8ebfdf,"Magno, Celio",celio magno,author:261db6e52f5390b1,Celio Magno,deterministic_resolved_author_alias,270,269,false,false
+author_label:461b6501d41d232d,Malatesta IV Malatesta,iv malatesta malatesta,author:fd5a408eefb685e7,Malatesta IV Malatesta,deterministic_resolved_author,1,1,false,false
+author_label:d4bfa282479db01e,"Malatesti, Malatesta",malatesta malatesti,author:304598ef6ef11ce0,"Malatesti, Malatesta",deterministic_resolved_author,63,63,false,false
+author_label:efeda8bee2c4a5cc,"Malecarni, Francesco",francesco malecarni,author:36c85d8e2b07a3f1,"Malecarni, Francesco",deterministic_resolved_author,6,6,false,false
+author_label:21f459762bffdbff,"Malipiero, Girolamo",girolamo malipiero,author:6f573bd71d039e59,"Malipiero, Girolamo",deterministic_resolved_author,312,312,false,false
+author_label:cd9c511697670552,"Mantegna, Giovanni Alfonso",alfonso giovanni mantegna,author:c813c21da210980f,"Mantegna, Giovanni Alfonso",deterministic_resolved_author,78,78,false,false
+author_label:068eaf972ecbe75d,"Mantelli di Canobio, Giovanni de",canobio giovanni mantelli,author:3639c3c31fe7e05a,"Mantelli di Canobio, Giovanni de",deterministic_resolved_author,76,76,false,false
+author_label:4da52551488ce374,"Manzoni, Alessandro",alessandro manzoni,author:cfca3f10706a41d1,"Manzoni, Alessandro",deterministic_resolved_author,6,6,false,false
+author_label:f246e6768273a144,Marino Ceccoli,ceccoli marino,author:b036a6583a59c7b9,Marino Ceccoli,deterministic_resolved_author,17,17,false,false
+author_label:fe3edbebbc4b3c4d,"Marino, Giovambattista",giovambattista marino,author:0909289fbfa28a9a,Giovambattista Marino,deterministic_resolved_author_alias,403,401,false,false
+author_label:d98163dff38df2fe,Mario Malfettani,malfettani mario,author:d2d99211a4f2f881,Mario Malfettani,deterministic_resolved_author,13,13,false,false
+author_label:3301794ae8dab823,"Martelli, Carlo",carlo martelli,author:e9146d6867a8cd2e,"Martelli, Carlo",deterministic_resolved_author,6,6,false,false
+author_label:3745892187519577,"Matraini Contarini, Chiara",chiara contarini matraini,author:cee02a98551ead65,"Matraini Contarini, Chiara",deterministic_resolved_author,154,152,false,false
+author_label:a9bedbf4244c5184,Matteo Frescobaldi,frescobaldi matteo,author:ac37c5f013cbbd04,Matteo Frescobaldi,deterministic_resolved_author,6,6,false,false
+author_label:2e3339c707861a39,Matteo Maria Boiardo,boiardo maria matteo,author:485f9103a1095092,Matteo Maria Boiardo,deterministic_resolved_author_alias,10,10,false,false
+author_label:e4d145aeb7b488fe,Mazzeo di Ricco,mazzeo ricco,author:6d55c79b90c50832,Mazzeo di Ricco,deterministic_resolved_author,1,1,false,false
+author_label:11a7f915c51bc1b9,"Medici, Carlo de'",carlo medici,author:c3e2e765656af520,"Medici, Carlo de'",deterministic_resolved_author,8,8,false,false
+author_label:d26d84749ff2925d,"Medici, Lorenzo de'",lorenzo medici,author:706e4af9a271733d,Lorenzo de' Medici,deterministic_resolved_author_alias,191,158,false,false
+author_label:b29b8be9dff120ec,"Meglio, Antonio di",antonio meglio,author:d67a5c1094b30941,"Meglio, Antonio di",deterministic_resolved_author,11,11,false,false
+author_label:727d5ed4d88599fc,"Meglio, Giovan Matteo di",giovan matteo meglio,author:a3d5edc6c985fa7d,"Meglio, Giovan Matteo di",deterministic_resolved_author,14,14,false,false
+author_label:3ae60075e4cb3034,Melinto Leuttronio,leuttronio melinto,author:fde0b82f94226411,Melinto Leuttronio,deterministic_resolved_author,5,5,false,false
+author_label:0865790c5cfcffdc,Messer Rinaldo d'Aquino,aquino messer rinaldo,author:82bb412b5cc070f4,Messer Rinaldo d'Aquino,deterministic_resolved_author,2,2,false,false
+author_label:dd6dc0359667d7ef,"Metastasio, Pietro",metastasio pietro,author:2ada67e9ed19ed9d,"Metastasio, Pietro",deterministic_resolved_author,32,32,false,false
+author_label:59de19aa8a7ab9fd,Michelangelo Buonarroti,buonarroti michelangelo,author:4a3cbeb1e0ec0734,Michelangelo Buonarroti,deterministic_resolved_author_alias,2,2,false,false
+author_label:32a74044401fdac2,"Michelangelo Buonarroti, 1475-1564",buonarroti michelangelo,author:4a3cbeb1e0ec0734,Michelangelo Buonarroti,deterministic_resolved_author_alias,2,2,false,false
+author_label:4a5c797e97f52353,Migliore degli Abati,abati migliore,author:c704edb0912a3e3f,Migliore degli Abati,deterministic_resolved_author,1,1,false,false
+author_label:47540e8c8fad123b,Mino da Colle,colle mino,author:e8f83f25ff06c93f,Mino da Colle,deterministic_resolved_author,1,1,false,false
+author_label:e32a82951a68eb4f,Mireo Rofeatico,mireo rofeatico,author:a94119217617d625,Mireo Rofeatico,deterministic_resolved_author,17,17,false,false
+author_label:4bf9cf0460439e2a,Mirtilide Langiano,langiano mirtilide,author:5e27a9c7763a8ef5,Mirtilide Langiano,deterministic_resolved_author,8,8,false,false
+author_label:6d55e13c2aec5f4d,Mirtilo Dianidio,dianidio mirtilo,author:544e4deb496b9975,Mirtilo Dianidio,deterministic_resolved_author,30,30,false,false
+author_label:0939309ee818c200,Mirtinda Parraside,mirtinda parraside,author:a6fbefab0ef133a8,Mirtinda Parraside,deterministic_resolved_author,7,7,false,false
+author_label:60259ea4b492ee76,Montano Falanzio,falanzio montano,author:ff55f2b4bb221ba9,Montano Falanzio,deterministic_resolved_author,39,39,false,false
+author_label:014d7ff5824bf0d1,Monte Andrea | Schiatta Pallavillani,andrea monte pallavillani schiatta,author:906d239a9fb71162,Monte Andrea | Schiatta Pallavillani,deterministic_resolved_author,1,1,false,false
+author_label:fcc53c4cd4564fbe,"Monti, Vincenzo",monti vincenzo,author:c65ff608ef524fe8,"Monti, Vincenzo",deterministic_resolved_author,25,23,false,false
+author_label:cacf435dd68f67ab,"Morandi, Niccolò",morandi niccolo,author:1a30d0b37e69913e,"Morandi, Niccolò",deterministic_resolved_author,5,5,false,false
+author_label:5e813012bad33095,"Morra, Isabella di",isabella morra,author:85fc9261be9ee008,"Morra, Isabella di",deterministic_resolved_author,10,10,false,false
+author_label:e4538e8dc400ecf9,"Muzzarelli, Giovanni",giovanni muzzarelli,author:00dd2f0db603191c,"Muzzarelli, Giovanni",deterministic_resolved_author,31,31,false,false
+author_label:99fcc9536b8bd854,Nadasto Licoate,licoate nadasto,author:74763ea0a92f265b,Nadasto Licoate,deterministic_resolved_author,29,29,false,false
+author_label:c2d958502a83aa74,"Nannini, Remigio",nannini remigio,author:73865edd076dc6f8,"Nannini, Remigio",deterministic_resolved_author,33,33,false,false
+author_label:ae95ba224b63bbca,Nelindo Acontimacario,acontimacario nelindo,author:c2becf28faf65f0b,Nelindo Acontimacario,deterministic_resolved_author,11,11,false,false
+author_label:a021c133aa05b1ba,Neralco Castrimeniano,castrimeniano neralco,author:39a5b272f32b4b14,Neralco Castrimeniano,deterministic_resolved_author,21,21,false,false
+author_label:8332a14ede4a4844,Neri Muscoli,muscoli neri,author:43c67becbcbbca8a,Neri Muscoli,deterministic_resolved_author,1,1,false,false
+author_label:e0e14793d55c8097,Nicandro Tueboate,nicandro tueboate,author:c15b76ce94436055,Nicandro Tueboate,deterministic_resolved_author,5,5,false,false
+author_label:d6adf73b140c022d,Niccolò da Correggio,correggio niccolo,author:4e86935c7dfd1c47,Niccolò da Correggio,deterministic_resolved_author,400,400,false,false
+author_label:53a1d8e7ca674198,Niccolò de' Rossi,niccolo rossi,author:9a368ce3461ad373,Niccolò de' Rossi,deterministic_resolved_author_alias,74,74,false,false
+author_label:a5d664712b884cd4,Niccolò Machiavelli,machiavelli niccolo,author:ad5c5da1572aaaf9,Niccolò Machiavelli,deterministic_resolved_author,2,2,false,false
+author_label:57598d9a89a16ebe,Nice Euripiliana,euripiliana nice,author:4d1e782e3e55d512,Nice Euripiliana,deterministic_resolved_author,7,7,false,false
+author_label:141bae39e6c84849,Nicio Meneladio,meneladio nicio,author:2985b0e905a5d734,Nicio Meneladio,deterministic_resolved_author,32,32,false,false
+author_label:1f312a375b0abb2c,Nidalmo Tiseo,nidalmo tiseo,author:126be95d55bf88b2,Nidalmo Tiseo,deterministic_resolved_author,29,29,false,false
+author_label:ffd0c1c488339c84,Nina siciliana,nina siciliana,author:f4956be05ca49ba6,Nina siciliana,deterministic_resolved_author,1,1,false,false
+author_label:992fcca1ebedc7ef,Nosside Ecalia,ecalia nosside,author:1c407effc1ebe42a,Nosside Ecalia,deterministic_resolved_author,8,8,false,false
+author_label:ab9479388dcfa82c,Odalmo Apesanzio,apesanzio odalmo,author:eee9401d5de2e8bb,Odalmo Apesanzio,deterministic_resolved_author,5,5,false,false
+author_label:180e3b535e920279,Ofelte Nedeo,nedeo ofelte,author:3e06568f184e685a,Ofelte Nedeo,deterministic_resolved_author,5,5,false,false
+author_label:ae3f7a0300027685,Olimpio Batilliano,batilliano olimpio,author:e112cc168ab10700,Olimpio Batilliano,deterministic_resolved_author,7,7,false,false
+author_label:99665648f77a3d71,Olinto Arsenio,arsenio olinto,author:891f943d8d430ed9,Olinto Arsenio,deterministic_resolved_author,1,1,false,false
+author_label:1ddb85a2e7389322,Onemio Dianio,dianio onemio,author:c434e637fd6608c3,Onemio Dianio,deterministic_resolved_author,21,21,false,false
+author_label:ffdebf9f9845ee08,Onofrio Minzoni,minzoni onofrio,author:7ef5ac24a46efff3,Onofrio Minzoni,deterministic_resolved_author,1,1,false,false
+author_label:021589be2368406c,Orialo Minieiano,minieiano orialo,author:5291424535893dba,Orialo Minieiano,deterministic_resolved_author,39,39,false,false
+author_label:f70b5735d1b2b16c,Orito Piliaco,orito piliaco,author:2eea3c62f9266828,Orito Piliaco,deterministic_resolved_author,18,18,false,false
+author_label:daa23a685dde9da1,Orlanduccio Orafo | Pallamidesse di Bellindote del Perfetto,bellindote orafo orlanduccio pallamidesse perfetto,author:9a8302bb56d76f2a,Orlanduccio Orafo | Pallamidesse di Bellindote del Perfetto,deterministic_resolved_author,2,2,false,false
+author_label:8ea9e3aca015eb78,Ormonte Pereteo,ormonte pereteo,author:c9b95d3c913b97df,Ormonte Pereteo,deterministic_resolved_author,17,17,false,false
+author_label:b24f60920594b1f6,Orsatto Cidario,cidario orsatto,author:d6bd1e76a19f17e3,Orsatto Cidario,deterministic_resolved_author,30,30,false,false
+author_label:305659986af60ec6,Ottinio Corineo,corineo ottinio,author:fbf536d616f4d007,Ottinio Corineo,deterministic_resolved_author,19,19,false,false
+author_label:9b63b32c7c62d7f6,Palemone Licurio,licurio palemone,author:ba74bbd7169f6a3c,Palemone Licurio,deterministic_resolved_author,18,18,false,false
+author_label:f3fc6a300f8fcf99,Paolo Falconieri,falconieri paolo,author:e7e56ac385221168,Paolo Falconieri,deterministic_resolved_author,1,1,false,false
+author_label:fb9e378edfe57a9f,Papa Urbano VIII,papa urbano viii,author:c67802324cace396,Papa Urbano VIII,deterministic_resolved_author,3,3,false,false
+author_label:7c446f1e4ac12fb7,"Parini, Giuseppe",giuseppe parini,author:131f1762b24c24f4,"Parini, Giuseppe",deterministic_resolved_author,110,110,false,false
+author_label:2260217c04a3b070,Parlantino da Firenze,firenze parlantino,author:23705442a0ca2965,Parlantino da Firenze,deterministic_resolved_author,1,1,false,false
+author_label:d59f84c1f2dbac29,Paulo Gonçalves de Andrada,andrada goncalves paulo,author:23c12070f7755030,Paulo Gonçalves de Andrada,deterministic_resolved_author,1,1,false,false
+author_label:bebc4bee19381fc8,"Pegolotti, Giovanni",giovanni pegolotti,author:043145968168a7f2,"Pegolotti, Giovanni",deterministic_resolved_author,7,7,false,false
+author_label:2d743dcd6996970e,Perideo Trapezunzio,perideo trapezunzio,author:517b6bf0b0297b1a,Perideo Trapezunzio,deterministic_resolved_author,18,18,false,false
+author_label:605c6b5b00e5339b,"Petrarca, Francesco",francesco petrarca,author:48812d65aff0d35e,Francesco Petrarca,deterministic_resolved_author_alias,225,220,true,true
+author_label:97553e939fa25203,"Petroni, Ludovico",ludovico petroni,author:9528e30064b3d0c9,"Petroni, Ludovico",deterministic_resolved_author,2,2,false,false
+author_label:f4ee1b7a12d0fe82,"Pico della Mirandola, Gianfrancesco",gianfrancesco mirandola pico,author:8c3839f13dddc374,"Pico della Mirandola, Gianfrancesco",deterministic_resolved_author,44,44,false,false
+author_label:e92694dd0923b8a3,"Pico della Mirandola, Giovanni",giovanni mirandola pico,author:3676185298ef4cbb,"Pico della Mirandola, Giovanni",deterministic_resolved_author,20,0,false,false
+author_label:0650d35061561acd,Pier della Vigna,pier vigna,author:62d756d2c8a05d11,Pier della Vigna,deterministic_resolved_author,1,0,true,false
+author_label:572930bf5f34019e,Pier Giuseppe Giustiniani,giuseppe giustiniani pier,author:a03a60208037de15,Pier Giuseppe Giustiniani,deterministic_resolved_author,6,6,false,false
+author_label:08689cd0bfe77528,Pier Jacopo Martello,jacopo martello pier,author:c06c7b41609ba44d,Pier Jacopo Martello,deterministic_resolved_author,1,1,false,false
+author_label:cec31027064cff69,Pieraccio Tedaldi,pieraccio tedaldi,author:665da41e8c510e19,Pieraccio Tedaldi,deterministic_resolved_author,30,30,false,false
+author_label:c4c4de1c6f652d37,Pietro Aretino,aretino pietro,author:a99295d5c34817d6,Pietro Aretino,deterministic_resolved_author_alias,25,25,false,false
+author_label:366ffbd1bd8c767f,Pietro Bembo,bembo pietro,author:80e9a2a4b40c4108,Pietro Bembo,deterministic_resolved_author_alias,2,2,false,false
+author_label:0ccab965c5552e59,Pietro Casaburi Urries,casaburi pietro urries,author:3def7d7523e9ca84,Pietro Casaburi Urries,deterministic_resolved_author,8,8,false,false
+author_label:4288c3c8b4cf4662,Pietro dei Faitinelli,faitinelli pietro,author:6fac33f9d2f1cfbe,Pietro dei Faitinelli,deterministic_resolved_author,15,15,false,false
+author_label:51eae4db0668a49c,Pietro Michiele,michiele pietro,author:4a42dc603a0577a4,Pietro Michiele,deterministic_resolved_author,4,4,false,false
+author_label:1fed87c67946a212,"Pigli, Giovanni di Iacopo",giovanni jacopo pigli,author:260a383934aef8ab,"Pigli, Giovanni di Iacopo",deterministic_resolved_author,10,10,false,false
+author_label:c81a8c53a2777c13,"Pigna (Giovan Battista Nicolucci, detto il)",battista detto giovan nicolucci pigna,author:bdaef4c50ce197b4,"Pigna (Giovan Battista Nicolucci, detto il)",deterministic_resolved_author,211,211,false,false
+author_label:d5c1a0732590e22e,"Pignatelli, Ascanio",ascanio pignatelli,author:1c75d8b13cee76bd,"Pignatelli, Ascanio",deterministic_resolved_author,129,129,false,false
+author_label:3b9e74762fd059da,"Pindemonte, Ippolito",ippolito pindemonte,author:e1b933d4481cb31b,Ippolito Pindemonte,deterministic_resolved_author_alias,1,1,false,false
+author_label:2e01e9ee4c2ea0f0,Pisandro Antiniano,antiniano pisandro,author:85ef226cc785a503,Pisandro Antiniano,deterministic_resolved_author,29,29,false,false
+author_label:2d438a8f3ff9fb68,Placisto Amitaonio,amitaonio placisto,author:2b691e79793c3763,Placisto Amitaonio,deterministic_resolved_author,3,3,false,false
+author_label:886a2b133a51c6b0,Poesie anonime,,,,generic_author_work_grouped,68,68,false,false
+author_label:d410bad4448d3d27,Poesie di dubbia attribuzione,attribuzione dubbia poesie,author:fa1c18afa23fe1be,Poesie di dubbia attribuzione,deterministic_resolved_author,3,3,false,false
+author_label:e4ad6260f2d48fc7,Polibo Emonio,emonio polibo,author:4b7cb4dc2b99dfcc,Polibo Emonio,deterministic_resolved_author,41,41,false,false
+author_label:d95e0543c0b65d09,"Poliziano, Angelo",angelo poliziano,author:2a33749392271cad,Angelo Poliziano,deterministic_resolved_author_alias,1,1,false,false
+author_label:9235395b5e45727a,"Praga, Emilio",emilio praga,author:deb7f788e6b656be,"Praga, Emilio",deterministic_resolved_author,15,15,false,false
+author_label:f73994c0e49ab8cf,"Prati, Giovanni",giovanni prati,author:2910cc492d7d7140,Giovanni Prati,deterministic_resolved_author_alias,115,115,false,false
+author_label:01a604151c4d17da,"Preti, Girolamo",girolamo preti,author:3c08e657b66ddf9f,"Preti, Girolamo",deterministic_resolved_author,79,79,false,false
+author_label:5a3394301a52c568,Prospero Valeriano Manara,manara prospero valeriano,author:c082c0d1d583bd43,Prospero Valeriano Manara,deterministic_resolved_author,1,1,false,false
+author_label:8e9a953269f2ad32,Pucciandone Martelli,martelli pucciandone,author:30bcb8cb51186202,Pucciandone Martelli,deterministic_resolved_author,1,1,false,false
+author_label:7232e33b0fca3aa1,"Pulci, Bernardo",bernardo pulci,author:74197adf1ad8ae18,"Pulci, Bernardo",deterministic_resolved_author,97,97,false,false
+author_label:a8ea54dfebe0c2c5,"Ricci, Bernardo de'",bernardo ricci,author:fdf40a3435153222,"Ricci, Bernardo de'",deterministic_resolved_author,2,2,false,false
+author_label:cb0564a61910681f,Ridolfo di mastro Angelo,angelo mastro ridolfo,author:b9d1b6cf3abd11a4,Ridolfo di mastro Angelo,deterministic_resolved_author,1,1,false,false
+author_label:3f9e43df825bfcb0,Rime Dei Memoriali Bolognesi,bolognesi memoriali rime,author:bb3c85e1de284e6b,Rime Dei Memoriali Bolognesi,deterministic_resolved_author,1,1,false,false
+author_label:41898c32055d73bc,"Risorboli, Niccolò",niccolo risorboli,author:5bbce8dd0e49966c,"Risorboli, Niccolò",deterministic_resolved_author,2,2,false,false
+author_label:539db752b41c3197,Roberto di Battifolle,battifolle roberto,author:e36cd8e2b4c97aa6,Roberto di Battifolle,deterministic_resolved_author,4,4,false,false
+author_label:2e068fd924ef517a,"Roselli, Giovanni",giovanni roselli,author:24a239b1f8810b97,"Roselli, Giovanni",deterministic_resolved_author,1,1,false,false
+author_label:e2838aec425d080a,"Roselli, Rosello",roselli rosello,author:69b0f2713fc2e3fd,"Roselli, Rosello",deterministic_resolved_author,59,59,false,false
+author_label:982a72d8570b5c9c,Rosindo Lisiade,lisiade rosindo,author:93e57f233e8207ea,Rosindo Lisiade,deterministic_resolved_author,11,11,false,false
+author_label:a1d182f95f7bb8bf,"Rossi, Niccolò de'",niccolo rossi,author:9a368ce3461ad373,Niccolò de' Rossi,deterministic_resolved_author_alias,416,416,false,false
+author_label:80bcaa45847570ff,"Rossi, Roberto de'",roberto rossi,author:7e1753a8ff361ce4,"Rossi, Roberto de'",deterministic_resolved_author,2,2,false,false
+author_label:f9756c125d74ae72,"Rota, Berardino",berardino rota,author:8d77706cf7e27285,Berardino Rota,deterministic_resolved_author_alias,336,336,false,false
+author_label:b83b852a0fc34f3d,Rustico Filippi,filippi rustico,author:2386d789a89891a8,Rustico Filippi,deterministic_resolved_author,109,109,false,false
+author_label:5186551ba432571d,"Sacchetti, Franco",franco sacchetti,author:07aff2cf46790202,Franco Sacchetti,deterministic_resolved_author_alias,101,99,false,false
+author_label:6b9526a2e021c359,Salenzio Itomeo,itomeo salenzio,author:214f0f3b785ac7c9,Salenzio Itomeo,deterministic_resolved_author,4,4,false,false
+author_label:e93bcb76d28cb558,Salico Lepreonio,lepreonio salico,author:c5672ec142784a72,Salico Lepreonio,deterministic_resolved_author,6,6,false,false
+author_label:1161c5b74ed2a9a1,"Salutati, Coluccio",coluccio salutati,author:8d8d91ede68b3776,Coluccio Salutati,deterministic_resolved_author_alias,2,2,false,false
+author_label:19afc9baf8f49172,"Sandoval De Castro, Diego",castro diego sandoval,author:4de190eb45b128fa,"Sandoval De Castro, Diego",deterministic_resolved_author,44,44,false,false
+author_label:52d74521f878d99f,"Sannazaro, Iacopo",jacopo sannazaro,author:dfcb8cc2d6dcd92b,Jacopo Sannazaro,deterministic_resolved_author_alias,94,94,true,true
+author_label:87a0feaff7aae36e,"Scambrilla, Francesco",francesco scambrilla,author:43de48d503fce20d,"Scambrilla, Francesco",deterministic_resolved_author,11,11,false,false
+author_label:6c86e2ee9b794039,"Scroffa, Camillo",camillo scroffa,author:1d0ebff2c9f5c459,"Scroffa, Camillo",deterministic_resolved_author,17,17,false,false
+author_label:bf5994d1bb994da0,Serafino Aquilano,aquilano serafino,author:2e598a17c489b081,Serafino Aquilano,deterministic_resolved_author,178,178,false,false
+author_label:bbb24df4ba5758db,"Serdini, Simone (detto il Saviozzo)",detto saviozzo serdini simone,author:960ad95d1790671a,"Serdini, Simone (detto il Saviozzo)",deterministic_resolved_author,44,44,false,false
+author_label:ee8d1304865b43ea,"Sforza, Alessandro",alessandro sforza,author:418fba706828fe32,"Sforza, Alessandro",deterministic_resolved_author,342,342,false,false
+author_label:d82a0aeeda770b48,Silvia Licoatide,licoatide silvia,author:0a463effb331361c,Silvia Licoatide,deterministic_resolved_author,26,26,false,false
+author_label:32508b446b9b35fe,Simandro Inachio,inachio simandro,author:ab54f8e33bea0e99,Simandro Inachio,deterministic_resolved_author,14,14,false,false
+author_label:c927ea0ac5ceda21,Simone da Siena,siena simone,author:df0ba2285d92a28f,Simone da Siena,deterministic_resolved_author,2,2,false,false
+author_label:2fccee4cd5f4d932,Siralgo Ninfasio,ninfasio siralgo,author:8d3da2d8f3adb5cf,Siralgo Ninfasio,deterministic_resolved_author,53,53,false,false
+author_label:dcb027adaa7b096f,Siringo Reteo,reteo siringo,author:5a23c03ce6f5aa8f,Siringo Reteo,deterministic_resolved_author,29,29,false,false
+author_label:7a8a457cbde52040,Talete Elateo,elateo talete,author:9908f7ee44f00d3d,Talete Elateo,deterministic_resolved_author,3,3,false,false
+author_label:c619834befb82442,"Tansillo, Luigi",luigi tansillo,author:a2757e5d2c4dd470,"Tansillo, Luigi",deterministic_resolved_author,539,491,false,false
+author_label:f13a88be24f5bd1e,"Tasso, Bernardo",bernardo tasso,author:46d5c6e3827bce5c,"Tasso, Bernardo",deterministic_resolved_author,559,559,false,false
+author_label:87b6ee98ea5ec4d8,"Tasso, Torquato",tasso torquato,author:9fa9201e6fb19d23,Torquato Tasso,deterministic_resolved_author_alias,1545,1386,false,false
+author_label:3450ed6c3923f9d3,"Tebaldeo, Antonio",antonio tebaldeo,author:13b36a5d7f5f03eb,"Tebaldeo, Antonio",deterministic_resolved_author,712,712,false,false
+author_label:09c3a319e00186c0,"Tedaldi, Francesco",francesco tedaldi,author:1edcab5e27a98292,"Tedaldi, Francesco",deterministic_resolved_author,7,7,false,false
+author_label:a0539a924d7d45de,Tegeso Acroniano,acroniano tegeso,author:596d3e9896f10823,Tegeso Acroniano,deterministic_resolved_author,18,18,false,false
+author_label:ae34da4aafe9b604,Teleste Ciparissiano,ciparissiano teleste,author:98b46e11943f103e,Teleste Ciparissiano,deterministic_resolved_author,19,19,false,false
+author_label:61f747377c775f49,Tenzoni,tenzoni,author:15c7f48deba1a37d,Tenzoni,deterministic_resolved_author,8,8,false,false
+author_label:ca1a25cd4ee20820,Teone Cleonense,cleonense teone,author:ca22b4ef08d9cf87,Teone Cleonense,deterministic_resolved_author,11,11,false,false
+author_label:e2f17b4aae197013,Timaste Pisandeo,pisandeo timaste,author:fec2867280ff0885,Timaste Pisandeo,deterministic_resolved_author,5,5,false,false
+author_label:3adf434560b39efa,"Tinucci, Niccolò",niccolo tinucci,author:3fe0a214e094c820,"Tinucci, Niccolò",deterministic_resolved_author,39,38,false,false
+author_label:bcbf6b87ae5e539b,Tirinto Trofeio,tirinto trofeio,author:6708210beec80e57,Tirinto Trofeio,deterministic_resolved_author,25,25,false,false
+author_label:7f57e68ad0b504f4,Tirsi Leucasio,leucasio tirsi,author:e298f1afb1f38e3f,Tirsi Leucasio,deterministic_resolved_author,37,36,false,false
+author_label:b8bd702e8318ec3a,Tisameno Pelopide,pelopide tisameno,author:74db08af93260637,Tisameno Pelopide,deterministic_resolved_author,7,7,false,false
+author_label:b82b5dff3f862233,"Tommaseo, Niccolò",niccolo tommaseo,author:d52184ff95efe996,"Tommaseo, Niccolò",deterministic_resolved_author,2,2,false,false
+author_label:9a844bfbbfa758d0,Tommaso della Gazzaia,gazzaia tommaso,author:ccdfb71dbd3acd67,Tommaso della Gazzaia,deterministic_resolved_author,1,1,false,false
+author_label:edd83171fbd08c9c,Tommaso Gaudiosi,gaudiosi tommaso,author:c1cf4b7186278e04,Tommaso Gaudiosi,deterministic_resolved_author,12,12,false,false
+author_label:c6613cbdb5c8d276,Torquato Tasso,tasso torquato,author:9fa9201e6fb19d23,Torquato Tasso,deterministic_resolved_author_alias,1,1,false,false
+author_label:55aa4042195956f9,Torralbo Maloetide,maloetide torralbo,author:2d63c3e53630af20,Torralbo Maloetide,deterministic_resolved_author,9,9,false,false
+author_label:36d641b80d1c0e99,Trisalgo Larisseate,larisseate trisalgo,author:da586d22ee32021e,Trisalgo Larisseate,deterministic_resolved_author,31,31,false,false
+author_label:deca188872e2dcc5,"Trissino, Gian Giorgio",gian giorgio trissino,author:f225fd34ee96631d,"Trissino, Gian Giorgio",deterministic_resolved_author,5,5,false,false
+author_label:7569a9fc0f52911d,Tullia d'Aragona,aragona tullia,author:6a9fd07f64340d8a,Tullia d'Aragona,deterministic_resolved_author,119,119,false,false
+author_label:c52c129201750645,Ugo di Massa Conte di Santafiore,conte massa santafiore ugo,author:03b1086bf78106b5,Ugo di Massa Conte di Santafiore,deterministic_resolved_author,2,2,false,false
+author_label:4d6b4bef2b97ef7e,Ugo Foscolo,foscolo ugo,author:1545ee91e935e5fe,Ugo Foscolo,deterministic_resolved_author_alias,18,6,true,true
+author_label:8092400bb3794f6f,Un Poeta Lombardo,lombardo poeta un,author:4e99babf5c9bf415,Un Poeta Lombardo,deterministic_resolved_author,1,1,false,false
+author_label:e26d894f106c259a,Uranio Tegeo,tegeo uranio,author:afcbd67570082011,Uranio Tegeo,deterministic_resolved_author,40,40,false,false
+author_label:78d2e64e43a547f4,"Valenziano, Luca",luca valenziano,author:0a399eea5f4df630,"Valenziano, Luca",deterministic_resolved_author,27,27,false,false
+author_label:0221bd7bbc52593a,Vallesio Gareatico,gareatico vallesio,author:3d5f58fb6a758a73,Vallesio Gareatico,deterministic_resolved_author,29,29,false,false
+author_label:e8e0ea1f919a4a96,"Valvasone, Erasmo da",erasmo valvasone,author:534f4984f6298eeb,"Valvasone, Erasmo da",deterministic_resolved_author,90,90,false,false
+author_label:86923f587572c7ef,"Varchi, Benedetto",benedetto varchi,author:750be1a2136c8b4c,Benedetto Varchi,deterministic_resolved_author_alias,1185,1166,true,true
+author_label:07ad0f630f3e135b,Varie Rime degli Arcadi,,,,generic_author_work_grouped,62,62,false,false
+author_label:2d00edc0670de699,"Vasari, Giorgio",giorgio vasari,author:ea10ac75105628c4,"Vasari, Giorgio",deterministic_resolved_author,1,1,false,false
+author_label:0e8a0639626d61d1,Velalbo Trifiliano,trifiliano velalbo,author:0d0b4be0b58a5e16,Velalbo Trifiliano,deterministic_resolved_author,10,10,false,false
+author_label:13f4a568a76e7715,"Venier, Maffio",maffio venier,author:0d30666d615a2a0c,"Venier, Maffio",deterministic_resolved_author,82,82,false,false
+author_label:010f219455cc3249,Verildo Eleuterio,eleuterio verildo,author:4ca91596a0b54c4f,Verildo Eleuterio,deterministic_resolved_author,29,29,false,false
+author_label:59942d2dda88a62c,"Vettori, Andrea",andrea vettori,author:528509f3cf8d6730,"Vettori, Andrea",deterministic_resolved_author,2,2,false,false
+author_label:0996d5bacc79b9cf,"Vico, Giambattista",giambattista vico,author:fecfefaafebb885b,"Vico, Giambattista",deterministic_resolved_author,7,7,false,false
+author_label:4b898382b0ce0d61,Vincenzo da Filicaja,filicaja vincenzo,author:abfbcb369a364dfc,Vincenzo da Filicaja,deterministic_resolved_author,4,4,false,false
+author_label:0c0ba6894a0c94f6,Vincenzo Zito,vincenzo zito,author:5e8aa178e3197c0d,Vincenzo Zito,deterministic_resolved_author,12,12,false,false
+author_label:1ff5b6be4255b24c,Vittoria Colonna,colonna vittoria,author:50c6accb5ff22f7a,Vittoria Colonna,deterministic_resolved_author_alias,338,2,true,true
+author_label:7e9f5cca20278fbf,Vittorio Alfieri,alfieri vittorio,author:748f1f6d9d0436a2,Vittorio Alfieri,deterministic_resolved_author,64,19,true,true
+author_label:1a88b8d68fb37a36,”Amico Di Dante”: Corona Di Casistica Amorosa,amico amorosa casistica corona dante,author:9755ed596a428058,”Amico Di Dante”: Corona Di Casistica Amorosa,deterministic_resolved_author,55,55,false,false
