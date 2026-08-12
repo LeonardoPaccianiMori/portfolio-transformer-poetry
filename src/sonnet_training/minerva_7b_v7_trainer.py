@@ -748,10 +748,12 @@ def train_minerva_7b_v7_full_weight(
     device = torch.device("cuda", local_rank)
     dist.init_process_group(backend="nccl")
     try:
+        _report(progress, f"stage={requested_stage_id} phase=loading_dependencies")
         dependencies = _load_dependencies()
         protocol = context["protocol"]
         torch.manual_seed(int(protocol["optimizer"]["seed"]))
         random.seed(int(protocol["optimizer"]["seed"]))
+        _report(progress, f"stage={requested_stage_id} phase=loading_parent_model")
         model = dependencies["AutoModelForCausalLM"].from_pretrained(
             protocol["model"]["model_id"],
             revision=protocol["model"]["revision"],
@@ -778,6 +780,7 @@ def train_minerva_7b_v7_full_weight(
         ):
             raise ValueError("V7 model failed the full-weight BF16 audit")
         if candidate.execution_mode == "torch_compile_default":
+            _report(progress, f"stage={requested_stage_id} phase=compiling_model")
             model = torch.compile(model, mode="default", fullgraph=False, dynamic=False)
         ddp_model = DistributedDataParallel(
             model,
@@ -844,6 +847,10 @@ def train_minerva_7b_v7_full_weight(
                 if required_boundary is None:
                     if requested_stage_id != "stage_1_historical_general":
                         raise ValueError("only stage 1 may start from the untouched parent")
+                    _report(
+                        progress,
+                        f"stage={requested_stage_id} phase=parent_baseline_validation",
+                    )
                     baseline_evaluation = evaluate_all_gates(
                         model=model,
                         reader=reader,
@@ -853,6 +860,21 @@ def train_minerva_7b_v7_full_weight(
                         device=device,
                     )
                     parent_baseline_metrics = dict(baseline_evaluation["metrics"])
+                    _report(
+                        progress,
+                        "stage={stage} phase=parent_baseline_complete "
+                        "historical_general_bridge_loss={historical:.4f} "
+                        "modern_loss={modern:.4f} instruction_loss={instruction:.4f}".format(
+                            stage=requested_stage_id,
+                            historical=parent_baseline_metrics[
+                                "historical_general_bridge_token_weighted_loss"
+                            ],
+                            modern=parent_baseline_metrics["modern_validation_loss"],
+                            instruction=parent_baseline_metrics[
+                                "instruction_validation_loss"
+                            ],
+                        ),
+                    )
                     stage_start_metrics = dict(parent_baseline_metrics)
                     validation_history = []
                     preceding_model_identity_sha256 = hashlib.sha256(
@@ -1064,6 +1086,7 @@ def train_minerva_7b_v7_full_weight(
                             _report(
                                 progress,
                                 f"stage={stage_id} update={update}/{stage['optimizer_updates']} "
+                                f"progress={100 * update / int(stage['optimizer_updates']):.1f}% "
                                 f"loss={loss:.4f} lr={learning_rate:.2e} "
                                 f"elapsed={elapsed:.0f}s eta={remaining:.0f}s",
                             )
@@ -1116,6 +1139,10 @@ def train_minerva_7b_v7_full_weight(
                                     },
                                 },
                             )
+                            _report(
+                                progress,
+                                f"stage={stage_id} update={update} snapshot=midpoint_saved",
+                            )
                         dist.barrier()
                     if should_evaluate(stage, update):
                         evaluation = evaluate_all_gates(
@@ -1150,6 +1177,20 @@ def train_minerva_7b_v7_full_weight(
                             )
                         )
                         preservation_failures = 0 if preservation_passes else preservation_failures + 1
+                        _report(
+                            progress,
+                            "stage={stage} update={update} validation "
+                            "primary={primary:.4f} sonnet={sonnet:.4f} modern={modern:.4f} "
+                            "instruction={instruction:.4f} passes_all_gates={passes}".format(
+                                stage=stage_id,
+                                update=update,
+                                primary=float(evaluation_row[str(stage["primary_validation_metric"])]),
+                                sonnet=float(evaluation_row["v7_sonnet_validation_loss"]),
+                                modern=float(evaluation_row["modern_validation_loss"]),
+                                instruction=float(evaluation_row["instruction_validation_loss"]),
+                                passes=evaluation_row["passes_all_gates"],
+                            ),
+                        )
                         primary = str(stage["primary_validation_metric"])
                         if (
                             evaluation_row["passes_all_gates"]
@@ -1233,6 +1274,11 @@ def train_minerva_7b_v7_full_weight(
                                     shutil.rmtree(old_path)
                                     del selected_snapshot_paths[old_update]
                             selected_snapshot_paths[update] = snapshot_path
+                            _report(
+                                progress,
+                                f"stage={stage_id} update={update} "
+                                f"selected_candidate_snapshot={snapshot_path}",
+                            )
                         dist.barrier()
                         if rank == 0:
                             with evaluation_path.open("a", encoding="utf-8") as handle:
@@ -1321,6 +1367,11 @@ def train_minerva_7b_v7_full_weight(
                                 ],
                             )
                             rotate_resume_checkpoints(resume_root, retain=2)
+                            _report(
+                                progress,
+                                f"stage={stage_id} update={update} "
+                                f"resume_checkpoint={destination}",
+                            )
                         dist.barrier()
                 selected = select_stage_checkpoint(
                     stage=stage,
@@ -1380,6 +1431,11 @@ def train_minerva_7b_v7_full_weight(
                         )
                         + "\n",
                         encoding="utf-8",
+                    )
+                    _report(
+                        progress,
+                        f"stage={stage_id} complete selected_update={selected_update} "
+                        f"boundary={boundary_path}",
                     )
                 else:
                     restore_model_only_analysis_snapshot(path=selected_path, model=model)
