@@ -41,6 +41,7 @@ from sonnet_training.minerva_7b_v7_protocol import (
     learning_rate_at_update,
     select_stage_checkpoint,
 )
+from sonnet_training.minerva_7b_v7_launch import validate_stage_boundary
 
 
 TRAINER_VERSION = "minerva_7b_v7_full_weight_trainer_v1"
@@ -246,6 +247,8 @@ def checkpoint_metadata(
     stage_start_metrics: Mapping[str, float] | None = None,
     recent_updates: Sequence[Mapping[str, float]] = (),
     preservation_failures: int = 0,
+    non_improving_evaluations: int = 0,
+    best_qualifying_primary: float | None = None,
 ) -> dict[str, Any]:
     """Build the complete immutable resume manifest metadata."""
 
@@ -273,6 +276,8 @@ def checkpoint_metadata(
         "stage_start_metrics": dict(stage_start_metrics or {}),
         "recent_updates": list(recent_updates),
         "preservation_failures": preservation_failures,
+        "non_improving_evaluations": non_improving_evaluations,
+        "best_qualifying_primary": best_qualifying_primary,
     }
 
 
@@ -485,7 +490,9 @@ def should_save_analysis_snapshot(
     return update in (midpoint_update, int(stage["optimizer_updates"]))
 
 
-def runtime_candidate_from_environment() -> RuntimeCandidate:
+def runtime_candidate_from_environment(
+    *, world_size: int = 2, global_windows_per_update: int = 16
+) -> RuntimeCandidate:
     """Accept only a candidate already selected by the bounded qualification."""
 
     try:
@@ -503,7 +510,10 @@ def runtime_candidate_from_environment() -> RuntimeCandidate:
         gradient_checkpointing=checkpointing == "true",
         execution_mode=mode,
     )
-    if microbatch not in (1, 2, 4) or accumulation != 8 // microbatch:
+    if (
+        microbatch not in (1, 2, 4)
+        or microbatch * accumulation * world_size != global_windows_per_update
+    ):
         raise ValueError("runtime candidate does not preserve 16 global windows")
     if mode not in ("eager", "torch_compile_default"):
         raise ValueError("runtime execution mode is outside the frozen matrix")
@@ -669,26 +679,71 @@ def validate_long_run_authorization(execution: Mapping[str, Any]) -> None:
         )
 
 
+def validate_single_h100_runtime(
+    *, launch: Mapping[str, Any], world_size: int, visible_gpu_count: int
+) -> RuntimeCandidate:
+    """Match the process and environment to the exact qualified H100 candidate."""
+
+    runtime = launch["qualified_runtime"]
+    if world_size != int(runtime["world_size"]) or visible_gpu_count != int(
+        runtime["gpu_count"]
+    ):
+        raise RuntimeError("Minerva V7 stage training requires exactly one visible H100")
+    candidate = runtime_candidate_from_environment(
+        world_size=world_size,
+        global_windows_per_update=int(runtime["global_windows_per_update"]),
+    )
+    expected = RuntimeCandidate(
+        local_microbatch_size=int(runtime["local_microbatch_size"]),
+        gradient_accumulation_steps=int(runtime["gradient_accumulation_steps"]),
+        gradient_checkpointing=bool(runtime["gradient_checkpointing"]),
+        execution_mode=str(runtime["execution_mode"]),
+    )
+    if candidate != expected:
+        raise RuntimeError("runtime environment differs from the qualified candidate")
+    return candidate
+
+
 def train_minerva_7b_v7_full_weight(
     *,
     repo_root: Path,
     execution_config: V7ExecutionConfig,
+    launch: Mapping[str, Any],
+    launch_config_sha256: str,
+    requested_stage_id: str,
     resume_from_checkpoint: Path | None = None,
     progress: Callable[[str], None] | None = None,
 ) -> dict[str, Any] | None:
-    """Guarded three-stage GPU trainer; 8F builds it but cannot launch it."""
+    """Run exactly one user-selected stage under the qualified H100 contract."""
 
     context = build_execution_context(execution_config)
     execution = context["execution"]
-    validate_long_run_authorization(execution)
     if not torch.cuda.is_available() or not dist.is_available():
         raise RuntimeError("Minerva V7 full-weight training requires distributed CUDA")
     world_size = int(os.environ.get("WORLD_SIZE", "1"))
     rank = int(os.environ.get("RANK", "0"))
     local_rank = int(os.environ.get("LOCAL_RANK", "0"))
-    if world_size != 2 or torch.cuda.device_count() != 2:
-        raise RuntimeError("Minerva V7 training requires exactly two visible GPUs")
-    candidate = runtime_candidate_from_environment()
+    candidate = validate_single_h100_runtime(
+        launch=launch,
+        world_size=world_size,
+        visible_gpu_count=torch.cuda.device_count(),
+    )
+    requested_stage = next(
+        (
+            row
+            for row in context["protocol"]["stages"]
+            if row["stage_id"] == requested_stage_id
+        ),
+        None,
+    )
+    if requested_stage is None:
+        raise ValueError("requested stage is outside the frozen protocol")
+    launch_stage = next(
+        (row for row in launch["stage_launches"] if row["stage_id"] == requested_stage_id),
+        None,
+    )
+    if launch_stage is None:
+        raise ValueError("requested stage is outside the launch authorization")
     torch.cuda.set_device(local_rank)
     device = torch.device("cuda", local_rank)
     dist.init_process_group(backend="nccl")
@@ -742,6 +797,12 @@ def train_minerva_7b_v7_full_weight(
             if resume_from_checkpoint is not None
             else None
         )
+        if resume_manifest is not None:
+            resume_metadata = resume_manifest["metadata"]
+            if resume_metadata.get("stage_id") != requested_stage_id:
+                raise ValueError("resume checkpoint belongs to a different stage")
+            if resume_metadata.get("launch_config_sha256") != launch_config_sha256:
+                raise ValueError("resume checkpoint launch lineage differs")
         hourly_rate = float(os.environ.get("V7_HOURLY_RATE_USD", "0"))
         if hourly_rate <= 0:
             raise RuntimeError("V7_HOURLY_RATE_USD must record the positive instance rate")
@@ -751,6 +812,12 @@ def train_minerva_7b_v7_full_weight(
         evaluation_path = run_dir / "evaluations.jsonl"
         sparse_path = run_dir / "sparse_layerwise_summaries.jsonl"
         run_dir.mkdir(parents=True, exist_ok=True)
+        run_marker = run_dir / "stage_runs" / f"{requested_stage_id}.json"
+        boundary_path = run_dir / "stage_boundaries" / f"{requested_stage_id}_selected"
+        if boundary_path.exists():
+            raise RuntimeError(f"stage is already complete: {requested_stage_id}")
+        if run_marker.exists() and resume_manifest is None:
+            raise RuntimeError("stage was already started; use its latest verified resume")
         tokenizer = dependencies["AutoTokenizer"].from_pretrained(
             protocol["model"]["model_id"],
             revision=protocol["model"]["revision"],
@@ -773,16 +840,53 @@ def train_minerva_7b_v7_full_weight(
                 window_manifest=context["window_manifest"],
             )
             if resume_manifest is None:
-                baseline_evaluation = evaluate_all_gates(
-                    model=model,
-                    reader=reader,
-                    modern_reader=modern_reader,
-                    tokenizer=tokenizer,
-                    prompts=prompts,
-                    device=device,
-                )
-                parent_baseline_metrics = dict(baseline_evaluation["metrics"])
-                stage_start_metrics = dict(parent_baseline_metrics)
+                required_boundary = launch_stage["required_boundary"]
+                if required_boundary is None:
+                    if requested_stage_id != "stage_1_historical_general":
+                        raise ValueError("only stage 1 may start from the untouched parent")
+                    baseline_evaluation = evaluate_all_gates(
+                        model=model,
+                        reader=reader,
+                        modern_reader=modern_reader,
+                        tokenizer=tokenizer,
+                        prompts=prompts,
+                        device=device,
+                    )
+                    parent_baseline_metrics = dict(baseline_evaluation["metrics"])
+                    stage_start_metrics = dict(parent_baseline_metrics)
+                    validation_history = []
+                    preceding_model_identity_sha256 = hashlib.sha256(
+                        (
+                            context["protocol"]["model"]["model_id"]
+                            + "@"
+                            + context["protocol"]["model"]["revision"]
+                        ).encode("utf-8")
+                    ).hexdigest()
+                else:
+                    previous_stage_id = str(
+                        context["protocol"]["stages"][
+                            [row["stage_id"] for row in context["protocol"]["stages"]].index(
+                                requested_stage_id
+                            )
+                            - 1
+                        ]["stage_id"]
+                    )
+                    previous_path = repo_root / str(required_boundary)
+                    previous_manifest = validate_stage_boundary(
+                        path=previous_path,
+                        expected_stage_id=previous_stage_id,
+                        launch=launch,
+                    )
+                    restore_model_only_analysis_snapshot(path=previous_path, model=model)
+                    previous_metadata = previous_manifest["metadata"]
+                    parent_baseline_metrics = dict(
+                        previous_metadata["parent_baseline_metrics"]
+                    )
+                    stage_start_metrics = dict(previous_metadata["selected_metrics"])
+                    validation_history = list(previous_metadata["validation_history"])
+                    preceding_model_identity_sha256 = _sha256_path(
+                        previous_path / "manifest.json"
+                    )
             else:
                 resume_metadata = resume_manifest["metadata"]
                 parent_baseline_metrics = dict(
@@ -794,7 +898,33 @@ def train_minerva_7b_v7_full_weight(
                 preservation_failures = int(
                     resume_metadata["preservation_failures"]
                 )
+                preceding_model_identity_sha256 = str(
+                    resume_metadata["preceding_model_identity_sha256"]
+                )
+            if rank == 0 and not run_marker.exists():
+                run_marker.parent.mkdir(parents=True, exist_ok=True)
+                run_marker.write_text(
+                    json.dumps(
+                        {
+                            "stage_id": requested_stage_id,
+                            "launch_config_sha256": launch_config_sha256,
+                            "status": "started",
+                            "resume_from_checkpoint": (
+                                str(resume_from_checkpoint)
+                                if resume_from_checkpoint is not None
+                                else None
+                            ),
+                            "preceding_model_identity_sha256": preceding_model_identity_sha256,
+                        },
+                        sort_keys=True,
+                    )
+                    + "\n",
+                    encoding="utf-8",
+                )
+            dist.barrier()
             for stage in protocol["stages"]:
+                if stage["stage_id"] != requested_stage_id:
+                    continue
                 optimizer = configure_stage_optimizer(
                     model=model,
                     stage=stage,
@@ -837,8 +967,19 @@ def train_minerva_7b_v7_full_weight(
                     selected_snapshot_paths[int(existing.name.rsplit("_", 1)[1])] = (
                         existing
                     )
-                non_improving_evaluations = 0
-                best_qualifying_primary = math.inf
+                non_improving_evaluations = (
+                    int(resume_manifest["metadata"]["non_improving_evaluations"])
+                    if resume_manifest is not None
+                    else 0
+                )
+                stored_best = (
+                    resume_manifest["metadata"]["best_qualifying_primary"]
+                    if resume_manifest is not None
+                    else None
+                )
+                best_qualifying_primary = (
+                    float(stored_best) if stored_best is not None else math.inf
+                )
                 gate_baseline = {
                     **stage_start_metrics,
                     "modern_validation_loss": parent_baseline_metrics[
@@ -902,7 +1043,7 @@ def train_minerva_7b_v7_full_weight(
                     if rank == 0:
                         elapsed = time.monotonic() - run_started
                         global_update = stage_global_update(protocol, stage_id, update)
-                        remaining = (2960 - global_update) * duration
+                        remaining = (int(stage["optimizer_updates"]) - update) * duration
                         row = make_update_telemetry(
                             stage_id=stage_id,
                             stage_update=update,
@@ -958,7 +1099,21 @@ def train_minerva_7b_v7_full_weight(
                                     "stage_id": stage_id,
                                     "update": update,
                                     "snapshot_role": "midpoint",
-                                    "protocol_sha256": _sha256_json(protocol),
+                                    "protocol_sha256": execution["lineage"]["protocol_sha256"],
+                                    "launch_config_sha256": launch_config_sha256,
+                                    "preceding_model_identity_sha256": preceding_model_identity_sha256,
+                                    "encoded_content_identity_sha256": protocol["lineage"]["encoded_content_identity_sha256"],
+                                    "window_content_identity_sha256": protocol["lineage"]["window_index_content_identity_sha256"],
+                                    "git_commit": os.environ.get("V7_GIT_COMMIT", "unrecorded"),
+                                    "package_versions": {
+                                        "torch": torch.__version__,
+                                        "bitsandbytes": dependencies["bitsandbytes"].__version__,
+                                    },
+                                    "hardware_topology": {
+                                        "platform": platform.platform(),
+                                        "gpu_name": torch.cuda.get_device_name(device),
+                                        "world_size": world_size,
+                                    },
                                 },
                             )
                         dist.barrier()
@@ -1050,7 +1205,24 @@ def train_minerva_7b_v7_full_weight(
                                     "update": update,
                                     "snapshot_role": "validation_selected_candidate",
                                     "metrics": evaluation_row,
-                                    "protocol_sha256": _sha256_json(protocol),
+                                    "protocol_sha256": execution["lineage"]["protocol_sha256"],
+                                    "launch_config_sha256": launch_config_sha256,
+                                    "preceding_model_identity_sha256": preceding_model_identity_sha256,
+                                    "parent_baseline_metrics": parent_baseline_metrics,
+                                    "selected_metrics": evaluation_row,
+                                    "validation_history": validation_history,
+                                    "encoded_content_identity_sha256": protocol["lineage"]["encoded_content_identity_sha256"],
+                                    "window_content_identity_sha256": protocol["lineage"]["window_index_content_identity_sha256"],
+                                    "git_commit": os.environ.get("V7_GIT_COMMIT", "unrecorded"),
+                                    "package_versions": {
+                                        "torch": torch.__version__,
+                                        "bitsandbytes": dependencies["bitsandbytes"].__version__,
+                                    },
+                                    "hardware_topology": {
+                                        "platform": platform.platform(),
+                                        "gpu_name": torch.cuda.get_device_name(device),
+                                        "world_size": world_size,
+                                    },
                                 },
                             )
                             for old_update, old_path in tuple(
@@ -1115,6 +1287,16 @@ def train_minerva_7b_v7_full_weight(
                             stage_start_metrics=stage_start_metrics,
                             recent_updates=recent_updates[-23:],
                             preservation_failures=preservation_failures,
+                            non_improving_evaluations=non_improving_evaluations,
+                            best_qualifying_primary=(
+                                best_qualifying_primary
+                                if math.isfinite(best_qualifying_primary)
+                                else None
+                            ),
+                        )
+                        metadata["launch_config_sha256"] = launch_config_sha256
+                        metadata["preceding_model_identity_sha256"] = (
+                            preceding_model_identity_sha256
                         )
                         if rank == 0:
                             resume_root = run_dir / "resume"
@@ -1159,16 +1341,46 @@ def train_minerva_7b_v7_full_weight(
                 selected_path = Path(str(selected_path_payload[0]))
                 if rank == 0:
                     restore_model_only_analysis_snapshot(path=selected_path, model=model)
-                    boundary_path = (
-                        run_dir
-                        / "stage_boundaries"
-                        / f"{stage_id}_selected_update_{selected_update:06d}"
+                    boundary_path.parent.mkdir(parents=True, exist_ok=True)
+                    selected_manifest = json.loads(
+                        (selected_path / "manifest.json").read_text(encoding="utf-8")
                     )
-                    if not boundary_path.exists():
-                        shutil.copytree(
-                            selected_path, boundary_path
+                    source_candidate_manifest_sha256 = _sha256_path(
+                        selected_path / "manifest.json"
+                    )
+                    selected_manifest["metadata"]["snapshot_role"] = (
+                        "validation_selected_endpoint"
+                    )
+                    selected_manifest["metadata"]["selected_metrics"] = selected
+                    selected_manifest["metadata"]["validation_history"] = (
+                        validation_history
+                    )
+                    selected_manifest["metadata"][
+                        "source_candidate_manifest_sha256"
+                    ] = source_candidate_manifest_sha256
+                    (selected_path / "manifest.json").write_text(
+                        json.dumps(selected_manifest, indent=2, sort_keys=True) + "\n",
+                        encoding="utf-8",
+                    )
+                    selected_path.rename(boundary_path)
+                    verify_checkpoint_directory(boundary_path)
+                    run_marker.write_text(
+                        json.dumps(
+                            {
+                                "stage_id": stage_id,
+                                "launch_config_sha256": launch_config_sha256,
+                                "status": "complete",
+                                "selected_update": selected_update,
+                                "boundary": str(boundary_path),
+                                "boundary_manifest_sha256": _sha256_path(
+                                    boundary_path / "manifest.json"
+                                ),
+                            },
+                            sort_keys=True,
                         )
-                        verify_checkpoint_directory(boundary_path)
+                        + "\n",
+                        encoding="utf-8",
+                    )
                 else:
                     restore_model_only_analysis_snapshot(path=selected_path, model=model)
                 dist.barrier()
@@ -1178,7 +1390,9 @@ def train_minerva_7b_v7_full_weight(
         if rank == 0:
             return {
                 "trainer_version": TRAINER_VERSION,
-                "status": "complete",
+                "status": "stage_complete",
+                "stage_id": requested_stage_id,
+                "boundary_path": str(boundary_path),
                 "model_audit": audit,
                 "telemetry_path": str(telemetry_path),
             }

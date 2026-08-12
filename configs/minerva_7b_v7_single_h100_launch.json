@@ -1,0 +1,85 @@
+{
+  "launch_version": "minerva_7b_v7_single_h100_stage_launch_v1",
+  "build_date": "2026-08-12",
+  "lineage": {
+    "execution_config_path": "configs/minerva_7b_v7_execution.json",
+    "execution_config_sha256": "6be2481b171c880224b62fbe1c65c6a8bcf2946463b5b0b12275c51db745e36a",
+    "protocol_path": "configs/minerva_7b_v7_full_weight_protocol.json",
+    "protocol_sha256": "4c24868febe95ea064176fd7868a5515d8bf121f521401f33b3374e1c1736c8a",
+    "qualification_report_path": "reports/minerva_7b_v7_single_h100_qualification_v1.json",
+    "qualification_report_sha256": "49b2e05ef57e02a021d65f1054d1827192e6960012f409dd706862b2592e9600"
+  },
+  "qualified_runtime": {
+    "candidate_id": "h100_context2048_micro1_accum16_gc_off_torch_compile_default",
+    "world_size": 1,
+    "gpu_count": 1,
+    "gpu_name": "NVIDIA H100 80GB HBM3",
+    "minimum_visible_memory_mib": 76800,
+    "context_length": 2048,
+    "global_windows_per_update": 16,
+    "local_microbatch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "gradient_checkpointing": false,
+    "execution_mode": "torch_compile_default",
+    "ddp_backend": "nccl",
+    "ddp_bucket_cap_mib": 25
+  },
+  "cost": {
+    "hourly_rate_usd": 2.617,
+    "projection_overhead_multiplier": 1.25,
+    "absolute_spend_ceiling_usd": 60.0
+  },
+  "stage_launches": [
+    {
+      "stage_id": "stage_1_historical_general",
+      "starts_from": "untouched_pinned_parent",
+      "required_boundary": null,
+      "optimizer_updates": 2065,
+      "target_tokens": 67665920,
+      "projected_all_in_hours": 2.8397616909286527,
+      "projected_all_in_cost_usd": 7.431656345160284
+    },
+    {
+      "stage_id": "stage_2_non_sonnet_poetry",
+      "starts_from": "stage_1_validation_selected_endpoint",
+      "required_boundary": "runs/minerva_7b_v7_full_weight_001/stage_boundaries/stage_1_historical_general_selected",
+      "optimizer_updates": 760,
+      "target_tokens": 24903680,
+      "projected_all_in_hours": 1.0451423172425065,
+      "projected_all_in_cost_usd": 2.7351374442236396
+    },
+    {
+      "stage_id": "stage_3_sonnets",
+      "starts_from": "stage_2_validation_selected_endpoint",
+      "required_boundary": "runs/minerva_7b_v7_full_weight_001/stage_boundaries/stage_2_non_sonnet_poetry_selected",
+      "optimizer_updates": 135,
+      "target_tokens": 4423680,
+      "projected_all_in_hours": 0.18565028003649786,
+      "projected_all_in_cost_usd": 0.4858467828555149
+    }
+  ],
+  "evidence_contract": {
+    "permanent_model_only_bf16_snapshots": 6,
+    "midpoint_updates": {
+      "stage_1_historical_general": 1033,
+      "stage_2_non_sonnet_poetry": 380,
+      "stage_3_sonnets": 68
+    },
+    "validation_selected_endpoint_per_stage": true,
+    "permanent_update_telemetry": true,
+    "permanent_evaluation_history": true,
+    "permanent_sparse_parameter_gradient_optimizer_summaries": true,
+    "frozen_activation_probe_count": 48,
+    "raw_activations_recomputed_post_hoc": true,
+    "resume_generations_retained": 2
+  },
+  "authorization": {
+    "long_training_authorized": true,
+    "launch_owner": "user",
+    "assistant_may_launch_training": false,
+    "stage_scoped_launch_required": true,
+    "v7_test_access_authorized": false,
+    "instance_lifecycle_action_authorized": false,
+    "cache_deletion_authorized": false
+  }
+}

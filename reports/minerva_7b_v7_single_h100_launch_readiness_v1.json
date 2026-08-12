@@ -1,0 +1,83 @@
+{
+  "report_version": "minerva_7b_v7_single_h100_launch_readiness_v1",
+  "build_date": "2026-08-12",
+  "status": "ready_for_user_launched_stage_1",
+  "launch_config": {
+    "path": "configs/minerva_7b_v7_single_h100_launch.json",
+    "sha256": "13218597c3f4261cb802c30e5c36d2f8b242d9ff1f4a0ae42b69d8604df98855"
+  },
+  "immutable_lineage": {
+    "execution_config_sha256": "6be2481b171c880224b62fbe1c65c6a8bcf2946463b5b0b12275c51db745e36a",
+    "protocol_sha256": "4c24868febe95ea064176fd7868a5515d8bf121f521401f33b3374e1c1736c8a",
+    "qualification_report_sha256": "49b2e05ef57e02a021d65f1054d1827192e6960012f409dd706862b2592e9600"
+  },
+  "runtime": {
+    "candidate_id": "h100_context2048_micro1_accum16_gc_off_torch_compile_default",
+    "world_size": 1,
+    "context_length": 2048,
+    "local_microbatch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "global_windows_per_update": 16,
+    "target_tokens_per_update": 32768,
+    "gradient_checkpointing": false,
+    "execution_mode": "torch_compile_default"
+  },
+  "stage_scope": {
+    "one_stage_per_invocation": true,
+    "stage_1_parent": "untouched_pinned_parent",
+    "stage_2_parent": "stage_1_validation_selected_endpoint",
+    "stage_3_parent": "stage_2_validation_selected_endpoint",
+    "same_stage_resume_lineage_required": true
+  },
+  "evidence": {
+    "permanent_model_only_bf16_snapshots": 6,
+    "frozen_activation_probes": 48,
+    "permanent_update_telemetry": true,
+    "permanent_evaluation_history": true,
+    "permanent_sparse_summaries": true,
+    "latest_atomic_resume_generations": 2
+  },
+  "private_bundle": {
+    "files": 89,
+    "bytes": 283534633,
+    "sha256": "c6aad4fa87a90e7080e13755dacad914cd3813d22660a2c595dde7262b5adddc",
+    "whole_file_hash_verified_on_vm": true,
+    "all_members_verified_on_vm": true,
+    "v7_test_material_included": false
+  },
+  "remote_preflight": {
+    "status": "passed_no_model_or_training_started",
+    "free_disk_gib": 334.5,
+    "conservative_remaining_evidence_budget_gib": 145.3,
+    "stage_1_started": false,
+    "v7_test_accessed": false
+  },
+  "projected_stages": [
+    {
+      "stage_id": "stage_1_historical_general",
+      "all_in_hours": 2.8397616909286527,
+      "cost_usd": 7.431656345160284
+    },
+    {
+      "stage_id": "stage_2_non_sonnet_poetry",
+      "all_in_hours": 1.0451423172425065,
+      "cost_usd": 2.7351374442236396
+    },
+    {
+      "stage_id": "stage_3_sonnets",
+      "all_in_hours": 0.18565028003649786,
+      "cost_usd": 0.4858467828555149
+    }
+  ],
+  "authorization": {
+    "launch_owner": "user",
+    "assistant_launched_training": false,
+    "v7_test_access_authorized": false,
+    "cache_deletion_authorized": false,
+    "instance_lifecycle_action_authorized": false
+  },
+  "tests": {
+    "focused_passed": 42,
+    "complete_passed": 1077
+  }
+}

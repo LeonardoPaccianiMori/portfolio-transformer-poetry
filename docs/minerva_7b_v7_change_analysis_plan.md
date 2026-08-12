@@ -37,6 +37,14 @@ Each snapshot manifest records the stage and update, parent/preceding snapshot,
 data and protocol hashes, validation and preservation metrics, every weight-file
 hash, source commit, package versions, and hardware topology.
 
+Checkpoint 8I implements this as stage-scoped single-H100 lineage. A selected
+endpoint is both a permanent analysis state and the only valid parent boundary
+for the following stage. The boundary carries the untouched-parent baseline,
+selected metrics, complete validation history, protocol/data hashes, launch
+contract hash, and preceding-state identity. Within-stage resume checkpoints
+also retain preservation and early-stopping selection state, so an interruption
+cannot silently change which endpoint would be promoted.
+
 Checkpoint 8F also retains compact process evidence that weights cannot
 reconstruct by themselves. One permanent JSONL row per optimizer update records
 the exact window-range digest, loss, pre-clipping gradient norm, learning rate,

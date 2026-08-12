@@ -18,10 +18,12 @@ PUBLIC_PATHS = (
     "configs/minerva_7b_v7_execution.json",
     "configs/minerva_7b_v7_hardware_qualification.json",
     "configs/minerva_7b_v7_single_h100_qualification.json",
+    "configs/minerva_7b_v7_single_h100_launch.json",
     "configs/minerva_7b_preservation_prompts.json",
     "configs/minerva_7b_parent_decoding_confirmation_prompts.json",
     "data/metadata/minerva_7b_v7_sampling_policy_v1.json",
     "reports/minerva_7b_v7_encoded_data_v1.json",
+    "reports/minerva_7b_v7_single_h100_qualification_v1.json",
     "reports/minerva_7b_v7_stage_windows_v1.json",
     "requirements.txt",
     "requirements/minerva_qlora.txt",
@@ -35,7 +37,9 @@ PUBLIC_PATHS = (
     "src/sonnet_training/minerva_7b_model_audit.py",
     "src/sonnet_training/minerva_7b_qlora.py",
     "src/sonnet_training/minerva_7b_v7_execution.py",
+    "src/sonnet_training/minerva_7b_v7_bundle.py",
     "src/sonnet_training/minerva_7b_v7_gpu_qualification.py",
+    "src/sonnet_training/minerva_7b_v7_launch.py",
     "src/sonnet_training/minerva_7b_v7_protocol.py",
     "src/sonnet_training/minerva_7b_v7_qualification.py",
     "src/sonnet_training/minerva_7b_v7_trainer.py",
@@ -104,13 +108,13 @@ def package_v7_execution_bundle(
         "model_weights_included": False,
         "raw_source_text_included": False,
         "public_distribution": False,
-        "extraction_target": "root of the exact public checkpoint-8G repository clone",
+        "extraction_target": "root of the exact public checkpoint-8I repository clone",
     }
     manifest_bytes = (
         json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
     ).encode("utf-8")
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = output_path.with_name(output_path.name + ".tmp")
+    temporary = output_path.with_name(output_path.name + f".tmp.{os.getpid()}")
     if temporary.exists():
         temporary.unlink()
     try:

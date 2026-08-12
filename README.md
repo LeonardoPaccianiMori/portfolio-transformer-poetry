@@ -9,6 +9,13 @@ The project is complete as an experimental pipeline. No tested model passed the
 full acceptable-quality gate. The selected Minerva 7B adapter is the strongest
 system and powers the local demo, but it remains explicitly experimental.
 
+An additional V7 research track is now ready for a user-launched, three-stage
+full-weight Minerva 7B run on one qualified H100. Its stage-scoped launcher,
+validation-selected lineage, interruption-safe resume, six permanent analysis
+snapshots, and frozen activation-study inputs are documented in
+[Single-H100 Launch Readiness](reports/minerva_7b_v7_single_h100_launch_readiness_v1.md).
+No V7 long training result is claimed yet.
+
 ## Final Result
 
 | System | Form | Grammar | Topic | Collapse | High-risk overlap |

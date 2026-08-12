@@ -23,6 +23,7 @@ from sonnet_training.minerva_7b_v7_trainer import (
     should_save_resume,
     stage_global_update,
     validate_long_run_authorization,
+    validate_single_h100_runtime,
 )
 
 
@@ -86,6 +87,38 @@ def test_runtime_candidate_requires_exact_global_batch(monkeypatch):
     assert candidate.local_microbatch_size == 2
     assert candidate.gradient_accumulation_steps == 4
     assert candidate.gradient_checkpointing
+
+
+def test_single_h100_runtime_preserves_sixteen_windows(monkeypatch):
+    launch = json.loads(
+        (ROOT / "configs/minerva_7b_v7_single_h100_launch.json").read_text()
+    )
+    monkeypatch.setenv("V7_LOCAL_MICROBATCH_SIZE", "1")
+    monkeypatch.setenv("V7_GRADIENT_ACCUMULATION_STEPS", "16")
+    monkeypatch.setenv("V7_GRADIENT_CHECKPOINTING", "false")
+    monkeypatch.setenv("V7_EXECUTION_MODE", "torch_compile_default")
+
+    candidate = validate_single_h100_runtime(
+        launch=launch, world_size=1, visible_gpu_count=1
+    )
+
+    assert candidate.local_microbatch_size == 1
+    assert candidate.gradient_accumulation_steps == 16
+
+
+def test_single_h100_runtime_rejects_unqualified_candidate(monkeypatch):
+    launch = json.loads(
+        (ROOT / "configs/minerva_7b_v7_single_h100_launch.json").read_text()
+    )
+    monkeypatch.setenv("V7_LOCAL_MICROBATCH_SIZE", "2")
+    monkeypatch.setenv("V7_GRADIENT_ACCUMULATION_STEPS", "8")
+    monkeypatch.setenv("V7_GRADIENT_CHECKPOINTING", "true")
+    monkeypatch.setenv("V7_EXECUTION_MODE", "eager")
+
+    with pytest.raises(RuntimeError, match="qualified candidate"):
+        validate_single_h100_runtime(
+            launch=launch, world_size=1, visible_gpu_count=1
+        )
 
 
 def test_long_run_guard_rejects_checkpoint_8f_execution():
@@ -176,6 +209,8 @@ def test_checkpoint_metadata_contains_exact_resume_and_analysis_state():
         stage_start_metrics={"historical_general_bridge_token_weighted_loss": 3.0},
         recent_updates=[{"loss": 1.0, "gradient_norm": 2.0}],
         preservation_failures=1,
+        non_improving_evaluations=2,
+        best_qualifying_primary=1.5,
     )
 
     assert metadata["next_stage_window_index"] == 1600
@@ -183,6 +218,8 @@ def test_checkpoint_metadata_contains_exact_resume_and_analysis_state():
     assert metadata["parent_baseline_metrics"]["modern_validation_loss"] == 2.0
     assert metadata["recent_updates"][0]["gradient_norm"] == 2.0
     assert metadata["preservation_failures"] == 1
+    assert metadata["non_improving_evaluations"] == 2
+    assert metadata["best_qualifying_primary"] == 1.5
 
 
 def test_qualification_result_requires_validation_and_resume_proofs():

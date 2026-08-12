@@ -42,6 +42,13 @@ def test_bundle_paths_exclude_v7_test_material(monkeypatch, tmp_path):
     assert any(path.name == "train-00000.int32.bin" for path in selected)
 
 
+def test_public_bundle_paths_include_single_h100_launch_artifacts():
+    assert "configs/minerva_7b_v7_single_h100_launch.json" in bundle.PUBLIC_PATHS
+    assert "reports/minerva_7b_v7_single_h100_qualification_v1.json" in bundle.PUBLIC_PATHS
+    assert "src/sonnet_training/minerva_7b_v7_bundle.py" in bundle.PUBLIC_PATHS
+    assert "src/sonnet_training/minerva_7b_v7_launch.py" in bundle.PUBLIC_PATHS
+
+
 def test_small_bundle_is_deterministic_and_verifiable(monkeypatch, tmp_path):
     monkeypatch.setattr(bundle, "bundle_file_paths", lambda root: (root / "a.bin",))
     (tmp_path / "a.bin").write_bytes(b"abc")
@@ -77,7 +84,24 @@ def test_bundle_install_is_atomic_when_verification_fails(monkeypatch, tmp_path)
         )
 
     assert destination.read_bytes() == b"previous-valid-artifact"
-    assert not (tmp_path / "bundle.tar.gz.tmp").exists()
+    assert not tuple(tmp_path.glob("bundle.tar.gz.tmp.*"))
+
+
+def test_concurrent_bundle_builds_use_distinct_temporary_paths(monkeypatch, tmp_path):
+    monkeypatch.setattr(bundle, "bundle_file_paths", lambda root: (root / "a.bin",))
+    (tmp_path / "a.bin").write_bytes(b"abc")
+    destination = tmp_path / "bundle.tar.gz"
+    observed = []
+    real_verify = bundle.verify_v7_execution_bundle
+
+    def record(path):
+        observed.append(path.name)
+        return real_verify(path)
+
+    monkeypatch.setattr(bundle, "verify_v7_execution_bundle", record)
+    bundle.package_v7_execution_bundle(repo_root=tmp_path, output_path=destination)
+
+    assert observed == [f"bundle.tar.gz.tmp.{bundle.os.getpid()}"]
 
 
 def test_bundle_verifier_rejects_unmanifested_member(tmp_path):
