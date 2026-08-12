@@ -1,0 +1,393 @@
+{
+  "build_date": "2026-08-12",
+  "encoded_content_identity_sha256": "e328bbb0f318800a6be9d114d9893b277a70df34c6b811b90b90bb7d65187504",
+  "encoded_data_version": "minerva_7b_v7_encoded_data_v1",
+  "evaluation": {
+    "test": {
+      "pools": [
+        {
+          "dropped_tail_tokens": 275,
+          "index": {
+            "bytes": 328574,
+            "path": "test/sonnets_test.jsonl",
+            "public": false,
+            "rows": 106,
+            "sha256": "b07c78d95f738231e2a25e0e62643e66ccd70c223802bb4b00899f12ea8a531d"
+          },
+          "pool_id": "sonnets_test",
+          "target_tokens": 217088,
+          "windows": 106
+        }
+      ],
+      "target_tokens": 217088,
+      "windows": 106
+    },
+    "validation": {
+      "pools": [
+        {
+          "dropped_tail_tokens": 333,
+          "index": {
+            "bytes": 339827,
+            "path": "validation/sonnets_validation.jsonl",
+            "public": false,
+            "rows": 107,
+            "sha256": "d0542fe014be2eef2500248b34a8124e2ebb6005ae53fcc0c2c415f6d6bed9eb"
+          },
+          "pool_id": "sonnets_validation",
+          "target_tokens": 219136,
+          "windows": 107
+        },
+        {
+          "dropped_tail_tokens": 1477,
+          "index": {
+            "bytes": 164051,
+            "path": "validation/validation_historical_general.jsonl",
+            "public": false,
+            "rows": 283,
+            "sha256": "77856d55ef4e0223665e4a424b91d63d5c12106dc33c4b4e51fb0e59d0e0b78f"
+          },
+          "pool_id": "validation_historical_general",
+          "target_tokens": 579584,
+          "windows": 283
+        },
+        {
+          "dropped_tail_tokens": 355,
+          "index": {
+            "bytes": 60598,
+            "path": "validation/validation_historical_non_sonnet_poetry.jsonl",
+            "public": false,
+            "rows": 92,
+            "sha256": "a190d760ec158e3d459b12227e9d949f4401d37c48046941c262c93f82696c7a"
+          },
+          "pool_id": "validation_historical_non_sonnet_poetry",
+          "target_tokens": 188416,
+          "windows": 92
+        },
+        {
+          "dropped_tail_tokens": 1045,
+          "index": {
+            "bytes": 302445,
+            "path": "validation/validation_nineteenth_century_bridge.jsonl",
+            "public": false,
+            "rows": 477,
+            "sha256": "3f486c312d4aed6a47ed32fa986a4b8d09a2073738a421db2ec86b547535d8f9"
+          },
+          "pool_id": "validation_nineteenth_century_bridge",
+          "target_tokens": 976896,
+          "windows": 477
+        }
+      ],
+      "target_tokens": 1964032,
+      "windows": 959
+    }
+  },
+  "format": {
+    "cross_document_accounting": "exact per-document target-token contributions",
+    "cross_shard_references": "one or more shard_index/token_offset/token_count slices",
+    "individual_window_indexes_public": false,
+    "source_span_tokens": 2049,
+    "storage": "local JSON Lines indexes; encoded int32 token IDs remain in checkpoint-8C shards",
+    "target_stride_tokens": 2048,
+    "target_tokens_per_window": 2048
+  },
+  "provenance": {
+    "encoded_report_path": "reports/minerva_7b_v7_encoded_data_v1.json",
+    "encoded_report_sha256": "2acaf9c8a598e2543017b17b4b60f2d9d4a4b18520345ded1cd8712bc9304f3e",
+    "sampling_policy_path": "data/metadata/minerva_7b_v7_sampling_policy_v1.json",
+    "sampling_policy_sha256": "14c3acd1e4f577fe6d1a1a0162ed72524268d9f6959d691a0580a7770b58deb5"
+  },
+  "publication": {
+    "aggregate_evidence_and_hashes_public": true,
+    "individual_window_indexes_public": false,
+    "token_ids_public": false
+  },
+  "reproduction": {
+    "evaluation_windows_match": true,
+    "match": true,
+    "primary_content_identity_sha256": "e821e3afdc3bd7aa6874180509ba756f942e651980f6455469722c13f8f7424c",
+    "reproduction_content_identity_sha256": "e821e3afdc3bd7aa6874180509ba756f942e651980f6455469722c13f8f7424c",
+    "training_windows_match": true
+  },
+  "sampling_version": "minerva_7b_v7_stage_windows_v1",
+  "status": "active_verified",
+  "training": {
+    "stages": [
+      {
+        "components": [
+          {
+            "component": "historical_general",
+            "concentration": [
+              {
+                "ceiling": 0.2,
+                "distinct_groups": 410,
+                "field": "author_key",
+                "integer_capacity_tokens": 11503206,
+                "maximum_share": 0.09009687942311459,
+                "maximum_tokens": 5182015,
+                "passes": true
+              },
+              {
+                "ceiling": 0.15,
+                "distinct_groups": 1485,
+                "field": "work_key",
+                "integer_capacity_tokens": 8627404,
+                "maximum_share": 0.052902449876931705,
+                "maximum_tokens": 3042739,
+                "passes": true
+              }
+            ],
+            "pool_windows": {
+              "train_historical_general": 28084
+            },
+            "repeated_draws": 0,
+            "selection_cycles": 1,
+            "target_tokens": 57516032,
+            "windows": 28084
+          },
+          {
+            "component": "nineteenth_century_bridge",
+            "concentration": [
+              {
+                "ceiling": 0.2,
+                "distinct_groups": 273,
+                "field": "author_key",
+                "integer_capacity_tokens": 1353318,
+                "maximum_share": 0.0738433763998184,
+                "maximum_tokens": 499668,
+                "passes": true
+              },
+              {
+                "ceiling": 0.15,
+                "distinct_groups": 807,
+                "field": "work_key",
+                "integer_capacity_tokens": 1014988,
+                "maximum_share": 0.016041162227602906,
+                "maximum_tokens": 108544,
+                "passes": true
+              }
+            ],
+            "pool_windows": {
+              "train_nineteenth_century_bridge": 3304
+            },
+            "repeated_draws": 0,
+            "selection_cycles": 1,
+            "target_tokens": 6766592,
+            "windows": 3304
+          },
+          {
+            "component": "modern_preservation_replay",
+            "concentration": [],
+            "pool_windows": {
+              "modern_preservation_replay": 1652
+            },
+            "repeated_draws": 659,
+            "selection_cycles": 2,
+            "target_tokens": 3383296,
+            "windows": 1652
+          }
+        ],
+        "index": {
+          "bytes": 23257687,
+          "path": "training/stage_1_historical_general.jsonl",
+          "public": false,
+          "rows": 33040,
+          "sha256": "69f820c00d7d6d2414bc0066add8d34132d2ed8983c0615c451572cb38f53ce6"
+        },
+        "stage_id": "stage_1_historical_general",
+        "target_tokens": 67665920,
+        "windows": 33040
+      },
+      {
+        "components": [
+          {
+            "component": "historical_non_sonnet_poetry",
+            "concentration": [
+              {
+                "ceiling": 0.2,
+                "distinct_groups": 467,
+                "field": "author_key",
+                "integer_capacity_tokens": 3735552,
+                "maximum_share": 0.07234454238623904,
+                "maximum_tokens": 1351234,
+                "passes": true
+              },
+              {
+                "ceiling": 0.15,
+                "distinct_groups": 1576,
+                "field": "work_key",
+                "integer_capacity_tokens": 2801664,
+                "maximum_share": 0.028566112852933114,
+                "maximum_tokens": 533551,
+                "passes": true
+              }
+            ],
+            "pool_windows": {
+              "train_historical_non_sonnet_poetry": 9120
+            },
+            "repeated_draws": 0,
+            "selection_cycles": 1,
+            "target_tokens": 18677760,
+            "windows": 9120
+          },
+          {
+            "component": "stage_1_historical_replay",
+            "concentration": [
+              {
+                "ceiling": 0.2,
+                "distinct_groups": 402,
+                "field": "author_key",
+                "integer_capacity_tokens": 996147,
+                "maximum_share": 0.049312591552734375,
+                "maximum_tokens": 245613,
+                "passes": true
+              },
+              {
+                "ceiling": 0.15,
+                "distinct_groups": 960,
+                "field": "work_key",
+                "integer_capacity_tokens": 747110,
+                "maximum_share": 0.017269736842105265,
+                "maximum_tokens": 86016,
+                "passes": true
+              }
+            ],
+            "pool_windows": {
+              "train_historical_general": 903,
+              "train_nineteenth_century_bridge": 1529
+            },
+            "repeated_draws": 0,
+            "selection_cycles": 1,
+            "target_tokens": 4980736,
+            "windows": 2432
+          },
+          {
+            "component": "modern_preservation_replay",
+            "concentration": [],
+            "pool_windows": {
+              "modern_preservation_replay": 608
+            },
+            "repeated_draws": 0,
+            "selection_cycles": 1,
+            "target_tokens": 1245184,
+            "windows": 608
+          }
+        ],
+        "index": {
+          "bytes": 8934858,
+          "path": "training/stage_2_non_sonnet_poetry.jsonl",
+          "public": false,
+          "rows": 12160,
+          "sha256": "be9963e1d10ee5b25f86866ad7ce13b719facf35c148d1dc9090cee117bcc41e"
+        },
+        "stage_id": "stage_2_non_sonnet_poetry",
+        "target_tokens": 24903680,
+        "windows": 12160
+      },
+      {
+        "components": [
+          {
+            "component": "standard_sonnets_v7_train",
+            "concentration": [
+              {
+                "ceiling": 0.05,
+                "distinct_groups": 629,
+                "field": "author_key",
+                "integer_capacity_tokens": 176947,
+                "maximum_share": 0.04617620397497107,
+                "maximum_tokens": 163415,
+                "passes": true
+              },
+              {
+                "ceiling": 0.3,
+                "distinct_groups": 9,
+                "field": "epoch_key",
+                "integer_capacity_tokens": 1061683,
+                "maximum_share": 0.2999962700737847,
+                "maximum_tokens": 1061670,
+                "passes": true
+              }
+            ],
+            "pool_windows": {
+              "sonnets_train": 1728
+            },
+            "repeated_draws": 209,
+            "selection_cycles": 2,
+            "target_tokens": 3538944,
+            "windows": 1728
+          },
+          {
+            "component": "stage_2_historical_replay",
+            "concentration": [
+              {
+                "ceiling": 0.2,
+                "distinct_groups": 164,
+                "field": "author_key",
+                "integer_capacity_tokens": 132710,
+                "maximum_share": 0.046296296296296294,
+                "maximum_tokens": 30720,
+                "passes": true
+              },
+              {
+                "ceiling": 0.15,
+                "distinct_groups": 274,
+                "field": "work_key",
+                "integer_capacity_tokens": 99532,
+                "maximum_share": 0.015432098765432098,
+                "maximum_tokens": 10240,
+                "passes": true
+              }
+            ],
+            "pool_windows": {
+              "train_historical_general": 94,
+              "train_historical_non_sonnet_poetry": 39,
+              "train_nineteenth_century_bridge": 191
+            },
+            "repeated_draws": 0,
+            "selection_cycles": 1,
+            "target_tokens": 663552,
+            "windows": 324
+          },
+          {
+            "component": "modern_preservation_replay",
+            "concentration": [],
+            "pool_windows": {
+              "modern_preservation_replay": 108
+            },
+            "repeated_draws": 0,
+            "selection_cycles": 1,
+            "target_tokens": 221184,
+            "windows": 108
+          }
+        ],
+        "index": {
+          "bytes": 5736655,
+          "path": "training/stage_3_sonnets.jsonl",
+          "public": false,
+          "rows": 2160,
+          "sha256": "7d5bc65d733f01a1ff15506a3f04fa04b6bacf988079f1630ca767e675c91e3d"
+        },
+        "stage_id": "stage_3_sonnets",
+        "target_tokens": 4423680,
+        "windows": 2160
+      }
+    ],
+    "target_tokens": 96993280,
+    "windows": 47360
+  },
+  "verification": {
+    "broader_validation_training_excluded": true,
+    "cache_deleted": false,
+    "concentration_caps_enforced_on_target_tokens": true,
+    "conditioned_material_included": false,
+    "cross_document_contributions_exact": true,
+    "cross_shard_source_slices_exact": true,
+    "exact_stage_and_component_budgets": true,
+    "gpu_work_started": false,
+    "independent_window_index_count": 2,
+    "independent_window_indexes_match": true,
+    "protected_v6_training_excluded": true,
+    "v7_validation_test_training_excluded": true,
+    "validation_targets_fixed_sequential_non_overlapping": true
+  },
+  "window_index_content_identity_sha256": "e821e3afdc3bd7aa6874180509ba756f942e651980f6455469722c13f8f7424c"
+}

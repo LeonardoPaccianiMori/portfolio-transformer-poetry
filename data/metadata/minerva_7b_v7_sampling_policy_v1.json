@@ -1,0 +1,98 @@
+{
+  "sampling_version": "minerva_7b_v7_stage_windows_v1",
+  "build_date": "2026-08-12",
+  "encoded_data_version": "minerva_7b_v7_encoded_data_v1",
+  "encoded_content_identity_sha256": "e328bbb0f318800a6be9d114d9893b277a70df34c6b811b90b90bb7d65187504",
+  "encoded_report_sha256": "2acaf9c8a598e2543017b17b4b60f2d9d4a4b18520345ded1cd8712bc9304f3e",
+  "seed": 20260812,
+  "windowing": {
+    "context_length": 2048,
+    "source_span_tokens": 2049,
+    "target_tokens_per_window": 2048,
+    "target_stride_tokens": 2048,
+    "candidate_policy": "logically concatenate documents within one encoded role/split pool, retain the encoded EOS boundaries, and enumerate consecutive source spans",
+    "cross_document_policy": "record every document contribution to the 2048 target tokens",
+    "cross_shard_policy": "record every physical shard slice needed for the 2049-token source span",
+    "concentration_accounting": "target-token exposure only; the initial context token is not counted twice",
+    "incomplete_tail_policy": "drop without padding"
+  },
+  "sampling": {
+    "candidate_order": "sha256(seed, stage, component, cycle, pool_id, pool_window_index)",
+    "repetition_policy": "visit every eligible candidate at most once per deterministic cycle; begin another cycle only when the requested draw exceeds accepted candidates",
+    "cap_policy": "reject a candidate when any exact target-token group contribution would exceed its integer floor capacity; fail closed if a complete cycle accepts no additional candidate",
+    "stage_order": "deterministic even interleaving by component quota with exact component counts"
+  },
+  "stage_component_pools": {
+    "historical_general": [
+      "train_historical_general"
+    ],
+    "nineteenth_century_bridge": [
+      "train_nineteenth_century_bridge"
+    ],
+    "modern_preservation_replay": [
+      "modern_preservation_replay"
+    ],
+    "historical_non_sonnet_poetry": [
+      "train_historical_non_sonnet_poetry"
+    ],
+    "stage_1_historical_replay": [
+      "train_historical_general",
+      "train_nineteenth_century_bridge"
+    ],
+    "standard_sonnets_v7_train": [
+      "sonnets_train"
+    ],
+    "stage_2_historical_replay": [
+      "train_historical_general",
+      "train_historical_non_sonnet_poetry",
+      "train_nineteenth_century_bridge"
+    ]
+  },
+  "concentration_ceilings": {
+    "broader": {
+      "author_key": 0.2,
+      "work_key": 0.15
+    },
+    "standard_sonnets_v7_train": {
+      "author_key": 0.05,
+      "epoch_key": 0.3
+    }
+  },
+  "evaluation": {
+    "validation_pools": [
+      "sonnets_validation",
+      "validation_historical_general",
+      "validation_historical_non_sonnet_poetry",
+      "validation_nineteenth_century_bridge"
+    ],
+    "test_pools": [
+      "sonnets_test"
+    ],
+    "order": "pool_id then increasing pool_window_index",
+    "target_overlap_tokens": 0,
+    "source_boundary_overlap_tokens": 1,
+    "training_reuse": false
+  },
+  "expected": {
+    "training_windows": 47360,
+    "training_target_tokens": 96993280,
+    "stage_windows": {
+      "stage_1_historical_general": 33040,
+      "stage_2_non_sonnet_poetry": 12160,
+      "stage_3_sonnets": 2160
+    }
+  },
+  "isolation": {
+    "v7_validation_test_training_excluded": true,
+    "broader_validation_training_excluded": true,
+    "protected_v6_training_excluded": true,
+    "conditioned_material_included": false
+  },
+  "publication": {
+    "individual_window_indexes_public": false,
+    "token_ids_public": false,
+    "publish_policy_hashes_and_aggregate_evidence_only": true,
+    "gpu_work_authorized": false,
+    "cache_deletion_authorized": false
+  }
+}
