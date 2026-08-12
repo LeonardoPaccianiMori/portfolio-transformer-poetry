@@ -1,0 +1,347 @@
+{
+  "abort_rules": {
+    "automatic_hyperparameter_search": false,
+    "gradient_limit_consecutive_updates": 3,
+    "immediate": [
+      "nonfinite_loss",
+      "nonfinite_gradient_norm",
+      "data_or_protocol_hash_mismatch",
+      "checkpoint_write_or_reload_verification_failure",
+      "out_of_memory_after_hardware_qualification",
+      "spend_ceiling_reached"
+    ],
+    "no_qualifying_improvement_patience_evaluations": 3,
+    "preclip_gradient_norm_limit": 100.0,
+    "preservation_fail_consecutive_evaluations": 2,
+    "stage_failure_action": "stop, preserve evidence, and do not promote to the next stage",
+    "training_loss_reference_updates": 20,
+    "training_loss_spike_consecutive_updates": 3,
+    "training_loss_spike_ratio": 2.0
+  },
+  "activation_analysis_preservation": {
+    "capture": {
+      "attention": "compact per-head entropy and distance summaries plus a bounded raw probe sample",
+      "public_storage": "aggregate JSON CSV plots and methods",
+      "raw_tensor_storage": "local only",
+      "residual_stream_hidden_states": "embedding output and every transformer block output",
+      "selected_token_positions": [
+        "first_non_special",
+        "middle_non_special",
+        "final_non_special",
+        "domain_specific_markers"
+      ]
+    },
+    "do_not_capture_every_training_batch": true,
+    "freeze_before_training": [
+      "probe_identity_and_source_split",
+      "exact_token_ids_and_attention_mask",
+      "selected_token_positions",
+      "tokenizer_hash",
+      "model_revision",
+      "layer_and_module_names",
+      "extraction_dtype_and_pooling",
+      "random_seed"
+    ],
+    "later_analysis_authorized": false,
+    "maximum_probes_per_domain": 16,
+    "measurement_time": "post_hoc_in_model_eval_mode_from_frozen_model_snapshots",
+    "minimum_probes_per_domain": 8,
+    "model_states": [
+      "untouched_parent",
+      "stage_1_midpoint",
+      "stage_1_validation_selected_endpoint",
+      "stage_2_midpoint",
+      "stage_2_validation_selected_endpoint",
+      "stage_3_midpoint",
+      "stage_3_validation_selected_endpoint"
+    ],
+    "planned_metrics": [
+      "linear_CKA_between_model_states_by_layer",
+      "activation_cosine_similarity_and_relative_norm_shift",
+      "effective_rank_and_singular_value_spectrum",
+      "domain_linear_probe_accuracy_with_frozen_splits",
+      "attention_entropy_and_attention_distance",
+      "next_token_logit_and_probability_shift"
+    ],
+    "probe_domains": [
+      "modern_instruction",
+      "historical_general",
+      "historical_non_sonnet_poetry",
+      "standard_sonnet"
+    ],
+    "probe_split_policy": "held-out validation material only; no V7 test access before final checkpoint selection",
+    "required_before_long_run": true
+  },
+  "analysis_snapshots": {
+    "deduplicate_if_selected_endpoint_equals_midpoint": true,
+    "estimated_bytes_per_snapshot": 14799085568,
+    "estimated_new_snapshot_count": 6,
+    "estimated_total_bytes": 88794513408,
+    "format": "BF16 safetensors plus immutable manifest; no optimizer state",
+    "later_analysis_authorized": false,
+    "midpoint_updates": {
+      "stage_1_historical_general": 1033,
+      "stage_2_non_sonnet_poetry": 380,
+      "stage_3_sonnets": 68
+    },
+    "per_stage_model_only_snapshots": [
+      "midpoint",
+      "validation_selected_endpoint"
+    ],
+    "purpose": "preserve evidence for a post-project study of behavioral, parameter, and representation change",
+    "required_manifest_fields": [
+      "protocol_and_data_hashes",
+      "parent_or_preceding_stage_checkpoint_hash",
+      "stage_id_and_completed_update",
+      "validation_and_preservation_metrics",
+      "weight_file_hashes",
+      "git_commit_and_package_versions"
+    ],
+    "untouched_parent": "reference the pinned published revision without duplicating its cached weights"
+  },
+  "authorization": {
+    "cache_deletion_authorized": false,
+    "gpu_benchmark_authorized": false,
+    "gpu_rental_authorized": false,
+    "long_training_authorized": false,
+    "protocol_design_approved": true
+  },
+  "build_date": "2026-08-12",
+  "checkpointing": {
+    "atomic_directory_install": "write temporary sibling, fsync files and manifest, verify hashes, then rename",
+    "best_checkpoint_per_stage_retained": 1,
+    "minimum_free_host_scratch_gib": 300,
+    "minimum_free_local_retrieval_gib": 200,
+    "required_state": [
+      "model_state",
+      "optimizer_state",
+      "scheduler_state",
+      "global_and_stage_update",
+      "next_stage_window_index",
+      "python_rng_state",
+      "torch_cpu_rng_state",
+      "torch_cuda_rng_state_per_rank",
+      "sampler_and_dataloader_state",
+      "baseline_and_validation_history",
+      "protocol_and_data_hashes",
+      "git_commit_and_package_versions",
+      "hardware_topology"
+    ],
+    "resume_acceptance": "fresh-process reload reproduces next window identities, learning rate, stage/update counters, and finite next-update numerics",
+    "resume_generations_retained": 2,
+    "resume_must_be_proven_before_long_run": true,
+    "save_only_at_optimizer_boundaries": true,
+    "stage_boundary_checkpoint_retained": true,
+    "storage_rationale": "allows the encoded/index data, atomic temporary checkpoint installation, two resume generations, six model-only analysis snapshots, selected stage endpoints, logs, and retrieval verification without deleting caches"
+  },
+  "cost": {
+    "all_in_spend_ceiling": 60.0,
+    "ceiling_change_requires_explicit_user_approval": true,
+    "currency": "USD",
+    "included": [
+      "instance startup and environment verification",
+      "2048-context hardware qualification",
+      "checkpoint-resume proof",
+      "three training stages",
+      "validation and preservation evaluation",
+      "checkpoint hashing and retrieval"
+    ],
+    "instance_lifecycle_requires_explicit_user_instruction": true,
+    "launch_projection_fraction_of_ceiling": 0.8,
+    "maximum_projected_all_in_cost_to_launch": 48.0,
+    "projection_overhead_multiplier": 1.25
+  },
+  "hardware_qualification": {
+    "benchmark_authorizes_long_run": false,
+    "benchmark_retains_quality_checkpoint": false,
+    "candidate_count": 12,
+    "candidate_ids": [
+      "context2048_micro1_accum8_gc_off_torch_compile_default",
+      "context2048_micro1_accum8_gc_off_eager",
+      "context2048_micro1_accum8_gc_on_torch_compile_default",
+      "context2048_micro1_accum8_gc_on_eager",
+      "context2048_micro2_accum4_gc_off_torch_compile_default",
+      "context2048_micro2_accum4_gc_off_eager",
+      "context2048_micro2_accum4_gc_on_torch_compile_default",
+      "context2048_micro2_accum4_gc_on_eager",
+      "context2048_micro4_accum2_gc_off_torch_compile_default",
+      "context2048_micro4_accum2_gc_off_eager",
+      "context2048_micro4_accum2_gc_on_torch_compile_default",
+      "context2048_micro4_accum2_gc_on_eager"
+    ],
+    "context_length": 2048,
+    "ddp_bucket_cap_mib": 25,
+    "execution_modes": [
+      "torch_compile_default",
+      "eager"
+    ],
+    "global_windows_per_update": 16,
+    "gradient_checkpointing_modes": [
+      false,
+      true
+    ],
+    "long_run_hardware": "two matching NVIDIA H100 80 GB HBM3 SXM GPUs with NVLink",
+    "minimum_memory_mib_per_gpu": 76800,
+    "minimum_nccl_all_reduce_gigabytes_per_second": 100.0,
+    "minimum_peak_reserved_headroom_mib": 8192,
+    "minimum_timed_updates": 20,
+    "minimum_warmup_updates": 3,
+    "native_bfloat16_required": true,
+    "permitted_local_microbatch_sizes": [
+      1,
+      2,
+      4
+    ],
+    "required_checks": [
+      "all_weights_trainable_bfloat16_no_adapters_no_quantization",
+      "finite_losses_and_gradient_norms",
+      "no_progressive_memory_growth",
+      "validation_transition_succeeds",
+      "atomic_checkpoint_fresh_process_resume_succeeds",
+      "projected_all_in_cost_passes_launch_gate"
+    ],
+    "required_gradient_accumulation_formula": "16 / (world_size * local_microbatch_size)",
+    "world_size": 2
+  },
+  "lineage": {
+    "encoded_content_identity_sha256": "e328bbb0f318800a6be9d114d9893b277a70df34c6b811b90b90bb7d65187504",
+    "preservation_prompts_path": "configs/minerva_7b_preservation_prompts.json",
+    "preservation_prompts_sha256": "1b8b3ed6d88d0cf87cd544f1c821826b51fd55dc98a633369072a209b0d90bf0",
+    "sampling_policy_path": "data/metadata/minerva_7b_v7_sampling_policy_v1.json",
+    "sampling_policy_sha256": "14c3acd1e4f577fe6d1a1a0162ed72524268d9f6959d691a0580a7770b58deb5",
+    "stage_windows_report_path": "reports/minerva_7b_v7_stage_windows_v1.json",
+    "stage_windows_report_sha256": "c89da835700f7db818be90caac8cfb03e0f12f1aa80f97b7d2d9d6a57c4650b7",
+    "tokenizer_sha256": "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c",
+    "window_index_content_identity_sha256": "e821e3afdc3bd7aa6874180509ba756f942e651980f6455469722c13f8f7424c"
+  },
+  "preservation": {
+    "baseline": "untouched pinned Minerva parent",
+    "instruction_metric": "teacher_forced_response_loss_with_prompt_labels_masked",
+    "instruction_prompt_count": 12,
+    "local_index": {
+      "candidate_windows": 1697,
+      "first_candidate_index": 0,
+      "index_bytes": 24292,
+      "index_public": false,
+      "index_sha256": "01299b685515fffdd5d3a1ec00204d2038d1639365efb8a2e0e2575e0e3fc582",
+      "last_candidate_index": 1696,
+      "selected_windows": 128,
+      "split_id": "paisa_validation",
+      "split_tokens": 3475648,
+      "target_tokens": 262144
+    },
+    "maximum_instruction_loss_ratio": 1.1,
+    "maximum_modern_loss_ratio": 1.05,
+    "modern_data_report_path": "reports/minerva_7b_full_weight_data_report.json",
+    "modern_data_report_sha256": "d6774eb859bff1f6912f11a729c2102a82c3e7ca34543ddf9e03ab978da3d83e",
+    "modern_shard_sha256": "808e73b9a72072c247c89e4d6cbd36adc2c7c8afb1ff1f7c7fcdfbb4315cb81e",
+    "modern_split_id": "paisa_validation",
+    "modern_split_source_sha256": "7b2035c3b4e4aa925fd98c48f5d9b670d74834849612cc5b573c1fb1821db05b",
+    "modern_split_tokens": 3475648,
+    "modern_validation_source": "PAISA validation from minerva_7b_full_weight_mixed_corpus_v1",
+    "modern_window_count": 128,
+    "modern_window_selection": "evenly spaced from complete consecutive non-overlapping target windows"
+  },
+  "protocol_sha256": "4c24868febe95ea064176fd7868a5515d8bf121f521401f33b3374e1c1736c8a",
+  "protocol_version": "minerva_7b_v7_full_weight_protocol_v1",
+  "status": "frozen_verified_gpu_unauthorized",
+  "training": {
+    "context_length": 2048,
+    "global_target_tokens_per_update": 32768,
+    "global_windows_per_update": 16,
+    "stages": [
+      {
+        "early_stopping_eligible_after_update": 1033,
+        "evaluation_interval_updates": 100,
+        "maximum_retention_loss_ratio": null,
+        "minimum_learning_rate": 1e-06,
+        "minimum_primary_loss_improvement": 0.005,
+        "optimizer_updates": 2065,
+        "peak_learning_rate": 1e-05,
+        "primary_validation_metric": "historical_general_bridge_token_weighted_loss",
+        "primary_validation_pools": [
+          "validation_historical_general",
+          "validation_nineteenth_century_bridge"
+        ],
+        "progress_interval_updates": 10,
+        "resume_interval_updates": 100,
+        "retention_metric": null,
+        "stage_id": "stage_1_historical_general",
+        "target_tokens": 67665920,
+        "warmup_updates": 62,
+        "windows": 33040
+      },
+      {
+        "early_stopping_eligible_after_update": 380,
+        "evaluation_interval_updates": 50,
+        "maximum_retention_loss_ratio": 1.02,
+        "minimum_learning_rate": 5e-07,
+        "minimum_primary_loss_improvement": 0.005,
+        "optimizer_updates": 760,
+        "peak_learning_rate": 5e-06,
+        "primary_validation_metric": "historical_non_sonnet_poetry_loss",
+        "primary_validation_pools": [
+          "validation_historical_non_sonnet_poetry"
+        ],
+        "progress_interval_updates": 5,
+        "resume_interval_updates": 50,
+        "retention_metric": "stage_1_historical_general_bridge_token_weighted_loss",
+        "stage_id": "stage_2_non_sonnet_poetry",
+        "target_tokens": 24903680,
+        "warmup_updates": 23,
+        "windows": 12160
+      },
+      {
+        "early_stopping_eligible_after_update": 68,
+        "evaluation_interval_updates": 15,
+        "maximum_retention_loss_ratio": 1.03,
+        "minimum_learning_rate": 1e-07,
+        "minimum_primary_loss_improvement": 0.002,
+        "optimizer_updates": 135,
+        "peak_learning_rate": 1e-06,
+        "primary_validation_metric": "v7_sonnet_validation_loss",
+        "primary_validation_pools": [
+          "sonnets_validation"
+        ],
+        "progress_interval_updates": 5,
+        "resume_interval_updates": 15,
+        "retention_metric": "all_broader_validation_token_weighted_loss",
+        "stage_id": "stage_3_sonnets",
+        "target_tokens": 4423680,
+        "warmup_updates": 7,
+        "windows": 2160
+      }
+    ],
+    "total_optimizer_updates": 2960,
+    "total_target_tokens": 96993280,
+    "total_windows": 47360
+  },
+  "validation": {
+    "evaluate_at_every_interval_and_stage_end": true,
+    "evaluate_before_each_stage": true,
+    "promotion_requires_qualifying_checkpoint": true,
+    "selection_rule": "lowest primary validation loss among checkpoints passing every applicable improvement, retention, modern, and instruction gate",
+    "test_access": "once after final validation-selected stage-3 checkpoint",
+    "test_window_count": 106,
+    "validation_window_counts": {
+      "sonnets_validation": 107,
+      "validation_historical_general": 283,
+      "validation_historical_non_sonnet_poetry": 92,
+      "validation_nineteenth_century_bridge": 477
+    }
+  },
+  "verification": {
+    "activation_probe_contract_required_before_long_run": true,
+    "all_lineage_hashes_match": true,
+    "cache_deleted": false,
+    "conditioned_material_included": false,
+    "every_stage_divides_into_complete_optimizer_updates": true,
+    "gpu_rental_started": false,
+    "gpu_work_started": false,
+    "held_out_modern_index_hash_verified": true,
+    "instruction_prompt_count_verified": true,
+    "protected_v6_training_included": false,
+    "stage_budgets_match_checkpoint_8d": true,
+    "v7_test_reserved_for_final_evaluation": true
+  }
+}
