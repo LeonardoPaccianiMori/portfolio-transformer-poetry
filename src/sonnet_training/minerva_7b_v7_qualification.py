@@ -11,12 +11,15 @@ from pathlib import Path
 from typing import Any
 
 
-QUALIFICATION_VERSION = "minerva_7b_v7_hardware_qualification_v2"
+QUALIFICATION_VERSIONS = {
+    "minerva_7b_v7_hardware_qualification_v2",
+    "minerva_7b_v7_single_h100_qualification_v1",
+}
 
 
 @dataclass(frozen=True)
 class QualificationCandidate:
-    """One replicated-DDP runtime choice preserving the scientific batch."""
+    """One runtime choice preserving the frozen global scientific batch."""
 
     candidate_id: str
     local_microbatch_size: int
@@ -31,7 +34,7 @@ def load_hardware_qualification(path: Path, repo_root: Path) -> dict[str, Any]:
     """Load the approved machine profile and verify its frozen scientific inputs."""
 
     config = _read_json(path)
-    if config.get("qualification_version") != QUALIFICATION_VERSION:
+    if config.get("qualification_version") not in QUALIFICATION_VERSIONS:
         raise ValueError("unexpected Minerva V7 hardware qualification version")
     scientific = _mapping(config, "scientific_protocol")
     for path_key, hash_key in (
@@ -71,7 +74,7 @@ def load_hardware_qualification(path: Path, repo_root: Path) -> dict[str, Any]:
 def build_qualification_candidates(
     config: Mapping[str, Any],
 ) -> tuple[QualificationCandidate, ...]:
-    """Enumerate the bounded A6000 matrix with an invariant global batch."""
+    """Enumerate the profile's bounded matrix with an invariant global batch."""
 
     profile = _mapping(config, "primary_profile")
     scientific = _mapping(config, "scientific_protocol")
@@ -89,7 +92,8 @@ def build_qualification_candidates(
                 rows.append(
                     QualificationCandidate(
                         candidate_id=(
-                            f"a6000_context2048_micro{microbatch}_accum{accumulation}_"
+                            f"{profile['candidate_id_prefix']}_context2048_"
+                            f"micro{microbatch}_accum{accumulation}_"
                             f"gc_{'on' if checkpointing else 'off'}_{execution_mode}"
                         ),
                         local_microbatch_size=int(microbatch),
@@ -201,9 +205,9 @@ def preliminary_gate_reasons(
             reasons.append("progressive_reserved_memory_growth")
     if not bool(hardware.get("profile_passed")):
         reasons.append("hardware_profile_failed")
-    if float(communication.get("algorithmic_gigabytes_per_second", 0.0)) < float(
-        profile["minimum_measured_nccl_algorithmic_gigabytes_per_second"]
-    ):
+    if bool(profile.get("communication_measurement_required", True)) and float(
+        communication.get("algorithmic_gigabytes_per_second", 0.0)
+    ) < float(profile["minimum_measured_nccl_algorithmic_gigabytes_per_second"]):
         reasons.append("nccl_bandwidth_below_profile_floor")
     if not bool(projection.get("passes_launch_gate")):
         reasons.append("projected_cost_exceeds_launch_gate")
@@ -248,20 +252,25 @@ def select_preliminary_candidate(
 
 def _validate_contract(config: Mapping[str, Any]) -> None:
     profile = _mapping(config, "primary_profile")
-    if profile.get("profile_id") != "dual_rtx_a6000_ddp":
-        raise ValueError("primary qualification profile changed")
-    if int(profile["world_size"]) != 2:
-        raise ValueError("A6000 qualification requires two ranks")
-    if int(profile["minimum_memory_mib_per_gpu"]) < 48000:
-        raise ValueError("A6000 memory floor is too low")
+    profile_id = profile.get("profile_id")
+    if profile_id not in {"dual_rtx_a6000_ddp", "single_h100_sxm"}:
+        raise ValueError("unknown qualification profile")
+    expected_world_size = 2 if profile_id == "dual_rtx_a6000_ddp" else 1
+    if int(profile["world_size"]) != expected_world_size:
+        raise ValueError("qualification world size differs from its profile")
+    memory_floor = 48000 if expected_world_size == 2 else 76800
+    if int(profile["minimum_memory_mib_per_gpu"]) < memory_floor:
+        raise ValueError("qualification memory floor is too low")
     if int(profile["minimum_peak_reserved_headroom_mib"]) != 8192:
         raise ValueError("qualification memory margin changed")
     if int(profile["minimum_free_host_scratch_gib"]) < 300:
         raise ValueError("qualification scratch floor is too low")
-    if profile["permitted_local_microbatch_sizes"] != [1, 2]:
-        raise ValueError("A6000 candidate microbatches changed")
-    if len(build_qualification_candidates(config)) != 8:
-        raise ValueError("A6000 qualification must contain eight candidates")
+    expected_microbatches = [1, 2] if expected_world_size == 2 else [1, 2, 4]
+    if profile["permitted_local_microbatch_sizes"] != expected_microbatches:
+        raise ValueError("qualification candidate microbatches changed")
+    expected_candidates = 8 if expected_world_size == 2 else 12
+    if len(build_qualification_candidates(config)) != expected_candidates:
+        raise ValueError("qualification candidate count changed")
     cost = _mapping(config, "cost")
     if float(cost["maximum_projected_all_in_cost_to_launch_usd"]) != 48.0:
         raise ValueError("qualification launch gate changed")

@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import sys
 import time
@@ -28,13 +29,20 @@ def parse_args() -> argparse.Namespace:
         "mode", choices=("candidate", "proof-save", "proof-resume")
     )
     parser.add_argument("--candidate-id", required=True)
+    parser.add_argument(
+        "--qualification-config",
+        default="configs/minerva_7b_v7_hardware_qualification.json",
+    )
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    paths = qualification_paths(ROOT)
-    qualification = ROOT / "configs/minerva_7b_v7_hardware_qualification.json"
+    qualification = ROOT / args.qualification_config
+    qualification_config = json.loads(qualification.read_text(encoding="utf-8"))
+    paths = qualification_paths(
+        ROOT, qualification_config.get("artifact_directory", "qualification_v2")
+    )
     rank = int(os.environ.get("RANK", "0"))
     started = time.monotonic()
 
@@ -49,7 +57,8 @@ def main() -> None:
     if rank == 0:
         print(
             "minerva-v7-qualification-worker | start "
-            f"mode={args.mode} candidate={args.candidate_id} device=2xrtx-a6000 "
+            f"mode={args.mode} candidate={args.candidate_id} "
+            f"profile={qualification_config['primary_profile']['profile_id']} "
             "context=2048 progress_interval=5",
             flush=True,
         )

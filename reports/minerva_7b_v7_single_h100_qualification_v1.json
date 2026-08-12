@@ -1,0 +1,232 @@
+{
+  "authorization": {
+    "cache_deletion_authorized": false,
+    "instance_lifecycle_action_authorized": false,
+    "long_training_authorized": false,
+    "v7_test_access_authorized": false
+  },
+  "build_date": "2026-08-12",
+  "candidate_results": [
+    {
+      "candidate_id": "h100_context2048_micro1_accum16_gc_on_eager",
+      "execution_mode": "eager",
+      "gradient_accumulation_steps": 16,
+      "gradient_checkpointing": true,
+      "local_microbatch_size": 1,
+      "reserved_headroom_mib": 34743.8125,
+      "result": "passed_preliminary_gates",
+      "tokens_per_second": 5731.833648896458
+    },
+    {
+      "candidate_id": "h100_context2048_micro1_accum16_gc_on_torch_compile_default",
+      "execution_mode": "torch_compile_default",
+      "gradient_accumulation_steps": 16,
+      "gradient_checkpointing": true,
+      "local_microbatch_size": 1,
+      "reserved_headroom_mib": 34845.8125,
+      "result": "passed_preliminary_gates",
+      "tokens_per_second": 6789.120070346568
+    },
+    {
+      "candidate_id": "h100_context2048_micro1_accum16_gc_off_eager",
+      "execution_mode": "eager",
+      "gradient_accumulation_steps": 16,
+      "gradient_checkpointing": false,
+      "local_microbatch_size": 1,
+      "reserved_headroom_mib": 22521.8125,
+      "result": "passed_preliminary_gates",
+      "tokens_per_second": 7160.515117073405
+    },
+    {
+      "candidate_id": "h100_context2048_micro1_accum16_gc_off_torch_compile_default",
+      "execution_mode": "torch_compile_default",
+      "gradient_accumulation_steps": 16,
+      "gradient_checkpointing": false,
+      "local_microbatch_size": 1,
+      "reserved_headroom_mib": 24665.8125,
+      "result": "selected_and_passed_full_qualification",
+      "tokens_per_second": 8273.620700696118
+    },
+    {
+      "candidate_id": "h100_context2048_micro2_accum8_gc_on_eager",
+      "execution_mode": "eager",
+      "gradient_accumulation_steps": 8,
+      "gradient_checkpointing": true,
+      "local_microbatch_size": 2,
+      "reserved_headroom_mib": 32525.8125,
+      "result": "passed_preliminary_gates",
+      "tokens_per_second": 6000.02694786333
+    },
+    {
+      "candidate_id": "h100_context2048_micro2_accum8_gc_on_torch_compile_default",
+      "execution_mode": "torch_compile_default",
+      "gradient_accumulation_steps": 8,
+      "gradient_checkpointing": true,
+      "local_microbatch_size": 2,
+      "reserved_headroom_mib": 32803.8125,
+      "result": "passed_preliminary_gates",
+      "tokens_per_second": 7039.250469458602
+    },
+    {
+      "candidate_id": "h100_context2048_micro2_accum8_gc_off_eager",
+      "execution_mode": "eager",
+      "gradient_accumulation_steps": 8,
+      "gradient_checkpointing": false,
+      "local_microbatch_size": 2,
+      "reserved_headroom_mib": 6945.8125,
+      "result": "failed_insufficient_peak_reserved_headroom",
+      "tokens_per_second": 6362.1859594592715
+    },
+    {
+      "candidate_id": "h100_context2048_micro2_accum8_gc_off_torch_compile_default",
+      "execution_mode": "torch_compile_default",
+      "gradient_accumulation_steps": 8,
+      "gradient_checkpointing": false,
+      "local_microbatch_size": 2,
+      "reserved_headroom_mib": 9903.8125,
+      "result": "passed_preliminary_gates",
+      "tokens_per_second": 7203.807705664063
+    },
+    {
+      "candidate_id": "h100_context2048_micro4_accum4_gc_on_eager",
+      "execution_mode": "eager",
+      "gradient_accumulation_steps": 4,
+      "gradient_checkpointing": true,
+      "local_microbatch_size": 4,
+      "reserved_headroom_mib": 26781.8125,
+      "result": "passed_preliminary_gates",
+      "tokens_per_second": 6167.057595925102
+    },
+    {
+      "candidate_id": "h100_context2048_micro4_accum4_gc_on_torch_compile_default",
+      "execution_mode": "torch_compile_default",
+      "gradient_accumulation_steps": 4,
+      "gradient_checkpointing": true,
+      "local_microbatch_size": 4,
+      "reserved_headroom_mib": 27947.8125,
+      "result": "passed_preliminary_gates",
+      "tokens_per_second": 7211.369306615296
+    },
+    {
+      "candidate_id": "h100_context2048_micro4_accum4_gc_off_eager",
+      "execution_mode": "eager",
+      "gradient_accumulation_steps": 4,
+      "gradient_checkpointing": false,
+      "local_microbatch_size": 4,
+      "result": "failed_cuda_out_of_memory"
+    },
+    {
+      "candidate_id": "h100_context2048_micro4_accum4_gc_off_torch_compile_default",
+      "execution_mode": "torch_compile_default",
+      "gradient_accumulation_steps": 4,
+      "gradient_checkpointing": false,
+      "local_microbatch_size": 4,
+      "result": "failed_cuda_out_of_memory"
+    }
+  ],
+  "cost": {
+    "absolute_spend_ceiling_usd": 60.0,
+    "hourly_rate_usd": 2.617,
+    "launch_gate_usd": 48.0,
+    "projection_overhead_multiplier": 1.25,
+    "selected_projected_all_in_cost_usd": 10.652640572239436,
+    "selected_projected_all_in_hours": 4.070554288207656
+  },
+  "evidence": {
+    "candidate_artifact_sha256": {
+      "h100_context2048_micro1_accum16_gc_off_eager": "c4df8c5d888dbf78b9844a8d9d8c418f499f7e128ed02595de0dc7f528c953f9",
+      "h100_context2048_micro1_accum16_gc_off_torch_compile_default": "3522c83a7cade4c841ee90290a776e02fed78ae903d0fee35dbbfac9454ca420",
+      "h100_context2048_micro1_accum16_gc_on_eager": "509d179d411ecb95856e18ec1d9fb5425fe64c46a48835a439db6f714d83c7f1",
+      "h100_context2048_micro1_accum16_gc_on_torch_compile_default": "e7e01477c24d43c96c893f3e165831f6595bda4ddde023e6d342ae628dd64e5b",
+      "h100_context2048_micro2_accum8_gc_off_eager": "45b6b5bd52cb2e555bdda38aec6f21454c86bb9e37b7aa9fb8cc4595604419e2",
+      "h100_context2048_micro2_accum8_gc_off_torch_compile_default": "b33e63e9bdbf854ccf8c6ed008389b4b998be6460347c427893b2b4af0a0a0b8",
+      "h100_context2048_micro2_accum8_gc_on_eager": "893047d27f4d3f37f6a1d92354b6904c0a02276033ddcaa96a0caa95e0fcd4b2",
+      "h100_context2048_micro2_accum8_gc_on_torch_compile_default": "ddb153b754dbf57c72186ff0d7d0f4470ed4e3c75b311b319717fe640bba3fa2",
+      "h100_context2048_micro4_accum4_gc_off_eager": "2028fcadded5f21a51bd411d5de8ffc8cb7a44a064ba807b97fd65a9ae83e283",
+      "h100_context2048_micro4_accum4_gc_off_torch_compile_default": "e044bb2a4c08dc2de6569994beb09f9d98a31667f600c980b8d072b029ee9018",
+      "h100_context2048_micro4_accum4_gc_on_eager": "94a87a52379cac0acf3d645a05fb1f5db0a9b1b3d42f6d57fd51aecfaa87df58",
+      "h100_context2048_micro4_accum4_gc_on_torch_compile_default": "4e5e0cf3d3fe92a60516b767688b9e0b4c035b796ae38d955f4275d42db0a8c8"
+    },
+    "final_local_report_sha256": "a86cc4a7bae04b4ddde225250634835843575ce1a712c9751355751843b2e275",
+    "proof_resume_sha256": "0f3ffa2abbe403b7ee3fc9ff6a237746bf2f85df0413e5bb95cdfa3698bb568a",
+    "proof_save_sha256": "15f5da0a0108b7a56fa0e9880c6f3a94b7387cd436c299adbbe548a94445c58b",
+    "raw_artifacts_public": false,
+    "raw_artifacts_retrieved_and_hash_verified": true,
+    "run_log_sha256": "a52283c6a35259e9acdce1658aac74256bd121091e4fd760c37fc52e1308d910"
+  },
+  "hardware": {
+    "compute_capability": "9.0",
+    "cuda_runtime": "12.6",
+    "gpu_count": 1,
+    "gpu_name": "NVIDIA H100 80GB HBM3",
+    "memory_mib": 81109.8125,
+    "native_bfloat16": true,
+    "nccl_version": "2.29.3",
+    "pytorch": "2.12.0+cu126"
+  },
+  "model_audit": {
+    "adapter_free": true,
+    "all_weights_trainable": true,
+    "parameter_dtype": "bfloat16",
+    "quantization_free": true,
+    "total_parameter_count": 7399542784,
+    "trainable_parameter_count": 7399542784
+  },
+  "next_action": "separately_approve_single_h100_trainer_enablement_before_user_launched_stage_1",
+  "projected_stages": [
+    {
+      "optimizer_updates": 2065,
+      "projected_all_in_cost_usd": 7.431656345160284,
+      "projected_all_in_hours": 2.8397616909286527,
+      "stage_id": "stage_1_historical_general",
+      "target_tokens": 67665920,
+      "update_only_hours": 2.271809352742922
+    },
+    {
+      "optimizer_updates": 760,
+      "projected_all_in_cost_usd": 2.7351374442236396,
+      "projected_all_in_hours": 1.0451423172425065,
+      "stage_id": "stage_2_non_sonnet_poetry",
+      "target_tokens": 24903680,
+      "update_only_hours": 0.8361138537940052
+    },
+    {
+      "optimizer_updates": 135,
+      "projected_all_in_cost_usd": 0.4858467828555149,
+      "projected_all_in_hours": 0.18565028003649786,
+      "stage_id": "stage_3_sonnets",
+      "target_tokens": 4423680,
+      "update_only_hours": 0.1485202240291983
+    }
+  ],
+  "qualification_elapsed_seconds": 1960.6,
+  "qualification_version": "minerva_7b_v7_single_h100_qualification_v1",
+  "required_peak_reserved_headroom_mib": 8192,
+  "result": "passed_long_training_still_unauthorized",
+  "scientific_batch": {
+    "context_length": 2048,
+    "global_target_tokens_per_update": 32768,
+    "global_windows_per_update": 16,
+    "training_target_tokens": 96993280
+  },
+  "selected_candidate": {
+    "candidate_id": "h100_context2048_micro1_accum16_gc_off_torch_compile_default",
+    "execution_mode": "torch_compile_default",
+    "gradient_accumulation_steps": 16,
+    "gradient_checkpointing": false,
+    "local_microbatch_size": 1,
+    "reserved_headroom_mib": 24665.8125,
+    "tokens_per_second": 8273.620700696118
+  },
+  "state_transition_proofs": {
+    "atomic_checkpoint_passed": true,
+    "finite_next_update_passed": true,
+    "fresh_process_resume_passed": true,
+    "per_rank_rng_restore_passed": true,
+    "sampler_and_learning_rate_passed": true,
+    "validation_transition_passed": true
+  },
+  "temporary_proof_checkpoint_deleted_after_verified_resume": true,
+  "training_started": false,
+  "v7_test_accessed": false
+}

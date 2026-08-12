@@ -45,9 +45,10 @@ update. The private transfer bundle includes the training/validation shards,
 indexes, preservation material, and probe manifest, but excludes V7 test data,
 raw corpus caches, model weights, and prior runs.
 
-After the checkpoint-8G qualification implementation fixes, the authoritative
-V2 bundle contains 83 verified files / 283,524,173 bytes at SHA-256
-`f31d987ddb1fc1dae3036c5e11f186430103764df6eb78c61ff1d2d3d9fbebca`.
+After adding the checkpoint-8H single-H100 qualification profile and launcher,
+the authoritative V2 bundle contains 85 verified payload files / 283,525,043
+bytes at SHA-256
+`73b038ac622fdac2ab387db2cdd062345adc29f6c639919f2bc130cfa48b0777`.
 It was installed only after its sibling temporary archive passed complete
 manifest verification. The earlier V1 archive remains historical 8F evidence.
 
@@ -63,6 +64,17 @@ candidates completed, but the best left only 2,283 MiB per GPU against the
 frozen 8-GiB gate; the remaining six candidates OOMed. The host is rejected and
 the measured evidence is published in
 [`minerva_7b_v7_dual_a6000_qualification_v1.md`](minerva_7b_v7_dual_a6000_qualification_v1.md).
-No V7 test access or long training occurred. A single-H100-SXM fallback requires
-separate qualification, and the user will personally launch actual training.
-Instance lifecycle actions and cache deletion remain unauthorized.
+No V7 test access or long training occurred. Checkpoint 8H therefore tested the
+single-H100-SXM fallback separately; the user still personally launches actual
+training. Instance lifecycle actions and cache deletion remain unauthorized.
+
+Checkpoint 8H subsequently qualified one H100 80GB HBM3 through a 12-candidate
+matrix. The selected microbatch-one / accumulation-16 / no-checkpointing /
+compile runtime measured 8,273.6 target tokens/s with 24,666 MiB reserved-memory
+headroom. It also passed held-out validation transition, atomic checkpoint
+installation, fresh-process RNG/sampler/LR restore, and a finite next update.
+The public evidence is in
+[`minerva_7b_v7_single_h100_qualification_v1.md`](minerva_7b_v7_single_h100_qualification_v1.md).
+Qualification did not authorize long training: the single-GPU trainer and its
+snapshot/monitoring contract must be adapted and verified first, after which
+the user will personally launch stage 1.

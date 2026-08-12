@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Orchestrate the bounded dual-A6000 qualification in isolated processes."""
+"""Orchestrate a bounded Minerva V7 hardware qualification."""
 
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 import time
@@ -30,16 +31,23 @@ from sonnet_training.minerva_7b_v7_qualification import (
 
 def main() -> None:
     started = time.monotonic()
-    config_path = ROOT / "configs/minerva_7b_v7_hardware_qualification.json"
+    config_path = ROOT / os.environ.get(
+        "V7_QUALIFICATION_CONFIG",
+        "configs/minerva_7b_v7_hardware_qualification.json",
+    )
     config = load_hardware_qualification(config_path, ROOT)
-    paths = qualification_paths(ROOT)
+    paths = qualification_paths(
+        ROOT, config.get("artifact_directory", "qualification_v2")
+    )
     paths["candidates"].mkdir(parents=True, exist_ok=True)
     candidates = build_qualification_candidates(config)
+    progress_label = f"minerva-v7-{config['primary_profile']['profile_id']}"
     print(
-        "minerva-v7-a6000-qualification | start job=dual-a6000-ddp-qualification "
-        f"device=2xrtx-a6000 total_steps={len(candidates) + 2} "
-        "candidates=8 warmup_updates=3 timed_updates=20 progress_interval=1 "
-        "estimated_runtime=45m-120m_cached_model_or_60m-180m_first_download",
+        "minerva-v7-hardware-qualification | start "
+        f"job={config['primary_profile']['profile_id']} "
+        f"device_count={config['primary_profile']['world_size']} "
+        f"total_steps={len(candidates) + 2} candidates={len(candidates)} "
+        "warmup_updates=3 timed_updates=20 progress_interval=1",
         flush=True,
     )
     rows = []
@@ -48,18 +56,20 @@ def main() -> None:
         if output_path.is_file():
             row = json.loads(output_path.read_text(encoding="utf-8"))
             print(
-                "minerva-v7-a6000-qualification | resume "
+                f"{progress_label} | resume "
                 f"candidate={index}/{len(candidates)} id={candidate.candidate_id} "
                 f"status={row['status']}",
                 flush=True,
             )
         else:
             print(
-                "minerva-v7-a6000-qualification | candidate "
+                f"{progress_label} | candidate "
                 f"step={index}/{len(candidates) + 2} id={candidate.candidate_id}",
                 flush=True,
             )
-            completed = _run_worker("candidate", candidate.candidate_id)
+            completed = _run_worker(
+                "candidate", candidate.candidate_id, config_path, config
+            )
             if completed.returncode == 0 and output_path.is_file():
                 row = json.loads(output_path.read_text(encoding="utf-8"))
             else:
@@ -81,11 +91,11 @@ def main() -> None:
             rows=rows,
             selected=None,
             proof=None,
-            status="failed_preliminary_gates_use_single_h100_sxm_fallback",
+            status=_failure_status(config, "preliminary_gates"),
         )
         _write_json(paths["final_report"], report)
         print(
-            "minerva-v7-a6000-qualification | complete status={status} "
+            f"{progress_label} | complete status={{status}} "
             "elapsed={elapsed:.1f}s long_training_started=false output={output}".format(
                 status=report["status"],
                 elapsed=time.monotonic() - started,
@@ -96,7 +106,7 @@ def main() -> None:
         return
     candidate_id = str(selected["candidate"]["candidate_id"])
     print(
-        "minerva-v7-a6000-qualification | proof step={step}/{total} "
+        f"{progress_label} | proof step={{step}}/{{total}} "
         "phase=validation-and-atomic-save candidate={candidate}".format(
             step=len(candidates) + 1,
             total=len(candidates) + 2,
@@ -104,7 +114,7 @@ def main() -> None:
         ),
         flush=True,
     )
-    save = _run_worker("proof-save", candidate_id)
+    save = _run_worker("proof-save", candidate_id, config_path, config)
     if save.returncode != 0 or not paths["proof_save"].is_file():
         proof = {
             "validation_transition_passed": False,
@@ -114,7 +124,7 @@ def main() -> None:
         }
     else:
         print(
-            "minerva-v7-a6000-qualification | proof step={step}/{total} "
+            f"{progress_label} | proof step={{step}}/{{total}} "
             "phase=fresh-process-resume candidate={candidate}".format(
                 step=len(candidates) + 2,
                 total=len(candidates) + 2,
@@ -122,7 +132,7 @@ def main() -> None:
             ),
             flush=True,
         )
-        resume = _run_worker("proof-resume", candidate_id)
+        resume = _run_worker("proof-resume", candidate_id, config_path, config)
         if resume.returncode == 0 and paths["proof_resume"].is_file():
             proof = json.loads(paths["proof_resume"].read_text(encoding="utf-8"))
             if proof["fresh_process_resume_passed"] and paths["checkpoint"].is_dir():
@@ -142,7 +152,7 @@ def main() -> None:
     status = (
         "passed_qualification_long_training_still_unauthorized"
         if not final_reasons
-        else "failed_required_proofs_use_single_h100_sxm_fallback"
+        else _failure_status(config, "required_proofs")
     )
     report = _final_report(
         config=config,
@@ -153,7 +163,7 @@ def main() -> None:
     )
     _write_json(paths["final_report"], report)
     print(
-        "minerva-v7-a6000-qualification | complete status={status} "
+        f"{progress_label} | complete status={{status}} "
         "elapsed={elapsed:.1f}s long_training_started=false output={output}".format(
             status=status,
             elapsed=time.monotonic() - started,
@@ -163,23 +173,42 @@ def main() -> None:
     )
 
 
-def _run_worker(mode: str, candidate_id: str) -> subprocess.CompletedProcess[str]:
+def _run_worker(
+    mode: str,
+    candidate_id: str,
+    config_path: Path,
+    config: dict[str, Any],
+) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
         [
             sys.executable,
             "-m",
             "torch.distributed.run",
             "--standalone",
-            "--nproc_per_node=2",
+            f"--nproc_per_node={config['primary_profile']['world_size']}",
             "scripts/run_minerva_7b_v7_qualification_worker.py",
             mode,
             "--candidate-id",
             candidate_id,
+            "--qualification-config",
+            config_path.relative_to(ROOT).as_posix(),
         ],
         cwd=ROOT,
         text=True,
         check=False,
     )
+
+
+def _failure_status(config: dict[str, Any], phase: str) -> str:
+    action = str(
+        config["primary_profile"].get(
+            "single_h100_failure_action",
+            config["primary_profile"].get(
+                "replicated_ddp_failure_action", "do_not_launch_long_run"
+            ),
+        )
+    )
+    return f"failed_{phase}_{action}"
 
 
 def _final_report(
@@ -212,7 +241,15 @@ def _final_report(
         "selected_candidate": selected,
         "projected_stages": stage_projection,
         "proof": proof,
-        "fallback_profile": config["fallback_profile"],
+        "failure_action": str(
+            config["primary_profile"].get(
+                "single_h100_failure_action",
+                config["primary_profile"].get(
+                    "replicated_ddp_failure_action", "do_not_launch_long_run"
+                ),
+            )
+        ),
+        "fallback_profile": config.get("fallback_profile"),
         "cost": config["cost"],
         "authorization": {
             "qualification_authorized": True,

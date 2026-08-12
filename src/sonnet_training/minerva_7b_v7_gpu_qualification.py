@@ -46,8 +46,10 @@ from sonnet_training.minerva_7b_v7_trainer import (
 Progress = Callable[[str], None]
 
 
-def qualification_paths(repo_root: Path) -> dict[str, Path]:
-    root = repo_root / "data/local/minerva_7b_v7/qualification_v2"
+def qualification_paths(
+    repo_root: Path, artifact_directory: str = "qualification_v2"
+) -> dict[str, Path]:
+    root = repo_root / "data/local/minerva_7b_v7" / artifact_directory
     return {
         "root": root,
         "candidates": root / "candidates",
@@ -270,7 +272,10 @@ def run_proof_save_worker(
                 },
                 hardware_topology={
                     "platform": platform.platform(),
-                    "devices": [torch.cuda.get_device_name(index) for index in range(2)],
+                    "devices": [
+                        torch.cuda.get_device_name(index)
+                        for index in range(world_size)
+                    ],
                 },
                 validation_history=[
                     {
@@ -511,9 +516,14 @@ def _measure_hardware(
     gathered: list[dict[str, Any] | None] = [None] * dist.get_world_size()
     dist.all_gather_object(gathered, local)
     devices = [row for row in gathered if row is not None]
-    peer = bool(
-        torch.cuda.can_device_access_peer(0, 1)
-        and torch.cuda.can_device_access_peer(1, 0)
+    peer_required = bool(profile.get("cuda_peer_access_required", False))
+    peer = (
+        bool(
+            torch.cuda.can_device_access_peer(0, 1)
+            and torch.cuda.can_device_access_peer(1, 0)
+        )
+        if len(devices) == 2
+        else None
     )
     passed = (
         len(devices) == int(profile["world_size"])
@@ -527,7 +537,7 @@ def _measure_hardware(
             >= float(profile["minimum_free_host_scratch_gib"])
             for row in devices
         )
-        and peer
+        and (not peer_required or peer is True)
     )
     return {
         "devices": devices,
@@ -541,6 +551,15 @@ def _measure_communication(
     *, config: Mapping[str, Any], device: torch.device
 ) -> dict[str, Any]:
     profile = config["primary_profile"]
+    if not bool(profile.get("communication_measurement_required", True)):
+        return {
+            "status": "not_applicable_single_gpu",
+            "payload_mib": 0,
+            "warmup_iterations": 0,
+            "timed_iterations": 0,
+            "mean_milliseconds": 0.0,
+            "algorithmic_gigabytes_per_second": 0.0,
+        }
     element_count = int(profile["communication_payload_mib"]) * 1024**2 // 2
     payload = torch.ones(element_count, dtype=torch.bfloat16, device=device)
     for _ in range(int(profile["communication_warmup_iterations"])):

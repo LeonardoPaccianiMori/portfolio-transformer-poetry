@@ -21,11 +21,17 @@ from sonnet_training.minerva_7b_v7_qualification import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG_PATH = ROOT / "configs/minerva_7b_v7_hardware_qualification.json"
+H100_CONFIG_PATH = ROOT / "configs/minerva_7b_v7_single_h100_qualification.json"
 REPORT_PATH = ROOT / "reports/minerva_7b_v7_dual_a6000_qualification_v1.json"
+H100_REPORT_PATH = ROOT / "reports/minerva_7b_v7_single_h100_qualification_v1.json"
 
 
 def _config():
     return load_hardware_qualification(CONFIG_PATH, ROOT)
+
+
+def _h100_config():
+    return load_hardware_qualification(H100_CONFIG_PATH, ROOT)
 
 
 def test_qualification_pins_a6000_primary_and_single_h100_fallback():
@@ -59,6 +65,69 @@ def test_a6000_matrix_has_exact_eight_candidates_and_preserves_batch():
         for row in candidates
     } == {16}
     assert {row.global_target_tokens_per_update for row in candidates} == {32_768}
+
+
+def test_single_h100_matrix_has_exact_twelve_candidates_and_preserves_batch():
+    config = _h100_config()
+    candidates = build_qualification_candidates(config)
+
+    assert config["primary_profile"]["profile_id"] == "single_h100_sxm"
+    assert config["primary_profile"]["world_size"] == 1
+    assert len(candidates) == 12
+    assert {row.local_microbatch_size for row in candidates} == {1, 2, 4}
+    assert {row.gradient_accumulation_steps for row in candidates} == {16, 8, 4}
+    assert {row.gradient_checkpointing for row in candidates} == {True, False}
+    assert {row.execution_mode for row in candidates} == {
+        "eager",
+        "torch_compile_default",
+    }
+    assert {
+        row.local_microbatch_size * row.gradient_accumulation_steps
+        for row in candidates
+    } == {16}
+    assert {row.global_target_tokens_per_update for row in candidates} == {32_768}
+
+
+def test_single_h100_contract_freezes_safety_cost_and_authorization():
+    config = _h100_config()
+    profile = config["primary_profile"]
+
+    assert profile["communication_measurement_required"] is False
+    assert profile["minimum_peak_reserved_headroom_mib"] == 8_192
+    assert profile["minimum_free_host_scratch_gib"] == 300
+    assert config["cost"]["hourly_rate_usd"] == 2.617
+    assert config["cost"]["minimum_measured_tokens_per_second_to_launch"] == (
+        pytest.approx(1_835.9250225694443)
+    )
+    assert config["authorization"] == {
+        "gpu_qualification_authorized": True,
+        "current_machine_rental_acknowledged": True,
+        "long_training_authorized": False,
+        "instance_lifecycle_action_authorized": False,
+        "v7_test_access_authorized": False,
+        "cache_deletion_authorized": False,
+    }
+
+
+def test_single_h100_preliminary_gate_does_not_require_nccl_bandwidth():
+    assert preliminary_gate_reasons(
+        config=_h100_config(),
+        rank_metrics=[
+            {
+                "mean_loss": 2.0,
+                "mean_gradient_norm": 3.0,
+                "tokens_per_second": 2_000.0,
+                "reserved_headroom_mib": 9_000.0,
+                "reserved_memory_growth_mib": 0.0,
+            }
+        ],
+        hardware={"profile_passed": True},
+        communication={
+            "status": "not_applicable_single_gpu",
+            "algorithmic_gigabytes_per_second": 0.0,
+        },
+        projection={"passes_launch_gate": True},
+    ) == ()
 
 
 def test_candidate_lookup_rejects_unapproved_runtime():
@@ -219,6 +288,29 @@ def test_public_a6000_report_records_fail_closed_result_without_test_access():
     assert report["training_started"] is False
 
 
+def test_public_h100_report_records_passed_proofs_without_training_or_test_access():
+    report = json.loads(H100_REPORT_PATH.read_text(encoding="utf-8"))
+
+    assert report["result"] == "passed_long_training_still_unauthorized"
+    assert len(report["candidate_results"]) == 12
+    assert report["selected_candidate"] == {
+        "candidate_id": (
+            "h100_context2048_micro1_accum16_gc_off_torch_compile_default"
+        ),
+        "execution_mode": "torch_compile_default",
+        "gradient_accumulation_steps": 16,
+        "gradient_checkpointing": False,
+        "local_microbatch_size": 1,
+        "reserved_headroom_mib": 24665.8125,
+        "tokens_per_second": pytest.approx(8273.620700696118),
+    }
+    assert all(report["state_transition_proofs"].values())
+    assert report["temporary_proof_checkpoint_deleted_after_verified_resume"] is True
+    assert report["authorization"]["long_training_authorized"] is False
+    assert report["v7_test_accessed"] is False
+    assert report["training_started"] is False
+
+
 def test_transfer_reader_ignores_absent_protected_test_pool(monkeypatch, tmp_path):
     encoded_dir = tmp_path / "encoded"
     index_dir = tmp_path / "indexes"
@@ -343,16 +435,45 @@ def test_matrix_worker_uses_current_python_for_distributed_launch(monkeypatch):
         return object()
 
     monkeypatch.setattr(module.subprocess, "run", fake_run)
-    module._run_worker("candidate", "safe")
+    config = _config()
+    module._run_worker("candidate", "safe", CONFIG_PATH, config)
 
     assert captured["command"][:3] == [
         module.sys.executable,
         "-m",
         "torch.distributed.run",
     ]
-    assert captured["command"][-3:] == [
+    assert captured["command"][4] == "--nproc_per_node=2"
+    assert captured["command"][-5:] == [
         "candidate",
         "--candidate-id",
         "safe",
+        "--qualification-config",
+        "configs/minerva_7b_v7_hardware_qualification.json",
+    ]
+    assert captured["kwargs"]["cwd"] == module.ROOT
+
+
+def test_single_h100_launcher_uses_exactly_one_process(monkeypatch):
+    script_path = ROOT / "scripts/qualify_minerva_7b_v7_dual_a6000.py"
+    spec = importlib.util.spec_from_file_location("v7_hardware_matrix", script_path)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    captured = {}
+
+    def fake_run(command, **kwargs):
+        captured["command"] = command
+        captured["kwargs"] = kwargs
+        return object()
+
+    monkeypatch.setattr(module.subprocess, "run", fake_run)
+    config = _h100_config()
+    module._run_worker("candidate", "safe", H100_CONFIG_PATH, config)
+
+    assert captured["command"][4] == "--nproc_per_node=1"
+    assert captured["command"][-2:] == [
+        "--qualification-config",
+        "configs/minerva_7b_v7_single_h100_qualification.json",
     ]
     assert captured["kwargs"]["cwd"] == module.ROOT
