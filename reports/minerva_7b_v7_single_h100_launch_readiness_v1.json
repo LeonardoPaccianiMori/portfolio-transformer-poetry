@@ -39,8 +39,8 @@
   },
   "private_bundle": {
     "files": 89,
-    "bytes": 283534633,
-    "sha256": "c6aad4fa87a90e7080e13755dacad914cd3813d22660a2c595dde7262b5adddc",
+    "bytes": 283534974,
+    "sha256": "0fe507bb0cb715eb4a370669f8ea697310b9d3bfbbf22d104067b94c537762b0",
     "whole_file_hash_verified_on_vm": true,
     "all_members_verified_on_vm": true,
     "v7_test_material_included": false

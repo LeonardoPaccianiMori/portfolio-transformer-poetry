@@ -39,9 +39,9 @@ states. Ordinary changing-batch activations are not archived.
 
 ## VM verification
 
-The private checkpoint-8I archive contains 89 verified payload files and
-283,534,633 bytes at SHA-256
-`c6aad4fa87a90e7080e13755dacad914cd3813d22660a2c595dde7262b5adddc`.
+The final private checkpoint-8I archive contains 89 verified payload files and
+283,534,974 bytes at SHA-256
+`0fe507bb0cb715eb4a370669f8ea697310b9d3bfbbf22d104067b94c537762b0`.
 The VM whole-file hash and every embedded member passed. V7 test material is
 absent. The no-model/no-training stage-1 preflight passed with 334.5 GiB free
 and a conservative 145.3 GiB remaining evidence budget. Stage status reported
