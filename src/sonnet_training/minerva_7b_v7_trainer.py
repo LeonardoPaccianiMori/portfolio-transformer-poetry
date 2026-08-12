@@ -21,7 +21,7 @@ import torch.distributed as dist
 import torch.nn.functional as F
 from torch.nn.parallel import DistributedDataParallel
 
-from sonnet_training.minerva_7b_full_weight_calibration import audit_full_weight_model
+from sonnet_training.minerva_7b_model_audit import audit_full_weight_model
 from sonnet_training.minerva_7b_v7_execution import (
     FrozenWindowReader,
     Int32ShardStore,

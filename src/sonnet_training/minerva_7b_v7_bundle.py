@@ -6,15 +6,17 @@ import gzip
 import hashlib
 import io
 import json
+import os
 import tarfile
 from pathlib import Path
 from typing import Any
 
 
-BUNDLE_VERSION = "minerva_7b_v7_execution_bundle_v1"
+BUNDLE_VERSION = "minerva_7b_v7_execution_bundle_v2"
 PUBLIC_PATHS = (
     "configs/minerva_7b_v7_full_weight_protocol.json",
     "configs/minerva_7b_v7_execution.json",
+    "configs/minerva_7b_v7_hardware_qualification.json",
     "configs/minerva_7b_preservation_prompts.json",
     "configs/minerva_7b_parent_decoding_confirmation_prompts.json",
     "data/metadata/minerva_7b_v7_sampling_policy_v1.json",
@@ -23,12 +25,17 @@ PUBLIC_PATHS = (
     "requirements.txt",
     "requirements/minerva_qlora.txt",
     "scripts/qualify_minerva_7b_v7_full_weight.py",
+    "scripts/qualify_minerva_7b_v7_dual_a6000.py",
+    "scripts/run_minerva_7b_v7_qualification_worker.py",
     "scripts/train_minerva_7b_v7_full_weight.py",
     "src/sonnet_training/cuda_compat.py",
     "src/sonnet_training/minerva_7b_full_weight_calibration.py",
+    "src/sonnet_training/minerva_7b_model_audit.py",
     "src/sonnet_training/minerva_7b_qlora.py",
     "src/sonnet_training/minerva_7b_v7_execution.py",
+    "src/sonnet_training/minerva_7b_v7_gpu_qualification.py",
     "src/sonnet_training/minerva_7b_v7_protocol.py",
+    "src/sonnet_training/minerva_7b_v7_qualification.py",
     "src/sonnet_training/minerva_7b_v7_trainer.py",
 )
 LOCAL_EXACT_PATHS = (
@@ -95,21 +102,34 @@ def package_v7_execution_bundle(
         "model_weights_included": False,
         "raw_source_text_included": False,
         "public_distribution": False,
-        "extraction_target": "root of the exact public checkpoint-8F repository clone",
+        "extraction_target": "root of the exact public checkpoint-8G repository clone",
     }
     manifest_bytes = (
         json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
     ).encode("utf-8")
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    with output_path.open("wb") as raw:
-        with gzip.GzipFile(
-            filename="", fileobj=raw, mode="wb", mtime=0
-        ) as compressed:
-            with tarfile.open(fileobj=compressed, mode="w") as archive:
-                for row in files:
-                    data = (repo_root / row["path"]).read_bytes()
-                    _add_bytes(archive, row["path"], data)
-                _add_bytes(archive, "bundle_manifest.json", manifest_bytes)
+    temporary = output_path.with_name(output_path.name + ".tmp")
+    if temporary.exists():
+        temporary.unlink()
+    try:
+        with temporary.open("wb") as raw:
+            with gzip.GzipFile(
+                filename="", fileobj=raw, mode="wb", mtime=0
+            ) as compressed:
+                with tarfile.open(fileobj=compressed, mode="w") as archive:
+                    for row in files:
+                        data = (repo_root / row["path"]).read_bytes()
+                        _add_bytes(archive, row["path"], data)
+                    _add_bytes(archive, "bundle_manifest.json", manifest_bytes)
+            raw.flush()
+            os.fsync(raw.fileno())
+        verify_v7_execution_bundle(temporary)
+        os.replace(temporary, output_path)
+        _fsync_directory(output_path.parent)
+    except BaseException:
+        if temporary.exists():
+            temporary.unlink()
+        raise
     return {
         **manifest,
         "output_path": str(output_path),
@@ -168,3 +188,11 @@ def _sha256(path: Path) -> str:
         for block in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(block)
     return digest.hexdigest()
+
+
+def _fsync_directory(path: Path) -> None:
+    descriptor = os.open(path, os.O_RDONLY)
+    try:
+        os.fsync(descriptor)
+    finally:
+        os.close(descriptor)

@@ -1,0 +1,168 @@
+{
+  "authorization": {
+    "cache_deletion_authorized": false,
+    "instance_lifecycle_action_authorized": false,
+    "long_training_authorized": false,
+    "v7_test_access_authorized": false
+  },
+  "build_date": "2026-08-12",
+  "candidate_results": [
+    {
+      "candidate_id": "a6000_context2048_micro1_accum8_gc_on_eager",
+      "execution_mode": "eager",
+      "gradient_checkpointing": true,
+      "local_microbatch_size": 1,
+      "peak_reserved_mib_per_rank": 46624.0,
+      "projected_all_in_cost_usd": 24.748600599111082,
+      "projected_all_in_hours": 24.55218313403877,
+      "reserved_headroom_mib_per_rank": 1915.4375,
+      "reserved_memory_growth_mib_per_rank": 0.0,
+      "result": "failed_insufficient_peak_reserved_headroom",
+      "tokens_per_second": 1371.6996993041832
+    },
+    {
+      "candidate_id": "a6000_context2048_micro1_accum8_gc_on_torch_compile_default",
+      "execution_mode": "torch_compile_default",
+      "gradient_checkpointing": true,
+      "local_microbatch_size": 1,
+      "peak_reserved_mib_per_rank": 46256.0,
+      "projected_all_in_cost_usd": 23.545064663768432,
+      "projected_all_in_hours": 23.35819907119884,
+      "reserved_headroom_mib_per_rank": 2283.4375,
+      "reserved_memory_growth_mib_per_rank": 0.0,
+      "result": "failed_insufficient_peak_reserved_headroom",
+      "tokens_per_second": 1441.8158745700644
+    },
+    {
+      "candidate_id": "a6000_context2048_micro1_accum8_gc_off_eager",
+      "execution_mode": "eager",
+      "gradient_checkpointing": false,
+      "local_microbatch_size": 1,
+      "result": "failed_cuda_out_of_memory"
+    },
+    {
+      "candidate_id": "a6000_context2048_micro1_accum8_gc_off_torch_compile_default",
+      "execution_mode": "torch_compile_default",
+      "gradient_checkpointing": false,
+      "local_microbatch_size": 1,
+      "result": "failed_cuda_out_of_memory"
+    },
+    {
+      "candidate_id": "a6000_context2048_micro2_accum4_gc_on_eager",
+      "execution_mode": "eager",
+      "gradient_checkpointing": true,
+      "local_microbatch_size": 2,
+      "result": "failed_cuda_out_of_memory"
+    },
+    {
+      "candidate_id": "a6000_context2048_micro2_accum4_gc_on_torch_compile_default",
+      "execution_mode": "torch_compile_default",
+      "gradient_checkpointing": true,
+      "local_microbatch_size": 2,
+      "result": "failed_cuda_out_of_memory"
+    },
+    {
+      "candidate_id": "a6000_context2048_micro2_accum4_gc_off_eager",
+      "execution_mode": "eager",
+      "gradient_checkpointing": false,
+      "local_microbatch_size": 2,
+      "result": "failed_cuda_out_of_memory"
+    },
+    {
+      "candidate_id": "a6000_context2048_micro2_accum4_gc_off_torch_compile_default",
+      "execution_mode": "torch_compile_default",
+      "gradient_checkpointing": false,
+      "local_microbatch_size": 2,
+      "result": "failed_cuda_out_of_memory"
+    }
+  ],
+  "cost": {
+    "absolute_spend_ceiling_usd": 60.0,
+    "a6000_hourly_rate_usd": 1.008,
+    "launch_gate_usd": 48.0,
+    "projection_overhead_multiplier": 1.25
+  },
+  "evidence": {
+    "candidate_artifact_sha256": {
+      "a6000_context2048_micro1_accum8_gc_off_eager": "55999983c37a5abc7851f403b3e34543d2359a123a15b734df85f0b13c118efc",
+      "a6000_context2048_micro1_accum8_gc_off_torch_compile_default": "8dc5bd3ed22f20bad5df48be74a31038a60ddc45b4d34e30cea0581f58846544",
+      "a6000_context2048_micro1_accum8_gc_on_eager": "3c75a92af35d4299917d8ccbdc9dd2bdedc51a0ead81beeaf44650b7b34313f9",
+      "a6000_context2048_micro1_accum8_gc_on_torch_compile_default": "7472dd701d282281978a2e43e3badd6169dd45cc2528fa7d16d80c53c5ef80df",
+      "a6000_context2048_micro2_accum4_gc_off_eager": "9328586a74697828fcb4481f391147e7221c6853bc6142c0585efa439083480b",
+      "a6000_context2048_micro2_accum4_gc_off_torch_compile_default": "37488025f4d7ff380e11df8209e23a6a28ca51aa806de3101940fe9ed38ce750",
+      "a6000_context2048_micro2_accum4_gc_on_eager": "1f35415ffe21fa72baf00320597a04435a59808fe98858ecf98b896fa2db0069",
+      "a6000_context2048_micro2_accum4_gc_on_torch_compile_default": "fd80dce8eca089a79868bf9132b4436378b2ce3cf00b05bbd9248f849070e731"
+    },
+    "final_local_report_sha256": "748dddf370999863a9238dea46bf971d6df828267d449f163e52a70a11135a7c",
+    "raw_artifacts_public": false,
+    "raw_artifacts_retrieved_and_hash_verified": true
+  },
+  "fastest_runnable_candidate": {
+    "candidate_id": "a6000_context2048_micro1_accum8_gc_on_torch_compile_default",
+    "projected_stages": [
+      {
+        "optimizer_updates": 2065,
+        "projected_all_in_cost_usd": 16.425864368473587,
+        "projected_all_in_hours": 16.29550036554919,
+        "stage_id": "stage_1_historical_general",
+        "target_tokens": 67665920,
+        "update_only_hours": 13.036400292439353
+      },
+      {
+        "optimizer_updates": 760,
+        "projected_all_in_cost_usd": 6.0453544406973,
+        "projected_all_in_hours": 5.997375437199702,
+        "stage_id": "stage_2_non_sonnet_poetry",
+        "target_tokens": 24903680,
+        "update_only_hours": 4.797900349759762
+      },
+      {
+        "optimizer_updates": 135,
+        "projected_all_in_cost_usd": 1.0738458545975467,
+        "projected_all_in_hours": 1.0653232684499472,
+        "stage_id": "stage_3_sonnets",
+        "target_tokens": 4423680,
+        "update_only_hours": 0.8522586147599577
+      }
+    ],
+    "rejection_reason": "2283.4375_MiB_headroom_is_below_the_frozen_8192_MiB_gate"
+  },
+  "hardware": {
+    "cuda_peer_access_bidirectional": true,
+    "cuda_runtime": "13.0",
+    "gpu_count": 2,
+    "gpu_name": "NVIDIA RTX A6000",
+    "memory_mib_per_gpu": 48539.4375,
+    "measured_nccl_algorithmic_gigabytes_per_second": 3.5400319744778646,
+    "native_bfloat16": true,
+    "nccl_version": "2.29.7",
+    "pytorch": "2.12.0+cu130",
+    "topology_label": "PIX"
+  },
+  "model_audit": {
+    "adapter_free": true,
+    "all_weights_trainable": true,
+    "parameter_dtype": "bfloat16",
+    "quantization_free": true,
+    "total_parameter_count": 7399542784,
+    "trainable_parameter_count": 7399542784
+  },
+  "next_action": "qualify_single_h100_sxm_before_any_user_launched_training",
+  "qualification_version": "minerva_7b_v7_dual_a6000_qualification_v1",
+  "required_peak_reserved_headroom_mib": 8192,
+  "result": "failed_use_single_h100_sxm_fallback",
+  "scientific_batch": {
+    "context_length": 2048,
+    "global_target_tokens_per_update": 32768,
+    "global_windows_per_update": 16,
+    "training_target_tokens": 96993280
+  },
+  "state_transition_proofs": {
+    "atomic_checkpoint_run": false,
+    "fresh_process_resume_run": false,
+    "reason_not_run": "no_candidate_passed_preliminary_memory_gate",
+    "validation_transition_run": false
+  },
+  "training_started": false,
+  "v7_test_accessed": false
+}

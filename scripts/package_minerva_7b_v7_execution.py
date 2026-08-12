@@ -19,7 +19,7 @@ from sonnet_training.minerva_7b_v7_bundle import (
 
 
 def main() -> None:
-    output = ROOT / "artifacts/minerva_7b_v7_execution_bundle_v1.tar.gz"
+    output = ROOT / "artifacts/minerva_7b_v7_execution_bundle_v2.tar.gz"
     started = time.monotonic()
     print(
         "minerva-v7-bundle | start job=private-transfer-bundle device=cpu "

@@ -1,0 +1,92 @@
+{
+  "qualification_version": "minerva_7b_v7_hardware_qualification_v2",
+  "build_date": "2026-08-12",
+  "scientific_protocol": {
+    "path": "configs/minerva_7b_v7_full_weight_protocol.json",
+    "sha256": "4c24868febe95ea064176fd7868a5515d8bf121f521401f33b3374e1c1736c8a",
+    "execution_path": "configs/minerva_7b_v7_execution.json",
+    "execution_sha256": "6be2481b171c880224b62fbe1c65c6a8bcf2946463b5b0b12275c51db745e36a",
+    "window_content_identity_sha256": "e821e3afdc3bd7aa6874180509ba756f942e651980f6455469722c13f8f7424c",
+    "training_target_tokens": 96993280,
+    "context_length": 2048,
+    "global_windows_per_update": 16,
+    "global_target_tokens_per_update": 32768
+  },
+  "primary_profile": {
+    "profile_id": "dual_rtx_a6000_ddp",
+    "distributed_strategy": "replicated_ddp",
+    "world_size": 2,
+    "expected_gpu_name_substring": "rtx a6000",
+    "minimum_memory_mib_per_gpu": 48000,
+    "native_bfloat16_required": true,
+    "cuda_peer_access_required": true,
+    "minimum_measured_nccl_algorithmic_gigabytes_per_second": 3.0,
+    "minimum_peak_reserved_headroom_mib": 8192,
+    "minimum_free_host_scratch_gib": 300,
+    "permitted_local_microbatch_sizes": [1, 2],
+    "gradient_checkpointing_modes": [true, false],
+    "execution_modes": ["eager", "torch_compile_default"],
+    "ddp_bucket_cap_mib": 25,
+    "minimum_warmup_updates": 3,
+    "minimum_timed_updates": 20,
+    "maximum_reserved_memory_growth_mib": 512,
+    "communication_payload_mib": 512,
+    "communication_warmup_iterations": 3,
+    "communication_timed_iterations": 10,
+    "candidate_failure_policy": "record_failure_in_fresh_process_and_continue",
+    "replicated_ddp_failure_action": "do_not_launch_long_run_and_return_to_single_h100_sxm_fallback"
+  },
+  "observed_machine_preflight": {
+    "observation_date": "2026-08-12",
+    "gpu_count": 2,
+    "gpu_name": "NVIDIA RTX A6000",
+    "memory_mib_per_gpu": 49140,
+    "native_bfloat16": true,
+    "cuda_peer_access_bidirectional": true,
+    "nvidia_smi_topology_label": "PIX",
+    "nvidia_smi_nvlink_links_per_gpu": 4,
+    "nvidia_smi_nvlink_reported_gigabytes_per_second_per_link": 14.062,
+    "measured_nccl_algorithmic_gigabytes_per_second": 3.610,
+    "pytorch": "2.12.0+cu130",
+    "cuda_runtime": "13.0",
+    "visible_root_filesystem_gib": 350,
+    "host_ram_gib": 1536,
+    "workspace_is_persistent_volume": false,
+    "interpretation": "NVLink links are reported, but effective collectives are slow; measured end-to-end throughput and cost decide viability."
+  },
+  "fallback_profile": {
+    "profile_id": "single_h100_sxm",
+    "world_size": 1,
+    "expected_gpu_name_substring": "h100",
+    "minimum_memory_mib": 76800,
+    "native_bfloat16_required": true,
+    "minimum_free_host_scratch_gib": 300,
+    "activation_condition": "dual_rtx_a6000_ddp_fails_any_required_gate",
+    "preferred_over": "single_h100_nvl_when_price_and_storage_are_comparable",
+    "requires_separate_qualification": true,
+    "long_run_automatically_authorized": false
+  },
+  "proofs": {
+    "selected_candidate_validation_transition": "finite held-out loss before and after a real optimizer update with train/eval mode transition",
+    "atomic_checkpoint": "write temporary sibling, fsync, hash-verify, rename, and verify installed directory",
+    "fresh_process_resume": "reload model optimizer scheduler per-rank RNG and sampler state, verify exact next window and learning rate, then complete one finite update",
+    "no_v7_test_access": true,
+    "quality_checkpoint_retained": false
+  },
+  "cost": {
+    "hourly_rate_usd": 1.008,
+    "projection_overhead_multiplier": 1.25,
+    "maximum_projected_all_in_cost_to_launch_usd": 48.0,
+    "absolute_spend_ceiling_usd": 60.0,
+    "fallback_h100_reference_hourly_rate_usd": 2.525,
+    "price_change_requires_reprojection": true
+  },
+  "authorization": {
+    "gpu_qualification_authorized": true,
+    "current_machine_rental_acknowledged": true,
+    "long_training_authorized": false,
+    "instance_lifecycle_action_authorized": false,
+    "v7_test_access_authorized": false,
+    "cache_deletion_authorized": false
+  }
+}

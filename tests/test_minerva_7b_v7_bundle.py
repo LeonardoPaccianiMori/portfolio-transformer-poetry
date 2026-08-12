@@ -61,6 +61,25 @@ def test_small_bundle_is_deterministic_and_verifiable(monkeypatch, tmp_path):
     assert manifest["v7_test_material_included"] is False
 
 
+def test_bundle_install_is_atomic_when_verification_fails(monkeypatch, tmp_path):
+    monkeypatch.setattr(bundle, "bundle_file_paths", lambda root: (root / "a.bin",))
+    (tmp_path / "a.bin").write_bytes(b"abc")
+    destination = tmp_path / "bundle.tar.gz"
+    destination.write_bytes(b"previous-valid-artifact")
+
+    def reject(_path):
+        raise ValueError("synthetic verification failure")
+
+    monkeypatch.setattr(bundle, "verify_v7_execution_bundle", reject)
+    with pytest.raises(ValueError, match="synthetic"):
+        bundle.package_v7_execution_bundle(
+            repo_root=tmp_path, output_path=destination
+        )
+
+    assert destination.read_bytes() == b"previous-valid-artifact"
+    assert not (tmp_path / "bundle.tar.gz.tmp").exists()
+
+
 def test_bundle_verifier_rejects_unmanifested_member(tmp_path):
     archive = tmp_path / "bad.tar.gz"
     with tarfile.open(archive, "w:gz") as handle:

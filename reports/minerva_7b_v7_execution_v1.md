@@ -45,11 +45,24 @@ update. The private transfer bundle includes the training/validation shards,
 indexes, preservation material, and probe manifest, but excludes V7 test data,
 raw corpus caches, model weights, and prior runs.
 
-The frozen qualification command is:
+After the checkpoint-8G qualification implementation fixes, the authoritative
+V2 bundle contains 83 verified files / 283,524,173 bytes at SHA-256
+`f31d987ddb1fc1dae3036c5e11f186430103764df6eb78c61ff1d2d3d9fbebca`.
+It was installed only after its sibling temporary archive passed complete
+manifest verification. The earlier V1 archive remains historical 8F evidence.
+
+The original frozen dual-H100 qualification command is:
 
 ```bash
 torchrun --standalone --nproc_per_node=2 scripts/qualify_minerva_7b_v7_full_weight.py
 ```
 
-It has not been run. GPU rental, qualification, long training, instance
-lifecycle actions, test access, and cache deletion remain unauthorized.
+Checkpoint 8G subsequently tested a lower-cost dual-RTX-A6000 alternative with
+an eight-candidate fail-closed matrix. Two gradient-checkpointed microbatch-one
+candidates completed, but the best left only 2,283 MiB per GPU against the
+frozen 8-GiB gate; the remaining six candidates OOMed. The host is rejected and
+the measured evidence is published in
+[`minerva_7b_v7_dual_a6000_qualification_v1.md`](minerva_7b_v7_dual_a6000_qualification_v1.md).
+No V7 test access or long training occurred. A single-H100-SXM fallback requires
+separate qualification, and the user will personally launch actual training.
+Instance lifecycle actions and cache deletion remain unauthorized.
