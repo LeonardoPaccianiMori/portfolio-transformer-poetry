@@ -37,6 +37,16 @@ Each snapshot manifest records the stage and update, parent/preceding snapshot,
 data and protocol hashes, validation and preservation metrics, every weight-file
 hash, source commit, package versions, and hardware topology.
 
+Checkpoint 8F also retains compact process evidence that weights cannot
+reconstruct by themselves. One permanent JSONL row per optimizer update records
+the exact window-range digest, loss, pre-clipping gradient norm, learning rate,
+throughput, elapsed/estimated time, per-rank memory, and cumulative cost when a
+provider rate is available. Every evaluation retains per-pool and per-instruction
+losses plus promotion decisions. Stage midpoints and validation-selected endpoints
+retain per-module parameter, gradient, optimizer-state, and allocator summaries.
+These summaries store norms, shapes, dtypes, maxima, and sparsity—not full gradient
+or optimizer copies.
+
 ## Frozen probe design
 
 Before the long run, create a held-out probe suite with 8–16 examples from each
@@ -52,6 +62,14 @@ selected token positions, tokenizer hash, model revision, module/layer names,
 extraction dtype and pooling, and random seed. Validation material may supply
 the probes. V7 test sonnets remain unopened until the final stage-3 checkpoint
 has been selected.
+
+The frozen suite uses 12 probes per domain / 48 total. Historical-general
+validation contains only 11 documents and only nine long enough for the bounded
+probe policy, so that domain uses nine documents plus three additional disjoint
+excerpts from those held-out documents. Historical non-sonnet poetry and standard
+sonnets use 12 distinct held-out documents each; modern instructions use all 12
+preservation prompts. This limits claims about work-level diversity in the
+historical-general activation results.
 
 ## Behavioral and loss analysis
 
@@ -103,6 +121,12 @@ Planned activation measurements are:
 Attention is quadratic in sequence length. Store per-head entropy and attention-
 distance summaries for the full probe suite and raw attention matrices only for
 a small bounded sample. Raw hidden-state and attention tensors remain local.
+
+Each frozen state also produces compact top-20 token/logit summaries, log-sum-exp,
+and entropy at the selected positions. The fixed generation prompt set and decoding
+seed are retained so deterministic behavioral samples can be regenerated before a
+remote instance is released. These outputs are small enough to preserve alongside
+the permanent telemetry and evaluation history.
 
 ## Reproducible artifact structure
 

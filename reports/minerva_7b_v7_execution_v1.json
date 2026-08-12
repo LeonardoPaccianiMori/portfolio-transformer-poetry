@@ -1,0 +1,165 @@
+{
+  "activation_probes": {
+    "bounded_raw_attention": {
+      "dtype": "bfloat16",
+      "layer_indices": [
+        0,
+        8,
+        16,
+        24,
+        31
+      ],
+      "maximum_tokens": 256,
+      "probes_per_domain": 1,
+      "storage": "local_only"
+    },
+    "domains": {
+      "historical_general": 12,
+      "historical_non_sonnet_poetry": 12,
+      "modern_instruction": 12,
+      "standard_sonnet": 12
+    },
+    "manifest_bytes": 334966,
+    "manifest_public": false,
+    "manifest_sha256": "3557b4e455357ca165b4689a3876de7965ad59677cba6f0c0b00d2fad956488b",
+    "module_names": {
+      "embedding": "model.embed_tokens",
+      "final_norm": "model.norm",
+      "language_model_head": "lm_head",
+      "transformer_blocks": "model.layers.0 through model.layers.31"
+    },
+    "probe_count": 48,
+    "v7_test_accessed": false
+  },
+  "authorization": {
+    "cache_deletion_authorized": false,
+    "cpu_implementation_and_bundle_build_approved": true,
+    "gpu_qualification_authorized": false,
+    "gpu_rental_authorized": false,
+    "instance_lifecycle_action_authorized": false,
+    "long_training_authorized": false
+  },
+  "build_date": "2026-08-12",
+  "checkpointing": {
+    "atomic_sibling_install_and_hash_reload": true,
+    "fresh_process_resume_contract": true,
+    "resume_generations_retained": 2
+  },
+  "evidence_retention": {
+    "deliberately_not_retained": [
+      "ordinary_training_batch_activations",
+      "ordinary_training_batch_attention_matrices",
+      "full_per_update_gradients",
+      "full_optimizer_state_at_every_update",
+      "unbounded_generation_samples"
+    ],
+    "estimated_evaluation_events": 49,
+    "estimated_update_telemetry_rows": 2960,
+    "every_evaluation": [
+      "loss_per_validation_pool",
+      "token_weighted_composite_losses",
+      "modern_preservation_loss",
+      "per_instruction_response_loss",
+      "promotion_gate_results",
+      "best_checkpoint_decision"
+    ],
+    "every_optimizer_update": [
+      "stage_and_global_update",
+      "window_range_and_identity_digest",
+      "mean_training_loss",
+      "preclip_global_gradient_norm",
+      "learning_rate",
+      "tokens_per_second",
+      "elapsed_and_eta_seconds",
+      "allocated_reserved_and_free_memory_per_rank",
+      "cumulative_instance_cost_when_available"
+    ],
+    "model_states": 7,
+    "retention_policy": {
+      "aggregate_analysis_outputs": "public_after_later_analysis",
+      "analysis_snapshots": "permanent_six_new_model_only_bfloat16_states",
+      "evaluation_history": "permanent_json",
+      "raw_probe_activations_and_bounded_attention": "local_recomputable",
+      "resume_checkpoints": "latest_two_generations_plus_stage_boundaries",
+      "sparse_layerwise_summaries": "permanent_jsonl",
+      "update_telemetry": "permanent_jsonl"
+    },
+    "snapshot_evidence": [
+      "fixed_probe_top20_logits_logsumexp_and_entropy",
+      "deterministic_fixed_prompt_generation_token_ids_and_text",
+      "validation_and_preservation_metrics",
+      "environment_packages_git_commit_and_hardware_topology",
+      "weight_file_hashes_and_parent_lineage"
+    ],
+    "sparse_analysis_points": "every_stage_midpoint_evaluation_and_stage_end",
+    "sparse_layerwise_summaries": [
+      "parameter_l2_and_rms_by_named_module",
+      "gradient_l2_rms_max_abs_and_zero_fraction_by_named_module",
+      "optimizer_state_key_dtype_shape_and_float_tensor_norm_inventory",
+      "cuda_peak_memory_and_allocator_summary"
+    ]
+  },
+  "execution_sha256": "6be2481b171c880224b62fbe1c65c6a8bcf2946463b5b0b12275c51db745e36a",
+  "execution_version": "minerva_7b_v7_execution_v1",
+  "hardware_qualification": {
+    "candidate_count": 12,
+    "command_not_executed": true,
+    "context_length": 2048,
+    "execution_command": "torchrun --standalone --nproc_per_node=2 scripts/qualify_minerva_7b_v7_full_weight.py",
+    "timed_updates": 20,
+    "warmup_updates": 3
+  },
+  "lineage": {
+    "encoded_report_path": "reports/minerva_7b_v7_encoded_data_v1.json",
+    "encoded_report_sha256": "2acaf9c8a598e2543017b17b4b60f2d9d4a4b18520345ded1cd8712bc9304f3e",
+    "protocol_path": "configs/minerva_7b_v7_full_weight_protocol.json",
+    "protocol_sha256": "4c24868febe95ea064176fd7868a5515d8bf121f521401f33b3374e1c1736c8a",
+    "tokenizer_sha256": "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c",
+    "window_content_identity_sha256": "e821e3afdc3bd7aa6874180509ba756f942e651980f6455469722c13f8f7424c",
+    "window_report_path": "reports/minerva_7b_v7_stage_windows_v1.json",
+    "window_report_sha256": "c89da835700f7db818be90caac8cfb03e0f12f1aa80f97b7d2d9d6a57c4650b7"
+  },
+  "reader": {
+    "global_windows_per_update": 16,
+    "repacked_corpus_created": false,
+    "source_span_tokens": 2049,
+    "target_tokens": 2048,
+    "total_updates": 2960,
+    "uses_local_memory_mapped_int32_shards": true
+  },
+  "status": "cpu_execution_artifacts_verified_gpu_unauthorized",
+  "transfer_bundle": {
+    "excludes": [
+      "model_weights_available_from_pinned_revision",
+      "v7_test_index_and_test_token_shard_until_final_selection",
+      "raw_source_text_and_caches",
+      "prior_training_runs_and_checkpoints"
+    ],
+    "format": "deterministic_tar_gzip",
+    "includes": [
+      "public_execution_code_configs_and_requirements",
+      "all_primary_v7_encoded_int32_shards_and_metadata",
+      "all_frozen_training_and_validation_indexes",
+      "modern_paisa_preservation_validation_shard_and_index",
+      "local_activation_probe_manifest"
+    ],
+    "local_build": {
+      "bytes": 283511320,
+      "files": 77,
+      "public": false,
+      "sha256": "034406e616987ab07d090d9c9928b1fa0368d6f334ffeb883d48cb2b40fd672f",
+      "v7_test_material_included": false,
+      "verified": true
+    },
+    "public_distribution": false,
+    "remote_use_only": true
+  },
+  "verification": {
+    "activation_probe_contract_frozen": true,
+    "all_committed_lineage_matches": true,
+    "cache_deleted": false,
+    "gpu_rental_started": false,
+    "gpu_work_started": false,
+    "test_index_or_shard_bundled": false
+  }
+}

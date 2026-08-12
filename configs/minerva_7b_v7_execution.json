@@ -1,0 +1,193 @@
+{
+  "execution_version": "minerva_7b_v7_execution_v1",
+  "build_date": "2026-08-12",
+  "lineage": {
+    "protocol_path": "configs/minerva_7b_v7_full_weight_protocol.json",
+    "protocol_sha256": "4c24868febe95ea064176fd7868a5515d8bf121f521401f33b3374e1c1736c8a",
+    "encoded_report_path": "reports/minerva_7b_v7_encoded_data_v1.json",
+    "encoded_report_sha256": "2acaf9c8a598e2543017b17b4b60f2d9d4a4b18520345ded1cd8712bc9304f3e",
+    "window_report_path": "reports/minerva_7b_v7_stage_windows_v1.json",
+    "window_report_sha256": "c89da835700f7db818be90caac8cfb03e0f12f1aa80f97b7d2d9d6a57c4650b7",
+    "window_content_identity_sha256": "e821e3afdc3bd7aa6874180509ba756f942e651980f6455469722c13f8f7424c",
+    "tokenizer_sha256": "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c"
+  },
+  "local_paths": {
+    "encoded_dir": "data/local/minerva_7b_v7/encoded",
+    "window_index_dir": "data/local/minerva_7b_v7/window_indexes",
+    "modern_encoded_dir": "data/local/minerva_7b_full_weight/encoded",
+    "modern_index_path": "data/local/minerva_7b_v7/modern_preservation_validation_v1.jsonl",
+    "activation_probe_manifest_path": "data/local/minerva_7b_v7/activation_probes_v1.json",
+    "transfer_bundle_path": "artifacts/minerva_7b_v7_execution_bundle_v1.tar.gz",
+    "run_dir": "runs/minerva_7b_v7_full_weight_001"
+  },
+  "training_runtime": {
+    "world_size": 2,
+    "ddp_backend": "nccl",
+    "ddp_bucket_cap_mib": 25,
+    "input_shape": "local_microbatch_size x 2048",
+    "target_shape": "local_microbatch_size x 2048",
+    "loss": "direct_cross_entropy_between_logits_for_tokens_0_through_2047_and_targets_1_through_2048",
+    "index_order": "frozen_order_contiguous_16_window_optimizer_updates_then_rank_striding",
+    "model_loading": "pinned_revision_unquantized_native_bfloat16_sdpa",
+    "optimizer": "bitsandbytes.optim.PagedAdamW8bit",
+    "qualification_report_required_for_long_run": true,
+    "fresh_process_resume_proof_required_for_long_run": true,
+    "qualification_completion_requirements": [
+      "all_12_candidates_execute_3_warmup_and_20_timed_updates_or_fail_closed",
+      "selected_candidate_passes_numeric_memory_nccl_and_cost_gates",
+      "selected_candidate_completes_validation_transition",
+      "selected_candidate_completes_atomic_checkpoint_and_fresh_process_resume_proof"
+    ]
+  },
+  "activation_probes": {
+    "seed": 1337,
+    "probes_per_domain": 12,
+    "domains": {
+      "modern_instruction": {
+        "source": "configs/minerva_7b_preservation_prompts.json",
+        "selection": "all_twelve_frozen_prompts_and_responses"
+      },
+      "historical_general": {
+        "source_pool": "validation_historical_general",
+        "selection": "twelve_deterministic_held_out_excerpts_favoring_distinct_documents"
+      },
+      "historical_non_sonnet_poetry": {
+        "source_pool": "validation_historical_non_sonnet_poetry",
+        "selection": "twelve_deterministic_held_out_excerpts_favoring_distinct_documents"
+      },
+      "standard_sonnet": {
+        "source_pool": "sonnets_validation",
+        "selection": "twelve_deterministic_distinct_held_out_sonnets"
+      }
+    },
+    "maximum_tokens_per_probe": 512,
+    "minimum_tokens_per_corpus_probe": 64,
+    "selected_positions": [
+      "first_non_special",
+      "first_quartile",
+      "middle_non_special",
+      "third_quartile",
+      "final_non_special",
+      "up_to_three_domain_rare_token_positions"
+    ],
+    "module_names": {
+      "embedding": "model.embed_tokens",
+      "transformer_blocks": "model.layers.0 through model.layers.31",
+      "final_norm": "model.norm",
+      "language_model_head": "lm_head"
+    },
+    "hidden_state_capture": "embedding_output_and_all_32_block_outputs",
+    "hidden_state_storage_dtype": "bfloat16_local_only",
+    "aggregate_computation_dtype": "float32",
+    "pooling": [
+      "masked_sequence_mean",
+      "selected_token_positions"
+    ],
+    "attention_summary": "per_layer_per_head_entropy_and_mean_absolute_token_distance_for_all_probes",
+    "bounded_raw_attention": {
+      "probes_per_domain": 1,
+      "maximum_tokens": 256,
+      "layer_indices": [0, 8, 16, 24, 31],
+      "dtype": "bfloat16",
+      "storage": "local_only"
+    },
+    "fixed_logit_summary": {
+      "top_k": 20,
+      "positions": "all_selected_positions",
+      "include_logsumexp_and_entropy": true
+    }
+  },
+  "evidence_retention": {
+    "model_states": 7,
+    "every_optimizer_update": [
+      "stage_and_global_update",
+      "window_range_and_identity_digest",
+      "mean_training_loss",
+      "preclip_global_gradient_norm",
+      "learning_rate",
+      "tokens_per_second",
+      "elapsed_and_eta_seconds",
+      "allocated_reserved_and_free_memory_per_rank",
+      "cumulative_instance_cost_when_available"
+    ],
+    "every_evaluation": [
+      "loss_per_validation_pool",
+      "token_weighted_composite_losses",
+      "modern_preservation_loss",
+      "per_instruction_response_loss",
+      "promotion_gate_results",
+      "best_checkpoint_decision"
+    ],
+    "sparse_analysis_points": "every_stage_midpoint_evaluation_and_stage_end",
+    "sparse_layerwise_summaries": [
+      "parameter_l2_and_rms_by_named_module",
+      "gradient_l2_rms_max_abs_and_zero_fraction_by_named_module",
+      "optimizer_state_key_dtype_shape_and_float_tensor_norm_inventory",
+      "cuda_peak_memory_and_allocator_summary"
+    ],
+    "snapshot_evidence": [
+      "fixed_probe_top20_logits_logsumexp_and_entropy",
+      "deterministic_fixed_prompt_generation_token_ids_and_text",
+      "validation_and_preservation_metrics",
+      "environment_packages_git_commit_and_hardware_topology",
+      "weight_file_hashes_and_parent_lineage"
+    ],
+    "retention_policy": {
+      "update_telemetry": "permanent_jsonl",
+      "evaluation_history": "permanent_json",
+      "sparse_layerwise_summaries": "permanent_jsonl",
+      "analysis_snapshots": "permanent_six_new_model_only_bfloat16_states",
+      "resume_checkpoints": "latest_two_generations_plus_stage_boundaries",
+      "raw_probe_activations_and_bounded_attention": "local_recomputable",
+      "aggregate_analysis_outputs": "public_after_later_analysis"
+    },
+    "deliberately_not_retained": [
+      "ordinary_training_batch_activations",
+      "ordinary_training_batch_attention_matrices",
+      "full_per_update_gradients",
+      "full_optimizer_state_at_every_update",
+      "unbounded_generation_samples"
+    ]
+  },
+  "fixed_generation_evidence": {
+    "prompt_path": "configs/minerva_7b_parent_decoding_confirmation_prompts.json",
+    "prompt_sha256": "98f429aeb04c4491517b3e1c218d21a98596476d163c87d62f3d09d535ea70e5",
+    "prompt_count": 24,
+    "seed": 4099,
+    "max_new_tokens": 512,
+    "decoding": {
+      "do_sample": true,
+      "temperature": 0.7,
+      "top_p": 0.92,
+      "repetition_penalty": 1.0,
+      "no_repeat_ngram_size": 4
+    },
+    "execution_time": "post_hoc_from_each_frozen_model_state"
+  },
+  "transfer_bundle": {
+    "format": "deterministic_tar_gzip",
+    "includes": [
+      "public_execution_code_configs_and_requirements",
+      "all_primary_v7_encoded_int32_shards_and_metadata",
+      "all_frozen_training_and_validation_indexes",
+      "modern_paisa_preservation_validation_shard_and_index",
+      "local_activation_probe_manifest"
+    ],
+    "excludes": [
+      "model_weights_available_from_pinned_revision",
+      "v7_test_index_and_test_token_shard_until_final_selection",
+      "raw_source_text_and_caches",
+      "prior_training_runs_and_checkpoints"
+    ],
+    "remote_use_only": true,
+    "public_distribution": false
+  },
+  "authorization": {
+    "cpu_implementation_and_bundle_build_approved": true,
+    "gpu_qualification_authorized": false,
+    "gpu_rental_authorized": false,
+    "long_training_authorized": false,
+    "instance_lifecycle_action_authorized": false,
+    "cache_deletion_authorized": false
+  }
+}
