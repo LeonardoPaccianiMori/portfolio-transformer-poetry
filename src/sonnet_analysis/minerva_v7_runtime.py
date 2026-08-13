@@ -112,6 +112,7 @@ def load_bf16_model_and_tokenizer(
 
     model_dir = str(state["model_dir"])
     tokenizer = AutoTokenizer.from_pretrained(model_dir, local_files_only=True)
+    _verify_tokenizer(tokenizer)
     model = AutoModelForCausalLM.from_pretrained(
         model_dir,
         local_files_only=True,
@@ -133,6 +134,14 @@ def load_bf16_model_and_tokenizer(
         if int(getattr(architecture, key)) != value:
             raise ValueError(f"research model architecture mismatch: {key}")
     return model, tokenizer
+
+
+def _verify_tokenizer(tokenizer: Any) -> None:
+    from sonnet_training.minerva_7b_full_weight_data import tokenizer_sha256
+
+    expected = "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c"
+    if tokenizer_sha256(tokenizer) != expected:
+        raise ValueError("research model tokenizer fingerprint mismatch")
 
 
 def sha256_file(path: Path) -> str:

@@ -1,0 +1,65 @@
+{
+  "generation_version": "minerva_7b_v7_high_volume_generation_v1",
+  "prompt_manifest_path": "configs/minerva_7b_v7_exploratory_prompts.json",
+  "prompt_manifest_sha256": "2f33aa518aa61c11193831e53b07fd3bd861a72bf68bb23c0e0e5b1a13b1d0c7",
+  "prompt_count": 120,
+  "seeds": [4200, 4201, 4202, 4203, 4204, 4205, 4206, 4207],
+  "recipes": [
+    {
+      "recipe_id": "conservative",
+      "temperature": 0.6,
+      "top_p": 0.9,
+      "top_k": 50,
+      "repetition_penalty": 1.0,
+      "no_repeat_ngram_size": 4,
+      "max_new_tokens": 512,
+      "continuation_line_target": 13
+    },
+    {
+      "recipe_id": "balanced",
+      "temperature": 0.7,
+      "top_p": 0.92,
+      "top_k": null,
+      "repetition_penalty": 1.0,
+      "no_repeat_ngram_size": 4,
+      "max_new_tokens": 512,
+      "continuation_line_target": 13
+    },
+    {
+      "recipe_id": "creative",
+      "temperature": 0.85,
+      "top_p": 0.95,
+      "top_k": null,
+      "repetition_penalty": 1.0,
+      "no_repeat_ngram_size": 4,
+      "max_new_tokens": 512,
+      "continuation_line_target": 13
+    }
+  ],
+  "outputs_per_state": 2880,
+  "all_seven_states_outputs": 20160,
+  "default_batch_size": 8,
+  "qualification_batch_count": 1,
+  "bootstrap": {
+    "resamples": 5000,
+    "seed": 8311,
+    "confidence_level": 0.95,
+    "cluster_unit": "prompt_id"
+  },
+  "blinded_review": {
+    "prompts": 24,
+    "seeds_per_prompt": 1,
+    "all_recipes": true,
+    "all_states": true,
+    "rows": 504,
+    "selection_seed": 8317
+  },
+  "authorization": {
+    "exploratory_only": true,
+    "gpu_execution_requires_user_manual_launch": true,
+    "v7_test_access_authorized": false,
+    "training_authorized": false,
+    "causal_experiments_authorized": false,
+    "instance_lifecycle_action_authorized": false
+  }
+}

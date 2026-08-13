@@ -1,0 +1,1229 @@
+{
+  "maximum_prompts_per_author": 14,
+  "maximum_prompts_per_work": 10,
+  "period_counts": {
+    "13th_century": 15,
+    "14th_century": 15,
+    "15th_century": 15,
+    "16th_century": 15,
+    "16th_to_17th_century_unresolved": 2,
+    "17th_century": 15,
+    "18th_century": 15,
+    "19th_century": 14,
+    "origins_through_18th_unresolved": 14
+  },
+  "prompt_count": 120,
+  "prompt_version": "minerva_7b_v7_exploratory_prompts_v1",
+  "prompts": [
+    {
+      "author_key": "author:9755ed596a428058",
+      "id": "exploratory_cebcc97280466816",
+      "opening_line": "Chi vuole aver gioiosa vita intera,",
+      "period": "13th_century",
+      "source_identity": "bibit:sonnet:bibit000709:structural_0263",
+      "source_logical_sha256": "edb5ec5f4d68fba264c87d7f576072a051da2743d6a33154f1b78b09df2a8198",
+      "source_split": "sonnets_validation",
+      "work_key": "work:120ecc27228ad70f"
+    },
+    {
+      "author_key": "author:9755ed596a428058",
+      "id": "exploratory_a77de8976c73c18e",
+      "opening_line": "D'amore vène ad om tutto piacere,",
+      "period": "13th_century",
+      "source_identity": "bibit:sonnet:bibit000709:structural_0267",
+      "source_logical_sha256": "14b5991d10e3b7c874d053d1595b3ac77606e981b75e1ba3d6122f0ed0288980",
+      "source_split": "sonnets_validation",
+      "work_key": "work:2ba2e6e8c7d29e1e"
+    },
+    {
+      "author_key": "author:9755ed596a428058",
+      "id": "exploratory_79346b93be23fb0a",
+      "opening_line": "Morte gentil, rimedio de' cattivi,",
+      "period": "13th_century",
+      "source_identity": "bibit:sonnet:bibit000709:structural_0292",
+      "source_logical_sha256": "52b7510db641c00c1d00d297b682fdc43202451962b99ff4fee7cd12fc1635f3",
+      "source_split": "sonnets_validation",
+      "work_key": "work:b669a8ad3166b0ff"
+    },
+    {
+      "author_key": "author:697305c1c574a490",
+      "id": "exploratory_5071fea25d2a2bd1",
+      "opening_line": "Certo non è de lo 'ntelletto accolto",
+      "period": "13th_century",
+      "source_identity": "v6:sonnet:cavalcanti_certo_non_è_de_lo_ntelletto_accolto",
+      "source_logical_sha256": "6367b4b466cc2c66f6ec8cd0ae1ba53c9273bbd093bb19bd75d765a0b861a703",
+      "source_split": "sonnets_validation",
+      "work_key": "work:a08db51f323c2c21"
+    },
+    {
+      "author_key": "author:697305c1c574a490",
+      "id": "exploratory_409b2c58ad489491",
+      "opening_line": "A ciascun' alma presa e gentil core",
+      "period": "13th_century",
+      "source_identity": "v6:sonnet:cavalcanti_dante_ai_poeti",
+      "source_logical_sha256": "e9ea57d8ed2c5b3fd7f50c8665e71094da6346c1ded874b7ff942758277e1b01",
+      "source_split": "sonnets_validation",
+      "work_key": "work:8fce5ba7330d9f5d"
+    },
+    {
+      "author_key": "author:a7505432789d5a56",
+      "id": "exploratory_0004039625f7def1",
+      "opening_line": "Ciò che naturalmente fu creato",
+      "period": "13th_century",
+      "source_identity": "v6:sonnet:cecco_cxix_ciò_che_naturalmente_fu_creato",
+      "source_logical_sha256": "ba5f38ae7ed62984176c580f279ffed515a78d20a8e9609e8041047212ae43f6",
+      "source_split": "sonnets_validation",
+      "work_key": "work:852eda33d99c49b8"
+    },
+    {
+      "author_key": "author:a7505432789d5a56",
+      "id": "exploratory_4fa65678568dd529",
+      "opening_line": "Se Die m'aiuti, a le sante guagnele,",
+      "period": "13th_century",
+      "source_identity": "v6:sonnet:cecco_lxxxiv_se_die_m_aiuti_a_le_sante_guagnele",
+      "source_logical_sha256": "77b2b6f74970643b44f58bb2a4911904fa76dbe625ecd0f2b01c9cdac2a01b6c",
+      "source_split": "sonnets_validation",
+      "work_key": "work:351bac8d06afb0b2"
+    },
+    {
+      "author_key": "author:fe33126fbf7fa7f5",
+      "id": "exploratory_de7ff4ebc0445264",
+      "opening_line": "Volgete li occhi a veder chi mi tira,",
+      "period": "13th_century",
+      "source_identity": "v6:sonnet:dante_lix_volgete_li_occhi_a_veder_chi_mi_tira",
+      "source_logical_sha256": "354447b78534499d3a44f92710c3b45e2546b779a30a61277b774f046b4dc02b",
+      "source_split": "sonnets_validation",
+      "work_key": "work:5ba4f02b5f69db67"
+    },
+    {
+      "author_key": "author:fe33126fbf7fa7f5",
+      "id": "exploratory_cc26d376401459eb",
+      "opening_line": "Due donne in cima de la mente mia",
+      "period": "13th_century",
+      "source_identity": "v6:sonnet:dante_lxxxvi_due_donne_in_cima_de_la_mente_mia",
+      "source_logical_sha256": "9cdc951ffbd0dcccfbbfd4dec0288381830ac1d23ca169cbe4f670efc5a3412f",
+      "source_split": "sonnets_validation",
+      "work_key": "work:c782105778404698"
+    },
+    {
+      "author_key": "author:cb459d9195f90306",
+      "id": "exploratory_2f3b5042d14c026f",
+      "opening_line": "Feruto sono isvarïatamente:",
+      "period": "13th_century",
+      "source_identity": "v6:sonnet:giacomo_feruto_sono_isvarïatamente",
+      "source_logical_sha256": "e69946934852b216ed86e3e0f3c5864f9af1de68da12597c05643b3b7f78829c",
+      "source_split": "sonnets_validation",
+      "work_key": "work:56447f75f317d368"
+    },
+    {
+      "author_key": "author:52aebd97d55c202c",
+      "id": "exploratory_6ad1fb3d50979940",
+      "opening_line": "Oi deo d'amore, a te faccio preghera",
+      "period": "13th_century",
+      "source_identity": "v6:sonnet:giacomo_oi_deo_d_amore",
+      "source_logical_sha256": "a0389da6c0cad54cc70521859ef05cf4a2febf3a92cde8ce47d0eca8aec118b0",
+      "source_split": "sonnets_validation",
+      "work_key": "work:09c12ee153a99abd"
+    },
+    {
+      "author_key": "author:cb459d9195f90306",
+      "id": "exploratory_3b4e000ea48207ef",
+      "opening_line": "Or come pote sì gran donna entrare",
+      "period": "13th_century",
+      "source_identity": "v6:sonnet:giacomo_or_come_pote_sì_gran_donna_entrare",
+      "source_logical_sha256": "3dcafa9b048f9f4efb179d463fb0cdce31ba8fda28a3bfc8e02b7862ac7300b6",
+      "source_split": "sonnets_validation",
+      "work_key": "work:4c9833a02c1ca50c"
+    },
+    {
+      "author_key": "author:7188ecfb018abd19",
+      "id": "exploratory_31772d2ed8113be7",
+      "opening_line": "Con piú m'allungo, piú m'è prossimana",
+      "period": "13th_century",
+      "source_identity": "v6:sonnet:guittone_con_più_m_allungo_più_m_è_prossimana",
+      "source_logical_sha256": "f0557db2363d8664708bacc99e31ca91f8761dae75500ff6c384f7e79044675f",
+      "source_split": "sonnets_validation",
+      "work_key": "work:707e43273f8cee21"
+    },
+    {
+      "author_key": "author:7188ecfb018abd19",
+      "id": "exploratory_769feabadfc502e2",
+      "opening_line": "Eo non credera giá ch'alcuno amante",
+      "period": "13th_century",
+      "source_identity": "v6:sonnet:guittone_eo_non_credera_già_ch_alcuno_amante",
+      "source_logical_sha256": "cd7552cb6154a7de439d763f482570ce62c71c932e04a05cbf8c3db95861db7a",
+      "source_split": "sonnets_validation",
+      "work_key": "work:6ad03d191aaa31ad"
+    },
+    {
+      "author_key": "author:7188ecfb018abd19",
+      "id": "exploratory_5cce769b0ed1017a",
+      "opening_line": "Vostro saggio parlar, ch'è manifesto",
+      "period": "13th_century",
+      "source_identity": "v6:sonnet:guittone_vostro_saggio_parlar_ch_è_manifesto",
+      "source_logical_sha256": "9c20cbf041dff56b272721ad581946f0c87fb61296ad35a773b3edbd19db346a",
+      "source_split": "sonnets_validation",
+      "work_key": "work:5324f001fd806b4d"
+    },
+    {
+      "author_key": "author:07aff2cf46790202",
+      "id": "exploratory_45d35203dfc12f25",
+      "opening_line": "Ahi, ria Fortuna dispietata e cruda,",
+      "period": "14th_century",
+      "source_identity": "bibit:sonnet:bibit000742:sonnet_0005",
+      "source_logical_sha256": "76d6f2bfa026cf9da0a83613d02f49d769eb7b13905335b21fd7daf83c992f05",
+      "source_split": "sonnets_validation",
+      "work_key": "work:069b20b2ff814222"
+    },
+    {
+      "author_key": "author:07aff2cf46790202",
+      "id": "exploratory_aa11e362c72ce822",
+      "opening_line": "Lasso, che spenta non è sì vertute",
+      "period": "14th_century",
+      "source_identity": "bibit:sonnet:bibit000742:structural_0001",
+      "source_logical_sha256": "b80354677cb24a33a205fd409f109fb646c2d2522a73e0fc8a066477e03234a0",
+      "source_split": "sonnets_validation",
+      "work_key": "work:b2e5324be0b638e1"
+    },
+    {
+      "author_key": "author:07aff2cf46790202",
+      "id": "exploratory_820d5e27c2fc95f7",
+      "opening_line": "Ne l'avarizia gli veggio sì vaghi,",
+      "period": "14th_century",
+      "source_identity": "bibit:sonnet:bibit000742:structural_0003",
+      "source_logical_sha256": "2360e96cb9216ccb0a403d918641b55c47fc886a8988724e80bfc53f7448e5bf",
+      "source_split": "sonnets_validation",
+      "work_key": "work:22f3c0efe07d2f8d"
+    },
+    {
+      "author_key": "author:07aff2cf46790202",
+      "id": "exploratory_11f3952121d41a8f",
+      "opening_line": "Chi sa dir, dica, e chi può far, sì faccia,",
+      "period": "14th_century",
+      "source_identity": "bibit:sonnet:bibit000742:structural_0006",
+      "source_logical_sha256": "d7399b68d36cad0fb6fc050b88f55b8a1d879067db37e2803b83a5c8335a63f0",
+      "source_split": "sonnets_validation",
+      "work_key": "work:3ecbc8920cc43b91"
+    },
+    {
+      "author_key": "author:296cd329a6d9ab24",
+      "id": "exploratory_7ee79b82e03bb34c",
+      "opening_line": "Ahimè! ch'io veggio ch'una donna viene",
+      "period": "14th_century",
+      "source_identity": "v6:sonnet:cino_ahimè_ch_io_veggio_ch_una_donna_viene",
+      "source_logical_sha256": "82e92fbcca1a91c8247604d46e777f393302fea987561794d19c2afb3a03c55d",
+      "source_split": "sonnets_validation",
+      "work_key": "work:dd0fb1d938449213"
+    },
+    {
+      "author_key": "author:296cd329a6d9ab24",
+      "id": "exploratory_bf9e64bc0c3d90fc",
+      "opening_line": "Io fuʼ ʼn su lʼalto e ʼn sul beato monte",
+      "period": "14th_century",
+      "source_identity": "v6:sonnet:cino_io_fu_n_su_l_alto_e_n_sul_beato_monte",
+      "source_logical_sha256": "d643c848a723e00f3438e19a167c57f4cd86e351d463068fe69eb2fbe7508157",
+      "source_split": "sonnets_validation",
+      "work_key": "work:877f49e443f2c31b"
+    },
+    {
+      "author_key": "author:296cd329a6d9ab24",
+      "id": "exploratory_0903bb21d8bd1a32",
+      "opening_line": "Io fui 'n su l'alto e 'n sul beato monte,",
+      "period": "14th_century",
+      "source_identity": "v6:sonnet:cino_io_fui_n_su_l_alto_e_n_sul_beato_monte_iei",
+      "source_logical_sha256": "90997c2eb216e3d114d923bb363ef1d912aa287a3e223000f69d592448c80002",
+      "source_split": "sonnets_validation",
+      "work_key": "work:8c3e51bcc0f83d00"
+    },
+    {
+      "author_key": "author:296cd329a6d9ab24",
+      "id": "exploratory_894fe883e2265034",
+      "opening_line": "Se non si move d'ogni parte Amore",
+      "period": "14th_century",
+      "source_identity": "v6:sonnet:cino_se_non_si_move_d_ogni_parte_amore",
+      "source_logical_sha256": "2f38500ecbe29648073515d33c14259a5c4673c9cc69f7a72e77c9dd4a631d99",
+      "source_split": "sonnets_validation",
+      "work_key": "work:fbf49d811e33dae2"
+    },
+    {
+      "author_key": "author:2714805d83ac1a08",
+      "id": "exploratory_2e19a609bd5ad918",
+      "opening_line": "Di marzo sí vi do una peschiera",
+      "period": "14th_century",
+      "source_identity": "v6:sonnet:folgore_006",
+      "source_logical_sha256": "f1647ac1de4fa3d99cd69506652c1d1f689b0367700a9c5dade37ae30f111af9",
+      "source_split": "sonnets_validation",
+      "work_key": "work:c94a9f296cf39aec"
+    },
+    {
+      "author_key": "author:2714805d83ac1a08",
+      "id": "exploratory_3ea412bbec540e53",
+      "opening_line": "Di settembre vi do diletti tanti",
+      "period": "14th_century",
+      "source_identity": "v6:sonnet:folgore_012",
+      "source_logical_sha256": "a6cb23686f67258d25980cbce4a720fff198b01c13de082facb47b24099c7ff3",
+      "source_split": "sonnets_validation",
+      "work_key": "work:0a337d1c74df7596"
+    },
+    {
+      "author_key": "author:2714805d83ac1a08",
+      "id": "exploratory_5c1381374f79c3e1",
+      "opening_line": "Piú lichisati siete, ch'ermellini,",
+      "period": "14th_century",
+      "source_identity": "v6:sonnet:folgore_019",
+      "source_logical_sha256": "9a1eaee8378557015473a48f852f6ea0876746e2ada1e1256bcf42eacf5807ba",
+      "source_split": "sonnets_validation",
+      "work_key": "work:97b0bf65fc9382f3"
+    },
+    {
+      "author_key": "author:48812d65aff0d35e",
+      "id": "exploratory_9f21e287a1f1d049",
+      "opening_line": "Amor m'à posto come segno a strale,",
+      "period": "14th_century",
+      "source_identity": "v6:sonnet:petrarca_amor_m_à_posto_come_segno_a_strale",
+      "source_logical_sha256": "27f0fa4820745df4574c294736fabb967829e1262cb3bf334f28499dc5d2d6f0",
+      "source_split": "sonnets_validation",
+      "work_key": "work:388ceb203c40493c"
+    },
+    {
+      "author_key": "author:48812d65aff0d35e",
+      "id": "exploratory_0e27aaefbdd459a0",
+      "opening_line": "Padre del ciel, dopo i perduti giorni,",
+      "period": "14th_century",
+      "source_identity": "v6:sonnet:petrarca_padre_del_ciel_dopo_i_perduti_giorni",
+      "source_logical_sha256": "533d2f94376d23c2868be8b8ccf1c17bea6e1ab21b27a7c0e964baef0330a410",
+      "source_split": "sonnets_validation",
+      "work_key": "work:1b1504b9b162611e"
+    },
+    {
+      "author_key": "author:48812d65aff0d35e",
+      "id": "exploratory_72e13bf8da59dae9",
+      "opening_line": "S'amor non è, che dunque è quel ch'io sento?",
+      "period": "14th_century",
+      "source_identity": "v6:sonnet:petrarca_s_amor_non_è_che_dunque_è_quel_ch_io_sento",
+      "source_logical_sha256": "3b1705545230a7ee29c89723d6be5bbfd9c24eddf1e68f3b2ce2a03d8649eaf8",
+      "source_split": "sonnets_validation",
+      "work_key": "work:4441f2f85fded76e"
+    },
+    {
+      "author_key": "author:48812d65aff0d35e",
+      "id": "exploratory_e39c5806bbdef9b1",
+      "opening_line": "Soleasi nel mio cor star bella et viva,",
+      "period": "14th_century",
+      "source_identity": "v6:sonnet:petrarca_soleasi_nel_mio_cor_star_bella_et_viva",
+      "source_logical_sha256": "db74dd95d9fb95cc6b9ecfdcdd0603a3b9b8efb0ab879e05e7a7ff6bb5bce7ae",
+      "source_split": "sonnets_validation",
+      "work_key": "work:f9165d4eb9b516fe"
+    },
+    {
+      "author_key": "author:3639c3c31fe7e05a",
+      "id": "exploratory_eef90bd71a7c457a",
+      "opening_line": "Fenice ornata de purpòre penne;",
+      "period": "15th_century",
+      "source_identity": "bibit:sonnet:bibit000257:structural_0006",
+      "source_logical_sha256": "2e560550b24d5d70edc7e515a5b98ec02719fde67e421fc4c469f6856c01d3d3",
+      "source_split": "sonnets_validation",
+      "work_key": "work:369579a7d91fc94a"
+    },
+    {
+      "author_key": "author:3639c3c31fe7e05a",
+      "id": "exploratory_98d5b328429c52aa",
+      "opening_line": "Pesaro mia, dov'è quel gintil viso",
+      "period": "15th_century",
+      "source_identity": "bibit:sonnet:bibit000257:structural_0017",
+      "source_logical_sha256": "0d4a5c309f0c5499f9cb5b220bbc5637795f56189e26d8cf9dc6e8cb09a2a7e5",
+      "source_split": "sonnets_validation",
+      "work_key": "work:5a0f7cc2b0ebfd48"
+    },
+    {
+      "author_key": "author:3639c3c31fe7e05a",
+      "id": "exploratory_045bf7e169dd7c47",
+      "opening_line": "L'àlbor gentil amato già tant'anni",
+      "period": "15th_century",
+      "source_identity": "bibit:sonnet:bibit000257:structural_0019",
+      "source_logical_sha256": "393d20fb2ff86e7409293754fa2c0f9864612977686122e458d48bf197beaf1f",
+      "source_split": "sonnets_validation",
+      "work_key": "work:1076db1b0ce4bd8a"
+    },
+    {
+      "author_key": "author:3639c3c31fe7e05a",
+      "id": "exploratory_aa6db1cc337ff652",
+      "opening_line": "L'eccelse tu' voglion ch'in rime affanni",
+      "period": "15th_century",
+      "source_identity": "bibit:sonnet:bibit000257:structural_0020",
+      "source_logical_sha256": "ad28d8e58d9fe7695919b69456c960b9488e5bc28bdb73c3a766b588aadf015f",
+      "source_split": "sonnets_validation",
+      "work_key": "work:9e44c183466c0beb"
+    },
+    {
+      "author_key": "author:3639c3c31fe7e05a",
+      "id": "exploratory_2be61552ca3b1b0c",
+      "opening_line": "Amor, che nei mortal coragi regna,",
+      "period": "15th_century",
+      "source_identity": "bibit:sonnet:bibit000257:structural_0027",
+      "source_logical_sha256": "7140d1711b3188624368713df94b238a9b45d79e94b13f00a838444087b08521",
+      "source_split": "sonnets_validation",
+      "work_key": "work:435b00dce7ec6b3a"
+    },
+    {
+      "author_key": "author:3639c3c31fe7e05a",
+      "id": "exploratory_1ee1acb4ca49da9b",
+      "opening_line": "Spesse fïate, per antiga usanza,",
+      "period": "15th_century",
+      "source_identity": "bibit:sonnet:bibit000257:structural_0039",
+      "source_logical_sha256": "dd5f2058c6502fb831a8f4ec3131165c67aab5125a2defeefa0f693596e70844",
+      "source_split": "sonnets_validation",
+      "work_key": "work:4898fa06dbffe281"
+    },
+    {
+      "author_key": "author:3639c3c31fe7e05a",
+      "id": "exploratory_de59cb8fe9bae97a",
+      "opening_line": "Quanto più guardo in quel lizadro viso",
+      "period": "15th_century",
+      "source_identity": "bibit:sonnet:bibit000257:structural_0044",
+      "source_logical_sha256": "fa2aa8bc4258ef9fbdc582a5c69b8d2b819762f250810a7672b169e6f1fbea87",
+      "source_split": "sonnets_validation",
+      "work_key": "work:bcf2a62b55026938"
+    },
+    {
+      "author_key": "author:3639c3c31fe7e05a",
+      "id": "exploratory_da6d74f15ce5fb32",
+      "opening_line": "Questa angioletta dal celesto regno",
+      "period": "15th_century",
+      "source_identity": "bibit:sonnet:bibit000257:structural_0045",
+      "source_logical_sha256": "3d9b131e3c436a99b2f5cd662ffb1b04ea86096cb5216637797a53f92ad33b54",
+      "source_split": "sonnets_validation",
+      "work_key": "work:a23da3db41db068a"
+    },
+    {
+      "author_key": "author:3639c3c31fe7e05a",
+      "id": "exploratory_a47396428f52540e",
+      "opening_line": "Dolente, a capo inchin, piangendo forte,",
+      "period": "15th_century",
+      "source_identity": "bibit:sonnet:bibit000257:structural_0048",
+      "source_logical_sha256": "20f793f087825d29babeb58710e830fd18faa5c836b2f291bc53e42236738c72",
+      "source_split": "sonnets_validation",
+      "work_key": "work:694e0f14ce05bca9"
+    },
+    {
+      "author_key": "author:3639c3c31fe7e05a",
+      "id": "exploratory_fd0051b9311ec1a1",
+      "opening_line": "Sogliono i veri e ben perfetti amanti",
+      "period": "15th_century",
+      "source_identity": "bibit:sonnet:bibit000257:structural_0064",
+      "source_logical_sha256": "cb2568797b3a4e466f026b8c6539698330694b3b59e9b39278afec587d08045f",
+      "source_split": "sonnets_validation",
+      "work_key": "work:82a65542c7659c2d"
+    },
+    {
+      "author_key": "author:3639c3c31fe7e05a",
+      "id": "exploratory_0e497377ad237867",
+      "opening_line": "Le dolce lacrime scargan de pianti",
+      "period": "15th_century",
+      "source_identity": "bibit:sonnet:bibit000257:structural_0065",
+      "source_logical_sha256": "41eac750abe1839bf29976994f3e8899b3c26db362e0fb9b20814b22b3dd6d0f",
+      "source_split": "sonnets_validation",
+      "work_key": "work:63361d7a7dc73dac"
+    },
+    {
+      "author_key": "author:3639c3c31fe7e05a",
+      "id": "exploratory_08a8f86c4aafcdfe",
+      "opening_line": "Un vago mostro è apparso de natura",
+      "period": "15th_century",
+      "source_identity": "bibit:sonnet:bibit000257:structural_0073",
+      "source_logical_sha256": "d407667a0accabb07d78ea7cb75fafc719046daca4b358145af4be68d0989b56",
+      "source_split": "sonnets_validation",
+      "work_key": "work:e15d186c411debfe"
+    },
+    {
+      "author_key": "author:3639c3c31fe7e05a",
+      "id": "exploratory_46e0023abdfcc881",
+      "opening_line": "Era madonna, e dei soi occhi Amore",
+      "period": "15th_century",
+      "source_identity": "bibit:sonnet:bibit000257:structural_0075",
+      "source_logical_sha256": "cdbc02a992e94a19d616ecfb96b78a9c1fafca7bf80eee1d7d366d55b67d35a2",
+      "source_split": "sonnets_validation",
+      "work_key": "work:2028fcd97e9dc0c2"
+    },
+    {
+      "author_key": "author:74197adf1ad8ae18",
+      "id": "exploratory_d79741e81ec13cf2",
+      "opening_line": "Dolce mie cara e glorïosa vita,",
+      "period": "15th_century",
+      "source_identity": "bibit:sonnet:bibit000463:sonnet_0029",
+      "source_logical_sha256": "8b2ee2599748b633c89def456865cee3815b5383bc002693ced45ce734cba961",
+      "source_split": "sonnets_validation",
+      "work_key": "work:ade71130c195f456"
+    },
+    {
+      "author_key": "author:e278f681661eede2",
+      "id": "exploratory_92473ee004d67960",
+      "opening_line": "Con lagrime sovente a te, signore,",
+      "period": "15th_century",
+      "source_identity": "bibit:sonnet:bibit000941:sonnet_0003",
+      "source_logical_sha256": "49c65cb0f7f56d0c4da778e8c92d86a453d2031fc6378b069a0ea9111fca2c09",
+      "source_split": "sonnets_validation",
+      "work_key": "work:d97f4e3cf14f6300"
+    },
+    {
+      "author_key": "author:a99295d5c34817d6",
+      "id": "exploratory_f405ea9981515dc4",
+      "opening_line": "Quello intento di magno e di sincero,",
+      "period": "16th_century",
+      "source_identity": "bibit:sonnet:bibit000022:sonnet_0015",
+      "source_logical_sha256": "1079d0f40b3247a7c3abcc127ff53da64c1734b25239d24a5cfab4017619c58a",
+      "source_split": "sonnets_validation",
+      "work_key": "work:f78a43502c08066e"
+    },
+    {
+      "author_key": "author:4a3cbeb1e0ec0734",
+      "id": "exploratory_66a901e10d606839",
+      "opening_line": "Mentre m'attrista e duol, parte m'è caro",
+      "period": "16th_century",
+      "source_identity": "bibit:sonnet:bibit000129:sonnet_0076",
+      "source_logical_sha256": "376a85cdf84ee5ba1bcf2b1e172e0bb1ae38c877d2d1ea1121d3771cef8b90a2",
+      "source_split": "sonnets_validation",
+      "work_key": "work:0b4314f9bf616de7"
+    },
+    {
+      "author_key": "author:4a3cbeb1e0ec0734",
+      "id": "exploratory_c5c6e7f93b6082b8",
+      "opening_line": "Non posso non mancar d'ingegno e d'arte",
+      "period": "16th_century",
+      "source_identity": "bibit:sonnet:bibit000129:structural_0007",
+      "source_logical_sha256": "0365170237a8fe122b2de677a609f43fd8f18b125960804a28ff80cb9c37a68d",
+      "source_split": "sonnets_validation",
+      "work_key": "work:6f40f16a79f4979f"
+    },
+    {
+      "author_key": "author:53fd4cabdde356f0",
+      "id": "exploratory_ea792cb22be482c2",
+      "opening_line": "Sisto, lodi sì degne et honorate",
+      "period": "16th_century",
+      "source_identity": "bibit:sonnet:bibit000499:sonnet_0049",
+      "source_logical_sha256": "b6ad9644ee6c0eab735deaf663b9541243684bc6fe24d1b0bae69b706f099e97",
+      "source_split": "sonnets_validation",
+      "work_key": "work:7482b9d05e9b5791"
+    },
+    {
+      "author_key": "author:a99295d5c34817d6",
+      "id": "exploratory_e6bcbc1bcc6168d0",
+      "opening_line": "Diversa stella, abiam diverso il fato,",
+      "period": "16th_century",
+      "source_identity": "bibit:sonnet:bibit001075:sonnet_0007",
+      "source_logical_sha256": "9b7c2c6fbd78801b3947898a1f6620345cd43c9a0a7776981f5aab7b0c6cc316",
+      "source_split": "sonnets_validation",
+      "work_key": "work:1e0d58aa40afadf1"
+    },
+    {
+      "author_key": "author:534f4984f6298eeb",
+      "id": "exploratory_31d3408fc1efaf10",
+      "opening_line": "Tu se' passato, o gran GUARNELLO, al Cielo",
+      "period": "16th_century",
+      "source_identity": "bibit:sonnet:bibit001132:structural_0045",
+      "source_logical_sha256": "ca4445aee7d297c561ff06b47a13b03154ab07773c71ccb8a16356b12c6a5a6a",
+      "source_split": "sonnets_validation",
+      "work_key": "work:594ea28e26d77bfe"
+    },
+    {
+      "author_key": "author:534f4984f6298eeb",
+      "id": "exploratory_d2966e8da7c37636",
+      "opening_line": "Sceso il tiranno Amor dal ciel là dove",
+      "period": "16th_century",
+      "source_identity": "bibit:sonnet:bibit001132:structural_0070",
+      "source_logical_sha256": "415dbb16412b969bfd3a95a64930f032a02b6894610617bcdca367b88bfb3b0e",
+      "source_split": "sonnets_validation",
+      "work_key": "work:7641f178e27a7735"
+    },
+    {
+      "author_key": "author:506112ae4960c671",
+      "id": "exploratory_26e0c8d9bf77705e",
+      "opening_line": "Altri loderà il viso, altri le chiome",
+      "period": "16th_century",
+      "source_identity": "v6:sonnet:ariosto_sonetto_xii",
+      "source_logical_sha256": "3df847d016c76f148fdf7fa870133765527df92765e187158997a5a260753426",
+      "source_split": "sonnets_validation",
+      "work_key": "work:cdcb2e971ad09952"
+    },
+    {
+      "author_key": "author:506112ae4960c671",
+      "id": "exploratory_1ffaa2bd951e69a6",
+      "opening_line": "Son questi i nodi d'ôr, questi i capelli,",
+      "period": "16th_century",
+      "source_identity": "v6:sonnet:ariosto_sonetto_xxiii",
+      "source_logical_sha256": "a59c75289a2559240d2d574c3b4bf5b651ea0e55126df4c46a19b9bf501b0778",
+      "source_split": "sonnets_validation",
+      "work_key": "work:8152454cadb46611"
+    },
+    {
+      "author_key": "author:50c6accb5ff22f7a",
+      "id": "exploratory_8cdce6f183013ca4",
+      "opening_line": "LE nostre colpe an mosso il tuo furore",
+      "period": "16th_century",
+      "source_identity": "v6:sonnet:colonna_sonetti_spirituali_sonetto_ci",
+      "source_logical_sha256": "4aff0fdbf7f00b234d18e8e278448158731810e1fcb02d2ae943f2f92e28ecdd",
+      "source_split": "sonnets_validation",
+      "work_key": "work:d367be72c2688c22"
+    },
+    {
+      "author_key": "author:50c6accb5ff22f7a",
+      "id": "exploratory_f51728351e3f2666",
+      "opening_line": "LA mia divina luce, e doppia scorta",
+      "period": "16th_century",
+      "source_identity": "v6:sonnet:colonna_sonetto_xcv",
+      "source_logical_sha256": "1a8274be4236ce69915d73f82dce71e45b5c93ccddbb87e51ab5d78e02860413",
+      "source_split": "sonnets_validation",
+      "work_key": "work:7db7bba568650196"
+    },
+    {
+      "author_key": "author:dfcb8cc2d6dcd92b",
+      "id": "exploratory_8059171bb8de4d9a",
+      "opening_line": "Famosi colli alteramente nati,",
+      "period": "16th_century",
+      "source_identity": "v6:sonnet:sannazaro_famosi_colli_alteramente_nati",
+      "source_logical_sha256": "4e68f3bc38b1224497ac40afda465047b943dd9cab138b490f81a20a918fa3d1",
+      "source_split": "sonnets_validation",
+      "work_key": "work:d7b63ebf726809b1"
+    },
+    {
+      "author_key": "author:d5abb88cc8491986",
+      "id": "exploratory_ade8dc3db4947931",
+      "opening_line": "Ecco, Amor, io morrò, perché la vita",
+      "period": "16th_century",
+      "source_identity": "v6:sonnet:stampa_rime_d_amore_cxcvi",
+      "source_logical_sha256": "12ff85b4343a0e9e2107e163d22c148af163ec0a7e1504e9b3218d8c85f4f5be",
+      "source_split": "sonnets_validation",
+      "work_key": "work:be48f7e588ee844b"
+    },
+    {
+      "author_key": "author:d5abb88cc8491986",
+      "id": "exploratory_066ed75ea0a0c0d9",
+      "opening_line": "O rive, o lidi, che giá foste porto",
+      "period": "16th_century",
+      "source_identity": "v6:sonnet:stampa_rime_d_amore_cxl",
+      "source_logical_sha256": "cf975560286b196d611baf25c91be740f7e2953693344643eb5cb801a556e2c9",
+      "source_split": "sonnets_validation",
+      "work_key": "work:d8bc51753c827d4b"
+    },
+    {
+      "author_key": "author:750be1a2136c8b4c",
+      "id": "exploratory_7ee73c02ca317d3a",
+      "opening_line": "Neri, io so ben, che poco giova, o nulla",
+      "period": "16th_century",
+      "source_identity": "v6:sonnet:varchi_sonetto_xxii",
+      "source_logical_sha256": "a293746a20f1345bdad89ffe4c8615f16b908b7c569b71bad53b4a79259a881a",
+      "source_split": "sonnets_validation",
+      "work_key": "work:efc5f799aff05c58"
+    },
+    {
+      "author_key": "author:4a3cbeb1e0ec0734",
+      "id": "exploratory_b1d7554ee393a13d",
+      "opening_line": "PERCHE* TUO GRAN BELLEZZE AL MONDO SIE*NO",
+      "period": "16th_to_17th_century_unresolved",
+      "source_identity": "ilc_ota:sonnet:ota_0304:rime-0304:block_0119",
+      "source_logical_sha256": "ab6abfbd44348525245afaeb22432fd6d012689ca5956383e2d734b34975d989",
+      "source_split": "sonnets_validation",
+      "work_key": "work:601c3d9857340c2f"
+    },
+    {
+      "author_key": "author:4a3cbeb1e0ec0734",
+      "id": "exploratory_922470bbf1c23f46",
+      "opening_line": "NON FUR MEN LIETI CHE TURBATI E TRISTI",
+      "period": "16th_to_17th_century_unresolved",
+      "source_identity": "ilc_ota:sonnet:ota_0304:rime-0304:block_0164",
+      "source_logical_sha256": "ad13e4b6c7e3b39292cd3c79dd03b07fd0aac721951ceed7ba62e050312b4052",
+      "source_split": "sonnets_validation",
+      "work_key": "work:601c3d9857340c2f"
+    },
+    {
+      "author_key": "author:3c08e657b66ddf9f",
+      "id": "exploratory_6b978f93fc582aab",
+      "opening_line": "Signor, tentai da terra alzarmi alquanto,",
+      "period": "17th_century",
+      "source_identity": "bibit:sonnet:bibit000364:sonnet_0068",
+      "source_logical_sha256": "6955b09b5d38797e06775c9cddc5bd7455823e66126824390ea60f8d89e1628a",
+      "source_split": "sonnets_validation",
+      "work_key": "work:539d04d045141e69"
+    },
+    {
+      "author_key": "author:3239bd6eb754c7b7",
+      "id": "exploratory_8f284751fdcbbbc7",
+      "opening_line": "GIà non poss'io da lunge il bell'aspetto",
+      "period": "17th_century",
+      "source_identity": "v6:sonnet:andreini_sonetti_clxxiii_clxxiv_sonetto_clxxiii",
+      "source_logical_sha256": "5d9920c00fb9ccc6bc34f5d3661e4761960231146626a14db16cc48a47f1c7bf",
+      "source_split": "sonnets_validation",
+      "work_key": "work:d4582296fafe2149"
+    },
+    {
+      "author_key": "author:3239bd6eb754c7b7",
+      "id": "exploratory_0b6a68688318930f",
+      "opening_line": "FAtto per tè Comica illustre i' veggio",
+      "period": "17th_century",
+      "source_identity": "v6:sonnet:andreini_sonetti_clxxix_clxxx_sonetto_clxxviiii",
+      "source_logical_sha256": "37b2fecb0577922f7f9720f4f527ac9d075b514678f583a599c24f774e1d56d0",
+      "source_split": "sonnets_validation",
+      "work_key": "work:3af6b5db0d0553b7"
+    },
+    {
+      "author_key": "author:3239bd6eb754c7b7",
+      "id": "exploratory_ff93c1bc93d444e7",
+      "opening_line": "SE quant'io osservo voi tanto foss'io",
+      "period": "17th_century",
+      "source_identity": "v6:sonnet:andreini_sonetti_clxxxiii_clxxxiv_sonetto_clxxiii",
+      "source_logical_sha256": "8ac5f35aea3130dcc8708a723c96d419e4d990d435b841493a306421def8bb71",
+      "source_split": "sonnets_validation",
+      "work_key": "work:47460d1f90299165"
+    },
+    {
+      "author_key": "author:3239bd6eb754c7b7",
+      "id": "exploratory_57ce7fd2223da0c9",
+      "opening_line": "PIansi gran tempo, ed hebbi il cor piagato",
+      "period": "17th_century",
+      "source_identity": "v6:sonnet:andreini_sonetto_cli",
+      "source_logical_sha256": "4af87fbcb42e0f94f9f526781be3182fb5dbec6e318a4ae2b43905fb0008027c",
+      "source_split": "sonnets_validation",
+      "work_key": "work:31893c5c629696e7"
+    },
+    {
+      "author_key": "author:3239bd6eb754c7b7",
+      "id": "exploratory_e6abe1312695cc85",
+      "opening_line": "O Imagine bella di colui,",
+      "period": "17th_century",
+      "source_identity": "v6:sonnet:andreini_sonetto_clvii",
+      "source_logical_sha256": "503952fa54ad4dd005e554b740c0f4ec56d227f065234dd991e76272b0974b5f",
+      "source_split": "sonnets_validation",
+      "work_key": "work:ee23d39c1857c25d"
+    },
+    {
+      "author_key": "author:3239bd6eb754c7b7",
+      "id": "exploratory_1460e8f8131d3505",
+      "opening_line": "PEr te non fia, ch'io più m'adorni, e terga,",
+      "period": "17th_century",
+      "source_identity": "v6:sonnet:andreini_sonetto_clxi",
+      "source_logical_sha256": "42b52f19148a27eb3a367a5be4ff8aeee954e2b0271e75ae9aa1fc512e86fa91",
+      "source_split": "sonnets_validation",
+      "work_key": "work:1ae3b299540c0d44"
+    },
+    {
+      "author_key": "author:3239bd6eb754c7b7",
+      "id": "exploratory_e46a9b5f2cf13162",
+      "opening_line": "DE' tuoi vivi color l'opera altera",
+      "period": "17th_century",
+      "source_identity": "v6:sonnet:andreini_sonetto_clxx",
+      "source_logical_sha256": "31ecd9f032da77360b935336083080510bf740b191774c665e39b2428ebb6911",
+      "source_split": "sonnets_validation",
+      "work_key": "work:7191e81ea8706217"
+    },
+    {
+      "author_key": "author:3239bd6eb754c7b7",
+      "id": "exploratory_6fcfa9ec326363df",
+      "opening_line": "SE col guardo sereno alto desire",
+      "period": "17th_century",
+      "source_identity": "v6:sonnet:andreini_sonetto_cxlv",
+      "source_logical_sha256": "d92154740055b36d523e768d839bb9ed728edffc13d56ab3b495cab92986ab03",
+      "source_split": "sonnets_validation",
+      "work_key": "work:bf371a23f26377d7"
+    },
+    {
+      "author_key": "author:3239bd6eb754c7b7",
+      "id": "exploratory_fccbb2d58574f4d7",
+      "opening_line": "SOn pur note di Tirsi. ei pur di Fille",
+      "period": "17th_century",
+      "source_identity": "v6:sonnet:andreini_sonetto_cxv",
+      "source_logical_sha256": "470c0cbf0af60e2e96213793aa4e4a7f19636c99c524572f5bfb0dddef4f2b4d",
+      "source_split": "sonnets_validation",
+      "work_key": "work:3c74351815924d1a"
+    },
+    {
+      "author_key": "author:3239bd6eb754c7b7",
+      "id": "exploratory_835405c8419ed57b",
+      "opening_line": "DIscior vorrei da le deserte arene",
+      "period": "17th_century",
+      "source_identity": "v6:sonnet:andreini_sonetto_lviii",
+      "source_logical_sha256": "c75fb1be4a9ccbb21dd79fd10c6815e5cb32487cad12751e305692ff9d94e277",
+      "source_split": "sonnets_validation",
+      "work_key": "work:09e0d086dd117fb8"
+    },
+    {
+      "author_key": "author:3239bd6eb754c7b7",
+      "id": "exploratory_165fcd886bccb984",
+      "opening_line": "E Cinta sì dal ferro empio, e nemico",
+      "period": "17th_century",
+      "source_identity": "v6:sonnet:andreini_sonetto_lxxvii",
+      "source_logical_sha256": "5ac425420bb1cb4aaf54ba4d24f0027dd274f3c611260a59ab0773f18ecaecc0",
+      "source_split": "sonnets_validation",
+      "work_key": "work:1f45780a6bb5d182"
+    },
+    {
+      "author_key": "author:3239bd6eb754c7b7",
+      "id": "exploratory_731de7a94aa1b966",
+      "opening_line": "SPirando l'aure placide, e seconde",
+      "period": "17th_century",
+      "source_identity": "v6:sonnet:andreini_sonetto_v",
+      "source_logical_sha256": "28187f393d081a2b7fbe55a1d01e97f51c73ee9ff639369c0746a20aac6bfa0e",
+      "source_split": "sonnets_validation",
+      "work_key": "work:6a1d4ce87425a12b"
+    },
+    {
+      "author_key": "author:3239bd6eb754c7b7",
+      "id": "exploratory_937603fec40167ea",
+      "opening_line": "QUando alluma nascendo il Sol la terra,",
+      "period": "17th_century",
+      "source_identity": "v6:sonnet:andreini_sonetto_xlix",
+      "source_logical_sha256": "22c7c434612425e7dc496e65d37eda9db120cf68f1013101280f212b01d932ab",
+      "source_split": "sonnets_validation",
+      "work_key": "work:0307a4bf955e9577"
+    },
+    {
+      "author_key": "author:3239bd6eb754c7b7",
+      "id": "exploratory_9a1c97d0817eac98",
+      "opening_line": "DIsperata mia doglia, disperate",
+      "period": "17th_century",
+      "source_identity": "v6:sonnet:andreini_sonetto_xlv",
+      "source_logical_sha256": "33384a12b668a99812989377db58e6df54d908876426a0b463d276b757afcc13",
+      "source_split": "sonnets_validation",
+      "work_key": "work:39781a66eea6fc6c"
+    },
+    {
+      "author_key": "author:2ada67e9ed19ed9d",
+      "id": "exploratory_2e9a2e1009d77073",
+      "opening_line": "Sogni e favole io fingo; e pure in carte",
+      "period": "18th_century",
+      "source_identity": "bibit:sonnet:bibit001221:sonnet_0001",
+      "source_logical_sha256": "033fe70d25325a4a243cffb186ed17dba2c3e652ca80a98289985b7abf09d364",
+      "source_split": "sonnets_validation",
+      "work_key": "work:93c5be0ee859f08d"
+    },
+    {
+      "author_key": "author:2ada67e9ed19ed9d",
+      "id": "exploratory_6853cf0503c58af2",
+      "opening_line": "Fola non è la viva face e pura",
+      "period": "18th_century",
+      "source_identity": "bibit:sonnet:bibit001221:sonnet_0005",
+      "source_logical_sha256": "b7f31d5afd75e7f42bd6ece000f35d98459fc89ce2b753c1a663486f75ccc517",
+      "source_split": "sonnets_validation",
+      "work_key": "work:93c5be0ee859f08d"
+    },
+    {
+      "author_key": "author:2ada67e9ed19ed9d",
+      "id": "exploratory_41792bde1b538e94",
+      "opening_line": "Nudo al volgo profan mai non s'espose",
+      "period": "18th_century",
+      "source_identity": "bibit:sonnet:bibit001221:sonnet_0008",
+      "source_logical_sha256": "94e5141ee3cc1dbbd55f6a16be1c3b9e5eeb34ecd78fae788cff25467f828537",
+      "source_split": "sonnets_validation",
+      "work_key": "work:93c5be0ee859f08d"
+    },
+    {
+      "author_key": "author:2ada67e9ed19ed9d",
+      "id": "exploratory_74583e38cec9e73d",
+      "opening_line": "Leggiadra rosa, le cui pure foglie",
+      "period": "18th_century",
+      "source_identity": "bibit:sonnet:bibit001221:sonnet_0009",
+      "source_logical_sha256": "5a173eb7d36e73670435855150e5fbee744b002ae49b065455d72ede95a869ff",
+      "source_split": "sonnets_validation",
+      "work_key": "work:93c5be0ee859f08d"
+    },
+    {
+      "author_key": "author:2ada67e9ed19ed9d",
+      "id": "exploratory_67d6f027991a4dd7",
+      "opening_line": "Queste, che in dono il mio signor mi manda",
+      "period": "18th_century",
+      "source_identity": "bibit:sonnet:bibit001221:sonnet_0010",
+      "source_logical_sha256": "cb2f735349504051a87458c90b5a9303c20c87cef1a3b9fce94ded157e87dca8",
+      "source_split": "sonnets_validation",
+      "work_key": "work:93c5be0ee859f08d"
+    },
+    {
+      "author_key": "author:2ada67e9ed19ed9d",
+      "id": "exploratory_56cf3c0a9a989ab6",
+      "opening_line": "Di queste tazze al barbaro ornamento,",
+      "period": "18th_century",
+      "source_identity": "bibit:sonnet:bibit001221:sonnet_0011",
+      "source_logical_sha256": "b9b3edc7fd19793e3fce1462847953ee6a58da52c6cdcb1d6d5cabb5fcd64b43",
+      "source_split": "sonnets_validation",
+      "work_key": "work:93c5be0ee859f08d"
+    },
+    {
+      "author_key": "author:2ada67e9ed19ed9d",
+      "id": "exploratory_e7bec9466f4489f4",
+      "opening_line": "Questo fiume real, che le bell'onde",
+      "period": "18th_century",
+      "source_identity": "bibit:sonnet:bibit001221:sonnet_0012",
+      "source_logical_sha256": "0de6d05da89c5afc073836306553cecbf7558e7950bf8fbe8d113c0f8163b687",
+      "source_split": "sonnets_validation",
+      "work_key": "work:93c5be0ee859f08d"
+    },
+    {
+      "author_key": "author:2ada67e9ed19ed9d",
+      "id": "exploratory_d7c72cdc4d2ebbe4",
+      "opening_line": "Ben lo diss'io che da feconda stella",
+      "period": "18th_century",
+      "source_identity": "bibit:sonnet:bibit001221:sonnet_0018",
+      "source_logical_sha256": "e7f3aa74c7359855e5efa5ed7ad35f0fdf342a55c308908ab38c1e5fa3ac8dd3",
+      "source_split": "sonnets_validation",
+      "work_key": "work:93c5be0ee859f08d"
+    },
+    {
+      "author_key": "author:2ada67e9ed19ed9d",
+      "id": "exploratory_9f01aee3f26dfab2",
+      "opening_line": "Gli armonici principii, onde le liete",
+      "period": "18th_century",
+      "source_identity": "bibit:sonnet:bibit001221:sonnet_0023",
+      "source_logical_sha256": "9d1498ab3ff8a2bbe2d5bc56f8935bb0184a835003873a610f8ff418da28fbc1",
+      "source_split": "sonnets_validation",
+      "work_key": "work:93c5be0ee859f08d"
+    },
+    {
+      "author_key": "author:2ada67e9ed19ed9d",
+      "id": "exploratory_1daa503e2a4bb49f",
+      "opening_line": "Oh speme, oh gloria del romano Impero",
+      "period": "18th_century",
+      "source_identity": "bibit:sonnet:bibit001221:sonnet_0032",
+      "source_logical_sha256": "b56ec759547760d8f56541810afe8fe31677e10d4a2459c453a031dad5eae6b4",
+      "source_split": "sonnets_validation",
+      "work_key": "work:93c5be0ee859f08d"
+    },
+    {
+      "author_key": "author:748f1f6d9d0436a2",
+      "id": "exploratory_09c84009d990a286",
+      "opening_line": "Ed io pure, ancorché dei fervidi anni",
+      "period": "18th_century",
+      "source_identity": "v6:sonnet:alfieri_clxx_ad_una_improvvisatrice",
+      "source_logical_sha256": "47c5961d5ad69de0da9a889420dbe6a86f4350bb66c78401f02d97157877c4ce",
+      "source_split": "sonnets_validation",
+      "work_key": "work:30835bcfaa3986e0"
+    },
+    {
+      "author_key": "author:748f1f6d9d0436a2",
+      "id": "exploratory_0ca1618251a0d331",
+      "opening_line": "Bella arte-fatta selva, in cui sen vanno",
+      "period": "18th_century",
+      "source_identity": "v6:sonnet:alfieri_cxxxi_nella_solitudine_della_selva",
+      "source_logical_sha256": "d9edac00d30c38236fae4ab30db3debd8f3a2a1a45e81df68de808c2551fb20d",
+      "source_split": "sonnets_validation",
+      "work_key": "work:44ecd1927186a4f4"
+    },
+    {
+      "author_key": "author:748f1f6d9d0436a2",
+      "id": "exploratory_7d99079513df575f",
+      "opening_line": "Donna mia, che di' tu? ch'io men dolente",
+      "period": "18th_century",
+      "source_identity": "v6:sonnet:alfieri_xciv_deboli_speranze_e_dolore_certo",
+      "source_logical_sha256": "c8258e16b4b9a0ca7d657483ea3cdb7a5a9d39927c5f9ffaec65d711a200d5ed",
+      "source_split": "sonnets_validation",
+      "work_key": "work:9aa8ee9350f1248f"
+    },
+    {
+      "author_key": "author:748f1f6d9d0436a2",
+      "id": "exploratory_404440fc391bdbe1",
+      "opening_line": "Ecco, già l'ora appressa, ond'io trar soglio",
+      "period": "18th_century",
+      "source_identity": "v6:sonnet:alfieri_xiv_si_duole_perche_non_puo_andar_dalla_sua_donna",
+      "source_logical_sha256": "9e2e9e5e4c702f3b58c05dbb64b90c539a7d825da48a08ddb98177c720d5da58",
+      "source_split": "sonnets_validation",
+      "work_key": "work:16d481fb09dade66"
+    },
+    {
+      "author_key": "author:748f1f6d9d0436a2",
+      "id": "exploratory_fd936cbdbe565ab8",
+      "opening_line": "Immensa mole, che nel ciel torreggi,",
+      "period": "18th_century",
+      "source_identity": "v6:sonnet:alfieri_xxxi_la_cupola_di_san_pietro",
+      "source_logical_sha256": "fcf5a4126c848b09c2837f592855e6d68cbf703b5815b324c9e0f91a1796edda",
+      "source_split": "sonnets_validation",
+      "work_key": "work:67129beb6e8c4120"
+    },
+    {
+      "author_key": "author:e74979dd64c3378c",
+      "id": "exploratory_b966688c013c51c3",
+      "opening_line": "Se un vocabolo o due l'uso ribelle",
+      "period": "19th_century",
+      "source_identity": "bibit:sonnet:bibit000226:sonnet_0007",
+      "source_logical_sha256": "301683f59162b550cbba98bcb9927ac7fd289cb0919f6d694127d47521db7e95",
+      "source_split": "sonnets_validation",
+      "work_key": "work:c9a26d689abea05f"
+    },
+    {
+      "author_key": "author:e74979dd64c3378c",
+      "id": "exploratory_6b237a1974003219",
+      "opening_line": "Quasi obliando la corporea salma,",
+      "period": "19th_century",
+      "source_identity": "bibit:sonnet:bibit000226:sonnet_0010",
+      "source_logical_sha256": "3e9f7af35bea68483f48f49e92ae22acee21c1d9768ed8939fc8574fe1ca8302",
+      "source_split": "sonnets_validation",
+      "work_key": "work:c9a26d689abea05f"
+    },
+    {
+      "author_key": "author:e74979dd64c3378c",
+      "id": "exploratory_dfac2f1b4571cf52",
+      "opening_line": "Il Papa, il Papa! Il Papa, pover'uomo,",
+      "period": "19th_century",
+      "source_identity": "bibit:sonnet:bibit000226:sonnet_0017",
+      "source_logical_sha256": "67367285c3ca53db668119999e4f9152c509d95953d3361fe2b8a3e8ac4b2e6f",
+      "source_split": "sonnets_validation",
+      "work_key": "work:c9a26d689abea05f"
+    },
+    {
+      "author_key": "author:e74979dd64c3378c",
+      "id": "exploratory_dd9bc781e9fc1ab1",
+      "opening_line": "Allor che ti cacciò la parte Nera",
+      "period": "19th_century",
+      "source_identity": "bibit:sonnet:bibit000226:sonnet_0020",
+      "source_logical_sha256": "2b4f0b9686f74bc04d8ad3493416da0693ebe5ff4b4bce6994513f26643315e6",
+      "source_split": "sonnets_validation",
+      "work_key": "work:c9a26d689abea05f"
+    },
+    {
+      "author_key": "author:e74979dd64c3378c",
+      "id": "exploratory_728c158519ba6235",
+      "opening_line": "Felice te, che nella tua carriera",
+      "period": "19th_century",
+      "source_identity": "bibit:sonnet:bibit000226:structural_0002",
+      "source_logical_sha256": "d79ed1ad9312e1e0d007da066eaa2869a5f06e42bdbdbf6a5234ef9c3e7a3b02",
+      "source_split": "sonnets_validation",
+      "work_key": "work:c3f9c86e032df953"
+    },
+    {
+      "author_key": "author:d52184ff95efe996",
+      "id": "exploratory_c93b4bc6d5efa0a8",
+      "opening_line": "Te salutiam risorto a un dì novello,",
+      "period": "19th_century",
+      "source_identity": "bibit:sonnet:bibit000698:structural_0001",
+      "source_logical_sha256": "452612ffd2178aa37e9b04f397834e26f62dc21407132ff51c15977ad7512b6f",
+      "source_split": "sonnets_validation",
+      "work_key": "work:5c3d98dacd4abe24"
+    },
+    {
+      "author_key": "author:d52184ff95efe996",
+      "id": "exploratory_80b4cc6d6eec56d2",
+      "opening_line": "Qual, da viaggi dolorosi affranto,",
+      "period": "19th_century",
+      "source_identity": "bibit:sonnet:bibit000698:structural_0003",
+      "source_logical_sha256": "845ef0f1e1e07a42182349f95a53d4a7a25f6be5e70fdcc3569965ff48a50183",
+      "source_split": "sonnets_validation",
+      "work_key": "work:643f57dc88e01256"
+    },
+    {
+      "author_key": "author:993f686f422f259c",
+      "id": "exploratory_2c2262ba2ca0bd48",
+      "opening_line": "Qualsivoglia scrittore, asino o dotto,",
+      "period": "19th_century",
+      "source_identity": "bibit:sonnet:bibit001454:structural_0003",
+      "source_logical_sha256": "9d4b65fde2b184f24fc2f4bf10088ee8b3cfaebaa05f9d2423a68618235f709e",
+      "source_split": "sonnets_validation",
+      "work_key": "work:502217cc92e40879"
+    },
+    {
+      "author_key": "generic:work:d607adc32a2b7552",
+      "id": "exploratory_629983a39099bc0a",
+      "opening_line": "Un'ora di rivolta mi flagella,",
+      "period": "19th_century",
+      "source_identity": "gutenberg:sonnet:pg61548:char103875-104475",
+      "source_logical_sha256": "464a0f7694cc84ef89d56320c53e4ccf5f123017fa068f3ec82bf8333ec42b74",
+      "source_split": "sonnets_validation",
+      "work_key": "work:d607adc32a2b7552"
+    },
+    {
+      "author_key": "generic:work:d607adc32a2b7552",
+      "id": "exploratory_f1ef8cbc44b3192a",
+      "opening_line": "Allora io vidi alcuna alzare il dito",
+      "period": "19th_century",
+      "source_identity": "gutenberg:sonnet:pg61548:char71000-71620",
+      "source_logical_sha256": "8894be98b84984109f2ab00e7010b53e30862684411313a487f0513f86404569",
+      "source_split": "sonnets_validation",
+      "work_key": "work:d607adc32a2b7552"
+    },
+    {
+      "author_key": "generic:work:d607adc32a2b7552",
+      "id": "exploratory_6efcd380989e95ef",
+      "opening_line": "Tanto più gaudiose innanzi agli occhi,",
+      "period": "19th_century",
+      "source_identity": "gutenberg:sonnet:pg61548:char74646-75245",
+      "source_logical_sha256": "ce81dd41441205a7514ed01407c9f7b3b1d37f5c5c9ad35d29cde6016ff21ca4",
+      "source_split": "sonnets_validation",
+      "work_key": "work:d607adc32a2b7552"
+    },
+    {
+      "author_key": "generic:work:d607adc32a2b7552",
+      "id": "exploratory_1959d7484b965157",
+      "opening_line": "Venne al frutteto l'anima superba",
+      "period": "19th_century",
+      "source_identity": "gutenberg:sonnet:pg61548:char97276-97873",
+      "source_logical_sha256": "66a8ff4a14158e7f95d991c2645820bda8bfe186d4a10b424d546655654662e4",
+      "source_split": "sonnets_validation",
+      "work_key": "work:d607adc32a2b7552"
+    },
+    {
+      "author_key": "author:4e99babf5c9bf415",
+      "id": "exploratory_d6ef7823ced7f79b",
+      "opening_line": "Un pulcinella la plebea brigata",
+      "period": "19th_century",
+      "source_identity": "wikisource:sonnet:itws:367320:sonnet0001",
+      "source_logical_sha256": "44cd2a3eefaa3a14d8a17e5e88971ffaef683ad7e34ba7172f04f542110c1261",
+      "source_split": "sonnets_validation",
+      "work_key": "work:072e8ca23be86e90"
+    },
+    {
+      "author_key": "author:5247c8cb6f087311",
+      "id": "exploratory_fd7da94384181536",
+      "opening_line": "Vergini rose, che al nostro giardino",
+      "period": "19th_century",
+      "source_identity": "wikisource:sonnet:itws:991109:sonnet0001",
+      "source_logical_sha256": "b678c90e05a20899ecc7d9e14b1da3fb371116f9a33d94d28f0b80443a74e3d3",
+      "source_split": "sonnets_validation",
+      "work_key": "work:5d17a26e2cd5978d"
+    },
+    {
+      "author_key": "generic:work:4e370ee23d14506c",
+      "id": "exploratory_bd8f2054f808ff5c",
+      "opening_line": "A l ciel or triunfando spiego l'ale;",
+      "period": "origins_through_18th_unresolved",
+      "source_identity": "gutenberg:sonnet:pg35799:char144899-145518",
+      "source_logical_sha256": "66391019c2e89e54f468a341f46a913b4d3dc5e6cb61c525c99ae7a654841699",
+      "source_split": "sonnets_validation",
+      "work_key": "work:4e370ee23d14506c"
+    },
+    {
+      "author_key": "author:a99295d5c34817d6",
+      "id": "exploratory_76114b7ac26e72a6",
+      "opening_line": "Non più contrasto orsù tutto s’acchetti,",
+      "period": "origins_through_18th_unresolved",
+      "source_identity": "wikisource:sonnet:itws:240327:sonnet0012",
+      "source_logical_sha256": "0fa7c62ce1ec9a9055c1c192575e280061f36dfa8dcc4b79e989cbbf4ae6272b",
+      "source_split": "sonnets_validation",
+      "work_key": "work:0dfefdeb783207eb"
+    },
+    {
+      "author_key": "author:07aff2cf46790202",
+      "id": "exploratory_3e35dc01e9105607",
+      "opening_line": "Nella più bella terra casentina",
+      "period": "origins_through_18th_unresolved",
+      "source_identity": "wikisource:sonnet:itws:481165:sonnet0001",
+      "source_logical_sha256": "b0a19066b8a1d90f1aa444e9e5820b4c4cb5693b9af01147fc05653b5bce7433",
+      "source_split": "sonnets_validation",
+      "work_key": "work:dbd3ed0bfe98ddaa"
+    },
+    {
+      "author_key": "author:98033b276e426964",
+      "id": "exploratory_91ce864da80487e6",
+      "opening_line": "Lasso, ben so che ’l mio crudel martíre",
+      "period": "origins_through_18th_unresolved",
+      "source_identity": "wikisource:sonnet:itws:552927:sonnet0031",
+      "source_logical_sha256": "7b5c74a1ba2d46f51d8a52523d272d26def62eb481b2eb4ce2e0060c68857422",
+      "source_split": "sonnets_validation",
+      "work_key": "work:9fb0064f4d051646"
+    },
+    {
+      "author_key": "author:4a3cbeb1e0ec0734",
+      "id": "exploratory_dbf0261c249c7c46",
+      "opening_line": "NON ha l’ottimo artista alcun concetto",
+      "period": "origins_through_18th_unresolved",
+      "source_identity": "wikisource:sonnet:itws:826842:sonnet0001",
+      "source_logical_sha256": "61822d071addf958f70df658fdaa8ce7c70aa2e75d12d405fba5b89a073ed1c5",
+      "source_split": "sonnets_validation",
+      "work_key": "work:965e43d0986ae160"
+    },
+    {
+      "author_key": "author:4a3cbeb1e0ec0734",
+      "id": "exploratory_d0957f8633748ec7",
+      "opening_line": "VEGGIO co’ bei vostri occhi un dolce lume,",
+      "period": "origins_through_18th_unresolved",
+      "source_identity": "wikisource:sonnet:itws:826843:sonnet0001",
+      "source_logical_sha256": "abe2d8c9eb4ffa9e4b057f841dd1f914a3cb36cd9f412aa22450e4b37599ccd9",
+      "source_split": "sonnets_validation",
+      "work_key": "work:f276aebf89753230"
+    },
+    {
+      "author_key": "author:53fd4cabdde356f0",
+      "id": "exploratory_33580e146da8bbf4",
+      "opening_line": "QUASI colomba immacolata e pura,",
+      "period": "origins_through_18th_unresolved",
+      "source_identity": "wikisource:sonnet:itws:826897:sonnet0001",
+      "source_logical_sha256": "e4f2120e3b42b9d260c90c181328da2fadb1ff6002f9f233b7c7a4367d510fdc",
+      "source_split": "sonnets_validation",
+      "work_key": "work:5f7fd1f3c6f6e59d"
+    },
+    {
+      "author_key": "author:de059c295e5c4bf3",
+      "id": "exploratory_7b2fef1964ad889b",
+      "opening_line": "Quando giojosa infra i celesti amori",
+      "period": "origins_through_18th_unresolved",
+      "source_identity": "wikisource:sonnet:itws:879511:sonnet0004",
+      "source_logical_sha256": "c062fba162a829bb79d174499af72a7555455d59dd89396a4e25f0cb67e0ca09",
+      "source_split": "sonnets_validation",
+      "work_key": "work:185bae102b5b8cf0"
+    },
+    {
+      "author_key": "author:de059c295e5c4bf3",
+      "id": "exploratory_1dfa04146d8c6bbd",
+      "opening_line": "Sol dagli aspri Appennini il mar Tirreno",
+      "period": "origins_through_18th_unresolved",
+      "source_identity": "wikisource:sonnet:itws:879553:sonnet0006",
+      "source_logical_sha256": "aa62c165b62d6e97b67e4f0335fd72e527bac2caa56ffb13c6ecf1690479a071",
+      "source_split": "sonnets_validation",
+      "work_key": "work:597a9a76ded03944"
+    },
+    {
+      "author_key": "author:de059c295e5c4bf3",
+      "id": "exploratory_6af1450fa828d5bb",
+      "opening_line": "Dispersi scogli a rilegar le sarte,",
+      "period": "origins_through_18th_unresolved",
+      "source_identity": "wikisource:sonnet:itws:879634:sonnet0005",
+      "source_logical_sha256": "99ce0e4b12a155ea51be51f9b5b64d9f741a3241cc9ebd53308d3ef6615096f8",
+      "source_split": "sonnets_validation",
+      "work_key": "work:70801cd4e8ddc48e"
+    },
+    {
+      "author_key": "author:de059c295e5c4bf3",
+      "id": "exploratory_4de354444bd18850",
+      "opening_line": "Mentre con elmo, e di corazza adorno",
+      "period": "origins_through_18th_unresolved",
+      "source_identity": "wikisource:sonnet:itws:879782:sonnet0001",
+      "source_logical_sha256": "5513678b1ab1008413b50854ae69ac01cdbca92a7c865653746830bfa601e44c",
+      "source_split": "sonnets_validation",
+      "work_key": "work:15e4e34e46ccfdd4"
+    },
+    {
+      "author_key": "author:de059c295e5c4bf3",
+      "id": "exploratory_802570f35b8f9cc8",
+      "opening_line": "O che sotto l’Aurora a’ gioghi alteri",
+      "period": "origins_through_18th_unresolved",
+      "source_identity": "wikisource:sonnet:itws:879961:sonnet0001",
+      "source_logical_sha256": "dc845a9c967d985ea5dd11ba1c55862859325b8b70790bda5ac824bb914b61c5",
+      "source_split": "sonnets_validation",
+      "work_key": "work:22413afaa4f42c9c"
+    },
+    {
+      "author_key": "author:de059c295e5c4bf3",
+      "id": "exploratory_f1f21b02493f18eb",
+      "opening_line": "Che a Spagna orgoglio, e colla man possente",
+      "period": "origins_through_18th_unresolved",
+      "source_identity": "wikisource:sonnet:itws:880098:sonnet0001",
+      "source_logical_sha256": "ea3ecee57cca27fb1dc427596b0c5530fa84a0e2d8ca4c6dccd20513b3daebd3",
+      "source_split": "sonnets_validation",
+      "work_key": "work:5e12c04cffe672d2"
+    },
+    {
+      "author_key": "author:de059c295e5c4bf3",
+      "id": "exploratory_666cc7f64d503d87",
+      "opening_line": "Vincenzo, se giammai per me si vede",
+      "period": "origins_through_18th_unresolved",
+      "source_identity": "wikisource:sonnet:itws:881832:sonnet0004",
+      "source_logical_sha256": "02ed98e6129337c23aad12a5e8578d41faf048542bff2ee14dadf9cf01a5ddfa",
+      "source_split": "sonnets_validation",
+      "work_key": "work:6f50f92e4cca96f0"
+    }
+  ],
+  "selection_policy": "waterfill_period_quota_then_minimize_global_author_and_work_reuse",
+  "selection_seed": 8307,
+  "source_document_index_sha256": "51b0ee44e9d76e3fb5d4942fccedc9ba6a07e90778dc4340bdcedad3f7d0d192",
+  "source_pool_id": "sonnets_validation",
+  "source_split": "validation",
+  "source_token_shard_sha256": "4c9d9e071ac1a293e9831504d7e692ffbf7efeb587fb4f61d47eba6b175834f5",
+  "tokenizer_sha256": "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c",
+  "unique_authors": 36,
+  "unique_works": 104,
+  "v7_test_accessed": false
+}

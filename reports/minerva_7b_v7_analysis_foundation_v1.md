@@ -71,10 +71,23 @@ records once, then running exact longest-common-substring work only for
 candidates sharing a generated 40-gram.
 
 The frozen 24-prompt by 3-seed grid remains the confirmatory dataset. A larger,
-separately labeled exploratory generation tier is scheduled so the qualified
-GPU can produce substantially more samples without changing the confirmatory
-contract. Its prompt/seed/decoding mix, batching, cost, and storage bounds must
-be proposed and approved before implementation or execution.
+separately labeled exploratory generation tier is now implemented so the
+qualified GPU can produce substantially more samples without changing the
+confirmatory contract. It freezes 120 validation-only openings, eight seeds,
+and three predeclared conservative/balanced/creative decoding recipes: 2,880
+outputs per state and 20,160 across all seven states. The prompt builder verifies
+the validation document index, token shard, and tokenizer before deterministically
+balancing historical period and limiting author/work concentration.
+
+The high-volume runner uses batched BF16 cached decoding, one independent RNG
+stream per output, hash-bound relative output paths, batch-level progress, and
+safe resume. A separate one-batch qualification measures usable batch size,
+throughput, runtime, storage, and cost before a full user-launched job. The
+analysis reports per-state/recipe estimates and paired changes for all six
+adjacent transitions plus parent-to-final, with 5,000 clustered bootstrap
+resamples over prompts. A deterministic 504-output blinded subset covers 24
+prompt clusters, all seven states, and all three recipes without exposing model
+or recipe identities in the review sheet.
 
 ## Causal-Experiment Boundary
 
@@ -89,12 +102,12 @@ separate approval.
 
 ## Verification
 
-The focused research/analysis suite passes 27 tests, the adjacent training-
+The focused research/analysis suite passes 32 tests, the adjacent training-
 regression suite passes 47 tests, and the complete repository suite passes
-1,105 tests. Real dry runs validate stage-1 state accounting, the 291-tensor
+1,110 tests. Real dry runs validate stage-1 state accounting, the 291-tensor
 checkpoint layout, the frozen probe contract, 48-probe/72-output execution
-plans, and the private training-only memorization export without altering any
-training artifact.
+plans, the 2,880-output-per-state high-volume plan, and the private training-
+only memorization export without altering any training artifact.
 
 No model weights, private probe token IDs, local run artifacts, raw activations,
 V7 test material, or rented-instance details are published in this report.
