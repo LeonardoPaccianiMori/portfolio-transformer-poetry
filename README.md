@@ -6,17 +6,14 @@ corpora, train under laptop-scale constraints, and compare the result with
 parameter-efficient adaptation of open Minerva models.
 
 The project is complete as an experimental pipeline. No tested model passed the
-full acceptable-quality gate. The selected Minerva 7B adapter is the strongest
-system and powers the local demo, but it remains explicitly experimental.
+full acceptable-quality gate. The final system is a three-stage full-weight
+Minerva 7B V7 model plus one bounded AI-judged DPO adapter. It produced modest,
+replicated completion/surface gains but remains an unreliable sonnet writer.
 
-The additional V7 track completed its three-stage full-weight Minerva 7B
-curriculum: historical/literary adaptation, non-sonnet poetic adaptation, and
-sonnet specialization. The run retained midpoint and selected-boundary states,
-passed its frozen preservation gates, and did not access the sealed V7 final
-test. A seven-state post-training study is now in progress; until its blinded
-behavioral and model-change analyses finish, this repository does not claim
-that V7 produces consistently acceptable poetry. The frozen execution design
-is documented in [Single-H100 Launch Readiness](reports/minerva_7b_v7_single_h100_launch_readiness_v1.md).
+The V7 study retained midpoint and selected-boundary BF16 states, analyzed
+weights, embeddings, hidden representations, losses, and more than 20,000
+validation generations, then ran one hash-frozen test over all 1,244 held-out
+openings. See the [V7 Post-Training Study](reports/minerva_7b_v7_post_training_study.md).
 
 ## Final Result
 
@@ -30,10 +27,20 @@ is documented in [Single-H100 Launch Readiness](reports/minerva_7b_v7_single_h10
 `Form` means exact opening-line preservation and decoder-controlled fourteen
 lines. It does not prove metre or rhyme.
 
-The 7B path adapted a frozen Minerva Instruct parent through historical-Italian
-prose LoRA followed by V6 sonnet specialization. It improved every qualitative
-dimension but still failed grammar and repetition thresholds. The complete
-comparison is in [Final Model Comparison](reports/final_model_comparison.md).
+The newer V7 final test uses 2,488 outputs/system rather than the legacy
+20-output rubric. DPO improved the automatic surface screen from 15.07% to
+17.60% (paired +2.53 points; 95% interval +0.52 to +4.50) and terminal
+punctuation from 17.60% to 20.46%. Neither system had a high-risk memorization
+hit. In the frozen 200-output blind literary review, DPO showed a small
+historical-register gain but no reliable broad quality improvement; DPO had
+3/100 moderate-clean and 0/100 strict-good outputs, versus 0/100 and 0/100 for
+Stage 3. The literary review is deliberately stricter than the surface metrics.
+
+The earlier 7B V6 path adapted a frozen Minerva Instruct parent through
+historical-Italian prose LoRA followed by sonnet specialization. V7 instead
+updated the full BF16 model through historical, poetry, and sonnet stages before
+adding DPO. The complete comparison is in
+[Final Model Comparison](reports/final_model_comparison.md).
 
 ## What This Project Covers
 
@@ -47,8 +54,9 @@ comparison is in [Final Model Comparison](reports/final_model_comparison.md).
 - Fixed prompts, automatic controls, memorization heuristics, blinded review,
   and neighboring-checkpoint selection
 - 4-bit QLoRA and unquantized FP16 LoRA on Minerva 3B and 7B
-- A predeclared AI-judge gate that correctly cancelled unsafe DPO/GRPO branches
-- A standard-library local web server and responsive UI for the selected adapter
+- A failed human-calibration gate plus honestly scoped AI-judge-distillation DPO
+- Full-weight checkpoint, embedding, activation, and behavior-change analysis
+- A standard-library local web server and responsive UI for the selected system
 
 The core from-scratch transformer, training loop, and decoding logic remain
 inspectable project code rather than wrappers around Hugging Face models.
@@ -57,13 +65,15 @@ Minerva comparison.
 
 ## Local Demo
 
-The demo requires the authenticated Minerva cache and retained local epoch-4
-adapter artifacts. It loads the 7B parent in 4-bit NF4 for inference on a 6 GiB
-GPU while keeping the selected adapter unchanged.
+The demo requires the retained local Stage-3 BF16 archive and DPO adapter. It
+loads Stage 3 transiently in 4-bit NF4 for inference on a 6 GiB GPU while
+keeping the selected adapter unchanged. This is a deployment approximation:
+the authoritative checkpoint remains full BF16, and all V7 research evidence
+used unquantized BF16 on the H100.
 
-Expected cached startup: about 20 seconds to several minutes. A verified
-205-token generation took 18.4 seconds on the RTX 3060 Laptop GPU. Progress is
-printed during model loading; the ready URL appears at the end.
+Expected startup is several minutes because the local 14.8 GB checkpoint must
+be read and quantized. Progress is printed during model loading; the ready URL
+appears at the end.
 
 ```bash
 .venv/bin/python -u scripts/serve_sonnet_demo.py --device cuda:0
@@ -71,6 +81,7 @@ printed during model loading; the ready URL appears at the end.
 
 Open [http://127.0.0.1:8000](http://127.0.0.1:8000). Enter one opening line,
 choose temperature and seed, and generate a controlled fourteen-line output.
+Use `--legacy-v6` to load the prior V6 demo.
 
 For a UI-only check that does not allocate model weights:
 
@@ -115,7 +126,9 @@ events by default.
 - [Technical Report](reports/technical_report.md)
 - [Model Card](MODEL_CARD.md)
 - [Final Model Comparison](reports/final_model_comparison.md)
-- [Minerva 7B Final Evaluation](reports/minerva_7b_v6_final_evaluation.md)
+- [Minerva 7B V7 Post-Training Study](reports/minerva_7b_v7_post_training_study.md)
+- [Minerva 7B V7 AI-Judged DPO](reports/minerva_7b_v7_ai_judged_dpo.md)
+- [Minerva 7B V6 Final Evaluation](reports/minerva_7b_v6_final_evaluation.md)
 - [Minerva Judge Gate](reports/minerva_3b_judge_gate.md)
 - [Data Sources And Attribution](DATA_SOURCES_AND_ATTRIBUTION.md)
 
@@ -131,8 +144,9 @@ Liber Liber CC BY-NC-SA editions, PAISÀ CC BY-NC-SA text, and Apache-2.0 Minerv
 parents. See [Data Sources And Attribution](DATA_SOURCES_AND_ATTRIBUTION.md) for
 the exact records.
 
-The selected adapter is not committed publicly because its lineage includes
-PAISÀ replay and the project policy withholds PAISÀ-derived checkpoints. This
+The final checkpoints and adapters are not committed publicly because their
+lineage includes PAISÀ replay and the project policy withholds PAISÀ-derived
+checkpoints. This
 repository does not apply one blanket license over third-party data, models, or
 generated artifacts; downstream users must follow each recorded source term.
 
@@ -140,5 +154,6 @@ generated artifacts; downstream users must follow each recorded source term.
 
 This is not a production LLM and not a claim of solved poetry generation. The
 from-scratch branch demonstrates transformer and data-pipeline engineering. The
-Minerva branch demonstrates practical transfer and parameter-efficient
-adaptation. The fixed evaluations show exactly where both approaches fail.
+Minerva branch demonstrates practical transfer, full-weight curriculum
+adaptation, model-change analysis, and preference optimization. The fixed
+evaluations show exactly where the systems improve and still fail.

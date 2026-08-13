@@ -1,0 +1,43 @@
+{
+  "preference_version": "minerva_7b_v7_dpo_preferences_v1",
+  "analysis_role": "training_only_dpo_preference_data_preparation",
+  "state_id": "stage_3_selected",
+  "state_identity_sha256": "478d5979e25a78375d7af0434db6a5432678762fac2d142af2d4798dda53a474",
+  "prompt_manifest_path": "artifacts/local/minerva_7b_v7_dpo/training_prompts.json",
+  "prompt_manifest_sha256": "45631fdecce259488e134cd67ef1d56f29f0176d6cc18eab90fd8b2b442703e8",
+  "prompt_count": 512,
+  "seeds": [7300, 7301, 7302, 7303],
+  "recipes": [
+    {
+      "recipe_id": "no_labels_balanced",
+      "temperature": 0.7,
+      "top_p": 0.92,
+      "top_k": null,
+      "repetition_penalty": 1.0,
+      "no_repeat_ngram_size": 4,
+      "max_new_tokens": 512,
+      "continuation_line_target": 13
+    },
+    {
+      "recipe_id": "no_labels_creative",
+      "temperature": 0.85,
+      "top_p": 0.95,
+      "top_k": null,
+      "repetition_penalty": 1.0,
+      "no_repeat_ngram_size": 4,
+      "max_new_tokens": 512,
+      "continuation_line_target": 13
+    }
+  ],
+  "candidate_count": 4096,
+  "default_batch_size": 8,
+  "qualification_prompt_count": 8,
+  "qualification_candidate_count": 64,
+  "authorization": {
+    "user_approved_preference_data_experiment": true,
+    "candidate_generation_authorized": true,
+    "dpo_training_authorized": false,
+    "v7_test_access_authorized": false,
+    "instance_lifecycle_action_authorized": false
+  }
+}

@@ -1,153 +1,183 @@
-# Model Card: Minerva 7B Historical-Italian V6 Sonnet LoRA
+# Model Card: Minerva 7B V7 Stage 3 + AI-Judged DPO
 
 ## Model Summary
 
-This is the selected experimental model from the repository's pretrained-model
-branch. It adapts the pinned
-[`sapienzanlp/Minerva-7B-instruct-v1.0`](https://huggingface.co/sapienzanlp/Minerva-7B-instruct-v1.0)
-checkpoint to historical Italian prose and then to opening-line-conditioned
-sonnet composition.
+This is the repository's final experimental sonnet-continuation system. It
+starts from pinned `sapienzanlp/Minerva-7B-instruct-v1.0`, applies three stages
+of full-weight BF16 adaptation, and attaches one rank-8 LoRA-DPO adapter trained
+from AI-judged preferences.
 
-The base model remains frozen. The trainable component is a rank-8 LoRA adapter
-on `q_proj`, `k_proj`, `v_proj`, and `o_proj`, containing 6,815,744 parameters.
-Training used unquantized FP16 base weights. The local demo may load the same
-frozen base in 4-bit NF4 for inference without changing the selected adapter.
-
-This model is the strongest system tested in the project, but it did not pass
-the complete acceptable-quality gate. It is an experimental portfolio and
-research artifact, not a production sonnet generator.
+The system modestly improves meta-text and terminal-completion behavior over
+the Stage-3 comparator. It is not a consistently good sonnet generator and is
+not human-aligned. The three AI judges agreed with the user's separate 20-pair
+review on only 12/20 pairs (60%).
 
 ## Identification
 
-- Project model name: `minerva_7b_v6_selected_epoch_04`
+- Project model: `minerva_7b_v7_stage_3_ai_judged_dpo`
 - Parent: `sapienzanlp/Minerva-7B-instruct-v1.0`
 - Parent revision: `d1fc0f0e589ae879c5ac763e0e4206a4d14a3f6d`
-- Parent scale: approximately 7.4 billion parameters
-- Adapter type: rank-8 attention LoRA, alpha 16
-- Selected Stage A checkpoint: update 4,000
-- Selected Stage B checkpoint: epoch 4, update 744
-- Selected adapter SHA-256:
-  `aff3f2c4d193ce880ec9c7a6df6373f433001662c3ca78d7f915890733cb0df3`
-- Selection record: `configs/minerva_7b_v6_selected_adapter.json`
-- Context length used for adaptation: 512 tokens
+- Stage-3 selected update: 120 of 135
+- Stage-3 state identity:
+  `478d5979e25a78375d7af0434db6a5432678762fac2d142af2d4798dda53a474`
+- DPO adapter: rank 8, alpha 16, attention and MLP projections
+- DPO adapter SHA-256:
+  `72aa174b2ef87e021a367b0f7e786fce8c3437bb5ca1f8c7f9c5b13588620822`
+- Context length: 2,048 for full-weight training; 1,024 for DPO preference
+  scoring
 - Primary language: Italian, including historical orthography
+
+The authoritative Stage-3 checkpoint is retained as full BF16 weights. All V7
+validation, preservation, and final-test evidence used unquantized BF16. The
+optional laptop demo loads a transient 4-bit NF4 deployment approximation only
+because the 14.8 GB BF16 checkpoint cannot fit in 6 GB VRAM; demo outputs may
+differ slightly and are not authoritative research evidence.
 
 ## Intended Task
 
-Input is one exact opening line. Output is a continuation intended to produce a
-fourteen-line classical-Italian sonnet. The published evaluation and demo stop
-decoding after thirteen continuation lines.
+Input is one exact opening line. Output is intended to be a complete
+fourteen-line classical-Italian sonnet. The decoder preserves the input line
+and stops after thirteen continuation lines.
 
-Decoder-controlled line count is not evidence that the model learned
-hendecasyllabic metre, rhyme, stanza structure, or literary quality. Those
-properties were not certified by this project.
+Fourteen-line stopping does not prove learned rhyme, hendecasyllabic metre,
+octave/sestet structure, volta, grammar, or literary quality.
 
 ## Training Lineage
 
-### Stage A: Historical Italian Adaptation
+### Stage 1: Historical And Literary Italian
 
-- Data: `pretraining_historical_italian_v2`, 36 prose sources
-- Mixture per update: seven 512-token historical windows and one 512-token
-  PAISÀ modern-Italian replay window
-- Optimizer: AdamW with only adapter parameters trainable
-- Peak learning rate: `2e-5`
-- Schedule: 3 percent warmup, cosine decay to `2e-6`
-- Completed updates: 4,000, stopped by patience
-- Historical validation loss: `3.262937` to `3.187692`
-- Modern-Italian and instruction-preservation gates: passed
+- 2,065 full-weight BF16 updates
+- peak learning rate `1e-5`, warmup then cosine decay
+- selected historical-general loss `2.8466`
+- historical, poetry, sonnet, modern, and instruction gates passed
 
-### Stage B: V6 Sonnet Specialization
+### Stage 2: Historical Non-Sonnet Poetry
 
-- Data: 1,481 V6 training sonnets and 190 validation sonnets
-- Supervision: complete assistant sonnet; system/user prompt tokens masked
-- Optimizer: fresh AdamW; base model still frozen
-- Peak learning rate: `1e-5`
-- Schedule: 5 percent warmup, cosine decay to `1e-6`
-- Training stopped after epoch 7 through patience
-- Candidate selection: epochs 3, 4, and 5 compared on frozen validation prompts
-- Selected epoch 4 validation loss: `3.171254`
+- 760 full-weight BF16 updates
+- peak learning rate `5e-6`, warmup then cosine decay
+- selected poetry loss `2.8475`
+- all adaptation and preservation gates passed
 
-Epoch 4 was selected for lower repetition and better qualitative stability than
-the neighboring candidates while remaining within `0.0063` validation loss of
-epoch 5. Final-test material was unavailable until this choice was hash-frozen.
+### Stage 3: V7 Sonnets
+
+- 135 full-weight BF16 updates; update 120 selected
+- peak learning rate `2e-6`, warmup then cosine decay
+- selected V7 sonnet validation loss `3.1103`
+- update 120 preserved instruction behavior better than terminal update 135
+
+### AI-Judged DPO
+
+- 4,096 Stage-3 candidates from V7 training-only openings
+- 534 preference pairs, each judged blindly by three AI judges
+- 482 prompt-disjoint training and 52 validation pairs
+- one epoch / 61 optimizer updates, beta `0.1`
+- held-out preference accuracy `65.38%`
+- one H100 runtime 148.6 seconds; peak VRAM 14.81 GiB
+
+Human-reviewed calibration pairs were excluded from training. This branch
+distills the frozen AI-majority rubric; it is not RLHF or human-calibrated DPO.
 
 ## Evaluation
 
-The unopened V6 final test contains 197 poems. Generation evaluation used ten
-fixed openings, two seeds, temperature 0.8, top-k 50, and 20 outputs.
+### Matched Validation
 
-| Requirement | Result | Required | Status |
-| --- | ---: | ---: | --- |
-| Exact opening and controlled 14-line form | 20/20 | at least 18/20 | pass |
-| Generally grammatical Italian | 8/20 | at least 12/20 | fail |
-| Topic continuity for at least seven lines | 20/20 | at least 10/20 | pass |
-| Severe repetition or collapse | 5/20 | at most 2/20 | fail |
-| High-risk training overlap | 0/20 | exactly 0/20 | pass |
+Across 960 matched outputs, DPO increased the automatic surface-screen rate
+from 13.96% to 18.96% (paired `+5.00` points; 95% interval `+0.63` to `+9.38`).
+In a frozen 80-output blind review, genuine terminal completion was 20/40 for
+DPO and 12/40 for Stage 3. Neither system produced a strict-good reviewed
+output.
 
-Final-test loss across all 197 poems was `3.212791`. Full evidence is in
-`reports/minerva_7b_v6_final_evaluation.md`.
+### One-Time V7 Test
+
+All 1,244 sealed V7 test openings were generated with two seeds and both
+systems, for 4,976 outputs. The system and protocol were frozen before access;
+no post-test tuning or rerun is allowed.
+
+| Metric | Stage 3 | DPO | Paired DPO change (95% interval) |
+| --- | ---: | ---: | ---: |
+| Opening preserved | 100.00% | 100.00% | `0.00` |
+| Fourteen lines | 99.96% | 99.92% | `-0.04` points (`-0.20`, `+0.08`) |
+| Meta-text free | 86.33% | 87.78% | `+1.45` points (`-0.28`, `+3.18`) |
+| Terminal punctuation | 17.60% | 20.46% | `+2.85` points (`+0.72`, `+4.86`) |
+| Automatic surface screen | 15.07% | 17.60% | `+2.53` points (`+0.52`, `+4.50`) |
+| High-risk memorization | 0/2,488 | 0/2,488 | `0` |
+
+The frozen 200-output final blind review used 100 matched prompts. DPO improved
+mean historical register from `2.88` to `3.09` (paired `+0.21`; 95% interval
+`+0.04` to `+0.38`). Grammar, poetic quality, sonnet/form, volta, and visible
+completion differences remained uncertain. DPO produced 3/100 moderate-clean
+outputs versus 0/100, but both systems produced 0/100 strict-good outputs. The
+full review is reported in `reports/minerva_7b_v7_post_training_study.md`.
+
+## Preservation
+
+DPO-minus-Stage-3 loss changes were:
+
+- historical-general `-0.00003`;
+- historical poetry `+0.00004`;
+- V7 sonnet validation `+0.00063`;
+- modern Italian `+0.00014`;
+- instruction validation `+0.01334`.
+
+The adapter therefore preserved prior domains closely, with a small but
+reported instruction regression.
 
 ## Intended Uses
 
-- Reproducing the repository's controlled evaluation
-- Studying LoRA domain adaptation and task specialization
-- Demonstrating local quantized inference with a frozen adapter
+- Reproducing the repository's controlled sonnet evaluation
+- Studying full-weight curriculum adaptation and preference optimization
 - Inspecting successful and failed historical-Italian generations
-- Educational comparison with the repository's from-scratch transformer
+- Demonstrating deployment-aware 4-bit inference on a laptop GPU
+- Educational comparison with the project's from-scratch and earlier Minerva
+  systems
 
 ## Out-of-Scope Uses
 
-- Publishing generated text as authentic historical poetry
-- Literary scholarship, attribution, translation, or textual criticism
-- Automated grading of Italian grammar or poetry
-- Production deployment without stronger safety and quality evaluation
-- Claims of learned metre or rhyme based only on fourteen-line output
+- Publishing outputs as authentic historical poetry
+- Claims of reliable rhyme, metre, sonnet structure, or literary authorship
+- Human-alignment claims
+- Literary scholarship, attribution, grading, translation, or textual criticism
+- Production deployment without substantially stronger evaluation
 
 ## Limitations
 
-- The complete quality gate failed on grammar and collapse.
-- Five of twenty final outputs show severe repetition or degeneration.
-- Historical-looking spelling can conceal malformed syntax.
-- The training corpus is concentrated in a limited set of authors and digital
-  editions.
-- The model may reproduce biases, errors, or modern editorial choices inherited
-  from its external pretraining and project corpora.
+- Literary quality remains unreliable even when surface checks pass.
+- Rhyme and metre were not certified.
+- AI judges are correlated and failed the human-calibration threshold.
+- Historical-looking language can conceal broken syntax or incoherence.
+- Automatic punctuation is weaker than genuine syntactic closure.
 - Memorization checks detect long surface overlap, not every form of recall.
-- Genuine sonnets may have appeared in the parent model's external pretraining.
-- Final generation controls test line count and conditioning, not metre or rhyme.
+- The parent may have unknown external-pretraining overlap.
+- Local 4-bit deployment can differ from authoritative BF16 behavior.
 
 ## Licensing And Distribution
 
 The Minerva parent is recorded as Apache-2.0 and must retain its model ID,
 revision, source link, Sapienza NLP attribution, and license notice.
 
-Project adaptation data includes public-domain text, Italian Wikisource
-material with CC BY-SA/GFDL records, Liber Liber editions under CC BY-NC-SA
-4.0, and PAISÀ replay under CC BY-NC-SA terms. Required credits are indexed in
-`DATA_SOURCES_AND_ATTRIBUTION.md`.
-
-The selected adapter is not committed to the public repository. Stage A used
-PAISÀ replay, and the project policy does not publish PAISÀ-derived checkpoints.
-The locally retained adapter is for the project's non-commercial research and
-demonstration workflow. This model card does not grant rights beyond the
-underlying model, dataset, and repository terms.
+Training lineage includes public-domain material, Italian Wikisource,
+Liber Liber CC BY-NC-SA editions, and PAISÀ CC BY-NC-SA replay. The full-weight
+checkpoints and DPO adapter are not committed publicly; they are retained for
+the project's non-commercial research workflow. This card grants no rights
+beyond the underlying model and dataset terms.
 
 ## Local Demo
 
-With the authenticated Minerva cache and retained local adapter artifacts, run:
+Install the Minerva extras from `requirements/minerva_qlora.txt`, retain the
+local Stage-3 archive and DPO adapter, then run:
 
 ```bash
 .venv/bin/python -u scripts/serve_sonnet_demo.py --device cuda:0
 ```
 
-Cached startup is typically 20 seconds to several minutes. A 6 GiB RTX 3060
-generated the verified 205-token acceptance sample in 18.4 seconds. Open
-`http://127.0.0.1:8000` after the terminal prints `demo | ready`.
+The loader validates the frozen system, adapter SHA-256, and Stage-3 state
+identity before allocating the 4-bit NF4 deployment approximation. Use
+`--legacy-v6` to load the prior V6 demo instead.
 
 ## Related Evidence
 
-- `docs/minerva_7b_staged_lora_protocol.md`
-- `reports/minerva_7b_historical_fp16_lora_result.md`
-- `reports/minerva_7b_v6_candidate_selection.md`
-- `reports/minerva_7b_v6_final_evaluation.md`
+- `reports/minerva_7b_v7_post_training_study.md`
+- `reports/minerva_7b_v7_ai_judged_dpo.md`
+- `reports/minerva_7b_v7_full_weight_protocol_v1.md`
+- `reports/minerva_7b_v7_analysis_foundation_v1.md`
 - `reports/final_model_comparison.md`

@@ -1,3 +1,5 @@
+import hashlib
+import json
 from pathlib import Path
 
 import pytest
@@ -5,7 +7,10 @@ import pytest
 from sonnet_demo.server import (
     DEFAULT_SEED,
     DEFAULT_TEMPERATURE,
+    SelectedSonnetGenerator,
+    V7_DEPLOYMENT_MODE,
     parse_generation_request,
+    validate_v7_demo_artifacts,
 )
 
 
@@ -42,3 +47,32 @@ def test_demo_assets_are_present_and_complete():
     html = (ROOT / "demo/index.html").read_text(encoding="utf-8")
     assert 'id="generationForm"' in html
     assert 'id="sonnetLines"' in html
+
+
+def test_v7_demo_artifact_validation_requires_frozen_selection_and_adapter_hash(
+    tmp_path,
+):
+    adapter = tmp_path / "adapter.pt"
+    adapter.write_bytes(b"frozen adapter")
+    selection = tmp_path / "selection.json"
+    selection.write_text(json.dumps({
+        "status": "frozen_before_v7_test_access",
+        "selected_final_system": "dpo",
+        "retuning_after_test_forbidden": True,
+        "dpo_adapter_sha256": hashlib.sha256(adapter.read_bytes()).hexdigest(),
+    }), encoding="utf-8")
+    validated = validate_v7_demo_artifacts(
+        adapter_path=adapter, selection_path=selection
+    )
+    assert validated["selected_final_system"] == "dpo"
+    adapter.write_bytes(b"changed")
+    with pytest.raises(ValueError, match="adapter hash mismatch"):
+        validate_v7_demo_artifacts(adapter_path=adapter, selection_path=selection)
+
+
+def test_v7_generator_metadata_labels_quantization_as_deployment_only():
+    generator = SelectedSonnetGenerator(
+        model=object(), tokenizer=object(), device="cpu", generation_mode="v7_dpo"
+    )
+    assert generator.deployment_mode == V7_DEPLOYMENT_MODE
+    assert "approximation" in generator.deployment_mode

@@ -17,6 +17,14 @@ from sonnet_analysis.minerva_v7_high_volume_generation import (
     EXPECTED_RECIPE_IDS, EXPECTED_SEEDS, generate_batch,
     generate_high_volume_state, load_high_volume_config,
 )
+from sonnet_analysis.minerva_v7_no_labels_creative import (
+    generate_no_labels_creative,
+    load_no_labels_creative_config,
+)
+from sonnet_analysis.minerva_v7_no_labels_creative_analysis import (
+    build_no_labels_creative_blinded_sample,
+    no_labels_creative_review_markdown,
+)
 from sonnet_analysis.minerva_v7_registry import MODEL_STATES
 from sonnet_analysis.minerva_v7_quality import (
     ends_with_terminal_punctuation, generated_sonnet_surface_diagnostics,
@@ -247,6 +255,92 @@ def test_prompt_intervention_contract_is_bounded_and_test_free():
     assert config["authorization"]["v7_test_access_authorized"] is False
     assert config["authorization"]["training_authorized"] is False
     assert config["authorization"]["instance_lifecycle_action_authorized"] is False
+
+
+def test_no_labels_creative_contract_is_one_bounded_test_free_cell():
+    config = load_no_labels_creative_config(
+        ROOT / "configs/minerva_7b_v7_stage_3_no_labels_creative.json"
+    )
+    assert config["state_id"] == "stage_3_selected"
+    assert config["prompt_arm_id"] == "explicit_no_labels_or_prose"
+    assert config["sampling_recipe"]["recipe_id"] == "creative"
+    assert config["final_outputs"] == 120 * 8
+    assert config["qualification_output_count"] == 8
+    assert config["authorization"]["v7_test_access_authorized"] is False
+    assert config["authorization"]["training_authorized"] is False
+
+
+def test_no_labels_creative_qualification_is_isolated_and_resumable(tmp_path):
+    config = load_no_labels_creative_config(
+        ROOT / "configs/minerva_7b_v7_stage_3_no_labels_creative.json"
+    )
+    config = {
+        **config,
+        "sampling_recipe": {**config["sampling_recipe"], "max_new_tokens": 1},
+    }
+    first = generate_no_labels_creative(
+        model=BatchModel(), tokenizer=BatchTokenizer(),
+        state_identity_sha256="d" * 64, prompts=_prompts(), config=config,
+        output_dir=tmp_path, device="cpu", batch_size=8, maximum_outputs=8,
+    )
+    second = generate_no_labels_creative(
+        model=BatchModel(), tokenizer=BatchTokenizer(),
+        state_identity_sha256="d" * 64, prompts=_prompts(), config=config,
+        output_dir=tmp_path, device="cpu", batch_size=8, maximum_outputs=8,
+    )
+    assert first["completed_output_count"] == 8
+    assert second["completed_output_count"] == 16
+    assert first["completion_scope"] == "qualification_or_incomplete_prefix"
+    assert first["v7_test_accessed"] is False
+    assert first["training_performed"] is False
+    assert not (tmp_path / "complete.json").exists()
+
+
+def test_no_labels_creative_blind_review_hides_cell_identity():
+    rows = []
+    for cell_id in (
+        "current_prompt_creative", "no_labels_balanced", "no_labels_creative"
+    ):
+        for prompt_index in range(3):
+            for seed in range(4200, 4208):
+                rows.append(
+                    {
+                        "cell_id": cell_id,
+                        "prompt_id": f"p{prompt_index}",
+                        "seed": seed,
+                        "text": f"Synthetic poem {prompt_index} {seed}",
+                    }
+                )
+    blind = build_no_labels_creative_blinded_sample(
+        analysis={"rows": rows}, prompt_count=2, selection_seed=19
+    )
+    assert blind["sample_rows"] == 6
+    markdown = no_labels_creative_review_markdown(blind)
+    assert "current_prompt_creative" not in markdown
+    assert "no_labels_creative" not in markdown
+
+
+def test_no_labels_creative_blind_sample_is_byte_reproducible():
+    rows = [
+        {
+            "cell_id": cell_id,
+            "prompt_id": f"p{prompt_index}",
+            "seed": seed,
+            "text": f"Synthetic poem {prompt_index} {seed}",
+        }
+        for cell_id in (
+            "current_prompt_creative", "no_labels_balanced", "no_labels_creative"
+        )
+        for prompt_index in range(5)
+        for seed in range(4200, 4208)
+    ]
+    first = build_no_labels_creative_blinded_sample(
+        analysis={"rows": rows}, prompt_count=3, selection_seed=19
+    )
+    second = build_no_labels_creative_blinded_sample(
+        analysis={"rows": list(reversed(rows))}, prompt_count=3, selection_seed=19
+    )
+    assert first == second
 
 
 def test_prompt_intervention_arms_are_distinct_and_preserve_exact_prefill():

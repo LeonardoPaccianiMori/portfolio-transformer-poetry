@@ -1,0 +1,42 @@
+{
+  "experiment_version": "minerva_7b_v7_ai_judged_dpo_v1",
+  "scope": "exploratory_ai_judge_distillation_not_human_calibrated",
+  "parent_state_id": "stage_3_selected",
+  "parent_state_identity_sha256": "478d5979e25a78375d7af0434db6a5432678762fac2d142af2d4798dda53a474",
+  "preference_version": "minerva_7b_v7_dpo_preferences_v1",
+  "context_length": 1024,
+  "epochs": 1,
+  "microbatch_size": 1,
+  "gradient_accumulation_steps": 8,
+  "learning_rate": 1e-05,
+  "minimum_learning_rate": 1e-06,
+  "warmup_fraction": 0.1,
+  "weight_decay": 0.0,
+  "maximum_gradient_norm": 1.0,
+  "dpo_beta": 0.1,
+  "lora_rank": 8,
+  "lora_alpha": 16,
+  "lora_dropout": 0.05,
+  "target_modules": [
+    "q_proj",
+    "k_proj",
+    "v_proj",
+    "o_proj",
+    "gate_proj",
+    "up_proj",
+    "down_proj"
+  ],
+  "split_seed": 11411,
+  "validation_fraction": 0.1,
+  "training_seed": 11413,
+  "progress_interval": 5,
+  "checkpoint_interval": 15,
+  "hourly_rate_usd": 2.384,
+  "authorization": {
+    "ai_judged_dpo_authorized": true,
+    "human_calibrated_claim_authorized": false,
+    "validation_calibration_pairs_eligible_for_training": false,
+    "v7_test_access_authorized": false,
+    "autonomous_completion_workflow_active": true
+  }
+}

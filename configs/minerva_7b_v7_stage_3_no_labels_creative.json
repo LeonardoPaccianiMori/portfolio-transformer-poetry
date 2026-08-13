@@ -1,0 +1,42 @@
+{
+  "experiment_version": "minerva_7b_v7_stage_3_no_labels_creative_v1",
+  "analysis_role": "post_hoc_stage_3_combined_prompt_decoding_experiment",
+  "state_id": "stage_3_selected",
+  "prompt_manifest_path": "configs/minerva_7b_v7_exploratory_prompts.json",
+  "prompt_manifest_sha256": "2f33aa518aa61c11193831e53b07fd3bd861a72bf68bb23c0e0e5b1a13b1d0c7",
+  "prompt_count": 120,
+  "seeds": [4200, 4201, 4202, 4203, 4204, 4205, 4206, 4207],
+  "prompt_arm_id": "explicit_no_labels_or_prose",
+  "sampling_recipe": {
+    "recipe_id": "creative",
+    "temperature": 0.85,
+    "top_p": 0.95,
+    "top_k": null,
+    "repetition_penalty": 1.0,
+    "no_repeat_ngram_size": 4,
+    "max_new_tokens": 512,
+    "continuation_line_target": 13
+  },
+  "final_outputs": 960,
+  "default_batch_size": 8,
+  "qualification_output_count": 8,
+  "qualification_gate": {
+    "required_completed_outputs": 8,
+    "require_no_runtime_error": true,
+    "require_exact_state_identity": true,
+    "require_all_outputs_parseable": true,
+    "require_no_high_risk_memorization_flag": true,
+    "note": "The qualification gate checks execution and gross safety, not literary superiority."
+  },
+  "comparators": [
+    "stage_3_selected_current_prompt_creative",
+    "stage_3_selected_explicit_no_labels_or_prose_balanced"
+  ],
+  "authorization": {
+    "post_hoc_experiment": true,
+    "user_approved": true,
+    "v7_test_access_authorized": false,
+    "training_authorized": false,
+    "instance_lifecycle_action_authorized": false
+  }
+}
