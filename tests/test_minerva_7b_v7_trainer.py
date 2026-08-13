@@ -22,6 +22,8 @@ from sonnet_training.minerva_7b_v7_trainer import (
     should_save_analysis_snapshot,
     should_save_resume,
     stage_global_update,
+    training_only_encoded_report,
+    training_only_window_manifest,
     validate_long_run_authorization,
     validate_single_h100_runtime,
 )
@@ -119,6 +121,32 @@ def test_single_h100_runtime_rejects_unqualified_candidate(monkeypatch):
         validate_single_h100_runtime(
             launch=launch, world_size=1, visible_gpu_count=1
         )
+
+
+def test_training_runtime_removes_only_v7_test_artifacts():
+    encoded = {
+        "pools": [
+            {"pool_id": "train_historical_general"},
+            {"pool_id": "sonnets_test"},
+            {"pool_id": "sonnets_validation"},
+        ]
+    }
+    windows = {
+        "files": [
+            {"path": "training/stage_1_historical_general.jsonl"},
+            {"path": "test/sonnets_test.jsonl"},
+            {"path": "validation/sonnets_validation.jsonl"},
+        ]
+    }
+
+    assert [row["pool_id"] for row in training_only_encoded_report(encoded)["pools"]] == [
+        "train_historical_general",
+        "sonnets_validation",
+    ]
+    assert [row["path"] for row in training_only_window_manifest(windows)["files"]] == [
+        "training/stage_1_historical_general.jsonl",
+        "validation/sonnets_validation.jsonl",
+    ]
 
 
 def test_long_run_guard_rejects_checkpoint_8f_execution():

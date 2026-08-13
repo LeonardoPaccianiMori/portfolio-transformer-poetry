@@ -23,6 +23,7 @@ PUBLIC_PATHS = (
     "configs/minerva_7b_parent_decoding_confirmation_prompts.json",
     "data/metadata/minerva_7b_v7_sampling_policy_v1.json",
     "reports/minerva_7b_v7_encoded_data_v1.json",
+    "reports/minerva_7b_full_weight_data_report.json",
     "reports/minerva_7b_v7_single_h100_qualification_v1.json",
     "reports/minerva_7b_v7_stage_windows_v1.json",
     "requirements.txt",

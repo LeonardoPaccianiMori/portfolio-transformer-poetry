@@ -704,6 +704,31 @@ def validate_single_h100_runtime(
     return candidate
 
 
+def training_only_encoded_report(report: Mapping[str, Any]) -> dict[str, Any]:
+    """Remove the deliberately unavailable V7 test pool from runtime inputs."""
+
+    return {
+        **dict(report),
+        "pools": [
+            row for row in report["pools"] if row["pool_id"] != "sonnets_test"
+        ],
+    }
+
+
+def training_only_window_manifest(manifest: Mapping[str, Any]) -> dict[str, Any]:
+    """Remove the deliberately unavailable V7 test index from runtime inputs."""
+
+    return {
+        **dict(manifest),
+        "files": [
+            row
+            for row in manifest["files"]
+            if not str(row["path"]).startswith("test/")
+            and "sonnets_test" not in str(row["path"])
+        ],
+    }
+
+
 def train_minerva_7b_v7_full_weight(
     *,
     repo_root: Path,
@@ -712,6 +737,7 @@ def train_minerva_7b_v7_full_weight(
     launch_config_sha256: str,
     requested_stage_id: str,
     resume_from_checkpoint: Path | None = None,
+    startup_smoke: bool = False,
     progress: Callable[[str], None] | None = None,
 ) -> dict[str, Any] | None:
     """Run exactly one user-selected stage under the qualified H100 contract."""
@@ -835,12 +861,14 @@ def train_minerva_7b_v7_full_weight(
         )
         with Int32ShardStore(
             encoded_dir=execution_config.encoded_dir,
-            encoded_report=context["encoded_report"],
+            encoded_report=training_only_encoded_report(context["encoded_report"]),
         ) as store:
             reader = FrozenWindowReader(
                 index_root=execution_config.window_index_dir,
                 encoded_store=store,
-                window_manifest=context["window_manifest"],
+                window_manifest=training_only_window_manifest(
+                    context["window_manifest"]
+                ),
             )
             if resume_manifest is None:
                 required_boundary = launch_stage["required_boundary"]
@@ -923,6 +951,50 @@ def train_minerva_7b_v7_full_weight(
                 preceding_model_identity_sha256 = str(
                     resume_metadata["preceding_model_identity_sha256"]
                 )
+            if startup_smoke:
+                stage = requested_stage
+                optimizer = configure_stage_optimizer(
+                    model=model,
+                    stage=stage,
+                    protocol=protocol,
+                    bitsandbytes_module=dependencies["bitsandbytes"],
+                )
+                batch = reader.optimizer_batch(
+                    stage_id=requested_stage_id,
+                    update=1,
+                    global_windows_per_update=16,
+                )
+                local_inputs = batch.input_ids[rank::world_size]
+                local_targets = batch.target_ids[rank::world_size]
+                learning_rate = apply_stage_learning_rate(optimizer, stage, 1)
+                loss, gradient_norm = run_one_distributed_update(
+                    ddp_model=ddp_model,
+                    optimizer=optimizer,
+                    parameters=parameters,
+                    input_microbatches=_tensor_microbatches(
+                        local_inputs, candidate.local_microbatch_size, device
+                    ),
+                    target_microbatches=_tensor_microbatches(
+                        local_targets, candidate.local_microbatch_size, device
+                    ),
+                    max_gradient_norm=float(protocol["optimizer"]["max_gradient_norm"]),
+                )
+                torch.cuda.synchronize(device)
+                _report(
+                    progress,
+                    f"stage={requested_stage_id} startup_smoke=passed "
+                    f"loss={loss:.4f} gradient_norm={gradient_norm:.4f} "
+                    f"lr={learning_rate:.2e} persistent_training_state=false",
+                )
+                modern_store.close()
+                if rank == 0:
+                    return {
+                        "trainer_version": TRAINER_VERSION,
+                        "status": "startup_smoke_passed",
+                        "stage_id": requested_stage_id,
+                        "persistent_training_state": False,
+                    }
+                return None
             if rank == 0 and not run_marker.exists():
                 run_marker.parent.mkdir(parents=True, exist_ok=True)
                 run_marker.write_text(

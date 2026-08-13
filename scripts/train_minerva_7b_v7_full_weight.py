@@ -53,6 +53,11 @@ def parse_args() -> argparse.Namespace:
     mode.add_argument(
         "--status", action="store_true", help="Print stage/boundary/resume status only."
     )
+    mode.add_argument(
+        "--startup-smoke",
+        action="store_true",
+        help="Run baseline validation plus one disposable GPU update; retain no stage state.",
+    )
     parser.add_argument(
         "--resume-from",
         type=Path,
@@ -178,15 +183,24 @@ def main() -> None:
         resume_from_checkpoint=(
             args.resume_from.resolve() if args.resume_from is not None else None
         ),
+        startup_smoke=args.startup_smoke,
         progress=progress,
     )
     if rank == 0:
-        print(
-            f"minerva-v7-training | complete status={result['status']} "
-            f"stage={result['stage_id']} elapsed={time.monotonic() - started:.1f}s "
-            f"boundary={result['boundary_path']}",
-            flush=True,
-        )
+        if args.startup_smoke:
+            print(
+                f"minerva-v7-training | complete status={result['status']} "
+                f"stage={result['stage_id']} elapsed={time.monotonic() - started:.1f}s "
+                "persistent_training_state=false",
+                flush=True,
+            )
+        else:
+            print(
+                f"minerva-v7-training | complete status={result['status']} "
+                f"stage={result['stage_id']} elapsed={time.monotonic() - started:.1f}s "
+                f"boundary={result['boundary_path']}",
+                flush=True,
+            )
 
 
 if __name__ == "__main__":
