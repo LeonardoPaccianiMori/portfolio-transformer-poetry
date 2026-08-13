@@ -9,12 +9,14 @@ The project is complete as an experimental pipeline. No tested model passed the
 full acceptable-quality gate. The selected Minerva 7B adapter is the strongest
 system and powers the local demo, but it remains explicitly experimental.
 
-An additional V7 research track is now ready for a user-launched, three-stage
-full-weight Minerva 7B run on one qualified H100. Its stage-scoped launcher,
-validation-selected lineage, interruption-safe resume, six permanent analysis
-snapshots, and frozen activation-study inputs are documented in
-[Single-H100 Launch Readiness](reports/minerva_7b_v7_single_h100_launch_readiness_v1.md).
-No V7 long training result is claimed yet.
+The additional V7 track completed its three-stage full-weight Minerva 7B
+curriculum: historical/literary adaptation, non-sonnet poetic adaptation, and
+sonnet specialization. The run retained midpoint and selected-boundary states,
+passed its frozen preservation gates, and did not access the sealed V7 final
+test. A seven-state post-training study is now in progress; until its blinded
+behavioral and model-change analyses finish, this repository does not claim
+that V7 produces consistently acceptable poetry. The frozen execution design
+is documented in [Single-H100 Launch Readiness](reports/minerva_7b_v7_single_h100_launch_readiness_v1.md).
 
 ## Final Result
 
@@ -99,6 +101,7 @@ events by default.
 | `src/sonnet_training/` | Training, fine-tuning, checkpoints, and schedules |
 | `src/sonnet_corpus/` | Acquisition, cleaning, manifests, splits, and encoding |
 | `src/sonnet_evaluation/` | Metrics, memorization, selection, and Minerva evaluation |
+| `src/sonnet_analysis/` | V7 checkpoint, dynamics, representation, and behavioral analysis |
 | `src/sonnet_demo/` | Local selected-model web server |
 | `scripts/` | Reproducible command-line entry points |
 | `configs/` | Frozen prompts, selections, and experiment policies |

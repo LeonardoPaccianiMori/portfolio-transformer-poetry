@@ -1,0 +1,39 @@
+{
+  "experiment_version": "minerva_7b_v7_stage_3_prompt_intervention_v1",
+  "analysis_role": "post_hoc_stage_3_prompt_and_stopping_experiment",
+  "state_id": "stage_3_selected",
+  "prompt_manifest_path": "configs/minerva_7b_v7_exploratory_prompts.json",
+  "prompt_manifest_sha256": "2f33aa518aa61c11193831e53b07fd3bd861a72bf68bb23c0e0e5b1a13b1d0c7",
+  "prompt_count": 120,
+  "seeds": [4200, 4201, 4202, 4203, 4204, 4205, 4206, 4207],
+  "arms": [
+    {"arm_id": "current_prompt_control", "intervention": "unchanged_frozen_prompt"},
+    {"arm_id": "explicit_no_labels_or_prose", "intervention": "explicitly_forbid_labels_numbering_and_prose"},
+    {"arm_id": "explicit_4433_structure", "intervention": "explicit_4_plus_4_plus_3_plus_3_structure"},
+    {"arm_id": "structured_with_deterministic_retries", "intervention": "reuse_structured_first_attempt_then_up_to_two_deterministic_retries_on_literal_surface_failure"}
+  ],
+  "sampling_recipe": {
+    "temperature": 0.7,
+    "top_p": 0.92,
+    "top_k": null,
+    "repetition_penalty": 1.0,
+    "no_repeat_ngram_size": 4,
+    "max_new_tokens": 512,
+    "continuation_line_target": 13
+  },
+  "maximum_attempts_per_retry_output": 3,
+  "retry_seed_stride": 100000,
+  "final_outputs": 3840,
+  "maximum_model_attempts": 4800,
+  "default_batch_size": 8,
+  "qualification_batches_per_arm": 1,
+  "selection_rule": "first_literal_surface_screen_pass_else_final_attempt",
+  "selection_rule_is_not_poetic_quality_judgment": true,
+  "authorization": {
+    "post_hoc_experiment": true,
+    "autonomous_workflow_active": true,
+    "v7_test_access_authorized": false,
+    "training_authorized": false,
+    "instance_lifecycle_action_authorized": false
+  }
+}

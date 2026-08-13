@@ -11,6 +11,7 @@ from typing import Any, Mapping, Sequence
 
 from sonnet_evaluation.metrics import score_generated_text
 from sonnet_analysis.minerva_v7_memorization import score_texts_against_reference
+from sonnet_analysis.minerva_v7_quality import generated_sonnet_surface_diagnostics
 from sonnet_analysis.minerva_v7_registry import MODEL_STATES
 
 
@@ -67,6 +68,11 @@ def analyze_matched_generations(
             seed = int(payload["seed"])
             grid.add((prompt_id, seed))
             metrics = score_generated_text(payload["text"], payload["opening_line"])
+            diagnostics = generated_sonnet_surface_diagnostics(
+                payload["text"],
+                non_empty_line_count=int(metrics["non_empty_line_count"]),
+                repetition_ratio=float(metrics["repetition_ratio"]),
+            )
             rows.append(
                 {
                     "state_id": state_id,
@@ -78,6 +84,7 @@ def analyze_matched_generations(
                     "text": payload["text"],
                     "memorization": None,
                     **metrics,
+                    **diagnostics,
                 }
             )
         grids[state_id] = grid
@@ -111,6 +118,18 @@ def analyze_matched_generations(
                     row["memorization"] is not None
                     and row["memorization"]["risk_level"] == "high"
                     for row in values
+                ),
+                "meta_text_free_rate": statistics.fmean(
+                    row["meta_text_free"] for row in values
+                ),
+                "terminal_punctuation_rate": statistics.fmean(
+                    row["ends_with_terminal_punctuation"] for row in values
+                ),
+                "no_very_long_line_rate": statistics.fmean(
+                    row["no_line_at_or_above_120_characters"] for row in values
+                ),
+                "surface_screen_pass_rate": statistics.fmean(
+                    row["surface_screen_pass"] for row in values
                 ),
             }
         )

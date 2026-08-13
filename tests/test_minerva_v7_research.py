@@ -324,6 +324,8 @@ def test_behavior_requires_matched_grid_and_writes_blinded_review(tmp_path):
     )
     assert len(report["rows"]) == 2
     assert all(row["analysis_role"] == "confirmatory" for row in report["rows"])
+    assert all("meta_text_free" in row for row in report["rows"])
+    assert all("surface_screen_pass_rate" in row for row in report["summaries"])
     assert report["memorization_scored"]
     artifacts = build_blinded_review(
         behavior_report=report,

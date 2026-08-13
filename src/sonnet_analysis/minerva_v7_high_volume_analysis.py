@@ -14,13 +14,16 @@ from typing import Any
 from sonnet_analysis.minerva_v7_high_volume_generation import HIGH_VOLUME_VERSION
 from sonnet_analysis.minerva_v7_registry import MODEL_STATES
 from sonnet_analysis.minerva_v7_registry import COMPARISONS
+from sonnet_analysis.minerva_v7_quality import generated_sonnet_surface_diagnostics
 from sonnet_evaluation.metrics import score_generated_text
 
 
 ANALYSIS_VERSION = "minerva_7b_v7_high_volume_analysis_v1"
 METRICS = (
     "fourteen_line", "prompt_preserved", "repetition_ratio",
-    "unique_character_ratio", "character_count",
+    "unique_character_ratio", "character_count", "meta_text_free",
+    "ends_with_terminal_punctuation", "no_line_at_or_above_120_characters",
+    "surface_screen_pass",
 )
 
 
@@ -73,6 +76,11 @@ def analyze_high_volume_outputs(
                 raise ValueError("duplicate high-volume prompt/seed/recipe output")
             grid.add(identity)
             metrics = score_generated_text(payload["text"], payload["opening_line"])
+            diagnostics = generated_sonnet_surface_diagnostics(
+                payload["text"],
+                non_empty_line_count=int(metrics["non_empty_line_count"]),
+                repetition_ratio=float(metrics["repetition_ratio"]),
+            )
             rows.append(
                 {
                     "state_id": state_id, "prompt_id": prompt_id,
@@ -81,6 +89,7 @@ def analyze_high_volume_outputs(
                     "text": payload["text"],
                     "fourteen_line": metrics["non_empty_line_count"] == 14,
                     **metrics,
+                    **diagnostics,
                 }
             )
         grids[state_id] = grid
@@ -100,6 +109,8 @@ def analyze_high_volume_outputs(
             "confidence_level": confidence_level, "cluster_unit": "prompt_id",
         },
         "confirmatory_grid_unchanged": True,
+        "surface_diagnostics_are_post_hoc": True,
+        "surface_diagnostics_are_not_poetic_quality_judgments": True,
         "v7_test_accessed": False,
         "causal_experiments_performed": False,
     }

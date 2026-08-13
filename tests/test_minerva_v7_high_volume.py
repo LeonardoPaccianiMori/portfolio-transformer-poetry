@@ -18,6 +18,22 @@ from sonnet_analysis.minerva_v7_high_volume_generation import (
     generate_high_volume_state, load_high_volume_config,
 )
 from sonnet_analysis.minerva_v7_registry import MODEL_STATES
+from sonnet_analysis.minerva_v7_quality import (
+    ends_with_terminal_punctuation, generated_sonnet_surface_diagnostics,
+    non_empty_stanza_line_pattern,
+)
+from sonnet_analysis.minerva_v7_prompt_intervention import (
+    EXPECTED_ARM_IDS as INTERVENTION_ARM_IDS,
+    build_intervention_prompt,
+    generate_prompt_intervention,
+    load_prompt_intervention_config,
+    retry_seed,
+)
+from sonnet_analysis.minerva_v7_prompt_intervention_analysis import (
+    analyze_prompt_intervention,
+    build_prompt_intervention_blinded_sample,
+    prompt_intervention_review_markdown,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -183,6 +199,9 @@ def test_high_volume_analysis_covers_all_stages_bootstraps_prompts_and_blinds(tm
     assert len(report["rows"]) == 20_160
     assert len(report["summaries"]) == 7 * 3
     assert len(report["comparison_summaries"]) == 7 * 3
+    assert report["surface_diagnostics_are_post_hoc"]
+    assert all(row["meta_text_free"] for row in report["rows"])
+    assert all("surface_screen_pass" in row for row in report["rows"])
     blind = build_high_volume_blinded_sample(
         analysis_report=report, selected_prompt_count=24, selection_seed=8317
     )
@@ -190,6 +209,116 @@ def test_high_volume_analysis_covers_all_stages_bootstraps_prompts_and_blinds(tm
     markdown = blinded_review_markdown(blind)
     assert "untouched_parent" not in markdown
     assert "conservative" not in markdown
+
+
+def test_surface_diagnostics_detect_meta_text_cutoffs_and_long_prose():
+    clean = generated_sonnet_surface_diagnostics(
+        "Sonetto, da poi ch'i' non trovo messo\nVerso compiuto.",
+        non_empty_line_count=14,
+        repetition_ratio=0.2,
+    )
+    assert clean["meta_text_free"]
+    assert clean["ends_with_terminal_punctuation"]
+    assert clean["surface_screen_pass"]
+
+    bad = generated_sonnet_surface_diagnostics(
+        "Prima linea\nSecondo verso: testo\n" + "prosa " * 30,
+        non_empty_line_count=14,
+        repetition_ratio=0.4,
+    )
+    assert bad["meta_text_markers"] == ["numbered_verse_label"]
+    assert not bad["no_line_at_or_above_120_characters"]
+    assert not bad["below_035_repetition_ratio"]
+    assert not bad["surface_screen_pass"]
+    assert not ends_with_terminal_punctuation("frase incompiuta,")
+    assert ends_with_terminal_punctuation("frase compiuta!»")
+    assert non_empty_stanza_line_pattern(
+        "a\nb\nc\nd\n\ne\nf\ng\nh\n\ni\nl\nm\n\nn\no\np"
+    ) == (4, 4, 3, 3)
+
+
+def test_prompt_intervention_contract_is_bounded_and_test_free():
+    config = load_prompt_intervention_config(
+        ROOT / "configs/minerva_7b_v7_stage_3_prompt_intervention.json"
+    )
+    assert config["state_id"] == "stage_3_selected"
+    assert config["final_outputs"] == 120 * 8 * 4
+    assert config["maximum_model_attempts"] == 120 * 8 * 5
+    assert config["authorization"]["v7_test_access_authorized"] is False
+    assert config["authorization"]["training_authorized"] is False
+    assert config["authorization"]["instance_lifecycle_action_authorized"] is False
+
+
+def test_prompt_intervention_arms_are_distinct_and_preserve_exact_prefill():
+    class PromptTokenizer(BatchTokenizer):
+        def apply_chat_template(self, messages, *, tokenize, add_generation_prompt):
+            return messages[0]["content"] + "\n<assistant>"
+
+    tokenizer = PromptTokenizer()
+    prompts = [
+        build_intervention_prompt(tokenizer, "Apertura esatta", arm_id)
+        for arm_id in INTERVENTION_ARM_IDS
+    ]
+    assert prompts[0].endswith("Apertura esatta\n")
+    assert "etichette" not in prompts[0]
+    assert "etichette" in prompts[1]
+    assert "4+4+3+3" in prompts[2]
+    assert prompts[2] == prompts[3]
+    assert retry_seed(4200, 0, 100_000) == 4200
+    assert retry_seed(4200, 2, 100_000) == 204_200
+
+
+def test_prompt_intervention_qualification_is_isolated_and_resumable(tmp_path):
+    config = load_prompt_intervention_config(
+        ROOT / "configs/minerva_7b_v7_stage_3_prompt_intervention.json"
+    )
+    config = {**config, "sampling_recipe": {**config["sampling_recipe"], "max_new_tokens": 1}}
+    first = generate_prompt_intervention(
+        model=BatchModel(), tokenizer=BatchTokenizer(),
+        state_identity_sha256="f" * 64, prompts=_prompts(), config=config,
+        output_dir=tmp_path, device="cpu", batch_size=2,
+        maximum_batches_per_arm=1,
+    )
+    second = generate_prompt_intervention(
+        model=BatchModel(), tokenizer=BatchTokenizer(),
+        state_identity_sha256="f" * 64, prompts=_prompts(), config=config,
+        output_dir=tmp_path, device="cpu", batch_size=2,
+        maximum_batches_per_arm=1,
+    )
+    assert first["completed_final_output_count"] == 8
+    assert second["completed_final_output_count"] == 16
+    assert first["completion_scope"] == "qualification_or_incomplete_prefix"
+    assert not (tmp_path / "complete.json").exists()
+    assert first["v7_test_accessed"] is False
+    assert first["training_performed"] is False
+
+
+def test_prompt_intervention_analysis_is_paired_and_blinded(tmp_path):
+    config = load_prompt_intervention_config(
+        ROOT / "configs/minerva_7b_v7_stage_3_prompt_intervention.json"
+    )
+    config = {**config, "sampling_recipe": {**config["sampling_recipe"], "max_new_tokens": 1}}
+    generated = generate_prompt_intervention(
+        model=BatchModel(), tokenizer=BatchTokenizer(),
+        state_identity_sha256="e" * 64, prompts=_prompts(), config=config,
+        output_dir=tmp_path, device="cpu", batch_size=256,
+    )
+    assert generated["completed_final_output_count"] == 3840
+    analysis = analyze_prompt_intervention(
+        output_dir=tmp_path, expected_state_identity="e" * 64,
+        memorization_records=None, bootstrap_resamples=10,
+        bootstrap_seed=9321, confidence_level=0.95,
+    )
+    assert len(analysis["rows"]) == 3840
+    assert len(analysis["summaries"]) == 4
+    assert len(analysis["comparisons_to_control"]) == 3
+    blind = build_prompt_intervention_blinded_sample(
+        analysis=analysis, selected_prompt_count=2, selection_seed=9327,
+    )
+    assert blind["sample_rows"] == 8
+    markdown = prompt_intervention_review_markdown(blind)
+    assert "current_prompt_control" not in markdown
+    assert "attempt_count" not in markdown
 
 
 def test_high_volume_analysis_rejects_missing_state_and_tampered_output(tmp_path):

@@ -58,13 +58,17 @@ def load_high_volume_config(path: Path) -> dict[str, Any]:
 def generate_batch(
     *, model: Any, tokenizer: Any, jobs: Sequence[Mapping[str, Any]],
     recipe: Mapping[str, Any], device: torch.device | str,
+    prompt_builder: Callable[[Any, str], str] = build_sonnet_candidate_prompt,
 ) -> list[dict[str, Any]]:
     """Decode one fixed-recipe batch with an independent RNG stream per job."""
 
     if not jobs:
         raise ValueError("generation batch must not be empty")
     resolved_device = torch.device(device)
-    rendered = [build_sonnet_candidate_prompt(tokenizer, str(job["prompt"]["opening_line"])) for job in jobs]
+    rendered = [
+        prompt_builder(tokenizer, str(job["prompt"]["opening_line"]))
+        for job in jobs
+    ]
     previous_side = getattr(tokenizer, "padding_side", "right")
     previous_pad = getattr(tokenizer, "pad_token_id", None)
     tokenizer.padding_side = "left"
