@@ -99,6 +99,12 @@ def test_registry_distinguishes_complete_missing_partial_and_invalid(tmp_path):
     statuses = {row["state_id"]: row["status"] for row in report["states"]}
 
     assert statuses["untouched_parent"] == "complete"
+    parent_row = next(row for row in report["states"] if row["state_id"] == "untouched_parent")
+    assert parent_row["verified_file_count"] == 2
+    assert {row["path"] for row in parent_row["verified_files"]} == {
+        "config.json", "model.safetensors",
+    }
+    assert len(parent_row["local_weight_inventory_sha256"]) == 64
     assert statuses["stage_1_midpoint"] == "complete"
     assert statuses["stage_1_selected"] == "partial"
     assert statuses["stage_2_midpoint"] == "invalid"
@@ -316,7 +322,13 @@ def test_gpu_plan_is_bounded_resumable_and_noncausal(tmp_path):
     )
 
     assert plan["ready_state_count"] == 7
-    assert plan["estimates"]["all_seven_states_bytes"] > 0
+    total_tokens = 48 * 3
+    assert plan["estimates"]["raw_hidden_states_bytes_per_state"] == (
+        total_tokens * 16 * 34 * 2
+    )
+    assert plan["estimates"]["all_seven_states_bytes"] == (
+        plan["estimates"]["total_bytes_per_state"] * 7
+    )
     assert all(job["resumable_unit"] == "one_complete_model_state" for job in plan["jobs"])
     assert not plan["causal_experiments_authorized"]
     assert not plan["execution"]["v7_test_accessed"]

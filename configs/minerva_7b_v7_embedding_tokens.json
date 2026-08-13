@@ -1,0 +1,19 @@
+{
+  "registry_version": "minerva_7b_v7_embedding_tokens_v1",
+  "groups": {
+    "historical": ["ch'io", "ove", "indi", "cotesto", "alma", "virtute", "lagrime", "speme"],
+    "poetic": ["rima", "verso", "canto", "poeta", "musa", "lira", "metafora", "strofa"],
+    "sonnet_form": ["sonetto", "quartina", "terzina", "volta", "rima", "endecasillabo"],
+    "modern": ["computer", "internet", "telefono", "automobile", "università", "democrazia", "tecnologia", "email"],
+    "neutral_control": ["casa", "tempo", "persona", "giorno", "mano", "acqua", "terra", "luce"]
+  },
+  "policy": {
+    "leading_space_variant": true,
+    "retain_only_single_token_encodings": true,
+    "record_rejected_fragmented_terms": true,
+    "frequency_source": "frozen V7 encoded training shards",
+    "nearest_neighbors_exclude_same_token": true,
+    "top_k_neighbors": 20,
+    "v7_test_accessed": false
+  }
+}

@@ -83,8 +83,9 @@ def build_gpu_extraction_plan(
     total_tokens = sum(len(row["input_ids"]) for row in probes["probes"])
     total_selected = sum(len(row["selected_positions"]) for row in probes["probes"])
     # Local raw BF16 hidden states at every layer; pooled/selected FP32 is authoritative aggregate.
-    raw_hidden_bytes = total_tokens * hidden_size * (layers + 1) * 2
-    aggregate_hidden_bytes = total_selected * hidden_size * (layers + 1) * 4
+    # Embedding output + every transformer block + final norm = layers + 2 streams.
+    raw_hidden_bytes = total_tokens * hidden_size * (layers + 2) * 2
+    aggregate_hidden_bytes = total_selected * hidden_size * (layers + 2) * 4
     attention_summary_bytes = len(probes["probes"]) * layers * heads * 2 * 4
     bounded = probes["extraction"]["bounded_raw_attention"]
     raw_attention_bytes = (

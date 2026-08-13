@@ -84,7 +84,7 @@ def audit_research_states(
     for state in MODEL_STATES:
         path = paths[state.state_id]
         if state.state_id == "untouched_parent":
-            rows.append(_audit_parent(state, path))
+            rows.append(_audit_parent(state, path, protocol, verify_hashes))
         else:
             assert path is not None
             rows.append(
@@ -116,7 +116,12 @@ def audit_research_states(
     }
 
 
-def _audit_parent(state: ModelState, path: Path | None) -> dict[str, Any]:
+def _audit_parent(
+    state: ModelState,
+    path: Path | None,
+    protocol: dict[str, Any],
+    verify_hashes: bool,
+) -> dict[str, Any]:
     row = {**asdict(state), "path": str(path) if path else None, "issues": []}
     if path is None or not path.exists():
         row["status"] = "missing"
@@ -132,6 +137,30 @@ def _audit_parent(state: ModelState, path: Path | None) -> dict[str, Any]:
         row["status"] = "complete"
         row["model_dir"] = str(model_dir)
         row["weight_bytes"] = sum(item.stat().st_size for item in weights)
+        model = protocol.get("model", {})
+        published_identity = hashlib.sha256(
+            f"{model.get('model_id')}@{model.get('revision')}".encode("utf-8")
+        ).hexdigest()
+        row["state_identity_sha256"] = published_identity
+        row["published_model_id"] = model.get("model_id")
+        row["published_revision"] = model.get("revision")
+        if verify_hashes:
+            local_files = sorted(item for item in model_dir.rglob("*") if item.is_file())
+            inventory = [
+                {
+                    "path": str(item.relative_to(model_dir)),
+                    "bytes": item.stat().st_size,
+                    "sha256": _sha256(item),
+                }
+                for item in local_files
+            ]
+            row["verified_file_count"] = len(inventory)
+            row["verified_files"] = inventory
+            row["local_weight_inventory_sha256"] = hashlib.sha256(
+                json.dumps(
+                    inventory, sort_keys=True, separators=(",", ":")
+                ).encode("utf-8")
+            ).hexdigest()
     return row
 
 
@@ -176,6 +205,7 @@ def _audit_snapshot(
         if key in metadata
     }
     row["manifest_sha256"] = _sha256(manifest_path)
+    row["state_identity_sha256"] = row["manifest_sha256"]
     if state.snapshot_role == "validation_selected_endpoint":
         endpoint_fields = (
             "selected_metrics", "parent_baseline_metrics", "validation_history",

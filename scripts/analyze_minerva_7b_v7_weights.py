@@ -13,24 +13,31 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
+from sonnet_analysis.minerva_v7_runtime import load_verified_comparison
 from sonnet_analysis.minerva_v7_weights import compare_model_weights, plan_weight_comparison
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--left-model-dir", type=Path, required=True)
-    parser.add_argument("--right-model-dir", type=Path, required=True)
+    parser.add_argument("--state-audit", type=Path, required=True)
+    parser.add_argument("--left-state-id", required=True)
+    parser.add_argument("--right-state-id", required=True)
     parser.add_argument("--chunk-mib", type=int, default=64)
     parser.add_argument("--execute", action="store_true", help="Scan tensors; default is a metadata-only dry run.")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
+    left, right, comparison_id = load_verified_comparison(
+        args.state_audit, args.left_state_id, args.right_state_id
+    )
+    left_model_dir = Path(str(left["model_dir"]))
+    right_model_dir = Path(str(right["model_dir"]))
     chunk_bytes = args.chunk_mib * 1024 * 1024
     print(
         f"minerva-v7-analysis | start job=weight_change execute={args.execute} "
-        f"chunk_mib={args.chunk_mib}", flush=True,
+        f"comparison={comparison_id} chunk_mib={args.chunk_mib}", flush=True,
     )
     plan = plan_weight_comparison(
-        left_model_dir=args.left_model_dir, right_model_dir=args.right_model_dir,
+        left_model_dir=left_model_dir, right_model_dir=right_model_dir,
         chunk_bytes=chunk_bytes,
     )
     print(
@@ -46,11 +53,14 @@ def main() -> None:
                 flush=True,
             )
         report = compare_model_weights(
-            left_model_dir=args.left_model_dir, right_model_dir=args.right_model_dir,
+            left_model_dir=left_model_dir, right_model_dir=right_model_dir,
             chunk_bytes=chunk_bytes, progress=progress,
         )
     else:
         report = plan
+    report["comparison_id"] = comparison_id
+    report["left_state_identity_sha256"] = left["state_identity_sha256"]
+    report["right_state_identity_sha256"] = right["state_identity_sha256"]
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(f"minerva-v7-analysis | complete output={args.output}", flush=True)

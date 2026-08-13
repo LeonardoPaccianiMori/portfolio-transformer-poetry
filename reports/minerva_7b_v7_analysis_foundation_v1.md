@@ -2,10 +2,10 @@
 
 ## Status
 
-The GPU-free analysis foundation is implemented and CPU tested. It prepares a
-reproducible seven-state study of the three-stage Minerva 7B curriculum without
-running post-hoc model inference, accessing V7 test data, or authorizing causal
-interventions.
+The GPU-free foundation and the bounded descriptive research suite are
+implemented and CPU tested. They prepare a reproducible seven-state study of
+the three-stage Minerva 7B curriculum without running post-hoc model inference,
+accessing V7 test data, or authorizing causal interventions.
 
 ## Scientific Contract
 
@@ -29,6 +29,21 @@ The foundation provides:
   contract; and
 - a fail-closed causal-proposal gate.
 
+The descriptive suite adds:
+
+- a manual-execution-only BF16 extractor for the frozen 48 probes, retaining
+  raw hidden states, compact pooled/selected representations, attention
+  summaries, bounded raw attention, and top-logit evidence;
+- matched BF16 generation with a frozen 24-prompt by 3-seed grid per state,
+  including exact conditioning and output token IDs;
+- paired representation, attention, logit, embedding, and LM-head comparisons;
+- a private, hash-pinned surface-copy reference decoded from exactly the 19,899
+  V7 training sonnets, with no validation or test pool access;
+- automatic behavioral summaries and a deterministic model-blinded human
+  review scaffold; and
+- hash-verified, relative-path completion records so private outputs remain
+  portable between the GPU host and laptop.
+
 ## Measured Dry-Run Bounds
 
 The real stage-1 telemetry is recognized as exactly 2,065 of 2,065 updates. A
@@ -42,9 +57,24 @@ delta tensor.
 The frozen 48-probe manifest passes its exact SHA-256, token, attention-mask,
 selected-position, four-domain balance, and no-test checks. Retaining local BF16
 hidden states plus the approved compact FP32 aggregates, bounded raw attention,
-and top-logit summaries currently projects to approximately 23.89 GiB across
-all seven states. This is an intentionally conservative planning estimate, not
-a measured GPU runtime or final artifact size.
+and top-logit summaries projects to 3.51 GiB per state and 24.59 GiB across all
+seven states. This corrected estimate counts 34 streams: embedding output, 32
+block outputs, and final norm. It is a byte-level planning estimate before
+filesystem and manifest overhead, not a measured GPU runtime or final artifact
+size.
+
+The private memorization-reference dry run verified the frozen document-index
+and token-shard hashes, decoded all 19,899 `sonnets_train` records / 3,551,021
+tokens, and wrote a 17.34-MB hash-pinned local export. The scorer bounds later
+work by first building a generated-40-gram lookup and scanning the training
+records once, then running exact longest-common-substring work only for
+candidates sharing a generated 40-gram.
+
+The frozen 24-prompt by 3-seed grid remains the confirmatory dataset. A larger,
+separately labeled exploratory generation tier is scheduled so the qualified
+GPU can produce substantially more samples without changing the confirmatory
+contract. Its prompt/seed/decoding mix, batching, cost, and storage bounds must
+be proposed and approved before implementation or execution.
 
 ## Causal-Experiment Boundary
 
@@ -59,10 +89,12 @@ separate approval.
 
 ## Verification
 
-The focused analysis suite passes 12 tests. The complete repository suite
-passes 1,090 tests. Real integration dry runs validate the stage-1 evidence,
-the 291-tensor checkpoint layout, and the frozen probe contract without hashing
-an incomplete local transfer or altering any training artifact.
+The focused research/analysis suite passes 27 tests, the adjacent training-
+regression suite passes 47 tests, and the complete repository suite passes
+1,105 tests. Real dry runs validate stage-1 state accounting, the 291-tensor
+checkpoint layout, the frozen probe contract, 48-probe/72-output execution
+plans, and the private training-only memorization export without altering any
+training artifact.
 
 No model weights, private probe token IDs, local run artifacts, raw activations,
 V7 test material, or rented-instance details are published in this report.

@@ -1,0 +1,44 @@
+{
+  "research_version": "minerva_7b_v7_post_training_research_v1",
+  "model_id": "sapienzanlp/Minerva-7B-instruct-v1.0",
+  "revision": "d1fc0f0e589ae879c5ac763e0e4206a4d14a3f6d",
+  "state_count": 7,
+  "probe_manifest_path": "data/local/minerva_7b_v7/activation_probes_v1.json",
+  "probe_manifest_sha256": "3557b4e455357ca165b4689a3876de7965ad59677cba6f0c0b00d2fad956488b",
+  "prompt_path": "configs/minerva_7b_parent_decoding_confirmation_prompts.json",
+  "prompt_sha256": "98f429aeb04c4491517b3e1c218d21a98596476d163c87d62f3d09d535ea70e5",
+  "encoded_data_report_sha256": "2acaf9c8a598e2543017b17b4b60f2d9d4a4b18520345ded1cd8712bc9304f3e",
+  "embedding_registry_sha256": "439a90cd6721dc19121a180c2f46782588bdd880b7eaa5c7686ae1663ddbbf54",
+  "extraction": {
+    "model_dtype": "bfloat16",
+    "attention_implementation": "eager",
+    "aggregate_dtype": "float32",
+    "raw_hidden_state_dtype": "bfloat16",
+    "raw_hidden_state_streams": 34,
+    "bounded_raw_attention_domains": 4,
+    "bounded_raw_attention_layers": [0, 8, 16, 24, 31],
+    "bounded_raw_attention_maximum_tokens": 256,
+    "top_k_logits": 20,
+    "resumable_unit": "one_probe_within_one_model_state"
+  },
+  "generation": {
+    "confirmatory_seed": 4099,
+    "exploratory_replication_seeds": [4100, 4101],
+    "temperature": 0.7,
+    "top_p": 0.92,
+    "top_k": null,
+    "repetition_penalty": 1.0,
+    "no_repeat_ngram_size": 4,
+    "max_new_tokens": 512,
+    "continuation_line_target": 13,
+    "conditioning_format": "minerva_chat_complete_sonnet_v1"
+  },
+  "authorization": {
+    "descriptive_analysis_approved": true,
+    "gpu_execution_requires_user_manual_launch": true,
+    "causal_experiments_authorized": false,
+    "v7_test_access_authorized": false,
+    "training_authorized": false,
+    "instance_lifecycle_action_authorized": false
+  }
+}
