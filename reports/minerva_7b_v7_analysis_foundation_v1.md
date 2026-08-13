@@ -89,6 +89,13 @@ resamples over prompts. A deterministic 504-output blinded subset covers 24
 prompt clusters, all seven states, and all three recipes without exposing model
 or recipe identities in the review sheet.
 
+The GPU research package is intentionally independent of legacy corpus-builder,
+scraping, and adapter-training imports. Its frozen chat prompt, line-completion
+counter, sampling filters, and bounded memorization primitives live in the
+research package itself. This keeps model-state analysis deployable beside the
+minimal full-weight training bundle without installing unrelated acquisition
+dependencies or changing the scientific prompt/sampling contract.
+
 ## Causal-Experiment Boundary
 
 Parameter or representation drift is descriptive evidence, not causal proof.

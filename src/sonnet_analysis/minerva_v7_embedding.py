@@ -11,8 +11,8 @@ from typing import Any, Mapping, Sequence
 
 import torch
 
+from sonnet_analysis.minerva_v7_runtime import tokenizer_sha256
 from sonnet_analysis.minerva_v7_weights import TensorCatalog
-from sonnet_training.minerva_7b_full_weight_data import tokenizer_sha256
 
 
 EMBEDDING_VERSION = "minerva_7b_v7_embedding_analysis_v1"

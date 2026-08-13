@@ -8,16 +8,11 @@ import json
 import os
 import sys
 from collections.abc import Callable, Iterator, Mapping, Sequence
+from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
 
-from sonnet_evaluation.memorization import (
-    DEFAULT_NGRAM_SIZE,
-    character_ngram_set,
-    find_nearest_training_record,
-    normalize_for_memorization,
-)
-from sonnet_training.minerva_7b_full_weight_data import tokenizer_sha256
+from sonnet_analysis.minerva_v7_runtime import tokenizer_sha256
 
 
 REFERENCE_VERSION = "minerva_7b_v7_sonnet_train_memorization_reference_v1"
@@ -26,6 +21,73 @@ EXPECTED_SHARD_SHA256 = "167da9677d44b6a50fa66afd68ede38be07bf3d951f20764c27692f
 EXPECTED_TOKENIZER_SHA256 = "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c"
 EXPECTED_DOCUMENTS = 19_899
 EXPECTED_TOKENS = 3_551_021
+DEFAULT_NGRAM_SIZE = 40
+
+
+def normalize_for_memorization(text: str) -> str:
+    return " ".join(text.lower().split())
+
+
+def character_ngram_set(text: str, ngram_size: int) -> set[str]:
+    if ngram_size <= 0:
+        raise ValueError("ngram_size must be greater than 0")
+    return {
+        text[index : index + ngram_size]
+        for index in range(max(0, len(text) - ngram_size + 1))
+    }
+
+
+def _nearest_training_record(
+    generated_text: str,
+    training_records: Sequence[Mapping[str, str]],
+    ngram_size: int,
+) -> dict[str, Any]:
+    generated_normalized = normalize_for_memorization(generated_text)
+    generated_grams = character_ngram_set(generated_normalized, ngram_size)
+    best: dict[str, Any] | None = None
+    for record in training_records:
+        reference_normalized = normalize_for_memorization(str(record["text"]))
+        if not generated_grams:
+            containment = 0.0
+        else:
+            reference_grams = character_ngram_set(reference_normalized, ngram_size)
+            containment = len(generated_grams & reference_grams) / len(generated_grams)
+        if containment == 0:
+            continue
+        longest = SequenceMatcher(
+            None, generated_normalized, reference_normalized, autojunk=False
+        ).find_longest_match(
+            0, len(generated_normalized), 0, len(reference_normalized)
+        ).size
+        risk = "high" if containment >= 0.30 or longest >= 160 else (
+            "medium" if containment >= 0.15 or longest >= 80 else "low"
+        )
+        row = {
+            "nearest_poem_id": record["poem_id"],
+            "nearest_title_or_first_line": record["title_or_first_line"],
+            "nearest_author": record["author"],
+            "nearest_clean_text_path": record["clean_text_path"],
+            "ngram_containment": containment,
+            "longest_common_substring_chars": longest,
+            "longest_common_substring_is_exact": True,
+            "longest_common_substring_upper_bound": None,
+            "risk_level": risk,
+        }
+        if best is None or (containment, longest) > (
+            best["ngram_containment"], best["longest_common_substring_chars"]
+        ):
+            best = row
+    return best or {
+        "nearest_poem_id": None,
+        "nearest_title_or_first_line": None,
+        "nearest_author": None,
+        "nearest_clean_text_path": None,
+        "ngram_containment": 0.0,
+        "longest_common_substring_chars": None,
+        "longest_common_substring_is_exact": False,
+        "longest_common_substring_upper_bound": ngram_size - 1,
+        "risk_level": "low",
+    }
 
 
 def build_sonnet_train_reference(
@@ -186,9 +248,9 @@ def score_texts_against_reference(
                 }
                 for row in matched.values()
             ]
-            results.append(find_nearest_training_record(text, compatible, ngram_size))
+            results.append(_nearest_training_record(text, compatible, ngram_size))
         else:
-            results.append(find_nearest_training_record(text, [_no_match_record()], ngram_size))
+            results.append(_nearest_training_record(text, [_no_match_record()], ngram_size))
     return results
 
 

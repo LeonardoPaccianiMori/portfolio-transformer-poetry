@@ -18,6 +18,24 @@ MINIMUM_FREE_DISK_GIB = 40
 MINIMUM_GPU_MEMORY_MIB = 76800
 
 
+def tokenizer_sha256(tokenizer: Any) -> str:
+    """Fingerprint a tokenizer without importing the corpus-building stack."""
+
+    backend = getattr(tokenizer, "backend_tokenizer", None)
+    if backend is not None and callable(getattr(backend, "to_str", None)):
+        serialized = backend.to_str().encode("utf-8")
+    else:
+        serialized = json.dumps(
+            {
+                "class": tokenizer.__class__.__name__,
+                "vocab_size": len(tokenizer),
+                "eos_token_id": getattr(tokenizer, "eos_token_id", None),
+            },
+            sort_keys=True,
+        ).encode("utf-8")
+    return hashlib.sha256(serialized).hexdigest()
+
+
 def load_research_config(path: Path) -> dict[str, Any]:
     config = json.loads(path.read_text(encoding="utf-8"))
     expected = {
@@ -137,8 +155,6 @@ def load_bf16_model_and_tokenizer(
 
 
 def _verify_tokenizer(tokenizer: Any) -> None:
-    from sonnet_training.minerva_7b_full_weight_data import tokenizer_sha256
-
     expected = "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7b41a045853a8c"
     if tokenizer_sha256(tokenizer) != expected:
         raise ValueError("research model tokenizer fingerprint mismatch")

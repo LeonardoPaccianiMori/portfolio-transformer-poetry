@@ -148,6 +148,9 @@ class ToyGenerationTokenizer:
 
     def apply_chat_template(self, messages, *, tokenize, add_generation_prompt):
         assert not tokenize and add_generation_prompt
+        assert messages[0]["content"].startswith(
+            "Componi un sonetto in italiano classico"
+        )
         return "PROMPT:"
 
     def __call__(self, text, *, add_special_tokens, return_tensors):
@@ -193,6 +196,7 @@ def test_matched_generation_keeps_token_ids_and_seed_role(tmp_path):
     assert result["text"] == "Prima\nSeconda\n"
     assert result["generated_token_ids"] == [ord(char) for char in "Seconda\n"]
     assert result["conditioning_input_ids"] == [1, 2]
+    assert result["conditioning_prompt"] == "PROMPT:Prima\n"
     completion = generate_state_outputs(
         model=ToyGenerationModel(ord(char) for char in "Seconda\n"),
         tokenizer=ToyGenerationTokenizer(), state_id="state", state_identity_sha256="a" * 64,

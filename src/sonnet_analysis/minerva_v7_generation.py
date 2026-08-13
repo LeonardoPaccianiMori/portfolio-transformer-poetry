@@ -11,12 +11,95 @@ from typing import Any
 
 import torch
 
-from sonnet_evaluation.generation import completed_non_empty_line_count
-from sonnet_evaluation.minerva_7b_sonnet_candidates import build_sonnet_candidate_prompt
-from sonnet_evaluation.minerva_generation import prepare_minerva_sampling_logits
-
 
 GENERATION_VERSION = "minerva_7b_v7_matched_generation_v1"
+
+
+def completed_non_empty_line_count(text: str) -> int:
+    """Count only newline-terminated non-empty continuation lines."""
+
+    if text == "":
+        return 0
+    completed = text if text.endswith(("\n", "\r")) else "\n".join(text.splitlines()[:-1])
+    return sum(bool(line.strip()) for line in completed.splitlines())
+
+
+def build_sonnet_candidate_prompt(tokenizer: Any, opening_line: str) -> str:
+    """Render the frozen sonnet instruction without importing legacy training code."""
+
+    if not opening_line.strip() or "\n" in opening_line or "\r" in opening_line:
+        raise ValueError("opening_line must contain exactly one non-empty line")
+    user_message = (
+        "Componi un sonetto in italiano classico di esattamente quattordici "
+        "versi. Usa come primo verso esattamente quello indicato, mantieni un "
+        "tema coerente e una sintassi grammaticale, ed evita ripetizioni. "
+        "Restituisci soltanto il sonetto, senza titolo, spiegazioni o commenti.\n\n"
+        f"Primo verso: {opening_line}"
+    )
+    rendered = tokenizer.apply_chat_template(
+        [{"role": "user", "content": user_message}],
+        tokenize=False,
+        add_generation_prompt=True,
+    )
+    if not isinstance(rendered, str) or not rendered:
+        raise ValueError("Minerva chat template must render a non-empty string")
+    return f"{rendered}{opening_line}\n"
+
+
+def prepare_minerva_sampling_logits(
+    logits: torch.Tensor,
+    *,
+    generated_token_ids: Sequence[int],
+    temperature: float,
+    top_k: int | None,
+    top_p: float,
+    repetition_penalty: float,
+) -> torch.Tensor:
+    """Apply the frozen continuation-only sampling filters."""
+
+    if logits.ndim != 2 or logits.shape[0] != 1:
+        raise ValueError("Minerva sampling logits must have shape (1, vocabulary)")
+    if temperature <= 0:
+        raise ValueError("temperature must be greater than 0")
+    if top_k is not None and top_k <= 0:
+        raise ValueError("top_k must be greater than 0 when provided")
+    if not 0 < top_p <= 1:
+        raise ValueError("top_p must be in the interval (0, 1]")
+    if repetition_penalty < 1:
+        raise ValueError("repetition_penalty must be at least 1")
+
+    filtered = logits.clone()
+    if repetition_penalty != 1 and generated_token_ids:
+        repeated_ids = sorted({
+            token_id
+            for token_id in generated_token_ids
+            if 0 <= token_id < filtered.shape[-1]
+        })
+        if repeated_ids:
+            repeated_logits = filtered[:, repeated_ids]
+            filtered[:, repeated_ids] = torch.where(
+                repeated_logits < 0,
+                repeated_logits * repetition_penalty,
+                repeated_logits / repetition_penalty,
+            )
+    filtered = filtered / temperature
+    if top_k is not None:
+        retained_count = min(top_k, filtered.shape[-1])
+        threshold = torch.topk(filtered, retained_count, dim=-1).values[:, -1:]
+        filtered = filtered.masked_fill(filtered < threshold, -torch.inf)
+    if top_p < 1:
+        sorted_logits, sorted_indices = torch.sort(filtered, descending=True, dim=-1)
+        cumulative = torch.softmax(sorted_logits, dim=-1).cumsum(dim=-1)
+        sorted_remove = cumulative > top_p
+        sorted_remove[:, 1:] = sorted_remove[:, :-1].clone()
+        sorted_remove[:, 0] = False
+        remove = torch.zeros_like(sorted_remove).scatter(
+            dim=-1, index=sorted_indices, src=sorted_remove
+        )
+        filtered = filtered.masked_fill(remove, -torch.inf)
+    if not torch.isfinite(filtered).any(dim=-1).all():
+        raise RuntimeError("Minerva sampling filters removed every token")
+    return filtered
 
 
 def generate_matched_continuation(

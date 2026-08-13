@@ -10,7 +10,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any, Mapping
 
-from sonnet_training.minerva_7b_full_weight_data import tokenizer_sha256
+from sonnet_analysis.minerva_v7_runtime import tokenizer_sha256
 
 
 PROMPT_VERSION = "minerva_7b_v7_exploratory_prompts_v1"
