@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import pytest
+
 from scripts.build_minerva_v7_human_ai_calibration_packet import (
     build_validation_calibration_packet,
 )
@@ -9,6 +11,7 @@ from scripts.prepare_minerva_v7_dpo_review import _calibration_markdown
 ROOT = Path(__file__).resolve().parents[1]
 
 
+@pytest.mark.local_artifact
 def test_validation_calibration_packet_is_balanced_blinded_and_reproducible():
     kwargs = {
         "analysis_path": ROOT / "artifacts/local/minerva_7b_v7_stage_3_no_labels_creative/analysis/analysis.json",

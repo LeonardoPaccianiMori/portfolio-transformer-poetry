@@ -264,6 +264,7 @@ def test_real_reports_preserve_inactive_and_nonencoded_safety_boundary():
     assert "file://" not in serialized
 
 
+@pytest.mark.local_artifact
 def test_real_replay_count_is_bound_to_local_lineage_report():
     replay_path = ROOT / "data/local/minerva_7b_staged/replay_train.txt"
     lineage_path = ROOT / "data/local/minerva_7b_staged/replay_sample_report.json"

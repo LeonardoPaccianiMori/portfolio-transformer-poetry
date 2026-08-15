@@ -27,8 +27,10 @@ jobs:
         run: python -m pip install -r requirements.txt
       - name: Verify release inventory structure
         run: python scripts/build_public_release_inventory.py --check
-      - name: Run complete test suite
-        run: python -m pytest
+      - name: Verify public/local test boundary
+        run: python scripts/verify_public_test_scope.py
+      - name: Run complete public test suite
+        run: python -m pytest -m "not local_artifact"
       - name: Verify static-only demo
         run: python scripts/verify_static_demo.py
       - name: Enforce cleared release gate on tags

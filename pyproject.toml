@@ -27,3 +27,6 @@ where = ["src"]
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests"]
+markers = [
+  "local_artifact: requires intentionally withheld local research artifacts and is excluded only from public-clone CI",
+]

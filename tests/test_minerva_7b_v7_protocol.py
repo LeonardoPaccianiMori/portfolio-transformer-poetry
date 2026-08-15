@@ -173,6 +173,7 @@ def test_analysis_snapshots_and_activation_probe_contract_are_frozen():
     assert activations["do_not_capture_every_training_batch"] is True
 
 
+@pytest.mark.local_artifact
 def test_modern_preservation_index_is_deterministic_and_spans_are_complete(tmp_path):
     protocol = _protocol()
     first = tmp_path / "first.jsonl"
@@ -204,6 +205,7 @@ def test_modern_preservation_index_is_deterministic_and_spans_are_complete(tmp_p
     )
 
 
+@pytest.mark.local_artifact
 def test_prepare_protocol_writes_public_aggregate_report_and_local_index(tmp_path):
     config = FullWeightProtocolConfig(
         repo_root=ROOT,

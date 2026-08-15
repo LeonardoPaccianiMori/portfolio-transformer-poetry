@@ -106,6 +106,7 @@ def test_execution_config_pins_lineage_evidence_and_authorization():
     assert not execution["authorization"]["long_training_authorized"]
 
 
+@pytest.mark.local_artifact
 def test_execution_context_matches_local_frozen_window_manifest():
     config = V7ExecutionConfig(
         repo_root=ROOT,
@@ -357,6 +358,7 @@ def test_update_telemetry_records_window_identity_and_rejects_nonfinite(tmp_path
         )
 
 
+@pytest.mark.local_artifact
 def test_completed_public_report_and_local_probe_manifest_are_consistent():
     report = json.loads(
         (ROOT / "reports/minerva_7b_v7_execution_v1.json").read_text()

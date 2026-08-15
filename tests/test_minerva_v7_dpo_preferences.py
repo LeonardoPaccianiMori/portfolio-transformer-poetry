@@ -68,6 +68,7 @@ def training_manifest():
     )
 
 
+@pytest.mark.local_artifact
 def test_training_prompt_manifest_is_balanced_training_only_and_reproducible(
     training_manifest, tmp_path
 ):
@@ -86,6 +87,7 @@ def test_training_prompt_manifest_is_balanced_training_only_and_reproducible(
     assert len(build_candidate_jobs(training_manifest["prompts"])) == 4096
 
 
+@pytest.mark.local_artifact
 def test_prompt_validator_rejects_held_out_lineage(training_manifest, tmp_path):
     broken = json.loads(json.dumps(training_manifest))
     broken["prompts"][0]["source_split"] = "sonnets_validation"
@@ -95,6 +97,7 @@ def test_prompt_validator_rejects_held_out_lineage(training_manifest, tmp_path):
         validate_training_prompt_manifest(path)
 
 
+@pytest.mark.local_artifact
 def test_candidate_config_is_bounded_and_generation_is_resumable(
     training_manifest, tmp_path
 ):

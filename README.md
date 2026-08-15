@@ -92,8 +92,13 @@ historical GPU training environment.
 python3.12 -m venv .venv
 .venv/bin/python -m pip install --index-url https://download.pytorch.org/whl/cpu torch==2.10.0
 .venv/bin/python -m pip install -r requirements.txt
-.venv/bin/python -m pytest
+.venv/bin/python scripts/verify_public_test_scope.py
+.venv/bin/python -m pytest -m "not local_artifact"
 ```
+
+The public-clone suite contains 1,159 tests. Ten additional tests are explicitly
+catalogued as local-only because they validate intentionally withheld research
+artifacts; see [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
 
 For the static-only demo check:
 

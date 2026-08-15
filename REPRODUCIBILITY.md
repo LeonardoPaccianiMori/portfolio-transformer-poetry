@@ -15,6 +15,13 @@ python3.12 -m venv .venv
 .venv/bin/python -m pytest
 ```
 
+The full command runs 1,169 tests when the intentionally withheld local
+research artifacts are present. A clean public clone first runs
+`scripts/verify_public_test_scope.py`, then runs the complete 1,159-test public
+subset with `python -m pytest -m "not local_artifact"`. The exact ten local-only
+node IDs are frozen in `release/local_only_test_allowlist.txt`; CI fails if a
+marker is added, removed, or moved without updating that reviewed boundary.
+
 Run the UI/server contract without model artifacts:
 
 ```bash
@@ -43,9 +50,9 @@ path and every unique historical `(path, blob OID)` pair reachable from the
 immutable commit recorded in `release/history_review_target.txt`. For a
 preparatory commit, that target is its exact parent; the current manifest and
 history manifest therefore cover the complete prospective public history
-without using a moving remote ref. `--require-cleared` is fail-closed and cannot pass while
-any rights, retention, privacy, authority, memo, or review-date field remains
-pending.
+without using a moving remote ref. `--require-cleared` is fail-closed and cannot
+pass while any rights, retention, privacy, authority, memo, or review-date field
+remains pending.
 
 ## Local-only workflows
 

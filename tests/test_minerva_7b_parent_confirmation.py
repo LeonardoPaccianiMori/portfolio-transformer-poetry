@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG_PATH = ROOT / "configs/minerva_7b_parent_decoding_confirmation.json"
 
 
+@pytest.mark.local_artifact
 def test_parent_confirmation_config_and_artifacts_are_frozen():
     config = load_confirmation_config(CONFIG_PATH)
 
