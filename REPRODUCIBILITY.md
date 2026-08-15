@@ -40,7 +40,10 @@ preferences, votes, annotations, private mappings, tensors, and corpus text.
 
 `scripts/build_public_release_inventory.py` covers every indexed current-tree
 path and every unique historical `(path, blob OID)` pair reachable from the
-recorded published ref. `--require-cleared` is fail-closed and cannot pass while
+immutable commit recorded in `release/history_review_target.txt`. For a
+preparatory commit, that target is its exact parent; the current manifest and
+history manifest therefore cover the complete prospective public history
+without using a moving remote ref. `--require-cleared` is fail-closed and cannot pass while
 any rights, retention, privacy, authority, memo, or review-date field remains
 pending.
 

@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RELEASE_DIR = ROOT / "release"
 CURRENT_MANIFEST = RELEASE_DIR / "artifact_rights_manifest.csv"
 HISTORY_MANIFEST = RELEASE_DIR / "history_rights_manifest.csv"
+HISTORY_TARGET = RELEASE_DIR / "history_review_target.txt"
 SELF_GENERATED = "self_generated"
 PENDING = "pending_review"
 
@@ -42,6 +43,13 @@ UNRESOLVED_VALUES = {
 def run_git(*args: str, text: bool = True) -> str | bytes:
     result = subprocess.run(["git", *args], cwd=ROOT, check=True, capture_output=True, text=text)
     return result.stdout
+
+
+def default_published_refs() -> list[str]:
+    target = HISTORY_TARGET.read_text(encoding="utf-8").strip()
+    if not target:
+        raise ValueError(f"{HISTORY_TARGET}: empty history review target")
+    return [target]
 
 
 def tracked_paths() -> list[str]:
@@ -266,7 +274,7 @@ def main() -> int:
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--require-cleared", action="store_true")
     args = parser.parse_args()
-    refs = args.published_ref or ["origin/main"]
+    refs = args.published_ref or default_published_refs()
     if not args.check:
         build(refs)
     errors = structural_errors(refs)

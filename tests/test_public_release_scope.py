@@ -19,7 +19,7 @@ def load_inventory_module():
 
 def test_current_and_published_history_manifests_are_complete():
     inventory = load_inventory_module()
-    assert inventory.structural_errors(["origin/main"]) == []
+    assert inventory.structural_errors(inventory.default_published_refs()) == []
 
 
 def test_raw_history_parser_preserves_non_ascii_corpus_paths():

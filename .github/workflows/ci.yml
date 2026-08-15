@@ -26,11 +26,11 @@ jobs:
       - name: Install verification dependencies
         run: python -m pip install -r requirements.txt
       - name: Verify release inventory structure
-        run: python scripts/build_public_release_inventory.py --check --published-ref origin/main
+        run: python scripts/build_public_release_inventory.py --check
       - name: Run complete test suite
         run: python -m pytest
       - name: Verify static-only demo
         run: python scripts/verify_static_demo.py
       - name: Enforce cleared release gate on tags
         if: startsWith(github.ref, 'refs/tags/')
-        run: python scripts/build_public_release_inventory.py --check --require-cleared --published-ref origin/main
+        run: python scripts/build_public_release_inventory.py --check --require-cleared
