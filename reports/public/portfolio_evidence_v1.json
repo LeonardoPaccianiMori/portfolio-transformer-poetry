@@ -1,0 +1,439 @@
+{
+  "charts": {
+    "blind-literary-deltas": {
+      "ci_high": [
+        0.18,
+        0.38,
+        0.23,
+        0.22,
+        0.21
+      ],
+      "ci_low": [
+        -0.2,
+        0.04,
+        -0.12,
+        -0.03,
+        -0.21
+      ],
+      "delta": [
+        -0.01,
+        0.21,
+        0.06,
+        0.09,
+        0.0
+      ],
+      "labels": [
+        "Grammar",
+        "Historical register",
+        "Poetic quality",
+        "Sonnet/form",
+        "Volta"
+      ],
+      "qualification": "Frozen 200-output blind review; only historical register excludes zero.",
+      "source_path": "reports/minerva_7b_v7_ai_judged_dpo.md",
+      "source_sha256": "e3d150827028c13f0837ed158187cfaac9646d0218b7764043ea614b1c77dda0"
+    },
+    "controlled-architecture-tradeoffs": {
+      "best_validation_loss": [
+        2.672,
+        2.5935
+      ],
+      "labels": [
+        "ReLU",
+        "SwiGLU"
+      ],
+      "qualification": "One seed; five sampled validation batches per evaluation.",
+      "repeated_4gram_ratio": [
+        0.1115,
+        0.0863
+      ],
+      "source_path": "reports/sonnet_control_swiglu_pretraining_comparison.md",
+      "source_sha256": "f11c0c69873669bde2ef08748997abf704ceb25aae7e7422bc950f7731162c6d"
+    },
+    "curriculum-stage-exposure": {
+      "labels": [
+        "Historical/general",
+        "Non-sonnet poetry",
+        "Sonnets"
+      ],
+      "modern_replay_share_percent": [
+        5,
+        5,
+        5
+      ],
+      "qualification": "PAISÀ replay is 5% of target-token exposure, not unique documents, corpus size, or examples.",
+      "selected_updates": [
+        2065,
+        760,
+        120
+      ],
+      "source_path": "reports/minerva_7b_v7_stage_windows_v1.json",
+      "source_sha256": "c89da835700f7db818be90caac8cfb03e0f12f1aa80f97b7d2d9d6a57c4650b7",
+      "target_tokens": [
+        67665920,
+        24903680,
+        4423680
+      ],
+      "windows": [
+        33040,
+        12160,
+        2160
+      ]
+    },
+    "preference-data-funnel": {
+      "counts": [
+        4096,
+        534,
+        482,
+        52
+      ],
+      "labels": [
+        "Candidates",
+        "Preference pairs",
+        "Train pairs",
+        "Validation pairs"
+      ],
+      "qualification": "AI-majority preferences; calibration pairs excluded.",
+      "source_path": "reports/minerva_7b_v7_ai_judged_dpo.md",
+      "source_sha256": "e3d150827028c13f0837ed158187cfaac9646d0218b7764043ea614b1c77dda0"
+    },
+    "preservation-loss-changes": {
+      "dpo_minus_stage3": [
+        -3e-05,
+        4e-05,
+        0.00063,
+        0.00014,
+        0.01334
+      ],
+      "labels": [
+        "Historical/general",
+        "Historical poetry",
+        "V7 sonnets",
+        "Modern Italian",
+        "Instruction"
+      ],
+      "qualification": "Positive values are loss regressions; negative values are improvements.",
+      "source_path": "reports/minerva_7b_v7_ai_judged_dpo.md",
+      "source_sha256": "e3d150827028c13f0837ed158187cfaac9646d0218b7764043ea614b1c77dda0"
+    },
+    "relative-parameter-movement": {
+      "labels": [
+        "Parent→S1 mid",
+        "S1 mid→selected",
+        "S1→S2 mid",
+        "S2 mid→selected",
+        "S2→S3 mid",
+        "S3 mid→selected"
+      ],
+      "qualification": "Sequential global parameter deltas; log scale.",
+      "relative_l2": [
+        0.02994,
+        0.00819,
+        0.00728,
+        0.00191,
+        0.000533,
+        9.71e-05
+      ],
+      "source_path": "reports/minerva_7b_v7_post_training_study.md",
+      "source_sha256": "2caf5447e9ed1d97c71cbe9d2998cef85e9b62866f874f185c46149acb399a11"
+    },
+    "representation-change-comparison": {
+      "hidden_drift": [
+        0.2394,
+        0.00371
+      ],
+      "labels": [
+        "Parent→final",
+        "Late Stage 3"
+      ],
+      "linear_cka": [
+        0.9219,
+        0.999997
+      ],
+      "qualification": "Descriptive frozen-probe comparisons; these metrics do not establish causality.",
+      "source_path": "reports/minerva_7b_v7_post_training_study.md",
+      "source_sha256": "2caf5447e9ed1d97c71cbe9d2998cef85e9b62866f874f185c46149acb399a11",
+      "top20_overlap": [
+        0.4994,
+        0.9668
+      ]
+    },
+    "sealed-test-automatic-outcomes": {
+      "dpo_percent": [
+        99.92,
+        87.78,
+        20.46,
+        17.6
+      ],
+      "labels": [
+        "Fourteen lines",
+        "Meta-text free",
+        "Terminal punctuation",
+        "Surface screen"
+      ],
+      "qualification": "All 1,244 sealed openings, two seeds, both systems; 14 lines are decoder-controlled.",
+      "source_path": "reports/minerva_7b_v7_ai_judged_dpo.md",
+      "source_sha256": "e3d150827028c13f0837ed158187cfaac9646d0218b7764043ea614b1c77dda0",
+      "stage3_percent": [
+        99.96,
+        86.33,
+        17.6,
+        15.07
+      ]
+    },
+    "stagewise-target-loss-reduction": {
+      "domains": [
+        "Historical/general",
+        "Historical poetry",
+        "Sonnets"
+      ],
+      "qualification": "Within-stage reductions between the first validation and selected endpoint.",
+      "source_path": "reports/minerva_7b_v7_post_training_study.md",
+      "source_sha256": "2caf5447e9ed1d97c71cbe9d2998cef85e9b62866f874f185c46149acb399a11",
+      "stage1": [
+        0.0762,
+        0.1702,
+        0.2385
+      ],
+      "stage2": [
+        null,
+        0.078,
+        0.0908
+      ],
+      "stage3": [
+        null,
+        null,
+        0.0179
+      ]
+    },
+    "validation-vs-sealed-test-gains": {
+      "ci_high": [
+        9.38,
+        4.5,
+        3.18,
+        4.86
+      ],
+      "ci_low": [
+        0.63,
+        0.52,
+        -0.28,
+        0.72
+      ],
+      "delta_points": [
+        5.0,
+        2.53,
+        1.45,
+        2.85
+      ],
+      "labels": [
+        "Validation surface screen",
+        "Sealed surface screen",
+        "Sealed meta-text free",
+        "Sealed punctuation"
+      ],
+      "qualification": "Matched validation and one-time sealed test are different populations.",
+      "source_path": "reports/minerva_7b_v7_ai_judged_dpo.md",
+      "source_sha256": "e3d150827028c13f0837ed158187cfaac9646d0218b7764043ea614b1c77dda0"
+    }
+  },
+  "claims": [
+    {
+      "id": "stage_1_runtime",
+      "public_surface": [
+        "project",
+        "model_note"
+      ],
+      "qualification": "Completed historical/general stage runtime.",
+      "source_path": "reports/minerva_7b_v7_post_training_study.md",
+      "source_sha256": "2caf5447e9ed1d97c71cbe9d2998cef85e9b62866f874f185c46149acb399a11",
+      "status": "measured",
+      "unit": "seconds",
+      "value": 15495
+    },
+    {
+      "id": "stage_2_runtime",
+      "public_surface": [
+        "project",
+        "model_note"
+      ],
+      "qualification": "Completed non-sonnet-poetry stage runtime.",
+      "source_path": "reports/minerva_7b_v7_post_training_study.md",
+      "source_sha256": "2caf5447e9ed1d97c71cbe9d2998cef85e9b62866f874f185c46149acb399a11",
+      "status": "measured",
+      "unit": "seconds",
+      "value": 7547
+    },
+    {
+      "id": "stage_3_runtime",
+      "public_surface": [
+        "project",
+        "model_note"
+      ],
+      "qualification": "Completed sonnet-stage runtime; update 120 of 135 selected.",
+      "source_path": "reports/minerva_7b_v7_post_training_study.md",
+      "source_sha256": "2caf5447e9ed1d97c71cbe9d2998cef85e9b62866f874f185c46149acb399a11",
+      "status": "measured",
+      "unit": "seconds",
+      "value": 3115
+    },
+    {
+      "id": "three_stage_cost",
+      "public_surface": [
+        "project",
+        "model_note"
+      ],
+      "qualification": "Qualification-based projection, not the measured final bill.",
+      "source_path": "reports/minerva_7b_v7_single_h100_qualification_v1.json",
+      "source_sha256": "49b2e05ef57e02a021d65f1054d1827192e6960012f409dd706862b2592e9600",
+      "status": "projected",
+      "unit": "USD",
+      "value": 10.652640572239436
+    },
+    {
+      "id": "dpo_runtime",
+      "public_surface": [
+        "project",
+        "dpo_note"
+      ],
+      "qualification": "Completed bounded DPO run.",
+      "source_path": "reports/minerva_7b_v7_ai_judged_dpo.md",
+      "source_sha256": "e3d150827028c13f0837ed158187cfaac9646d0218b7764043ea614b1c77dda0",
+      "status": "measured",
+      "unit": "seconds",
+      "value": 148.6
+    },
+    {
+      "id": "dpo_peak_vram",
+      "public_surface": [
+        "project",
+        "dpo_note"
+      ],
+      "qualification": "Peak VRAM during the completed DPO run.",
+      "source_path": "reports/minerva_7b_v7_ai_judged_dpo.md",
+      "source_sha256": "e3d150827028c13f0837ed158187cfaac9646d0218b7764043ea614b1c77dda0",
+      "status": "measured",
+      "unit": "GiB",
+      "value": 14.81
+    },
+    {
+      "id": "dpo_cost",
+      "public_surface": [
+        "project",
+        "dpo_note"
+      ],
+      "qualification": "Estimated, not billed cost.",
+      "source_path": "reports/minerva_7b_v7_ai_judged_dpo.md",
+      "source_sha256": "e3d150827028c13f0837ed158187cfaac9646d0218b7764043ea614b1c77dda0",
+      "status": "estimated",
+      "unit": "USD",
+      "value": 0.093
+    },
+    {
+      "id": "final_test_runtime",
+      "public_surface": [
+        "project",
+        "dpo_note"
+      ],
+      "qualification": "One-time hash-frozen test runtime.",
+      "source_path": "reports/minerva_7b_v7_ai_judged_dpo.md",
+      "source_sha256": "e3d150827028c13f0837ed158187cfaac9646d0218b7764043ea614b1c77dda0",
+      "status": "measured",
+      "unit": "seconds",
+      "value": 2970.6
+    },
+    {
+      "id": "final_test_cost",
+      "public_surface": [
+        "project",
+        "dpo_note"
+      ],
+      "qualification": "Estimated from measured runtime.",
+      "source_path": "reports/minerva_7b_v7_ai_judged_dpo.md",
+      "source_sha256": "e3d150827028c13f0837ed158187cfaac9646d0218b7764043ea614b1c77dda0",
+      "status": "estimated",
+      "unit": "USD",
+      "value": 1.967
+    },
+    {
+      "id": "architecture_replication",
+      "public_surface": [
+        "project"
+      ],
+      "qualification": "One seed and five sampled validation batches per evaluation; descriptive only.",
+      "source_path": "reports/sonnet_control_swiglu_pretraining_comparison.md",
+      "source_sha256": "f11c0c69873669bde2ef08748997abf704ceb25aae7e7422bc950f7731162c6d",
+      "status": "measured",
+      "unit": "seed",
+      "value": 1
+    },
+    {
+      "id": "decoder_line_control",
+      "public_surface": [
+        "project",
+        "dpo_note"
+      ],
+      "qualification": "Decoder-controlled; not evidence of learned form, rhyme, metre, grammar, or quality.",
+      "source_path": "reports/minerva_7b_v7_ai_judged_dpo.md",
+      "source_sha256": "e3d150827028c13f0837ed158187cfaac9646d0218b7764043ea614b1c77dda0",
+      "status": "measured",
+      "unit": "lines",
+      "value": 14
+    },
+    {
+      "denominator": 20,
+      "id": "human_ai_calibration",
+      "public_surface": [
+        "project",
+        "dpo_note"
+      ],
+      "qualification": "Failed calibration; the work remains AI-judged rather than human-aligned.",
+      "source_path": "reports/minerva_7b_v7_ai_judged_dpo.md",
+      "source_sha256": "e3d150827028c13f0837ed158187cfaac9646d0218b7764043ea614b1c77dda0",
+      "status": "measured",
+      "unit": "agreements",
+      "value": 12
+    },
+    {
+      "id": "literary_interval_excluding_zero",
+      "public_surface": [
+        "project",
+        "dpo_note"
+      ],
+      "qualification": "Only historical register excluded zero in the blind literary intervals.",
+      "source_path": "reports/minerva_7b_v7_ai_judged_dpo.md",
+      "source_sha256": "e3d150827028c13f0837ed158187cfaac9646d0218b7764043ea614b1c77dda0",
+      "status": "measured",
+      "unit": "dimension",
+      "value": "historical_register_only"
+    },
+    {
+      "denominator": 100,
+      "id": "strict_good_stage3",
+      "public_surface": [
+        "project",
+        "dpo_note"
+      ],
+      "qualification": "Frozen blind review.",
+      "source_path": "reports/minerva_7b_v7_ai_judged_dpo.md",
+      "source_sha256": "e3d150827028c13f0837ed158187cfaac9646d0218b7764043ea614b1c77dda0",
+      "status": "measured",
+      "unit": "outputs",
+      "value": 0
+    },
+    {
+      "denominator": 100,
+      "id": "strict_good_dpo",
+      "public_surface": [
+        "project",
+        "dpo_note"
+      ],
+      "qualification": "Frozen blind review.",
+      "source_path": "reports/minerva_7b_v7_ai_judged_dpo.md",
+      "source_sha256": "e3d150827028c13f0837ed158187cfaac9646d0218b7764043ea614b1c77dda0",
+      "status": "measured",
+      "unit": "outputs",
+      "value": 0
+    }
+  ],
+  "schema_version": 1
+}

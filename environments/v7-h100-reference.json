@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "status": "authoritative_reported_training_environment",
+  "python": "3.12",
+  "pytorch": "2.12.0+cu126",
+  "cuda": "12.6",
+  "nccl": "2.29.3",
+  "accelerator": {
+    "count": 1,
+    "model": "NVIDIA H100",
+    "memory_gib": 80
+  },
+  "qualification": "This records the historical V7 training environment; it is not the public CPU verification environment."
+}
