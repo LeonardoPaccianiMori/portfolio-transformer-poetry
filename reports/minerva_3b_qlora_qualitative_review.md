@@ -18,7 +18,7 @@ Generation directory: `outputs/generations/minerva_3b_v5_fixed_comparison/qlora`
 
 - Seed: `1337`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/qlora/giacomo_madonna__seed_1337.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/qlora/giacomo_madonna__seed_1337.txt`
 
 ### Human Review
 
@@ -61,7 +61,7 @@ e 'l far suo tutto, e 'l servir bene,
 
 - Seed: `1338`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/qlora/giacomo_madonna__seed_1338.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/qlora/giacomo_madonna__seed_1338.txt`
 
 ### Human Review
 
@@ -104,7 +104,7 @@ e 'l fa parlar, et l'onora et lo porta.
 
 - Seed: `1337`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/qlora/dante_di_cio__seed_1337.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/qlora/dante_di_cio__seed_1337.txt`
 
 ### Human Review
 
@@ -147,7 +147,7 @@ Deh, mio Signor, se tu, quanto puoi,
 
 - Seed: `1338`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/qlora/dante_di_cio__seed_1338.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/qlora/dante_di_cio__seed_1338.txt`
 
 ### Human Review
 
@@ -190,7 +190,7 @@ quant'io son piú, credo che non favelli,
 
 - Seed: `1337`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/qlora/cino_roma_superba__seed_1337.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/qlora/cino_roma_superba__seed_1337.txt`
 
 ### Human Review
 
@@ -233,7 +233,7 @@ Pregna d'ingegno, e di gran valore.
 
 - Seed: `1338`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/qlora/cino_roma_superba__seed_1338.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/qlora/cino_roma_superba__seed_1338.txt`
 
 ### Human Review
 
@@ -276,7 +276,7 @@ che non sia, che 'l mio valor' mai non si
 
 - Seed: `1337`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/qlora/cecco_chi_vol__seed_1337.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/qlora/cecco_chi_vol__seed_1337.txt`
 
 ### Human Review
 
@@ -319,7 +319,7 @@ in me fa, e 'n voi son, ché non manca
 
 - Seed: `1338`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/qlora/cecco_chi_vol__seed_1338.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/qlora/cecco_chi_vol__seed_1338.txt`
 
 ### Human Review
 
@@ -362,7 +362,7 @@ L'altra guerra, ch'Amor non ha in sé 'l nome,
 
 - Seed: `1337`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/qlora/cavalcanti_amore_lagia__seed_1337.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/qlora/cavalcanti_amore_lagia__seed_1337.txt`
 
 ### Human Review
 
@@ -405,7 +405,7 @@ Ma chi non ha in sé un gran lume e un gran caldo,
 
 - Seed: `1338`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/qlora/cavalcanti_amore_lagia__seed_1338.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/qlora/cavalcanti_amore_lagia__seed_1338.txt`
 
 ### Human Review
 
@@ -448,7 +448,7 @@ facea sì, che non potea star senza.
 
 - Seed: `1337`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/qlora/petrarca_successor__seed_1337.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/qlora/petrarca_successor__seed_1337.txt`
 
 ### Human Review
 
@@ -491,7 +491,7 @@ Nasce, e alluma, e secura, e pura e pura.
 
 - Seed: `1338`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/qlora/petrarca_successor__seed_1338.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/qlora/petrarca_successor__seed_1338.txt`
 
 ### Human Review
 
@@ -534,7 +534,7 @@ Cosí si tenne, e 'n quel tempo, e 'n quel loco,
 
 - Seed: `1337`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/qlora/stampa_meste_rime__seed_1337.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/qlora/stampa_meste_rime__seed_1337.txt`
 
 ### Human Review
 
@@ -577,7 +577,7 @@ Tanto, che non si senta.
 
 - Seed: `1338`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/qlora/stampa_meste_rime__seed_1338.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/qlora/stampa_meste_rime__seed_1338.txt`
 
 ### Human Review
 
@@ -620,7 +620,7 @@ E sí io non posso piú parlar, se non
 
 - Seed: `1337`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/qlora/colonna_gravosi_pensier__seed_1337.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/qlora/colonna_gravosi_pensier__seed_1337.txt`
 
 ### Human Review
 
@@ -663,7 +663,7 @@ Vittima di quel, che mi ha d'Amor preso
 
 - Seed: `1338`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/qlora/colonna_gravosi_pensier__seed_1338.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/qlora/colonna_gravosi_pensier__seed_1338.txt`
 
 ### Human Review
 
@@ -706,7 +706,7 @@ Sue armi, e suo fin, e suo danno.
 
 - Seed: `1337`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/qlora/andreini_alta_sorte__seed_1337.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/qlora/andreini_alta_sorte__seed_1337.txt`
 
 ### Human Review
 
@@ -749,7 +749,7 @@ Ed io, e te, e noi, e te stessa, e noi, e lui,
 
 - Seed: `1338`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/qlora/andreini_alta_sorte__seed_1338.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/qlora/andreini_alta_sorte__seed_1338.txt`
 
 ### Human Review
 
@@ -792,7 +792,7 @@ Serba il suo valore, e 'l suo valore, e 'n quel punto
 
 - Seed: `1337`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/qlora/alfieri_cessar_mai__seed_1337.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/qlora/alfieri_cessar_mai__seed_1337.txt`
 
 ### Human Review
 
@@ -835,7 +835,7 @@ E non posso ancor far chiasso e strepito.
 
 - Seed: `1338`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/qlora/alfieri_cessar_mai__seed_1338.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/qlora/alfieri_cessar_mai__seed_1338.txt`
 
 ### Human Review
 

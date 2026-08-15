@@ -7,10 +7,11 @@ starts from pinned `sapienzanlp/Minerva-7B-instruct-v1.0`, applies three stages
 of full-weight BF16 adaptation, and attaches one rank-8 LoRA-DPO adapter trained
 from AI-judged preferences.
 
-The system modestly improves meta-text and terminal-completion behavior over
-the Stage-3 comparator. It is not a consistently good sonnet generator and is
-not human-aligned. The three AI judges agreed with the user's separate 20-pair
-review on only 12/20 pairs (60%).
+The system increased automatic terminal-punctuation and surface-screen rates
+over the Stage-3 comparator. The meta-text point estimate and blind visible-
+completion difference remained uncertain. It is not a consistently good
+sonnet generator and is not human-aligned. The three AI judges agreed with the
+user's separate 20-pair review on only 12/20 pairs (60%).
 
 ## Identification
 
@@ -64,6 +65,12 @@ octave/sestet structure, volta, grammar, or literary quality.
 - peak learning rate `2e-6`, warmup then cosine decay
 - selected V7 sonnet validation loss `3.1103`
 - update 120 preserved instruction behavior better than terminal update 135
+
+Across all three completed V7 stages, deterministic PAISÀ
+modern-preservation replay supplied exactly 5% of target-token exposure. This
+describes training-token exposure, not 5% of unique documents, corpus size, or
+examples. The replay is distinct from the earlier prospective PAISÀ rescue
+curriculum.
 
 ### AI-Judged DPO
 
@@ -157,9 +164,11 @@ revision, source link, Sapienza NLP attribution, and license notice.
 
 Training lineage includes public-domain material, Italian Wikisource,
 Liber Liber CC BY-NC-SA editions, and PAISÀ CC BY-NC-SA replay. The full-weight
-checkpoints and DPO adapter are not committed publicly; they are retained for
-the project's non-commercial research workflow. This card grants no rights
-beyond the underlying model and dataset terms.
+checkpoints and DPO adapter are withheld under a conservative release policy
+pending separate artifact-specific specialist review. That policy is not a
+legal conclusion that the PAISÀ corpus license necessarily governs model
+weights. This card grants no rights beyond the underlying model and dataset
+terms.
 
 ## Local Demo
 

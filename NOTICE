@@ -1,0 +1,19 @@
+Teaching Transformers to Write Classical Italian Sonnets
+Copyright 2026 Leonardo Pacciani-Mori for affirmatively approved
+Leonardo-owned portions identified in the release manifest
+
+This project adapts the Minerva language-model family created by Sapienza NLP at
+Sapienza University of Rome. Model identity, source revision, and license are
+recorded in MODEL_CARD.md and DATA_SOURCES_AND_ATTRIBUTION.md.
+
+Dataset and edition notices are source-specific. See:
+
+- DATA_SOURCES_AND_ATTRIBUTION.md
+- data/metadata/paisa_attribution.md
+- data/metadata/attribution_summary.md
+- data/metadata/sonnets_expanded_v6_attribution.md
+- data/metadata/broader_prose_attribution.md
+- data/metadata/pretraining_historical_wikisource_v1_attribution.md
+
+These notices do not create one repository-wide data license. The release
+manifests are authoritative for the reviewed public scope.

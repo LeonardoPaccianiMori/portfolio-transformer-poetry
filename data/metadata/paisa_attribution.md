@@ -3,9 +3,11 @@
 ## Status
 
 PAISÀ passed the release, provenance, and local-disk activation preflight and
-was locally acquired on 2026-07-30. It is approved only for the defined
-non-commercial PAISÀ to historical-prose to V5-sonnet rescue curriculum. It has
-not yet been used in model training.
+was locally acquired on 2026-07-30. The earlier PAISÀ-to-historical-prose-to-
+V5-sonnet rescue curriculum remained a prospective plan. The later completed
+V7 study used a different policy: deterministic modern-preservation replay
+supplied exactly 5% of target-token exposure in each of its three training
+stages. This is not 5% of unique documents, examples, or corpus size.
 
 The machine-readable preflight evidence is in
 [`reports/paisa_release_activation_audit.json`](../../reports/paisa_release_activation_audit.json).
@@ -22,9 +24,11 @@ The aggregate acquisition result is in
 - Corpus license: CC BY-NC-SA.
 - Source-material license families reported by the corpus publisher: CC BY-SA
   and CC BY-NC-SA.
-- Reuse role: local, non-commercial research/training only. The derived model
-  lineage carries the non-commercial/share-alike restrictions; this is not
-  merely a citation requirement.
+- Reuse role: local, non-commercial research/training only. The corpus and
+  derived dataset materials retain their non-commercial/share-alike terms;
+  this is not merely a citation requirement. Whether and how those terms apply
+  to checkpoints or adapters is not concluded here and remains pending
+  artifact-specific specialist review.
 
 The publisher describes approximately 380,000 documents from approximately
 1,000 websites, totaling approximately 250 million words. It states that every
@@ -69,14 +73,16 @@ Corpus of Italian Web Texts". In *Proceedings of the 9th Web as Corpus Workshop
 ## Repository And Model Policy
 
 Do not commit the PAISÀ release, extracted document text, document-level
-attribution inventory, BPE token files, or PAISÀ-derived checkpoints to the
-public repository. Commit only this attribution record, the official source
-links and license notice, deterministic acquisition/build code, configs, and
-aggregate non-text reports.
+attribution inventory, or BPE token files to the public repository. Commit only
+this attribution record, the official source links and license notice,
+deterministic acquisition/build code, configs, and aggregate non-text reports.
+Model checkpoints and adapters are withheld conservatively pending separate
+artifact-specific specialist review. This policy does not assert that the
+PAISÀ corpus license necessarily governs model weights.
 
-## Current Curriculum Boundary
+## Earlier Prospective Rescue Curriculum
 
-The PAISÀ-to-historical curriculum is now fixed in
+The earlier PAISÀ-to-historical rescue curriculum is recorded in
 [`docs/paisa_historical_rescue_curriculum.md`](../../docs/paisa_historical_rescue_curriculum.md).
 It keeps PAISÀ and historical prose as separate sequential stages and uses only
 their training partitions for a fresh 16k BPE tokenizer. The local preparation
@@ -84,7 +90,5 @@ report records 8,016,457 PAISÀ and 4,000,540 historical tokenizer-sample
 characters, with no validation text included.
 
 The tokenizer, separate encoded streams, GPU calibration, and fixed staged
-training plan are complete. The next scheduled action is the locally retained
-PAISÀ modern-Italian stage. Its best-validation checkpoint will remain local
-under the same CC BY-NC-SA boundary and will initialize the fixed historical
-annealing stage.
+training plan for that earlier branch were complete, but the completed V7 study
+followed the separate 5%-per-stage preservation-replay policy described above.

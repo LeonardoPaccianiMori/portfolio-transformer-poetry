@@ -1,159 +1,159 @@
-# Teaching Transformers To Write Classical Italian Sonnets
+# Teaching Transformers to Write Classical Italian Sonnets
 
-This repository is a learning-by-doing language-model project: implement a
-GPT-style causal transformer from scratch in PyTorch, build licensed Italian
-corpora, train under laptop-scale constraints, and compare the result with
-parameter-efficient adaptation of open Minerva models.
+This completed experimental project asks what can be learned by building a small
+language model from first principles and then adapting an existing Italian 7B
+model under a controlled curriculum. It has two distinct arcs:
 
-The project is complete as an experimental pipeline. No tested model passed the
-full acceptable-quality gate. The final system is a three-stage full-weight
-Minerva 7B V7 model plus one bounded AI-judged DPO adapter. It produced modest,
-replicated completion/surface gains but remains an unreliable sonnet writer.
+1. a roughly 70-million-parameter GPT-style causal transformer implemented and
+   trained from scratch in PyTorch; and
+2. staged full-weight adaptation of the existing Minerva 7B parent, followed by
+   one bounded AI-judged DPO experiment.
 
-The V7 study retained midpoint and selected-boundary BF16 states, analyzed
-weights, embeddings, hidden representations, losses, and more than 20,000
-validation generations, then ran one hash-frozen test over all 1,244 held-out
-openings. See the [V7 Post-Training Study](reports/minerva_7b_v7_post_training_study.md).
+The final 7B system was **not** trained from scratch. It starts from the pinned
+Minerva parent and updates it through historical prose, non-sonnet poetry, and
+sonnet stages before attaching a small DPO adapter.
 
-## Final Result
+The experimental pipeline is complete. No tested system passed the complete
+quality gate. The final DPO system replicated narrow automatic terminal-
+punctuation and surface-screen improvements, while meta-text and blind visible-
+completion differences remained uncertain. Both Stage 3 and DPO produced
+`0/100` strict-good outputs in the sealed blind literary review. The project is
+evidence of model engineering, evaluation design, and candid failure
+analysis—not a solved-poetry claim.
 
-| System | Form | Grammar | Topic | Collapse | High-risk overlap |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| 70M from scratch | 20/20 | 0/20 | 0/20 | 20/20 | 0/20 |
-| Minerva 3B QLoRA | 20/20 | 2/20 | 13/20 | 7/20 | 0/20 |
-| Minerva 7B staged LoRA | 20/20 | 8/20 | 20/20 | 5/20 | 0/20 |
-| Required | at least 18 | at least 12 | at least 10 | at most 2 | exactly 0 |
+## Two Project Arcs
 
-`Form` means exact opening-line preservation and decoder-controlled fourteen
-lines. It does not prove metre or rhyme.
+### Transformer learning from scratch
 
-The newer V7 final test uses 2,488 outputs/system rather than the legacy
-20-output rubric. DPO improved the automatic surface screen from 15.07% to
-17.60% (paired +2.53 points; 95% interval +0.52 to +4.50) and terminal
-punctuation from 17.60% to 20.46%. Neither system had a high-risk memorization
-hit. In the frozen 200-output blind literary review, DPO showed a small
-historical-register gain but no reliable broad quality improvement; DPO had
-3/100 moderate-clean and 0/100 strict-good outputs, versus 0/100 and 0/100 for
-Stage 3. The literary review is deliberately stricter than the surface metrics.
+The repository implements tokenization, batching, causal attention, multi-head
+attention, residual blocks, normalization, training, checkpointing, and
+autoregressive decoding directly in PyTorch. Controlled one-seed experiments
+compare classic and modern components, including ReLU versus SwiGLU. Architecture
+comparisons use five sampled validation batches per evaluation and are
+descriptive rather than definitive.
 
-The earlier 7B V6 path adapted a frozen Minerva Instruct parent through
-historical-Italian prose LoRA followed by sonnet specialization. V7 instead
-updated the full BF16 model through historical, poetry, and sonnet stages before
-adding DPO. The complete comparison is in
-[Final Model Comparison](reports/final_model_comparison.md).
+### Minerva 7B staged adaptation
 
-## What This Project Covers
+The second arc starts from `sapienzanlp/Minerva-7B-instruct-v1.0` at pinned
+revision `d1fc0f0e589ae879c5ac763e0e4206a4d14a3f6d`. Three full-weight BF16 stages
+adapted the parent to historical/literary Italian, non-sonnet poetry, and V7
+sonnets. Deterministic PAISÀ modern-preservation replay supplied exactly 5% of
+target-token exposure in every stage; this is not 5% of unique documents,
+examples, or corpus size.
 
-- Character and Unicode BPE tokenization
-- Causal masks, self-attention, multi-head attention, residual blocks, and loss
-- LayerNorm, RMSNorm, RoPE, SwiGLU, and weight tying
-- Optimizers, warmup/cosine schedules, gradient clipping, mixed precision,
-  checkpointing, and interruption-safe resume
-- Public-domain, Creative Commons, and other permitted non-commercial corpora
-- Source attribution, split leakage, duplicate audits, and corpus versioning
-- Fixed prompts, automatic controls, memorization heuristics, blinded review,
-  and neighboring-checkpoint selection
-- 4-bit QLoRA and unquantized FP16 LoRA on Minerva 3B and 7B
-- A failed human-calibration gate plus honestly scoped AI-judge-distillation DPO
-- Full-weight checkpoint, embedding, activation, and behavior-change analysis
-- A standard-library local web server and responsive UI for the selected system
+The completed V7 path is distinct from the earlier prospective PAISÀ rescue
+curriculum documented in `data/metadata/paisa_attribution.md`.
 
-The core from-scratch transformer, training loop, and decoding logic remain
-inspectable project code rather than wrappers around Hugging Face models.
-Hugging Face, PEFT, Accelerate, and bitsandbytes are used only for the external
-Minerva comparison.
+## Final Evidence
 
-## Local Demo
+| Evidence | Result | Qualification |
+| --- | --- | --- |
+| Stage runtimes | 15,495 s; 7,547 s; 3,115 s | Measured completed runs |
+| Three-stage cost | about $10.65 | Qualification-based projection, not the final measured bill |
+| DPO runtime / peak VRAM | 148.6 s / 14.81 GiB | Measured |
+| DPO cost | about $0.093 | Estimated |
+| Sealed-test runtime / cost | 2,970.6 s / about $1.967 | Runtime measured; cost estimated |
+| Human/AI calibration | 12/20 | Failed the calibration gate; the work remains AI-judged |
+| Strict-good literary outputs | 0/100 for both final systems | Frozen blind review |
 
-The demo requires the retained local Stage-3 BF16 archive and DPO adapter. It
-loads Stage 3 transiently in 4-bit NF4 for inference on a 6 GiB GPU while
-keeping the selected adapter unchanged. This is a deployment approximation:
-the authoritative checkpoint remains full BF16, and all V7 research evidence
-used unquantized BF16 on the H100.
+The one-time final test used all 1,244 sealed openings, two seeds, and both
+systems: 4,976 outputs total. DPO increased the automatic surface screen from
+15.07% to 17.60% (paired `+2.53` points; 95% interval `+0.52` to `+4.50`) and
+terminal punctuation from 17.60% to 20.46%. In the 200-output blind literary
+review, only the historical-register interval excluded zero. Grammar, poetic
+quality, sonnet/form, volta, and visible-completion changes remained uncertain.
 
-Expected startup is several minutes because the local 14.8 GB checkpoint must
-be read and quantized. Progress is printed during model loading; the ready URL
-appears at the end.
-
-```bash
-.venv/bin/python -u scripts/serve_sonnet_demo.py --device cuda:0
-```
-
-Open [http://127.0.0.1:8000](http://127.0.0.1:8000). Enter one opening line,
-choose temperature and seed, and generate a controlled fourteen-line output.
-Use `--legacy-v6` to load the prior V6 demo.
-
-For a UI-only check that does not allocate model weights:
-
-```bash
-python3 -u scripts/serve_sonnet_demo.py --static-only
-```
-
-Startup is normally under two seconds. Generation intentionally returns an
-unavailable status in this mode.
-
-## Verification
-
-The complete CPU test suite normally finishes in 15–30 seconds:
-
-```bash
-python3 -m pytest
-```
-
-Long-running corpus, training, fine-tuning, benchmarking, and evaluation CLIs
-print flushed progress, elapsed time, ETA, validation results, and checkpoint
-events by default.
+Fourteen-line output is decoder-controlled. It does not establish learned
+rhyme, metre, stanza structure, grammar, or literary quality.
 
 ## Repository Map
 
 | Path | Responsibility |
 | --- | --- |
 | `src/sonnet_model/` | From-scratch transformer modules and generation |
-| `src/sonnet_training/` | Training, fine-tuning, checkpoints, and schedules |
+| `src/sonnet_training/` | Training, adaptation, checkpoints, and schedules |
 | `src/sonnet_corpus/` | Acquisition, cleaning, manifests, splits, and encoding |
-| `src/sonnet_evaluation/` | Metrics, memorization, selection, and Minerva evaluation |
-| `src/sonnet_analysis/` | V7 checkpoint, dynamics, representation, and behavioral analysis |
-| `src/sonnet_demo/` | Local selected-model web server |
+| `src/sonnet_evaluation/` | Metrics, memorization, selection, and evaluation |
+| `src/sonnet_analysis/` | V7 weight, representation, and behavior analysis |
+| `src/sonnet_demo/` and `demo/` | Local static and selected-model demo |
 | `scripts/` | Reproducible command-line entry points |
-| `configs/` | Frozen prompts, selections, and experiment policies |
+| `configs/` | Frozen experiment policies and selections |
 | `data/metadata/` | Corpus and attribution metadata |
-| `reports/` | Public experiment evidence, including failed samples |
-| `demo/` | Responsive local demo interface |
-| `tests/` | Unit and integration tests |
+| `reports/` | Experiment evidence and aggregate reports |
+| `release/` | Fail-closed public-tree and history review records |
+| `tests/` | Unit, integration, release-scope, and hygiene tests |
 
-## Primary Artifacts
+## Public Verification Quick Start
 
-- [Technical Report](reports/technical_report.md)
-- [Model Card](MODEL_CARD.md)
-- [Final Model Comparison](reports/final_model_comparison.md)
-- [Minerva 7B V7 Post-Training Study](reports/minerva_7b_v7_post_training_study.md)
-- [Minerva 7B V7 AI-Judged DPO](reports/minerva_7b_v7_ai_judged_dpo.md)
-- [Minerva 7B V6 Final Evaluation](reports/minerva_7b_v6_final_evaluation.md)
-- [Minerva Judge Gate](reports/minerva_3b_judge_gate.md)
-- [Data Sources And Attribution](DATA_SOURCES_AND_ATTRIBUTION.md)
+Use Python 3.12. The public CPU verification environment is separate from the
+historical GPU training environment.
 
-## Data And Licensing
+```bash
+python3.12 -m venv .venv
+.venv/bin/python -m pip install --index-url https://download.pytorch.org/whl/cpu torch==2.10.0
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m pytest
+```
 
-The project does not restrict discovery to public-domain text. A source may be
-used when its terms explicitly permit this non-commercial research/training
-workflow and every attribution, share-alike, notice, source-link, or downstream
-restriction is recorded.
+For the static-only demo check:
 
-The data and model lineage includes public-domain works, Italian Wikisource,
-Liber Liber CC BY-NC-SA editions, PAISÀ CC BY-NC-SA text, and Apache-2.0 Minerva
-parents. See [Data Sources And Attribution](DATA_SOURCES_AND_ATTRIBUTION.md) for
-the exact records.
+```bash
+.venv/bin/python -u scripts/serve_sonnet_demo.py --static-only
+```
 
-The final checkpoints and adapters are not committed publicly because their
-lineage includes PAISÀ replay and the project policy withholds PAISÀ-derived
-checkpoints. This
-repository does not apply one blanket license over third-party data, models, or
-generated artifacts; downstream users must follow each recorded source term.
+Static-only generation intentionally returns an unavailable response. Full
+local generation requires withheld model artifacts and is not part of public
+verification. See [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
 
-## Honest Scope
+## Artifact Availability
 
-This is not a production LLM and not a claim of solved poetry generation. The
-from-scratch branch demonstrates transformer and data-pipeline engineering. The
-Minerva branch demonstrates practical transfer, full-weight curriculum
-adaptation, model-change analysis, and preference optimization. The fixed
-evaluations show exactly where the systems improve and still fail.
+| Artifact | Public status |
+| --- | --- |
+| Software, tests, configs, CI, reports, aggregate evidence | Candidates for inclusion only after affirmative manifest approval; licensing remains file-specific |
+| Processed corpora | Candidates only where the release manifests affirmatively approve redistribution |
+| Source and attribution metadata | Candidates subject to affirmative approval and source-specific notices |
+| Gutendex catalog JSON/CSV summaries | Candidate non-authoritative third-party generated metadata with recorded provenance; not Leonardo's analysis |
+| Model weights, checkpoints, adapters | Withheld pending artifact-specific specialist review |
+| Raw generations, poems/openings used in evaluation, preferences, votes, annotations, mappings, tensors | Not release artifacts |
+
+The repository has an approximately 434 MiB loose Git-object footprint before
+cleanup; rights-approved processed corpora make cloning heavier than a normal
+software repository. No retroactive Git LFS migration is planned.
+
+## Data, Licensing, and Redistribution
+
+This is a mixed-rights repository. After affirmative manifest approval,
+Apache-2.0 covers only the identified Leonardo-owned software and executable
+configuration described in [LICENSE.md](LICENSE.md). CC BY 4.0 covers only
+affirmatively approved Leonardo-owned prose, reports, aggregate evidence,
+tables, and plots. Neither grant automatically covers third-party
+corpora or metadata, pretrained-model material, generated poems, model outputs,
+preferences, annotations, checkpoints, adapters, or embedded third-party
+passages.
+
+PAISÀ and several other sources have source-specific terms. Check
+[DATA_SOURCES_AND_ATTRIBUTION.md](DATA_SOURCES_AND_ATTRIBUTION.md),
+[NOTICE](NOTICE), and the release manifests before reuse. Withholding the final
+checkpoint and adapter is a conservative release policy pending separate
+artifact-specific review; it is not a legal conclusion that the PAISÀ corpus
+license necessarily governs model weights.
+
+## AI Contribution
+
+Leonardo conceived and directed the project, made executive decisions, approved
+the research plan, reviewed outputs, and sometimes ran GPU work. Codex 5.5 and
+later Codex 5.6 Sol substantially assisted research design, implementation,
+tests, execution, and analysis. The project must not be described as
+independently designed or independently implemented by Leonardo. See
+[AI_CONTRIBUTIONS.md](AI_CONTRIBUTIONS.md).
+
+## Citation and Limitations
+
+Use [CITATION.cff](CITATION.cff) for the software citation. Primary technical
+evidence is in the [V7 post-training study](reports/minerva_7b_v7_post_training_study.md),
+[AI-judged DPO report](reports/minerva_7b_v7_ai_judged_dpo.md),
+[model card](MODEL_CARD.md), and [final comparison](reports/final_model_comparison.md).
+
+This is an educational research artifact, not a production LLM, literary
+authority, human-aligned system, or reliable sonnet generator. The sealed test
+limits the final claim more strongly than the headline improvement does.

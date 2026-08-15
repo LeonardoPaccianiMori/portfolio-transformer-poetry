@@ -1,6 +1,6 @@
 # Minerva 7B Instruct Validation Baseline: Automatic Evidence
 
-Generation directory: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_7b_instruct_validation_v1/instruct`
+Generation directory: `outputs/generations/minerva_7b_instruct_validation_v1/instruct`
 
 - Exact-opening controlled forms: **6/8**.
 - Outputs reaching the 512-token ceiling: **2/8**.

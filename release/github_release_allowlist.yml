@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "release_tag": "v1.0.0",
+  "manual_assets": [],
+  "automatic_source_snapshots_only": true,
+  "prohibited_manual_asset_classes": ["model_weights", "corpus_archives", "preferences", "generations", "checkpoints", "adapters"]
+}

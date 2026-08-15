@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "Teaching Transformers to Write Classical Italian Sonnets"
+version: 1.0.0
+abstract: >-
+  Leonardo Pacciani-Mori conceived and directed this project. Codex 5.5 and
+  Codex 5.6 Sol substantially assisted research design, implementation, tests,
+  execution, analysis, and documentation; see AI_CONTRIBUTIONS.md.
+authors:
+  - family-names: "Pacciani-Mori"
+    given-names: "Leonardo"
+repository-code: "https://github.com/LeonardoPaccianiMori/portfolio-transformer-poetry"
+url: "https://github.com/LeonardoPaccianiMori/portfolio-transformer-poetry"

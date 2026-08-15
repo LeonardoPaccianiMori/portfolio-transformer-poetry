@@ -35,7 +35,7 @@
     "error": ""
   },
   "storage_preflight": {
-    "acquisition_dir": "/home/lpm/Desktop/portfolio-transformer-poetry/data/local/pretraining/paisa",
+    "acquisition_dir": "data/local/pretraining/paisa",
     "available_bytes": 1145205489664,
     "required_bytes": 1367279385,
     "minimum_free_space_multiplier": 2.5,

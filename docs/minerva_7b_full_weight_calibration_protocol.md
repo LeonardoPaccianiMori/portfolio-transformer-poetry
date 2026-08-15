@@ -49,4 +49,4 @@ the final pass/reject decision. It deliberately saves no trained model weights.
 
 After a pass, the measured throughput and memory report must be reviewed before
 freezing the long-run mixture, token budget, schedule, preservation gates,
-checkpoint interval, resume policy, abort rules, and projected Vast.ai cost.
+checkpoint interval, resume policy, abort rules, and projected provider cost.

@@ -1,0 +1,65 @@
+schema_version: 1
+review_date: 2026-08-15
+repository: LeonardoPaccianiMori/portfolio-transformer-poetry
+default_branch: main
+public_origin_main_before_containment: 8bd8cd4e609b935155fb04a68d006fc164961f26
+visibility_before_containment: public
+visibility_during_review: private
+
+publication_surfaces:
+  known_forks:
+    disposition: approved_as_empty
+    count: 0
+  known_mirrors:
+    disposition: approved_as_empty
+    count: 0
+  releases:
+    disposition: approved_as_empty
+    count: 0
+    uploaded_assets: 0
+  tags:
+    disposition: approved_as_empty
+    count: 0
+  git_lfs_objects:
+    disposition: approved_as_empty
+    count: 0
+  packages:
+    disposition: approved_as_empty
+    count: 0
+    complete_page_scan: true
+  pages:
+    disposition: approved_as_empty
+    published_site: false
+  wiki:
+    disposition: approved_as_empty
+    repository_present: false
+  issues_and_attachments:
+    disposition: approved_as_empty
+    issue_count: 0
+  pull_requests_and_attachments:
+    disposition: approved_as_empty
+    pull_request_count: 0
+  discussions_and_attachments:
+    disposition: approved_as_empty
+    discussion_count: 0
+  actions_artifacts:
+    disposition: approved_as_empty
+    count: 0
+
+access_and_settings_snapshot:
+  collaborators:
+    owner_admin_accounts: 1
+    additional_collaborators: 0
+  branch_protection:
+    main_protected: false
+  rulesets:
+    count: 0
+  actions:
+    enabled: true
+    allowed_actions: all
+    default_workflow_permission: read
+
+containment_limit: >-
+  Making the origin private cannot retract earlier clones, platform caches,
+  mirrors, or independently owned forks. Any required third-party removal
+  needs separate owner or platform coordination.

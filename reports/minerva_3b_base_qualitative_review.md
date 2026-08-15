@@ -18,7 +18,7 @@ Generation directory: `outputs/generations/minerva_3b_v5_fixed_comparison/base`
 
 - Seed: `1337`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/base/giacomo_madonna__seed_1337.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/base/giacomo_madonna__seed_1337.txt`
 
 ### Human Review
 
@@ -61,7 +61,7 @@ E, infine, con l'idea di un nuovo umanesimo, con la convinzione che non si possa
 
 - Seed: `1338`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/base/giacomo_madonna__seed_1338.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/base/giacomo_madonna__seed_1338.txt`
 
 ### Human Review
 
@@ -104,7 +104,7 @@ In quel dì, Carlo Francesco Gastaldi, amico e concittadino, che era stato a Mil
 
 - Seed: `1337`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/base/dante_di_cio__seed_1337.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/base/dante_di_cio__seed_1337.txt`
 
 ### Human Review
 
@@ -147,7 +147,7 @@ I numeri 3 e 9 sono considerati i più sacri nella religione islamica, come è s
 
 - Seed: `1338`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/base/dante_di_cio__seed_1338.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/base/dante_di_cio__seed_1338.txt`
 
 ### Human Review
 
@@ -190,7 +190,7 @@ e dimandalo a ciò che stai
 
 - Seed: `1337`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/base/cino_roma_superba__seed_1337.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/base/cino_roma_superba__seed_1337.txt`
 
 ### Human Review
 
@@ -233,7 +233,7 @@ Un simbolo dell’Ottocento: un secolo di grandi imprese, di eventi epocali, di 
 
 - Seed: `1338`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/base/cino_roma_superba__seed_1338.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/base/cino_roma_superba__seed_1338.txt`
 
 ### Human Review
 
@@ -276,7 +276,7 @@ Cronache
 
 - Seed: `1337`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/base/cecco_chi_vol__seed_1337.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/base/cecco_chi_vol__seed_1337.txt`
 
 ### Human Review
 
@@ -312,7 +312,7 @@ Il 7 novembre 2012 verrà inaugurata la mostra dedicata a Paul Gauguin "Dalla Br
 
 - Seed: `1338`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/base/cecco_chi_vol__seed_1338.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/base/cecco_chi_vol__seed_1338.txt`
 
 ### Human Review
 
@@ -355,7 +355,7 @@ Lo scopo del suo teatro era quello di far ridere la gente; in effetti, Goldoni v
 
 - Seed: `1337`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/base/cavalcanti_amore_lagia__seed_1337.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/base/cavalcanti_amore_lagia__seed_1337.txt`
 
 ### Human Review
 
@@ -398,7 +398,7 @@ E lo ringrazio per il consiglio che mi sembra buono, e per il piacere che mi sta
 
 - Seed: `1338`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/base/cavalcanti_amore_lagia__seed_1338.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/base/cavalcanti_amore_lagia__seed_1338.txt`
 
 ### Human Review
 
@@ -441,7 +441,7 @@ La mostra è stata ampliata fino a includere l'intera collezione:
 
 - Seed: `1337`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/base/petrarca_successor__seed_1337.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/base/petrarca_successor__seed_1337.txt`
 
 ### Human Review
 
@@ -484,7 +484,7 @@ La dieta è stata ideata dallo stesso Karlo in laboratorio, con l'aiuto di un nu
 
 - Seed: `1338`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/base/petrarca_successor__seed_1338.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/base/petrarca_successor__seed_1338.txt`
 
 ### Human Review
 
@@ -516,7 +516,7 @@ Fa caldo, fa freddo. Non fa mai niente. Le uniche cose che possono andare bene s
 
 - Seed: `1337`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/base/stampa_meste_rime__seed_1337.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/base/stampa_meste_rime__seed_1337.txt`
 
 ### Human Review
 
@@ -550,7 +550,7 @@ Nell'affresco della vita del poeta Omero, vi è rappresentato un grande amore, q
 
 - Seed: `1338`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/base/stampa_meste_rime__seed_1338.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/base/stampa_meste_rime__seed_1338.txt`
 
 ### Human Review
 
@@ -593,7 +593,7 @@ Solo in questo modo la terra era di tutti, e tutti potevano goderne. Anche se "p
 
 - Seed: `1337`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/base/colonna_gravosi_pensier__seed_1337.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/base/colonna_gravosi_pensier__seed_1337.txt`
 
 ### Human Review
 
@@ -630,7 +630,7 @@ E tutto ciò che è, era, è, era, e tutto ciò che era stato, è stato, è stat
 
 - Seed: `1338`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/base/colonna_gravosi_pensier__seed_1338.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/base/colonna_gravosi_pensier__seed_1338.txt`
 
 ### Human Review
 
@@ -673,7 +673,7 @@ La felicità è uno stato di benessere che deriva dal pensiero dell'universo. È
 
 - Seed: `1337`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/base/andreini_alta_sorte__seed_1337.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/base/andreini_alta_sorte__seed_1337.txt`
 
 ### Human Review
 
@@ -716,7 +716,7 @@ Madre, donami il Perdono.
 
 - Seed: `1338`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/base/andreini_alta_sorte__seed_1338.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/base/andreini_alta_sorte__seed_1338.txt`
 
 ### Human Review
 
@@ -759,7 +759,7 @@ Lascia un commento Annulla risposta
 
 - Seed: `1337`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/base/alfieri_cessar_mai__seed_1337.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/base/alfieri_cessar_mai__seed_1337.txt`
 
 ### Human Review
 
@@ -802,7 +802,7 @@ La terra era, il cielo era, il mare era, e tutto era.
 
 - Seed: `1338`
 
-- Generated file: `/home/lpm/Desktop/portfolio-transformer-poetry/outputs/generations/minerva_3b_v5_fixed_comparison/base/alfieri_cessar_mai__seed_1338.txt`
+- Generated file: `outputs/generations/minerva_3b_v5_fixed_comparison/base/alfieri_cessar_mai__seed_1338.txt`
 
 ### Human Review
 

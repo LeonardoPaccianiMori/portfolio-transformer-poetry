@@ -91,7 +91,7 @@ ranking signal:
 
 The local result authorizes one remote FP16 confirmation only when parse rate
 and non-collapse AUROC pass and at least four of the five total checks pass.
-Otherwise the Vast.ai VM remains off. Even a passing local result does not
+Otherwise the rented GPU VM remains off. Even a passing local result does not
 authorize DPO, GRPO, or training; those require a separately frozen recipe and
 a definitive FP16 judge result.
 
