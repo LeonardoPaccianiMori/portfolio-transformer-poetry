@@ -40,6 +40,9 @@ def test_export_is_deterministic_and_aggregate_only(tmp_path):
         payload = json.loads((first / name).read_text(encoding="utf-8"))
         assert payload["config"]["responsive"] is True
         assert payload["layout"]["margin"]
+        if name == "representation-change-comparison.json":
+            assert payload["data"][1]["name"] == "Minimum linear CKA"
+            assert payload["layout"]["yaxis2"]["title"] == "Minimum linear CKA"
     evidence = json.loads(evidence_1.read_text(encoding="utf-8"))
     assert evidence["schema_version"] == 1
     serialized = json.dumps(evidence).lower()

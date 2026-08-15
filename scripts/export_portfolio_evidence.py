@@ -76,10 +76,10 @@ def chart_payload(name: str, data: dict) -> dict:
         chart_layout = layout("Sequential relative parameter movement", yaxis={"title": "Relative L2", "type": "log"})
     elif name == "representation-change-comparison":
         traces = []
-        for index, (key, title) in enumerate((("hidden_drift", "Hidden drift"), ("linear_cka", "Linear CKA"), ("top20_overlap", "Top-20 overlap")), start=1):
+        for index, (key, title) in enumerate((("hidden_drift", "Hidden drift"), ("linear_cka", "Minimum linear CKA"), ("top20_overlap", "Top-20 overlap")), start=1):
             traces.append({"type": "bar", "name": title, "x": labels, "y": data[key], "xaxis": "x" if index == 1 else f"x{index}", "yaxis": "y" if index == 1 else f"y{index}"})
         chart_layout = layout("Representation-change comparison")
-        chart_layout.update({"grid": {"rows": 1, "columns": 3, "pattern": "independent"}, "yaxis": {"title": "Hidden drift"}, "yaxis2": {"title": "Linear CKA"}, "yaxis3": {"title": "Top-20 overlap"}})
+        chart_layout.update({"grid": {"rows": 1, "columns": 3, "pattern": "independent"}, "yaxis": {"title": "Hidden drift"}, "yaxis2": {"title": "Minimum linear CKA"}, "yaxis3": {"title": "Top-20 overlap"}})
     elif name == "preference-data-funnel":
         traces = [{"type": "funnel", "y": labels, "x": data["counts"], "name": "Records"}]
         chart_layout = layout("Preference-data funnel")
