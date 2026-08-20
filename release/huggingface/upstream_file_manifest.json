@@ -1,0 +1,40 @@
+{
+  "schema_version": "transformer_poetry_hf_upstream_files_v1",
+  "parent_model": "sapienzanlp/Minerva-7B-instruct-v1.0",
+  "parent_revision": "d1fc0f0e589ae879c5ac763e0e4206a4d14a3f6d",
+  "parent_license_metadata": "apache-2.0",
+  "verification_date": "2026-08-20",
+  "package_files": {
+    "config.json": {
+      "classification": "parent_metadata_reserialized_by_transformers_4.57.1",
+      "parent_sha256": "bf3138c291cd4f5ba61bf9c910a5775bd181db5bd6bf3a28f1f9d6102ca7a6c5",
+      "sha256": "b10d51149c95672373063b19caa0880553b8445704058d77a248d3da622fb3e5"
+    },
+    "generation_config.json": {
+      "classification": "parent_metadata_reserialized_by_transformers_4.57.1",
+      "parent_sha256": "73fbda2340e7dcd060cc4917a31459b2fb9e5ca4c87855f62e9717026b473c65",
+      "sha256": "0e8cad05cc2a78b9b77e9e14351b5789e4e1048f4b698d8f796d62f185a3bd34"
+    },
+    "chat_template.jinja": {
+      "classification": "parent_template_extracted_by_transformers_save_pretrained",
+      "sha256": "ba03a121d097859c7b5b9cd03af99aafe95275210d2876f642ad9929a150f122"
+    },
+    "special_tokens_map.json": {
+      "classification": "byte_identical_to_pinned_parent",
+      "parent_sha256": "de6ee199a6b8b3049914547f91016eeb9d3067330ed7f15d2353e78ac9212a82",
+      "sha256": "de6ee199a6b8b3049914547f91016eeb9d3067330ed7f15d2353e78ac9212a82"
+    },
+    "tokenizer.json": {
+      "classification": "byte_identical_to_pinned_parent",
+      "parent_sha256": "0d8b77024a99bb31ba2b4fb6e0efed0910335ad77ac2d922ca09ed0a05f65f4d",
+      "sha256": "0d8b77024a99bb31ba2b4fb6e0efed0910335ad77ac2d922ca09ed0a05f65f4d"
+    },
+    "tokenizer_config.json": {
+      "classification": "parent_metadata_reserialized_by_transformers_4.57.1",
+      "parent_sha256": "842f2e44b323335b5a3ffdc1b6ebb5a402e42c54ee18fe7c818e5e591e5c65bf",
+      "sha256": "a42cf25d97f058ab158baa8d0bea0976ebe19f16c9a528964a2d890e623300a3"
+    }
+  },
+  "required_notice": "Retain the pinned Minerva model ID, revision, source link, Sapienza NLP attribution, and Apache-2.0 text. The parent repository exposed Apache-2.0 metadata but no separate upstream NOTICE file at the reviewed revision.",
+  "qualification": "Byte identity establishes file provenance, not a separate legal clearance. Reserialized files are identified as modifications and remain within the layered rights review."
+}

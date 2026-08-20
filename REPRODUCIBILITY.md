@@ -15,9 +15,9 @@ python3.12 -m venv .venv
 .venv/bin/python -m pytest
 ```
 
-The full command runs 1,174 tests when the intentionally withheld local
+The full command runs 1,179 tests when the intentionally withheld local
 research artifacts are present. A clean public clone first runs
-`scripts/verify_public_test_scope.py`, then runs the complete 1,163-test public
+`scripts/verify_public_test_scope.py`, then runs the complete 1,168-test public
 subset with `python -m pytest -m "not local_artifact"`. The exact eleven local-only
 node IDs are frozen in `release/local_only_test_allowlist.txt`; CI fails if a
 marker is added, removed, or moved without updating that reviewed boundary.

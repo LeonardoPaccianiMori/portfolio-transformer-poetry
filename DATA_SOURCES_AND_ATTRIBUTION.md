@@ -80,14 +80,22 @@ datasets. This project consumes the released checkpoint rather than copying
 those datasets into its corpus. Any future direct use of those datasets would
 require a separate source-by-source license audit before activation.
 
-The earlier two-stage Minerva 7B LoRA adapter, the final V7 Stage-3 checkpoint,
-and the DPO adapter are retained locally and are not committed or published by
-this project. Their training lineages include PAISÀ CC BY-NC-SA replay. The
-repository withholds all three under a conservative release policy pending a
-separate artifact-specific owner review and release decision; this record does
-not conclude which dataset terms apply to model-weight distribution. Public
-reports retain the exact parent revision, artifact hashes, data lineage,
-training protocol, and evaluation results without distributing the weights.
+The earlier two-stage Minerva 7B LoRA adapter remains local and outside the
+planned release. The selected V7 Stage-1, Stage-2, and Stage-3 full-weight
+states and the selected DPO adapter are being prepared as four separate local
+Hugging Face packages. They are not uploaded or authorized for publication.
+Their cumulative lineages include PAISÀ CC BY-NC-SA replay and other
+source-specific Creative Commons, non-commercial, ShareAlike, citation, and
+public-domain records.
+
+`release/huggingface/*/lineage.json` derives exact aggregate source-family
+target-token exposure from the sampled windows actually consumed by each
+selected endpoint. Stage 3 stops at selected update 120 (1,920 windows), not
+terminal update 135. The planned CC BY-NC 4.0 weight metadata applies only to
+rights Leonardo controls, if any, in his modifications; it does not license
+corpora or replace independently received Apache-2.0 parent rights. This
+record does not conclude which dataset terms apply to model-weight
+distribution.
 
 ## Active License Policy
 

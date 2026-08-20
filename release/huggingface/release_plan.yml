@@ -1,0 +1,99 @@
+{
+  "schema_version": "transformer_poetry_hf_release_plan_v1",
+  "status": "private_preparation_not_authorized_for_upload",
+  "namespace": "LPM93",
+  "collection_title": "Teaching Transformers to Write Classical Italian Sonnets",
+  "license_metadata": "cc-by-nc-4.0",
+  "license_scope": "copyright and similar rights Leonardo Pacciani-Mori holds, if any, in his original modifications embodied in the identified weight or adapter files",
+  "parent": {
+    "model_id": "sapienzanlp/Minerva-7B-instruct-v1.0",
+    "revision": "d1fc0f0e589ae879c5ac763e0e4206a4d14a3f6d",
+    "license": "Apache-2.0"
+  },
+  "artifacts": [
+    {
+      "artifact_id": "stage1",
+      "repository": "LPM93/minerva-7b-classical-italian-stage1",
+      "kind": "full_model",
+      "selected_update": 2065,
+      "selected_windows": 33040,
+      "state_identity_sha256": "c3aba5b672e8634028477885ad96d7c25c48d2c60cc5597b6da730089212ac39",
+      "source_directory": "stage_1_historical_general_selected"
+    },
+    {
+      "artifact_id": "stage2",
+      "repository": "LPM93/minerva-7b-classical-italian-poetry-stage2",
+      "kind": "full_model",
+      "selected_update": 760,
+      "selected_windows": 12160,
+      "state_identity_sha256": "75817039c2392daac314d9f3365b4c0e1a7b6a5bdab33cf5f95d39ec1ee8397d",
+      "source_directory": "stage_2_non_sonnet_poetry_selected"
+    },
+    {
+      "artifact_id": "stage3",
+      "repository": "LPM93/minerva-7b-classical-italian-sonnets-stage3",
+      "kind": "full_model",
+      "selected_update": 120,
+      "planned_updates": 135,
+      "selected_windows": 1920,
+      "state_identity_sha256": "478d5979e25a78375d7af0434db6a5432678762fac2d142af2d4798dda53a474",
+      "source_directory": "stage_3_sonnets_selected"
+    },
+    {
+      "artifact_id": "dpo_adapter",
+      "repository": "LPM93/minerva-7b-classical-italian-sonnets-dpo-adapter",
+      "kind": "peft_adapter",
+      "parent_repository": "LPM93/minerva-7b-classical-italian-sonnets-stage3",
+      "parent_state_identity_sha256": "478d5979e25a78375d7af0434db6a5432678762fac2d142af2d4798dda53a474",
+      "research_checkpoint_sha256": "72aa174b2ef87e021a367b0f7e786fce8c3437bb5ca1f8c7f9c5b13588620822",
+      "training_pairs": 482,
+      "validation_pairs": 52,
+      "optimizer_updates": 61
+    }
+  ],
+  "full_model_allowlist": [
+    "README.md",
+    "NOTICE.md",
+    "RIGHTS_SCOPE.md",
+    "TRAINING_CONTENT_SUMMARY.md",
+    "LICENSE",
+    "LICENSES/APACHE-2.0.txt",
+    "LICENSES/CC-BY-4.0.txt",
+    "config.json",
+    "generation_config.json",
+    "model-00001-of-00003.safetensors",
+    "model-00002-of-00003.safetensors",
+    "model-00003-of-00003.safetensors",
+    "model.safetensors.index.json",
+    "lineage.json"
+  ],
+  "optional_verified_upstream_files": [
+    "chat_template.jinja",
+    "special_tokens_map.json",
+    "tokenizer.json",
+    "tokenizer_config.json"
+  ],
+  "adapter_allowlist": [
+    "README.md",
+    "NOTICE.md",
+    "RIGHTS_SCOPE.md",
+    "TRAINING_CONTENT_SUMMARY.md",
+    "LICENSE",
+    "LICENSES/APACHE-2.0.txt",
+    "LICENSES/CC-BY-4.0.txt",
+    "adapter_config.json",
+    "adapter_model.safetensors",
+    "lineage.json"
+  ],
+  "forbidden_content": [
+    "corpus text",
+    "token streams",
+    "prompts or openings",
+    "generations",
+    "preferences, votes, or annotations",
+    "optimizer, scheduler, RNG, or resume state",
+    "training history or logs",
+    "private mappings",
+    "credentials or machine-local paths"
+  ]
+}

@@ -17,3 +17,10 @@ Dataset and edition notices are source-specific. See:
 
 These notices do not create one repository-wide data license. The release
 manifests are authoritative for the reviewed public scope.
+
+Four possible Hugging Face packages are prepared under
+`release/huggingface/`. Their planned CC BY-NC 4.0 metadata is limited to
+Leonardo-controlled rights, if any, in model modifications. Each package must
+also retain the Minerva parent identifier, pinned revision, source link,
+Sapienza NLP attribution, and Apache-2.0 text. Preparation does not authorize
+upload or decide whether source-corpus licenses govern weights.

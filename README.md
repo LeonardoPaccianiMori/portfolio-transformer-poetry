@@ -80,7 +80,7 @@ rhyme, metre, stanza structure, grammar, or literary quality.
 | `configs/` | Frozen experiment policies and selections |
 | `data/metadata/` | Corpus and attribution metadata |
 | `reports/` | Experiment evidence and aggregate reports |
-| `release/` | Fail-closed public-tree and history review records |
+| `release/` | Fail-closed GitHub review records and non-authorizing Hugging Face preparation metadata |
 | `tests/` | Unit, integration, release-scope, and hygiene tests |
 
 ## Public Verification Quick Start
@@ -96,7 +96,7 @@ python3.12 -m venv .venv
 .venv/bin/python -m pytest -m "not local_artifact"
 ```
 
-The public-clone suite contains 1,163 tests. Eleven additional tests are explicitly
+The public-clone suite contains 1,168 tests. Eleven additional tests are explicitly
 catalogued as local-only because they validate intentionally withheld research
 artifacts; see [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
 
@@ -118,7 +118,7 @@ verification. See [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
 | Processed corpora | Candidates only where the release manifests affirmatively approve redistribution |
 | Source and attribution metadata | Candidates subject to affirmative approval and source-specific notices |
 | Gutendex catalog JSON/CSV summaries | Candidate non-authoritative third-party generated metadata with recorded provenance; not Leonardo's analysis |
-| Model weights, checkpoints, adapters | Withheld pending a separate artifact-specific owner release decision |
+| Selected Stage 1, Stage 2, and Stage 3 weights plus DPO adapter | Four local Hugging Face packages are in preparation; none is uploaded or authorized for publication |
 | Raw generations, poems/openings used in evaluation, preferences, votes, annotations, mappings, tensors | Not release artifacts |
 
 The repository has an approximately 434 MiB loose Git-object footprint before
@@ -140,10 +140,13 @@ passages.
 PAISÀ and several other sources have source-specific terms. Check
 [DATA_SOURCES_AND_ATTRIBUTION.md](DATA_SOURCES_AND_ATTRIBUTION.md),
 [NOTICE](NOTICE), and the release manifests before reuse. Withholding the final
-checkpoint and adapter is a conservative release policy pending a separate
-artifact-specific owner review and release decision. It is not legal or
-specialist clearance and does not conclude that the PAISÀ corpus license
-necessarily governs model weights.
+artifacts remains the active policy while four Hugging Face packages are
+prepared and validated. The planned weight metadata is CC BY-NC 4.0, scoped
+only to rights Leonardo controls, if any, in his modifications; independently
+received Apache-2.0 rights in Minerva remain separate. This preparation is not
+legal or specialist clearance and does not conclude that source-corpus
+licenses do or do not govern model weights. See
+[the Hugging Face release preparation](docs/HUGGING_FACE_RELEASE.md).
 
 ## AI Contribution
 

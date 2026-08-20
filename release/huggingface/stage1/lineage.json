@@ -1,0 +1,59 @@
+{
+  "artifact": {
+    "artifact_id": "stage1",
+    "kind": "full_model",
+    "repository": "LPM93/minerva-7b-classical-italian-stage1",
+    "selected_update": 2065,
+    "selected_windows": 33040,
+    "source_directory": "stage_1_historical_general_selected",
+    "state_identity_sha256": "c3aba5b672e8634028477885ad96d7c25c48d2c60cc5597b6da730089212ac39"
+  },
+  "artifact_id": "stage1",
+  "completed_training_stages": [
+    {
+      "component_target_tokens": {
+        "historical_general": 57516032,
+        "modern_preservation_replay": 3383296,
+        "nineteenth_century_bridge": 6766592
+      },
+      "selected_window_rows_sha256": "69f820c00d7d6d2414bc0066add8d34132d2ed8983c0615c451572cb38f53ce6",
+      "selected_windows": 33040,
+      "source_family_target_tokens": {
+        "Biblioteca Italiana": 28032678,
+        "Italian Wikisource": 4165154,
+        "Liber Liber": 10297993,
+        "Oxford Text Archive / ILC": 1220361,
+        "PAISA": 3383296,
+        "Project Gutenberg": 20566438
+      },
+      "stage_id": "stage_1_historical_general",
+      "target_tokens": 67665920
+    }
+  ],
+  "cumulative_source_family_percent": {
+    "Biblioteca Italiana": 41.42806009,
+    "Italian Wikisource": 6.15546792,
+    "Liber Liber": 15.2188768,
+    "Oxford Text Archive / ILC": 1.80350906,
+    "PAISA": 5.0,
+    "Project Gutenberg": 30.39408612
+  },
+  "cumulative_source_family_target_tokens": {
+    "Biblioteca Italiana": 28032678,
+    "Italian Wikisource": 4165154,
+    "Liber Liber": 10297993,
+    "Oxford Text Archive / ILC": 1220361,
+    "PAISA": 3383296,
+    "Project Gutenberg": 20566438
+  },
+  "cumulative_target_tokens": 67665920,
+  "parent": {
+    "license": "Apache-2.0",
+    "model_id": "sapienzanlp/Minerva-7B-instruct-v1.0",
+    "revision": "d1fc0f0e589ae879c5ac763e0e4206a4d14a3f6d"
+  },
+  "publication_scope": "aggregate_only_no_corpus_text_or_unit_identifiers",
+  "qualification": "Counts are exact target-token contributions from the deterministic sampled windows consumed by the selected endpoints; they are not document counts, example counts, or corpus-size shares.",
+  "rights_boundary": "Source disclosure is not a redistribution grant and does not decide whether training-data licenses govern model weights.",
+  "schema_version": "transformer_poetry_hf_lineage_v1"
+}

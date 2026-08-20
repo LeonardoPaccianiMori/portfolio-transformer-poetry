@@ -62,7 +62,7 @@ octave/sestet structure, volta, grammar, or literary quality.
 ### Stage 3: V7 Sonnets
 
 - 135 full-weight BF16 updates; update 120 selected
-- peak learning rate `2e-6`, warmup then cosine decay
+- peak learning rate `1e-6`, warmup then cosine decay
 - selected V7 sonnet validation loss `3.1103`
 - update 120 preserved instruction behavior better than terminal update 135
 
@@ -163,12 +163,18 @@ The Minerva parent is recorded as Apache-2.0 and must retain its model ID,
 revision, source link, Sapienza NLP attribution, and license notice.
 
 Training lineage includes public-domain material, Italian Wikisource,
-Liber Liber CC BY-NC-SA editions, and PAISÀ CC BY-NC-SA replay. The full-weight
-checkpoints and DPO adapter are withheld under a conservative release policy
-pending a separate artifact-specific owner review and release decision. That
-policy is not legal or specialist clearance and does not conclude that the
-PAISÀ corpus license necessarily governs model weights. This card grants no
-rights beyond the underlying model and dataset terms.
+Liber Liber CC BY-NC-SA editions, and PAISÀ CC BY-NC-SA replay. Selected Stage
+1, Stage 2, and Stage 3 full-weight packages and the DPO adapter are being
+prepared locally for a possible four-repository Hugging Face release. They are
+not uploaded or authorized for publication.
+
+The working Hugging Face weight metadata is CC BY-NC 4.0, limited to copyright
+and similar rights Leonardo controls, if any, in his modifications.
+Independently received Apache-2.0 rights in the Minerva parent remain separate.
+This structure is usable only under the unresolved assumption that
+training-data licenses do not govern the weights; if incompatible ShareAlike
+terms are determined to attach, it does not authorize distribution. See
+`docs/HUGGING_FACE_RELEASE.md` and `release/huggingface/`.
 
 ## Local Demo
 
