@@ -1,0 +1,298 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-08-20",
+  "decision_authority_role": "repository_owner_publisher",
+  "decision_record_id": "decision-2026-08-20-transformer-publication-risk",
+  "policy_statement": "Source-family disclosure is not legal clearance. Rules approve only the stated GitHub source/history scope; model weights and adapters require a separate artifact-specific owner release decision.",
+  "historical_privacy_exceptions": [
+    {
+      "repository_relative_path": "reports/minerva_3b_base_qualitative_review.md",
+      "git_blob_oid": "52d613772e8ab5084c3de0f9fe60c07d09d3cfda",
+      "reason": "Owner-approved retention of a superseded absolute home-directory path; current file removed from the public tree because it embeds raw generated output."
+    },
+    {
+      "repository_relative_path": "reports/minerva_3b_qlora_qualitative_review.md",
+      "git_blob_oid": "074de762d1fbfa4783831f64b43c4a91d5d3d17a",
+      "reason": "Owner-approved retention of a superseded absolute home-directory path; current file removed from the public tree because it embeds raw generated output."
+    },
+    {
+      "repository_relative_path": "reports/minerva_7b_instruct_validation_automatic.md",
+      "git_blob_oid": "60f6a9a4871d73f2af85a92daed1004d962c05e0",
+      "reason": "Owner-approved retention of a superseded absolute home-directory path; current version is sanitized and contains aggregate automatic evidence."
+    },
+    {
+      "repository_relative_path": "reports/paisa_release_activation_audit.json",
+      "git_blob_oid": "1d0f9e80e023470b6cec242cfd253fcc31a10d3f",
+      "reason": "Owner-approved retention of a superseded absolute home-directory path; current version is sanitized and contains aggregate activation evidence."
+    },
+    {
+      "repository_relative_path": "reports/sonnet_corpus_scaling_shared_test_per_poem.json",
+      "git_blob_oid": "8bbde35663735d25c815e92412067478c525780e",
+      "reason": "Owner-approved retention of a superseded absolute home-directory path; current version is sanitized and contains per-poem identifiers and aggregate losses without poem text."
+    }
+  ],
+  "historical_hygiene_allowlist": [
+    {
+      "repository_relative_path": "data/metadata/corpus_archive_candidate_inventory_v1.csv",
+      "git_blob_oid": "6d671421d9e70bb7cbba02579dbc9c35fa4f0f9c",
+      "finding": "operational_geography",
+      "reason": "The matched terms occur only in third-party catalog titles, creator affiliations, geographic subjects, and collection provenance; they do not describe project infrastructure."
+    },
+    {
+      "repository_relative_path": "data/metadata/ilc_ota_source_inventory_v1.csv",
+      "git_blob_oid": "c83024177dfad08525f140fa3c2d151f4d811845",
+      "finding": "operational_geography",
+      "reason": "The matched term is a source-catalog language label; it does not describe project infrastructure."
+    },
+    {
+      "repository_relative_path": "data/metadata/project_gutenberg_fulltext_gate_sample_v1.csv",
+      "git_blob_oid": "e2dcf80dc50cf9d34d850a9dda3c6dbd5ae03ffe",
+      "finding": "operational_geography",
+      "reason": "The matched phrase is Project Gutenberg's source-image library credit; it is required provenance, not project infrastructure."
+    },
+    {
+      "repository_relative_path": "data/metadata/project_gutenberg_italian_catalog_v1.json",
+      "git_blob_oid": "83c5d7996f241f33ee2d40c1f987033e9dec3a7a",
+      "finding": "operational_geography",
+      "reason": "The matched terms occur in catalog subjects and book summaries about Canada; they do not describe project infrastructure."
+    },
+    {
+      "repository_relative_path": "docs/minerva_7b_full_weight_calibration_protocol.md",
+      "git_blob_oid": "a1717b11a694a57d64b7d05d9fd1d98f6bc310ba",
+      "finding": "provider_identifier",
+      "reason": "A superseded protocol named the GPU marketplace only in a projected-cost sentence; the current file is provider-neutral and the historical blob contains no account, host, instance, or credential identifier."
+    },
+    {
+      "repository_relative_path": "docs/minerva_7b_quality_recovery_protocol.md",
+      "git_blob_oid": "0d28a6d345dba89f45570bfcc663df37f4d2726d",
+      "finding": "provider_identifier",
+      "reason": "A superseded protocol named the GPU marketplace only in a generic lifecycle sentence; the current file is provider-neutral and the historical blob contains no account, host, instance, or credential identifier."
+    },
+    {
+      "repository_relative_path": "tests/test_public_release_hygiene.py",
+      "git_blob_oid": "74535a399c35ecaeb9148983fa67cf4587a77af6",
+      "finding": "file_uri",
+      "reason": "The historical test blob contains the literal detection pattern used to reject file URIs; it is a test fixture, not an operational URI."
+    },
+    {
+      "repository_relative_path": "tests/test_public_release_hygiene.py",
+      "git_blob_oid": "74535a399c35ecaeb9148983fa67cf4587a77af6",
+      "finding": "operational_geography",
+      "reason": "The historical test blob contains the literal geography terms used by the detector; it does not describe project infrastructure."
+    }
+  ],
+  "rules": [
+    {
+      "id": "generated_release_manifests",
+      "path_globs": ["release/artifact_rights_manifest.csv", "release/history_rights_manifest.csv"],
+      "artifact_class": "release_inventory",
+      "source": "generated_by_release_inventory_tool",
+      "source_revision": "self_generated",
+      "rights_evidence_reference": "scripts/build_public_release_inventory.py; release/public_release_decision_policy.json",
+      "modifications_made_by_project": "Deterministically generated from the Git index, reviewed history target, and this decision policy.",
+      "required_notices": "Self-generated inventory; no independent reuse grant.",
+      "current_tree_disposition": "approved_for_public_tree",
+      "historical_retention_disposition": "approved_for_public_history",
+      "privacy_security_disposition": "approved"
+    },
+    {
+      "id": "historical_output_bearing_reports",
+      "path_globs": [
+        "reports/minerva_3b_base_qualitative_review.md",
+        "reports/minerva_3b_qlora_qualitative_review.md",
+        "reports/minerva_3b_validation_sanity_blinded_review.md",
+        "reports/minerva_3b_validation_sanity_blinded_judgments.md",
+        "reports/minerva_7b_instruct_fp16_validation_review.md",
+        "reports/minerva_7b_instruct_validation_review.md",
+        "reports/minerva_7b_parent_decoding_confirmation_blinded_review.md",
+        "reports/minerva_7b_quality_recovery_blinded_review.md",
+        "reports/minerva_7b_v6_final_qualitative_review.md",
+        "reports/qualitative_review.md",
+        "reports/qualitative_review_finetuning_larger_20k_001_step_2000.md",
+        "reports/qualitative_review_pretraining_quality_swiglu_larger_best.md",
+        "reports/qualitative_review_pretraining_quality_swiglu_upper_best.md",
+        "reports/qualitative_review_sonnet_control_historical_v2_xxl_v5_best.md",
+        "reports/qualitative_review_sonnet_control_layernorm_to_rmsnorm_best.md",
+        "reports/qualitative_review_sonnet_control_pretrained_clip1_best.md",
+        "reports/qualitative_review_sonnet_control_pretrained_fresh_best.md",
+        "reports/qualitative_review_sonnet_control_pretrained_stable_eval_best.md",
+        "reports/qualitative_review_sonnet_control_pretrained_warmup_cosine_best.md",
+        "reports/qualitative_review_sonnet_control_quality_swiglu_larger_stable_eval_best.md",
+        "reports/qualitative_review_sonnet_control_random_best.md",
+        "reports/qualitative_review_sonnet_control_rmsnorm_pretrained_fresh_best.md",
+        "reports/qualitative_review_sonnet_control_rope_pretrained_fresh_best.md",
+        "reports/qualitative_review_sonnet_control_swiglu_pretrained_fresh_best.md",
+        "reports/qualitative_review_sonnet_corpus_scaling_v4_best.md",
+        "reports/qualitative_review_sonnet_corpus_scaling_v5_best.md",
+        "reports/qualitative_review_sonnet_task_format_historical_v2_xxl_v5_best_acceptance.md",
+        "reports/sonnet_task_format_paisa_historical_rescue_v1_v5_best_qualitative_review.md"
+      ],
+      "artifact_class": "generated_output_review",
+      "source": "project_evaluation_with_embedded_model_output",
+      "source_revision": "git_blob_oid",
+      "rights_evidence_reference": "docs/PUBLIC_RELEASE_SCOPE.md; LICENSE.md; release/public_release_decision_policy.json#historical_output_bearing_reports",
+      "modifications_made_by_project": "Project-generated review scaffolding and analysis embed exact prompts or raw model outputs.",
+      "required_notices": "No repository-wide licence covers embedded prompts or generated output; retained only in historical Git objects under the owner decision.",
+      "current_tree_disposition": "remove_from_current_tree",
+      "historical_retention_disposition": "approved_for_public_history",
+      "privacy_security_disposition": "approved"
+    },
+    {
+      "id": "bibit_processed_corpus",
+      "path_globs": ["data/processed/bibit_resolved_v1/**"],
+      "artifact_class": "processed_corpus",
+      "source": "Biblioteca_Italiana_BibIt",
+      "source_revision": "work_level_TEI_hashes_in_processed_manifests",
+      "rights_evidence_reference": "data/metadata/bibit_historical_attribution.md; data/processed/bibit_resolved_v1/records_manifest.csv; data/processed/bibit_resolved_v1/sonnets_manifest.csv",
+      "modifications_made_by_project": "TEI body extraction, removal of apparatus and wrappers, role routing, deduplication, and deterministic sharding with spelling and punctuation preserved.",
+      "required_notices": "Non-commercial public reuse; cite Biblioteca Italiana and retain work-level TEI attribution recorded in the manifests.",
+      "current_tree_disposition": "approved_for_public_tree",
+      "historical_retention_disposition": "approved_for_public_history",
+      "privacy_security_disposition": "approved"
+    },
+    {
+      "id": "wikisource_processed_corpora",
+      "path_globs": [
+        "data/processed/poems/**",
+        "data/processed/sonnets_expanded_v2/**",
+        "data/processed/sonnets_expanded_v3/**",
+        "data/processed/sonnets_expanded_v4/**",
+        "data/processed/sonnets_expanded_v5/**",
+        "data/processed/sonnets_expanded_v6/**",
+        "data/processed/pretraining_historical_wikisource_v1/**",
+        "data/processed/italian_wikisource_resolved_v1/**"
+      ],
+      "artifact_class": "processed_corpus",
+      "source": "Italian_Wikisource_and_public_domain_source_scans",
+      "source_revision": "page_and_dump_revisions_in_attribution_manifests",
+      "rights_evidence_reference": "data/metadata/italian_wikisource_resolved_v1_attribution.md; data/metadata/sonnets_expanded_v6_attribution.md; DATA_SOURCES_AND_ATTRIBUTION.md",
+      "modifications_made_by_project": "Markup and apparatus removal, source-rights filtering, form routing, deduplication, split assignment, and deterministic materialization with retained spelling and punctuation.",
+      "required_notices": "Credit Italian Wikisource, link stable pages and histories, retain CC BY-SA 4.0 and source-scan credits, modification notices, and applicable ShareAlike terms.",
+      "current_tree_disposition": "approved_for_public_tree",
+      "historical_retention_disposition": "approved_for_public_history",
+      "privacy_security_disposition": "approved"
+    },
+    {
+      "id": "liber_liber_processed_corpus",
+      "path_globs": ["data/processed/liber_liber_resolved_v1/**"],
+      "artifact_class": "processed_corpus",
+      "source": "Liber_Liber_Progetto_Manuzio",
+      "source_revision": "item_revisions_and_hashes_in_attribution_manifest",
+      "rights_evidence_reference": "data/metadata/liber_liber_resolved_v1_attribution.md; data/processed/liber_liber_resolved_v1/attribution_manifest.csv",
+      "modifications_made_by_project": "Wrapper and excluded-span removal, form routing, deduplication, and deterministic sharding with retained spelling and punctuation.",
+      "required_notices": "CC BY-NC-SA 4.0 edition layer; credit Liber Liber and named contributors, retain item and licence links, modification notice, NonCommercial and ShareAlike terms.",
+      "current_tree_disposition": "approved_for_public_tree",
+      "historical_retention_disposition": "approved_for_public_history",
+      "privacy_security_disposition": "approved"
+    },
+    {
+      "id": "project_gutenberg_processed_corpus",
+      "path_globs": ["data/processed/project_gutenberg_resolved_v1/**"],
+      "artifact_class": "processed_corpus",
+      "source": "Project_Gutenberg_public_domain_editions",
+      "source_revision": "ebook_identifiers_and_hashes_in_attribution_manifest",
+      "rights_evidence_reference": "data/processed/project_gutenberg_resolved_v1/attribution_manifest.csv; DATA_SOURCES_AND_ATTRIBUTION.md",
+      "modifications_made_by_project": "Boilerplate removal, role routing, deduplication, protected-split filtering, and deterministic sharding with retained source spelling and punctuation.",
+      "required_notices": "Retain Project Gutenberg ebook identifiers, source links, edition provenance, public-domain qualification, and Project Gutenberg trademark/redistribution notice.",
+      "current_tree_disposition": "approved_for_public_tree",
+      "historical_retention_disposition": "approved_for_public_history",
+      "privacy_security_disposition": "approved"
+    },
+    {
+      "id": "mixed_processed_corpora",
+      "path_globs": [
+        "data/processed/canonical_italian_corpora_v1/**",
+        "data/processed/pretraining_historical_italian_v2/**",
+        "data/processed/pretraining_medieval_v1/**",
+        "data/processed/expanded_italian_1200_1800_v1/**"
+      ],
+      "artifact_class": "processed_corpus",
+      "source": "documented_mix_of_Project_Gutenberg_Italian_Wikisource_Liber_Liber_and_approved_historical_sources",
+      "source_revision": "source_specific_revisions_and_hashes_in_linked_manifests",
+      "rights_evidence_reference": "DATA_SOURCES_AND_ATTRIBUTION.md; data/metadata/broader_prose_attribution.md; data/processed/canonical_italian_corpora_v1/attribution_manifest.csv",
+      "modifications_made_by_project": "Source-specific cleaning, rights filtering, deduplication, role routing, protected-split removal, composition, and deterministic sharding.",
+      "required_notices": "Apply each record's source-specific attribution, licence, NonCommercial/ShareAlike, public-domain provenance, and modification notice; no repository-wide data licence.",
+      "current_tree_disposition": "approved_for_public_tree",
+      "historical_retention_disposition": "approved_for_public_history",
+      "privacy_security_disposition": "approved"
+    },
+    {
+      "id": "data_metadata",
+      "path_globs": ["data/metadata/**"],
+      "artifact_class": "data_metadata_or_artifact",
+      "source": "project_metadata_with_source_specific_third_party_provenance",
+      "source_revision": "git_blob_oid",
+      "rights_evidence_reference": "DATA_SOURCES_AND_ATTRIBUTION.md; NOTICE; file-specific source and attribution records",
+      "modifications_made_by_project": "Provenance capture, source auditing, deterministic manifests, split decisions, aggregate reporting, and attribution normalization.",
+      "required_notices": "Retain source-specific attribution, licence, source links, revisions, contributor credits, and modification notices; factual metadata and third-party material are not relicensed by this repository.",
+      "current_tree_disposition": "approved_for_public_tree",
+      "historical_retention_disposition": "approved_for_public_history",
+      "privacy_security_disposition": "approved"
+    },
+    {
+      "id": "project_reports",
+      "path_globs": ["reports/**"],
+      "artifact_class": "report",
+      "source": "Leonardo_project_analysis_with_AI_assistance_and_cited_third_party_lineage",
+      "source_revision": "git_blob_oid",
+      "rights_evidence_reference": "AI_CONTRIBUTIONS.md; LICENSE.md; DATA_SOURCES_AND_ATTRIBUTION.md",
+      "modifications_made_by_project": "Project-authored experiment design, execution records, aggregate analysis, tables, and limitations; source-specific passages remain excluded from the CC grant.",
+      "required_notices": "CC BY 4.0 only where the manifest identifies Leonardo-owned prose and aggregate evidence; embedded third-party material and model output remain excluded and retain their own terms.",
+      "current_tree_disposition": "approved_for_public_tree",
+      "historical_retention_disposition": "approved_for_public_history",
+      "privacy_security_disposition": "approved"
+    },
+    {
+      "id": "project_software",
+      "path_globs": ["src/**", "scripts/**", "tests/**", "demo/**", ".github/workflows/**"],
+      "artifact_class": "software_test_demo_or_ci",
+      "source": "Leonardo_project_work_with_substantial_AI_assistance",
+      "source_revision": "git_blob_oid",
+      "rights_evidence_reference": "AI_CONTRIBUTIONS.md; LICENSE.md; LICENSE",
+      "modifications_made_by_project": "Project-specific implementation, tests, demos, and CI developed under Leonardo's direction with substantial Codex assistance.",
+      "required_notices": "Apache-2.0 for the manifest-approved Leonardo-owned portions; retain NOTICE and any file-specific third-party terms.",
+      "current_tree_disposition": "approved_for_public_tree",
+      "historical_retention_disposition": "approved_for_public_history",
+      "privacy_security_disposition": "approved"
+    },
+    {
+      "id": "project_configuration",
+      "path_globs": ["configs/**", "environments/**", "requirements/**", "requirements.txt", "pyproject.toml", ".gitattributes", ".gitignore"],
+      "artifact_class": "configuration_or_repository_support",
+      "source": "Leonardo_project_work_with_substantial_AI_assistance",
+      "source_revision": "git_blob_oid",
+      "rights_evidence_reference": "AI_CONTRIBUTIONS.md; LICENSE.md; LICENSE",
+      "modifications_made_by_project": "Project-specific executable configuration, environment contract, dependency pins, and repository support.",
+      "required_notices": "Apache-2.0 for the manifest-approved Leonardo-owned executable and support portions; dependency names and third-party identifiers are not relicensed.",
+      "current_tree_disposition": "approved_for_public_tree",
+      "historical_retention_disposition": "approved_for_public_history",
+      "privacy_security_disposition": "approved"
+    },
+    {
+      "id": "project_documentation",
+      "path_globs": ["README.md", "MODEL_CARD.md", "DATA_SOURCES_AND_ATTRIBUTION.md", "AI_CONTRIBUTIONS.md", "REPRODUCIBILITY.md", "CHANGELOG.md", "CITATION.cff", "docs/**"],
+      "artifact_class": "documentation",
+      "source": "Leonardo_project_prose_with_substantial_AI_assistance_and_cited_third_party_lineage",
+      "source_revision": "git_blob_oid",
+      "rights_evidence_reference": "AI_CONTRIBUTIONS.md; LICENSE.md; DATA_SOURCES_AND_ATTRIBUTION.md",
+      "modifications_made_by_project": "Project-authored documentation, evidence synthesis, attribution, and limitations under Leonardo's direction with substantial Codex assistance.",
+      "required_notices": "CC BY 4.0 only for manifest-approved Leonardo-owned prose; embedded passages, generated output, third-party metadata, and cited source material remain excluded or retain their source terms.",
+      "current_tree_disposition": "approved_for_public_tree",
+      "historical_retention_disposition": "approved_for_public_history",
+      "privacy_security_disposition": "approved"
+    },
+    {
+      "id": "licensing_and_release_support",
+      "path_globs": ["LICENSE", "LICENSE.md", "LICENSES/**", "NOTICE", "release/**"],
+      "artifact_class": "license_notice_or_release_support",
+      "source": "standard_licence_text_or_Leonardo_release_documentation_with_AI_assistance",
+      "source_revision": "git_blob_oid",
+      "rights_evidence_reference": "LICENSE.md; NOTICE; release/public_release_decision_policy.json",
+      "modifications_made_by_project": "Unmodified standard licence text where identified; otherwise project-specific scope, notice, inventory, and release-control documentation.",
+      "required_notices": "Retain licence texts, copyright notice, source-specific notices, and the manifest-defined mixed-rights boundary.",
+      "current_tree_disposition": "approved_for_public_tree",
+      "historical_retention_disposition": "approved_for_public_history",
+      "privacy_security_disposition": "approved"
+    }
+  ]
+}

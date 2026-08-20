@@ -30,10 +30,8 @@ produces malformed strings such as `Donnaa`, `credevalor`, and
 
 This is a local language-quality advantage, not successful sonnet generation.
 The pretrained samples still fail to sustain syntax, semantics, rhyme, or a
-coherent poetic argument across fourteen lines. See
-`reports/qualitative_review_sonnet_control_pretrained_fresh_best.md` and
-`reports/qualitative_review_sonnet_control_random_best.md` for every prompt and
-the complete generated text.
+coherent poetic argument across fourteen lines. The local-only raw-output
+reviews preserve every prompt and the complete generated text.
 
 ## Limits
 

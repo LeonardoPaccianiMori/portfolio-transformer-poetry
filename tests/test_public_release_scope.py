@@ -87,6 +87,34 @@ def test_clearance_halts_for_required_current_or_history_removal():
     assert any("destructive-action plan" in error for error in inventory.clearance_errors([resolved]))
 
 
+def test_decision_policy_covers_current_tree_and_reviewed_history():
+    inventory = load_inventory_module()
+    assert inventory.policy_errors(inventory.default_published_refs()) == []
+
+
+def test_unknown_path_remains_fail_closed():
+    inventory = load_inventory_module()
+    row = inventory.make_row(
+        "unexpected/new_artifact.bin",
+        "current_tree",
+        "1" * 40,
+        "2" * 64,
+    )
+    assert row["current_tree_disposition"] == inventory.PENDING
+    assert inventory.clearance_errors([row])
+
+
+def test_historical_path_exceptions_are_exact_blob_pairs():
+    inventory = load_inventory_module()
+    exception = inventory.decision_policy()["historical_privacy_exceptions"][0]
+    assert inventory.historical_privacy_exception(
+        exception["repository_relative_path"], exception["git_blob_oid"]
+    ) == exception
+    assert inventory.historical_privacy_exception(
+        exception["repository_relative_path"], "0" * 40
+    ) is None
+
+
 def test_release_allowlist_prohibits_manual_assets():
     policy = json.loads((ROOT / "release/github_release_allowlist.yml").read_text(encoding="utf-8"))
     assert policy["automatic_source_snapshots_only"] is True

@@ -96,7 +96,7 @@ python3.12 -m venv .venv
 .venv/bin/python -m pytest -m "not local_artifact"
 ```
 
-The public-clone suite contains 1,159 tests. Ten additional tests are explicitly
+The public-clone suite contains 1,163 tests. Eleven additional tests are explicitly
 catalogued as local-only because they validate intentionally withheld research
 artifacts; see [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
 
@@ -118,12 +118,13 @@ verification. See [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
 | Processed corpora | Candidates only where the release manifests affirmatively approve redistribution |
 | Source and attribution metadata | Candidates subject to affirmative approval and source-specific notices |
 | Gutendex catalog JSON/CSV summaries | Candidate non-authoritative third-party generated metadata with recorded provenance; not Leonardo's analysis |
-| Model weights, checkpoints, adapters | Withheld pending artifact-specific specialist review |
+| Model weights, checkpoints, adapters | Withheld pending a separate artifact-specific owner release decision |
 | Raw generations, poems/openings used in evaluation, preferences, votes, annotations, mappings, tensors | Not release artifacts |
 
 The repository has an approximately 434 MiB loose Git-object footprint before
-cleanup; rights-approved processed corpora make cloning heavier than a normal
-software repository. No retroactive Git LFS migration is planned.
+cleanup. Processed corpora that receive affirmative, source-specific manifest
+approval make cloning heavier than a normal software repository. No retroactive
+Git LFS migration is planned.
 
 ## Data, Licensing, and Redistribution
 
@@ -139,9 +140,10 @@ passages.
 PAISÀ and several other sources have source-specific terms. Check
 [DATA_SOURCES_AND_ATTRIBUTION.md](DATA_SOURCES_AND_ATTRIBUTION.md),
 [NOTICE](NOTICE), and the release manifests before reuse. Withholding the final
-checkpoint and adapter is a conservative release policy pending separate
-artifact-specific review; it is not a legal conclusion that the PAISÀ corpus
-license necessarily governs model weights.
+checkpoint and adapter is a conservative release policy pending a separate
+artifact-specific owner review and release decision. It is not legal or
+specialist clearance and does not conclude that the PAISÀ corpus license
+necessarily governs model weights.
 
 ## AI Contribution
 

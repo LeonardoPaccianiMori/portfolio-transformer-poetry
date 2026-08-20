@@ -195,7 +195,7 @@ def validate_recovery_config(config: Mapping[str, Any]) -> None:
             "56d9435b92dcfe64ffa09861efd63a89d2579479ceeca3cbc275ee52917f1e40"
         ),
         "human_judgments_path": (
-            "reports/minerva_3b_validation_sanity_blinded_judgments.md"
+            "outputs/reports/minerva_3b_validation_sanity_blinded_judgments.md"
         ),
         "human_judgments_sha256": (
             "fca814d8a16f5d67375b8f67b24b53d969e3c7ae896eb004f4c68306c7eeda3e"

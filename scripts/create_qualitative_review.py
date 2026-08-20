@@ -21,7 +21,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output",
         type=Path,
-        default=ROOT / "reports" / "qualitative_review.md",
+        default=ROOT / "outputs" / "reports" / "qualitative_review.md",
     )
     parser.add_argument(
         "--review-context",

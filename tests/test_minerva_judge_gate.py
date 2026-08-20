@@ -66,9 +66,10 @@ def test_reverse_continuation_word_order_preserves_opening_and_lines():
     assert lines[1] == "gamma beta alpha word1"
 
 
+@pytest.mark.local_artifact
 def test_parse_real_blinded_judgments_preserves_fixed_counts():
     judgments = parse_blinded_judgments(
-        ROOT / "reports/minerva_3b_validation_sanity_blinded_judgments.md"
+        ROOT / "outputs/reports/minerva_3b_validation_sanity_blinded_judgments.md"
     )
     assert len(judgments) == JUDGE_HUMAN_CASE_COUNT
     assert sum(row["grammar"] for row in judgments.values()) == 9

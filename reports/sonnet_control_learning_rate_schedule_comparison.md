@@ -26,8 +26,8 @@ batches have medium local language/style plausibility, low coherence, and low
 sonnet-like structure. The warmup-cosine batch includes one unusually long,
 repetitive `line_start` sample, while its remaining samples are broadly similar
 to the constant-rate batch. See
-`reports/qualitative_review_sonnet_control_pretrained_fresh_best.md` and
-`reports/qualitative_review_sonnet_control_pretrained_warmup_cosine_best.md`.
+The underlying raw-output reviews are retained locally and excluded from the
+public tree.
 
 ## Decision
 

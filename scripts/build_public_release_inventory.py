@@ -6,8 +6,10 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
+import json
 import subprocess
 from functools import cache
+from fnmatch import fnmatchcase
 from pathlib import Path
 from typing import Iterable
 
@@ -17,6 +19,7 @@ RELEASE_DIR = ROOT / "release"
 CURRENT_MANIFEST = RELEASE_DIR / "artifact_rights_manifest.csv"
 HISTORY_MANIFEST = RELEASE_DIR / "history_rights_manifest.csv"
 HISTORY_TARGET = RELEASE_DIR / "history_review_target.txt"
+DECISION_POLICY = RELEASE_DIR / "public_release_decision_policy.json"
 SELF_GENERATED = "self_generated"
 PENDING = "pending_review"
 
@@ -29,7 +32,10 @@ FIELDS = [
 
 RESOLVED_CURRENT = {"approved_for_public_tree", "remove_from_current_tree", "not_applicable"}
 RESOLVED_HISTORY = {"approved_for_public_history", "remove_from_history", "not_applicable"}
-RESOLVED_PRIVACY = {"approved", "sanitized", "remove_from_history", "not_applicable"}
+RESOLVED_PRIVACY = {
+    "approved", "approved_historical_exception", "sanitized",
+    "remove_from_history", "not_applicable",
+}
 REQUIRED_EVIDENCE_FIELDS = {
     "artifact_class", "source", "source_revision", "rights_evidence_reference",
     "modifications_made_by_project", "required_notices",
@@ -148,37 +154,76 @@ def artifact_class(path: str) -> str:
     return "repository_support"
 
 
-def default_source(path: str, oid: str) -> tuple[str, str, str]:
-    kind = artifact_class(path)
-    if path in {CURRENT_MANIFEST.relative_to(ROOT).as_posix(), HISTORY_MANIFEST.relative_to(ROOT).as_posix()}:
-        return "generated_by_release_inventory_tool", SELF_GENERATED, "scripts/build_public_release_inventory.py"
-    if kind in {"processed_corpus", "data_metadata_or_artifact"}:
-        return "mixed_or_third_party_source_needs_review", "recorded_in_project_metadata", "DATA_SOURCES_AND_ATTRIBUTION.md"
-    return "Leonardo_project_work_with_AI_assistance", oid, "AI_CONTRIBUTIONS.md"
+@cache
+def decision_policy() -> dict:
+    policy = json.loads(DECISION_POLICY.read_text(encoding="utf-8"))
+    required = {
+        "schema_version", "review_date", "decision_authority_role",
+        "decision_record_id", "historical_privacy_exceptions", "rules",
+    }
+    missing = required - set(policy)
+    if missing:
+        raise ValueError(f"{DECISION_POLICY}: missing fields {sorted(missing)}")
+    return policy
 
 
-def load_rows(path: Path) -> dict[tuple[str, str, str], dict[str, str]]:
-    if not path.exists() or path.stat().st_size == 0:
-        return {}
-    with path.open(newline="", encoding="utf-8") as handle:
-        rows = list(csv.DictReader(handle))
-    return {(row["repository_relative_path"], row["scope"], row["git_blob_oid"]): row for row in rows}
+def matching_rule(path: str) -> dict | None:
+    for rule in decision_policy()["rules"]:
+        if any(fnmatchcase(path, pattern) for pattern in rule["path_globs"]):
+            return rule
+    return None
 
 
-def make_row(path: str, scope: str, oid: str, sha256: str, existing: dict[str, str] | None) -> dict[str, str]:
-    source, revision, evidence = default_source(path, oid)
+def historical_privacy_exception(path: str, oid: str) -> dict | None:
+    for exception in decision_policy()["historical_privacy_exceptions"]:
+        if (
+            exception["repository_relative_path"] == path
+            and exception["git_blob_oid"] == oid
+        ):
+            return exception
+    return None
+
+
+def make_row(path: str, scope: str, oid: str, sha256: str) -> dict[str, str]:
+    rule = matching_rule(path)
+    if rule is None:
+        source = revision = evidence = PENDING
+        artifact = artifact_class(path)
+        modifications = notices = PENDING
+        current_disposition = historical_disposition = privacy_disposition = PENDING
+    else:
+        source = rule["source"]
+        revision = rule["source_revision"]
+        if revision == "git_blob_oid":
+            revision = oid
+        elif revision == SELF_GENERATED and scope == "published_history":
+            revision = oid
+        evidence = rule["rights_evidence_reference"]
+        artifact = rule["artifact_class"]
+        modifications = rule["modifications_made_by_project"]
+        notices = rule["required_notices"]
+        current_disposition = (
+            rule["current_tree_disposition"] if scope == "current_tree" else "not_applicable"
+        )
+        historical_disposition = (
+            rule["historical_retention_disposition"]
+            if scope == "published_history"
+            else "not_applicable"
+        )
+        privacy_disposition = rule["privacy_security_disposition"]
+        if scope == "published_history" and historical_privacy_exception(path, oid):
+            privacy_disposition = "approved_historical_exception"
     row = {
         "repository_relative_path": path, "scope": scope, "git_blob_oid": oid, "sha256": sha256,
-        "artifact_class": artifact_class(path), "source": source, "source_revision": revision,
-        "rights_evidence_reference": evidence, "modifications_made_by_project": "needs_review",
-        "required_notices": "needs_review", "current_tree_disposition": PENDING,
-        "historical_retention_disposition": PENDING, "privacy_security_disposition": PENDING,
-        "decision_authority_role": PENDING, "decision_record_id": PENDING, "review_date": PENDING,
+        "artifact_class": artifact, "source": source, "source_revision": revision,
+        "rights_evidence_reference": evidence, "modifications_made_by_project": modifications,
+        "required_notices": notices, "current_tree_disposition": current_disposition,
+        "historical_retention_disposition": historical_disposition,
+        "privacy_security_disposition": privacy_disposition,
+        "decision_authority_role": decision_policy()["decision_authority_role"] if rule else PENDING,
+        "decision_record_id": decision_policy()["decision_record_id"] if rule else PENDING,
+        "review_date": decision_policy()["review_date"] if rule else PENDING,
     }
-    if existing:
-        for field in FIELDS[4:]:
-            if existing.get(field):
-                row[field] = existing[field]
     return row
 
 
@@ -190,18 +235,14 @@ def write_rows(path: Path, rows: list[dict[str, str]]) -> None:
 
 
 def build(refs: list[str]) -> tuple[list[dict[str, str]], list[dict[str, str]]]:
-    old_current = load_rows(CURRENT_MANIFEST)
-    old_history = load_rows(HISTORY_MANIFEST)
     history_rows = []
     for path, oid in published_history_pairs(refs):
-        key = (path, "published_history", oid)
-        history_rows.append(make_row(path, "published_history", oid, historical_blob_sha256(oid), old_history.get(key)))
+        history_rows.append(make_row(path, "published_history", oid, historical_blob_sha256(oid)))
     write_rows(HISTORY_MANIFEST, history_rows)
     current_rows = []
     for path in tracked_paths():
         oid, sha256 = indexed_blob_identity(path)
-        key = (path, "current_tree", oid)
-        current_rows.append(make_row(path, "current_tree", oid, sha256, old_current.get(key)))
+        current_rows.append(make_row(path, "current_tree", oid, sha256))
     write_rows(CURRENT_MANIFEST, current_rows)
     return current_rows, history_rows
 
@@ -268,6 +309,25 @@ def clearance_errors(rows: Iterable[dict[str, str]]) -> list[str]:
     return errors
 
 
+def policy_errors(refs: list[str]) -> list[str]:
+    errors: list[str] = []
+    policy = decision_policy()
+    exception_keys = {
+        (item["repository_relative_path"], item["git_blob_oid"])
+        for item in policy["historical_privacy_exceptions"]
+    }
+    history_pairs = set(published_history_pairs(refs))
+    for path, oid in sorted(exception_keys - history_pairs):
+        errors.append(f"historical privacy exception is not in reviewed history: {path} {oid}")
+    for path in tracked_paths():
+        if matching_rule(path) is None:
+            errors.append(f"no release decision rule for current path: {path}")
+    for path, _oid in history_pairs:
+        if matching_rule(path) is None:
+            errors.append(f"no release decision rule for historical path: {path}")
+    return errors
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--published-ref", action="append", default=[])
@@ -278,6 +338,7 @@ def main() -> int:
     if not args.check:
         build(refs)
     errors = structural_errors(refs)
+    errors.extend(policy_errors(refs))
     if args.require_cleared:
         errors.extend(clearance_errors(read_manifest(CURRENT_MANIFEST)))
         errors.extend(clearance_errors(read_manifest(HISTORY_MANIFEST)))

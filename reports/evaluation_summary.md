@@ -8,7 +8,7 @@ Reports used:
 
 - `reports/generation_metrics.md`
 - `reports/memorization_checks.md`
-- `reports/qualitative_review.md`
+- local-only raw-output qualitative review (excluded from the public tree)
 
 ## Summary
 

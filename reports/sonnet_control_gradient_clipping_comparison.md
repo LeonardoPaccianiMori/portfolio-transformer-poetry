@@ -28,8 +28,8 @@ the `amor` output repeats `perdono` heavily, and the `line_start` output is
 byte-identical to the unclipped baseline with the same prompt and seed. Both
 batches have medium local language/style plausibility, low coherence, and low
 sonnet-like structure. See
-`reports/qualitative_review_sonnet_control_pretrained_fresh_best.md` and
-`reports/qualitative_review_sonnet_control_pretrained_clip1_best.md`.
+The underlying raw-output reviews are retained locally and excluded from the
+public tree.
 
 ## Decision
 

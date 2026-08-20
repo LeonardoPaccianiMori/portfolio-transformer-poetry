@@ -28,7 +28,7 @@ The aggregate acquisition result is in
   derived dataset materials retain their non-commercial/share-alike terms;
   this is not merely a citation requirement. Whether and how those terms apply
   to checkpoints or adapters is not concluded here and remains pending
-  artifact-specific specialist review.
+  an artifact-specific owner review and release decision.
 
 The publisher describes approximately 380,000 documents from approximately
 1,000 websites, totaling approximately 250 million words. It states that every
@@ -76,9 +76,10 @@ Do not commit the PAISÀ release, extracted document text, document-level
 attribution inventory, or BPE token files to the public repository. Commit only
 this attribution record, the official source links and license notice,
 deterministic acquisition/build code, configs, and aggregate non-text reports.
-Model checkpoints and adapters are withheld conservatively pending separate
-artifact-specific specialist review. This policy does not assert that the
-PAISÀ corpus license necessarily governs model weights.
+Model checkpoints and adapters are withheld conservatively pending a separate
+artifact-specific owner review and release decision. This policy is not legal
+or specialist clearance and does not assert that the PAISÀ corpus license
+necessarily governs model weights.
 
 ## Earlier Prospective Rescue Curriculum
 

@@ -26,9 +26,8 @@ copying-risk labels. Its average repeated 4-gram ratio is lower (0.0948 versus
 0.1115), but this is not a clear quality gain: both batches have medium local
 Italian-like texture, low coherence, and low sonnet-like structure. The RMSNorm
 conversion outputs still contain malformed words and unstable syntax, including
-`anaalta`, `partorìdila`, `penetroso`, and `convendetta`. See
-`reports/qualitative_review_sonnet_control_pretrained_fresh_best.md` and
-`reports/qualitative_review_sonnet_control_layernorm_to_rmsnorm_best.md`.
+`anaalta`, `partorìdila`, `penetroso`, and `convendetta`. The underlying
+raw-output reviews are retained locally and excluded from the public tree.
 
 ## Decision
 

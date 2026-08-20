@@ -35,7 +35,7 @@ def main() -> None:
     parser.add_argument(
         "--review-path",
         type=Path,
-        default=Path("reports/minerva_7b_quality_recovery_blinded_review.md"),
+        default=Path("outputs/reports/minerva_7b_quality_recovery_blinded_review.md"),
     )
     parser.add_argument(
         "--automatic-report-path",

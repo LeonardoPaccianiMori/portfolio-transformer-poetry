@@ -22,8 +22,8 @@ set and did not train or modify the model.
   least 5/8 outputs sustaining a topic for seven generated lines, and no more
   than 1/8 severe collapses.
 
-The fixed per-output judgments are retained in
-[`minerva_7b_instruct_validation_review.md`](minerva_7b_instruct_validation_review.md).
+The fixed per-output judgments and raw samples are retained locally and
+excluded from the public tree.
 
 ## Results
 

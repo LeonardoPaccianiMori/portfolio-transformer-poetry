@@ -19,7 +19,8 @@ The generated files remain local under
 `outputs/generations/pretraining_quality_swiglu_upper_best/`. The public
 automatic-metrics and review-template artifacts are
 `reports/generation_metrics_pretraining_quality_swiglu_upper_best.md` and
-`reports/qualitative_review_pretraining_quality_swiglu_upper_best.md`.
+The underlying raw-output review is retained locally and excluded from the
+public tree.
 
 ## Automatic Results
 

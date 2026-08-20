@@ -19,7 +19,11 @@ The first result is a decoder-enforced control, not evidence that the model has 
 
 ## Qualitative Review
 
-The 20 full outputs are retained in `qualitative_review_sonnet_task_format_historical_v2_xxl_v5_best_acceptance.md`. The ratings below use the fixed acceptance rubric. A result counts as plausibly grammatical only if its continuation remains generally grammatical rather than merely containing isolated well-formed phrases. Topic continuity requires a recognizable topic or argument through at least seven generated lines.
+The 20 full outputs are retained locally and excluded from the public tree. The
+ratings below use the fixed acceptance rubric. A result counts as plausibly
+grammatical only if its continuation remains generally grammatical rather than
+merely containing isolated well-formed phrases. Topic continuity requires a
+recognizable topic or argument through at least seven generated lines.
 
 | Output | Grammatical Italian | Seven-Line Topic | Severe Collapse | Main Evidence |
 | --- | --- | --- | --- | --- |

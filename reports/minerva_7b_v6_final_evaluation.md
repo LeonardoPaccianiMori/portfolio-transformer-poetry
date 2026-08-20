@@ -44,5 +44,6 @@ grammar errors and occasional repetition collapse.
 - Form controls: `reports/minerva_7b_v6_final_acceptance_controls.md`
 - Generation metrics: `reports/minerva_7b_v6_final_generation_metrics.md`
 - Memorization: `reports/minerva_7b_v6_final_memorization.md`
-- Completed qualitative review: `reports/minerva_7b_v6_final_qualitative_review.md`
+- Completed output-level qualitative review: retained locally and excluded
+  from the public tree
 - Frozen selection record: `configs/minerva_7b_v6_selected_adapter.json`

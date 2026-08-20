@@ -36,8 +36,8 @@ For each prompt, the first control family contains:
   order independently within every line while preserving the opening,
   vocabulary, and fourteen-line count.
 
-The second family contains all 56 validation-only outputs judged blindly in
-`reports/minerva_3b_validation_sanity_blinded_judgments.md`. Their fixed grammar,
+The second family contains all 56 validation-only outputs judged blindly in a
+local-only judgment record excluded from the public tree. Their fixed grammar,
 topic, and collapse labels were written before this gate was designed. Human
 ordinal quality is `2 * grammar + topic + 2 * noncollapse`.
 

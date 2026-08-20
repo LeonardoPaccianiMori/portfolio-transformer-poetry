@@ -52,4 +52,5 @@ The detailed automatic and qualitative evidence is in
 `reports/generation_metrics_sonnet_control_quality_swiglu_larger_stable_eval_best.md`,
 `reports/memorization_sonnet_control_quality_swiglu_larger_stable_eval_best.md`,
 and
-`reports/qualitative_review_sonnet_control_quality_swiglu_larger_stable_eval_best.md`.
+The underlying raw-output review is retained locally and excluded from the
+public tree.

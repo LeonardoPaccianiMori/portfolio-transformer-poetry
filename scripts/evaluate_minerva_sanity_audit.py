@@ -32,7 +32,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--blinded-review",
         type=Path,
-        default=Path("reports/minerva_3b_validation_sanity_blinded_review.md"),
+        default=Path("outputs/reports/minerva_3b_validation_sanity_blinded_review.md"),
     )
     parser.add_argument(
         "--blind-mapping",

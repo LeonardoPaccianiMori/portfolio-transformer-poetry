@@ -19,7 +19,11 @@ The form result is decoder-enforced. It is not evidence that the model learned m
 
 ## Qualitative Review
 
-The 20 full outputs are retained in `sonnet_task_format_paisa_historical_rescue_v1_v5_best_qualitative_review.md`. A continuation counts as plausibly grammatical only when it remains generally grammatical rather than merely containing isolated well-formed phrases. Topic continuity requires a recognizable topic or argument through at least seven generated lines.
+The 20 full outputs are retained locally and excluded from the public tree. A
+continuation counts as plausibly grammatical only when it remains generally
+grammatical rather than merely containing isolated well-formed phrases. Topic
+continuity requires a recognizable topic or argument through at least seven
+generated lines.
 
 | Output | Grammatical Italian | Seven-Line Topic | Severe Collapse | Main Evidence |
 | --- | --- | --- | --- | --- |

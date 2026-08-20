@@ -12,7 +12,8 @@ of the active boundary marker until the target is reached.
 - Fine-tuning configuration and selection: `reports/finetuning_larger_20k_001.md`
 - Fine-tuned generation metrics: `reports/generation_metrics_finetuning_larger_20k_001_step_2000.md`
 - Fine-tuned memorization checks: `reports/memorization_checks_finetuning_larger_20k_001_step_2000.md`
-- Assistant-authored first-pass review: `reports/qualitative_review_finetuning_larger_20k_001_step_2000.md`
+- Assistant-authored first-pass raw-output review: retained locally and
+  excluded from the public tree
 - Sonnet-only BPE stop-suppression baseline: `reports/bpe_stop_suppression.md`
 
 ## Compared Systems

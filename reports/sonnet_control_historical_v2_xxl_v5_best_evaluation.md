@@ -61,4 +61,5 @@ fixed 20-output acceptance evaluation before judging the current attempt.
 The detailed evidence is in
 `reports/generation_metrics_sonnet_control_historical_v2_xxl_v5_best.md`,
 `reports/memorization_checks_sonnet_control_historical_v2_xxl_v5_best.md`, and
-`reports/qualitative_review_sonnet_control_historical_v2_xxl_v5_best.md`.
+The underlying raw-output review is retained locally and excluded from the
+public tree.

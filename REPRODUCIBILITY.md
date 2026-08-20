@@ -15,10 +15,10 @@ python3.12 -m venv .venv
 .venv/bin/python -m pytest
 ```
 
-The full command runs 1,169 tests when the intentionally withheld local
+The full command runs 1,174 tests when the intentionally withheld local
 research artifacts are present. A clean public clone first runs
-`scripts/verify_public_test_scope.py`, then runs the complete 1,159-test public
-subset with `python -m pytest -m "not local_artifact"`. The exact ten local-only
+`scripts/verify_public_test_scope.py`, then runs the complete 1,163-test public
+subset with `python -m pytest -m "not local_artifact"`. The exact eleven local-only
 node IDs are frozen in `release/local_only_test_allowlist.txt`; CI fails if a
 marker is added, removed, or moved without updating that reviewed boundary.
 
@@ -58,5 +58,6 @@ remains pending.
 
 The canonical full-corpus verifier may run only when the retained local data is
 available and cleared for that use. Final-model loading, generation, checkpoint
-inspection, preference reconstruction, and review-packet reconstruction remain
-local-only. Their absence from a public clone is intentional.
+inspection, preference reconstruction, raw-output review, prompt-level
+annotation parsing, and review-packet reconstruction remain local-only. Their
+absence from a public clone is intentional.

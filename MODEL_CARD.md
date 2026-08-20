@@ -165,10 +165,10 @@ revision, source link, Sapienza NLP attribution, and license notice.
 Training lineage includes public-domain material, Italian Wikisource,
 Liber Liber CC BY-NC-SA editions, and PAISÀ CC BY-NC-SA replay. The full-weight
 checkpoints and DPO adapter are withheld under a conservative release policy
-pending separate artifact-specific specialist review. That policy is not a
-legal conclusion that the PAISÀ corpus license necessarily governs model
-weights. This card grants no rights beyond the underlying model and dataset
-terms.
+pending a separate artifact-specific owner review and release decision. That
+policy is not legal or specialist clearance and does not conclude that the
+PAISÀ corpus license necessarily governs model weights. This card grants no
+rights beyond the underlying model and dataset terms.
 
 ## Local Demo
 

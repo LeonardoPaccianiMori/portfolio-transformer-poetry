@@ -23,8 +23,8 @@ selected checkpoint.
 
 The fixed blinded decisions are in
 [`minerva_3b_validation_sanity_blinded_judgments.md`](minerva_3b_validation_sanity_blinded_judgments.md).
-The complete samples are retained in
-[`minerva_3b_validation_sanity_blinded_review.md`](minerva_3b_validation_sanity_blinded_review.md).
+The complete samples and prompt-level review are retained locally and excluded
+from the public tree.
 
 ## Results
 

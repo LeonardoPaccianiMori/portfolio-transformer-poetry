@@ -32,7 +32,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--review",
         type=Path,
-        default=Path("reports/minerva_7b_instruct_validation_review.md"),
+        default=Path("outputs/reports/minerva_7b_instruct_validation_review.md"),
     )
     return parser.parse_args()
 
@@ -58,4 +58,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

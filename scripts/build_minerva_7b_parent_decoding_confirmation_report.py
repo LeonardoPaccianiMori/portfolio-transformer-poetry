@@ -38,7 +38,7 @@ def main() -> None:
         "--review-path",
         type=Path,
         default=Path(
-            "reports/minerva_7b_parent_decoding_confirmation_blinded_review.md"
+            "outputs/reports/minerva_7b_parent_decoding_confirmation_blinded_review.md"
         ),
     )
     parser.add_argument(
