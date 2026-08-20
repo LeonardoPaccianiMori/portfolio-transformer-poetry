@@ -40,8 +40,11 @@ clones, caches, mirrors, or independently owned forks.
 
 ## Current preparation status
 
-The repository is private while review is prepared. Rights decisions have not
-yet been completed. GitHub Packages were enumerated on 2026-08-15 with
-`read:packages`; the repository has zero attached packages and no additional
-package-results page. No public tag or Release may be created while rights and
-history decisions remain pending.
+The repository remains private during final release preparation. On 2026-08-20,
+the fail-closed current-tree and reviewed-history manifests passed with every
+decision resolved, and CI passed on commit
+`2ff9bba1e96b1a777c8831efda96c6a7cf09bc5f`. GitHub Packages were enumerated
+with `read:packages`; the repository has zero attached packages and no
+additional package-results page. The annotated tag may be created only from the
+final reviewed commit after its CI run passes; public visibility and the
+source-snapshot-only Release are verified afterward.

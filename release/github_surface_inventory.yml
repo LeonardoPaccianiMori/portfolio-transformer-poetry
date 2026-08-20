@@ -5,7 +5,7 @@ default_branch: main
 public_origin_main_before_containment: 8bd8cd4e609b935155fb04a68d006fc164961f26
 visibility_before_containment: public
 visibility_during_review: private
-history_review_target_for_next_commit: 84f88a27eef34629e8935509118ee3c270ac2353
+history_review_target_for_next_commit: 2ff9bba1e96b1a777c8831efda96c6a7cf09bc5f
 
 publication_surfaces:
   known_forks:

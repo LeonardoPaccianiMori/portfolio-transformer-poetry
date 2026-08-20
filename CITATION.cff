@@ -3,6 +3,7 @@ message: "If you use this software, please cite it as below."
 type: software
 title: "Teaching Transformers to Write Classical Italian Sonnets"
 version: 1.0.0
+date-released: 2026-08-20
 abstract: >-
   Leonardo Pacciani-Mori conceived and directed this project. Codex 5.5 and
   Codex 5.6 Sol substantially assisted research design, implementation, tests,

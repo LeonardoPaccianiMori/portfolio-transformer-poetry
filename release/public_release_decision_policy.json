@@ -79,6 +79,18 @@
       "git_blob_oid": "74535a399c35ecaeb9148983fa67cf4587a77af6",
       "finding": "operational_geography",
       "reason": "The historical test blob contains the literal geography terms used by the detector; it does not describe project infrastructure."
+    },
+    {
+      "repository_relative_path": "tests/test_public_release_hygiene.py",
+      "git_blob_oid": "83bae8bc314b6b7de6017c2d04ad2fe776c10c2d",
+      "finding": "file_uri",
+      "reason": "The reviewed release-closure test blob contains the literal detection pattern used to reject file URIs; it is a test fixture, not an operational URI."
+    },
+    {
+      "repository_relative_path": "tests/test_public_release_hygiene.py",
+      "git_blob_oid": "83bae8bc314b6b7de6017c2d04ad2fe776c10c2d",
+      "finding": "operational_geography",
+      "reason": "The reviewed release-closure test blob contains the literal geography terms used by the detector; it does not describe project infrastructure."
     }
   ],
   "rules": [
