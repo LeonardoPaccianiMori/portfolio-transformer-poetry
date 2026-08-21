@@ -220,9 +220,18 @@ def make_row(path: str, scope: str, oid: str, sha256: str) -> dict[str, str]:
         "required_notices": notices, "current_tree_disposition": current_disposition,
         "historical_retention_disposition": historical_disposition,
         "privacy_security_disposition": privacy_disposition,
-        "decision_authority_role": decision_policy()["decision_authority_role"] if rule else PENDING,
-        "decision_record_id": decision_policy()["decision_record_id"] if rule else PENDING,
-        "review_date": decision_policy()["review_date"] if rule else PENDING,
+        "decision_authority_role": (
+            rule.get("decision_authority_role", decision_policy()["decision_authority_role"])
+            if rule else PENDING
+        ),
+        "decision_record_id": (
+            rule.get("decision_record_id", decision_policy()["decision_record_id"])
+            if rule else PENDING
+        ),
+        "review_date": (
+            rule.get("review_date", decision_policy()["review_date"])
+            if rule else PENDING
+        ),
     }
     return row
 

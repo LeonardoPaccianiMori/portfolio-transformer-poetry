@@ -2,11 +2,12 @@
   "artifact": {
     "artifact_id": "stage1",
     "kind": "full_model",
-    "repository": "LPM93/minerva-7b-classical-italian-stage1",
+    "repository": "LPM93/teaching-transformers-classical-italian-sonnets",
     "selected_update": 2065,
     "selected_windows": 33040,
     "source_directory": "stage_1_historical_general_selected",
-    "state_identity_sha256": "c3aba5b672e8634028477885ad96d7c25c48d2c60cc5597b6da730089212ac39"
+    "state_identity_sha256": "c3aba5b672e8634028477885ad96d7c25c48d2c60cc5597b6da730089212ac39",
+    "subfolder": "stage1"
   },
   "artifact_id": "stage1",
   "completed_training_stages": [

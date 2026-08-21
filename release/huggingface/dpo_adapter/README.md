@@ -4,7 +4,7 @@ language:
   - it
 library_name: peft
 pipeline_tag: text-generation
-base_model: LPM93/minerva-7b-classical-italian-sonnets-stage3
+base_model: LPM93/teaching-transformers-classical-italian-sonnets
 tags:
   - minerva
   - italian-sonnets
@@ -15,14 +15,11 @@ tags:
 
 # Minerva 7B Classical Italian Sonnets — AI-Judged DPO Adapter
 
-> **Preparation status:** candidate package only. This artifact has not been
-> uploaded or approved for public distribution.
-
 This rank-8 PEFT LoRA adapter attaches only to the exact selected Stage-3 model
 at state identity
 `478d5979e25a78375d7af0434db6a5432678762fac2d142af2d4798dda53a474`.
-The base model is a separate candidate package and was **not trained from
-scratch**. This adapter repository would contain no base weights.
+The base model is in the `stage3` subfolder of this repository and was **not
+trained from scratch**. The `dpo_adapter` subfolder contains no base weights.
 
 The adapter was trained for 61 optimizer updates from 482 training and 52
 validation preference pairs. The pairs came from 4,096 Stage-3 candidates and
@@ -32,7 +29,7 @@ human-calibrated DPO, or human alignment.
 
 ## Intended purpose
 
-If later approved and published, the adapter is intended primarily for
+The adapter is intended primarily for
 non-commercial research transparency, inspection, reproducibility, evaluation,
 and independent verification. This is an intended-purpose statement, not an
 additional license restriction. CC BY-NC 4.0 permits other uses that satisfy
@@ -49,6 +46,13 @@ strict-good outputs; only the historical-register interval excluded zero.
 The evidence supports a narrow surface/completion improvement, not broad
 literary quality. The adapter can reproduce historical-looking but broken or
 incoherent text and may preserve unknown overlap from the parent.
+
+## Loading
+
+PEFT has no standard field for a base-model subfolder. Load the full model from
+this repository with `subfolder="stage3"`, then pass that model to
+`PeftModel.from_pretrained` with this repository ID and
+`subfolder="dpo_adapter"`. Do not rely on automatic adapter-only base loading.
 
 ## AI contribution
 

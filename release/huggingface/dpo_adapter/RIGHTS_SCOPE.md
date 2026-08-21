@@ -6,9 +6,11 @@ claim that every dependency or every underlying right has one license.
 - **Adapter tensors:** CC BY-NC 4.0 applies only to copyright and similar
   rights Leonardo Pacciani-Mori holds, if any, in his original modifications
   embodied in `adapter_model.safetensors`.
-- **Stage-3 base and Minerva parent:** the base is not included or relicensed.
-  Rights independently received in the Minerva parent under its Apache-2.0
-  designation remain available under Apache-2.0.
+- **Stage-3 base and Minerva parent:** the base weights are not included in this
+  adapter subfolder or relicensed through the adapter. The exact base is
+  separately available in this repository's `stage3` subfolder. Rights
+  independently received in the Minerva parent under its Apache-2.0 designation
+  remain available under Apache-2.0.
 - **Model-card prose and aggregate documentation:** Leonardo-owned prose reused
   from the public project remains CC BY 4.0; embedded third-party facts and
   notices remain outside that grant.

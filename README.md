@@ -118,7 +118,7 @@ verification. See [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
 | Processed corpora | Candidates only where the release manifests affirmatively approve redistribution |
 | Source and attribution metadata | Candidates subject to affirmative approval and source-specific notices |
 | Gutendex catalog JSON/CSV summaries | Candidate non-authoritative third-party generated metadata with recorded provenance; not Leonardo's analysis |
-| Selected Stage 1, Stage 2, and Stage 3 weights plus DPO adapter | Four local Hugging Face packages are in preparation; none is uploaded or authorized for publication |
+| Selected Stage 1, Stage 2, and Stage 3 weights plus DPO adapter | One public, ungated Hugging Face repository with four subfolders is owner-authorized and being staged; no upload is claimed at this source checkpoint |
 | Raw generations, poems/openings used in evaluation, preferences, votes, annotations, mappings, tensors | Not release artifacts |
 
 The repository has an approximately 434 MiB loose Git-object footprint before
@@ -139,12 +139,12 @@ passages.
 
 PAISÀ and several other sources have source-specific terms. Check
 [DATA_SOURCES_AND_ATTRIBUTION.md](DATA_SOURCES_AND_ATTRIBUTION.md),
-[NOTICE](NOTICE), and the release manifests before reuse. Withholding the final
-artifacts remains the active policy while four Hugging Face packages are
-prepared and validated. The planned weight metadata is CC BY-NC 4.0, scoped
+[NOTICE](NOTICE), and the release manifests before reuse. The selected
+artifacts are approved for one fail-closed Hugging Face release after private
+upload and validation. The planned weight metadata is CC BY-NC 4.0, scoped
 only to rights Leonardo controls, if any, in his modifications; independently
-received Apache-2.0 rights in Minerva remain separate. This preparation is not
-legal or specialist clearance and does not conclude that source-corpus
+received Apache-2.0 rights in Minerva remain separate. This owner-approved
+release direction is not legal or specialist advice and does not conclude that source-corpus
 licenses do or do not govern model weights. See
 [the Hugging Face release preparation](docs/HUGGING_FACE_RELEASE.md).
 

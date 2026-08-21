@@ -1,8 +1,12 @@
 {
-  "schema_version": "transformer_poetry_hf_release_plan_v1",
-  "status": "private_preparation_not_authorized_for_upload",
+  "schema_version": "transformer_poetry_hf_release_plan_v2",
+  "status": "owner_authorized_for_private_staging_and_publication",
   "namespace": "LPM93",
-  "collection_title": "Teaching Transformers to Write Classical Italian Sonnets",
+  "repository": "LPM93/teaching-transformers-classical-italian-sonnets",
+  "repository_visibility": "public_ungated_after_private_validation",
+  "repository_title": "Teaching Transformers to Write Classical Italian Sonnets",
+  "decision_record_id": "decision-2026-08-21-huggingface-single-repository-release",
+  "authorization_date": "2026-08-21",
   "license_metadata": "cc-by-nc-4.0",
   "license_scope": "copyright and similar rights Leonardo Pacciani-Mori holds, if any, in his original modifications embodied in the identified weight or adapter files",
   "parent": {
@@ -13,7 +17,8 @@
   "artifacts": [
     {
       "artifact_id": "stage1",
-      "repository": "LPM93/minerva-7b-classical-italian-stage1",
+      "repository": "LPM93/teaching-transformers-classical-italian-sonnets",
+      "subfolder": "stage1",
       "kind": "full_model",
       "selected_update": 2065,
       "selected_windows": 33040,
@@ -22,7 +27,8 @@
     },
     {
       "artifact_id": "stage2",
-      "repository": "LPM93/minerva-7b-classical-italian-poetry-stage2",
+      "repository": "LPM93/teaching-transformers-classical-italian-sonnets",
+      "subfolder": "stage2",
       "kind": "full_model",
       "selected_update": 760,
       "selected_windows": 12160,
@@ -31,7 +37,8 @@
     },
     {
       "artifact_id": "stage3",
-      "repository": "LPM93/minerva-7b-classical-italian-sonnets-stage3",
+      "repository": "LPM93/teaching-transformers-classical-italian-sonnets",
+      "subfolder": "stage3",
       "kind": "full_model",
       "selected_update": 120,
       "planned_updates": 135,
@@ -41,15 +48,24 @@
     },
     {
       "artifact_id": "dpo_adapter",
-      "repository": "LPM93/minerva-7b-classical-italian-sonnets-dpo-adapter",
+      "repository": "LPM93/teaching-transformers-classical-italian-sonnets",
+      "subfolder": "dpo_adapter",
       "kind": "peft_adapter",
-      "parent_repository": "LPM93/minerva-7b-classical-italian-sonnets-stage3",
+      "parent_repository": "LPM93/teaching-transformers-classical-italian-sonnets",
+      "parent_subfolder": "stage3",
       "parent_state_identity_sha256": "478d5979e25a78375d7af0434db6a5432678762fac2d142af2d4798dda53a474",
       "research_checkpoint_sha256": "72aa174b2ef87e021a367b0f7e786fce8c3437bb5ca1f8c7f9c5b13588620822",
       "training_pairs": 482,
       "validation_pairs": 52,
       "optimizer_updates": 61
     }
+  ],
+  "repository_root_allowlist": [
+    "README.md",
+    "LICENSE",
+    "LICENSES/APACHE-2.0.txt",
+    "LICENSES/CC-BY-4.0.txt",
+    "package_manifest.json"
   ],
   "full_model_allowlist": [
     "README.md",

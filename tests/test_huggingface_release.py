@@ -24,9 +24,24 @@ def load_module(name: str, path: Path):
     return module
 
 
-def test_tracked_huggingface_release_metadata_is_fail_closed():
+def test_tracked_huggingface_release_metadata_is_authorized_and_bounded():
     validator = load_module("hf_validator", VALIDATE_SCRIPT)
     validator.validate_tracked_release_metadata()
+
+
+def test_release_plan_uses_one_repository_with_four_subfolders():
+    plan = json.loads((ROOT / "release/huggingface/release_plan.yml").read_text(encoding="utf-8"))
+    repository = "LPM93/teaching-transformers-classical-italian-sonnets"
+    assert plan["repository"] == repository
+    assert plan["decision_record_id"] == "decision-2026-08-21-huggingface-single-repository-release"
+    assert plan["authorization_date"] == "2026-08-21"
+    assert {artifact["repository"] for artifact in plan["artifacts"]} == {repository}
+    assert {artifact["subfolder"] for artifact in plan["artifacts"]} == {
+        "stage1", "stage2", "stage3", "dpo_adapter",
+    }
+    adapter = next(row for row in plan["artifacts"] if row["artifact_id"] == "dpo_adapter")
+    assert adapter["parent_repository"] == repository
+    assert adapter["parent_subfolder"] == "stage3"
 
 
 def test_aggregate_stage_counts_exact_target_tokens_without_text(tmp_path):
@@ -98,7 +113,8 @@ def test_adapter_export_strips_private_training_state(tmp_path):
     digest = hashlib.sha256(checkpoint_path.read_bytes()).hexdigest()
     artifact = {
         "artifact_id": "dpo_adapter",
-        "parent_repository": "LPM93/minerva-7b-classical-italian-sonnets-stage3",
+        "parent_repository": "LPM93/teaching-transformers-classical-italian-sonnets",
+        "parent_subfolder": "stage3",
         "parent_state_identity_sha256": "p" * 64,
         "research_checkpoint_sha256": digest,
     }
@@ -115,6 +131,8 @@ def test_adapter_export_strips_private_training_state(tmp_path):
     assert "private-pair" not in serialized_config
     assert "optimizer" not in serialized_config
     assert "history" not in serialized_config
+    config = json.loads(serialized_config)
+    assert config["base_model_name_or_path"] == artifact["parent_repository"]
 
 
 def test_export_rejects_nonignored_repository_destination(tmp_path):

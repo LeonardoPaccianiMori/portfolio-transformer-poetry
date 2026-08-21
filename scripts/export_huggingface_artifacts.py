@@ -38,6 +38,7 @@ UPSTREAM_METADATA_FILES = (
     "tokenizer_config.json",
 )
 DOCUMENT_FILES = ("README.md", "NOTICE.md", "RIGHTS_SCOPE.md", "TRAINING_CONTENT_SUMMARY.md", "lineage.json")
+ROOT_README = RELEASE_ROOT / "README.md"
 
 
 def sha256_path(path: Path) -> str:
@@ -176,6 +177,13 @@ def write_package_manifest(output_root: Path) -> None:
     )
 
 
+def copy_repository_root_documents(output_root: Path) -> None:
+    copy_verified(ROOT_README, output_root / "README.md")
+    copy_verified(CC_BY_NC, output_root / "LICENSE")
+    copy_verified(APACHE, output_root / "LICENSES/APACHE-2.0.txt")
+    copy_verified(CC_BY, output_root / "LICENSES/CC-BY-4.0.txt")
+
+
 def validate_output_root(output_root: Path) -> None:
     resolved_root = output_root.resolve()
     try:
@@ -206,6 +214,7 @@ def main() -> None:
     if args.output_root.exists() and any(args.output_root.iterdir()):
         raise ValueError("Output root must be absent or empty")
     plan = load_json(RELEASE_PLAN)
+    copy_repository_root_documents(args.output_root)
     for artifact in plan["artifacts"]:
         if artifact["kind"] == "full_model":
             export_full_model(

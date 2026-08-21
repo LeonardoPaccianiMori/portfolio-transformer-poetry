@@ -1,7 +1,7 @@
 # EU AI Act Release-Preparation Assessment
 
-**Assessment date:** 2026-08-20
-**Status:** preliminary, refresh required before publication
+**Assessment date:** 2026-08-21
+**Status:** owner-reviewed for this bounded release; no claim of compliance
 
 This document is a factual preparation record, not legal advice or a binding
 classification.
@@ -27,7 +27,9 @@ Preparation therefore includes:
 - cumulative source-family target-token exposure;
 - documented evaluation, limitations, intended purpose, and AI contribution.
 
-Before any public upload, the owner must refresh the applicable Commission/AI
-Office template and guidance, determine whether a formal template submission
-or additional downstream documentation is required, and record that decision.
-No claim of compliance is made at this preparation stage.
+For this bounded release, the owner reviewed the available assessment and chose
+to publish aggregate training-content summaries, copyright/TDM policy,
+lineage, limitations, and downstream loading information without claiming a
+formal legal classification or compliance determination. Applicable
+Commission/AI Office templates and guidance must be refreshed if the artifacts
+or distribution model materially change. No claim of compliance is made.

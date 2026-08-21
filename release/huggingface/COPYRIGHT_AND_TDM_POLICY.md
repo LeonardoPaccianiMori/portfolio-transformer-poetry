@@ -2,10 +2,10 @@
 
 ## Status and purpose
 
-This is a release-preparation policy, not legal advice, specialist clearance,
-or upload authorization. It records the project's operational approach to
-copyright and text-and-data-mining reservations for the four planned model
-artifacts.
+This is an owner-approved release policy, not legal advice or a claim of
+specialist clearance. It records the project's operational approach to
+copyright and text-and-data-mining reservations for four model artifacts in
+one Hugging Face repository.
 
 ## Policy
 
@@ -15,7 +15,7 @@ artifacts.
    artifact. Do not hide uncertain source families.
 3. Do not redistribute corpus text, token streams, prompts, openings,
    preferences, votes, annotations, generations, or private mappings through
-   the model repositories.
+   the model repository.
 4. Retain source-specific citations, Creative Commons versions, commercial-use
    boundaries, ShareAlike notices, and archive links. Do not claim one
    repository-wide data license.

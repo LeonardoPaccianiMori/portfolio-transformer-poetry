@@ -2,26 +2,29 @@
 
 ## Status
 
-Four Hugging Face artifacts are being prepared privately. This document and
-the files under `release/huggingface/` do not authorize repository creation,
-upload, or public distribution.
+One Hugging Face repository containing four model artifacts is authorized for
+private staging and, after the complete validation gate passes, public ungated
+distribution. At this tracked checkpoint it has not yet been uploaded.
 
-| Artifact | Planned repository | Form |
+Planned repository:
+`LPM93/teaching-transformers-classical-italian-sonnets`.
+
+| Artifact | Subfolder | Form |
 | --- | --- | --- |
-| Stage 1 | `LPM93/minerva-7b-classical-italian-stage1` | Full BF16 model |
-| Stage 2 | `LPM93/minerva-7b-classical-italian-poetry-stage2` | Full BF16 model |
-| Stage 3 | `LPM93/minerva-7b-classical-italian-sonnets-stage3` | Full BF16 model, selected update 120 |
-| DPO | `LPM93/minerva-7b-classical-italian-sonnets-dpo-adapter` | PEFT LoRA adapter for the exact Stage-3 repository |
+| Stage 1 | `stage1` | Full BF16 model |
+| Stage 2 | `stage2` | Full BF16 model |
+| Stage 3 | `stage3` | Full BF16 model, selected update 120 |
+| DPO | `dpo_adapter` | PEFT LoRA adapter for the exact Stage-3 subfolder |
 
-The eventual collection title is **Teaching Transformers to Write Classical
-Italian Sonnets**. It will be created only after all four repositories have
-been separately verified in their intended public, ungated state.
+The repository display title is **Teaching Transformers to Write Classical
+Italian Sonnets**. A separate Hugging Face collection is unnecessary.
 
 ## Layered licensing
 
 Hugging Face metadata will use `license: cc-by-nc-4.0` for Leonardo-controlled
 rights in the model modifications. The tag is not a repository-wide legal
-conclusion. Every package contains a prominent `RIGHTS_SCOPE.md` explaining
+conclusion. Every artifact subfolder contains a prominent `RIGHTS_SCOPE.md`
+explaining
 that:
 
 - Apache-2.0 continues to govern rights independently received in the pinned
@@ -77,6 +80,7 @@ python3 scripts/validate_huggingface_artifacts.py \
   --certify-release-candidate
 ```
 
+The repository root contains the public model card and layered license texts.
 The three full-model exports are byte-identical copies of the selected
 safetensors packages. The DPO exporter writes only the 448 LoRA tensors and a
 standard PEFT configuration. Optimizer state, RNG state, histories, pair IDs,
@@ -87,11 +91,18 @@ adapter tensors, safetensors metadata, clean local model loads, adapter
 attachment, and fixed text-free token/logit equivalence against a PEFT model
 reconstructed directly from the selected research checkpoint.
 
-## Later publication gate
+## Publication procedure
 
-Before upload, a separate owner decision must name the exact package hashes
-and accept the layered scope, cumulative notices, worldwide ungated
-distribution, and the irrevocable CC BY-NC 4.0 grant for rights Leonardo can
-license. It must also refresh the legal and EU AI Act assessment. Creating
-private Hugging Face repositories, uploading, changing visibility, creating a
-collection, and adding public links are outside this preparation checkpoint.
+Leonardo approved the single-repository topology, layered scope, worldwide
+ungated distribution, and the irrevocable CC BY-NC 4.0 grant for rights he can
+license. Publication remains fail-closed: create the repository privately,
+upload only the allowlisted package, verify exact remote files and hashes,
+re-download into a clean cache, load all three full-model subfolders, attach the
+adapter from `dpo_adapter` to `stage3`, and only then change the one repository
+to public and ungated. Any failed transition or public verification requires an
+immediate return to private visibility.
+
+PEFT's `adapter_config.json` has no standard base-subfolder field. It records
+the single repository ID, while the model card and validation require callers
+to load the base with `subfolder="stage3"` before loading the adapter with
+`subfolder="dpo_adapter"`.

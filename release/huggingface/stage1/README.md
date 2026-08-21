@@ -13,9 +13,6 @@ tags:
 
 # Minerva 7B Classical Italian — Stage 1
 
-> **Preparation status:** candidate package only. This artifact has not been
-> uploaded or approved for public distribution.
-
 This is the selected first full-weight BF16 adaptation stage from *Teaching
 Transformers to Write Classical Italian Sonnets*. It begins with
 `sapienzanlp/Minerva-7B-instruct-v1.0` at revision
@@ -31,7 +28,7 @@ state identity is
 
 ## Intended purpose
 
-If later approved and published, the weights are intended primarily for
+The weights are intended primarily for
 non-commercial research transparency, inspection, reproducibility, evaluation,
 and independent verification. This is an intended-purpose statement, not an
 additional license restriction. CC BY-NC 4.0 permits other uses that satisfy

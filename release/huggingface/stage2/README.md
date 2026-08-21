@@ -4,7 +4,7 @@ language:
   - it
 library_name: transformers
 pipeline_tag: text-generation
-base_model: LPM93/minerva-7b-classical-italian-stage1
+base_model: LPM93/teaching-transformers-classical-italian-sonnets
 tags:
   - minerva
   - italian-poetry
@@ -13,13 +13,11 @@ tags:
 
 # Minerva 7B Classical Italian Poetry — Stage 2
 
-> **Preparation status:** candidate package only. This artifact has not been
-> uploaded or approved for public distribution.
-
 This is the selected second full-weight BF16 adaptation stage from *Teaching
 Transformers to Write Classical Italian Sonnets*. It continues from the exact
-selected Stage-1 state, which itself begins with the existing Minerva 7B
-parent. The model was **not trained from scratch**.
+selected Stage-1 state in the `stage1` subfolder of this repository, which
+itself begins with the existing Minerva 7B parent. The model was **not trained
+from scratch**.
 
 Stage 2 added 760 optimizer updates and 24,903,680 target tokens. Its
 incremental mixture was 75% historical non-sonnet poetry, 20% Stage-1
@@ -30,7 +28,7 @@ identity is
 
 ## Intended purpose
 
-If later approved and published, the weights are intended primarily for
+The weights are intended primarily for
 non-commercial research transparency, inspection, reproducibility, evaluation,
 and independent verification. This is an intended-purpose statement, not an
 additional license restriction. CC BY-NC 4.0 permits other uses that satisfy

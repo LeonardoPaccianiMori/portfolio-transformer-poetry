@@ -55,13 +55,30 @@ def _artifact_map(plan: dict[str, Any]) -> dict[str, dict[str, Any]]:
 def validate_tracked_release_metadata() -> None:
     plan = load_json(PLAN_PATH)
     upstream_files = load_json(UPSTREAM_FILE_MANIFEST)
-    if plan["status"] != "private_preparation_not_authorized_for_upload":
-        raise ValueError("Tracked HF preparation must remain non-authorizing")
+    if plan["status"] != "owner_authorized_for_private_staging_and_publication":
+        raise ValueError("Unexpected Hugging Face release authorization status")
     if plan["license_metadata"] != "cc-by-nc-4.0":
         raise ValueError("Unexpected weight-license metadata")
     artifacts = _artifact_map(plan)
     if set(artifacts) != {"stage1", "stage2", "stage3", "dpo_adapter"}:
         raise ValueError("The release plan must define exactly four artifacts")
+    repository = "LPM93/teaching-transformers-classical-italian-sonnets"
+    if plan["repository"] != repository:
+        raise ValueError("Unexpected single Hugging Face repository")
+    if plan["decision_record_id"] != "decision-2026-08-21-huggingface-single-repository-release":
+        raise ValueError("Unexpected model-release decision record")
+    if plan["authorization_date"] != "2026-08-21":
+        raise ValueError("Unexpected model-release authorization date")
+    if {artifact["repository"] for artifact in artifacts.values()} != {repository}:
+        raise ValueError("Every artifact must use the single Hugging Face repository")
+    if {artifact["subfolder"] for artifact in artifacts.values()} != {
+        "stage1", "stage2", "stage3", "dpo_adapter",
+    }:
+        raise ValueError("The single-repository subfolder map is incomplete")
+    if artifacts["dpo_adapter"]["parent_repository"] != repository:
+        raise ValueError("The adapter must identify the single repository as its base location")
+    if artifacts["dpo_adapter"]["parent_subfolder"] != "stage3":
+        raise ValueError("The adapter must identify Stage 3 as its exact base subfolder")
     if artifacts["stage3"]["selected_update"] != 120:
         raise ValueError("Stage 3 must identify selected update 120")
     expected_upstream_files = {
@@ -150,6 +167,7 @@ def validate_tracked_release_metadata() -> None:
         for phrase in ("Apache-2.0", "CC BY-NC 4.0", "training-data licenses do not govern the weights"):
             if phrase not in rights:
                 raise ValueError(f"Rights-scope boundary missing from {artifact_id}")
+    _scan_text_files(RELEASE_ROOT)
 
 
 def _scan_text_files(root: Path) -> None:
@@ -181,8 +199,8 @@ def _validate_adapter(
     root: Path, checkpoint_path: Path | None, artifact: dict[str, Any]
 ) -> None:
     config = load_json(root / "adapter_config.json")
-    if config["base_model_name_or_path"] != "LPM93/minerva-7b-classical-italian-sonnets-stage3":
-        raise ValueError("Adapter does not identify the exact planned Stage-3 repository")
+    if config["base_model_name_or_path"] != artifact["parent_repository"]:
+        raise ValueError("Adapter does not identify the planned single repository")
     exported = load_file(root / "adapter_model.safetensors", device="cpu")
     if not exported or any("lora_" not in key for key in exported):
         raise ValueError("Unexpected PEFT adapter tensor set")
@@ -209,7 +227,8 @@ def _load_models(package_root: Path, checkpoint_path: Path) -> None:
 
     for artifact_id in ("stage1", "stage2", "stage3"):
         model = AutoModelForCausalLM.from_pretrained(
-            package_root / artifact_id,
+            package_root,
+            subfolder=artifact_id,
             local_files_only=True,
             dtype=torch.bfloat16,
             low_cpu_mem_usage=True,
@@ -217,7 +236,8 @@ def _load_models(package_root: Path, checkpoint_path: Path) -> None:
         if artifact_id == "stage3":
             attached = PeftModel.from_pretrained(
                 model,
-                package_root / "dpo_adapter",
+                package_root,
+                subfolder="dpo_adapter",
                 local_files_only=True,
             )
             attached.eval()
@@ -228,7 +248,8 @@ def _load_models(package_root: Path, checkpoint_path: Path) -> None:
             gc.collect()
 
             model = AutoModelForCausalLM.from_pretrained(
-                package_root / artifact_id,
+                package_root,
+                subfolder=artifact_id,
                 local_files_only=True,
                 dtype=torch.bfloat16,
                 low_cpu_mem_usage=True,
@@ -265,6 +286,16 @@ def validate_package(
 ) -> None:
     plan = load_json(PLAN_PATH)
     artifacts = _artifact_map(plan)
+    artifact_folders = set(artifacts)
+    root_files = {
+        path.relative_to(package_root).as_posix()
+        for path in package_root.rglob("*")
+        if path.is_file()
+        and path.relative_to(package_root).parts[0] not in artifact_folders
+    }
+    if root_files != set(plan["repository_root_allowlist"]):
+        raise ValueError(f"Repository-root allowlist failure: {sorted(root_files)}")
+    _scan_text_files(package_root)
     for artifact_id, artifact in artifacts.items():
         root = package_root / artifact_id
         if not root.is_dir():
@@ -278,7 +309,6 @@ def validate_package(
         missing = sorted(required - actual)
         if unexpected or missing:
             raise ValueError(f"Allowlist failure for {artifact_id}: missing={missing}, unexpected={unexpected}")
-        _scan_text_files(root)
         if artifact["kind"] == "full_model":
             _validate_model_safetensors(root)
         else:
