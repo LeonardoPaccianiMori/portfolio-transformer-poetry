@@ -57,7 +57,7 @@ The full source-level records live in committed machine-readable manifests:
 | Medieval Italian prose component, v1 | [`data/processed/pretraining_medieval_v1/`](data/processed/pretraining_medieval_v1/) | [`reports/pretraining_medieval_v1_build_report.json`](reports/pretraining_medieval_v1_build_report.json) and [`docs/medieval_prose_activation_audit_2026-07-23.md`](docs/medieval_prose_activation_audit_2026-07-23.md) |
 | Historical Italian Wikisource component, v1 | [`data/processed/pretraining_historical_wikisource_v1/`](data/processed/pretraining_historical_wikisource_v1/) | [`data/metadata/pretraining_historical_wikisource_v1_attribution.md`](data/metadata/pretraining_historical_wikisource_v1_attribution.md), [`docs/historical_wikisource_activation_audit_2026-07-26.md`](docs/historical_wikisource_activation_audit_2026-07-26.md), and [`reports/pretraining_historical_wikisource_v1_build_report.json`](reports/pretraining_historical_wikisource_v1_build_report.json) |
 | Combined historical Italian pretraining corpus, v2 | [`data/processed/pretraining_historical_italian_v2/`](data/processed/pretraining_historical_italian_v2/) | [`data/metadata/pretraining_historical_italian_v2_mixture.json`](data/metadata/pretraining_historical_italian_v2_mixture.json), [`docs/pretraining_mixture_policy.md`](docs/pretraining_mixture_policy.md), its [`16k BPE tokenizer`](data/metadata/pretraining_tokenizers/pretraining_historical_italian_v2_bpe_16000.json), [`tokenizer report`](reports/pretraining_historical_italian_v2_bpe_16000_report.json), and [`encoded-dataset report`](reports/pretraining_historical_italian_v2_encoded_report.json) |
-| PAISÀ modern-Italian curriculum source, v1 | Locally acquired and split; not public repository data | [`data/metadata/paisa_attribution.md`](data/metadata/paisa_attribution.md), the committed [`release activation audit`](reports/paisa_release_activation_audit.json), [`aggregate local-build report`](reports/paisa_modern_italian_v1_build_report.json), [`prospective rescue curriculum`](docs/paisa_historical_rescue_curriculum.md), its [`train-only tokenizer report`](reports/paisa_historical_rescue_v1_tokenizer_report.json), and the locked [`training plan`](reports/paisa_historical_rescue_v1_training_plan.md). The completed V7 study instead used deterministic PAISÀ modern-preservation replay for exactly 5% of target-token exposure in each stage—not 5% of documents, examples, or corpus size. Corpus text and derived private artifacts remain local. Checkpoints are withheld conservatively pending a separate artifact-specific owner review and release decision, not because this record concludes that the corpus license necessarily governs weights. |
+| PAISÀ modern-Italian curriculum source, v1 | Locally acquired and split; not public repository data | [`data/metadata/paisa_attribution.md`](data/metadata/paisa_attribution.md), the committed [`release activation audit`](reports/paisa_release_activation_audit.json), [`aggregate local-build report`](reports/paisa_modern_italian_v1_build_report.json), [`prospective rescue curriculum`](docs/paisa_historical_rescue_curriculum.md), its [`train-only tokenizer report`](reports/paisa_historical_rescue_v1_tokenizer_report.json), and the locked [`training plan`](reports/paisa_historical_rescue_v1_training_plan.md). The completed V7 study instead used deterministic PAISÀ modern-preservation replay for exactly 5% of target-token exposure in each stage—not 5% of documents, examples, or corpus size. Corpus text and derived private artifacts remain local. The selected Stage-1, Stage-2, and Stage-3 weights plus DPO adapter passed a separate exact-artifact owner review and are published on Hugging Face; unselected and intermediate checkpoints remain withheld under a conservative release boundary, not because this record concludes that the corpus license necessarily governs weights. |
 
 Each manifest row records the work, author, archive, source URL, rights or
 public-domain status, license notes, edition details, cleaning plan, and
@@ -81,17 +81,18 @@ those datasets into its corpus. Any future direct use of those datasets would
 require a separate source-by-source license audit before activation.
 
 The earlier two-stage Minerva 7B LoRA adapter remains local and outside the
-planned release. The selected V7 Stage-1, Stage-2, and Stage-3 full-weight
-states and the selected DPO adapter are being prepared as four separate local
-Hugging Face packages. They are not uploaded or authorized for publication.
+release. The selected V7 Stage-1, Stage-2, and Stage-3 full-weight states and
+the selected DPO adapter are public in one ungated [Hugging Face
+repository](https://huggingface.co/LPM93/teaching-transformers-classical-italian-sonnets).
 Their cumulative lineages include PAISÀ CC BY-NC-SA replay and other
 source-specific Creative Commons, non-commercial, ShareAlike, citation, and
-public-domain records.
+public-domain records. Source disclosure does not grant redistribution rights
+in the training corpora.
 
 `release/huggingface/*/lineage.json` derives exact aggregate source-family
 target-token exposure from the sampled windows actually consumed by each
 selected endpoint. Stage 3 stops at selected update 120 (1,920 windows), not
-terminal update 135. The planned CC BY-NC 4.0 weight metadata applies only to
+terminal update 135. The CC BY-NC 4.0 weight metadata applies only to
 rights Leonardo controls, if any, in his modifications; it does not license
 corpora or replace independently received Apache-2.0 parent rights. This
 record does not conclude which dataset terms apply to model-weight
@@ -114,9 +115,10 @@ distribution.
 The current broader-corpus track includes Liber Liber editions under
 CC BY-NC-SA 4.0. The associated dataset is non-commercial and share-alike.
 Italian Wikisource candidates require attribution and retention of their
-page-level Creative Commons/GFDL metadata. Any obligations for distributing
-checkpoints or adapters remain pending a separate artifact-specific owner
-review and release decision.
+page-level Creative Commons/GFDL metadata. The published Hugging Face artifacts
+are covered by their exact owner decision and layered rights record. Any future
+checkpoint or adapter outside that identified package requires a separate
+artifact-specific review and release decision.
 
 ## Required Update For Every Activated Source
 

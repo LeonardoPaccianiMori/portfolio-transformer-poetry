@@ -80,7 +80,7 @@ rhyme, metre, stanza structure, grammar, or literary quality.
 | `configs/` | Frozen experiment policies and selections |
 | `data/metadata/` | Corpus and attribution metadata |
 | `reports/` | Experiment evidence and aggregate reports |
-| `release/` | Fail-closed GitHub review records and non-authorizing Hugging Face preparation metadata |
+| `release/` | Fail-closed GitHub review records and the published Hugging Face release contract |
 | `tests/` | Unit, integration, release-scope, and hygiene tests |
 
 ## Public Verification Quick Start
@@ -107,19 +107,20 @@ For the static-only demo check:
 ```
 
 Static-only generation intentionally returns an unavailable response. Full
-local generation requires withheld model artifacts and is not part of public
-verification. See [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
+generation requires downloading and loading the separately published model
+artifacts and is not part of the CPU quick-verification path. See
+[REPRODUCIBILITY.md](REPRODUCIBILITY.md).
 
 ## Artifact Availability
 
 | Artifact | Public status |
 | --- | --- |
-| Software, tests, configs, CI, reports, aggregate evidence | Candidates for inclusion only after affirmative manifest approval; licensing remains file-specific |
-| Processed corpora | Candidates only where the release manifests affirmatively approve redistribution |
-| Source and attribution metadata | Candidates subject to affirmative approval and source-specific notices |
-| Gutendex catalog JSON/CSV summaries | Candidate non-authoritative third-party generated metadata with recorded provenance; not Leonardo's analysis |
-| Selected Stage 1, Stage 2, and Stage 3 weights plus DPO adapter | One public, ungated Hugging Face repository with four subfolders is owner-authorized and being staged; no upload is claimed at this source checkpoint |
-| Raw generations, poems/openings used in evaluation, preferences, votes, annotations, mappings, tensors | Not release artifacts |
+| Software, tests, configs, CI, reports, aggregate evidence | Public on GitHub where the release manifests affirmatively approve publication; licensing remains file-specific |
+| Processed corpora | Public only where the release manifests affirmatively approve redistribution |
+| Source and attribution metadata | Public subject to source-specific notices and the release manifests |
+| Gutendex catalog JSON/CSV summaries | Public non-authoritative third-party generated metadata with recorded provenance; not Leonardo's analysis |
+| Selected Stage 1, Stage 2, and Stage 3 weights plus DPO adapter | Public and ungated in one [Hugging Face repository](https://huggingface.co/LPM93/teaching-transformers-classical-italian-sonnets), under `stage1`, `stage2`, `stage3`, and `dpo_adapter` |
+| Raw generations, poems/openings used in evaluation, preferences, votes, annotations, mappings, raw probe/analysis tensors, and unselected tensor artifacts | Not release artifacts |
 
 The repository has an approximately 434 MiB loose Git-object footprint before
 cleanup. Processed corpora that receive affirmative, source-specific manifest
@@ -140,13 +141,14 @@ passages.
 PAISÀ and several other sources have source-specific terms. Check
 [DATA_SOURCES_AND_ATTRIBUTION.md](DATA_SOURCES_AND_ATTRIBUTION.md),
 [NOTICE](NOTICE), and the release manifests before reuse. The selected
-artifacts are approved for one fail-closed Hugging Face release after private
-upload and validation. The planned weight metadata is CC BY-NC 4.0, scoped
-only to rights Leonardo controls, if any, in his modifications; independently
-received Apache-2.0 rights in Minerva remain separate. This owner-approved
-release direction is not legal or specialist advice and does not conclude that source-corpus
-licenses do or do not govern model weights. See
-[the Hugging Face release preparation](docs/HUGGING_FACE_RELEASE.md).
+artifacts were privately uploaded, cleanly re-downloaded, fully certified, and
+then published in one ungated [Hugging Face
+repository](https://huggingface.co/LPM93/teaching-transformers-classical-italian-sonnets).
+Its weight metadata is CC BY-NC 4.0, scoped only to rights Leonardo controls,
+if any, in his modifications; independently received Apache-2.0 rights in
+Minerva remain separate. This owner-approved release is not legal or specialist
+advice and does not conclude that source-corpus licenses do or do not govern
+model weights. See [the Hugging Face release record](docs/HUGGING_FACE_RELEASE.md).
 
 ## AI Contribution
 

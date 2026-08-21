@@ -6,9 +6,11 @@ row requires history removal. A `remove_from_history` decision stops this
 workflow and requires a separately approved destructive-action plan.
 
 The decision authority role is `repository_owner_publisher`. It records
-Leonardo's release decision and risk acceptance; it is not legal advice,
-specialist clearance, or authority to grant third-party rights. GitHub source
-publication does not authorize a Hugging Face weight or adapter release.
+Leonardo's GitHub source-release decision and risk acceptance; it is not legal
+advice, specialist clearance, or authority to grant third-party rights. GitHub
+source publication did not itself authorize a Hugging Face weight or adapter
+release. That later release has its own exact owner decision, package manifest,
+validation contract, and public record under `release/huggingface/`.
 
 ## Included candidates
 
@@ -38,13 +40,13 @@ GitHub `v1.0.0` may contain only GitHub's automatic source snapshots. No manual
 Release assets are allowed. Making the repository private cannot retract prior
 clones, caches, mirrors, or independently owned forks.
 
-## Current preparation status
+## Current publication status
 
-The repository remains private during final release preparation. On 2026-08-20,
-the fail-closed current-tree and reviewed-history manifests passed with every
-decision resolved, and CI passed on commit
-`2ff9bba1e96b1a777c8831efda96c6a7cf09bc5f`. GitHub Packages were enumerated
-with `read:packages`; the repository has zero attached packages and no
-additional package-results page. The annotated tag may be created only from the
-final reviewed commit after its CI run passes; public visibility and the
-source-snapshot-only Release are verified afterward.
+The GitHub repository and source-snapshot-only `v1.0.0` release are public. The
+fail-closed current-tree and reviewed-history manifests passed with every
+decision resolved; GitHub Packages were enumerated with `read:packages` and the
+repository had zero attached packages. The selected Stage 1, Stage 2, and Stage
+3 weights plus DPO adapter were reviewed and published later through the
+separate fail-closed [Hugging Face release](https://huggingface.co/LPM93/teaching-transformers-classical-italian-sonnets).
+That release does not change the GitHub rule prohibiting model weights or manual
+assets in the `v1.0.0` Release surface.

@@ -24,7 +24,7 @@ def load_module(name: str, path: Path):
     return module
 
 
-def test_tracked_huggingface_release_metadata_is_authorized_and_bounded():
+def test_tracked_huggingface_release_metadata_is_published_and_bounded():
     validator = load_module("hf_validator", VALIDATE_SCRIPT)
     validator.validate_tracked_release_metadata()
 
@@ -33,6 +33,14 @@ def test_release_plan_uses_one_repository_with_four_subfolders():
     plan = json.loads((ROOT / "release/huggingface/release_plan.yml").read_text(encoding="utf-8"))
     repository = "LPM93/teaching-transformers-classical-italian-sonnets"
     assert plan["repository"] == repository
+    assert plan["status"] == "published_public_ungated"
+    assert plan["repository_visibility"] == "public_ungated"
+    assert plan["publication_url"] == f"https://huggingface.co/{repository}"
+    assert plan["publication_commit"] == "3581abbb1023c77f784b37aa152cdb6c0447fa73"
+    assert plan["publication_date"] == "2026-08-21"
+    assert plan["package_manifest_sha256"] == "cedc265ece2b0faf81cf03861ac2f64faa8dea90856dd919a5990e238f2746e2"
+    assert plan["package_bytes"] == 44_492_691_499
+    assert plan["package_files"] == 69
     assert plan["decision_record_id"] == "decision-2026-08-21-huggingface-single-repository-release"
     assert plan["authorization_date"] == "2026-08-21"
     assert {artifact["repository"] for artifact in plan["artifacts"]} == {repository}

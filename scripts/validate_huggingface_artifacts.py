@@ -55,8 +55,8 @@ def _artifact_map(plan: dict[str, Any]) -> dict[str, dict[str, Any]]:
 def validate_tracked_release_metadata() -> None:
     plan = load_json(PLAN_PATH)
     upstream_files = load_json(UPSTREAM_FILE_MANIFEST)
-    if plan["status"] != "owner_authorized_for_private_staging_and_publication":
-        raise ValueError("Unexpected Hugging Face release authorization status")
+    if plan["status"] != "published_public_ungated":
+        raise ValueError("Unexpected Hugging Face publication status")
     if plan["license_metadata"] != "cc-by-nc-4.0":
         raise ValueError("Unexpected weight-license metadata")
     artifacts = _artifact_map(plan)
@@ -65,6 +65,20 @@ def validate_tracked_release_metadata() -> None:
     repository = "LPM93/teaching-transformers-classical-italian-sonnets"
     if plan["repository"] != repository:
         raise ValueError("Unexpected single Hugging Face repository")
+    if plan["repository_visibility"] != "public_ungated":
+        raise ValueError("Unexpected Hugging Face repository visibility")
+    if plan["publication_url"] != f"https://huggingface.co/{repository}":
+        raise ValueError("Unexpected Hugging Face publication URL")
+    if plan["publication_commit"] != "3581abbb1023c77f784b37aa152cdb6c0447fa73":
+        raise ValueError("Unexpected Hugging Face publication commit")
+    if plan["publication_date"] != "2026-08-21":
+        raise ValueError("Unexpected Hugging Face publication date")
+    if plan["package_manifest_sha256"] != "cedc265ece2b0faf81cf03861ac2f64faa8dea90856dd919a5990e238f2746e2":
+        raise ValueError("Unexpected Hugging Face package-manifest identity")
+    if plan["package_bytes"] != 44_492_691_499:
+        raise ValueError("Unexpected Hugging Face package size")
+    if plan["package_files"] != 69:
+        raise ValueError("Unexpected Hugging Face package file count")
     if plan["decision_record_id"] != "decision-2026-08-21-huggingface-single-repository-release":
         raise ValueError("Unexpected model-release decision record")
     if plan["authorization_date"] != "2026-08-21":

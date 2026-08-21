@@ -1,13 +1,17 @@
-# Hugging Face Release Preparation
+# Hugging Face Release Record
 
 ## Status
 
-One Hugging Face repository containing four model artifacts is authorized for
-private staging and, after the complete validation gate passes, public ungated
-distribution. At this tracked checkpoint it has not yet been uploaded.
+One Hugging Face repository containing four model artifacts is public and
+ungated after passing the complete private validation gate.
 
-Planned repository:
-`LPM93/teaching-transformers-classical-italian-sonnets`.
+Published repository:
+[`LPM93/teaching-transformers-classical-italian-sonnets`](https://huggingface.co/LPM93/teaching-transformers-classical-italian-sonnets).
+
+The public Hugging Face commit is
+`3581abbb1023c77f784b37aa152cdb6c0447fa73`. The 69-file package is exactly
+44,492,691,499 bytes and its `package_manifest.json` has SHA-256
+`cedc265ece2b0faf81cf03861ac2f64faa8dea90856dd919a5990e238f2746e2`.
 
 | Artifact | Subfolder | Form |
 | --- | --- | --- |
@@ -21,7 +25,7 @@ Italian Sonnets**. A separate Hugging Face collection is unnecessary.
 
 ## Layered licensing
 
-Hugging Face metadata will use `license: cc-by-nc-4.0` for Leonardo-controlled
+Hugging Face metadata uses `license: cc-by-nc-4.0` for Leonardo-controlled
 rights in the model modifications. The tag is not a repository-wide legal
 conclusion. Every artifact subfolder contains a prominent `RIGHTS_SCOPE.md`
 explaining
@@ -42,10 +46,10 @@ intended purposes. CC BY-NC 4.0 also permits other uses that satisfy its own
 NonCommercial definition. The project adds no research-only, production,
 field-of-use, responsible-use, gating, or identical-terms restriction.
 
-This structure is usable only under the unresolved assumption that
+This release structure uses the unresolved assumption that
 training-data licenses do not govern the weights. If incompatible ShareAlike
 terms are determined to attach, distribution is not authorized under this
-structure. Preparing files does not decide that question.
+structure. Publishing the files does not decide that question.
 
 ## Exact lineage
 
@@ -91,16 +95,18 @@ adapter tensors, safetensors metadata, clean local model loads, adapter
 attachment, and fixed text-free token/logit equivalence against a PEFT model
 reconstructed directly from the selected research checkpoint.
 
-## Publication procedure
+## Completed publication procedure
 
 Leonardo approved the single-repository topology, layered scope, worldwide
 ungated distribution, and the irrevocable CC BY-NC 4.0 grant for rights he can
-license. Publication remains fail-closed: create the repository privately,
-upload only the allowlisted package, verify exact remote files and hashes,
-re-download into a clean cache, load all three full-model subfolders, attach the
-adapter from `dpo_adapter` to `stage3`, and only then change the one repository
-to public and ungated. Any failed transition or public verification requires an
-immediate return to private visibility.
+license. The repository was created privately, received only the allowlisted
+package, and remained private while its exact remote paths and hashes were
+checked. A clean re-download then passed package, safetensors, three-model-load,
+adapter-attachment, selected-checkpoint, and fixed text-free logit-equivalence
+checks. Only after those checks passed was the repository made public and
+ungated. Anonymous API and file-resolution checks then confirmed the public
+state, exact commit, model card, package manifest, Stage-3 configuration, and
+DPO adapter configuration.
 
 PEFT's `adapter_config.json` has no standard base-subfolder field. It records
 the single repository ID, while the model card and validation require callers

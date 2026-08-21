@@ -3,7 +3,7 @@
 - **Decision record:** `decision-2026-08-21-huggingface-single-repository-release`
 - **Decision date:** 2026-08-21
 - **Decision authority role:** repository owner and model publisher
-**Status:** authorized for private staging and public ungated distribution after validation
+**Authorization status:** authorized for private staging and public ungated distribution after validation
 
 ## Authorized repository and package
 
@@ -32,6 +32,14 @@ The selected research identities are:
 
 The package manifest records the exact SHA-256 and byte size of every public
 file. No other local checkpoint or package is authorized by this record.
+
+## Publication outcome
+
+The authorized package was published publicly and ungated on 2026-08-21 at
+<https://huggingface.co/LPM93/teaching-transformers-classical-italian-sonnets>,
+commit `3581abbb1023c77f784b37aa152cdb6c0447fa73`, after the fail-closed procedure
+below passed. The completed validation and publication record is documented in
+[`../../docs/HUGGING_FACE_RELEASE.md`](../../docs/HUGGING_FACE_RELEASE.md).
 
 ## Scope accepted by the owner
 

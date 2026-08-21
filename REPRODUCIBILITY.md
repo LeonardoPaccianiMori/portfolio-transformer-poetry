@@ -5,8 +5,8 @@
 The supported public verification environment is Python 3.12 with the pinned
 CPU packages in `requirements.txt`. It validates software behavior, corpus and
 metadata contracts, aggregate evidence, release scope, and the static-only demo.
-It does not reproduce the historical H100 training run or generate with the
-withheld final model.
+It does not reproduce the historical H100 training run or automatically
+download and exercise the separately published model artifacts.
 
 ```bash
 python3.12 -m venv .venv
@@ -15,9 +15,9 @@ python3.12 -m venv .venv
 .venv/bin/python -m pytest
 ```
 
-The full command runs 1,179 tests when the intentionally withheld local
+The full command runs 1,180 tests when the intentionally withheld local
 research artifacts are present. A clean public clone first runs
-`scripts/verify_public_test_scope.py`, then runs the complete 1,168-test public
+`scripts/verify_public_test_scope.py`, then runs the complete 1,169-test public
 subset with `python -m pytest -m "not local_artifact"`. The exact eleven local-only
 node IDs are frozen in `release/local_only_test_allowlist.txt`; CI fails if a
 marker is added, removed, or moved without updating that reviewed boundary.
@@ -57,7 +57,10 @@ remains pending.
 ## Local-only workflows
 
 The canonical full-corpus verifier may run only when the retained local data is
-available and cleared for that use. Final-model loading, generation, checkpoint
+available and cleared for that use. The selected Stage 1, Stage 2, and Stage 3
+models and DPO adapter are separately public in the [Hugging Face release](https://huggingface.co/LPM93/teaching-transformers-classical-italian-sonnets),
+but they are not embedded in a GitHub clone or the CPU quick-verification path.
+Historical-run reconstruction, unselected or intermediate checkpoint
 inspection, preference reconstruction, raw-output review, prompt-level
 annotation parsing, and review-packet reconstruction remain local-only. Their
-absence from a public clone is intentional.
+absence from the public repositories is intentional.

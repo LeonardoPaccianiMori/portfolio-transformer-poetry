@@ -16,9 +16,9 @@ tags:
 
 # Teaching Transformers to Write Classical Italian Sonnets
 
-This release package contains four selected artifacts intended for publication
-from a controlled research study of staged literary adaptation of the existing
-Minerva 7B Instruct model:
+This public release package contains four selected artifacts from a controlled
+research study of staged literary adaptation of the existing Minerva 7B
+Instruct model:
 
 | Subfolder | Artifact | Selected endpoint |
 | --- | --- | --- |
