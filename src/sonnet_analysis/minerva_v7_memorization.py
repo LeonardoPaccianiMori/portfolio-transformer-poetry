@@ -22,6 +22,7 @@ EXPECTED_TOKENIZER_SHA256 = "11fbe803977e9d6dc1a50e6bb088be5b550f5e26da2a82fbfd7
 EXPECTED_DOCUMENTS = 19_899
 EXPECTED_TOKENS = 3_551_021
 DEFAULT_NGRAM_SIZE = 40
+_RISK_PRIORITY = {"low": 0, "medium": 1, "high": 2}
 
 
 def normalize_for_memorization(text: str) -> str:
@@ -73,9 +74,7 @@ def _nearest_training_record(
             "longest_common_substring_upper_bound": None,
             "risk_level": risk,
         }
-        if best is None or (containment, longest) > (
-            best["ngram_containment"], best["longest_common_substring_chars"]
-        ):
+        if best is None or _reference_selection_key(row) < _reference_selection_key(best):
             best = row
     return best or {
         "nearest_poem_id": None,
@@ -88,6 +87,25 @@ def _nearest_training_record(
         "longest_common_substring_upper_bound": ngram_size - 1,
         "risk_level": "low",
     }
+
+
+def _reference_selection_key(
+    row: Mapping[str, Any],
+) -> tuple[int, float, int, tuple[str, str, str, str]]:
+    """Rank conservative risk first and use identity only for stable ties."""
+
+    identity = (
+        str(row["nearest_poem_id"]),
+        str(row["nearest_title_or_first_line"]),
+        str(row["nearest_author"]),
+        str(row["nearest_clean_text_path"]),
+    )
+    return (
+        -_RISK_PRIORITY[str(row["risk_level"])],
+        -float(row["ngram_containment"]),
+        -int(row["longest_common_substring_chars"]),
+        identity,
+    )
 
 
 def build_sonnet_train_reference(
