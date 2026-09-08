@@ -1,0 +1,20 @@
+corrected_author,evidence_path,evidence_id_field,evidence_id_value,evidence_author_field,evidence_basis
+Angelo Mazza,data/processed/canonical_italian_corpora_v1/sonnets_manifest.csv,unit_id,wikisource:sonnet:itws:826972:sonnet0001,author,independent canonical sonnet identity
+Annibale Caro,data/metadata/bibit_record_activation_decisions.csv,object_id,bibit000966,authors,independent BibIt author identity
+Benedetto Menzini,data/processed/canonical_italian_corpora_v1/sonnets_manifest.csv,unit_id,wikisource:sonnet:itws:988068:sonnet0001,author,independent canonical sonnet identity
+"Berni, Francesco",data/metadata/bibit_record_activation_decisions.csv,object_id,bibit000038,authors,independent BibIt author identity
+Carlo Maria Maggi,data/metadata/italian_wikisource_sonnet_decisions_v1.csv,candidate_id,itws:826940:sonnet0001,poem_author,independent source-scan-backed sonnet identity
+"Cesarotti, Melchiorre",data/metadata/bibit_record_activation_decisions.csv,object_id,bibit000122,authors,independent BibIt author identity
+Clemente Bondi,data/metadata/italian_wikisource_archive_inventory_v1.csv,work_root_id,itws:101167,author_evidence,independent Wikisource work identity
+"Della Casa, Giovanni",data/metadata/bibit_record_activation_decisions.csv,object_id,bibit000156,authors,independent BibIt author identity
+Eustachio Manfredi,data/processed/canonical_italian_corpora_v1/sonnets_manifest.csv,unit_id,wikisource:sonnet:itws:987480:sonnet0001,author,independent canonical sonnet identity
+Ferdinando Antonio Ghedini,data/metadata/italian_wikisource_sonnet_decisions_v1.csv,candidate_id,itws:934787:sonnet0001,poem_author,independent source-scan-backed sonnet identity
+Giambattista Felice Zappi,data/processed/canonical_italian_corpora_v1/sonnets_manifest.csv,unit_id,wikisource:sonnet:itws:483660:sonnet0001,author,independent canonical sonnet identity
+Giovanni Gherardo de Rossi,data/processed/canonical_italian_corpora_v1/records_manifest.csv,unit_id,wikisource:record:itws:1017386,author,independent canonical work identity
+"Guidiccioni, Giovanni",data/metadata/bibit_record_activation_decisions.csv,object_id,bibit000237,authors,independent BibIt author identity
+"Magno, Celio",data/metadata/bibit_record_activation_decisions.csv,object_id,bibit001304,authors,independent BibIt author identity
+"Monti, Vincenzo",data/metadata/bibit_record_activation_decisions.csv,object_id,bibit000052,authors,independent BibIt author identity
+"Tasso, Bernardo",data/metadata/bibit_record_activation_decisions.csv,object_id,bibit000328,authors,independent BibIt author identity
+"Tebaldeo, Antonio",data/metadata/bibit_record_activation_decisions.csv,object_id,bibit001147,authors,independent BibIt author identity
+Torquato Tasso,data/processed/canonical_italian_corpora_v1/sonnets_manifest.csv,unit_id,bibit:sonnet:bibit000099:sonnet_0001,author,independent canonical sonnet identity
+Vittorio Alfieri,data/processed/canonical_italian_corpora_v1/sonnets_manifest.csv,unit_id,v6:sonnet:alfieri_cc_che_sia_patria,author,independent canonical sonnet identity

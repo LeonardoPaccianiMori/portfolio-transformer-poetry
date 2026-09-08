@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "review_date": "2026-08-20",
+  "review_date": "2026-09-08",
   "decision_authority_role": "repository_owner_publisher",
-  "decision_record_id": "decision-2026-08-20-transformer-publication-risk",
-  "policy_statement": "Source-family disclosure is not legal clearance. Rules approve only the stated GitHub source/history scope; model weights and adapters require a separate artifact-specific owner release decision.",
+  "decision_record_id": "decision-2026-08-20-transformer-publication-risk; conversation-2026-09-08-approved-corpus-and-memorization-fixes",
+  "policy_statement": "Source-family disclosure is not legal clearance. Rules approve only the stated GitHub source/history scope; model weights and adapters require a separate artifact-specific owner release decision. The 2026-09-08 owner approval adds the V8 correction and memorization-fix artifacts.",
   "historical_privacy_exceptions": [
     {
       "repository_relative_path": "reports/minerva_3b_base_qualitative_review.md",
@@ -222,6 +222,21 @@
       "rights_evidence_reference": "data/processed/project_gutenberg_resolved_v1/attribution_manifest.csv; DATA_SOURCES_AND_ATTRIBUTION.md",
       "modifications_made_by_project": "Boilerplate removal, role routing, deduplication, protected-split filtering, and deterministic sharding with retained source spelling and punctuation.",
       "required_notices": "Retain Project Gutenberg ebook identifiers, source links, edition provenance, public-domain qualification, and Project Gutenberg trademark/redistribution notice.",
+      "current_tree_disposition": "approved_for_public_tree",
+      "historical_retention_disposition": "approved_for_public_history",
+      "privacy_security_disposition": "approved"
+    },
+    {
+      "id": "sonnets_expanded_v8_corrected_corpus",
+      "path_globs": [
+        "data/processed/sonnets_expanded_v8/**"
+      ],
+      "artifact_class": "processed_corpus",
+      "source": "documented_mix_of_Biblioteca_Italiana_Project_Gutenberg_Italian_Wikisource_Liber_Liber_ILC_OTA_and_approved_historical_sources",
+      "source_revision": "source_paths_byte_ranges_hashes_and_attribution_rows_in_v8_manifests",
+      "rights_evidence_reference": "DATA_SOURCES_AND_ATTRIBUTION.md; data/processed/sonnets_expanded_v8/attribution_manifest.csv; data/metadata/sonnets_expanded_v8_corrections_v1.csv; data/metadata/sonnets_expanded_v8_alias_evidence_v1.csv; reports/sonnets_expanded_v8_correction_v1.md",
+      "modifications_made_by_project": "Source-backed author correction, exact TEI line recovery, derived 4+4+3+3 stanza rendering, U+017F long-s replacement with ASCII s, strict author/work held-out isolation, broader held-out overlap quarantine, and deterministic materialization.",
+      "required_notices": "Retain every source-specific attribution, licence, citation, non-commercial, ShareAlike, source-link, and modification notice recorded in the inherited attribution manifest and public attribution index.",
       "current_tree_disposition": "approved_for_public_tree",
       "historical_retention_disposition": "approved_for_public_history",
       "privacy_security_disposition": "approved"

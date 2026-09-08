@@ -4,6 +4,16 @@ All notable public-release changes are documented here.
 
 ## [Unreleased]
 
+- Added the corrected V8 future-training corpus while preserving frozen V1/V7
+  evidence. V8 resolves 67 anthology attribution records and two incomplete sonnets,
+  quarantines two unresolved author abbreviations and 3,599 author/work split
+  collisions, and derives one consistent `4+4+3+3` stanza view.
+- Replaced 49,889 occurrences of the historical long-s character `ſ` with `s`
+  in V8 and quarantined 41 broader records that met the frozen held-out overlap
+  threshold. No meaningful pair remains after quarantine.
+- Fixed memorization reference ranking so the highest-risk match takes
+  precedence. Rechecking all 4,976 final outputs left every saved risk label and
+  nearest reference unchanged, with zero medium- or high-risk outputs.
 - Published selected Minerva V7 Stages 1–3 and the DPO adapter in one public,
   ungated Hugging Face repository after private upload, exact remote inventory
   review, clean re-download, hash and safetensors validation, three-model load,

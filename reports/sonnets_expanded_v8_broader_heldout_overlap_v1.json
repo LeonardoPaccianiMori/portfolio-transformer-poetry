@@ -1,0 +1,565 @@
+{
+  "audit_version": "sonnets_expanded_v8_broader_heldout_overlap_v1",
+  "post_quarantine_audit": {
+    "audit_version": "sonnets_expanded_v8_broader_heldout_overlap_v1",
+    "broader_training_unit_count": 4501,
+    "candidate_pair_count_with_any_shared_shingle": 138,
+    "heldout_sonnet_count": 2491,
+    "heldout_unique_shingle_count": 235917,
+    "maximum_heldout_containment": 0.0990099,
+    "meaningful_heldout_containment": 0.1,
+    "meaningful_min_matching_shingles": 8,
+    "meaningful_pair_count": 0,
+    "meaningful_pairs": [],
+    "normalization": "casefold_nfkd_letters_and_digits_from_existing_corpus_probe",
+    "phase": "post_quarantine",
+    "shingle_size_words": 8,
+    "status": "pass"
+  },
+  "pre_quarantine_audit": {
+    "audit_version": "sonnets_expanded_v8_broader_heldout_overlap_v1",
+    "broader_training_unit_count": 4542,
+    "candidate_pair_count_with_any_shared_shingle": 269,
+    "heldout_sonnet_count": 2491,
+    "heldout_unique_shingle_count": 235917,
+    "maximum_heldout_containment": 0.79166667,
+    "meaningful_heldout_containment": 0.1,
+    "meaningful_min_matching_shingles": 8,
+    "meaningful_pair_count": 69,
+    "meaningful_pairs": [
+      {
+        "broader_unit_id": "ilc_ota:record:ota_0304:rime-0304",
+        "heldout_containment": 0.79166667,
+        "heldout_unique_shingles": 96,
+        "heldout_unit_id": "bibit:sonnet:bibit000129:sonnet_0070",
+        "matching_shingles": 76
+      },
+      {
+        "broader_unit_id": "existing:record:ll_vasari_vite_1568",
+        "heldout_containment": 0.78125,
+        "heldout_unique_shingles": 96,
+        "heldout_unit_id": "bibit:sonnet:bibit000129:sonnet_0070",
+        "matching_shingles": 75
+      },
+      {
+        "broader_unit_id": "wikisource:record:itws:826844",
+        "heldout_containment": 0.76,
+        "heldout_unique_shingles": 100,
+        "heldout_unit_id": "bibit:sonnet:bibit000129:sonnet_0060",
+        "matching_shingles": 76
+      },
+      {
+        "broader_unit_id": "gutenberg:record:pg38698",
+        "heldout_containment": 0.74074074,
+        "heldout_unique_shingles": 81,
+        "heldout_unit_id": "gutenberg:sonnet:pg27825:char43133-43699",
+        "matching_shingles": 60
+      },
+      {
+        "broader_unit_id": "gutenberg:record:pg56794",
+        "heldout_containment": 0.72727273,
+        "heldout_unique_shingles": 99,
+        "heldout_unit_id": "bibit:sonnet:bibit000150:sonnet_0058",
+        "matching_shingles": 72
+      },
+      {
+        "broader_unit_id": "wikisource:record:itws:826846",
+        "heldout_containment": 0.7184466,
+        "heldout_unique_shingles": 103,
+        "heldout_unit_id": "bibit:sonnet:bibit000129:sonnet_0061",
+        "matching_shingles": 74
+      },
+      {
+        "broader_unit_id": "wikisource:record:itws:746029",
+        "heldout_containment": 0.68085106,
+        "heldout_unique_shingles": 94,
+        "heldout_unit_id": "v6:sonnet:cecco_lxiii_e_non_ha_tante_gocciole_nel_mare",
+        "matching_shingles": 64
+      },
+      {
+        "broader_unit_id": "wikisource:record:itws:481164",
+        "heldout_containment": 0.65625,
+        "heldout_unique_shingles": 96,
+        "heldout_unit_id": "bibit:sonnet:bibit000742:structural_0007",
+        "matching_shingles": 63
+      },
+      {
+        "broader_unit_id": "wikisource:record:itws:482779",
+        "heldout_containment": 0.55913978,
+        "heldout_unique_shingles": 93,
+        "heldout_unit_id": "bibit:sonnet:bibit000742:sonnet_0117",
+        "matching_shingles": 52
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit000430",
+        "heldout_containment": 0.54761905,
+        "heldout_unique_shingles": 84,
+        "heldout_unit_id": "bibit:sonnet:bibit000460:sonnet_0017",
+        "matching_shingles": 46
+      },
+      {
+        "broader_unit_id": "gutenberg:record:pg71115",
+        "heldout_containment": 0.51041667,
+        "heldout_unique_shingles": 96,
+        "heldout_unit_id": "bibit:sonnet:bibit000364:sonnet_0042",
+        "matching_shingles": 49
+      },
+      {
+        "broader_unit_id": "gutenberg:record:pg49365",
+        "heldout_containment": 0.4787234,
+        "heldout_unique_shingles": 94,
+        "heldout_unit_id": "v6:sonnet:petrarca_padre_del_ciel_dopo_i_perduti_giorni",
+        "matching_shingles": 45
+      },
+      {
+        "broader_unit_id": "wikisource:record:itws:473919",
+        "heldout_containment": 0.47252747,
+        "heldout_unique_shingles": 91,
+        "heldout_unit_id": "bibit:sonnet:bibit000742:sonnet_0135",
+        "matching_shingles": 43
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit000978",
+        "heldout_containment": 0.46428571,
+        "heldout_unique_shingles": 84,
+        "heldout_unit_id": "bibit:sonnet:bibit000978:structural_0004",
+        "matching_shingles": 39
+      },
+      {
+        "broader_unit_id": "wikisource:record:itws:484111",
+        "heldout_containment": 0.42857143,
+        "heldout_unique_shingles": 105,
+        "heldout_unit_id": "wikisource:sonnet:itws:483664:sonnet0001",
+        "matching_shingles": 45
+      },
+      {
+        "broader_unit_id": "existing:record:ll_vasari_vite_1568",
+        "heldout_containment": 0.40384615,
+        "heldout_unique_shingles": 104,
+        "heldout_unit_id": "bibit:sonnet:bibit000129:sonnet_0071",
+        "matching_shingles": 42
+      },
+      {
+        "broader_unit_id": "gutenberg:record:pg70898",
+        "heldout_containment": 0.40384615,
+        "heldout_unique_shingles": 104,
+        "heldout_unit_id": "bibit:sonnet:bibit000129:sonnet_0071",
+        "matching_shingles": 42
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit001056",
+        "heldout_containment": 0.39784946,
+        "heldout_unique_shingles": 93,
+        "heldout_unit_id": "wikisource:sonnet:itws:480734:sonnet0001",
+        "matching_shingles": 37
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit001158",
+        "heldout_containment": 0.3960396,
+        "heldout_unique_shingles": 101,
+        "heldout_unit_id": "v6:sonnet:petrarca_quando_amor_i_belli_occhi_a_terra_inchina",
+        "matching_shingles": 40
+      },
+      {
+        "broader_unit_id": "wikisource:record:itws:482780",
+        "heldout_containment": 0.37634409,
+        "heldout_unique_shingles": 93,
+        "heldout_unit_id": "bibit:sonnet:bibit000742:sonnet_0119",
+        "matching_shingles": 35
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit001056",
+        "heldout_containment": 0.36666667,
+        "heldout_unique_shingles": 90,
+        "heldout_unit_id": "wikisource:sonnet:itws:480885:sonnet0001",
+        "matching_shingles": 33
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit000949",
+        "heldout_containment": 0.34444444,
+        "heldout_unique_shingles": 90,
+        "heldout_unit_id": "bibit:sonnet:bibit000557:sonnet_0002",
+        "matching_shingles": 31
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit001291",
+        "heldout_containment": 0.33663366,
+        "heldout_unique_shingles": 101,
+        "heldout_unit_id": "bibit:sonnet:bibit000150:sonnet_0025",
+        "matching_shingles": 34
+      },
+      {
+        "broader_unit_id": "wikisource:record:itws:476640",
+        "heldout_containment": 0.31,
+        "heldout_unique_shingles": 100,
+        "heldout_unit_id": "wikisource:sonnet:itws:746943:sonnet0001",
+        "matching_shingles": 31
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit000949",
+        "heldout_containment": 0.30927835,
+        "heldout_unique_shingles": 97,
+        "heldout_unit_id": "bibit:sonnet:bibit000557:sonnet_0045",
+        "matching_shingles": 30
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit000856",
+        "heldout_containment": 0.30097087,
+        "heldout_unique_shingles": 103,
+        "heldout_unit_id": "bibit:sonnet:bibit000150:sonnet_0050",
+        "matching_shingles": 31
+      },
+      {
+        "broader_unit_id": "gutenberg:record:pg56794",
+        "heldout_containment": 0.29787234,
+        "heldout_unique_shingles": 94,
+        "heldout_unit_id": "v6:sonnet:stampa_rime_d_amore_clviii",
+        "matching_shingles": 28
+      },
+      {
+        "broader_unit_id": "wikisource:record:itws:626060",
+        "heldout_containment": 0.29787234,
+        "heldout_unique_shingles": 94,
+        "heldout_unit_id": "bibit:sonnet:bibit000499:sonnet_0002",
+        "matching_shingles": 28
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit001291",
+        "heldout_containment": 0.27272727,
+        "heldout_unique_shingles": 99,
+        "heldout_unit_id": "bibit:sonnet:bibit000150:sonnet_0024",
+        "matching_shingles": 27
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit000992",
+        "heldout_containment": 0.27184466,
+        "heldout_unique_shingles": 103,
+        "heldout_unit_id": "wikisource:sonnet:itws:826884:sonnet0001",
+        "matching_shingles": 28
+      },
+      {
+        "broader_unit_id": "gutenberg:record:pg45638",
+        "heldout_containment": 0.2625,
+        "heldout_unique_shingles": 80,
+        "heldout_unit_id": "v6:sonnet:folgore_036",
+        "matching_shingles": 21
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit000949",
+        "heldout_containment": 0.25773196,
+        "heldout_unique_shingles": 97,
+        "heldout_unit_id": "bibit:sonnet:bibit000557:sonnet_0054",
+        "matching_shingles": 25
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit000949",
+        "heldout_containment": 0.25233645,
+        "heldout_unique_shingles": 107,
+        "heldout_unit_id": "bibit:sonnet:bibit001221:sonnet_0001",
+        "matching_shingles": 27
+      },
+      {
+        "broader_unit_id": "gutenberg:record:pg60249",
+        "heldout_containment": 0.24778761,
+        "heldout_unique_shingles": 113,
+        "heldout_unit_id": "bibit:sonnet:bibit001221:sonnet_0024",
+        "matching_shingles": 28
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit001158",
+        "heldout_containment": 0.23469388,
+        "heldout_unique_shingles": 98,
+        "heldout_unit_id": "v6:sonnet:petrarca_amor_natura_et_la_bella_alma_humile",
+        "matching_shingles": 23
+      },
+      {
+        "broader_unit_id": "gutenberg:record:pg35321",
+        "heldout_containment": 0.23469388,
+        "heldout_unique_shingles": 98,
+        "heldout_unit_id": "v6:sonnet:cino_a_che_roma_superba_tante_leggi",
+        "matching_shingles": 23
+      },
+      {
+        "broader_unit_id": "gutenberg:record:pg48332",
+        "heldout_containment": 0.22680412,
+        "heldout_unique_shingles": 97,
+        "heldout_unit_id": "bibit:sonnet:bibit000557:sonnet_0045",
+        "matching_shingles": 22
+      },
+      {
+        "broader_unit_id": "gutenberg:record:pg56794",
+        "heldout_containment": 0.22105263,
+        "heldout_unique_shingles": 95,
+        "heldout_unit_id": "bibit:sonnet:bibit000150:sonnet_0037",
+        "matching_shingles": 21
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit000949",
+        "heldout_containment": 0.21621622,
+        "heldout_unique_shingles": 74,
+        "heldout_unit_id": "bibit:sonnet:bibit000557:sonnet_0008",
+        "matching_shingles": 16
+      },
+      {
+        "broader_unit_id": "gutenberg:record:pg56890",
+        "heldout_containment": 0.21111111,
+        "heldout_unique_shingles": 90,
+        "heldout_unit_id": "bibit:sonnet:bibit000557:sonnet_0053",
+        "matching_shingles": 19
+      },
+      {
+        "broader_unit_id": "gutenberg:record:pg47276",
+        "heldout_containment": 0.19587629,
+        "heldout_unique_shingles": 97,
+        "heldout_unit_id": "bibit:sonnet:bibit000129:sonnet_0074",
+        "matching_shingles": 19
+      },
+      {
+        "broader_unit_id": "gutenberg:record:pg48332",
+        "heldout_containment": 0.1875,
+        "heldout_unique_shingles": 80,
+        "heldout_unit_id": "bibit:sonnet:bibit000557:sonnet_0055",
+        "matching_shingles": 15
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit000031",
+        "heldout_containment": 0.17894737,
+        "heldout_unique_shingles": 95,
+        "heldout_unit_id": "v6:sonnet:petrarca_persequendomi_amor_al_luogo_usato",
+        "matching_shingles": 17
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit000475",
+        "heldout_containment": 0.17475728,
+        "heldout_unique_shingles": 103,
+        "heldout_unit_id": "wikisource:sonnet:itws:826884:sonnet0001",
+        "matching_shingles": 18
+      },
+      {
+        "broader_unit_id": "wikisource:record:itws:476639",
+        "heldout_containment": 0.17283951,
+        "heldout_unique_shingles": 81,
+        "heldout_unit_id": "wikisource:sonnet:itws:746933:sonnet0002",
+        "matching_shingles": 14
+      },
+      {
+        "broader_unit_id": "gutenberg:record:pg48332",
+        "heldout_containment": 0.17021277,
+        "heldout_unique_shingles": 94,
+        "heldout_unit_id": "bibit:sonnet:bibit000557:sonnet_0056",
+        "matching_shingles": 16
+      },
+      {
+        "broader_unit_id": "gutenberg:record:pg62987",
+        "heldout_containment": 0.1682243,
+        "heldout_unique_shingles": 107,
+        "heldout_unit_id": "bibit:sonnet:bibit001221:sonnet_0001",
+        "matching_shingles": 18
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit001291",
+        "heldout_containment": 0.16494845,
+        "heldout_unique_shingles": 97,
+        "heldout_unit_id": "v6:sonnet:petrarca_ben_sapeva_io_che_natural_consiglio",
+        "matching_shingles": 16
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit000949",
+        "heldout_containment": 0.1559633,
+        "heldout_unique_shingles": 109,
+        "heldout_unit_id": "bibit:sonnet:bibit000557:sonnet_0027",
+        "matching_shingles": 17
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit000949",
+        "heldout_containment": 0.15533981,
+        "heldout_unique_shingles": 103,
+        "heldout_unit_id": "bibit:sonnet:bibit000557:sonnet_0057",
+        "matching_shingles": 16
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit000949",
+        "heldout_containment": 0.15384615,
+        "heldout_unique_shingles": 91,
+        "heldout_unit_id": "bibit:sonnet:bibit000557:sonnet_0014",
+        "matching_shingles": 14
+      },
+      {
+        "broader_unit_id": "gutenberg:record:pg37720",
+        "heldout_containment": 0.15384615,
+        "heldout_unique_shingles": 91,
+        "heldout_unit_id": "bibit:sonnet:bibit001221:sonnet_0022",
+        "matching_shingles": 14
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit000949",
+        "heldout_containment": 0.15151515,
+        "heldout_unique_shingles": 99,
+        "heldout_unit_id": "bibit:sonnet:bibit000742:sonnet_0039",
+        "matching_shingles": 15
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit001291",
+        "heldout_containment": 0.15044248,
+        "heldout_unique_shingles": 113,
+        "heldout_unit_id": "v6:sonnet:petrarca_s_amor_non_è_che_dunque_è_quel_ch_io_sento",
+        "matching_shingles": 17
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit001331",
+        "heldout_containment": 0.14444444,
+        "heldout_unique_shingles": 90,
+        "heldout_unit_id": "v6:sonnet:petrarca_se_voi_poteste_per_turbati_segni",
+        "matching_shingles": 13
+      },
+      {
+        "broader_unit_id": "gutenberg:record:pg38578",
+        "heldout_containment": 0.14285714,
+        "heldout_unique_shingles": 105,
+        "heldout_unit_id": "bibit:sonnet:bibit000129:sonnet_0049",
+        "matching_shingles": 15
+      },
+      {
+        "broader_unit_id": "gutenberg:record:pg38578",
+        "heldout_containment": 0.14285714,
+        "heldout_unique_shingles": 105,
+        "heldout_unit_id": "wikisource:sonnet:itws:826842:sonnet0001",
+        "matching_shingles": 15
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit000949",
+        "heldout_containment": 0.13793103,
+        "heldout_unique_shingles": 87,
+        "heldout_unit_id": "bibit:sonnet:bibit000557:sonnet_0020",
+        "matching_shingles": 12
+      },
+      {
+        "broader_unit_id": "gutenberg:record:pg47276",
+        "heldout_containment": 0.13541667,
+        "heldout_unique_shingles": 96,
+        "heldout_unit_id": "bibit:sonnet:bibit000129:structural_0003",
+        "matching_shingles": 13
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit001257",
+        "heldout_containment": 0.12621359,
+        "heldout_unique_shingles": 103,
+        "heldout_unit_id": "v6:sonnet:petrarca_l_aura_gentil_che_rasserena_i_poggi",
+        "matching_shingles": 13
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit000856",
+        "heldout_containment": 0.125,
+        "heldout_unique_shingles": 104,
+        "heldout_unit_id": "v6:sonnet:petrarca_fiamma_dal_ciel_su_le_tue_treccie_piova",
+        "matching_shingles": 13
+      },
+      {
+        "broader_unit_id": "gutenberg:record:pg27825",
+        "heldout_containment": 0.125,
+        "heldout_unique_shingles": 80,
+        "heldout_unit_id": "gutenberg:sonnet:pg27825:char30921-31458",
+        "matching_shingles": 10
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit000949",
+        "heldout_containment": 0.12244898,
+        "heldout_unique_shingles": 98,
+        "heldout_unit_id": "bibit:sonnet:bibit000557:sonnet_0010",
+        "matching_shingles": 12
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit001056",
+        "heldout_containment": 0.11363636,
+        "heldout_unique_shingles": 88,
+        "heldout_unit_id": "wikisource:sonnet:itws:480888:sonnet0001",
+        "matching_shingles": 10
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit000949",
+        "heldout_containment": 0.1125,
+        "heldout_unique_shingles": 80,
+        "heldout_unit_id": "bibit:sonnet:bibit000557:sonnet_0061",
+        "matching_shingles": 9
+      },
+      {
+        "broader_unit_id": "gutenberg:record:pg56890",
+        "heldout_containment": 0.1125,
+        "heldout_unique_shingles": 80,
+        "heldout_unit_id": "bibit:sonnet:bibit000557:sonnet_0061",
+        "matching_shingles": 9
+      },
+      {
+        "broader_unit_id": "gutenberg:record:pg71115",
+        "heldout_containment": 0.10752688,
+        "heldout_unique_shingles": 93,
+        "heldout_unit_id": "bibit:sonnet:bibit000557:sonnet_0006",
+        "matching_shingles": 10
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit000954",
+        "heldout_containment": 0.1047619,
+        "heldout_unique_shingles": 105,
+        "heldout_unit_id": "bibit:sonnet:bibit000150:sonnet_0008",
+        "matching_shingles": 11
+      },
+      {
+        "broader_unit_id": "bibit:record:bibit001158",
+        "heldout_containment": 0.1,
+        "heldout_unique_shingles": 100,
+        "heldout_unit_id": "v6:sonnet:petrarca_soleasi_nel_mio_cor_star_bella_et_viva",
+        "matching_shingles": 10
+      }
+    ],
+    "normalization": "casefold_nfkd_letters_and_digits_from_existing_corpus_probe",
+    "phase": "pre_quarantine",
+    "shingle_size_words": 8,
+    "status": "fail"
+  },
+  "quarantine_policy": "quarantine_every_broader_record_in_initial_meaningful_findings",
+  "quarantined_broader_unit_count": 41,
+  "quarantined_broader_unit_ids": [
+    "bibit:record:bibit000031",
+    "bibit:record:bibit000430",
+    "bibit:record:bibit000475",
+    "bibit:record:bibit000856",
+    "bibit:record:bibit000949",
+    "bibit:record:bibit000954",
+    "bibit:record:bibit000978",
+    "bibit:record:bibit000992",
+    "bibit:record:bibit001056",
+    "bibit:record:bibit001158",
+    "bibit:record:bibit001257",
+    "bibit:record:bibit001291",
+    "bibit:record:bibit001331",
+    "existing:record:ll_vasari_vite_1568",
+    "gutenberg:record:pg27825",
+    "gutenberg:record:pg35321",
+    "gutenberg:record:pg37720",
+    "gutenberg:record:pg38578",
+    "gutenberg:record:pg38698",
+    "gutenberg:record:pg45638",
+    "gutenberg:record:pg47276",
+    "gutenberg:record:pg48332",
+    "gutenberg:record:pg49365",
+    "gutenberg:record:pg56794",
+    "gutenberg:record:pg56890",
+    "gutenberg:record:pg60249",
+    "gutenberg:record:pg62987",
+    "gutenberg:record:pg70898",
+    "gutenberg:record:pg71115",
+    "ilc_ota:record:ota_0304:rime-0304",
+    "wikisource:record:itws:473919",
+    "wikisource:record:itws:476639",
+    "wikisource:record:itws:476640",
+    "wikisource:record:itws:481164",
+    "wikisource:record:itws:482779",
+    "wikisource:record:itws:482780",
+    "wikisource:record:itws:484111",
+    "wikisource:record:itws:626060",
+    "wikisource:record:itws:746029",
+    "wikisource:record:itws:826844",
+    "wikisource:record:itws:826846"
+  ],
+  "status": "pass"
+}

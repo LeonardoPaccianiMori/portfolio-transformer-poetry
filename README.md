@@ -44,6 +44,21 @@ examples, or corpus size.
 The completed V7 path is distinct from the earlier prospective PAISÀ rescue
 curriculum documented in `data/metadata/paisa_attribution.md`.
 
+### Post-study corpus correction
+
+The published V7 study and its frozen evidence remain unchanged. The new V8
+corpus is a corrected view for possible future training. It resolves 67 of 69
+reviewed anthology attributions, quarantines the two unresolved abbreviations,
+repairs two incomplete sonnet renderings from the retained TEI source lines,
+and renders every included sonnet as `4+4+3+3` lines. It also replaces the
+historical long-s character `ſ` with `s` in the V8 training text.
+
+V8 keeps the fixed V7 validation and test sets. It quarantines 3,599 former
+training sonnets whose corrected author or work collides with those held-out
+sets. A separate eight-word-shingle audit quarantines 41 broader training
+records with meaningful held-out overlap. The final broader corpus has no pair
+at the frozen threshold. See the [V8 correction report](reports/sonnets_expanded_v8_correction_v1.md).
+
 ## Final Evidence
 
 | Evidence | Result | Qualification |
@@ -65,6 +80,12 @@ quality, sonnet/form, volta, and visible-completion changes remained uncertain.
 
 Fourteen-line output is decoder-controlled. It does not establish learned
 rhyme, metre, stanza structure, grammar, or literary quality.
+
+A post-study correction now ranks memorization references by the most severe
+risk signal before similarity tie-breakers. Rechecking all 4,976 saved final
+outputs changed no risk label or nearest reference: Stage 3 and DPO each remain
+at 2,488 low-risk outputs and zero medium- or high-risk outputs. See the
+[memorization correction record](reports/minerva_7b_v7_memorization_correction_v1.md).
 
 ## Repository Map
 
@@ -96,7 +117,7 @@ python3.12 -m venv .venv
 .venv/bin/python -m pytest -m "not local_artifact"
 ```
 
-The public-clone suite contains 1,168 tests. Eleven additional tests are explicitly
+The public-clone suite contains 1,176 tests. Eleven additional tests are explicitly
 catalogued as local-only because they validate intentionally withheld research
 artifacts; see [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
 

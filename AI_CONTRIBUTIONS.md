@@ -15,3 +15,11 @@ independently implemented by Leonardo. Generated or AI-assisted material was
 reviewed against tests, frozen protocols, source artifacts, and reported
 limitations; that review does not turn AI assistance into independent human
 authorship of every implementation detail.
+
+## 2026-09-08 correction work
+
+| Provider and model | Reasoning effort | Role | Completed contribution |
+| --- | --- | --- | --- |
+| OpenAI GPT-5.6 Sol | high | Corpus correction implementation | Implemented and tested the V8 source-backed authorship corrections, exact line recovery, derived stanza rendering, strict held-out isolation, broader overlap quarantine, and `ſ` to `s` normalization. |
+| OpenAI GPT-5.6 Sol | high | Memorization correction implementation | Corrected the reference-ranking rule, added the regression test, and rechecked all 4,976 saved final outputs. |
+| OpenAI GPT-5.6 Sol | high | Independent correction review | Reviewed the integrated V8 and memorization correction artifacts before final validation and local commits. |

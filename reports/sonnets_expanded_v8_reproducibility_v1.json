@@ -1,0 +1,25 @@
+{
+  "build_command": "env PYTHONPATH=src .venv/bin/python scripts/build_sonnets_expanded_v8.py",
+  "build_count": 2,
+  "build_date": "2026-09-08",
+  "comparison": "byte_for_byte_sha256",
+  "files": {
+    "data/processed/sonnets_expanded_v8/attribution_manifest.csv": "9c9f48a775bc984226942c65677468e1718da602606cbb4e074c88c1cacd4bde",
+    "data/processed/sonnets_expanded_v8/build_report.json": "9d92ca335f1d4f0cd8449e8e86399ac6d53a249d7b79178938d4a6658d7bc143",
+    "data/processed/sonnets_expanded_v8/derived_broader_long_s/part-0001.txt": "42488d3a22dafcca4268492de2e2fc24ba28859a6542a5abae2f65edc2b72fee",
+    "data/processed/sonnets_expanded_v8/derived_sonnets/part-0001.txt": "7719f07f5a0786231dc8624a2c20941410ea85451a5e62cd419fc55c84d6a8cf",
+    "data/processed/sonnets_expanded_v8/exclusions_manifest.csv": "d2b0df001fc8052cc92678e4c6382c96f123b911b5e6838eb1d4601bc1bbff22",
+    "data/processed/sonnets_expanded_v8/records_manifest.csv": "0f3184f8417109502784ad9753b29ce4b177d5fdd95783651e804f2ddd25d4cc",
+    "data/processed/sonnets_expanded_v8/sonnets_manifest.csv": "0963e2fa94c3c03ce59126580a5be642f5b3eae1c5142b3cd03bad06075e5e8e",
+    "data/processed/sonnets_expanded_v8/storage_manifest.csv": "bdd4c7a18012cbc33533de47e5ff280a202657d4ab8417542a1154a6f5d1e174",
+    "reports/sonnets_expanded_v8_broader_heldout_overlap_v1.json": "c618e075808b2f13e6bc79859b39d13398509c25f6d93fa8183106b6ea264561",
+    "reports/sonnets_expanded_v8_correction_v1.json": "9d92ca335f1d4f0cd8449e8e86399ac6d53a249d7b79178938d4a6658d7bc143",
+    "reports/sonnets_expanded_v8_correction_v1.md": "269eda51cbd80d43792b270dad882c42e28415d961643ce2e01b01a42dd759c8"
+  },
+  "identical_file_count": 11,
+  "status": "pass",
+  "tei_source_sha256": {
+    "bibit000118": "2a8a3051f1111fc3fb978a53de8c5af0b8d1fee20fea10bc85dd1b0a669051a9",
+    "bibit001444": "90e5ddca0960ff6af5019b0825054290f6384abe3ba5bfd86d503afaa977a500"
+  }
+}

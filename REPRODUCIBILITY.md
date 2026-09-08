@@ -15,9 +15,9 @@ python3.12 -m venv .venv
 .venv/bin/python -m pytest
 ```
 
-The full command runs 1,180 tests when the intentionally withheld local
+The full command runs 1,187 tests when the intentionally withheld local
 research artifacts are present. A clean public clone first runs
-`scripts/verify_public_test_scope.py`, then runs the complete 1,169-test public
+`scripts/verify_public_test_scope.py`, then runs the complete 1,176-test public
 subset with `python -m pytest -m "not local_artifact"`. The exact eleven local-only
 node IDs are frozen in `release/local_only_test_allowlist.txt`; CI fails if a
 marker is added, removed, or moved without updating that reviewed boundary.
@@ -53,6 +53,28 @@ history manifest therefore cover the complete prospective public history
 without using a moving remote ref. `--require-cleared` is fail-closed and cannot
 pass while any rights, retention, privacy, authority, memo, or review-date field
 remains pending.
+
+## V8 corpus correction
+
+The committed `data/processed/sonnets_expanded_v8/` directory is a derived
+future-training view. It does not change the frozen V1 corpus, V7 split, trained
+models, or published evaluation results. Its builder requires the retained
+local BibIt TEI source cache, which is outside a clean public clone:
+
+```bash
+.venv/bin/python scripts/build_sonnets_expanded_v8.py
+.venv/bin/python -m pytest tests/test_sonnet_v8_correction.py
+```
+
+Two complete local builds produced identical SHA-256 file fingerprints for all
+11 generated corpus and report files. The committed
+[reproducibility record](reports/sonnets_expanded_v8_reproducibility_v1.json)
+lists these fingerprints. The builder verifies the pinned TEI source files,
+the exact alias-evidence rows,
+14-line structure, `4+4+3+3` rendering, `ſ` to `s` replacement, strict
+author/work isolation from the fixed V7 held-out sets, and the broader-corpus
+overlap quarantine. The committed correction report records the aggregate
+results without reproducing held-out poem text.
 
 ## Local-only workflows
 

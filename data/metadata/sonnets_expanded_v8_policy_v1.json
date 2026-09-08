@@ -1,0 +1,34 @@
+{
+  "base_corpus_version": "canonical_italian_corpora_v1",
+  "base_split_version": "sonnets_expanded_v7",
+  "excluded_broader_unit_ids": [
+    "bibit:record:bibit000118",
+    "bibit:record:bibit001444"
+  ],
+  "overlap_audit": {
+    "expected_initial_audit": {
+      "broader_training_unit_count": 4542,
+      "meaningful_pair_count": 69,
+      "quarantined_broader_unit_count": 41,
+      "maximum_heldout_containment": 0.79166667
+    },
+    "meaningful_heldout_containment": 0.1,
+    "meaningful_min_matching_shingles": 8,
+    "shingle_size_words": 8
+  },
+  "text_normalization": {
+    "name": "long_s_u017f_to_ascii_s_v1",
+    "replacement": "s",
+    "source_character": "ſ"
+  },
+  "tei_sources": {
+    "bibit000118": "2a8a3051f1111fc3fb978a53de8c5af0b8d1fee20fea10bc85dd1b0a669051a9",
+    "bibit001444": "90e5ddca0960ff6af5019b0825054290f6384abe3ba5bfd86d503afaa977a500"
+  },
+  "rendering": {
+    "name": "derived_source_lines_4+4+3+3_v1",
+    "retain_source_line_hash": true,
+    "stanza_pattern": [4, 4, 3, 3]
+  },
+  "version": "sonnets_expanded_v8_correction_policy_v1"
+}
