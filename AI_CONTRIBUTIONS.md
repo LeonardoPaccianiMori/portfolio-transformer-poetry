@@ -23,3 +23,9 @@ authorship of every implementation detail.
 | OpenAI GPT-5.6 Sol | high | Corpus correction implementation | Implemented and tested the V8 source-backed authorship corrections, exact line recovery, derived stanza rendering, strict held-out isolation, broader overlap quarantine, and `ſ` to `s` normalization. |
 | OpenAI GPT-5.6 Sol | high | Memorization correction implementation | Corrected the reference-ranking rule, added the regression test, and rechecked all 4,976 saved final outputs. |
 | OpenAI GPT-5.6 Sol | high | Independent correction review | Reviewed the integrated V8 and memorization correction artifacts before final validation and local commits. |
+
+## 2026-09-09 follow-up plan placement
+
+| Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
+| --- | --- | --- | --- | --- |
+| OpenAI GPT-6 | unknown | Technical plan drafting | Moved the detailed checker-first prosody and contingent reasoning plan into the implementation repository under Leonardo's approved repository-boundary correction. | `docs/sonnet_prosody_followup_plan.md` and this dated record. |
