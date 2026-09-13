@@ -4,6 +4,9 @@ All notable public-release changes are documented here.
 
 ## [Unreleased]
 
+- Added the constrained plan validation: opening-anchored feasible plans,
+  deterministic ending repair, generation and scoring scripts, and tests. No
+  generation run has started.
 - Ran the plan-following SFT: 968 steps, probe key match 0.729. The full
   evaluation shows blind list copying (planned 0.711, mismatched 0.734,
   control 0.858) and a plan-construction flaw on the forced opening line.
