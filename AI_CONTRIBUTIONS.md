@@ -89,3 +89,9 @@ authorship of every implementation detail.
 | Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
 | --- | --- | --- | --- | --- |
 | OpenCode Go deepseek-v4.1-flash | unknown | Verifier DPO run, scoring, and report | Ran the adapter training and the matched validation generation on the H100, scored the grid locally, found the partial signal and its failed-line caveat, and recorded them. | `reports/verifier_labelled_dpo_v1.md`, `reports/verifier_labelled_dpo_v1.json` |
+
+## 2026-09-13 Rhyme lexicon and plan-then-poem plan
+
+| Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
+| --- | --- | --- | --- | --- |
+| OpenCode Go deepseek-v4.1-flash | unknown | Plan drafting, review revision, and rhyme lexicon | Wrote the plan-then-poem pilot plan, incorporated the independent review changes, implemented and built the V8 train rhyme lexicon (1,220 keys from 228,164 endings), and added its tests. | `docs/plan_then_poem_plan.md`, `src/sonnet_evaluation/rhyme_lexicon.py`, `data/metadata/rhyme_lexicon_v1.json` |

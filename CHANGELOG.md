@@ -4,6 +4,9 @@ All notable public-release changes are documented here.
 
 ## [Unreleased]
 
+- Added the reviewed plan-then-poem pilot plan and built the V8 train rhyme
+  lexicon: 1,220 rhyme keys from 228,164 line endings. No generation run has
+  started.
 - Ran the verifier-labelled form DPO: 48 updates, 425 preference pairs, and
   960 matched validation outputs. Accepted hendecasyllable lines rose by 0.77
   (95% CI 0.46 to 1.08) with no rhyme-score change, but failed lines rose by
