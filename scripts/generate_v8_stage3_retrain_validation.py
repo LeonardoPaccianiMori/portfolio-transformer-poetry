@@ -31,6 +31,12 @@ def parse_args() -> argparse.Namespace:
         default=ROOT / "configs/v8_stage3_retrain.json",
     )
     parser.add_argument("--model-dir", type=Path, required=True)
+    parser.add_argument(
+        "--tokenizer-dir",
+        type=Path,
+        default=None,
+        help="directory with the frozen tokenizer; defaults to the model directory",
+    )
     parser.add_argument("--candidate-dir", type=Path, default=None)
     parser.add_argument("--merged-dir", type=Path, default=None)
     parser.add_argument("--batch-size", type=int, default=8)
@@ -64,8 +70,9 @@ def main() -> None:
     if not torch.cuda.is_available() or torch.cuda.device_count() != 1:
         raise RuntimeError("candidate generation requires exactly one CUDA GPU")
     device = torch.device("cuda:0")
+    tokenizer_dir = args.tokenizer_dir or args.model_dir
     tokenizer = AutoTokenizer.from_pretrained(
-        str(args.model_dir), local_files_only=True
+        str(tokenizer_dir), local_files_only=True
     )
     model = AutoModelForCausalLM.from_pretrained(
         str(args.model_dir),
