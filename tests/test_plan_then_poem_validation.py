@@ -5,6 +5,8 @@ from sonnet_analysis.plan_then_poem_validation import (
     adherence,
     build_control_words,
     build_plan_words,
+    echo_detected,
+    mismatched_prompt_id,
     output_name,
     plan_instruction,
 )
@@ -103,3 +105,27 @@ def test_extra_instruction_is_appended_to_the_user_content():
         tokenizer, "Nel mezzo del cammin", "explicit_no_labels_or_prose"
     )
     assert "LISTA" not in plain
+
+
+def test_adherence_reports_per_line_hits():
+    planned = ["vita", "core"] * 7
+    text = "\n".join(
+        "verso numero vita" if index % 2 == 0 else "verso numero cosa"
+        for index in range(14)
+    )
+    result = adherence(text, planned)
+    assert result["key_by_line"][0] == 1
+    assert result["key_by_line"][1] == 0
+    assert result["word_by_line"][0] == 1
+
+
+def test_echo_detected_flags_numbered_lists():
+    assert echo_detected("1. vita\n2. core\n3. amore") is True
+    assert echo_detected("Termina ogni verso con la parola indicata") is True
+    assert echo_detected("Nel mezzo del cammin di nostra vita") is False
+
+
+def test_mismatched_prompt_id_cycles():
+    prompt_ids = ["a", "b", "c"]
+    assert mismatched_prompt_id(prompt_ids, 0) == "b"
+    assert mismatched_prompt_id(prompt_ids, 2) == "a"

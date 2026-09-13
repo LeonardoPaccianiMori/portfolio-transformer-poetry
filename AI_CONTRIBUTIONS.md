@@ -107,3 +107,9 @@ authorship of every implementation detail.
 | Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
 | --- | --- | --- | --- | --- |
 | OpenCode Go deepseek-v4.1-flash | unknown | Inference test run and scoring | Ran the planned and format-control generation on the H100, scored adherence and form locally, and recorded the train-plan-following-first reading. | `reports/plan_then_poem_validation_v1.md`, `reports/plan_then_poem_validation_v1.json` |
+
+## 2026-09-13 Plan-following SFT implementation
+
+| Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
+| --- | --- | --- | --- | --- |
+| OpenCode Go deepseek-v4.1-flash | unknown | Plan, implementation, and tests | Revised the plan-following plan after the independent review (mismatched control, echo detection, position-wise adherence, fixed retry rules); implemented the response-masked trainer with merged-model save and the extended evaluation; added the tests. | `docs/plan_following_sft_plan.md`, `src/sonnet_training/plan_following_sft.py`, `scripts/train_plan_following_sft.py`, `scripts/score_plan_then_poem_validation.py` |

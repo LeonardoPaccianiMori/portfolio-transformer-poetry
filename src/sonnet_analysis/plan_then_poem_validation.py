@@ -1,9 +1,10 @@
 """Inference-only plan-then-poem validation for the rhyme-planning pilot.
 
-The planned condition appends a numbered list of pre-committed line endings to
-the frozen prompt. The format control appends the same list shape with
-non-rhyming placeholder endings. Both are scored against each other and
-against the verifier-DPO no-plan baseline.
+Three conditions are generated from the frozen prompt: a planned condition
+with pre-committed line endings, a mismatched condition with the plan of a
+different opening, and a format control with non-rhyming placeholder endings.
+Planned versus mismatched separates plan reading from a shifted ending
+distribution. Echo detection guards against list-copying outputs.
 """
 
 from __future__ import annotations
@@ -12,6 +13,7 @@ import hashlib
 import json
 import os
 import random
+import re
 import time
 from collections.abc import Callable, Mapping, Sequence
 from pathlib import Path
@@ -23,9 +25,11 @@ from sonnet_evaluation.rhyme_lexicon import choose_endings, line_final_word
 from sonnet_evaluation.sonnet_prosody import rhyme_key
 
 GENERATION_VERSION = "plan_then_poem_validation_v1"
-CONDITIONS = ("planned", "control")
+CONDITIONS = ("planned", "mismatched", "control")
 DEFAULT_SCHEME = "ABBAABBACDECDE"
 PROMPT_ARM = "explicit_no_labels_or_prose"
+INSTRUCTION_PHRASE = "Termina ogni verso con la parola indicata"
+NUMBERED_LINE_PATTERN = re.compile(r"^\s*\d{1,2}[.)]\s")
 
 
 def output_name(
@@ -92,11 +96,15 @@ def build_plans(
     return plans, build_control_words(lexicon, seed=seed)
 
 
+def mismatched_prompt_id(
+    prompt_ids: Sequence[str], index: int
+) -> str:
+    return str(prompt_ids[(index + 1) % len(prompt_ids)])
+
+
 def plan_instruction(words: Sequence[str]) -> str:
     numbered = "\n".join(f"{index + 1}. {word}" for index, word in enumerate(words))
-    return (
-        "Termina ogni verso con la parola indicata, nello stesso ordine:\n" + numbered
-    )
+    return f"{INSTRUCTION_PHRASE}, nello stesso ordine:\n{numbered}"
 
 
 def planned_prompt(tokenizer: Any, opening_line: str, words: Sequence[str]) -> str:
@@ -108,25 +116,40 @@ def planned_prompt(tokenizer: Any, opening_line: str, words: Sequence[str]) -> s
     )
 
 
-def adherence(
-    text: str, planned_words: Sequence[str]
-) -> dict[str, Any]:
+def echo_detected(text: str) -> bool:
+    if INSTRUCTION_PHRASE in text:
+        return True
+    numbered = sum(
+        1 for line in text.splitlines() if NUMBERED_LINE_PATTERN.match(line)
+    )
+    return numbered >= 3
+
+
+def adherence(text: str, planned_words: Sequence[str]) -> dict[str, Any]:
     lines = [line.strip() for line in text.splitlines() if line.strip()]
     word_matches = 0
     key_matches = 0
     missing = 0
+    word_by_line: list[int] = []
+    key_by_line: list[int] = []
     for index, planned in enumerate(planned_words):
         if index >= len(lines):
             missing += 1
+            word_by_line.append(0)
+            key_by_line.append(0)
             continue
         final = line_final_word(lines[index])
         if final is None:
             missing += 1
+            word_by_line.append(0)
+            key_by_line.append(0)
             continue
-        if final == planned.lower():
-            word_matches += 1
-        if rhyme_key(final) == rhyme_key(planned):
-            key_matches += 1
+        word_hit = 1 if final == planned.lower() else 0
+        key_hit = 1 if rhyme_key(final) == rhyme_key(planned) else 0
+        word_matches += word_hit
+        key_matches += key_hit
+        word_by_line.append(word_hit)
+        key_by_line.append(key_hit)
     return {
         "planned_count": len(planned_words),
         "word_matches": word_matches,
@@ -134,6 +157,8 @@ def adherence(
         "missing": missing,
         "word_match_rate": word_matches / len(planned_words) if planned_words else None,
         "key_match_rate": key_matches / len(planned_words) if planned_words else None,
+        "word_by_line": word_by_line,
+        "key_by_line": key_by_line,
     }
 
 
@@ -149,19 +174,23 @@ def generate_plan_validation(
     output_dir: Path,
     device: Any,
     batch_size: int,
+    conditions: Sequence[str] = CONDITIONS,
     adapter_identity: str | None = None,
     progress: Callable[[str], None] | None = None,
 ) -> dict[str, Any]:
     output_dir.mkdir(parents=True, exist_ok=True)
+    prompt_ids = [str(prompt["id"]) for prompt in prompts]
     started = time.monotonic()
-    for condition in CONDITIONS:
+    for condition in conditions:
         jobs = []
-        for prompt in prompts:
-            words = (
-                plans[str(prompt["id"])]["words"]
-                if condition == "planned"
-                else list(control_words)
-            )
+        for index, prompt in enumerate(prompts):
+            if condition == "planned":
+                words = plans[str(prompt["id"])]["words"]
+            elif condition == "mismatched":
+                other = mismatched_prompt_id(prompt_ids, index)
+                words = plans[other]["words"]
+            else:
+                words = list(control_words)
             rendered = planned_prompt(tokenizer, str(prompt["opening_line"]), words)
             for seed in seeds:
                 path = output_dir / output_name(condition, str(prompt["id"]), int(seed))
@@ -171,6 +200,7 @@ def generate_plan_validation(
                     {
                         "condition": condition,
                         "prompt": dict(prompt),
+                        "prompt_index": index,
                         "seed": int(seed),
                         "rendered_prompt": rendered,
                         "planned_words": list(words),
@@ -191,6 +221,7 @@ def generate_plan_validation(
                     "analysis_role": "plan_then_poem_inference_validation",
                     "condition": job["condition"],
                     "prompt": job["prompt"],
+                    "prompt_index": job["prompt_index"],
                     "planned_words": job["planned_words"],
                     "recipe": dict(recipe),
                     "adapter_identity_sha256": adapter_identity,
@@ -214,7 +245,7 @@ def generate_plan_validation(
                     f"elapsed={elapsed:.1f}s"
                 )
     outputs = []
-    for condition in CONDITIONS:
+    for condition in conditions:
         for prompt in prompts:
             for seed in seeds:
                 path = output_dir / output_name(condition, str(prompt["id"]), int(seed))
@@ -232,10 +263,10 @@ def generate_plan_validation(
     result = {
         "generation_version": GENERATION_VERSION,
         "analysis_role": "plan_then_poem_inference_validation",
-        "conditions": list(CONDITIONS),
+        "conditions": list(conditions),
         "prompt_count": len(prompts),
         "seeds": [int(seed) for seed in seeds],
-        "planned_output_count": len(prompts) * len(seeds) * len(CONDITIONS),
+        "planned_output_count": len(prompts) * len(seeds) * len(conditions),
         "completed_output_count": len(outputs),
         "outputs": sorted(outputs, key=lambda row: row["path"]),
         "v7_test_accessed": False,
@@ -266,6 +297,7 @@ def load_plan_records(generation_dir: Path) -> list[dict[str, Any]]:
                 "opening_line": payload.get("opening_line"),
                 "text": payload["text"],
                 "planned_words": payload["planned_words"],
+                "echo": echo_detected(str(payload["text"])),
             }
         )
     if len(records) != int(complete["completed_output_count"]):

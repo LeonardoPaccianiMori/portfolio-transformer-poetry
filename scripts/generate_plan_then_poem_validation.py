@@ -32,7 +32,13 @@ from sonnet_training.minerva_v7_ai_dpo import TARGET_MODULES
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--state-audit", type=Path, required=True)
+    parser.add_argument("--state-audit", type=Path, default=None)
+    parser.add_argument(
+        "--model-dir",
+        type=Path,
+        default=None,
+        help="load a merged model directly instead of Stage-3 plus an adapter",
+    )
     parser.add_argument(
         "--adapter",
         type=Path,
@@ -58,41 +64,65 @@ def main() -> None:
     args = parse_args()
     import torch
     from peft import LoraConfig, get_peft_model, set_peft_model_state_dict
+    from transformers import AutoModelForCausalLM, AutoTokenizer
 
+    if args.state_audit is None and args.model_dir is None:
+        raise SystemExit("pass either --state-audit or --model-dir")
     prompts = validate_exploratory_prompt_manifest(
         ROOT / "configs/minerva_7b_v7_exploratory_prompts.json",
         expected_sha256="2f33aa518aa61c11193831e53b07fd3bd861a72bf68bb23c0e0e5b1a13b1d0c7",
     )["prompts"]
     lexicon = load_lexicon(args.lexicon)
     plans, control_words = build_plans(prompts, lexicon)
-    state = load_verified_state(args.state_audit, "stage_3_selected")
-    preflight = gpu_preflight(
-        output_root=ROOT / args.output_dir,
-        required_output_bytes=1024**3,
-        hourly_rate=args.hourly_rate,
-    )
-    adapter_path = ROOT / args.adapter if not args.adapter.is_absolute() else args.adapter
-    adapter_identity = hashlib.sha256(adapter_path.read_bytes()).hexdigest()
     device = torch.device("cuda:0")
-    model, tokenizer = load_bf16_model_and_tokenizer(
-        state=state, config={}, device=device
-    )
-    model = get_peft_model(
-        model,
-        LoraConfig(
-            task_type="CAUSAL_LM",
-            r=8,
-            lora_alpha=16,
-            lora_dropout=0.05,
-            bias="none",
-            target_modules=list(TARGET_MODULES),
-        ),
-    )
-    checkpoint = torch.load(adapter_path, map_location="cpu", weights_only=True)
-    if checkpoint.get("parent_state_identity_sha256") != state["state_identity_sha256"]:
-        raise ValueError("verifier DPO adapter parent mismatch")
-    set_peft_model_state_dict(model, checkpoint["adapter_state_dict"])
-    model.eval()
+    if args.model_dir is not None:
+        model_dir = args.model_dir
+        tokenizer = AutoTokenizer.from_pretrained(
+            str(model_dir), local_files_only=True
+        )
+        model = AutoModelForCausalLM.from_pretrained(
+            str(model_dir),
+            local_files_only=True,
+            dtype=torch.bfloat16,
+            attn_implementation="eager",
+            low_cpu_mem_usage=True,
+        ).to(device)
+        model.eval()
+        adapter_identity = None
+        preflight = {"gpu_name": torch.cuda.get_device_name(device)}
+    else:
+        state = load_verified_state(args.state_audit, "stage_3_selected")
+        preflight = gpu_preflight(
+            output_root=ROOT / args.output_dir,
+            required_output_bytes=1024**3,
+            hourly_rate=args.hourly_rate,
+        )
+        adapter_path = (
+            ROOT / args.adapter if not args.adapter.is_absolute() else args.adapter
+        )
+        adapter_identity = hashlib.sha256(adapter_path.read_bytes()).hexdigest()
+        model, tokenizer = load_bf16_model_and_tokenizer(
+            state=state, config={}, device=device
+        )
+        model = get_peft_model(
+            model,
+            LoraConfig(
+                task_type="CAUSAL_LM",
+                r=8,
+                lora_alpha=16,
+                lora_dropout=0.05,
+                bias="none",
+                target_modules=list(TARGET_MODULES),
+            ),
+        )
+        checkpoint = torch.load(adapter_path, map_location="cpu", weights_only=True)
+        if (
+            checkpoint.get("parent_state_identity_sha256")
+            != state["state_identity_sha256"]
+        ):
+            raise ValueError("verifier DPO adapter parent mismatch")
+        set_peft_model_state_dict(model, checkpoint["adapter_state_dict"])
+        model.eval()
     recipe = {
         "temperature": 0.85,
         "top_k": None,

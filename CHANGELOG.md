@@ -4,6 +4,9 @@ All notable public-release changes are documented here.
 
 ## [Unreleased]
 
+- Added the reviewed plan-following SFT plan and implementation: mismatched
+  plan control, echo detection, position-wise adherence, the response-masked
+  trainer with merged-model save, and tests. No training run has started.
 - Ran the plan-then-poem inference test: key-match adherence 3.42% planned
   versus 1.43% control, zero scheme compliance, and the plan list degraded
   metre. Reading: train plan following first.
