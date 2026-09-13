@@ -275,7 +275,7 @@ def merge_matched_generation(
         complete = json.loads((source_dir / "complete.json").read_text(encoding="utf-8"))
         for row in complete["outputs"]:
             if row["system_id"] != system_id:
-                raise ValueError(f"unexpected system in {source_dir.name}")
+                continue
             if row["path"] in seen:
                 raise ValueError(f"duplicate output name {row['path']}")
             seen.add(row["path"])

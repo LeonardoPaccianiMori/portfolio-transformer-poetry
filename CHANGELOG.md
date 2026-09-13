@@ -4,6 +4,12 @@ All notable public-release changes are documented here.
 
 ## [Unreleased]
 
+- Ran the full-weight V8 Stage-3 retrain: 93 updates, retention gate passed,
+  and no formal gain on 240 matched validation pairs (accepted lines -0.225,
+  95% CI -0.578 to 0.128; no valid outputs). Reading: NULL.
+- Fixed causal language-model label alignment in both trainers. The earlier
+  LoRA pilot used off-by-one targets, so its null result is invalid as a test
+  of that hypothesis.
 - Added the approved full-weight V8 Stage-3 retrain: frozen window plan with
   5% preservation replay, safeguarded trainer, candidate generation and
   merged evaluation, and tests. The preflight plan is 1,490 windows and 93

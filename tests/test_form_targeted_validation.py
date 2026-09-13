@@ -138,3 +138,44 @@ def test_merge_matched_generation_combines_systems(tmp_path):
     assert {record["system_id"] for record in records} == {"baseline", "candidate"}
     pairs = pair_records(records, systems=("baseline", "candidate"))
     assert len(pairs) == 1
+
+
+def test_merge_matched_generation_ignores_other_systems_in_a_source(tmp_path):
+    baseline = write_single_system_dir(
+        tmp_path / "baseline", "baseline", GENERATION_VERSION
+    )
+    extra_path = baseline / output_name(
+        "candidate", "p2", 6200, version=GENERATION_VERSION
+    )
+    extra_path.write_text(
+        json.dumps(
+            {
+                "system_id": "candidate",
+                "prompt": {"id": "p2"},
+                "seed": 6200,
+                "text": VALID_LINE,
+            }
+        ),
+        encoding="utf-8",
+    )
+    complete = json.loads((baseline / "complete.json").read_text(encoding="utf-8"))
+    complete["outputs"].append(
+        {
+            "path": extra_path.name,
+            "sha256": "0" * 64,
+            "system_id": "candidate",
+            "prompt_id": "p2",
+            "seed": 6200,
+        }
+    )
+    (baseline / "complete.json").write_text(json.dumps(complete), encoding="utf-8")
+    candidate = write_single_system_dir(
+        tmp_path / "candidate", "candidate", CANDIDATE_GENERATION_VERSION
+    )
+    merged_dir = tmp_path / "merged"
+    result = merge_matched_generation(
+        baseline_dir=baseline,
+        candidate_dir=candidate,
+        output_dir=merged_dir,
+    )
+    assert result["completed_output_count"] == 2

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "generation_dir": "<outside repository>",
+  "prompts_sha256": "2f33aa518aa61c11193831e53b07fd3bd861a72bf68bb23c0e0e5b1a13b1d0c7",
+  "paired_order": [
+    "candidate",
+    "baseline"
+  ],
+  "system_metrics": {
+    "baseline": {
+      "system_id": "baseline",
+      "output_count": 240,
+      "structure_ok_rate": 1.0,
+      "stanza_pattern_ok_rate": 0.03333333333333333,
+      "all_lines_valid_rate": 0.0,
+      "definite_valid_rate": 0.0,
+      "no_definite_failure_rate": 0.2375,
+      "quatrain_ok_rate": 0.0,
+      "tercet_ok_rate": 0.0,
+      "mean_hendecasyllable_lines": 5.6875,
+      "mean_failed_lines": 1.9166666666666667,
+      "mean_uncertain_lines": 6.395833333333333,
+      "mean_perfect_rhyme_pairs": 1.025,
+      "mean_soft_rhyme_pairs": 0.2375,
+      "mean_rhyme_score": 0.5315079365079365,
+      "tercet_scheme_distribution": {
+        "ABCDEF": 198,
+        "AABCDE": 6,
+        "ABCADE": 3,
+        "ABCDDE": 3,
+        "ABCD?E": 3,
+        "ABCBDE": 2,
+        "ABCDEA": 2,
+        "ABCDBE": 2,
+        "ABCCDE": 2,
+        "ABBCDE": 2,
+        "ABCDCE": 2,
+        "ABCDEE": 2,
+        "ABACDE": 2,
+        "ABCDAE": 2,
+        "ABCCCD": 1,
+        "ABBCBB": 1,
+        "ABCDEC": 1,
+        "ABC???": 1,
+        "AABACD": 1,
+        "AAB???": 1,
+        "ABCDED": 1,
+        "ABCBDB": 1,
+        "ABCDEB": 1
+      }
+    },
+    "candidate": {
+      "system_id": "candidate",
+      "output_count": 240,
+      "structure_ok_rate": 0.9958333333333333,
+      "stanza_pattern_ok_rate": 0.029166666666666667,
+      "all_lines_valid_rate": 0.0,
+      "definite_valid_rate": 0.0,
+      "no_definite_failure_rate": 0.26666666666666666,
+      "quatrain_ok_rate": 0.0,
+      "tercet_ok_rate": 0.0,
+      "mean_hendecasyllable_lines": 5.4625,
+      "mean_failed_lines": 1.7,
+      "mean_uncertain_lines": 6.825,
+      "mean_perfect_rhyme_pairs": 1.0625,
+      "mean_soft_rhyme_pairs": 0.20833333333333334,
+      "mean_rhyme_score": 0.5930555555555556,
+      "tercet_scheme_distribution": {
+        "ABCDEF": 200,
+        "ABACDE": 5,
+        "ABCDAE": 4,
+        "ABCDCE": 4,
+        "ABCDEC": 3,
+        "ABCDEB": 3,
+        "ABCCDC": 2,
+        "ABCADE": 2,
+        "ABCCDE": 2,
+        "ABCDEE": 2,
+        "ABCBDE": 2,
+        "ABCDDE": 2,
+        "ABCD??": 1,
+        "ABCDDA": 1,
+        "?": 1,
+        "ABBC??": 1,
+        "ABCDED": 1,
+        "ABBCDE": 1,
+        "ABCDBE": 1,
+        "ABBCDD": 1,
+        "ABBCCD": 1
+      }
+    }
+  },
+  "full_form_valid": {
+    "baseline": 0,
+    "candidate": 0
+  },
+  "paired_comparisons": [
+    {
+      "field": "hendecasyllable_lines",
+      "pair_count": 240,
+      "mean_difference_stage_3_minus_dpo": -0.225,
+      "ci95_low": -0.577551799412763,
+      "ci95_high": 0.12755179941276304,
+      "positive_pairs": 96,
+      "negative_pairs": 106,
+      "equal_pairs": 38
+    },
+    {
+      "field": "failed_lines",
+      "pair_count": 240,
+      "mean_difference_stage_3_minus_dpo": -0.21666666666666667,
+      "ci95_low": -0.4859517231682189,
+      "ci95_high": 0.05261838983488554,
+      "positive_pairs": 81,
+      "negative_pairs": 91,
+      "equal_pairs": 68
+    },
+    {
+      "field": "uncertain_lines",
+      "pair_count": 240,
+      "mean_difference_stage_3_minus_dpo": 0.42916666666666664,
+      "ci95_low": 0.05568021685062874,
+      "ci95_high": 0.8026531164827045,
+      "positive_pairs": 121,
+      "negative_pairs": 85,
+      "equal_pairs": 34
+    },
+    {
+      "field": "perfect_rhyme_pairs",
+      "pair_count": 240,
+      "mean_difference_stage_3_minus_dpo": 0.0375,
+      "ci95_low": -0.19232490834051005,
+      "ci95_high": 0.26732490834051004,
+      "positive_pairs": 85,
+      "negative_pairs": 82,
+      "equal_pairs": 73
+    },
+    {
+      "field": "soft_rhyme_pairs",
+      "pair_count": 240,
+      "mean_difference_stage_3_minus_dpo": -0.029166666666666667,
+      "ci95_low": -0.11836404794320574,
+      "ci95_high": 0.060030714609872395,
+      "positive_pairs": 35,
+      "negative_pairs": 36,
+      "equal_pairs": 169
+    },
+    {
+      "field": "rhyme_score",
+      "pair_count": 240,
+      "mean_difference_stage_3_minus_dpo": 0.06154761904761905,
+      "ci95_low": -0.024684865744608812,
+      "ci95_high": 0.1477801038398469,
+      "positive_pairs": 80,
+      "negative_pairs": 65,
+      "equal_pairs": 95
+    }
+  ],
+  "mcnemar": [
+    {
+      "field": "structure_ok",
+      "stage_3_only": 0,
+      "dpo_only": 1,
+      "both": 239,
+      "neither": 0,
+      "discordant": 1,
+      "statistic": -1.0,
+      "p_value_normal_approximation": 0.31731050786291415
+    },
+    {
+      "field": "stanza_pattern_ok",
+      "stage_3_only": 7,
+      "dpo_only": 8,
+      "both": 0,
+      "neither": 225,
+      "discordant": 15,
+      "statistic": -0.2581988897471611,
+      "p_value_normal_approximation": 0.7962534147376393
+    },
+    {
+      "field": "all_lines_valid",
+      "stage_3_only": 0,
+      "dpo_only": 0,
+      "both": 0,
+      "neither": 240,
+      "discordant": 0,
+      "statistic": 0.0,
+      "p_value_normal_approximation": 1.0
+    },
+    {
+      "field": "quatrain_ok",
+      "stage_3_only": 0,
+      "dpo_only": 0,
+      "both": 0,
+      "neither": 240,
+      "discordant": 0,
+      "statistic": 0.0,
+      "p_value_normal_approximation": 1.0
+    },
+    {
+      "field": "tercet_ok",
+      "stage_3_only": 0,
+      "dpo_only": 0,
+      "both": 0,
+      "neither": 240,
+      "discordant": 0,
+      "statistic": 0.0,
+      "p_value_normal_approximation": 1.0
+    }
+  ],
+  "reading": {
+    "signal": false,
+    "reasons": [
+      "No pre-registered signal: no valid candidate output and no accepted-line increase that excludes zero and reaches 0.23 lines."
+    ]
+  },
+  "scores_jsonl": "artifacts/local/form_targeted_lora/validation/scores_v1.jsonl",
+  "checker_status": "reviewed_conservative_2026-09-13"
+}

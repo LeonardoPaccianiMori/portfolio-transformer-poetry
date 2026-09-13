@@ -89,3 +89,21 @@ sonnet validity over Stage-3 without degrading fluency?
   (frozen stage windows, checkpoint selection by validation loss, the full
   retention gate set). Deviations are recorded.
 - Form-only result. No literary-quality or public claim.
+
+## Status on 2026-09-13
+
+The retrain ran on one H100. Encoding, training, and matched generation
+completed with no abort. The trainer used PagedAdamW8bit, completed 93 of 93
+updates on the frozen window order, and passed the retention gate (replay
+loss ratio 1.0001). On 240 matched validation pairs the candidate shows no
+formal gain: accepted hendecasyllable lines differ by -0.225 (95% CI -0.578
+to +0.128), the rhyme score differs by +0.0615 (95% CI -0.025 to +0.148), and
+no full-form valid output exists in either system. The pre-registered reading
+is NULL. The corrected corpus alone does not move form. See
+`reports/v8_stage3_retrain_v1.md`.
+
+A trainer defect was found before this run: the earlier LoRA pilot and the
+first retrain attempt passed pre-shifted labels to a Hugging Face loss that
+shifts internally, so both used off-by-one targets. The defect is fixed at
+`7e4d0fa`. The LoRA pilot result is therefore invalid as a test of that
+hypothesis, not a true null.

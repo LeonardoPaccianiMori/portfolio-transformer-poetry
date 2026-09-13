@@ -58,6 +58,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--report-md", type=Path, default=None)
     parser.add_argument("--report-json", type=Path, default=None)
     parser.add_argument(
+        "--title", type=str, default="Form-Targeted LoRA Pilot v1"
+    )
+    parser.add_argument("--description", type=str, default=None)
+    parser.add_argument("--caveat", type=str, default=None)
+    parser.add_argument(
         "--scores-jsonl",
         type=Path,
         default=ROOT / "artifacts/local/form_targeted_lora/validation/scores_v1.jsonl",
@@ -89,17 +94,25 @@ def format_report(
     baseline_valid: int,
     candidate_valid: int,
     reading: dict,
+    title: str = "Form-Targeted LoRA Pilot v1",
+    description: str = (
+        "Matched validation comparison of the Stage-3 baseline (adapter\n"
+        "disabled) and the form-targeted LoRA candidate (adapter enabled).\n"
+        "The 120 validation openings, seeds, prompt builder, and recipe are\n"
+        "identical across systems; the sealed test set was not accessed.\n"
+        "The checker is reviewed and measures form only, not literary quality."
+    ),
+    caveat: str = (
+        "One LoRA arm can underpower the test by design; a null result\n"
+        "reframes the direction rather than closing it."
+    ),
 ) -> str:
     lines = [
-        "# Form-Targeted LoRA Pilot v1",
+        f"# {title}",
         "",
         "Date: 2026-09-13",
         "",
-        "Matched validation comparison of the Stage-3 baseline (adapter",
-        "disabled) and the form-targeted LoRA candidate (adapter enabled).",
-        "The 120 validation openings, seeds, prompt builder, and recipe are",
-        "identical across systems; the sealed test set was not accessed.",
-        "The checker is reviewed and measures form only, not literary quality.",
+        *description.splitlines(),
         "",
         "## Per-system form metrics",
         "",
@@ -165,8 +178,7 @@ def format_report(
             "- Form only. No literary-quality or selection-for-quality claim.",
             "- The checker's definite coverage limit (87.1% on the ground truth)",
             "  applies to the metre counts.",
-            "- One LoRA arm can underpower the test by design; a null result",
-            "  reframes the direction rather than closing it.",
+            *[f"- {line}" for line in caveat.splitlines()],
             "",
             "Verification: `python3 scripts/score_form_targeted_validation.py`",
             "",
@@ -228,6 +240,13 @@ def main() -> None:
         baseline_valid=baseline_valid,
         candidate_valid=candidate_valid,
         reading={"signal": signal, "reasons": reasons},
+        title=args.title,
+        **(
+            {"description": args.description}
+            if args.description is not None
+            else {}
+        ),
+        **({"caveat": args.caveat} if args.caveat is not None else {}),
     )
     report_md.parent.mkdir(parents=True, exist_ok=True)
     report_md.write_text(report_markdown, encoding="utf-8")
