@@ -74,7 +74,13 @@ def load_prompt_intervention_config(path: Path) -> dict[str, Any]:
     return config
 
 
-def build_intervention_prompt(tokenizer: Any, opening_line: str, arm_id: str) -> str:
+def build_intervention_prompt(
+    tokenizer: Any,
+    opening_line: str,
+    arm_id: str,
+    *,
+    extra_instruction: str | None = None,
+) -> str:
     """Render one frozen prompt arm and preserve the exact opening prefill."""
 
     if not opening_line.strip() or "\n" in opening_line or "\r" in opening_line:
@@ -110,8 +116,11 @@ def build_intervention_prompt(tokenizer: Any, opening_line: str, arm_id: str) ->
         )
     else:
         raise ValueError(f"unknown prompt-intervention arm: {arm_id}")
+    user_content = f"{instruction}\n\nPrimo verso: {opening_line}"
+    if extra_instruction:
+        user_content = f"{user_content}\n\n{extra_instruction}"
     rendered = tokenizer.apply_chat_template(
-        [{"role": "user", "content": f"{instruction}\n\nPrimo verso: {opening_line}"}],
+        [{"role": "user", "content": user_content}],
         tokenize=False,
         add_generation_prompt=True,
     )

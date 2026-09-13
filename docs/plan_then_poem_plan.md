@@ -43,13 +43,16 @@ raise rhyme scheme compliance and full-form validity?
   least five candidate words. Every line ending is fixed before generation.
 - Conditions (generated in the same run, same model, prompt builder, recipe,
   and seeds):
+  - model: the verifier-DPO adapter on Stage-3, the best metre model so far,
+    identical across conditions;
   - planned: the numbered list of planned final words is appended to the
     frozen instruction prompt;
   - format control: the same appended list shape with non-rhyming placeholder
     endings, to separate schema confusion from planning failure;
-  - baseline: the existing Stage-3 validation outputs without a list, paired
-    by opening and seed.
-- Generation: 120 openings, 2 seeds, the frozen recipe, and the recorded
+  - baseline: the existing verifier-DPO no-plan outputs at the paired seeds,
+    paired by opening and seed.
+- Generation: 120 openings, seeds 5200 and 5201 (the seeds of the existing
+  verifier-DPO baseline), the frozen recipe, and the recorded
   13-continuation-line stop rule. The planned list does not change the stop
   rule. The sealed test set is not accessed.
 - Adherence metrics, defined on the line-final word of each generated line:

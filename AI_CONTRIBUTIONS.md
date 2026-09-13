@@ -95,3 +95,9 @@ authorship of every implementation detail.
 | Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
 | --- | --- | --- | --- | --- |
 | OpenCode Go deepseek-v4.1-flash | unknown | Plan drafting, review revision, and rhyme lexicon | Wrote the plan-then-poem pilot plan, incorporated the independent review changes, implemented and built the V8 train rhyme lexicon (1,220 keys from 228,164 endings), and added its tests. | `docs/plan_then_poem_plan.md`, `src/sonnet_evaluation/rhyme_lexicon.py`, `data/metadata/rhyme_lexicon_v1.json` |
+
+## 2026-09-13 Plan-then-poem inference test implementation
+
+| Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
+| --- | --- | --- | --- | --- |
+| OpenCode Go deepseek-v4.1-flash | unknown | Implementation and tests | Wrote the planned and control prompt generation, the plan-adherence metrics, the scoring pipeline, and the tests under the reviewed plan. | `src/sonnet_analysis/plan_then_poem_validation.py`, `scripts/generate_plan_then_poem_validation.py`, `scripts/score_plan_then_poem_validation.py` |

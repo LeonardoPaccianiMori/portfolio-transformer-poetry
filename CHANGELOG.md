@@ -4,6 +4,9 @@ All notable public-release changes are documented here.
 
 ## [Unreleased]
 
+- Added the plan-then-poem inference test implementation: planned and format
+  control prompts, adherence metrics, scoring, and tests. No generation run
+  has started.
 - Added the reviewed plan-then-poem pilot plan and built the V8 train rhyme
   lexicon: 1,220 rhyme keys from 228,164 line endings. No generation run has
   started.

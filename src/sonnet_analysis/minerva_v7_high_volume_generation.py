@@ -66,7 +66,9 @@ def generate_batch(
         raise ValueError("generation batch must not be empty")
     resolved_device = torch.device(device)
     rendered = [
-        prompt_builder(tokenizer, str(job["prompt"]["opening_line"]))
+        str(job["rendered_prompt"])
+        if job.get("rendered_prompt")
+        else prompt_builder(tokenizer, str(job["prompt"]["opening_line"]))
         for job in jobs
     ]
     previous_side = getattr(tokenizer, "padding_side", "right")
