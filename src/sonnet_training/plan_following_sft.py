@@ -357,6 +357,7 @@ def train_plan_following_sft(
     merged_path = output_dir / "merged_model"
     merged = model.merge_and_unload()
     merged.save_pretrained(merged_path, safe_serialization=True)
+    tokenizer.save_pretrained(merged_path)
     merged_sha = None
     for candidate in sorted(merged_path.glob("model-*.safetensors")):
         merged_sha = candidate.name if merged_sha is None else merged_sha

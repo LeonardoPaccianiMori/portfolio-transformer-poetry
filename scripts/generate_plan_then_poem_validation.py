@@ -40,6 +40,12 @@ def parse_args() -> argparse.Namespace:
         help="load a merged model directly instead of Stage-3 plus an adapter",
     )
     parser.add_argument(
+        "--tokenizer-dir",
+        type=Path,
+        default=None,
+        help="tokenizer directory when the model directory has no tokenizer",
+    )
+    parser.add_argument(
         "--adapter",
         type=Path,
         default=ROOT / "artifacts/local/verifier_labelled_dpo/training/best_adapter.pt",
@@ -77,8 +83,9 @@ def main() -> None:
     device = torch.device("cuda:0")
     if args.model_dir is not None:
         model_dir = args.model_dir
+        tokenizer_dir = args.tokenizer_dir or model_dir
         tokenizer = AutoTokenizer.from_pretrained(
-            str(model_dir), local_files_only=True
+            str(tokenizer_dir), local_files_only=True
         )
         model = AutoModelForCausalLM.from_pretrained(
             str(model_dir),
