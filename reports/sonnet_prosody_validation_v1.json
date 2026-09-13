@@ -1,0 +1,4838 @@
+{
+  "schema_version": 1,
+  "ground_truth": {
+    "path": "data/metadata/sonnet_prosody_ground_truth_v1.json",
+    "poem_count": 30,
+    "line_count": 420,
+    "selection_rule": "Per author, keep the train sonnets in manifest order with exactly 14 clean lines, no square brackets, and no entry in excluded_poems; take the 15 items at positions round(i*(n-1)/14) for i=0..14.",
+    "annotation_method": "The rhyme classes were read from the line-final words of each selected poem and checked against the frozen text. They are a draft that the owner reviews with the flagged-line packet before the checker is used as a metric or reward."
+  },
+  "metre": {
+    "line_count": 420,
+    "correct": 366,
+    "incorrect": 0,
+    "uncertain": 54,
+    "definite": 366,
+    "accuracy": 1.0,
+    "coverage": 0.8714285714285714,
+    "gate_met": true,
+    "coverage_warning": true,
+    "uncertainty_reasons": {
+      "dialefe_possible": 13,
+      "hiatus_possible": 41,
+      "sdrucciolo_possible": 24,
+      "synaeresis_possible": 9
+    }
+  },
+  "rhyme": {
+    "poem_count": 30,
+    "exact_scheme_matches": 29,
+    "scheme_accuracy": 0.9666666666666667,
+    "soft_exact_scheme_matches": 30,
+    "soft_scheme_accuracy": 1.0,
+    "mean_pairwise_agreement": 0.9996336996336996,
+    "gate_met": true,
+    "mismatched_poems": [
+      {
+        "poem_id": "dante_xvi_amore_e_l_cor_gentil_sono_una_cosa",
+        "expected_scheme": "ABABABABCDECDE",
+        "observed_scheme": "ABABABABCDEFDE",
+        "pairwise_rhyme_agreement": 0.989010989010989
+      }
+    ]
+  },
+  "corpus": {
+    "poem_count": 1868,
+    "line_count": 26152,
+    "correct": 22781,
+    "incorrect": 230,
+    "uncertain": 3141,
+    "all_valid_poems": 490,
+    "verse_types": {
+      "piano": 21972,
+      "tronco": 808,
+      "sdrucciolo": 1
+    },
+    "uncertainty_reasons": {
+      "synaeresis_possible": 671,
+      "sdrucciolo_possible": 1470,
+      "hiatus_possible": 2097,
+      "dialefe_possible": 579,
+      "no_vowel_final_word": 4
+    },
+    "failure_examples": [
+      {
+        "poem_id": "giacomo_certo_me_par_che_far_dea",
+        "text": "sì che lo doti chi à malvagìa in core,",
+        "syllable_count": 12,
+        "verse_type": null
+      },
+      {
+        "poem_id": "dante_xiii_spesse_fiate_vegnomi_a_la_mente",
+        "text": "ch'Amor m'assale subitamente,",
+        "syllable_count": 10,
+        "verse_type": null
+      },
+      {
+        "poem_id": "dante_xxiv_sì_lungiamente_m_ha_tenuto_amore",
+        "text": "ed escon for chiamando",
+        "syllable_count": 7,
+        "verse_type": null
+      },
+      {
+        "poem_id": "dante_xxix_i_vegno_il_giorno_a_te_infinite_volte",
+        "text": "di me parlavi sì coralmente,",
+        "syllable_count": 10,
+        "verse_type": null
+      },
+      {
+        "poem_id": "dante_xliv_non_canoscendo_amico_vostro_nomo",
+        "text": "sì che di quanti saccio nessun par l'à;",
+        "syllable_count": 11,
+        "verse_type": null
+      },
+      {
+        "poem_id": "dante_xliv_non_canoscendo_amico_vostro_nomo",
+        "text": "ragionando, se ha senno, che ben par là;",
+        "syllable_count": 11,
+        "verse_type": null
+      },
+      {
+        "poem_id": "dante_xlix_lo_meo_servente_core",
+        "text": "Lo meo servente core",
+        "syllable_count": 8,
+        "verse_type": null
+      },
+      {
+        "poem_id": "dante_xlix_lo_meo_servente_core",
+        "text": "e Merzé d'altro lato",
+        "syllable_count": 7,
+        "verse_type": null
+      },
+      {
+        "poem_id": "dante_xlix_lo_meo_servente_core",
+        "text": "ché del vostro valore",
+        "syllable_count": 7,
+        "verse_type": null
+      },
+      {
+        "poem_id": "dante_xlix_lo_meo_servente_core",
+        "text": "mi tien già confortato",
+        "syllable_count": 7,
+        "verse_type": null
+      }
+    ]
+  },
+  "review_packet": {
+    "path": "reports/sonnet_prosody_review_packet_v1.csv",
+    "line_count": 100,
+    "categories": {
+      "metre_flagged": 54,
+      "scheme_mismatch": 11,
+      "sample": 35
+    }
+  },
+  "poems": [
+    {
+      "poem_id": "dante_i_a_ciascun_alma_presa_e_gentil_core",
+      "author": "Dante Alighieri",
+      "expected_scheme": "ABBAABBACDCCDC",
+      "observed_scheme": "ABBAABBACDCCDC",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDCCDC",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "A ciascun'alma presa e gentil core",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "nel cui cospetto ven lo dir presente,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "in ciò che mi rescrivan suo parvente,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "salute in lor segnor, cioè Amore.",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "dialefe_possible",
+            "hiatus_possible",
+            "sdrucciolo_possible"
+          ]
+        },
+        {
+          "line_number": 5,
+          "text": "Già eran quasi che atterzate l'ore",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "dialefe_possible",
+            "hiatus_possible"
+          ]
+        },
+        {
+          "line_number": 6,
+          "text": "del tempo che onne stella n'è lucente,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "quando m'apparve Amor subitamente,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "cui essenza membrar mi dà orrore.",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 9,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "dialefe_possible",
+            "hiatus_possible",
+            "sdrucciolo_possible"
+          ]
+        },
+        {
+          "line_number": 9,
+          "text": "Allegro mi sembrava Amor tenendo",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "meo core in mano, e ne le braccia avea",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 12,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "synaeresis_possible",
+            "sdrucciolo_possible"
+          ]
+        },
+        {
+          "line_number": 11,
+          "text": "madonna involta in un drappo dormendo.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "Poi la svegliava, e d'esto core ardendo",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "lei paventosa umilmente pascea:",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "appresso gir lo ne vedea piangendo.",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 12,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "synaeresis_possible",
+            "sdrucciolo_possible"
+          ]
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_viii_cavalcando_l_altr_ier_per_un_cammin",
+      "author": "Dante Alighieri",
+      "expected_scheme": "ABBAABBACDEEDC",
+      "observed_scheme": "ABBAABBACDEEDC",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDEEDC",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Cavalcando l'altr'ier per un cammino,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "pensoso de l'andar che mi sgradia,",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible"
+          ]
+        },
+        {
+          "line_number": 3,
+          "text": "trovai Amore in mezzo de la via",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 9,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible"
+          ]
+        },
+        {
+          "line_number": 4,
+          "text": "in abito leggier di peregrino.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "Ne la sembianza mi parea meschino,",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 12,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "synaeresis_possible",
+            "sdrucciolo_possible"
+          ]
+        },
+        {
+          "line_number": 6,
+          "text": "come avesse perduto segnoria;",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible",
+            "sdrucciolo_possible"
+          ]
+        },
+        {
+          "line_number": 7,
+          "text": "e sospirando pensoso venia,",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible"
+          ]
+        },
+        {
+          "line_number": 8,
+          "text": "per non veder la gente, a capo chino.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "Quando mi vide, mi chiamò per nome,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "e disse: \"Io vegno di lontana parte,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "ov'era lo tuo cor per mio volere;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "e recolo a servir novo piacere\".",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "Allora presi di lui sì gran parte,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "ch'elli disparve, e non m'accorsi come.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_xvi_amore_e_l_cor_gentil_sono_una_cosa",
+      "author": "Dante Alighieri",
+      "expected_scheme": "ABABABABCDECDE",
+      "observed_scheme": "ABABABABCDEFDE",
+      "scheme_match": false,
+      "observed_soft_scheme": "ABABABABCDECDE",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 0.989010989010989,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Amore e 'l cor gentil sono una cosa,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "sì come il saggio in suo dittare pone,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "e così esser l'un sanza l'altro osa",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "dialefe_possible"
+          ]
+        },
+        {
+          "line_number": 4,
+          "text": "com'alma razional sanza ragione.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "Falli natura quand'è amorosa,",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "dialefe_possible",
+            "hiatus_possible",
+            "sdrucciolo_possible"
+          ]
+        },
+        {
+          "line_number": 6,
+          "text": "Amor per sire e 'l cor per sua magione,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "dentro la qual dormendo si riposa",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "tal volta poca e tal lunga stagione.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "Bieltate appare in saggia donna poi,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 10,
+          "verse_type": "tronco",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "che piace a li occhi sì, che dentro al core",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "nasce un disio de la cosa piacente;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "e tanto dura talora in costui,",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible"
+          ]
+        },
+        {
+          "line_number": 13,
+          "text": "che fa svegliar lo spirito d'Amore.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "E simil face in donna omo valente.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_xxii_tanto_gentile_e_tanto_onesta_pare",
+      "author": "Dante Alighieri",
+      "expected_scheme": "ABBAABBACDEEDC",
+      "observed_scheme": "ABBAABBACDEEDC",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDEEDC",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Tanto gentile e tanto onesta pare",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "la donna mia quand'ella altrui saluta,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "ch'ogne lingua deven tremando muta,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "e li occhi no l'ardiscon di guardare.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "Ella si va, sentendosi laudare,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 6,
+          "text": "benignamente d'umiltà vestuta;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "e par che sia una cosa venuta",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible",
+            "sdrucciolo_possible"
+          ]
+        },
+        {
+          "line_number": 8,
+          "text": "da cielo in terra a miracol mostrare.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "Mostrasi sì piacente a chi la mira,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "che dà per li occhi una dolcezza al core,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "che 'ntender no la può chi no la prova:",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "e par che de la sua labbia si mova",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "un spirito soave pien d'amore,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "che va dicendo a l'anima: sospira",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_xxx_era_venuta_ne_la_mente_mia",
+      "author": "Dante Alighieri",
+      "expected_scheme": "ABBAABBACDEDCE",
+      "observed_scheme": "ABBAABBACDEDCE",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDEDCE",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Era venuta ne la mente mia",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 10,
+          "verse_type": "tronco",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "quella donna gentil che piange Amore,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "entro 'n quel punto che lo suo valore",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "vi trasse a riguardar quel ch'eo facia.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "Amor, che ne la mente la sentia,",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible"
+          ]
+        },
+        {
+          "line_number": 6,
+          "text": "s'era svegliato nel destrutto core,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "e diceva a' sospiri: \"Andate fore\";",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "per che ciascun dolente si partia.",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible"
+          ]
+        },
+        {
+          "line_number": 9,
+          "text": "Piangendo uscivan for de lo mio petto",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "con una voce che sovente mena",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "le lagrime dogliose a li occhi tristi.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "Ma quei che n'uscian for com maggior pena,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "venian dicendo: \"Oi nobile intelletto,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "oggi fa l'anno che nel ciel salisti\".",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_xxxiv_gentil_pensero_che_parla_di_vui",
+      "author": "Dante Alighieri",
+      "expected_scheme": "ABBAABBACDEDCE",
+      "observed_scheme": "ABBAABBACDEDCE",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDEDCE",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Gentil pensero che parla di vui",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 10,
+          "verse_type": "tronco",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "sen vene a dimorar meco sovente,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "e ragiona d'amor sì dolcemente,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "che face consentir lo core in lui.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 10,
+          "verse_type": "tronco",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "L'anima dice al cor: \"Chi è costui,",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 9,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "dialefe_possible",
+            "hiatus_possible"
+          ]
+        },
+        {
+          "line_number": 6,
+          "text": "che vene a consolar la nostra mente,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "ed è la sua vertù tanto possente,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "ch'altro penser non lascia star con nui?\"",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 10,
+          "verse_type": "tronco",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "Ei le risponde: \"Oi anima pensosa,",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible",
+            "sdrucciolo_possible"
+          ]
+        },
+        {
+          "line_number": 10,
+          "text": "questi è uno spiritel novo d'amore,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "che reca innanzi me li suoi desiri;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "e la sua vita, e tutto 'l suo valore,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "mosse de li occhi di quella pietosa",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "che si turbava de' vostri martiri \".",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_xl_savete_giudicar_vostra_ragione",
+      "author": "Dante Alighieri",
+      "expected_scheme": "ABABABABCDCDCD",
+      "observed_scheme": "ABABABABCDCDCD",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABABABABCDCDCD",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Savete giudicar vostra ragione,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "o om che pregio di saver portate;",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible",
+            "sdrucciolo_possible"
+          ]
+        },
+        {
+          "line_number": 3,
+          "text": "per che, vitando aver con voi quistione,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "com so respondo a le parole ornate.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "Disio verace, u' rado fin si pone,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 6,
+          "text": "che mosse di valore o di bieltate,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "imagina l'amica oppinione",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible",
+            "sdrucciolo_possible"
+          ]
+        },
+        {
+          "line_number": 8,
+          "text": "significasse il don che pria narrate.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "Lo vestimento, aggiate vera spene",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "che fia, da lei cui disiate, amore:",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible",
+            "sdrucciolo_possible"
+          ]
+        },
+        {
+          "line_number": 11,
+          "text": "e 'n ciò provide vostro spirto bene;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "dico, pensando l'ovra sua d'allore.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "La figura che già morta sorvene",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "è la fermezza ch'averà nel core.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_xlv_lasso_lo_dol_che_più_mi_dole_e_serra",
+      "author": "Dante Alighieri",
+      "expected_scheme": "ABBAABBACDEEDC",
+      "observed_scheme": "ABBAABBACDEEDC",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDEEDC",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Lasso! lo dol che più mi dole e serra",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "è ringraziar, ben non sapendo como;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "per me più saggio converriasi, como",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "vostro saver, ched ogni quistion serra.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "Del dol che manta gente dite s'erra",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 6,
+          "text": "è tal voler qual voi lor non ha como;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "el proprio sì disio saver dol como,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "di ciò sovente, dico, essendo a serra.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "Però pregh'eo ch'argomentiate, saggio,",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 12,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "synaeresis_possible"
+          ]
+        },
+        {
+          "line_number": 10,
+          "text": "d'autorità mostrando ciò che porta",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "di voi la 'mpresa, acciò che sia più chiara;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "e poi parrà, parlando di ciò, chiara,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "quale più chiarirem dol pena porta,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "d'ello assegnando, amico, prov'e saggio.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_lv_dante_un_sospiro_messaggier_del_core",
+      "author": "Dante Alighieri",
+      "expected_scheme": "ABBAABBACDEEDC",
+      "observed_scheme": "ABBAABBACDEEDC",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDEEDC",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Dante, un sospiro messaggier del core",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "subitamente m'assalì in dormendo,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "e io mi disvegliai allor temendo",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 9,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible",
+            "sdrucciolo_possible"
+          ]
+        },
+        {
+          "line_number": 4,
+          "text": "ched e' non fosse in compagnia d'Amore.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "Poi mi girai, e vidi il servitore",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible",
+            "sdrucciolo_possible"
+          ]
+        },
+        {
+          "line_number": 6,
+          "text": "di monna Lagia, che venia dicendo:",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "\"Aiutami, Pietà!\"; sì che piangendo",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "i' presi di Merzé tanto valore,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "ch'i' giunsi Amore, ch'affilava i dardi.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "Allor lo domandai del suo tormento;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "ed elli mi rispuose in questa guisa:",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "\"Dì al servente che la donna è prisa,",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "dialefe_possible"
+          ]
+        },
+        {
+          "line_number": 13,
+          "text": "e tengola per far suo piacimento;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "e se nol crede, dì ch'a li occhi guardi\".",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_lxv_de_gli_occhi_de_la_mia_donna_si_move",
+      "author": "Dante Alighieri",
+      "expected_scheme": "ABBAABBACDEDCE",
+      "observed_scheme": "ABBAABBACDEDCE",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDEDCE",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "De gli occhi de la mia donna si move",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "un lume sì gentil, che dove appare",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "si veggion cose ch'uom non pò ritrare",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "per loro altezza e per lor esser nove:",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "e de' suoi razzi sovra 'l meo cor piove",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 12,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "synaeresis_possible"
+          ]
+        },
+        {
+          "line_number": 6,
+          "text": "tanta paura, che mi fa tremare,",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible"
+          ]
+        },
+        {
+          "line_number": 7,
+          "text": "e dicer \"Qui non voglio mai tornare\";",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "ma poscia perdo tutte le mie prove,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "e tornomi colà dov'io son vinto,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "riconfortando gli occhi paurusi,",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible",
+            "sdrucciolo_possible"
+          ]
+        },
+        {
+          "line_number": 11,
+          "text": "che sentier prima questo gran valore.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "Quando son giunto, lasso!, ed e' son chiusi;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "lo disio che li mena quivi è stinto:",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "però proveggia a lo mio stato Amore.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_lxxiii_chi_udisse_tossir_la_mal_fatata",
+      "author": "Dante Alighieri",
+      "expected_scheme": "ABABABABCDECDE",
+      "observed_scheme": "ABABABABCDECDE",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABABABABCDECDE",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Chi udisse tossir la mal fatata",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "dialefe_possible"
+          ]
+        },
+        {
+          "line_number": 2,
+          "text": "moglie di Bicci vocato Forese,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "potrebbe dir ch'ell'ha forse vernata",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "ove si fa 'l cristallo in quel paese.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "Di mezzo agosto la truovi infreddata;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 6,
+          "text": "or sappi che de' far d'ogni altro mese!",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "E non le val perché dorma calzata,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "merzé del copertoio c'ha cortonese.",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 12,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "sdrucciolo_possible"
+          ]
+        },
+        {
+          "line_number": 9,
+          "text": "La tosse, 'l freddo e l'altra mala voglia",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "no l'addovien per omor ch'abbia vecchi",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "ma per difetto ch'ella sente al nido.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "Piange la madre, c'ha più d'una doglia,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "dicendo: \"Lassa, che per fichi secchi",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "messa l'avre' 'n casa del conte Guido!\".",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_lxxxiv_parole_mie_che_per_lo_mondo_siete",
+      "author": "Dante Alighieri",
+      "expected_scheme": "ABBAABBACDCCDC",
+      "observed_scheme": "ABBAABBACDCCDC",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDCCDC",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Parole mie che per lo mondo siete,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "voi che nasceste poi ch'io cominciai",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible",
+            "sdrucciolo_possible"
+          ]
+        },
+        {
+          "line_number": 3,
+          "text": "a dir per quella donna in cui errai",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 9,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "dialefe_possible",
+            "hiatus_possible"
+          ]
+        },
+        {
+          "line_number": 4,
+          "text": "\"Voi che 'ntendendo il terzo ciel movete\".",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "andatevene a lei, che la sapete,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 6,
+          "text": "chiamando sì ch'ell'oda i vostri guai;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 10,
+          "verse_type": "tronco",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "ditele: \"Noi siam vostre, ed unquemai",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible",
+            "sdrucciolo_possible"
+          ]
+        },
+        {
+          "line_number": 8,
+          "text": "più che noi siamo non ci vederete\".",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "Con lei non state, ché non v'è Amore;",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "dialefe_possible",
+            "hiatus_possible",
+            "sdrucciolo_possible"
+          ]
+        },
+        {
+          "line_number": 10,
+          "text": "ma gite a torno in abito dolente",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "a guisa de le vostre antiche sore.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "Quando trovate donna di valore,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "gittatelevi a' piedi umilemente,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "dicendo: \"A voi dovem noi fare onore\".",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_xciv_novellamente_amor_mi_giura_e_dice",
+      "author": "Dante Alighieri",
+      "expected_scheme": "ABBAABBACDDDCC",
+      "observed_scheme": "ABBAABBACDDDCC",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDDDCC",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Novellamente Amor mi giura e dice",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "d'una donna gentil, s'i' la riguardo,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "che per vertù de lo su' novo sguardo",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "ella sarà del meo cor beatrice.",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 12,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "synaeresis_possible",
+            "sdrucciolo_possible"
+          ]
+        },
+        {
+          "line_number": 5,
+          "text": "Io ch'ho provato po' come disdice,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 6,
+          "text": "quando vede imbastito lo suo dardo,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "ciò che promette, a morte mi do tardo,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "ch'i' non potrò contraffar la fenice.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "S'io levo gli occhi, e del suo colpo perde",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "lo core mio quel poco che di vita",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "gli rimase d'un'altra sua ferita.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "Che farò, Dante? ch'Amor pur m'invita,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "e d'altra parte il tremor mi disperde",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "che peggio che lo scur no mi sia 'l verde.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_cxi_io_sono_stato_con_amore_insieme",
+      "author": "Dante Alighieri",
+      "expected_scheme": "ABBAABBACDCDCD",
+      "observed_scheme": "ABBAABBACDCDCD",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDCDCD",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Io sono stato con Amore insieme",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "de la circulazion del sol mia nona,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "e so com'egli affrena e come sprona",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "e come sotto lui si ride e geme.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "Chi ragione o virtù contra gli sprieme,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 6,
+          "text": "fa come que' che 'n la tempesta sona",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "credendo far colà dove si tona",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "esser le guerre de' vapori sceme.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "Però nel cerchio de la sua palestra",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "liber arbitrio già mai non fu franco,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "sì che consiglio invan vi si balestra.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "Ben può con nuovi spron punger lo fianco,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "e qual che sia 'l piacer ch'ora n'addestra,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "seguitar si convien, se l'altro è stanco.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_cxviii_lisetta_voi_de_la_vergogna_storre",
+      "author": "Dante Alighieri",
+      "expected_scheme": "ABBAABBACDCCDC",
+      "observed_scheme": "ABBAABBACDCCDC",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDCCDC",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Lisetta voi de la vergogna storre",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "e dargli guida nel camin dolente,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "che la conduca fuor di cruda gente",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "en forza di colui che tosto acorre.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "Beltà di donna sì se vuole opporre",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 6,
+          "text": "alla schifezza che di viltà sente:",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "come la voce fusse conoscente",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "dirollo, poi ch'Amor me lo fa sporre.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "Lo sir che guarda il poggio d'esta sede,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "nanzi che dentro al nostro signor perga,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "al coridor ch'è giunto poco crede;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "e quando venne al porto di mercede,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "la voce disse: \"Alla rocca non s'erga",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "infin a tanto che 'l sir nol concede\".",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_voi_ch_ascoltate_in_rime_sparse_il_suono",
+      "author": "Francesco Petrarca",
+      "expected_scheme": "ABBAABBACDECDE",
+      "observed_scheme": "ABBAABBACDECDE",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDECDE",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Voi ch'ascoltate in rime sparse il suono",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "di quei sospiri ond'io nudriva 'l core",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "in sul mio primo giovenile errore",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "quand'era in parte altr'uom da quel ch'i' sono,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "del vario stile in ch'io piango et ragiono",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 6,
+          "text": "fra le vane speranze e 'l van dolore,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "ove sia chi per prova intenda amore,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "spero trovar pietà, nonché perdono.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "Ma ben veggio or sì come al popol tutto",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "favola fui gran tempo, onde sovente",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "di me medesmo meco mi vergogno;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "et del mio vaneggiar vergogna è 'l frutto,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "e 'l pentersi, e 'l conoscer chiaramente",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "che quanto piace al mondo è breve sogno.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_mille_fïate_o_dolce_mia_guerrera",
+      "author": "Francesco Petrarca",
+      "expected_scheme": "ABBAABBACDEDCE",
+      "observed_scheme": "ABBAABBACDEDCE",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDEDCE",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Mille fïate, o dolce mia guerrera,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "per aver co' begli occhi vostri pace",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "v'aggio proferto il cor; mâ voi non piace",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "mirar sí basso colla mente altera.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "Et se di lui fors'altra donna spera,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 6,
+          "text": "vive in speranza debile et fallace:",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "mio, perché sdegno ciò ch'a voi dispiace,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "esser non può già mai cosí com'era.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "Or s'io lo scaccio, et e' non trova in voi",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 10,
+          "verse_type": "tronco",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "ne l'exilio infelice alcun soccorso,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "né sa star sol, né gire ov'altri il chiama,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "poria smarrire il suo natural corso:",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "che grave colpa fia d'ambeduo noi,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 10,
+          "verse_type": "tronco",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "et tanto piú de voi, quanto piú v'ama.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_perch_io_t_abbia_guardato_di_menzogna",
+      "author": "Francesco Petrarca",
+      "expected_scheme": "ABBAABBACDEDCE",
+      "observed_scheme": "ABBAABBACDEDCE",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDEDCE",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Perch'io t'abbia guardato di menzogna",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "a mio podere et honorato assai,",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible"
+          ]
+        },
+        {
+          "line_number": 3,
+          "text": "ingrata lingua, già però non m'ài",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible"
+          ]
+        },
+        {
+          "line_number": 4,
+          "text": "renduto honor, ma facto ira et vergogna:",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "ché quando piú 'l tuo aiuto mi bisogna",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 6,
+          "text": "per dimandar mercede, allor ti stai",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 10,
+          "verse_type": "tronco",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "sempre piú fredda, et se parole fai,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 10,
+          "verse_type": "tronco",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "son imperfecte, et quasi d'uom che sogna.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "Lagrime triste, et voi tutte le notti",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "m'accompagnate, ov'io vorrei star solo,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "poi fuggite dinanzi a la mia pace;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "et voi sí pronti a darmi angoscia et duolo,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "sospiri, allor traete lenti et rotti:",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "sola la vista mia del cor non tace.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_poi_che_mia_speme_è_lunga_a_venir_troppo",
+      "author": "Francesco Petrarca",
+      "expected_scheme": "ABBAABBACDEDCE",
+      "observed_scheme": "ABBAABBACDEDCE",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDEDCE",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Poi che mia speme è lunga a venir troppo,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "et de la vita il trappassar sí corto,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "vorreimi a miglior tempo esser accorto,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "per fuggir dietro piú che di galoppo;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "et fuggo anchor cosí debile et zoppo",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 6,
+          "text": "da l'un de' lati, ove 'l desio m'à storto:",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "securo omai, ma pur nel viso porto",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "segni ch'i'ò presi a l'amoroso intoppo.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "Ond'io consiglio: Voi che siete in via,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 10,
+          "verse_type": "tronco",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "volgete i passi; et voi ch'Amore avampa,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "non v'indugiate su l'extremo ardore;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "ché perch'io viva de mille un no scampa;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "era ben forte la nemica mia,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 10,
+          "verse_type": "tronco",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "et lei vid'io ferita in mezzo 'l core.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_qui_dove_mezzo_son_sennuccio_mio",
+      "author": "Francesco Petrarca",
+      "expected_scheme": "ABBAABBACDECDE",
+      "observed_scheme": "ABBAABBACDECDE",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDECDE",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Qui dove mezzo son, Sennuccio mio,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 10,
+          "verse_type": "tronco",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "(cosí ci foss'io intero, et voi contento),",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "venni fuggendo la tempesta e 'l vento",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "c'ànno súbito fatto il tempo rio.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 10,
+          "verse_type": "tronco",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "Qui son securo: et vo' vi dir perch'io",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible"
+          ]
+        },
+        {
+          "line_number": 6,
+          "text": "non come soglio il folgorar pavento,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "et perché mitigato, nonché spento,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "né-micha trovo il mio ardente desio.",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible"
+          ]
+        },
+        {
+          "line_number": 9,
+          "text": "Tosto che giunto a l'amorosa reggia",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "vidi onde nacque l'aura dolce et pura",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "ch'acqueta l'aere, et mette i tuoni in bando,",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 12,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "synaeresis_possible"
+          ]
+        },
+        {
+          "line_number": 12,
+          "text": "Amor ne l'alma, ov'ella signoreggia,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "raccese 'l foco, et spense la paura:",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible"
+          ]
+        },
+        {
+          "line_number": 14,
+          "text": "che farrei dunque gli occhi suoi guardando?",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_quando_l_voler_che_con_duo_sproni_ardenti",
+      "author": "Francesco Petrarca",
+      "expected_scheme": "ABBAABBACDECDE",
+      "observed_scheme": "ABBAABBACDECDE",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDECDE",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Quando 'l voler che con duo sproni ardenti,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "et con un duro fren, mi mena et regge",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "trapassa ad or ad or l'usata legge",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "per far in parte i miei spirti contenti,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "trova chi le paure et gli ardimenti",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible",
+            "sdrucciolo_possible"
+          ]
+        },
+        {
+          "line_number": 6,
+          "text": "del cor profondo ne la fronte legge,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "et vede Amor che sue imprese corregge",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "folgorar ne' turbati occhi pungenti.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "Onde, come collui che 'l colpo teme",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "di Giove irato, si ritragge indietro:",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "ché gran temenza gran desire affrena.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "Ma freddo foco et paventosa speme",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "de l'alma che traluce come un vetro",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "talor sua dolce vista rasserena.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_giunto_m_à_amor_fra_belle_et_crude_braccia",
+      "author": "Francesco Petrarca",
+      "expected_scheme": "ABBAABBACDECDE",
+      "observed_scheme": "ABBAABBACDECDE",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDECDE",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Giunto m'à Amor fra belle et crude braccia,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "che m'ancidono a torto; et s'io mi doglio,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "doppia 'l martir; onde pur, com'io soglio,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "il meglio è ch'io mi mora amando, et taccia:",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "ché poria questa il Ren qualor piú agghiaccia",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 6,
+          "text": "arder con gli occhi, et rompre ogni aspro scoglio;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "et à sí egual a le bellezze orgoglio,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "che di piacer altrui par che le spiaccia.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "Nulla posso levar io per mi' 'ngegno",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "del bel diamante, ond'ell'à il cor sí duro;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "l'altro è d'un marmo che si mova et spiri:",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "ned ella a me per tutto 'l suo disdegno",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "torrà già mai, né per sembiante oscuro,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "le mie speranze, e i miei dolci sospiri.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_pasco_la_mente_d_un_sí_nobil_cibo",
+      "author": "Francesco Petrarca",
+      "expected_scheme": "ABBAABBACDCDCD",
+      "observed_scheme": "ABBAABBACDCDCD",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDCDCD",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Pasco la mente d'un sí nobil cibo,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "ch'ambrosia et nectar non invidio a Giove,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "ché, sol mirando, oblio ne l'alma piove",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "d'ogni altro dolce, et Lethe al fondo bibo.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "Talor ch'odo dir cose, e 'n cor describo,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 6,
+          "text": "per che da sospirar sempre ritrove,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "rapto per man d'Amor, né so ben dove,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "doppia dolcezza in un volto delibo:",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "ché quella voce infin al ciel gradita",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "suona in parole sí leggiadre et care,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "che pensar no 'l poria chi non l'à udita.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "Allor inseme, in men d'un palmo, appare",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "visibilmente quanto in questa vita",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "arte, ingegno et Natura e 'l Ciel pò fare.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_il_cantar_novo_e_l_pianger_delli_augelli",
+      "author": "Francesco Petrarca",
+      "expected_scheme": "ABBAABBACDCDCD",
+      "observed_scheme": "ABBAABBACDCDCD",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDCDCD",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Il cantar novo e 'l pianger delli augelli",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "in sul dí fanno retenir le valli,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "e 'l mormorar de' liquidi cristalli",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "giú per lucidi, freschi rivi et snelli.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "Quella ch'à neve il vòlto, oro i capelli,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 6,
+          "text": "nel cui amor non fur mai inganni né falli,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "destami al suon delli amorosi balli,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "pettinando al suo vecchio i bianchi velli.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "Cosí mi sveglio a salutar l'aurora,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "e 'l sol ch'è seco, et piú l'altro ond'io fui",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 10,
+          "verse_type": "tronco",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "ne' primi anni abagliato, et son anchora.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "I' gli ò veduti alcun giorno ambedui",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible",
+            "sdrucciolo_possible"
+          ]
+        },
+        {
+          "line_number": 13,
+          "text": "levarsi inseme, e 'n un punto e 'n un' hora",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "quel far le stelle, et questi sparir lui.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 10,
+          "verse_type": "tronco",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_mira_quel_colle_o_stanco_mio_cor_vago",
+      "author": "Francesco Petrarca",
+      "expected_scheme": "ABBAABBACDECDE",
+      "observed_scheme": "ABBAABBACDECDE",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDECDE",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "- Mira quel colle, o stanco mio cor vago:",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "ivi lasciammo ier lei, ch'alcun tempo ebbe",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "qualche cura di noi, et le ne 'ncrebbe,",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "dialefe_possible",
+            "hiatus_possible"
+          ]
+        },
+        {
+          "line_number": 4,
+          "text": "or vorria trar de li occhi nostri un lago.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "Torna tu in là, ch'io d'esser sol m'appago;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 6,
+          "text": "tenta se forse anchor tempo sarebbe",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "da scemar nostro duol, che 'nfin qui crebbe,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "o del mio mal participe et presago.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "- Or tu ch'ài posto te stesso in oblio",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible"
+          ]
+        },
+        {
+          "line_number": 10,
+          "text": "et parli al cor pur come e' fusse or teco,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "miser, et pien di pensier' vani et sciocchi!",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "ch'al dipartir dal tuo sommo desio",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible"
+          ]
+        },
+        {
+          "line_number": 13,
+          "text": "tu te n'andasti, e' si rimase seco,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "et si nascose dentro a' suoi belli occhi.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_che_fai_che_pensi_che_pur_dietro_guardi",
+      "author": "Francesco Petrarca",
+      "expected_scheme": "ABBAABBACDCDCD",
+      "observed_scheme": "ABBAABBACDCDCD",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDCDCD",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Che fai? Che pensi? che pur dietro guardi",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "nel tempo, che tornar non pote omai?",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible"
+          ]
+        },
+        {
+          "line_number": 3,
+          "text": "Anima sconsolata, che pur vai",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 10,
+          "verse_type": "tronco",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "giungnendo legne al foco ove tu ardi?",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "dialefe_possible",
+            "hiatus_possible"
+          ]
+        },
+        {
+          "line_number": 5,
+          "text": "Le soavi parole e i dolci sguardi",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 6,
+          "text": "ch'ad un ad un descritti et depinti ài,",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible"
+          ]
+        },
+        {
+          "line_number": 7,
+          "text": "son levati de terra; et è, ben sai,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 10,
+          "verse_type": "tronco",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "qui ricercarli intempestivo et tardi.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "Deh non rinovellar quel che n'ancide",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "non seguir piú penser vago, fallace,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "ma saldo et certo, ch'a buon fin ne guide.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "Cerchiamo 'l ciel, se qui nulla ne piace:",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "ché mal per noi quella beltà si vide,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "se viva et morta ne devea tôr pace.",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 12,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "synaeresis_possible"
+          ]
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_due_gran_nemiche_inseme_erano_agiunte",
+      "author": "Francesco Petrarca",
+      "expected_scheme": "ABBAABBACDEDCE",
+      "observed_scheme": "ABBAABBACDEDCE",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDEDCE",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Due gran nemiche inseme erano agiunte,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "Bellezza et Honestà, con pace tanta",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "che mai rebellïon l'anima santa",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "non sentí poi ch'a star seco fur giunte;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "et or per Morte son sparse et disgiunte:",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 6,
+          "text": "l'una è nel ciel, che se ne gloria et vanta;",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "l'altra sotterra, che ' begli occhi amanta,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "onde uscîr già tant'amorose punte.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "L'atto soave, e 'l parlar saggio humile",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "che movea d'alto loco, e 'l dolce sguardo",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 12,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "synaeresis_possible"
+          ]
+        },
+        {
+          "line_number": 11,
+          "text": "che piagava il mio core (anchor l'acenna),",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "sono spariti; et s'al seguir son tardo,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "forse averrà che 'l bel nome gentile",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "consecrerò con questa stanca penna.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_tempo_era_omai_da_trovar_pace_o_triegua",
+      "author": "Francesco Petrarca",
+      "expected_scheme": "ABBAABBACDEDCE",
+      "observed_scheme": "ABBAABBACDEDCE",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDEDCE",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Tempo era omai da trovar pace o triegua",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "di tanta guerra, et erane in via forse,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "se non che' lieti passi indietro torse",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "chi le disaguaglianze nostre adegua:",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "ché, come nebbia al vento si dilegua,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 6,
+          "text": "cosí sua vita súbito trascorse",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "quella che già co' begli occhi mi scorse,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "et or conven che col penser la segua.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "Poco avev'a 'ndugiar, ché gli anni e 'l pelo",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "cangiavano i costumi: onde sospetto",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "non fôra il ragionar del mio mal seco.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "Con che honesti sospiri l'avrei detto",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "le mie lunghe fatiche, ch'or dal cielo",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "vede, son certo, et duolsene anchor meco!",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_dolce_mio_caro_et_precïoso_pegno",
+      "author": "Francesco Petrarca",
+      "expected_scheme": "ABBAABBACDCDCD",
+      "observed_scheme": "ABBAABBACDCDCD",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDCDCD",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "Dolce mio caro et precïoso pegno,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "che natura mi tolse, e 'l Ciel mi guarda,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "deh come è tua pietà ver' me sí tarda,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "o usato di mia vita sostegno?",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible",
+            "sdrucciolo_possible"
+          ]
+        },
+        {
+          "line_number": 5,
+          "text": "Già suo' tu far il mio sonno almen degno",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 6,
+          "text": "de la tua vista, et or sostien' ch'i' arda",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "dialefe_possible",
+            "hiatus_possible"
+          ]
+        },
+        {
+          "line_number": 7,
+          "text": "senz'alcun refrigerio: et chi 'l retarda?",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "Pur lassú non alberga ira né sdegno:",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "onde qua giuso un ben pietoso core",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "talor si pasce delli altrui tormenti,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "sí ch'elli è vinto nel suo regno Amore.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "Tu che dentro mi vedi, e 'l mio mal senti,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "et sola puoi finir tanto dolore,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "con la tua ombra acqueta i miei lamenti.",
+          "expected": "hendecasyllable",
+          "observed": null,
+          "syllable_count": 10,
+          "verse_type": null,
+          "uncertain": true,
+          "uncertainty_reasons": [
+            "hiatus_possible",
+            "sdrucciolo_possible"
+          ]
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_i_vo_piangendo_i_miei_passati_tempi",
+      "author": "Francesco Petrarca",
+      "expected_scheme": "ABBAABBACDCDCD",
+      "observed_scheme": "ABBAABBACDCDCD",
+      "scheme_match": true,
+      "observed_soft_scheme": "ABBAABBACDCDCD",
+      "soft_scheme_match": true,
+      "pairwise_rhyme_agreement": 1.0,
+      "metre": [
+        {
+          "line_number": 1,
+          "text": "I' vo piangendo i miei passati tempi",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 2,
+          "text": "i quai posi in amar cosa mortale,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 3,
+          "text": "senza levarmi a volo, abbiend'io l'ale,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 4,
+          "text": "per dar forse di me non bassi exempi.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 5,
+          "text": "Tu che vedi i miei mali indegni et empi,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 6,
+          "text": "Re del cielo invisibile immortale,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 7,
+          "text": "soccorri a l'alma disvïata et frale,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 8,
+          "text": "e 'l suo defecto di tua gratia adempi:",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 9,
+          "text": "sí che, s'io vissi in guerra et in tempesta,",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 10,
+          "text": "mora in pace et in porto; et se la stanza",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 11,
+          "text": "fu vana, almen sia la partita honesta.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 12,
+          "text": "A quel poco di viver che m'avanza",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 13,
+          "text": "et al morir, degni esser Tua man presta:",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        },
+        {
+          "line_number": 14,
+          "text": "Tu sai ben che 'n altrui non ò speranza.",
+          "expected": "hendecasyllable",
+          "observed": true,
+          "syllable_count": 11,
+          "verse_type": "piano",
+          "uncertain": false,
+          "uncertainty_reasons": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2957 @@
+{
+  "schema_version": 1,
+  "selection_rule": "Per author, keep the train sonnets in manifest order with exactly 14 clean lines, no square brackets, and no entry in excluded_poems; take the 15 items at positions round(i*(n-1)/14) for i=0..14.",
+  "annotation_method": "The rhyme classes were read from the line-final words of each selected poem and checked against the frozen text. They are a draft that the owner reviews with the flagged-line packet before the checker is used as a metric or reward.",
+  "source_manifest": "data/metadata/sonnets_expanded_v6_manifest.csv",
+  "source_split": "train",
+  "excluded_poems": [
+    {
+      "poem_id": "dante_lviii_deh_violetta_che_in_ombra_d_amore",
+      "reason": "The source page mixes hendecasyllables with two settenari; the poem is not a pure sonnet, so it is not ground truth for hendecasyllable metre."
+    }
+  ],
+  "poem_count": 30,
+  "line_count": 420,
+  "poems": [
+    {
+      "poem_id": "dante_i_a_ciascun_alma_presa_e_gentil_core",
+      "author": "Dante Alighieri",
+      "title_or_first_line": "I - A ciascun'alma presa e gentil core",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Rime_(Dante)/I_-_A_ciascun%27alma_presa_e_gentil_core",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/dante_i_a_ciascun_alma_presa_e_gentil_core.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "c4b6a6d455e76c9740c3d1072370aa94e33382d65dcd937b3ca12668fb6694a7",
+      "expected_scheme": "ABBAABBACDCCDC",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "A ciascun'alma presa e gentil core",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "nel cui cospetto ven lo dir presente,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "in ciò che mi rescrivan suo parvente,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "salute in lor segnor, cioè Amore.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "Già eran quasi che atterzate l'ore",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "del tempo che onne stella n'è lucente,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "quando m'apparve Amor subitamente,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "cui essenza membrar mi dà orrore.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "Allegro mi sembrava Amor tenendo",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "meo core in mano, e ne le braccia avea",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "madonna involta in un drappo dormendo.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 12,
+          "text": "Poi la svegliava, e d'esto core ardendo",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 13,
+          "text": "lei paventosa umilmente pascea:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 14,
+          "text": "appresso gir lo ne vedea piangendo.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_viii_cavalcando_l_altr_ier_per_un_cammin",
+      "author": "Dante Alighieri",
+      "title_or_first_line": "VIII - Cavalcando l'altr'ier per un cammin",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Rime_(Dante)/VIII_-_Cavalcando_l%27altr%27ier_per_un_cammin",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/dante_viii_cavalcando_l_altr_ier_per_un_cammin.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "8a58fe571ce5d77cb75a9f1c6cc8f6e54ef0bf254aa0cf00fe8a6f56e8a836b5",
+      "expected_scheme": "ABBAABBACDEEDC",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Cavalcando l'altr'ier per un cammino,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "pensoso de l'andar che mi sgradia,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "trovai Amore in mezzo de la via",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "in abito leggier di peregrino.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "Ne la sembianza mi parea meschino,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "come avesse perduto segnoria;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "e sospirando pensoso venia,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "per non veder la gente, a capo chino.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "Quando mi vide, mi chiamò per nome,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "e disse: \"Io vegno di lontana parte,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "ov'era lo tuo cor per mio volere;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        },
+        {
+          "line_number": 12,
+          "text": "e recolo a servir novo piacere\".",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        },
+        {
+          "line_number": 13,
+          "text": "Allora presi di lui sì gran parte,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 14,
+          "text": "ch'elli disparve, e non m'accorsi come.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_xvi_amore_e_l_cor_gentil_sono_una_cosa",
+      "author": "Dante Alighieri",
+      "title_or_first_line": "XVI - Amore e 'l cor gentil sono una cosa",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Rime_(Dante)/XVI_-_Amore_e_%27l_cor_gentil_sono_una_cosa",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/dante_xvi_amore_e_l_cor_gentil_sono_una_cosa.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "6cdec4d3a91ce96b12c0c2c2aaf5597b01508d94e87dd2c336de4fab85db37d7",
+      "expected_scheme": "ABABABABCDECDE",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Amore e 'l cor gentil sono una cosa,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "sì come il saggio in suo dittare pone,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "e così esser l'un sanza l'altro osa",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 4,
+          "text": "com'alma razional sanza ragione.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 5,
+          "text": "Falli natura quand'è amorosa,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "Amor per sire e 'l cor per sua magione,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "dentro la qual dormendo si riposa",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 8,
+          "text": "tal volta poca e tal lunga stagione.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 9,
+          "text": "Bieltate appare in saggia donna poi,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "che piace a li occhi sì, che dentro al core",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "nasce un disio de la cosa piacente;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        },
+        {
+          "line_number": 12,
+          "text": "e tanto dura talora in costui,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 13,
+          "text": "che fa svegliar lo spirito d'Amore.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 14,
+          "text": "E simil face in donna omo valente.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_xxii_tanto_gentile_e_tanto_onesta_pare",
+      "author": "Dante Alighieri",
+      "title_or_first_line": "XXII - Tanto gentile e tanto onesta pare",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Rime_(Dante)/XXII_-_Tanto_gentile_e_tanto_onesta_pare",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/dante_xxii_tanto_gentile_e_tanto_onesta_pare.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "6159d057d725201b6c8ea5aab41b0a63cdd5a37478c14b1e7d5468570dca27ba",
+      "expected_scheme": "ABBAABBACDEEDC",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Tanto gentile e tanto onesta pare",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "la donna mia quand'ella altrui saluta,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "ch'ogne lingua deven tremando muta,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "e li occhi no l'ardiscon di guardare.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "Ella si va, sentendosi laudare,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "benignamente d'umiltà vestuta;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "e par che sia una cosa venuta",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "da cielo in terra a miracol mostrare.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "Mostrasi sì piacente a chi la mira,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "che dà per li occhi una dolcezza al core,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "che 'ntender no la può chi no la prova:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        },
+        {
+          "line_number": 12,
+          "text": "e par che de la sua labbia si mova",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        },
+        {
+          "line_number": 13,
+          "text": "un spirito soave pien d'amore,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 14,
+          "text": "che va dicendo a l'anima: sospira",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_xxx_era_venuta_ne_la_mente_mia",
+      "author": "Dante Alighieri",
+      "title_or_first_line": "XXX - Era venuta ne la mente mia",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Rime_(Dante)/XXX_-_Era_venuta_ne_la_mente_mia",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/dante_xxx_era_venuta_ne_la_mente_mia.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "5e1e09b38b1b0014a7c0874bfdf326b3d263776be989caf2cfd73cdfb61c0934",
+      "expected_scheme": "ABBAABBACDEDCE",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Era venuta ne la mente mia",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "quella donna gentil che piange Amore,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "entro 'n quel punto che lo suo valore",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "vi trasse a riguardar quel ch'eo facia.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "Amor, che ne la mente la sentia,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "s'era svegliato nel destrutto core,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "e diceva a' sospiri: \"Andate fore\";",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "per che ciascun dolente si partia.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "Piangendo uscivan for de lo mio petto",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "con una voce che sovente mena",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "le lagrime dogliose a li occhi tristi.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        },
+        {
+          "line_number": 12,
+          "text": "Ma quei che n'uscian for com maggior pena,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 13,
+          "text": "venian dicendo: \"Oi nobile intelletto,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 14,
+          "text": "oggi fa l'anno che nel ciel salisti\".",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_xxxiv_gentil_pensero_che_parla_di_vui",
+      "author": "Dante Alighieri",
+      "title_or_first_line": "XXXIV - Gentil pensero che parla di vui",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Rime_(Dante)/XXXIV_-_Gentil_pensero_che_parla_di_vui",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/dante_xxxiv_gentil_pensero_che_parla_di_vui.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "7fd37f6fd11da09d7b3697a3add8ad3c93cc480368055a5f4983d942c08d9105",
+      "expected_scheme": "ABBAABBACDEDCE",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Gentil pensero che parla di vui",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "sen vene a dimorar meco sovente,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "e ragiona d'amor sì dolcemente,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "che face consentir lo core in lui.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "L'anima dice al cor: \"Chi è costui,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "che vene a consolar la nostra mente,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "ed è la sua vertù tanto possente,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "ch'altro penser non lascia star con nui?\"",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "Ei le risponde: \"Oi anima pensosa,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "questi è uno spiritel novo d'amore,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "che reca innanzi me li suoi desiri;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        },
+        {
+          "line_number": 12,
+          "text": "e la sua vita, e tutto 'l suo valore,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 13,
+          "text": "mosse de li occhi di quella pietosa",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 14,
+          "text": "che si turbava de' vostri martiri \".",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_xl_savete_giudicar_vostra_ragione",
+      "author": "Dante Alighieri",
+      "title_or_first_line": "XL - Savete giudicar vostra ragione",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Rime_(Dante)/XL_-_Savete_giudicar_vostra_ragione",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/dante_xl_savete_giudicar_vostra_ragione.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "87b587bf9a4c677c7fa10d9a7494702def2048fc756d7fc82f5bf2c7293b2a5d",
+      "expected_scheme": "ABABABABCDCDCD",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Savete giudicar vostra ragione,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "o om che pregio di saver portate;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "per che, vitando aver con voi quistione,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 4,
+          "text": "com so respondo a le parole ornate.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 5,
+          "text": "Disio verace, u' rado fin si pone,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "che mosse di valore o di bieltate,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "imagina l'amica oppinione",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 8,
+          "text": "significasse il don che pria narrate.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 9,
+          "text": "Lo vestimento, aggiate vera spene",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "che fia, da lei cui disiate, amore:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "e 'n ciò provide vostro spirto bene;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 12,
+          "text": "dico, pensando l'ovra sua d'allore.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 13,
+          "text": "La figura che già morta sorvene",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 14,
+          "text": "è la fermezza ch'averà nel core.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_xlv_lasso_lo_dol_che_più_mi_dole_e_serra",
+      "author": "Dante Alighieri",
+      "title_or_first_line": "XLV - Lasso! lo dol che più mi dole e serra",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Rime_(Dante)/XLV_-_Lasso!_lo_dol_che_pi%C3%B9_mi_dole_e_serra",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/dante_xlv_lasso_lo_dol_che_più_mi_dole_e_serra.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "95dff5cef08528ab1cd887b8bd852a0e8a6512a51c0b435a5db5b6e55a990586",
+      "expected_scheme": "ABBAABBACDEEDC",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Lasso! lo dol che più mi dole e serra",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "è ringraziar, ben non sapendo como;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "per me più saggio converriasi, como",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "vostro saver, ched ogni quistion serra.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "Del dol che manta gente dite s'erra",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "è tal voler qual voi lor non ha como;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "el proprio sì disio saver dol como,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "di ciò sovente, dico, essendo a serra.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "Però pregh'eo ch'argomentiate, saggio,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "d'autorità mostrando ciò che porta",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "di voi la 'mpresa, acciò che sia più chiara;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        },
+        {
+          "line_number": 12,
+          "text": "e poi parrà, parlando di ciò, chiara,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        },
+        {
+          "line_number": 13,
+          "text": "quale più chiarirem dol pena porta,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 14,
+          "text": "d'ello assegnando, amico, prov'e saggio.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_lv_dante_un_sospiro_messaggier_del_core",
+      "author": "Dante Alighieri",
+      "title_or_first_line": "LV - Dante, un sospiro messaggier del core",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Rime_(Dante)/LV_-_Dante,_un_sospiro_messaggier_del_core",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/dante_lv_dante_un_sospiro_messaggier_del_core.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "4afbdfb147a9a0a5465a2cb41ba3e6636112df7d91ca3508bbbc654d97485b32",
+      "expected_scheme": "ABBAABBACDEEDC",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Dante, un sospiro messaggier del core",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "subitamente m'assalì in dormendo,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "e io mi disvegliai allor temendo",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "ched e' non fosse in compagnia d'Amore.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "Poi mi girai, e vidi il servitore",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "di monna Lagia, che venia dicendo:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "\"Aiutami, Pietà!\"; sì che piangendo",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "i' presi di Merzé tanto valore,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "ch'i' giunsi Amore, ch'affilava i dardi.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "Allor lo domandai del suo tormento;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "ed elli mi rispuose in questa guisa:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        },
+        {
+          "line_number": 12,
+          "text": "\"Dì al servente che la donna è prisa,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        },
+        {
+          "line_number": 13,
+          "text": "e tengola per far suo piacimento;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 14,
+          "text": "e se nol crede, dì ch'a li occhi guardi\".",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_lxv_de_gli_occhi_de_la_mia_donna_si_move",
+      "author": "Dante Alighieri",
+      "title_or_first_line": "LXV - De gli occhi de la mia donna si move",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Rime_(Dante)/LXV_-_De_gli_occhi_de_la_mia_donna_si_move",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/dante_lxv_de_gli_occhi_de_la_mia_donna_si_move.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "8ee671dd2fc06b08734cda4405f5a123d7029a3f9c32e54e5f5ffaf1fc759bae",
+      "expected_scheme": "ABBAABBACDEDCE",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "De gli occhi de la mia donna si move",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "un lume sì gentil, che dove appare",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "si veggion cose ch'uom non pò ritrare",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "per loro altezza e per lor esser nove:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "e de' suoi razzi sovra 'l meo cor piove",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "tanta paura, che mi fa tremare,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "e dicer \"Qui non voglio mai tornare\";",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "ma poscia perdo tutte le mie prove,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "e tornomi colà dov'io son vinto,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "riconfortando gli occhi paurusi,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "che sentier prima questo gran valore.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        },
+        {
+          "line_number": 12,
+          "text": "Quando son giunto, lasso!, ed e' son chiusi;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 13,
+          "text": "lo disio che li mena quivi è stinto:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 14,
+          "text": "però proveggia a lo mio stato Amore.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_lxxiii_chi_udisse_tossir_la_mal_fatata",
+      "author": "Dante Alighieri",
+      "title_or_first_line": "LXXIII - Chi udisse tossir la mal fatata",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Rime_(Dante)/LXXIII_-_Chi_udisse_tossir_la_mal_fatata",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/dante_lxxiii_chi_udisse_tossir_la_mal_fatata.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "c87e093a8e895724440227172a0e16900b31cdb4684274878a66006231d65dba",
+      "expected_scheme": "ABABABABCDECDE",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Chi udisse tossir la mal fatata",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "moglie di Bicci vocato Forese,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "potrebbe dir ch'ell'ha forse vernata",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 4,
+          "text": "ove si fa 'l cristallo in quel paese.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 5,
+          "text": "Di mezzo agosto la truovi infreddata;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "or sappi che de' far d'ogni altro mese!",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "E non le val perché dorma calzata,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 8,
+          "text": "merzé del copertoio c'ha cortonese.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 9,
+          "text": "La tosse, 'l freddo e l'altra mala voglia",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "no l'addovien per omor ch'abbia vecchi",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "ma per difetto ch'ella sente al nido.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        },
+        {
+          "line_number": 12,
+          "text": "Piange la madre, c'ha più d'una doglia,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 13,
+          "text": "dicendo: \"Lassa, che per fichi secchi",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 14,
+          "text": "messa l'avre' 'n casa del conte Guido!\".",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_lxxxiv_parole_mie_che_per_lo_mondo_siete",
+      "author": "Dante Alighieri",
+      "title_or_first_line": "LXXXIV - Parole mie che per lo mondo siete",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Rime_(Dante)/LXXXIV_-_Parole_mie_che_per_lo_mondo_siete",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/dante_lxxxiv_parole_mie_che_per_lo_mondo_siete.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "a3693122f41451c74a658dd82f2318cdfb18c9813502dbecfac3fa2d4dfd8187",
+      "expected_scheme": "ABBAABBACDCCDC",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Parole mie che per lo mondo siete,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "voi che nasceste poi ch'io cominciai",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "a dir per quella donna in cui errai",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "\"Voi che 'ntendendo il terzo ciel movete\".",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "andatevene a lei, che la sapete,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "chiamando sì ch'ell'oda i vostri guai;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "ditele: \"Noi siam vostre, ed unquemai",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "più che noi siamo non ci vederete\".",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "Con lei non state, ché non v'è Amore;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "ma gite a torno in abito dolente",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "a guisa de le vostre antiche sore.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 12,
+          "text": "Quando trovate donna di valore,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 13,
+          "text": "gittatelevi a' piedi umilemente,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 14,
+          "text": "dicendo: \"A voi dovem noi fare onore\".",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_xciv_novellamente_amor_mi_giura_e_dice",
+      "author": "Dante Alighieri",
+      "title_or_first_line": "XCIV - Novellamente Amor mi giura e dice",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Rime_(Dante)/XCIV_-_Novellamente_Amor_mi_giura_e_dice",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/dante_xciv_novellamente_amor_mi_giura_e_dice.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "8c468ee3c8876a03cba22b04c1dae1674da65e678c74605e8b60bbfe17bd2dd4",
+      "expected_scheme": "ABBAABBACDDDCC",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Novellamente Amor mi giura e dice",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "d'una donna gentil, s'i' la riguardo,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "che per vertù de lo su' novo sguardo",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "ella sarà del meo cor beatrice.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "Io ch'ho provato po' come disdice,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "quando vede imbastito lo suo dardo,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "ciò che promette, a morte mi do tardo,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "ch'i' non potrò contraffar la fenice.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "S'io levo gli occhi, e del suo colpo perde",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "lo core mio quel poco che di vita",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "gli rimase d'un'altra sua ferita.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 12,
+          "text": "Che farò, Dante? ch'Amor pur m'invita,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 13,
+          "text": "e d'altra parte il tremor mi disperde",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 14,
+          "text": "che peggio che lo scur no mi sia 'l verde.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_cxi_io_sono_stato_con_amore_insieme",
+      "author": "Dante Alighieri",
+      "title_or_first_line": "CXI - Io sono stato con Amore insieme",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Rime_(Dante)/CXI_-_Io_sono_stato_con_Amore_insieme",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/dante_cxi_io_sono_stato_con_amore_insieme.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "5e5001e68ec18473068fd0056e1c622c527d4e46edf2935f0946193703659bb0",
+      "expected_scheme": "ABBAABBACDCDCD",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Io sono stato con Amore insieme",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "de la circulazion del sol mia nona,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "e so com'egli affrena e come sprona",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "e come sotto lui si ride e geme.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "Chi ragione o virtù contra gli sprieme,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "fa come que' che 'n la tempesta sona",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "credendo far colà dove si tona",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "esser le guerre de' vapori sceme.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "Però nel cerchio de la sua palestra",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "liber arbitrio già mai non fu franco,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "sì che consiglio invan vi si balestra.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 12,
+          "text": "Ben può con nuovi spron punger lo fianco,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 13,
+          "text": "e qual che sia 'l piacer ch'ora n'addestra,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 14,
+          "text": "seguitar si convien, se l'altro è stanco.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        }
+      ]
+    },
+    {
+      "poem_id": "dante_cxviii_lisetta_voi_de_la_vergogna_storre",
+      "author": "Dante Alighieri",
+      "title_or_first_line": "CXVIII - Lisetta voi de la vergogna storre",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Rime_(Dante)/CXVIII_-_Lisetta_voi_de_la_vergogna_storre",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/dante_cxviii_lisetta_voi_de_la_vergogna_storre.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "e76362830fee4167f50a3ffade441c2da4163ea4cab54bce76f6acc483c6e1f6",
+      "expected_scheme": "ABBAABBACDCCDC",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Lisetta voi de la vergogna storre",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "e dargli guida nel camin dolente,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "che la conduca fuor di cruda gente",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "en forza di colui che tosto acorre.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "Beltà di donna sì se vuole opporre",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "alla schifezza che di viltà sente:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "come la voce fusse conoscente",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "dirollo, poi ch'Amor me lo fa sporre.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "Lo sir che guarda il poggio d'esta sede,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "nanzi che dentro al nostro signor perga,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "al coridor ch'è giunto poco crede;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 12,
+          "text": "e quando venne al porto di mercede,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 13,
+          "text": "la voce disse: \"Alla rocca non s'erga",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 14,
+          "text": "infin a tanto che 'l sir nol concede\".",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_voi_ch_ascoltate_in_rime_sparse_il_suono",
+      "author": "Francesco Petrarca",
+      "title_or_first_line": "Voi ch'ascoltate in rime sparse il suono",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)/Voi_ch%27ascoltate_in_rime_sparse_il_suono",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/petrarca_voi_ch_ascoltate_in_rime_sparse_il_suono.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "3b4bc69020caa0bd3eecc6c1c89233b26462f2b8be22e527230a5fa964d16eaf",
+      "expected_scheme": "ABBAABBACDECDE",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Voi ch'ascoltate in rime sparse il suono",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "di quei sospiri ond'io nudriva 'l core",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "in sul mio primo giovenile errore",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "quand'era in parte altr'uom da quel ch'i' sono,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "del vario stile in ch'io piango et ragiono",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "fra le vane speranze e 'l van dolore,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "ove sia chi per prova intenda amore,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "spero trovar pietà, nonché perdono.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "Ma ben veggio or sì come al popol tutto",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "favola fui gran tempo, onde sovente",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "di me medesmo meco mi vergogno;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        },
+        {
+          "line_number": 12,
+          "text": "et del mio vaneggiar vergogna è 'l frutto,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 13,
+          "text": "e 'l pentersi, e 'l conoscer chiaramente",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 14,
+          "text": "che quanto piace al mondo è breve sogno.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_mille_fïate_o_dolce_mia_guerrera",
+      "author": "Francesco Petrarca",
+      "title_or_first_line": "Mille fïate, o dolce mia guerrera",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)/Mille_f%C3%AFate,_o_dolce_mia_guerrera",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/petrarca_mille_fïate_o_dolce_mia_guerrera.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "0b7a4e5dabd972ab7a024f5adc6df51307fe3419be899074ab276f10550e14d0",
+      "expected_scheme": "ABBAABBACDEDCE",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Mille fïate, o dolce mia guerrera,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "per aver co' begli occhi vostri pace",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "v'aggio proferto il cor; mâ voi non piace",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "mirar sí basso colla mente altera.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "Et se di lui fors'altra donna spera,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "vive in speranza debile et fallace:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "mio, perché sdegno ciò ch'a voi dispiace,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "esser non può già mai cosí com'era.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "Or s'io lo scaccio, et e' non trova in voi",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "ne l'exilio infelice alcun soccorso,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "né sa star sol, né gire ov'altri il chiama,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        },
+        {
+          "line_number": 12,
+          "text": "poria smarrire il suo natural corso:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 13,
+          "text": "che grave colpa fia d'ambeduo noi,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 14,
+          "text": "et tanto piú de voi, quanto piú v'ama.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_perch_io_t_abbia_guardato_di_menzogna",
+      "author": "Francesco Petrarca",
+      "title_or_first_line": "Perch'io t'abbia guardato di menzogna",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)/Perch%27io_t%27abbia_guardato_di_menzogna",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/petrarca_perch_io_t_abbia_guardato_di_menzogna.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "b1770091fc04d3d3b4e4fc8a3ca8978b3864ee34044cc661884a402e7d1e0f25",
+      "expected_scheme": "ABBAABBACDEDCE",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Perch'io t'abbia guardato di menzogna",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "a mio podere et honorato assai,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "ingrata lingua, già però non m'ài",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "renduto honor, ma facto ira et vergogna:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "ché quando piú 'l tuo aiuto mi bisogna",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "per dimandar mercede, allor ti stai",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "sempre piú fredda, et se parole fai,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "son imperfecte, et quasi d'uom che sogna.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "Lagrime triste, et voi tutte le notti",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "m'accompagnate, ov'io vorrei star solo,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "poi fuggite dinanzi a la mia pace;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        },
+        {
+          "line_number": 12,
+          "text": "et voi sí pronti a darmi angoscia et duolo,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 13,
+          "text": "sospiri, allor traete lenti et rotti:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 14,
+          "text": "sola la vista mia del cor non tace.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_poi_che_mia_speme_è_lunga_a_venir_troppo",
+      "author": "Francesco Petrarca",
+      "title_or_first_line": "Poi che mia speme è lunga a venir troppo",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)/Poi_che_mia_speme_%C3%A8_lunga_a_venir_troppo",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/petrarca_poi_che_mia_speme_è_lunga_a_venir_troppo.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "3e3d6f23b1b10767f8e7750ee9397508148e6b5a0c24e6b36fafb0500e3db29e",
+      "expected_scheme": "ABBAABBACDEDCE",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Poi che mia speme è lunga a venir troppo,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "et de la vita il trappassar sí corto,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "vorreimi a miglior tempo esser accorto,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "per fuggir dietro piú che di galoppo;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "et fuggo anchor cosí debile et zoppo",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "da l'un de' lati, ove 'l desio m'à storto:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "securo omai, ma pur nel viso porto",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "segni ch'i'ò presi a l'amoroso intoppo.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "Ond'io consiglio: Voi che siete in via,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "volgete i passi; et voi ch'Amore avampa,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "non v'indugiate su l'extremo ardore;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        },
+        {
+          "line_number": 12,
+          "text": "ché perch'io viva de mille un no scampa;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 13,
+          "text": "era ben forte la nemica mia,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 14,
+          "text": "et lei vid'io ferita in mezzo 'l core.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_qui_dove_mezzo_son_sennuccio_mio",
+      "author": "Francesco Petrarca",
+      "title_or_first_line": "Qui dove mezzo son, Sennuccio mio",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)/Qui_dove_mezzo_son,_Sennuccio_mio",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/petrarca_qui_dove_mezzo_son_sennuccio_mio.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "dba9fc1564a154ccb83215e60a1181d6169dcaf4509b3eb01eb170063d6055de",
+      "expected_scheme": "ABBAABBACDECDE",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Qui dove mezzo son, Sennuccio mio,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "(cosí ci foss'io intero, et voi contento),",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "venni fuggendo la tempesta e 'l vento",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "c'ànno súbito fatto il tempo rio.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "Qui son securo: et vo' vi dir perch'io",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "non come soglio il folgorar pavento,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "et perché mitigato, nonché spento,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "né-micha trovo il mio ardente desio.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "Tosto che giunto a l'amorosa reggia",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "vidi onde nacque l'aura dolce et pura",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "ch'acqueta l'aere, et mette i tuoni in bando,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        },
+        {
+          "line_number": 12,
+          "text": "Amor ne l'alma, ov'ella signoreggia,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 13,
+          "text": "raccese 'l foco, et spense la paura:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 14,
+          "text": "che farrei dunque gli occhi suoi guardando?",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_quando_l_voler_che_con_duo_sproni_ardenti",
+      "author": "Francesco Petrarca",
+      "title_or_first_line": "Quando 'l voler che con duo sproni ardenti",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)/Quando_%27l_voler_che_con_duo_sproni_ardenti",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/petrarca_quando_l_voler_che_con_duo_sproni_ardenti.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "fa775eba5f2c43660bef7f1cbc43aa5824e85f99cb363d377afdafc985d733db",
+      "expected_scheme": "ABBAABBACDECDE",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Quando 'l voler che con duo sproni ardenti,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "et con un duro fren, mi mena et regge",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "trapassa ad or ad or l'usata legge",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "per far in parte i miei spirti contenti,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "trova chi le paure et gli ardimenti",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "del cor profondo ne la fronte legge,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "et vede Amor che sue imprese corregge",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "folgorar ne' turbati occhi pungenti.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "Onde, come collui che 'l colpo teme",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "di Giove irato, si ritragge indietro:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "ché gran temenza gran desire affrena.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        },
+        {
+          "line_number": 12,
+          "text": "Ma freddo foco et paventosa speme",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 13,
+          "text": "de l'alma che traluce come un vetro",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 14,
+          "text": "talor sua dolce vista rasserena.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_giunto_m_à_amor_fra_belle_et_crude_braccia",
+      "author": "Francesco Petrarca",
+      "title_or_first_line": "Giunto m'à Amor fra belle et crude braccia",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)/Giunto_m%27%C3%A0_Amor_fra_belle_et_crude_braccia",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/petrarca_giunto_m_à_amor_fra_belle_et_crude_braccia.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "488f1489ba4eab384fdf061253d6213f019e90c9d38f30a623882d5039b8fe0b",
+      "expected_scheme": "ABBAABBACDECDE",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Giunto m'à Amor fra belle et crude braccia,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "che m'ancidono a torto; et s'io mi doglio,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "doppia 'l martir; onde pur, com'io soglio,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "il meglio è ch'io mi mora amando, et taccia:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "ché poria questa il Ren qualor piú agghiaccia",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "arder con gli occhi, et rompre ogni aspro scoglio;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "et à sí egual a le bellezze orgoglio,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "che di piacer altrui par che le spiaccia.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "Nulla posso levar io per mi' 'ngegno",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "del bel diamante, ond'ell'à il cor sí duro;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "l'altro è d'un marmo che si mova et spiri:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        },
+        {
+          "line_number": 12,
+          "text": "ned ella a me per tutto 'l suo disdegno",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 13,
+          "text": "torrà già mai, né per sembiante oscuro,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 14,
+          "text": "le mie speranze, e i miei dolci sospiri.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_pasco_la_mente_d_un_sí_nobil_cibo",
+      "author": "Francesco Petrarca",
+      "title_or_first_line": "Pasco la mente d'un sí nobil cibo",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)/Pasco_la_mente_d%27un_s%C3%AD_nobil_cibo",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/petrarca_pasco_la_mente_d_un_sí_nobil_cibo.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "339f3b89fc55d21be12414f91389a5aa97ccf12c7c9492feb5765e18fd6b36e3",
+      "expected_scheme": "ABBAABBACDCDCD",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Pasco la mente d'un sí nobil cibo,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "ch'ambrosia et nectar non invidio a Giove,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "ché, sol mirando, oblio ne l'alma piove",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "d'ogni altro dolce, et Lethe al fondo bibo.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "Talor ch'odo dir cose, e 'n cor describo,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "per che da sospirar sempre ritrove,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "rapto per man d'Amor, né so ben dove,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "doppia dolcezza in un volto delibo:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "ché quella voce infin al ciel gradita",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "suona in parole sí leggiadre et care,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "che pensar no 'l poria chi non l'à udita.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 12,
+          "text": "Allor inseme, in men d'un palmo, appare",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 13,
+          "text": "visibilmente quanto in questa vita",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 14,
+          "text": "arte, ingegno et Natura e 'l Ciel pò fare.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_il_cantar_novo_e_l_pianger_delli_augelli",
+      "author": "Francesco Petrarca",
+      "title_or_first_line": "Il cantar novo e 'l pianger delli augelli",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)/Il_cantar_novo_e_%27l_pianger_delli_augelli",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/petrarca_il_cantar_novo_e_l_pianger_delli_augelli.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "35595f2d20bdc23a92cebd63ab28e0713fb40e843271e10899e04761a4b4d4f7",
+      "expected_scheme": "ABBAABBACDCDCD",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Il cantar novo e 'l pianger delli augelli",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "in sul dí fanno retenir le valli,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "e 'l mormorar de' liquidi cristalli",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "giú per lucidi, freschi rivi et snelli.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "Quella ch'à neve il vòlto, oro i capelli,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "nel cui amor non fur mai inganni né falli,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "destami al suon delli amorosi balli,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "pettinando al suo vecchio i bianchi velli.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "Cosí mi sveglio a salutar l'aurora,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "e 'l sol ch'è seco, et piú l'altro ond'io fui",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "ne' primi anni abagliato, et son anchora.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 12,
+          "text": "I' gli ò veduti alcun giorno ambedui",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 13,
+          "text": "levarsi inseme, e 'n un punto e 'n un' hora",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 14,
+          "text": "quel far le stelle, et questi sparir lui.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_mira_quel_colle_o_stanco_mio_cor_vago",
+      "author": "Francesco Petrarca",
+      "title_or_first_line": "Mira quel colle, o stanco mio cor vago",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)/Mira_quel_colle,_o_stanco_mio_cor_vago",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/petrarca_mira_quel_colle_o_stanco_mio_cor_vago.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "5ff02b6bb2d48e493b4f0f7f51c01dc177c5979398af671b28257c5be77654c4",
+      "expected_scheme": "ABBAABBACDECDE",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "- Mira quel colle, o stanco mio cor vago:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "ivi lasciammo ier lei, ch'alcun tempo ebbe",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "qualche cura di noi, et le ne 'ncrebbe,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "or vorria trar de li occhi nostri un lago.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "Torna tu in là, ch'io d'esser sol m'appago;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "tenta se forse anchor tempo sarebbe",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "da scemar nostro duol, che 'nfin qui crebbe,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "o del mio mal participe et presago.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "- Or tu ch'ài posto te stesso in oblio",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "et parli al cor pur come e' fusse or teco,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "miser, et pien di pensier' vani et sciocchi!",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        },
+        {
+          "line_number": 12,
+          "text": "ch'al dipartir dal tuo sommo desio",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 13,
+          "text": "tu te n'andasti, e' si rimase seco,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 14,
+          "text": "et si nascose dentro a' suoi belli occhi.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_che_fai_che_pensi_che_pur_dietro_guardi",
+      "author": "Francesco Petrarca",
+      "title_or_first_line": "Che fai? Che pensi? che pur dietro guardi",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)/Che_fai%3F_Che_pensi%3F_che_pur_dietro_guardi",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/petrarca_che_fai_che_pensi_che_pur_dietro_guardi.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "adb675f26512201237f862cd2e6934557990e5f9804a91f64f4616b3d956b63b",
+      "expected_scheme": "ABBAABBACDCDCD",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Che fai? Che pensi? che pur dietro guardi",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "nel tempo, che tornar non pote omai?",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "Anima sconsolata, che pur vai",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "giungnendo legne al foco ove tu ardi?",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "Le soavi parole e i dolci sguardi",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "ch'ad un ad un descritti et depinti ài,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "son levati de terra; et è, ben sai,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "qui ricercarli intempestivo et tardi.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "Deh non rinovellar quel che n'ancide",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "non seguir piú penser vago, fallace,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "ma saldo et certo, ch'a buon fin ne guide.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 12,
+          "text": "Cerchiamo 'l ciel, se qui nulla ne piace:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 13,
+          "text": "ché mal per noi quella beltà si vide,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 14,
+          "text": "se viva et morta ne devea tôr pace.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_due_gran_nemiche_inseme_erano_agiunte",
+      "author": "Francesco Petrarca",
+      "title_or_first_line": "Due gran nemiche inseme erano agiunte",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)/Due_gran_nemiche_inseme_erano_agiunte",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/petrarca_due_gran_nemiche_inseme_erano_agiunte.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "5bef484830a24a0fdb1cb5c6cd772a604f2ce7a7d73ea6f0df956632924d2d96",
+      "expected_scheme": "ABBAABBACDEDCE",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Due gran nemiche inseme erano agiunte,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "Bellezza et Honestà, con pace tanta",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "che mai rebellïon l'anima santa",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "non sentí poi ch'a star seco fur giunte;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "et or per Morte son sparse et disgiunte:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "l'una è nel ciel, che se ne gloria et vanta;",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "l'altra sotterra, che ' begli occhi amanta,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "onde uscîr già tant'amorose punte.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "L'atto soave, e 'l parlar saggio humile",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "che movea d'alto loco, e 'l dolce sguardo",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "che piagava il mio core (anchor l'acenna),",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        },
+        {
+          "line_number": 12,
+          "text": "sono spariti; et s'al seguir son tardo,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 13,
+          "text": "forse averrà che 'l bel nome gentile",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 14,
+          "text": "consecrerò con questa stanca penna.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_tempo_era_omai_da_trovar_pace_o_triegua",
+      "author": "Francesco Petrarca",
+      "title_or_first_line": "Tempo era omai da trovar pace o triegua",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)/Tempo_era_omai_da_trovar_pace_o_triegua",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/petrarca_tempo_era_omai_da_trovar_pace_o_triegua.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "b0ebf01377d899352693df37292d7956b663bff6b730b078d863e79dc366a674",
+      "expected_scheme": "ABBAABBACDEDCE",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Tempo era omai da trovar pace o triegua",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "di tanta guerra, et erane in via forse,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "se non che' lieti passi indietro torse",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "chi le disaguaglianze nostre adegua:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "ché, come nebbia al vento si dilegua,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "cosí sua vita súbito trascorse",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "quella che già co' begli occhi mi scorse,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "et or conven che col penser la segua.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "Poco avev'a 'ndugiar, ché gli anni e 'l pelo",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "cangiavano i costumi: onde sospetto",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "non fôra il ragionar del mio mal seco.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        },
+        {
+          "line_number": 12,
+          "text": "Con che honesti sospiri l'avrei detto",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 13,
+          "text": "le mie lunghe fatiche, ch'or dal cielo",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 14,
+          "text": "vede, son certo, et duolsene anchor meco!",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "E"
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_dolce_mio_caro_et_precïoso_pegno",
+      "author": "Francesco Petrarca",
+      "title_or_first_line": "Dolce mio caro et precïoso pegno",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)/Dolce_mio_caro_et_prec%C3%AFoso_pegno",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/petrarca_dolce_mio_caro_et_precïoso_pegno.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "9ce4a63a875b238c878acb4a510f3ced6596d3e7337aeb09a098f27a97266b1a",
+      "expected_scheme": "ABBAABBACDCDCD",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "Dolce mio caro et precïoso pegno,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "che natura mi tolse, e 'l Ciel mi guarda,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "deh come è tua pietà ver' me sí tarda,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "o usato di mia vita sostegno?",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "Già suo' tu far il mio sonno almen degno",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "de la tua vista, et or sostien' ch'i' arda",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "senz'alcun refrigerio: et chi 'l retarda?",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "Pur lassú non alberga ira né sdegno:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "onde qua giuso un ben pietoso core",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "talor si pasce delli altrui tormenti,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "sí ch'elli è vinto nel suo regno Amore.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 12,
+          "text": "Tu che dentro mi vedi, e 'l mio mal senti,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 13,
+          "text": "et sola puoi finir tanto dolore,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 14,
+          "text": "con la tua ombra acqueta i miei lamenti.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        }
+      ]
+    },
+    {
+      "poem_id": "petrarca_i_vo_piangendo_i_miei_passati_tempi",
+      "author": "Francesco Petrarca",
+      "title_or_first_line": "I' vo piangendo i miei passati tempi",
+      "source_archive": "Italian Wikisource",
+      "source_url": "https://it.wikisource.org/wiki/Canzoniere_(Rerum_vulgarium_fragmenta)/I%27_vo_piangendo_i_miei_passati_tempi",
+      "license_notes": "CC BY-SA / GFDL metadata on Italian Wikisource",
+      "clean_text_path": "data/processed/sonnets_expanded_v6/poems/petrarca_i_vo_piangendo_i_miei_passati_tempi.txt",
+      "long_s_replacement_count": 0,
+      "poem_sha256": "2b4849129567be049efea00531290f736573438d3eb24975a60a0876ff5cb335",
+      "expected_scheme": "ABBAABBACDCDCD",
+      "lines": [
+        {
+          "line_number": 1,
+          "text": "I' vo piangendo i miei passati tempi",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 2,
+          "text": "i quai posi in amar cosa mortale,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 3,
+          "text": "senza levarmi a volo, abbiend'io l'ale,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 4,
+          "text": "per dar forse di me non bassi exempi.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 5,
+          "text": "Tu che vedi i miei mali indegni et empi,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 6,
+          "text": "Re del cielo invisibile immortale,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 7,
+          "text": "soccorri a l'alma disvïata et frale,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "B"
+        },
+        {
+          "line_number": 8,
+          "text": "e 'l suo defecto di tua gratia adempi:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "A"
+        },
+        {
+          "line_number": 9,
+          "text": "sí che, s'io vissi in guerra et in tempesta,",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 10,
+          "text": "mora in pace et in porto; et se la stanza",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 11,
+          "text": "fu vana, almen sia la partita honesta.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 12,
+          "text": "A quel poco di viver che m'avanza",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        },
+        {
+          "line_number": 13,
+          "text": "et al morir, degni esser Tua man presta:",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "C"
+        },
+        {
+          "line_number": 14,
+          "text": "Tu sai ben che 'n altrui non ò speranza.",
+          "expected_metre": "hendecasyllable",
+          "rhyme_class": "D"
+        }
+      ]
+    }
+  ]
+}

@@ -79,8 +79,9 @@ experiment uses it.
 
 ## Phase A: prosody checker
 
-Phase A is the approved first direction. The A1 code checkpoint was approved on
-2026-09-13 and is implemented. A2 and later checkpoints still require the
+Phase A is the approved first direction. The A1 code checkpoint and the A2
+validation ran on 2026-09-13. The A2 results are provisional until Leonardo
+reviews the 100-line packet. A3 and later checkpoints still require the
 decisions listed near the end of this document.
 
 ### A1. Checker module
@@ -107,6 +108,15 @@ Validate the checker before it becomes an experiment metric or reward:
 - run full-corpus statistics;
 - manually review a frozen sample of flagged lines;
 - keep uncertain linguistic cases visible instead of forcing a pass or fail.
+
+Status on 2026-09-13: the validation ran against the frozen 30-sonnet ground
+truth (`data/metadata/sonnet_prosody_ground_truth_v1.json`). Metre accuracy on
+definite lines is 100% with 87.1% definite coverage. Exact rhyme scheme
+agreement is 29/30 and soft (Sicilian) agreement is 30/30. The checker stays
+provisional until Leonardo reviews the 100-line packet in
+`reports/sonnet_prosody_review_packet_v1.csv`. See
+`reports/sonnet_prosody_validation_v1.md` and
+`reports/sonnet_prosody_validation_v1.json`.
 
 ### A3. Retroactive evaluation
 

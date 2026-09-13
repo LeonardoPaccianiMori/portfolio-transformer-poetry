@@ -28,12 +28,21 @@ from __future__ import annotations
 import re
 from typing import Any, Mapping
 
-ACCENTED_VOWELS = "àèéìòóù"
-VOWELS = "aeiouàèéìòóù"
+DIACRITIC_VOWELS = "àáâäèéêëìíîïòóôöùúûü"
+STRESS_ACCENTS = "àáâèéêìíîòóôùúû"
+VOWELS = "aeiou" + DIACRITIC_VOWELS
 HIGH_VOWELS = "iu"
+WORD_NORMALIZATION = str.maketrans({"ſ": "s"})
 ACCENT_TRANSLATION = str.maketrans(
-    {"à": "a", "è": "e", "é": "e", "ì": "i", "ò": "o", "ó": "o", "ù": "u"}
+    {
+        "à": "a", "á": "a", "â": "a", "ä": "a",
+        "è": "e", "é": "e", "ê": "e", "ë": "e",
+        "ì": "i", "í": "i", "î": "i", "ï": "i",
+        "ò": "o", "ó": "o", "ô": "o", "ö": "o",
+        "ù": "u", "ú": "u", "û": "u", "ü": "u",
+    }
 )
+SOFT_RHYME_TRANSLATION = str.maketrans({"i": "e", "u": "o"})
 
 SONNET_LINE_COUNT = 14
 SONNET_STANZA_PATTERN = (4, 4, 3, 3)
@@ -42,16 +51,16 @@ STRESSED_MONOSYLLABLES = frozenset(
     {
         "è", "é", "ho", "hai", "ha", "dà", "fa", "sta", "va", "so", "sto",
         "do", "dò", "può", "più", "già", "giù", "ciò", "sé", "né", "me", "te",
-        "tu", "no", "sì", "là", "lì", "qua", "qui", "tre", "re", "fé", "fé",
+        "tu", "no", "sì", "là", "lì", "qua", "qui", "tre", "re", "fé", "chi",
+        "cui", "lui", "lei", "noi", "voi", "sù", "sú", "dì", "dí", "piè",
     }
 )
 
 WORD_PATTERN = re.compile(
-    r"[A-Za-zÀ-ÖØ-öø-ÿ]+(?:['’][A-Za-zÀ-ÖØ-öø-ÿ]+)*['’]?",
+    r"[A-Za-zÀ-ÖØ-öø-ÿſ]+(?:['’ʼ][A-Za-zÀ-ÖØ-öø-ÿſ]+)*['’ʼ]?",
     re.UNICODE,
 )
 VOWEL_RUN_PATTERN = re.compile(f"[{VOWELS}]+")
-RISING_HIATUS_PATTERN = re.compile(f"[{HIGH_VOWELS}][aeoàèéòó]$")
 
 
 def count_word_syllables(word: str) -> int:
@@ -79,22 +88,11 @@ def rhyme_key(word: str) -> str | None:
 
 
 def soft_rhyme_key(key: str | None) -> str | None:
-    """Return a reduced key for historical rhyme equivalence (i/e and u/o)."""
+    """Return a key with the Sicilian vowel equivalences i/e and u/o."""
 
     if not key:
         return None
-    vowels = [char for char in key if char in VOWELS]
-    if not vowels:
-        return None
-    skeleton = "".join(char for char in key if char not in VOWELS)
-    final = vowels[-1]
-    if final in "aà":
-        vowel_class = "a"
-    elif final in "eiìèé":
-        vowel_class = "e"
-    else:
-        vowel_class = "o"
-    return f"{skeleton}|{vowel_class}"
+    return key.translate(SOFT_RHYME_TRANSLATION)
 
 
 def analyse_line(
@@ -113,15 +111,25 @@ def analyse_line(
     raw_count = sum(syllable_counts)
 
     boundary_merges = 0
+    vowel_boundaries = 0
     dialefe_candidates: list[int] = []
     for index in range(len(normalized) - 1):
         left = normalized[index]
         right = normalized[index + 1]
-        if left and right and left[-1] in VOWELS and right[0] in VOWELS:
+        if left and left[-1] in VOWELS and _initial_vowel(right) is not None:
             boundary_merges += 1
+            vowel_boundaries += 1
             if _dialefe_candidate(left):
                 dialefe_candidates.append(index)
     syllable_count = raw_count - boundary_merges
+
+    hiatus_sites = 0
+    synaeresis_sites = 0
+    for word, word_count in zip(normalized, syllable_counts):
+        if word_count:
+            merged, splittable = _within_word_ambiguity(word)
+            hiatus_sites += merged
+            synaeresis_sites += splittable
 
     final_index = next(
         (index for index in range(len(normalized) - 1, -1, -1)
@@ -152,38 +160,32 @@ def analyse_line(
     )
     stress_position = syllable_count - stress_from_end + 1
     verse_type = _verse_type(syllable_count, stress_position)
-    hiatus_candidates = [
-        index
-        for index, word in enumerate(normalized)
-        if syllable_counts[index] > 0 and _ends_with_rising_hiatus(word)
-    ]
 
     uncertain = False
     reasons: list[str] = []
     if verse_type is None:
-        if any(
-            _alternative_is_hendecasyllable(
-                syllable_count + 1, stress_from_end
-            )
-            for _ in dialefe_candidates
-        ):
+        reachable_min = syllable_count - synaeresis_sites
+        reachable_max = syllable_count + vowel_boundaries + hiatus_sites
+        target_counts = {9 + stress_from_end}
+        sdrucciolo_possible = stress_from_end == 2 and final_word_syllables >= 3
+        if sdrucciolo_possible:
+            target_counts.add(12)
+        reachable_targets = [
+            target
+            for target in sorted(target_counts)
+            if reachable_min <= target <= reachable_max
+        ]
+        if reachable_targets:
             uncertain = True
-            reasons.append("dialefe_possible")
-        if any(
-            _alternative_is_hendecasyllable(
-                syllable_count + 1, stress_from_end
-            )
-            for _ in hiatus_candidates
-        ):
-            uncertain = True
-            reasons.append("hiatus_possible")
-        if (
-            syllable_count == 12
-            and stress_source == "default_paroxytone"
-            and final_word_syllables >= 3
-        ):
-            uncertain = True
-            reasons.append("sdrucciolo_possible")
+            if any(target > syllable_count for target in reachable_targets):
+                if dialefe_candidates:
+                    reasons.append("dialefe_possible")
+                if hiatus_sites:
+                    reasons.append("hiatus_possible")
+            if any(target < syllable_count for target in reachable_targets):
+                reasons.append("synaeresis_possible")
+            if sdrucciolo_possible and 12 in reachable_targets:
+                reasons.append("sdrucciolo_possible")
 
     key = rhyme_key(final_word)
     return {
@@ -288,15 +290,25 @@ def non_empty_stanza_pattern(text: str) -> tuple[int, ...]:
 
 
 def _normalize_word(word: str) -> str:
-    return word.translate({ord("'"): None, ord("’"): None}).lower()
+    normalized = word.translate(WORD_NORMALIZATION).lower()
+    return normalized.translate({ord("'"): None, ord("’"): None, ord("ʼ"): None})
+
+
+def _initial_vowel(word: str) -> str | None:
+    """Return the first vowel, treating a silent leading h as transparent."""
+
+    trimmed = word[1:] if word.startswith("h") else word
+    if trimmed and trimmed[0] in VOWELS:
+        return trimmed[0]
+    return None
 
 
 def _vowel_class(char: str) -> str:
-    if char in "aeoàèéòó":
+    if char in "aeo" or char in "àáâäèéêëòóôö":
         return "A"
     if char in "iu":
         return "H"
-    if char in "ìù":
+    if char in "ìíîïùúûü":
         return "X"
     return "?"
 
@@ -329,7 +341,7 @@ def _vowel_run_nuclei(run: str) -> int:
 
 def _stressed_vowel_index(word: str) -> int | None:
     for index, char in enumerate(word):
-        if char in ACCENTED_VOWELS:
+        if char in STRESS_ACCENTS:
             return index
     vowel_positions = [
         index for index, char in enumerate(word) if char in VOWELS
@@ -347,7 +359,7 @@ def _final_stress(
     if word in overrides:
         return int(overrides[word]), "stress_lexicon"
     for index, char in enumerate(word):
-        if char in ACCENTED_VOWELS:
+        if char in STRESS_ACCENTS:
             tail = word[index + 1:]
             after = sum(
                 _vowel_run_nuclei(run)
@@ -364,14 +376,21 @@ def _final_stress(
 def _dialefe_candidate(left_word: str) -> bool:
     if left_word in STRESSED_MONOSYLLABLES:
         return True
-    return bool(left_word) and left_word[-1] in ACCENTED_VOWELS
+    return bool(left_word) and left_word[-1] in STRESS_ACCENTS
 
 
-def _ends_with_rising_hiatus(word: str) -> bool:
-    runs = VOWEL_RUN_PATTERN.findall(word)
-    if not runs:
-        return False
-    return bool(RISING_HIATUS_PATTERN.search(runs[-1]))
+def _within_word_ambiguity(word: str) -> tuple[int, int]:
+    """Return (merged_pairs, splittable_pairs) for one normalized word."""
+
+    merged = 0
+    splittable = 0
+    for run in VOWEL_RUN_PATTERN.findall(word):
+        classes = [_vowel_class(char) for char in run]
+        merged += len(run) - _vowel_run_nuclei(run)
+        for left, right in zip(classes, classes[1:]):
+            if left == "A" and right == "A":
+                splittable += 1
+    return merged, splittable
 
 
 def _verse_type(syllable_count: int, stress_position: int | None) -> str | None:
@@ -384,15 +403,6 @@ def _verse_type(syllable_count: int, stress_position: int | None) -> str | None:
     if syllable_count == 12:
         return "sdrucciolo"
     return None
-
-
-def _alternative_is_hendecasyllable(
-    alternative_count: int, stress_from_end: int
-) -> bool:
-    return (
-        alternative_count in (10, 11, 12)
-        and alternative_count - stress_from_end + 1 == 10
-    )
 
 
 def _rhyme_scheme(keys: list[str | None]) -> str:

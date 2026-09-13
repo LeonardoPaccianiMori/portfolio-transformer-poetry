@@ -1,0 +1,101 @@
+category,poem_id,author,line_number,text,syllable_count,verse_type,observed,uncertain,uncertainty_reasons
+metre_flagged,dante_i_a_ciascun_alma_presa_e_gentil_core,Dante Alighieri,4,"salute in lor segnor, cioè Amore.",10,,,True,dialefe_possible|hiatus_possible|sdrucciolo_possible
+metre_flagged,dante_i_a_ciascun_alma_presa_e_gentil_core,Dante Alighieri,5,Già eran quasi che atterzate l'ore,10,,,True,dialefe_possible|hiatus_possible
+metre_flagged,dante_i_a_ciascun_alma_presa_e_gentil_core,Dante Alighieri,8,cui essenza membrar mi dà orrore.,9,,,True,dialefe_possible|hiatus_possible|sdrucciolo_possible
+metre_flagged,dante_i_a_ciascun_alma_presa_e_gentil_core,Dante Alighieri,10,"meo core in mano, e ne le braccia avea",12,,,True,synaeresis_possible|sdrucciolo_possible
+metre_flagged,dante_i_a_ciascun_alma_presa_e_gentil_core,Dante Alighieri,14,appresso gir lo ne vedea piangendo.,12,,,True,synaeresis_possible|sdrucciolo_possible
+metre_flagged,dante_viii_cavalcando_l_altr_ier_per_un_cammin,Dante Alighieri,2,"pensoso de l'andar che mi sgradia,",10,,,True,hiatus_possible
+metre_flagged,dante_viii_cavalcando_l_altr_ier_per_un_cammin,Dante Alighieri,3,trovai Amore in mezzo de la via,9,,,True,hiatus_possible
+metre_flagged,dante_viii_cavalcando_l_altr_ier_per_un_cammin,Dante Alighieri,5,"Ne la sembianza mi parea meschino,",12,,,True,synaeresis_possible|sdrucciolo_possible
+metre_flagged,dante_viii_cavalcando_l_altr_ier_per_un_cammin,Dante Alighieri,6,come avesse perduto segnoria;,10,,,True,hiatus_possible|sdrucciolo_possible
+metre_flagged,dante_viii_cavalcando_l_altr_ier_per_un_cammin,Dante Alighieri,7,"e sospirando pensoso venia,",10,,,True,hiatus_possible
+metre_flagged,dante_xvi_amore_e_l_cor_gentil_sono_una_cosa,Dante Alighieri,3,e così esser l'un sanza l'altro osa,10,,,True,dialefe_possible
+metre_flagged,dante_xvi_amore_e_l_cor_gentil_sono_una_cosa,Dante Alighieri,5,"Falli natura quand'è amorosa,",10,,,True,dialefe_possible|hiatus_possible|sdrucciolo_possible
+metre_flagged,dante_xvi_amore_e_l_cor_gentil_sono_una_cosa,Dante Alighieri,12,"e tanto dura talora in costui,",10,,,True,hiatus_possible
+metre_flagged,dante_xxii_tanto_gentile_e_tanto_onesta_pare,Dante Alighieri,7,e par che sia una cosa venuta,10,,,True,hiatus_possible|sdrucciolo_possible
+metre_flagged,dante_xxx_era_venuta_ne_la_mente_mia,Dante Alighieri,5,"Amor, che ne la mente la sentia,",10,,,True,hiatus_possible
+metre_flagged,dante_xxx_era_venuta_ne_la_mente_mia,Dante Alighieri,8,per che ciascun dolente si partia.,10,,,True,hiatus_possible
+metre_flagged,dante_xxxiv_gentil_pensero_che_parla_di_vui,Dante Alighieri,5,"L'anima dice al cor: ""Chi è costui,",9,,,True,dialefe_possible|hiatus_possible
+metre_flagged,dante_xxxiv_gentil_pensero_che_parla_di_vui,Dante Alighieri,9,"Ei le risponde: ""Oi anima pensosa,",10,,,True,hiatus_possible|sdrucciolo_possible
+metre_flagged,dante_xl_savete_giudicar_vostra_ragione,Dante Alighieri,2,o om che pregio di saver portate;,10,,,True,hiatus_possible|sdrucciolo_possible
+metre_flagged,dante_xl_savete_giudicar_vostra_ragione,Dante Alighieri,7,imagina l'amica oppinione,10,,,True,hiatus_possible|sdrucciolo_possible
+metre_flagged,dante_xl_savete_giudicar_vostra_ragione,Dante Alighieri,10,"che fia, da lei cui disiate, amore:",10,,,True,hiatus_possible|sdrucciolo_possible
+metre_flagged,dante_xlv_lasso_lo_dol_che_più_mi_dole_e_serra,Dante Alighieri,9,"Però pregh'eo ch'argomentiate, saggio,",12,,,True,synaeresis_possible
+metre_flagged,dante_lv_dante_un_sospiro_messaggier_del_core,Dante Alighieri,3,e io mi disvegliai allor temendo,9,,,True,hiatus_possible|sdrucciolo_possible
+metre_flagged,dante_lv_dante_un_sospiro_messaggier_del_core,Dante Alighieri,5,"Poi mi girai, e vidi il servitore",10,,,True,hiatus_possible|sdrucciolo_possible
+metre_flagged,dante_lv_dante_un_sospiro_messaggier_del_core,Dante Alighieri,12,"""Dì al servente che la donna è prisa,",10,,,True,dialefe_possible
+metre_flagged,dante_lxv_de_gli_occhi_de_la_mia_donna_si_move,Dante Alighieri,5,e de' suoi razzi sovra 'l meo cor piove,12,,,True,synaeresis_possible
+metre_flagged,dante_lxv_de_gli_occhi_de_la_mia_donna_si_move,Dante Alighieri,6,"tanta paura, che mi fa tremare,",10,,,True,hiatus_possible
+metre_flagged,dante_lxv_de_gli_occhi_de_la_mia_donna_si_move,Dante Alighieri,10,"riconfortando gli occhi paurusi,",10,,,True,hiatus_possible|sdrucciolo_possible
+metre_flagged,dante_lxxiii_chi_udisse_tossir_la_mal_fatata,Dante Alighieri,1,Chi udisse tossir la mal fatata,10,,,True,dialefe_possible
+metre_flagged,dante_lxxiii_chi_udisse_tossir_la_mal_fatata,Dante Alighieri,8,merzé del copertoio c'ha cortonese.,12,,,True,sdrucciolo_possible
+metre_flagged,dante_lxxxiv_parole_mie_che_per_lo_mondo_siete,Dante Alighieri,2,voi che nasceste poi ch'io cominciai,10,,,True,hiatus_possible|sdrucciolo_possible
+metre_flagged,dante_lxxxiv_parole_mie_che_per_lo_mondo_siete,Dante Alighieri,3,a dir per quella donna in cui errai,9,,,True,dialefe_possible|hiatus_possible
+metre_flagged,dante_lxxxiv_parole_mie_che_per_lo_mondo_siete,Dante Alighieri,7,"ditele: ""Noi siam vostre, ed unquemai",10,,,True,hiatus_possible|sdrucciolo_possible
+metre_flagged,dante_lxxxiv_parole_mie_che_per_lo_mondo_siete,Dante Alighieri,9,"Con lei non state, ché non v'è Amore;",10,,,True,dialefe_possible|hiatus_possible|sdrucciolo_possible
+metre_flagged,dante_xciv_novellamente_amor_mi_giura_e_dice,Dante Alighieri,4,ella sarà del meo cor beatrice.,12,,,True,synaeresis_possible|sdrucciolo_possible
+metre_flagged,petrarca_perch_io_t_abbia_guardato_di_menzogna,Francesco Petrarca,2,"a mio podere et honorato assai,",10,,,True,hiatus_possible
+metre_flagged,petrarca_perch_io_t_abbia_guardato_di_menzogna,Francesco Petrarca,3,"ingrata lingua, già però non m'ài",10,,,True,hiatus_possible
+metre_flagged,petrarca_qui_dove_mezzo_son_sennuccio_mio,Francesco Petrarca,5,Qui son securo: et vo' vi dir perch'io,10,,,True,hiatus_possible
+metre_flagged,petrarca_qui_dove_mezzo_son_sennuccio_mio,Francesco Petrarca,8,né-micha trovo il mio ardente desio.,10,,,True,hiatus_possible
+metre_flagged,petrarca_qui_dove_mezzo_son_sennuccio_mio,Francesco Petrarca,11,"ch'acqueta l'aere, et mette i tuoni in bando,",12,,,True,synaeresis_possible
+metre_flagged,petrarca_qui_dove_mezzo_son_sennuccio_mio,Francesco Petrarca,13,"raccese 'l foco, et spense la paura:",10,,,True,hiatus_possible
+metre_flagged,petrarca_quando_l_voler_che_con_duo_sproni_ardenti,Francesco Petrarca,5,trova chi le paure et gli ardimenti,10,,,True,hiatus_possible|sdrucciolo_possible
+metre_flagged,petrarca_il_cantar_novo_e_l_pianger_delli_augelli,Francesco Petrarca,12,I' gli ò veduti alcun giorno ambedui,10,,,True,hiatus_possible|sdrucciolo_possible
+metre_flagged,petrarca_mira_quel_colle_o_stanco_mio_cor_vago,Francesco Petrarca,3,"qualche cura di noi, et le ne 'ncrebbe,",10,,,True,dialefe_possible|hiatus_possible
+metre_flagged,petrarca_mira_quel_colle_o_stanco_mio_cor_vago,Francesco Petrarca,9,- Or tu ch'ài posto te stesso in oblio,10,,,True,hiatus_possible
+metre_flagged,petrarca_mira_quel_colle_o_stanco_mio_cor_vago,Francesco Petrarca,12,ch'al dipartir dal tuo sommo desio,10,,,True,hiatus_possible
+metre_flagged,petrarca_che_fai_che_pensi_che_pur_dietro_guardi,Francesco Petrarca,2,"nel tempo, che tornar non pote omai?",10,,,True,hiatus_possible
+metre_flagged,petrarca_che_fai_che_pensi_che_pur_dietro_guardi,Francesco Petrarca,4,giungnendo legne al foco ove tu ardi?,10,,,True,dialefe_possible|hiatus_possible
+metre_flagged,petrarca_che_fai_che_pensi_che_pur_dietro_guardi,Francesco Petrarca,6,"ch'ad un ad un descritti et depinti ài,",10,,,True,hiatus_possible
+metre_flagged,petrarca_che_fai_che_pensi_che_pur_dietro_guardi,Francesco Petrarca,14,se viva et morta ne devea tôr pace.,12,,,True,synaeresis_possible
+metre_flagged,petrarca_due_gran_nemiche_inseme_erano_agiunte,Francesco Petrarca,10,"che movea d'alto loco, e 'l dolce sguardo",12,,,True,synaeresis_possible
+metre_flagged,petrarca_dolce_mio_caro_et_precïoso_pegno,Francesco Petrarca,4,o usato di mia vita sostegno?,10,,,True,hiatus_possible|sdrucciolo_possible
+metre_flagged,petrarca_dolce_mio_caro_et_precïoso_pegno,Francesco Petrarca,6,"de la tua vista, et or sostien' ch'i' arda",10,,,True,dialefe_possible|hiatus_possible
+metre_flagged,petrarca_dolce_mio_caro_et_precïoso_pegno,Francesco Petrarca,14,con la tua ombra acqueta i miei lamenti.,10,,,True,hiatus_possible|sdrucciolo_possible
+scheme_mismatch,dante_xvi_amore_e_l_cor_gentil_sono_una_cosa,Dante Alighieri,1,"Amore e 'l cor gentil sono una cosa,",11,piano,True,False,
+scheme_mismatch,dante_xvi_amore_e_l_cor_gentil_sono_una_cosa,Dante Alighieri,2,"sì come il saggio in suo dittare pone,",11,piano,True,False,
+scheme_mismatch,dante_xvi_amore_e_l_cor_gentil_sono_una_cosa,Dante Alighieri,4,com'alma razional sanza ragione.,11,piano,True,False,
+scheme_mismatch,dante_xvi_amore_e_l_cor_gentil_sono_una_cosa,Dante Alighieri,6,"Amor per sire e 'l cor per sua magione,",11,piano,True,False,
+scheme_mismatch,dante_xvi_amore_e_l_cor_gentil_sono_una_cosa,Dante Alighieri,7,dentro la qual dormendo si riposa,11,piano,True,False,
+scheme_mismatch,dante_xvi_amore_e_l_cor_gentil_sono_una_cosa,Dante Alighieri,8,tal volta poca e tal lunga stagione.,11,piano,True,False,
+scheme_mismatch,dante_xvi_amore_e_l_cor_gentil_sono_una_cosa,Dante Alighieri,9,"Bieltate appare in saggia donna poi,",10,tronco,True,False,
+scheme_mismatch,dante_xvi_amore_e_l_cor_gentil_sono_una_cosa,Dante Alighieri,10,"che piace a li occhi sì, che dentro al core",11,piano,True,False,
+scheme_mismatch,dante_xvi_amore_e_l_cor_gentil_sono_una_cosa,Dante Alighieri,11,nasce un disio de la cosa piacente;,11,piano,True,False,
+scheme_mismatch,dante_xvi_amore_e_l_cor_gentil_sono_una_cosa,Dante Alighieri,13,che fa svegliar lo spirito d'Amore.,11,piano,True,False,
+scheme_mismatch,dante_xvi_amore_e_l_cor_gentil_sono_una_cosa,Dante Alighieri,14,E simil face in donna omo valente.,11,piano,True,False,
+sample,dante_i_a_ciascun_alma_presa_e_gentil_core,Dante Alighieri,1,A ciascun'alma presa e gentil core,11,piano,True,False,
+sample,dante_i_a_ciascun_alma_presa_e_gentil_core,Dante Alighieri,2,"nel cui cospetto ven lo dir presente,",11,piano,True,False,
+sample,dante_i_a_ciascun_alma_presa_e_gentil_core,Dante Alighieri,3,"in ciò che mi rescrivan suo parvente,",11,piano,True,False,
+sample,dante_i_a_ciascun_alma_presa_e_gentil_core,Dante Alighieri,6,"del tempo che onne stella n'è lucente,",11,piano,True,False,
+sample,dante_i_a_ciascun_alma_presa_e_gentil_core,Dante Alighieri,7,"quando m'apparve Amor subitamente,",11,piano,True,False,
+sample,dante_i_a_ciascun_alma_presa_e_gentil_core,Dante Alighieri,9,Allegro mi sembrava Amor tenendo,11,piano,True,False,
+sample,dante_i_a_ciascun_alma_presa_e_gentil_core,Dante Alighieri,11,madonna involta in un drappo dormendo.,11,piano,True,False,
+sample,dante_i_a_ciascun_alma_presa_e_gentil_core,Dante Alighieri,12,"Poi la svegliava, e d'esto core ardendo",11,piano,True,False,
+sample,dante_i_a_ciascun_alma_presa_e_gentil_core,Dante Alighieri,13,lei paventosa umilmente pascea:,11,piano,True,False,
+sample,dante_viii_cavalcando_l_altr_ier_per_un_cammin,Dante Alighieri,1,"Cavalcando l'altr'ier per un cammino,",11,piano,True,False,
+sample,dante_viii_cavalcando_l_altr_ier_per_un_cammin,Dante Alighieri,4,in abito leggier di peregrino.,11,piano,True,False,
+sample,dante_viii_cavalcando_l_altr_ier_per_un_cammin,Dante Alighieri,8,"per non veder la gente, a capo chino.",11,piano,True,False,
+sample,dante_viii_cavalcando_l_altr_ier_per_un_cammin,Dante Alighieri,9,"Quando mi vide, mi chiamò per nome,",11,piano,True,False,
+sample,dante_viii_cavalcando_l_altr_ier_per_un_cammin,Dante Alighieri,10,"e disse: ""Io vegno di lontana parte,",11,piano,True,False,
+sample,dante_viii_cavalcando_l_altr_ier_per_un_cammin,Dante Alighieri,11,ov'era lo tuo cor per mio volere;,11,piano,True,False,
+sample,dante_viii_cavalcando_l_altr_ier_per_un_cammin,Dante Alighieri,12,"e recolo a servir novo piacere"".",11,piano,True,False,
+sample,dante_viii_cavalcando_l_altr_ier_per_un_cammin,Dante Alighieri,13,"Allora presi di lui sì gran parte,",11,piano,True,False,
+sample,dante_viii_cavalcando_l_altr_ier_per_un_cammin,Dante Alighieri,14,"ch'elli disparve, e non m'accorsi come.",11,piano,True,False,
+sample,dante_xxii_tanto_gentile_e_tanto_onesta_pare,Dante Alighieri,1,Tanto gentile e tanto onesta pare,11,piano,True,False,
+sample,dante_xxii_tanto_gentile_e_tanto_onesta_pare,Dante Alighieri,2,"la donna mia quand'ella altrui saluta,",11,piano,True,False,
+sample,dante_xxii_tanto_gentile_e_tanto_onesta_pare,Dante Alighieri,3,"ch'ogne lingua deven tremando muta,",11,piano,True,False,
+sample,dante_xxii_tanto_gentile_e_tanto_onesta_pare,Dante Alighieri,4,e li occhi no l'ardiscon di guardare.,11,piano,True,False,
+sample,dante_xxii_tanto_gentile_e_tanto_onesta_pare,Dante Alighieri,5,"Ella si va, sentendosi laudare,",11,piano,True,False,
+sample,dante_xxii_tanto_gentile_e_tanto_onesta_pare,Dante Alighieri,6,benignamente d'umiltà vestuta;,11,piano,True,False,
+sample,dante_xxii_tanto_gentile_e_tanto_onesta_pare,Dante Alighieri,8,da cielo in terra a miracol mostrare.,11,piano,True,False,
+sample,dante_xxii_tanto_gentile_e_tanto_onesta_pare,Dante Alighieri,9,"Mostrasi sì piacente a chi la mira,",11,piano,True,False,
+sample,dante_xxii_tanto_gentile_e_tanto_onesta_pare,Dante Alighieri,10,"che dà per li occhi una dolcezza al core,",11,piano,True,False,
+sample,dante_xxii_tanto_gentile_e_tanto_onesta_pare,Dante Alighieri,11,che 'ntender no la può chi no la prova:,11,piano,True,False,
+sample,dante_xxii_tanto_gentile_e_tanto_onesta_pare,Dante Alighieri,12,e par che de la sua labbia si mova,11,piano,True,False,
+sample,dante_xxii_tanto_gentile_e_tanto_onesta_pare,Dante Alighieri,13,"un spirito soave pien d'amore,",11,piano,True,False,
+sample,dante_xxii_tanto_gentile_e_tanto_onesta_pare,Dante Alighieri,14,che va dicendo a l'anima: sospira,11,piano,True,False,
+sample,dante_xxx_era_venuta_ne_la_mente_mia,Dante Alighieri,1,Era venuta ne la mente mia,10,tronco,True,False,
+sample,dante_xxx_era_venuta_ne_la_mente_mia,Dante Alighieri,2,"quella donna gentil che piange Amore,",11,piano,True,False,
+sample,dante_xxx_era_venuta_ne_la_mente_mia,Dante Alighieri,3,entro 'n quel punto che lo suo valore,11,piano,True,False,
+sample,dante_xxx_era_venuta_ne_la_mente_mia,Dante Alighieri,4,vi trasse a riguardar quel ch'eo facia.,11,piano,True,False,

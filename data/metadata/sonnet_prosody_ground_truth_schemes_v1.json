@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "corpus_manifest": "data/metadata/sonnets_expanded_v6_manifest.csv",
+  "source_split": "train",
+  "selection_rule": "Per author, keep the train sonnets in manifest order with exactly 14 clean lines, no square brackets, and no entry in excluded_poems; take the 15 items at positions round(i*(n-1)/14) for i=0..14.",
+  "annotation_method": "The rhyme classes were read from the line-final words of each selected poem and checked against the frozen text. They are a draft that the owner reviews with the flagged-line packet before the checker is used as a metric or reward.",
+  "excluded_poems": [
+    {
+      "poem_id": "dante_lviii_deh_violetta_che_in_ombra_d_amore",
+      "reason": "The source page mixes hendecasyllables with two settenari; the poem is not a pure sonnet, so it is not ground truth for hendecasyllable metre."
+    }
+  ],
+  "schemes": [
+    {"author": "Dante Alighieri", "poem_id": "dante_i_a_ciascun_alma_presa_e_gentil_core", "scheme": "ABBAABBACDCCDC"},
+    {"author": "Dante Alighieri", "poem_id": "dante_viii_cavalcando_l_altr_ier_per_un_cammin", "scheme": "ABBAABBACDEEDC"},
+    {"author": "Dante Alighieri", "poem_id": "dante_xvi_amore_e_l_cor_gentil_sono_una_cosa", "scheme": "ABABABABCDECDE"},
+    {"author": "Dante Alighieri", "poem_id": "dante_xxii_tanto_gentile_e_tanto_onesta_pare", "scheme": "ABBAABBACDEEDC"},
+    {"author": "Dante Alighieri", "poem_id": "dante_xxx_era_venuta_ne_la_mente_mia", "scheme": "ABBAABBACDEDCE"},
+    {"author": "Dante Alighieri", "poem_id": "dante_xxxiv_gentil_pensero_che_parla_di_vui", "scheme": "ABBAABBACDEDCE"},
+    {"author": "Dante Alighieri", "poem_id": "dante_xl_savete_giudicar_vostra_ragione", "scheme": "ABABABABCDCDCD"},
+    {"author": "Dante Alighieri", "poem_id": "dante_xlv_lasso_lo_dol_che_più_mi_dole_e_serra", "scheme": "ABBAABBACDEEDC"},
+    {"author": "Dante Alighieri", "poem_id": "dante_lv_dante_un_sospiro_messaggier_del_core", "scheme": "ABBAABBACDEEDC"},
+    {"author": "Dante Alighieri", "poem_id": "dante_lxv_de_gli_occhi_de_la_mia_donna_si_move", "scheme": "ABBAABBACDEDCE"},
+    {"author": "Dante Alighieri", "poem_id": "dante_lxxiii_chi_udisse_tossir_la_mal_fatata", "scheme": "ABABABABCDECDE"},
+    {"author": "Dante Alighieri", "poem_id": "dante_lxxxiv_parole_mie_che_per_lo_mondo_siete", "scheme": "ABBAABBACDCCDC"},
+    {"author": "Dante Alighieri", "poem_id": "dante_xciv_novellamente_amor_mi_giura_e_dice", "scheme": "ABBAABBACDDDCC"},
+    {"author": "Dante Alighieri", "poem_id": "dante_cxi_io_sono_stato_con_amore_insieme", "scheme": "ABBAABBACDCDCD"},
+    {"author": "Dante Alighieri", "poem_id": "dante_cxviii_lisetta_voi_de_la_vergogna_storre", "scheme": "ABBAABBACDCCDC"},
+    {"author": "Francesco Petrarca", "poem_id": "petrarca_voi_ch_ascoltate_in_rime_sparse_il_suono", "scheme": "ABBAABBACDECDE"},
+    {"author": "Francesco Petrarca", "poem_id": "petrarca_mille_fïate_o_dolce_mia_guerrera", "scheme": "ABBAABBACDEDCE"},
+    {"author": "Francesco Petrarca", "poem_id": "petrarca_perch_io_t_abbia_guardato_di_menzogna", "scheme": "ABBAABBACDEDCE"},
+    {"author": "Francesco Petrarca", "poem_id": "petrarca_poi_che_mia_speme_è_lunga_a_venir_troppo", "scheme": "ABBAABBACDEDCE"},
+    {"author": "Francesco Petrarca", "poem_id": "petrarca_qui_dove_mezzo_son_sennuccio_mio", "scheme": "ABBAABBACDECDE"},
+    {"author": "Francesco Petrarca", "poem_id": "petrarca_quando_l_voler_che_con_duo_sproni_ardenti", "scheme": "ABBAABBACDECDE"},
+    {"author": "Francesco Petrarca", "poem_id": "petrarca_giunto_m_à_amor_fra_belle_et_crude_braccia", "scheme": "ABBAABBACDECDE"},
+    {"author": "Francesco Petrarca", "poem_id": "petrarca_pasco_la_mente_d_un_sí_nobil_cibo", "scheme": "ABBAABBACDCDCD"},
+    {"author": "Francesco Petrarca", "poem_id": "petrarca_il_cantar_novo_e_l_pianger_delli_augelli", "scheme": "ABBAABBACDCDCD"},
+    {"author": "Francesco Petrarca", "poem_id": "petrarca_mira_quel_colle_o_stanco_mio_cor_vago", "scheme": "ABBAABBACDECDE"},
+    {"author": "Francesco Petrarca", "poem_id": "petrarca_che_fai_che_pensi_che_pur_dietro_guardi", "scheme": "ABBAABBACDCDCD"},
+    {"author": "Francesco Petrarca", "poem_id": "petrarca_due_gran_nemiche_inseme_erano_agiunte", "scheme": "ABBAABBACDEDCE"},
+    {"author": "Francesco Petrarca", "poem_id": "petrarca_tempo_era_omai_da_trovar_pace_o_triegua", "scheme": "ABBAABBACDEDCE"},
+    {"author": "Francesco Petrarca", "poem_id": "petrarca_dolce_mio_caro_et_precïoso_pegno", "scheme": "ABBAABBACDCDCD"},
+    {"author": "Francesco Petrarca", "poem_id": "petrarca_i_vo_piangendo_i_miei_passati_tempi", "scheme": "ABBAABBACDCDCD"}
+  ]
+}

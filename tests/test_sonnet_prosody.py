@@ -19,6 +19,8 @@ PIANO_LINES = [
     "Nel mezzo del cammin di nostra vita",
     "Tanto gentile e tanto onesta pare",
     "Amor, ch'a nullo amato amar perdona",
+    "Mille fïate, o dolce mia guerrera",
+    "Dolce mio caro et precïoso pegno",
 ]
 
 TRONCO_LINES = [
@@ -41,6 +43,13 @@ TRONCO_LINES = [
         ("vita", 2),
         ("musica", 3),
         ("città", 2),
+        ("fïate", 3),
+        ("precïoso", 4),
+        ("ſtato", 2),
+        ("sí", 1),
+        ("piú", 1),
+        ("cosí", 2),
+        ("m'â", 1),
     ],
 )
 def test_count_word_syllables_uses_documented_conventions(word, expected):
@@ -56,6 +65,9 @@ def test_count_word_syllables_uses_documented_conventions(word, expected):
         ("core", "ore"),
         ("cori", "ori"),
         ("città", "a"),
+        ("precïoso", "oso"),
+        ("piú", "u"),
+        ("ſtato", "ato"),
     ],
 )
 def test_rhyme_key_starts_at_the_stressed_vowel(word, expected):
@@ -66,8 +78,9 @@ def test_soft_rhyme_key_equates_i_and_e():
     assert soft_rhyme_key(rhyme_key("core")) == soft_rhyme_key(rhyme_key("cori"))
 
 
-def test_soft_rhyme_key_separates_different_final_vowels():
-    assert soft_rhyme_key(rhyme_key("cori")) != soft_rhyme_key(rhyme_key("cara"))
+def test_soft_rhyme_key_keeps_open_vowels_distinct():
+    assert soft_rhyme_key(rhyme_key("core")) != soft_rhyme_key(rhyme_key("cara"))
+    assert soft_rhyme_key(rhyme_key("vita")) == soft_rhyme_key(rhyme_key("salita"))
 
 
 @pytest.mark.parametrize("line", PIANO_LINES)

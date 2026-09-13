@@ -4,6 +4,12 @@ All notable public-release changes are documented here.
 
 ## [Unreleased]
 
+- Added the frozen sonnet-prosody ground truth of 30 Dante and Petrarch poems,
+  the validation report, and the 100-line owner review packet.
+- Hardened the `sonnet_prosody` checker for editorial accents, diaeresis,
+  silent leading `h`, long-s normalization, and documented metric
+  ambiguities. Metre accuracy on definite ground-truth lines is 100% with
+  87.1% coverage; rhyme scheme agreement is 29/30 exact and 30/30 soft.
 - Added a rule-based Italian sonnet prosody checker (`sonnet_prosody`) with a
   command-line entry point and unit tests. It reports sonnet structure,
   hendecasyllable metre, stress type, rhyme keys, scheme comparison, and
