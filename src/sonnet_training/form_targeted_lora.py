@@ -108,8 +108,9 @@ def train_form_targeted_lora(
     batch_size = int(training["batch_size"])
     accumulation = int(training["gradient_accumulation_steps"])
     max_steps = training.get("max_steps")
-    steps_per_epoch = math.ceil(windows / batch_size)
-    total_steps = steps_per_epoch * epochs
+    batches_per_epoch = math.ceil(windows / batch_size)
+    optimizer_steps_per_epoch = math.ceil(batches_per_epoch / accumulation)
+    total_steps = optimizer_steps_per_epoch * epochs
     if max_steps:
         total_steps = min(total_steps, int(max_steps))
     warmup_steps = int(total_steps * float(training["warmup_ratio"]))
@@ -119,8 +120,39 @@ def train_form_targeted_lora(
     log_path = output_dir / "train_log.jsonl"
     started = time.monotonic()
     step = 0
+    pending = 0
     tokens_seen = 0
     losses: list[float] = []
+
+    def optimizer_update(learning_rate: float, recorded_loss: float) -> bool:
+        nonlocal step, pending
+        torch.nn.utils.clip_grad_norm_(
+            trainable, float(training["max_grad_norm"])
+        )
+        optimizer.step()
+        optimizer.zero_grad(set_to_none=True)
+        step += 1
+        pending = 0
+        losses.append(recorded_loss)
+        log.write(
+            json.dumps(
+                {
+                    "step": step,
+                    "loss": recorded_loss,
+                    "learning_rate": learning_rate,
+                    "tokens_seen": tokens_seen,
+                    "elapsed_seconds": time.monotonic() - started,
+                }
+            )
+            + "\n"
+        )
+        log.flush()
+        if progress and step % 10 == 0:
+            progress(
+                f"step {step}/{total_steps} loss={recorded_loss:.4f} tokens={tokens_seen}"
+            )
+        return step >= total_steps
+
     with log_path.open("w", encoding="utf-8") as log:
         for epoch in range(epochs):
             for batch_index, starts in enumerate(
@@ -148,36 +180,13 @@ def train_form_targeted_lora(
                 loss = outputs.loss / accumulation
                 loss.backward()
                 tokens_seen += int(inputs.numel())
-                if (batch_index + 1) % accumulation == 0:
-                    torch.nn.utils.clip_grad_norm_(
-                        trainable, float(training["max_grad_norm"])
-                    )
-                    optimizer.step()
-                    optimizer.zero_grad(set_to_none=True)
-                    step += 1
-                    recorded = float(loss.detach()) * accumulation
-                    losses.append(recorded)
-                    log.write(
-                        json.dumps(
-                            {
-                                "step": step,
-                                "epoch": epoch,
-                                "loss": recorded,
-                                "learning_rate": learning_rate,
-                                "tokens_seen": tokens_seen,
-                                "elapsed_seconds": time.monotonic() - started,
-                            }
-                        )
-                        + "\n"
-                    )
-                    log.flush()
-                    if progress and step % 10 == 0:
-                        progress(
-                            f"step {step}/{total_steps} loss={recorded:.4f} "
-                            f"tokens={tokens_seen}"
-                        )
-                    if step >= total_steps:
+                pending += 1
+                if pending == accumulation:
+                    if optimizer_update(learning_rate, float(loss.detach()) * accumulation):
                         break
+            if pending:
+                if optimizer_update(learning_rate, float(loss.detach()) * accumulation):
+                    break
             if step >= total_steps:
                 break
 
