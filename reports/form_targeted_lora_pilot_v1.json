@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generation_dir": "/home/lpm/Desktop/portfolio-transformer-poetry/artifacts/local/form_targeted_lora/validation/generation",
+  "generation_dir": "artifacts/local/form_targeted_lora/validation/generation",
   "prompts_sha256": "2f33aa518aa61c11193831e53b07fd3bd861a72bf68bb23c0e0e5b1a13b1d0c7",
   "paired_order": [
     "candidate",
@@ -225,6 +225,6 @@
       "No pre-registered signal: no valid candidate output and no accepted-line increase that excludes zero and reaches 0.23 lines."
     ]
   },
-  "scores_jsonl": "/home/lpm/Desktop/portfolio-transformer-poetry/artifacts/local/form_targeted_lora/validation/scores_v1.jsonl",
+  "scores_jsonl": "artifacts/local/form_targeted_lora/validation/scores_v1.jsonl",
   "checker_status": "reviewed_conservative_2026-09-13"
 }

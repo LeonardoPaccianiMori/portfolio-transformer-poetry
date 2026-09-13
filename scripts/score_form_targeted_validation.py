@@ -40,6 +40,13 @@ BINARY_FIELDS = (
 )
 
 
+def repository_relative(path: Path) -> str:
+    try:
+        return str(path.relative_to(ROOT))
+    except ValueError:
+        return "<outside repository>"
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -227,7 +234,7 @@ def main() -> None:
 
     payload = {
         "schema_version": 1,
-        "generation_dir": str(generation_dir),
+        "generation_dir": repository_relative(generation_dir),
         "prompts_sha256": evaluation["prompts_sha256"],
         "paired_order": list(PAIR_ORDER),
         "system_metrics": {"baseline": baseline, "candidate": candidate},
@@ -235,7 +242,7 @@ def main() -> None:
         "paired_comparisons": comparisons,
         "mcnemar": mcnemar_rows,
         "reading": {"signal": signal, "reasons": reasons},
-        "scores_jsonl": str(args.scores_jsonl),
+        "scores_jsonl": repository_relative(args.scores_jsonl),
         "checker_status": "reviewed_conservative_2026-09-13",
     }
     report_json.parent.mkdir(parents=True, exist_ok=True)
