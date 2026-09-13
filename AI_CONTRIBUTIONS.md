@@ -125,3 +125,9 @@ authorship of every implementation detail.
 | Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
 | --- | --- | --- | --- | --- |
 | OpenCode Go deepseek-v4.1-flash | unknown | Implementation and tests | Wrote the opening-anchored plan builder, the deterministic ending repair, the generation and scoring scripts, and the tests under the approved step. | `docs/constrained_plan_validation_plan.md`, `src/sonnet_analysis/constrained_plan_validation.py`, `scripts/generate_constrained_plan_validation.py` |
+
+## 2026-09-13 Constrained plan validation run
+
+| Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
+| --- | --- | --- | --- | --- |
+| OpenCode Go deepseek-v4.1-flash | unknown | Run and scoring | Built the anchored plans, ran the constrained generation and repair, scored scheme compliance, adherence, repair distance, and form against the baseline, and recorded the form-objective-met reading. | `reports/constrained_plan_validation_v1.md`, `reports/constrained_plan_validation_v1.json` |

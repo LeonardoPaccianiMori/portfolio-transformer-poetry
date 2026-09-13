@@ -4,6 +4,10 @@ All notable public-release changes are documented here.
 
 ## [Unreleased]
 
+- Ran the constrained plan validation: opening-anchored plans reached 0.508
+  scheme compliance in the model alone, and ending repair reached 1.000 with
+  a mean repair distance of 1.2 lines and no metre loss. Reading: form
+  objective met. Coherence remains unmeasured.
 - Added the constrained plan validation: opening-anchored feasible plans,
   deterministic ending repair, generation and scoring scripts, and tests. No
   generation run has started.

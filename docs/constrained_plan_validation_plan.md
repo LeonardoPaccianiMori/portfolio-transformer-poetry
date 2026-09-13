@@ -61,3 +61,18 @@ produce consistently valid sonnets, and what happens to coherence proxies?
 - Repair can break grammar and meaning; all claims remain form-only.
 - Coherence proxies are structural and are not a literary judgment.
 - No release, no checkpoint publication, no public wording.
+
+## Status on 2026-09-13
+
+The constrained validation ran: 480 outputs (anchored and repaired).
+Anchored scheme compliance is 0.5083 with 0.9256 key-match adherence; the
+repaired condition reaches 1.0000 scheme compliance with a mean repair
+distance of 1.217 lines. Repaired minus anchored accepted lines is -0.054
+(95% CI -0.124 to 0.015) and the rhyme score changes by +0.006, so repair
+costs no measurable metre or rhyme quality. Against the verifier-DPO
+baseline, accepted lines rise by 1.25 and failed lines fall by 2.57. The
+pre-registered reading is FORM_OBJECTIVE_MET. The remaining open problem is
+coherence: repair can break grammar or meaning, and the checker does not
+measure it. Next candidates: a few-shot context A/B, a larger-base plan SFT,
+or a documented coherence review. See
+`reports/constrained_plan_validation_v1.md`.
