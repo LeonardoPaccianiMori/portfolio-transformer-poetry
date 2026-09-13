@@ -36,11 +36,15 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    rows = load_train_rows(args.manifest)
+    manifest = args.manifest if args.manifest.is_absolute() else ROOT / args.manifest
+    relative_manifest = (
+        manifest.relative_to(ROOT) if manifest.is_relative_to(ROOT) else manifest
+    )
+    rows = load_train_rows(manifest)
     payload = build_lexicon(
         rows,
         ROOT,
-        manifest_path=args.manifest,
+        manifest_path=relative_manifest,
         progress=lambda message: print(f"rhyme-lexicon | {message}", flush=True),
     )
     write_lexicon(args.output, payload)

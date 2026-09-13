@@ -1,6 +1,6 @@
 {
   "lexicon_version": "sonnet_rhyme_lexicon_v1",
-  "source_manifest": "/home/lpm/Desktop/portfolio-transformer-poetry/data/processed/sonnets_expanded_v8/sonnets_manifest.csv",
+  "source_manifest": "data/processed/sonnets_expanded_v8/sonnets_manifest.csv",
   "source_split": "train",
   "sonnet_count": 16298,
   "line_count": 228164,
