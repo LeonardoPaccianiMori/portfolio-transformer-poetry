@@ -4,6 +4,9 @@ All notable public-release changes are documented here.
 
 ## [Unreleased]
 
+- Ran the plan-then-poem inference test: key-match adherence 3.42% planned
+  versus 1.43% control, zero scheme compliance, and the plan list degraded
+  metre. Reading: train plan following first.
 - Added the plan-then-poem inference test implementation: planned and format
   control prompts, adherence metrics, scoring, and tests. No generation run
   has started.

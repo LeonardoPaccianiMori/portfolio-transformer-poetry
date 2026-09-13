@@ -105,3 +105,16 @@ prompt schema is not confused with a failure to plan; precise adherence
 metrics at the line-final-word and key level; and paired comparisons by
 opening and seed. The review also recommended separating word matching from
 scheme compliance, which the revised gates do.
+
+## Status on 2026-09-13
+
+The inference test ran: 480 outputs (planned and format control) paired with
+the verifier-DPO baseline at seeds 5200 and 5201. Plan adherence is very low:
+3.42% key match on the planned condition and 1.43% on the control, with zero
+planned scheme compliance. The planned condition also lost 1.15 accepted
+hendecasyllable lines against the baseline, and the control lost 1.43, which
+matches the review's warning that the novel prompt format itself perturbs the
+model. The pre-registered reading is TRAIN_PLAN_FOLLOWING_FIRST. The base
+model cannot follow pre-committed endings under this prompt, so the next
+experiment must train plan following before any plan-then-poem SFT. See
+`reports/plan_then_poem_validation_v1.md`.

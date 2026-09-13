@@ -101,3 +101,9 @@ authorship of every implementation detail.
 | Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
 | --- | --- | --- | --- | --- |
 | OpenCode Go deepseek-v4.1-flash | unknown | Implementation and tests | Wrote the planned and control prompt generation, the plan-adherence metrics, the scoring pipeline, and the tests under the reviewed plan. | `src/sonnet_analysis/plan_then_poem_validation.py`, `scripts/generate_plan_then_poem_validation.py`, `scripts/score_plan_then_poem_validation.py` |
+
+## 2026-09-13 Plan-then-poem inference test run
+
+| Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
+| --- | --- | --- | --- | --- |
+| OpenCode Go deepseek-v4.1-flash | unknown | Inference test run and scoring | Ran the planned and format-control generation on the H100, scored adherence and form locally, and recorded the train-plan-following-first reading. | `reports/plan_then_poem_validation_v1.md`, `reports/plan_then_poem_validation_v1.json` |
