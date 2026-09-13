@@ -129,8 +129,9 @@ Status on 2026-09-13: the sealed outputs were scored
 (`reports/sonnet_prosody_retroactive_v1.md`). No Stage-3 or DPO output is fully
 definite-valid: 0 of 4,976 outputs have all 14 lines accepted by the checker.
 About 23% of outputs have no definite metre failure but contain uncertain
-lines. DPO has 0.23 more definite-valid lines per output on average (95% CI
-0.12 to 0.33) and no rhyme-score difference. The estimated per-sample pass
+lines. DPO has 0.23 more hendecasyllable lines accepted per output on average
+(95% CI 0.12 to 0.33); definite metre failures do not differ significantly,
+and the rhyme score does not differ. The estimated per-sample pass
 rate for full form is near zero under this recipe, so the Phase A decision
 gate points toward form-targeted measurement rather than a best-of-N pilot on
 the current model. The owner decision is pending.
@@ -225,8 +226,10 @@ Leonardo approved these decisions with the A1 checkpoint:
 
 - Module, command, and test paths: `src/sonnet_evaluation/sonnet_prosody.py`,
   `scripts/check_sonnet_prosody.py`, and `tests/test_sonnet_prosody.py`.
-- Ground truth: 30 sonnets from the corrected V8 corpus, 15 by Dante and 15 by
-  Petrarch, using the recorded attribution. Freeze the set before scoring.
+- Ground truth: 30 sonnets, 15 by Dante and 15 by Petrarch, using the recorded
+  attribution. The implementation uses the V6 train split, because the
+  corrected V8 corpus places almost every Dante and Petrarch record in
+  quarantine. Freeze the set before scoring.
 - Accuracy gate: at least 95% line-level metre accuracy and at least 90% rhyme
   agreement. Report ambiguous cases separately.
 - Manual review: 100 flagged lines in one owner review session.
