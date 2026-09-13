@@ -151,11 +151,12 @@ def _evaluate_loss(model: Any, examples: Sequence[Mapping[str, Any]], *, pad_tok
 
 def train_plan_following_sft(
     *,
-    state: Mapping[str, Any],
-    verifier_adapter_path: Path,
+    state: Mapping[str, Any] | None = None,
+    base_model_dir: Path | None = None,
+    verifier_adapter_path: Path | None = None,
     examples: Sequence[Mapping[str, Any]],
     validation_examples: Sequence[Mapping[str, Any]],
-    probe_jobs: Sequence[Mapping[str, Any]],
+    probe_jobs: Sequence[Mapping[str, Any]] = (),
     output_dir: Path,
     config: Mapping[str, Any],
     progress: Progress | None = None,
@@ -168,7 +169,13 @@ def train_plan_following_sft(
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     if not torch.cuda.is_available() or torch.cuda.device_count() != 1:
         raise RuntimeError("plan-following SFT requires exactly one CUDA GPU")
-    model_dir = Path(str(state["model_dir"]))
+    if base_model_dir is None and state is None:
+        raise ValueError("pass state or base_model_dir")
+    model_dir = (
+        Path(base_model_dir)
+        if base_model_dir is not None
+        else Path(str(state["model_dir"]))  # type: ignore[index]
+    )
     tokenizer = AutoTokenizer.from_pretrained(str(model_dir), local_files_only=True)
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
@@ -179,22 +186,30 @@ def train_plan_following_sft(
         attn_implementation="sdpa",
         low_cpu_mem_usage=True,
     ).to(device)
-    if not verifier_adapter_path.is_file():
-        raise FileNotFoundError(verifier_adapter_path)
-    verifier = LoraConfig(
-        task_type="CAUSAL_LM",
-        r=int(training["verifier_lora_rank"]),
-        lora_alpha=int(training["verifier_lora_alpha"]),
-        lora_dropout=float(training["verifier_lora_dropout"]),
-        bias="none",
-        target_modules=list(TARGET_MODULES),
-    )
-    model = get_peft_model(model, verifier)
-    checkpoint = torch.load(verifier_adapter_path, map_location="cpu", weights_only=True)
-    if checkpoint.get("parent_state_identity_sha256") != state["state_identity_sha256"]:
-        raise ValueError("verifier adapter parent mismatch")
-    set_peft_model_state_dict(model, checkpoint["adapter_state_dict"])
-    model = model.merge_and_unload()
+    if verifier_adapter_path is not None:
+        if state is None:
+            raise ValueError("the verifier adapter requires a state identity")
+        if not verifier_adapter_path.is_file():
+            raise FileNotFoundError(verifier_adapter_path)
+        verifier = LoraConfig(
+            task_type="CAUSAL_LM",
+            r=int(training["verifier_lora_rank"]),
+            lora_alpha=int(training["verifier_lora_alpha"]),
+            lora_dropout=float(training["verifier_lora_dropout"]),
+            bias="none",
+            target_modules=list(TARGET_MODULES),
+        )
+        model = get_peft_model(model, verifier)
+        checkpoint = torch.load(
+            verifier_adapter_path, map_location="cpu", weights_only=True
+        )
+        if (
+            checkpoint.get("parent_state_identity_sha256")
+            != state["state_identity_sha256"]
+        ):
+            raise ValueError("verifier adapter parent mismatch")
+        set_peft_model_state_dict(model, checkpoint["adapter_state_dict"])
+        model = model.merge_and_unload()
     model.gradient_checkpointing_enable(
         gradient_checkpointing_kwargs={"use_reentrant": False}
     )
@@ -364,11 +379,18 @@ def train_plan_following_sft(
     elapsed = time.monotonic() - started
     report = {
         "trainer_version": TRAINER_VERSION,
-        "state_identity_sha256": state.get("state_identity_sha256"),
-        "verifier_adapter_path": str(verifier_adapter_path),
-        "verifier_adapter_sha256": hashlib.sha256(
-            verifier_adapter_path.read_bytes()
-        ).hexdigest(),
+        "state_identity_sha256": (
+            state.get("state_identity_sha256") if state is not None else None
+        ),
+        "base_model_dir": str(model_dir),
+        "verifier_adapter_path": (
+            str(verifier_adapter_path) if verifier_adapter_path is not None else None
+        ),
+        "verifier_adapter_sha256": (
+            hashlib.sha256(verifier_adapter_path.read_bytes()).hexdigest()
+            if verifier_adapter_path is not None
+            else None
+        ),
         "example_count": len(examples),
         "validation_count": len(validation_examples),
         "steps": step,
