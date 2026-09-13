@@ -53,3 +53,9 @@ authorship of every implementation detail.
 | Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
 | --- | --- | --- | --- | --- |
 | OpenCode Go deepseek-v4.1-flash | unknown | Packet review at Leonardo's request | Rechecked all 54 metre flags and the one rhyme-scheme mismatch with word-level diagnostics; confirmed every flag is conservative, found no definite checker error, and recorded one reason-set limitation. | `reports/sonnet_prosody_review_outcome_v1.md` |
+
+## 2026-09-13 Form-targeted LoRA pilot implementation
+
+| Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
+| --- | --- | --- | --- | --- |
+| OpenCode Go deepseek-v4.1-flash | unknown | Pilot implementation and tests | Wrote the approved pilot plan, the V8 train encoder, the one-arm LoRA trainer, the matched validation generation, the scoring pipeline, and their tests. | `docs/form_targeted_lora_pilot_plan.md`, `src/sonnet_training/form_targeted_data.py`, `src/sonnet_training/form_targeted_lora.py`, `src/sonnet_analysis/form_targeted_validation.py`, `scripts/encode_form_targeted_v8_data.py`, `scripts/train_form_targeted_lora.py`, `scripts/generate_form_targeted_validation.py`, `scripts/score_form_targeted_validation.py` |

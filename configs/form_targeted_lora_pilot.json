@@ -1,0 +1,56 @@
+{
+  "pilot_version": "form_targeted_lora_pilot_v1",
+  "approved_on": "2026-09-13",
+  "data": {
+    "manifest": "data/processed/sonnets_expanded_v8/sonnets_manifest.csv",
+    "split": "train",
+    "rendering_policy": "derived_source_lines_4+4+3+3_v1",
+    "output_dir": "artifacts/local/form_targeted_lora/data",
+    "max_sequence_tokens": 512
+  },
+  "training": {
+    "output_dir": "artifacts/local/form_targeted_lora/training",
+    "lora_rank": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "epochs": 1,
+    "learning_rate": 0.0001,
+    "warmup_ratio": 0.03,
+    "weight_decay": 0.0,
+    "max_grad_norm": 1.0,
+    "batch_size": 8,
+    "gradient_accumulation_steps": 4,
+    "seed": 6200,
+    "max_steps": null
+  },
+  "evaluation": {
+    "prompts": "configs/minerva_7b_v7_exploratory_prompts.json",
+    "prompts_sha256": "2f33aa518aa61c11193831e53b07fd3bd861a72bf68bb23c0e0e5b1a13b1d0c7",
+    "seeds": [6200, 6201],
+    "output_dir": "artifacts/local/form_targeted_lora/validation/generation",
+    "batch_size": 8,
+    "count_policy": "all_validation_prompts_two_seeds",
+    "recipe": {
+      "temperature": 0.85,
+      "top_k": null,
+      "top_p": 0.95,
+      "repetition_penalty": 1.0,
+      "no_repeat_ngram_size": 4,
+      "max_new_tokens": 512,
+      "continuation_line_target": 13
+    }
+  },
+  "report": {
+    "markdown": "reports/form_targeted_lora_pilot_v1.md",
+    "json": "reports/form_targeted_lora_pilot_v1.json"
+  }
+}

@@ -14,7 +14,7 @@ import json
 import math
 from itertools import combinations
 from pathlib import Path
-from typing import Any, Iterable, Mapping
+from typing import Any, Iterable, Mapping, Sequence
 
 from sonnet_evaluation.sonnet_prosody import analyse_sonnet
 
@@ -115,15 +115,17 @@ def score_records(records: Iterable[Mapping[str, Any]]) -> list[dict[str, Any]]:
 
 def pair_records(
     scored_records: Iterable[Mapping[str, Any]],
-) -> list[tuple[Mapping[str, Any], Mapping[str, Any]]]:
+    *,
+    systems: Sequence[str] = SYSTEM_IDS,
+) -> list[tuple[Mapping[str, Any], ...]]:
     grouped: dict[tuple[str, int], dict[str, Mapping[str, Any]]] = {}
     for record in scored_records:
         key = (str(record["prompt_id"]), int(record["seed"]))
         grouped.setdefault(key, {})[str(record["system_id"])] = record
     pairs = []
     for system_map in grouped.values():
-        if all(system in system_map for system in SYSTEM_IDS):
-            pairs.append((system_map["stage_3"], system_map["dpo"]))
+        if all(system in system_map for system in systems):
+            pairs.append(tuple(system_map[system] for system in systems))
     return pairs
 
 

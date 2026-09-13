@@ -4,6 +4,9 @@ All notable public-release changes are documented here.
 
 ## [Unreleased]
 
+- Added the approved form-targeted LoRA pilot: the V8 train encoder, one-arm
+  LoRA trainer, matched validation generation, scoring, tests, and the frozen
+  pilot plan. No training run has started.
 - Reviewed all 54 metre flags and the one rhyme-scheme mismatch in the A2
   packet. Every flag is conservative, no definite checker error was found, and
   one reason-set limitation (triphthong synaeresis) is documented.
