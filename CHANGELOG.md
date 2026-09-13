@@ -4,6 +4,10 @@ All notable public-release changes are documented here.
 
 ## [Unreleased]
 
+- Added the verifier-labelled form DPO pipeline and built its frozen
+  preference dataset from the 4,096 existing candidates: 425 pairs over 425
+  openings, with 103 degenerate candidates excluded. No training run has
+  started.
 - Ran the full-weight V8 Stage-3 retrain: 93 updates, retention gate passed,
   and no formal gain on 240 matched validation pairs (accepted lines -0.225,
   95% CI -0.578 to 0.128; no valid outputs). Reading: NULL.

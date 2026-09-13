@@ -77,3 +77,9 @@ authorship of every implementation detail.
 | Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
 | --- | --- | --- | --- | --- |
 | OpenCode Go deepseek-v4.1-flash | unknown | Retrain run, defect diagnosis, and reports | Ran the Stage-2 download, encoding, safeguarded full-weight training, candidate generation, and scoring; diagnosed and fixed the causal-label alignment defect that invalidated the LoRA pilot; recorded the null result. | `reports/v8_stage3_retrain_v1.md`, `reports/v8_stage3_retrain_v1.json` |
+
+## 2026-09-13 Verifier-labelled DPO implementation
+
+| Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
+| --- | --- | --- | --- | --- |
+| OpenCode Go deepseek-v4.1-flash | unknown | Preference build and pipeline implementation | Wrote the verifier preference builder, the verifier DPO config, loader, and scripts, and the tests under the approved plan; built and audited the frozen 425-pair dataset from the existing candidates. | `docs/verifier_labelled_dpo_plan.md`, `src/sonnet_evaluation/verifier_preferences.py`, `src/sonnet_training/verifier_labelled_dpo.py`, `scripts/build_verifier_preferences.py` |

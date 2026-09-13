@@ -263,7 +263,9 @@ def learning_rate_for_step(config: Mapping[str, Any], *, step: int, total_steps:
 
 
 def build_training_plan(
-    examples: Sequence[DPOExample], *, config: Mapping[str, Any]
+    examples: Sequence[DPOExample], *,
+    config: Mapping[str, Any],
+    experiment_version: str = EXPERIMENT_VERSION,
 ) -> dict[str, Any]:
     """Freeze the prompt-disjoint split and deterministic one-epoch order."""
 
@@ -284,7 +286,7 @@ def build_training_plan(
         "training_order": order,
         "total_steps": total_steps,
         "split_manifest": {
-            "experiment_version": EXPERIMENT_VERSION,
+            "experiment_version": experiment_version,
             "split_seed": int(config["split_seed"]),
             "training_seed": int(config["training_seed"]),
             "validation_fraction": float(config["validation_fraction"]),
@@ -306,6 +308,8 @@ def train_ai_judged_dpo(
     state: Mapping[str, Any],
     output_dir: Path,
     qualification: bool,
+    experiment_version: str = EXPERIMENT_VERSION,
+    checkpoint_prefix: str = "minerva_v7_ai_dpo",
     resume_from: Path | None = None,
     progress: Any = None,
 ) -> dict[str, Any]:
@@ -330,7 +334,9 @@ def train_ai_judged_dpo(
     torch.manual_seed(training_seed)
     torch.cuda.manual_seed_all(training_seed)
 
-    plan = build_training_plan(examples, config=config)
+    plan = build_training_plan(
+        examples, config=config, experiment_version=experiment_version
+    )
     output_dir.mkdir(parents=True, exist_ok=True)
     _write_json_atomic(output_dir / "split_manifest.json", plan["split_manifest"])
     _write_json_atomic(output_dir / "frozen_config.json", dict(config))
@@ -396,6 +402,8 @@ def train_ai_judged_dpo(
         completed_steps, history, best_validation_loss = _restore_dpo_resume(
             path=resume_from, model=model, optimizer=optimizer,
             config=config, plan=plan, dependencies=dependencies,
+            experiment_version=experiment_version,
+            checkpoint_prefix=checkpoint_prefix,
         )
 
     total_steps = 1 if qualification else int(plan["total_steps"])
@@ -495,6 +503,8 @@ def train_ai_judged_dpo(
                 plan=plan, completed_steps=step, history=history,
                 best_validation_loss=best_validation_loss,
                 dependencies=dependencies, checkpoint_type="adapter",
+                experiment_version=experiment_version,
+                checkpoint_prefix=checkpoint_prefix,
             )
             if validation["loss"] < best_validation_loss:
                 best_validation_loss = float(validation["loss"])
@@ -504,6 +514,8 @@ def train_ai_judged_dpo(
                 config=config, plan=plan, completed_steps=step, history=history,
                 best_validation_loss=best_validation_loss,
                 dependencies=dependencies, checkpoint_type="resume",
+                experiment_version=experiment_version,
+                checkpoint_prefix=checkpoint_prefix,
             )
             if progress is not None:
                 progress(
@@ -514,7 +526,7 @@ def train_ai_judged_dpo(
 
     peak_memory = torch.cuda.max_memory_allocated(device)
     result = {
-        "experiment_version": EXPERIMENT_VERSION,
+        "experiment_version": experiment_version,
         "scope": "qualification_disposable" if qualification else "authoritative",
         "parent_state_identity_sha256": PARENT_IDENTITY,
         "completed_steps": 1 if qualification else total_steps,
@@ -537,6 +549,8 @@ def train_ai_judged_dpo(
             config=config, plan=plan, completed_steps=total_steps, history=history,
             best_validation_loss=best_validation_loss,
             dependencies=dependencies, checkpoint_type="adapter",
+            experiment_version=experiment_version,
+            checkpoint_prefix=checkpoint_prefix,
         )
         result["best_validation_loss"] = best_validation_loss
         result["best_adapter_path"] = str(output_dir / "best_adapter.pt")
@@ -584,11 +598,13 @@ def _save_dpo_checkpoint(
     config: Mapping[str, Any], plan: Mapping[str, Any], completed_steps: int,
     history: Sequence[Mapping[str, Any]], best_validation_loss: float,
     dependencies: Mapping[str, Any], checkpoint_type: str,
+    experiment_version: str = EXPERIMENT_VERSION,
+    checkpoint_prefix: str = "minerva_v7_ai_dpo",
 ) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     payload = {
-        "checkpoint_type": f"minerva_v7_ai_dpo_{checkpoint_type}",
-        "experiment_version": EXPERIMENT_VERSION,
+        "checkpoint_type": f"{checkpoint_prefix}_{checkpoint_type}",
+        "experiment_version": experiment_version,
         "parent_state_identity_sha256": PARENT_IDENTITY,
         "config": dict(config),
         "split_manifest": plan["split_manifest"],
@@ -613,11 +629,13 @@ def _save_dpo_checkpoint(
 def _restore_dpo_resume(
     *, path: Path, model: Any, optimizer: Any, config: Mapping[str, Any],
     plan: Mapping[str, Any], dependencies: Mapping[str, Any],
+    experiment_version: str = EXPERIMENT_VERSION,
+    checkpoint_prefix: str = "minerva_v7_ai_dpo",
 ) -> tuple[int, list[dict[str, Any]], float]:
     payload = torch.load(path, map_location="cpu", weights_only=True)
     expected = {
-        "checkpoint_type": "minerva_v7_ai_dpo_resume",
-        "experiment_version": EXPERIMENT_VERSION,
+        "checkpoint_type": f"{checkpoint_prefix}_resume",
+        "experiment_version": experiment_version,
         "parent_state_identity_sha256": PARENT_IDENTITY,
         "config": dict(config),
         "split_manifest": plan["split_manifest"],
