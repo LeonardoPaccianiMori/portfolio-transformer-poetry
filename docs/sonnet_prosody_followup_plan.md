@@ -3,8 +3,10 @@
 ## Status and scope
 
 Leonardo approved the prosody checker as the first technical direction on
-2026-09-08. The later reasoning-training work is not committed. No checker
-code, experiment, time budget, model change, checkpoint release, or remote
+2026-09-08. On 2026-09-13 he approved the Phase A1 checkpoint plan and the
+resolved decisions below. The A1 checker module, command-line entry point, and
+tests are implemented. The later reasoning-training work is not committed. No
+experiment execution, time budget, model change, checkpoint release, or remote
 publication is approved by this document.
 
 This plan keeps the detailed technical backlog in the implementation
@@ -77,13 +79,15 @@ experiment uses it.
 
 ## Phase A: prosody checker
 
-Phase A is the approved first direction. Code and experiment execution still
-require a separate checkpoint plan with the unresolved choices below.
+Phase A is the approved first direction. The A1 code checkpoint was approved on
+2026-09-13 and is implemented. A2 and later checkpoints still require the
+decisions listed near the end of this document.
 
 ### A1. Checker module
 
-Build a `sonnet_prosody` module with line-level and poem-level results and a
-command-line interface. It must cover:
+Implemented in `src/sonnet_evaluation/sonnet_prosody.py`, with the
+command-line entry point `scripts/check_sonnet_prosody.py` and tests in
+`tests/test_sonnet_prosody.py`. It covers:
 
 - structure: 14 lines and a 4+4+3+3 stanza pattern;
 - metre: poetic syllable count, sinalefe, diphthongs, elision, final stress at
@@ -195,15 +199,28 @@ all linear layers and can require trained embeddings or an LM head. Treat rank
 and target modules as measured choices. A 4-bit base can weaken the learned
 register, so compare it with BF16 LoRA if a 14B arm reaches a final stage.
 
-## Open decisions before checker implementation
+## Resolved decisions (2026-09-13)
 
-- Exact module, package, command, artifact, and test file paths.
-- Ground-truth sources and licence records.
-- The accuracy gate and manual-review sample size.
-- The treatment of ambiguous elision, sinalefe, stress, and historical rhyme.
-- The poem-level score and the order of hard gates and soft scores.
-- The frozen sample and values of `N` for the best-of-N pilot.
-- The time budget for Phase A.
+Leonardo approved these decisions with the A1 checkpoint:
+
+- Module, command, and test paths: `src/sonnet_evaluation/sonnet_prosody.py`,
+  `scripts/check_sonnet_prosody.py`, and `tests/test_sonnet_prosody.py`.
+- Ground truth: 30 sonnets from the corrected V8 corpus, 15 by Dante and 15 by
+  Petrarch, using the recorded attribution. Freeze the set before scoring.
+- Accuracy gate: at least 95% line-level metre accuracy and at least 90% rhyme
+  agreement. Report ambiguous cases separately.
+- Manual review: 100 flagged lines in one owner review session.
+- Ambiguity: return `uncertain`, never force a pass or fail, and use the
+  documented conventions for sinalefe, dialefe, elision, and stress.
+- Poem score order: structure, metre, and rhyme scheme are hard gates; rhyme
+  quality is a soft score after them.
+
+## Open decisions before A2 and A4
+
+- The ground-truth file paths and their licence records.
+- The frozen manual-review sample and its selection rule.
+- The A4 opening sample and the values of `N`.
+- The Phase A time budget and the A4 compute budget.
 
 Later decisions include the base model, a possible teacher model for thematic
 plan fields, LoRA configuration, GPU budget, and release scope. Record the

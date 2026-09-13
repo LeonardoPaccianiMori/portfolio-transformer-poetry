@@ -29,3 +29,9 @@ authorship of every implementation detail.
 | Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
 | --- | --- | --- | --- | --- |
 | OpenAI GPT-6 | unknown | Technical plan drafting | Moved the detailed checker-first prosody and contingent reasoning plan into the implementation repository under Leonardo's approved repository-boundary correction. | `docs/sonnet_prosody_followup_plan.md` and this dated record. |
+
+## 2026-09-13 Phase A1 prosody checker
+
+| Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
+| --- | --- | --- | --- | --- |
+| OpenCode Go deepseek-v4.1-flash | unknown | Checker module, command-line entry point, and test implementation | Implemented the rule-based `sonnet_prosody` checker for sonnet structure, hendecasyllable metre, stress type, rhyme keys, scheme comparison, and uncertainty flags, under Leonardo's approved A1 checkpoint plan. | `src/sonnet_evaluation/sonnet_prosody.py`, `scripts/check_sonnet_prosody.py`, `tests/test_sonnet_prosody.py` |

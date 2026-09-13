@@ -4,6 +4,11 @@ All notable public-release changes are documented here.
 
 ## [Unreleased]
 
+- Added a rule-based Italian sonnet prosody checker (`sonnet_prosody`) with a
+  command-line entry point and unit tests. It reports sonnet structure,
+  hendecasyllable metre, stress type, rhyme keys, scheme comparison, and
+  uncertainty flags. Accuracy against reviewed ground truth remains a later
+  validation checkpoint.
 - Added the corrected V8 future-training corpus while preserving frozen V1/V7
   evidence. V8 resolves 67 anthology attribution records and two incomplete sonnets,
   quarantines two unresolved author abbreviations and 3,599 author/work split
