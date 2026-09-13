@@ -159,7 +159,8 @@ def main() -> None:
         "plan-then-poem | complete "
         f"outputs={result['completed_output_count']}/"
         f"{result['planned_output_count']} "
-        f"gpu={preflight['gpu_name']} adapter={adapter_identity[:12]}",
+        f"gpu={preflight['gpu_name']} "
+        f"model={adapter_identity[:12] if adapter_identity else 'merged'}",
         flush=True,
     )
 

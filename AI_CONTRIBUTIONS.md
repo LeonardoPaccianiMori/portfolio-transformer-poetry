@@ -113,3 +113,9 @@ authorship of every implementation detail.
 | Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
 | --- | --- | --- | --- | --- |
 | OpenCode Go deepseek-v4.1-flash | unknown | Plan, implementation, and tests | Revised the plan-following plan after the independent review (mismatched control, echo detection, position-wise adherence, fixed retry rules); implemented the response-masked trainer with merged-model save and the extended evaluation; added the tests. | `docs/plan_following_sft_plan.md`, `src/sonnet_training/plan_following_sft.py`, `scripts/train_plan_following_sft.py`, `scripts/score_plan_then_poem_validation.py` |
+
+## 2026-09-13 Plan-following SFT run
+
+| Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
+| --- | --- | --- | --- | --- |
+| OpenCode Go deepseek-v4.1-flash | unknown | SFT run, evaluation, and analysis | Ran the SFT and the three-condition evaluation, scored adherence and form, identified the opening-line plan-construction flaw and the blind-copying signature, and recorded the reading. | `reports/plan_following_sft_v1.md`, `reports/plan_following_sft_v1.json` |

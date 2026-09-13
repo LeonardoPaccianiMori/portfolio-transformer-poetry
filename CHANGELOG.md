@@ -4,6 +4,10 @@ All notable public-release changes are documented here.
 
 ## [Unreleased]
 
+- Ran the plan-following SFT: 968 steps, probe key match 0.729. The full
+  evaluation shows blind list copying (planned 0.711, mismatched 0.734,
+  control 0.858) and a plan-construction flaw on the forced opening line.
+  Reading: one more epoch then review.
 - Added the reviewed plan-following SFT plan and implementation: mismatched
   plan control, echo detection, position-wise adherence, the response-masked
   trainer with merged-model save, and tests. No training run has started.

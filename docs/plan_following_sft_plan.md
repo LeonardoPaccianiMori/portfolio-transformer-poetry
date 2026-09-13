@@ -112,3 +112,25 @@ shown in the prompt, and does plan following produce a valid rhyme scheme?
 - The checker's definite coverage limit (87.1% on the ground truth) applies.
 - No release, no checkpoint publication, no public wording before a separate
   review.
+
+## Status on 2026-09-13
+
+The SFT completed 968 of 968 steps (15,476 train and 814 validation examples,
+8 malformed records excluded) with a final validation loss of 2.41 and a cost
+of $1.11. The 20-prompt adherence probe reached 0.729 key match.
+
+The full evaluation ran 720 outputs. Planned key-match is 0.711, mismatched
+0.734, and control 0.858; the planned-minus-mismatched interval is
+[-0.059, 0.014]. The model copies whichever list it is shown and does not
+discriminate plans, but the copying mechanism works. Planned scheme
+compliance is 0.0042. Per line position, adherence is 0.017 on line 1 and
+between 0.60 and 0.96 elsewhere. Line 1 is the forced opening prefill, so the
+planned first ending is impossible by construction; this plan-construction
+flaw explains most of the near-zero scheme rate. The pre-registered reading
+is ONE_MORE_EPOCH_THEN_REVIEW.
+
+Next steps, in order: fix plan construction so line 1 is anchored to the
+opening's own ending and the remaining endings complete a feasible scheme;
+then either one more identical epoch or constrained ending decoding that
+forces the planned final word per line. See
+`reports/plan_following_sft_v1.md`.
