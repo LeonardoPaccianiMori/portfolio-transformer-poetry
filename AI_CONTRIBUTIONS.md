@@ -47,3 +47,9 @@ authorship of every implementation detail.
 | Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
 | --- | --- | --- | --- | --- |
 | OpenCode Go deepseek-v4.1-flash | unknown | Sealed-output scoring and paired analysis | Implemented and ran the retroactive scoring of the 4,976 sealed Stage-3 and DPO outputs, with paired comparisons and discordant-outcome tests. | `src/sonnet_evaluation/sonnet_prosody_sealed.py`, `scripts/score_sealed_sonnet_prosody.py`, `reports/sonnet_prosody_retroactive_v1.md` |
+
+## 2026-09-13 A2 packet review
+
+| Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
+| --- | --- | --- | --- | --- |
+| OpenCode Go deepseek-v4.1-flash | unknown | Packet review at Leonardo's request | Rechecked all 54 metre flags and the one rhyme-scheme mismatch with word-level diagnostics; confirmed every flag is conservative, found no definite checker error, and recorded one reason-set limitation. | `reports/sonnet_prosody_review_outcome_v1.md` |
