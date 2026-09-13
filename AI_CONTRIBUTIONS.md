@@ -65,3 +65,9 @@ authorship of every implementation detail.
 | Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
 | --- | --- | --- | --- | --- |
 | OpenCode Go deepseek-v4.1-flash | unknown | Pilot run, verification, and corrected scoring | Ran the V8 encoding, LoRA training, matched validation generation, and scoring on the prepared H100; found and fixed a paired-direction bug in the scoring script; recorded the null result. | `reports/form_targeted_lora_pilot_v1.md`, `reports/form_targeted_lora_pilot_v1.json` |
+
+## 2026-09-13 V8 Stage-3 retrain implementation
+
+| Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
+| --- | --- | --- | --- | --- |
+| OpenCode Go deepseek-v4.1-flash | unknown | Full-weight retrain implementation | Wrote the retrain plan, the window-plan and safeguarded trainer modules, candidate generation and merged evaluation, the scripts, and the tests, under the review requirements. | `docs/v8_stage3_retrain_plan.md`, `src/sonnet_training/v8_stage3_retrain_data.py`, `src/sonnet_training/v8_stage3_retrain.py`, `scripts/train_v8_stage3_retrain.py` |

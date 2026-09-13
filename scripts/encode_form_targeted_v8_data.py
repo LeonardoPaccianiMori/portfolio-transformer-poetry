@@ -40,6 +40,12 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="verify every selected record hash without tokenizing",
     )
+    parser.add_argument(
+        "--split",
+        type=str,
+        default=None,
+        help="manifest split to encode; defaults to the config value",
+    )
     parser.add_argument("--output-dir", type=Path, default=None)
     return parser.parse_args()
 
@@ -48,8 +54,9 @@ def main() -> None:
     args = parse_args()
     config = json.loads(args.config.read_text(encoding="utf-8"))
     data_config = config["data"]
+    split = args.split or data_config["split"]
     manifest_path = ROOT / data_config["manifest"]
-    rows = load_train_rows(manifest_path, split=data_config["split"])
+    rows = load_train_rows(manifest_path, split=split)
     print(f"form-targeted-encode | selected {len(rows)} train sonnets", flush=True)
 
     if args.check_hashes:
@@ -79,6 +86,7 @@ def main() -> None:
         manifest_path=manifest_path,
         tokenizer_sha256=fingerprint,
         max_sequence_tokens=int(data_config["max_sequence_tokens"]),
+        split=split,
     )
     print(
         "form-targeted-encode | complete "

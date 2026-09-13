@@ -4,6 +4,10 @@ All notable public-release changes are documented here.
 
 ## [Unreleased]
 
+- Added the approved full-weight V8 Stage-3 retrain: frozen window plan with
+  5% preservation replay, safeguarded trainer, candidate generation and
+  merged evaluation, and tests. The preflight plan is 1,490 windows and 93
+  optimizer updates.
 - Ran the form-targeted LoRA pilot: 178 steps on 2.9M tokens, then 480 matched
   validation generations. The candidate degraded generation quality, lost
   accepted hendecasyllable lines, and produced no valid sonnet. The

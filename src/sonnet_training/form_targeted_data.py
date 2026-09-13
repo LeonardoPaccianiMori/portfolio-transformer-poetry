@@ -102,6 +102,7 @@ def write_token_shard(
     manifest_path: Path,
     tokenizer_sha256: str,
     max_sequence_tokens: int,
+    split: str = "train",
 ) -> dict[str, Any]:
     output_dir.mkdir(parents=True, exist_ok=True)
     shard_path = output_dir / "tokens-00000.int32.bin"
@@ -109,6 +110,7 @@ def write_token_shard(
     shard_sha256 = hashlib.sha256(shard_path.read_bytes()).hexdigest()
     report = {
         "data_version": DATA_VERSION,
+        "split": split,
         "manifest_path": str(manifest_path),
         "manifest_sha256": hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
         "tokenizer_sha256": tokenizer_sha256,

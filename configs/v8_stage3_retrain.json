@@ -1,0 +1,61 @@
+{
+  "retrain_version": "v8_stage3_retrain_v1",
+  "approved_on": "2026-09-13",
+  "data": {
+    "v8_train_shard": "artifacts/local/form_targeted_lora/data/tokens-00000.int32.bin",
+    "v8_train_report": "artifacts/local/form_targeted_lora/data/encode_report.json",
+    "v8_manifest": "data/processed/sonnets_expanded_v8/sonnets_manifest.csv",
+    "v8_validation_output_dir": "artifacts/local/v8_stage3_retrain/data",
+    "v8_validation_shard": "artifacts/local/v8_stage3_retrain/data/validation/tokens-00000.int32.bin",
+    "replay_shard": "data/local/minerva_7b_v7/encoded/modern_preservation_replay-00000.int32.bin",
+    "replay_fraction": 0.05,
+    "context_length": 2048,
+    "windows_per_update": 16,
+    "seed": 1337
+  },
+  "training": {
+    "stage2_dir": "artifacts/local/v8_stage3_retrain/stage2",
+    "output_dir": "artifacts/local/v8_stage3_retrain/training",
+    "peak_learning_rate": 0.000001,
+    "minimum_learning_rate": 0.0000001,
+    "warmup_updates": 7,
+    "weight_decay": 0.01,
+    "max_gradient_norm": 1.0,
+    "evaluation_interval_updates": 15,
+    "evaluation_windows": 32,
+    "checkpoint_updates": [45],
+    "max_preclip_gradient_norm": 100.0,
+    "retention_loss_ratio_gate": 1.05,
+    "hourly_rate_usd": 2.5,
+    "spend_ceiling_usd": 8.0
+  },
+  "probe": {
+    "prompt_count": 20,
+    "seed": 6200,
+    "baseline_mean_accepted_lines": 5.688,
+    "abort_ratio": 0.5,
+    "batch_size": 8
+  },
+  "evaluation": {
+    "prompts": "configs/minerva_7b_v7_exploratory_prompts.json",
+    "prompts_sha256": "2f33aa518aa61c11193831e53b07fd3bd861a72bf68bb23c0e0e5b1a13b1d0c7",
+    "seeds": [6200, 6201],
+    "baseline_generation_dir": "artifacts/local/form_targeted_lora/validation/generation",
+    "candidate_output_dir": "artifacts/local/v8_stage3_retrain/validation/generation_candidate",
+    "merged_output_dir": "artifacts/local/v8_stage3_retrain/validation/generation",
+    "batch_size": 8,
+    "recipe": {
+      "temperature": 0.85,
+      "top_k": null,
+      "top_p": 0.95,
+      "repetition_penalty": 1.0,
+      "no_repeat_ngram_size": 4,
+      "max_new_tokens": 512,
+      "continuation_line_target": 13
+    }
+  },
+  "report": {
+    "markdown": "reports/v8_stage3_retrain_v1.md",
+    "json": "reports/v8_stage3_retrain_v1.json"
+  }
+}
