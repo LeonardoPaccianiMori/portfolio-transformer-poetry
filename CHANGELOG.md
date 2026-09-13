@@ -4,6 +4,10 @@ All notable public-release changes are documented here.
 
 ## [Unreleased]
 
+- Ran the form-targeted LoRA pilot: 178 steps on 2.9M tokens, then 480 matched
+  validation generations. The candidate degraded generation quality, lost
+  accepted hendecasyllable lines, and produced no valid sonnet. The
+  pre-registered reading is NULL.
 - Added the approved form-targeted LoRA pilot: the V8 train encoder, one-arm
   LoRA trainer, matched validation generation, scoring, tests, and the frozen
   pilot plan. No training run has started.

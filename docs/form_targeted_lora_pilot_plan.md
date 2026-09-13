@@ -96,3 +96,15 @@ increase formal sonnet validity beyond the Stage-3 baseline?
 - The checker's definite coverage limit (87.1% on the ground truth) applies.
 - Training-data decisions for V8 inherit the recorded publication-risk
   decision; this plan releases no adapter.
+
+## Status on 2026-09-13
+
+The pilot ran on one H100. Encoding produced 2,901,061 tokens from 16,298
+train sonnets. The LoRA arm completed 178 of 178 steps with a final training
+loss of 0.0267. On 240 matched validation pairs the candidate lost 4.44
+accepted hendecasyllable lines per output (95% CI -4.75 to -4.13), failed
+lines rose by 6.35, the 4+4+3+3 stanza pattern fell from 8 occurrences to 0,
+and the candidate text is degenerate. No full-form valid output exists in
+either system. The pre-registered reading is NULL. This training
+configuration is not supported, and the adapter is preserved locally as
+evidence. See `reports/form_targeted_lora_pilot_v1.md`.

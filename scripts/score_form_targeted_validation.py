@@ -22,7 +22,7 @@ from sonnet_evaluation.sonnet_prosody_sealed import (
     score_records,
 )
 
-SYSTEMS = ("baseline", "candidate")
+PAIR_ORDER = ("candidate", "baseline")
 CONTINUOUS_FIELDS = (
     "hendecasyllable_lines",
     "failed_lines",
@@ -125,8 +125,9 @@ def format_report(
     lines.extend(
         [
             "",
-            "Note: the paired table reports candidate minus baseline; the field",
-            "name keeps the shared helper's label.",
+            "The shared comparison helper labels the first paired system",
+            "`stage_3` and the second `dpo`; here the first is the candidate and",
+            "the second is the baseline, so the table is candidate minus baseline.",
             "",
             "## Discordant binary outcomes (McNemar normal approximation)",
             "",
@@ -178,7 +179,7 @@ def main() -> None:
     records = load_generation_records(generation_dir)
     scored = score_records(records)
     full_form_valid_flags(scored)
-    pairs = pair_records(scored, systems=SYSTEMS)
+    pairs = pair_records(scored, systems=PAIR_ORDER)
     baseline = aggregate(scored, "baseline")
     candidate = aggregate(scored, "candidate")
     comparisons = [paired_comparison(pairs, field) for field in CONTINUOUS_FIELDS]
@@ -228,6 +229,7 @@ def main() -> None:
         "schema_version": 1,
         "generation_dir": str(generation_dir),
         "prompts_sha256": evaluation["prompts_sha256"],
+        "paired_order": list(PAIR_ORDER),
         "system_metrics": {"baseline": baseline, "candidate": candidate},
         "full_form_valid": {"baseline": baseline_valid, "candidate": candidate_valid},
         "paired_comparisons": comparisons,
