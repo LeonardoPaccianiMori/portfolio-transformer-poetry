@@ -41,3 +41,9 @@ authorship of every implementation detail.
 | Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
 | --- | --- | --- | --- | --- |
 | OpenCode Go deepseek-v4.1-flash | unknown | Ground-truth build, validation tooling, and checker hardening | Built the frozen Dante and Petrarch ground truth from the V6 corpus, implemented the validation metrics and review packet, read the rhyme classes from the frozen texts, and fixed diacritic, silent-h, and rhyme-equivalence defects found by the validation. | `data/metadata/sonnet_prosody_ground_truth_v1.json`, `src/sonnet_evaluation/sonnet_prosody_validation.py`, `scripts/validate_sonnet_prosody.py`, `reports/sonnet_prosody_validation_v1.md` |
+
+## 2026-09-13 Phase A3 retroactive scoring
+
+| Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
+| --- | --- | --- | --- | --- |
+| OpenCode Go deepseek-v4.1-flash | unknown | Sealed-output scoring and paired analysis | Implemented and ran the retroactive scoring of the 4,976 sealed Stage-3 and DPO outputs, with paired comparisons and discordant-outcome tests. | `src/sonnet_evaluation/sonnet_prosody_sealed.py`, `scripts/score_sealed_sonnet_prosody.py`, `reports/sonnet_prosody_retroactive_v1.md` |

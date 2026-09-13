@@ -125,6 +125,16 @@ rhyme, rhyme scheme, and stanza structure. Preserve the sealed outputs and
 generation recipe. Report uncertainty and paired comparisons where the design
 supports them.
 
+Status on 2026-09-13: the sealed outputs were scored
+(`reports/sonnet_prosody_retroactive_v1.md`). No Stage-3 or DPO output is fully
+definite-valid: 0 of 4,976 outputs have all 14 lines accepted by the checker.
+About 23% of outputs have no definite metre failure but contain uncertain
+lines. DPO has 0.23 more definite-valid lines per output on average (95% CI
+0.12 to 0.33) and no rhyme-score difference. The estimated per-sample pass
+rate for full form is near zero under this recipe, so the Phase A decision
+gate points toward form-targeted measurement rather than a best-of-N pilot on
+the current model. The owner decision is pending.
+
 ### A4. Best-of-N pilot
 
 Generate `N` Stage-3 candidates for each opening in a frozen sample. Select by

@@ -4,6 +4,9 @@ All notable public-release changes are documented here.
 
 ## [Unreleased]
 
+- Added retroactive prosody scoring of the sealed Stage-3 and DPO outputs. No
+  output is fully definite-valid; DPO shows a small increase in
+  hendecasyllable lines and no rhyme-score difference.
 - Added the frozen sonnet-prosody ground truth of 30 Dante and Petrarch poems,
   the validation report, and the 100-line owner review packet.
 - Hardened the `sonnet_prosody` checker for editorial accents, diaeresis,
