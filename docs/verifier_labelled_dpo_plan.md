@@ -75,3 +75,21 @@ About 30 to 45 minutes of H100, roughly $1 to $2.
   this and not claim a general quality gain.
 - No release, no checkpoint publication, no public wording before a separate
   review.
+
+## Status on 2026-09-13
+
+The run completed. Training used 383 train pairs and 42 validation pairs and
+finished 48 of 48 updates with validation preference accuracy 0.762, at a
+cost of $0.10. The matched validation grid produced 960 outputs with no test
+access. On 480 paired comparisons the verifier DPO gained 0.767 accepted
+hendecasyllable lines per output (95% CI 0.458 to 1.075) with no significant
+rhyme-score change (-0.002, 95% CI -0.060 to 0.057), so the pre-registered
+reading is SIGNAL. No full-form valid output exists in either system, and the
+quatrain and tercet scheme rates remain zero.
+
+The gain is partial and carries a material caveat: failed lines rose by 1.904
+(95% CI 1.592 to 2.216) while uncertain lines fell by 2.671. The adapter
+sharpened outcomes more than it reduced errors, and fewer than a third of the
+lines that left the uncertain state became accepted. The accepted-line
+increase is therefore not a reduction of total formal errors, and no valid
+sonnet was produced. See `reports/verifier_labelled_dpo_v1.md`.

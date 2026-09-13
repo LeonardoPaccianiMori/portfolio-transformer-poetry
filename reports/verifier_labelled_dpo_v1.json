@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "generation_dir": "artifacts/local/verifier_labelled_dpo/validation/generation",
+  "paired_order": [
+    "dpo",
+    "stage_3"
+  ],
+  "system_metrics": {
+    "stage_3": {
+      "system_id": "stage_3",
+      "output_count": 480,
+      "structure_ok_rate": 1.0,
+      "stanza_pattern_ok_rate": 0.052083333333333336,
+      "all_lines_valid_rate": 0.0,
+      "definite_valid_rate": 0.0,
+      "no_definite_failure_rate": 0.22083333333333333,
+      "quatrain_ok_rate": 0.0,
+      "tercet_ok_rate": 0.0,
+      "mean_hendecasyllable_lines": 5.416666666666667,
+      "mean_failed_lines": 2.26875,
+      "mean_uncertain_lines": 6.314583333333333,
+      "mean_perfect_rhyme_pairs": 1.1458333333333333,
+      "mean_soft_rhyme_pairs": 0.23958333333333334,
+      "mean_rhyme_score": 0.5696006944444445,
+      "tercet_scheme_distribution": {
+        "ABCDEF": 397,
+        "ABCDEE": 11,
+        "ABCADE": 7,
+        "ABCDAE": 6,
+        "AABCDE": 6,
+        "ABCDBE": 6,
+        "ABCCDE": 5,
+        "ABCDEB": 5,
+        "ABACDE": 4,
+        "ABCDDE": 4,
+        "ABBCDE": 4,
+        "ABCBDE": 4,
+        "ABCDEC": 4,
+        "ABCDED": 4,
+        "ABCDEA": 3,
+        "ABCDCE": 2,
+        "AAAABC": 1,
+        "ABCCDB": 1,
+        "ABCDE?": 1,
+        "ABC?DE": 1,
+        "ABCCCD": 1,
+        "A?BB??": 1,
+        "ABCCBD": 1,
+        "A?BCDE": 1
+      }
+    },
+    "dpo": {
+      "system_id": "dpo",
+      "output_count": 480,
+      "structure_ok_rate": 1.0,
+      "stanza_pattern_ok_rate": 0.05,
+      "all_lines_valid_rate": 0.0,
+      "definite_valid_rate": 0.0,
+      "no_definite_failure_rate": 0.05,
+      "quatrain_ok_rate": 0.0,
+      "tercet_ok_rate": 0.0,
+      "mean_hendecasyllable_lines": 6.183333333333334,
+      "mean_failed_lines": 4.172916666666667,
+      "mean_uncertain_lines": 3.64375,
+      "mean_perfect_rhyme_pairs": 1.1583333333333334,
+      "mean_soft_rhyme_pairs": 0.28541666666666665,
+      "mean_rhyme_score": 0.56796875,
+      "tercet_scheme_distribution": {
+        "ABCDEF": 397,
+        "ABCCDE": 7,
+        "ABCDBE": 6,
+        "ABBCDE": 6,
+        "ABCDCE": 6,
+        "ABCDEE": 5,
+        "ABCDDE": 5,
+        "ABCADE": 5,
+        "ABCDAE": 5,
+        "ABCDEB": 4,
+        "ABACDE": 4,
+        "ABCBDE": 4,
+        "ABCDEC": 3,
+        "ABCDED": 3,
+        "AABCDE": 3,
+        "ABCD?E": 2,
+        "AAABCD": 1,
+        "AABCDB": 1,
+        "ABCADA": 1,
+        "ABCDBD": 1,
+        "ABCDEA": 1,
+        "ABC?DE": 1,
+        "AB?CDE": 1,
+        "ABBCAD": 1,
+        "ABCDE?": 1,
+        "ABBBCD": 1,
+        "ABCDDB": 1,
+        "ABCB??": 1,
+        "?ABCDE": 1,
+        "ABCCDB": 1,
+        "ABACDB": 1
+      }
+    }
+  },
+  "full_form_valid": {
+    "stage_3": 0,
+    "dpo": 0
+  },
+  "paired_comparisons": [
+    {
+      "field": "hendecasyllable_lines",
+      "pair_count": 480,
+      "mean_difference_stage_3_minus_dpo": 0.7666666666666667,
+      "ci95_low": 0.4580095998823489,
+      "ci95_high": 1.0753237334509844,
+      "positive_pairs": 262,
+      "negative_pairs": 156,
+      "equal_pairs": 62
+    },
+    {
+      "field": "failed_lines",
+      "pair_count": 480,
+      "mean_difference_stage_3_minus_dpo": 1.9041666666666666,
+      "ci95_low": 1.5920717005725544,
+      "ci95_high": 2.2162616327607787,
+      "positive_pairs": 323,
+      "negative_pairs": 103,
+      "equal_pairs": 54
+    },
+    {
+      "field": "uncertain_lines",
+      "pair_count": 480,
+      "mean_difference_stage_3_minus_dpo": -2.6708333333333334,
+      "ci95_low": -2.94661692613811,
+      "ci95_high": -2.395049740528557,
+      "positive_pairs": 66,
+      "negative_pairs": 364,
+      "equal_pairs": 50
+    },
+    {
+      "field": "perfect_rhyme_pairs",
+      "pair_count": 480,
+      "mean_difference_stage_3_minus_dpo": 0.0125,
+      "ci95_low": -0.1500775747601499,
+      "ci95_high": 0.17507757476014993,
+      "positive_pairs": 172,
+      "negative_pairs": 178,
+      "equal_pairs": 130
+    },
+    {
+      "field": "soft_rhyme_pairs",
+      "pair_count": 480,
+      "mean_difference_stage_3_minus_dpo": 0.04583333333333333,
+      "ci95_low": -0.027855861038705958,
+      "ci95_high": 0.11952252770537261,
+      "positive_pairs": 82,
+      "negative_pairs": 69,
+      "equal_pairs": 329
+    },
+    {
+      "field": "rhyme_score",
+      "pair_count": 480,
+      "mean_difference_stage_3_minus_dpo": -0.0016319444444444432,
+      "ci95_low": -0.05998623585296428,
+      "ci95_high": 0.056722346964075396,
+      "positive_pairs": 146,
+      "negative_pairs": 144,
+      "equal_pairs": 190
+    }
+  ],
+  "mcnemar": [
+    {
+      "field": "structure_ok",
+      "stage_3_only": 0,
+      "dpo_only": 0,
+      "both": 480,
+      "neither": 0,
+      "discordant": 0,
+      "statistic": 0.0,
+      "p_value_normal_approximation": 1.0
+    },
+    {
+      "field": "stanza_pattern_ok",
+      "stage_3_only": 23,
+      "dpo_only": 24,
+      "both": 1,
+      "neither": 432,
+      "discordant": 47,
+      "statistic": -0.14586499149789456,
+      "p_value_normal_approximation": 0.8840279686806821
+    },
+    {
+      "field": "all_lines_valid",
+      "stage_3_only": 0,
+      "dpo_only": 0,
+      "both": 0,
+      "neither": 480,
+      "discordant": 0,
+      "statistic": 0.0,
+      "p_value_normal_approximation": 1.0
+    },
+    {
+      "field": "quatrain_ok",
+      "stage_3_only": 0,
+      "dpo_only": 0,
+      "both": 0,
+      "neither": 480,
+      "discordant": 0,
+      "statistic": 0.0,
+      "p_value_normal_approximation": 1.0
+    },
+    {
+      "field": "tercet_ok",
+      "stage_3_only": 0,
+      "dpo_only": 0,
+      "both": 0,
+      "neither": 480,
+      "discordant": 0,
+      "statistic": 0.0,
+      "p_value_normal_approximation": 1.0
+    }
+  ],
+  "reading": {
+    "signal": true,
+    "reasons": [
+      "Paired accepted-line increase excludes zero and reaches the sealed DPO effect, with no significant rhyme-score drop."
+    ]
+  },
+  "scores_jsonl": "artifacts/local/verifier_labelled_dpo/validation/scores_v1.jsonl",
+  "checker_status": "reviewed_conservative_2026-09-13"
+}

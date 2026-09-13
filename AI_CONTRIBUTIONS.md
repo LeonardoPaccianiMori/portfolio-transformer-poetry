@@ -83,3 +83,9 @@ authorship of every implementation detail.
 | Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
 | --- | --- | --- | --- | --- |
 | OpenCode Go deepseek-v4.1-flash | unknown | Preference build and pipeline implementation | Wrote the verifier preference builder, the verifier DPO config, loader, and scripts, and the tests under the approved plan; built and audited the frozen 425-pair dataset from the existing candidates. | `docs/verifier_labelled_dpo_plan.md`, `src/sonnet_evaluation/verifier_preferences.py`, `src/sonnet_training/verifier_labelled_dpo.py`, `scripts/build_verifier_preferences.py` |
+
+## 2026-09-13 Verifier-labelled DPO run
+
+| Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
+| --- | --- | --- | --- | --- |
+| OpenCode Go deepseek-v4.1-flash | unknown | Verifier DPO run, scoring, and report | Ran the adapter training and the matched validation generation on the H100, scored the grid locally, found the partial signal and its failed-line caveat, and recorded them. | `reports/verifier_labelled_dpo_v1.md`, `reports/verifier_labelled_dpo_v1.json` |

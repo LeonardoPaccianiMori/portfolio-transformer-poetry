@@ -4,6 +4,11 @@ All notable public-release changes are documented here.
 
 ## [Unreleased]
 
+- Ran the verifier-labelled form DPO: 48 updates, 425 preference pairs, and
+  960 matched validation outputs. Accepted hendecasyllable lines rose by 0.77
+  (95% CI 0.46 to 1.08) with no rhyme-score change, but failed lines rose by
+  1.90 and no valid sonnet was produced. Partial signal under the
+  pre-registered rule.
 - Added the verifier-labelled form DPO pipeline and built its frozen
   preference dataset from the 4,096 existing candidates: 425 pairs over 425
   openings, with 103 degenerate candidates excluded. No training run has
