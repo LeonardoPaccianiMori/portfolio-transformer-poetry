@@ -171,11 +171,7 @@ def train_form_targeted_lora(
                     dtype=torch.long,
                     device=device,
                 )
-                labels = torch.as_tensor(
-                    np.stack([token_tensor(tokens, s, sequence_tokens)[1:] for s in starts]),
-                    dtype=torch.long,
-                    device=device,
-                )
+                labels = inputs.clone()
                 outputs = model(input_ids=inputs, labels=labels)
                 loss = outputs.loss / accumulation
                 loss.backward()

@@ -75,8 +75,7 @@ def window_loss(model: Any, tokens: Any, start: int, context_length: int, device
 
     window = token_tensor(tokens, start, context_length)
     inputs = torch.as_tensor(window[:-1][None, :], dtype=torch.long, device=device)
-    labels = torch.as_tensor(window[1:][None, :], dtype=torch.long, device=device)
-    return model(input_ids=inputs, labels=labels).loss
+    return model(input_ids=inputs, labels=inputs.clone()).loss
 
 
 def evaluate_stream_loss(
