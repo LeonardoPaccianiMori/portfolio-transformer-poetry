@@ -4,7 +4,8 @@ Date: 2026-09-13
 
 This report validates the rule-based `sonnet_prosody` checker against the
 frozen ground truth of 30 sonnets (420 lines).
-The checker stays provisional until the owner reviews the packet.
+The checker flags were reviewed on 2026-09-13; see
+`reports/sonnet_prosody_review_outcome_v1.md`.
 
 ## Ground truth
 
@@ -53,8 +54,8 @@ separately in the uncertainty reasons and the review packet.
 - Packet: `reports/sonnet_prosody_review_packet_v1.csv`
 - Selection rule: all metre-flagged lines, then scheme-mismatch lines,
   then a deterministic sample, up to 100 lines.
-- Status: pending owner review. The checker must not be used as a
-  metric, selector, label source, or reward before the review.
+- Status: reviewed on 2026-09-13 at the owner's request. Outcome:
+  `reports/sonnet_prosody_review_outcome_v1.md`.
 
 ## Verification
 

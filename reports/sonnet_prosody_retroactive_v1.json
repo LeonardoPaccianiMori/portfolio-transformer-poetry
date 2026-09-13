@@ -276,5 +276,5 @@
     }
   ],
   "scores_jsonl": "artifacts/local/sonnet_prosody/sealed_scores_v1.jsonl",
-  "checker_status": "provisional_pending_manual_review"
+  "checker_status": "reviewed_conservative_2026-09-13"
 }

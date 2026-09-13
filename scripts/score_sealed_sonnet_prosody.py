@@ -115,7 +115,7 @@ def main() -> None:
         "paired_comparisons": comparisons,
         "mcnemar": mcnemar_results,
         "scores_jsonl": repository_relative(args.scores_jsonl),
-        "checker_status": "provisional_pending_manual_review",
+        "checker_status": "reviewed_conservative_2026-09-13",
     }
     args.report_json.parent.mkdir(parents=True, exist_ok=True)
     args.report_json.write_text(

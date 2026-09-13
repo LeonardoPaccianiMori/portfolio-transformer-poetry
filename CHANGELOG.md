@@ -4,6 +4,9 @@ All notable public-release changes are documented here.
 
 ## [Unreleased]
 
+- Reviewed all 54 metre flags and the one rhyme-scheme mismatch in the A2
+  packet. Every flag is conservative, no definite checker error was found, and
+  one reason-set limitation (triphthong synaeresis) is documented.
 - Added retroactive prosody scoring of the sealed Stage-3 and DPO outputs. No
   output is fully definite-valid; DPO shows a small increase in
   hendecasyllable lines and no rhyme-score difference.

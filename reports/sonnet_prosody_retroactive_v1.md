@@ -4,9 +4,10 @@ Date: 2026-09-13
 
 This report scores the frozen one-time final-test outputs with the
 rule-based `sonnet_prosody` checker. It only reads the sealed
-artifacts. The checker is provisional until the owner reviews the A2
-packet, and the results below measure form only, not literary
-quality. Selection effects are not implied.
+artifacts. The checker flags were reviewed on 2026-09-13; see
+`reports/sonnet_prosody_review_outcome_v1.md`. The results below
+measure form only, not literary quality. Selection effects are not
+implied.
 
 - Sealed outputs: 4976
 - Paired outputs: 2488

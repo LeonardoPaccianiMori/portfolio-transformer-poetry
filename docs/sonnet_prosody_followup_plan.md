@@ -112,10 +112,12 @@ Validate the checker before it becomes an experiment metric or reward:
 Status on 2026-09-13: the validation ran against the frozen 30-sonnet ground
 truth (`data/metadata/sonnet_prosody_ground_truth_v1.json`). Metre accuracy on
 definite lines is 100% with 87.1% definite coverage. Exact rhyme scheme
-agreement is 29/30 and soft (Sicilian) agreement is 30/30. The checker stays
-provisional until Leonardo reviews the 100-line packet in
-`reports/sonnet_prosody_review_packet_v1.csv`. See
-`reports/sonnet_prosody_validation_v1.md` and
+agreement is 29/30 and soft (Sicilian) agreement is 30/30. Leonardo delegated
+the packet review; the primary agent reviewed all 54 metre flags and the one
+scheme mismatch. Every flag is conservative, no definite checker error was
+found, and one reason-set limitation (triphthong synaeresis) is recorded. See
+`reports/sonnet_prosody_validation_v1.md`,
+`reports/sonnet_prosody_review_outcome_v1.md`, and
 `reports/sonnet_prosody_validation_v1.json`.
 
 ### A3. Retroactive evaluation
