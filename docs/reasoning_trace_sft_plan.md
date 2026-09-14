@@ -28,8 +28,10 @@ endings; this arm makes the choice an explicit product.
 
 - Base: the local merged model (rebuilt on the instance, byte-identical).
 - Response-masked SFT on the trace plus poem. LoRA rank 16, alpha 32,
-  dropout 0.05, 1 epoch, batch 8, accumulation 2, learning rate 1e-4,
-  seed 11415. Config: `configs/reasoning_trace_sft.json`.
+  dropout 0.05, 1 epoch, micro-batch 4 with accumulation 4 (effective batch
+  16; batch 8 with accumulation 2 exceeded 48 GB on the A6000 because the
+  trace targets are long), learning rate 1e-4, seed 11415. Config:
+  `configs/reasoning_trace_sft.json`.
 - Trainer: `train_plan_following_sft` with a direct base model and a
   separate tokenizer directory.
 
