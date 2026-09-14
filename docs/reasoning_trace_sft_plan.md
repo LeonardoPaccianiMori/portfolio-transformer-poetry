@@ -57,6 +57,19 @@ endings; this arm makes the choice an explicit product.
   scoring local. Roughly 1-1.5 hours of GPU time.
 - No model release, no push, and no public wording change.
 
+## Run History
+
+- Run 1 (2026-09-14): SELF_PLAY_NULL on the gate, with a clear diagnosis.
+  The trained arm parses a trace in 0.9917 of outputs and every parsed trace
+  has a valid scheme pattern (ABBA ABBA CDCDCD, ABBA ABBA CDECDE, ABAB ABAB
+  CDCDCD), so the format and the scheme structure are learned. Rhyme
+  consistency fails: only 11 of 238 planned ending sets actually rhyme
+  (0.046). When the trace is valid, the poem is scheme-valid without repair
+  7 of 11 times. Overall scheme validity is 0.0292 against 0.0000 for the
+  baseline. Failed lines fall from 8.883 to 1.496 and final-word repetition
+  from 0.405 to 0.066. The bottleneck is the choice of rhyming endings, not
+  the format. See `reports/reasoning_trace_sft_v1.md`.
+
 ## Caveats
 
 - Training targets are real poems, so the model learns to imitate corpus

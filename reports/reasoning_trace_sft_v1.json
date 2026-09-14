@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "generation_dir": "artifacts/local/reasoning_trace/validation/generation",
+  "form": {
+    "trace_baseline": {
+      "outputs": 240,
+      "trace_parsed": 0.0,
+      "trace_valid": 0.0,
+      "valid_without_repair": 0.0,
+      "scheme_matches_trace": 0.0,
+      "accepted_lines": 8.816666666666666,
+      "failed_lines": 8.883333333333333,
+      "uncertain_lines": 12.816666666666666,
+      "stanza_pattern_ok": 0.0,
+      "rhyme_score": 0.8553315584516924,
+      "proxies": {
+        "type_token_ratio": 0.4410196552844346,
+        "repeated_line_ratio": 0.00013440860215053753,
+        "repeated_bigram_ratio": 0.14960867915538012,
+        "final_word_repetition": 0.40488115075798153
+      }
+    },
+    "trace_sft": {
+      "outputs": 240,
+      "trace_parsed": 0.9916666666666667,
+      "trace_valid": 0.04583333333333333,
+      "valid_without_repair": 0.029166666666666667,
+      "scheme_matches_trace": 0.029166666666666667,
+      "accepted_lines": 8.291666666666666,
+      "failed_lines": 1.4958333333333333,
+      "uncertain_lines": 4.354166666666667,
+      "stanza_pattern_ok": 0.0,
+      "rhyme_score": 0.9633576492951493,
+      "proxies": {
+        "type_token_ratio": 0.7292350146289526,
+        "repeated_line_ratio": 0.00026881720430107505,
+        "repeated_bigram_ratio": 0.02403841224377841,
+        "final_word_repetition": 0.06604262672811059
+      }
+    }
+  },
+  "memorization_screen": {
+    "shingle_size": 5,
+    "corpus_documents": 16298,
+    "corpus_lines": 223892,
+    "corpus_shingles": 1515762,
+    "conditions": {
+      "trace_baseline": {
+        "outputs": 240,
+        "outputs_with_exact_line": 0,
+        "outputs_with_four_exact_lines": 0,
+        "max_exact_lines": 0,
+        "outputs_shingle_hit_at_least_half": 0,
+        "mean_shingle_hit": 0.002077520965029027
+      },
+      "trace_sft": {
+        "outputs": 240,
+        "outputs_with_exact_line": 0,
+        "outputs_with_four_exact_lines": 0,
+        "max_exact_lines": 0,
+        "outputs_shingle_hit_at_least_half": 0,
+        "mean_shingle_hit": 0.0026908729943567527
+      }
+    }
+  },
+  "judge_summary": null,
+  "judge_gain": null,
+  "reading": {
+    "result": "SELF_PLAY_NULL",
+    "reasons": [
+      "Autonomous scheme validity 0.0292 against baseline 0.0000 and gate 0.30.",
+      "Accepted-line gap -0.525 (minimum -0.5).",
+      "Judge gain None (minimum -0.3)."
+    ],
+    "checks": {
+      "validity_gate": false,
+      "accepted_loss": false,
+      "judge_loss": true
+    }
+  },
+  "scores_jsonl": "artifacts/local/reasoning_trace/validation/scores_v1.jsonl"
+}
