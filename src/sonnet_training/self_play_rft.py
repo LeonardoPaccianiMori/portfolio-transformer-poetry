@@ -37,8 +37,10 @@ def autonomous_prompt(tokenizer: Any, opening_line: str) -> str:
     return build_intervention_prompt(tokenizer, opening_line, PROMPT_ARM)
 
 
-def output_name(arm: str, prompt_id: str, seed: int) -> str:
-    key = f"{GENERATION_VERSION}|{arm}|{prompt_id}|{seed}"
+def output_name(
+    arm: str, prompt_id: str, seed: int, *, version: str = GENERATION_VERSION
+) -> str:
+    key = f"{version}|{arm}|{prompt_id}|{seed}"
     return hashlib.sha256(key.encode()).hexdigest()[:20] + ".json"
 
 
@@ -217,16 +219,22 @@ def generate_autonomous_validation(
     batch_size: int,
     model_identity: str | None = None,
     progress: Progress | None = None,
+    prompt_builder: Callable[[Any, str], str] = autonomous_prompt,
+    version: str = GENERATION_VERSION,
+    analysis_role: str = "self_play_rft_validation",
+    arms: Sequence[str] = ARMS,
 ) -> dict[str, Any]:
-    if arm not in ARMS:
+    if arm not in arms:
         raise ValueError(f"unknown arm {arm}")
     output_dir.mkdir(parents=True, exist_ok=True)
     started = time.monotonic()
     jobs = []
     for prompt in prompts:
-        rendered = autonomous_prompt(tokenizer, str(prompt["opening_line"]))
+        rendered = prompt_builder(tokenizer, str(prompt["opening_line"]))
         for seed in seeds:
-            path = output_dir / output_name(arm, str(prompt["id"]), int(seed))
+            path = output_dir / output_name(
+                arm, str(prompt["id"]), int(seed), version=version
+            )
             if path.is_file():
                 continue
             jobs.append(
@@ -247,8 +255,8 @@ def generate_autonomous_validation(
         )
         for job, result in zip(batch, results, strict=True):
             payload = {
-                "generation_version": GENERATION_VERSION,
-                "analysis_role": "self_play_rft_validation",
+                "generation_version": version,
+                "analysis_role": analysis_role,
                 "condition": arm,
                 "prompt": job["prompt"],
                 "planned_words": [],
@@ -258,7 +266,7 @@ def generate_autonomous_validation(
                 "v7_test_accessed": False,
             }
             path = output_dir / output_name(
-                arm, str(job["prompt"]["id"]), int(job["seed"])
+                arm, str(job["prompt"]["id"]), int(job["seed"]), version=version
             )
             temporary = path.with_suffix(".json.tmp")
             temporary.write_text(
@@ -285,8 +293,8 @@ def generate_autonomous_validation(
             }
         )
     result = {
-        "generation_version": GENERATION_VERSION,
-        "analysis_role": "self_play_rft_validation",
+        "generation_version": version,
+        "analysis_role": analysis_role,
         "arms": sorted({row["condition"] for row in outputs}),
         "seeds": [int(seed) for seed in seeds],
         "completed_output_count": len(outputs),
