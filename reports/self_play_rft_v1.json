@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "generation_dir": "artifacts/local/self_play_rft/validation/generation",
+  "form": {
+    "autonomous_baseline": {
+      "outputs": 240,
+      "valid_without_repair": 0.0,
+      "accepted_lines": 5.708333333333333,
+      "failed_lines": 5.341666666666667,
+      "uncertain_lines": 2.95,
+      "stanza_pattern_ok": 0.575,
+      "rhyme_score": 0.9132662258085051,
+      "proxies": {
+        "type_token_ratio": 0.6063989300687163,
+        "repeated_line_ratio": 0.0002976190476190475,
+        "repeated_bigram_ratio": 0.06492556454520275,
+        "final_word_repetition": 0.23720238095238097
+      }
+    },
+    "autonomous_rft": {
+      "outputs": 240,
+      "valid_without_repair": 0.0,
+      "accepted_lines": 6.95,
+      "failed_lines": 1.2791666666666666,
+      "uncertain_lines": 5.770833333333333,
+      "stanza_pattern_ok": 0.9791666666666666,
+      "rhyme_score": 0.5249873737373737,
+      "proxies": {
+        "type_token_ratio": 0.638567359594075,
+        "repeated_line_ratio": 0.0002976190476190475,
+        "repeated_bigram_ratio": 0.059575372479917434,
+        "final_word_repetition": 0.03452380952380952
+      }
+    }
+  },
+  "memorization_screen": {
+    "shingle_size": 5,
+    "corpus_documents": 16298,
+    "corpus_lines": 223892,
+    "corpus_shingles": 1515762,
+    "conditions": {
+      "autonomous_baseline": {
+        "outputs": 240,
+        "outputs_with_exact_line": 0,
+        "outputs_with_four_exact_lines": 0,
+        "max_exact_lines": 0,
+        "outputs_shingle_hit_at_least_half": 0,
+        "mean_shingle_hit": 0.0024312345206081304
+      },
+      "autonomous_rft": {
+        "outputs": 240,
+        "outputs_with_exact_line": 0,
+        "outputs_with_four_exact_lines": 0,
+        "max_exact_lines": 0,
+        "outputs_shingle_hit_at_least_half": 0,
+        "mean_shingle_hit": 0.006699247275565313
+      }
+    }
+  },
+  "judge_summary": null,
+  "judge_gain": null,
+  "reading": {
+    "result": "SELF_PLAY_NULL",
+    "reasons": [
+      "Autonomous scheme validity 0.0000 against baseline 0.0000 and gate 0.30.",
+      "Accepted-line gap +1.242 (minimum -0.5).",
+      "Judge gain None (minimum -0.3)."
+    ],
+    "checks": {
+      "validity_gate": false,
+      "accepted_loss": true,
+      "judge_loss": true
+    }
+  },
+  "scores_jsonl": "artifacts/local/self_play_rft/validation/scores_v1.jsonl"
+}
