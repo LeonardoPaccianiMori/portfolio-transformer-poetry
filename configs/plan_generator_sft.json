@@ -27,7 +27,7 @@
   "generation": {
     "seeds": [5200, 5201],
     "recipe": {
-      "temperature": 0.85,
+      "temperature": 0.4,
       "top_k": null,
       "top_p": 0.95,
       "repetition_penalty": 1.0,

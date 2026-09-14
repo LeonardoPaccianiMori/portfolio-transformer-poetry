@@ -106,6 +106,10 @@ endings; this arm makes the choice an explicit product.
   Form is solved; coherence remains the open problem.
 - Reports: `reports/plan_composer_follower_v1.md`,
   `reports/plan_composer_follower_v2.md`.
+- Plan sampling temperature: at 0.85 the plan model is seed-sensitive (seed
+  5204: 35% valid, seed 5205: 26%, other seeds 90%+). At 0.4 the unlucky seeds
+  recover to 92.1% and good seeds reach 92.9%, so the plan recipe now uses
+  temperature 0.4.
 
 ## Caveats
 
