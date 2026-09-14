@@ -68,6 +68,10 @@ def mean(values: list[float]) -> float | None:
     return sum(values) / len(values) if values else None
 
 
+def format_value(value: float | None, fmt: str) -> str:
+    return "n/a" if value is None else fmt.format(value)
+
+
 def main() -> None:
     args = parse_args()
     records = load_context_records(args.generation_dir)
@@ -99,6 +103,11 @@ def main() -> None:
     def record_rows(arm: str) -> list[dict]:
         return [row for row in records if row["system_id"] == arm]
 
+    def field_values(rows: list[dict], field: str) -> list[float]:
+        return [
+            float(row[field]) for row in rows if row.get(field) is not None
+        ]
+
     form = {}
     for arm in ARMS:
         rows = arm_rows(arm)
@@ -107,20 +116,17 @@ def main() -> None:
             "valid_without_repair": mean(
                 [float(row["valid_without_repair"]) for row in rows]
             ),
-            "accepted_lines": mean(
-                [float(row["hendecasyllable_lines"]) for row in rows]
-            ),
-            "failed_lines": mean([float(row["failed_lines"]) for row in rows]),
-            "uncertain_lines": mean([float(row["uncertain_lines"]) for row in rows]),
-            "stanza_pattern_ok": mean(
-                [float(row["stanza_pattern_ok"]) for row in rows]
-            ),
-            "rhyme_score": mean([float(row["rhyme_score"]) for row in rows]),
+            "accepted_lines": mean(field_values(rows, "hendecasyllable_lines")),
+            "failed_lines": mean(field_values(rows, "failed_lines")),
+            "uncertain_lines": mean(field_values(rows, "uncertain_lines")),
+            "stanza_pattern_ok": mean(field_values(rows, "stanza_pattern_ok")),
+            "rhyme_score": mean(field_values(rows, "rhyme_score")),
             "proxies": {
                 field: mean(
                     [
                         float(record[f"proxy_{field}"])
                         for record in record_rows(arm)
+                        if record.get(f"proxy_{field}") is not None
                     ]
                 )
                 for field in PROXY_FIELDS
@@ -196,7 +202,9 @@ def main() -> None:
     ):
         values = [form[arm][key] for arm in ARMS]
         lines.append(
-            "| " + label + " | " + " | ".join(fmt.format(v) for v in values) + " |"
+            "| " + label + " | "
+            + " | ".join(format_value(v, fmt) for v in values)
+            + " |"
         )
     lines.extend(
         [
@@ -210,7 +218,9 @@ def main() -> None:
     for field in PROXY_FIELDS:
         values = [form[arm]["proxies"][field] for arm in ARMS]
         lines.append(
-            f"| {field} | " + " | ".join(f"{v:.4f}" for v in values) + " |"
+            f"| {field} | "
+            + " | ".join(format_value(v, "{:.4f}") for v in values)
+            + " |"
         )
     lines.extend(
         [
@@ -235,7 +245,9 @@ def main() -> None:
     ):
         values = [baseline_stats.get(key, 0), rft_stats.get(key, 0)]
         lines.append(
-            "| " + label + " | " + " | ".join(fmt.format(v) for v in values) + " |"
+            "| " + label + " | "
+            + " | ".join(format_value(v, fmt) for v in values)
+            + " |"
         )
     if judge_summary:
         lines.extend(
