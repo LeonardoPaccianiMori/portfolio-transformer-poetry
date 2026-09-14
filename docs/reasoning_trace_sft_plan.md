@@ -117,6 +117,22 @@ endings; this arm makes the choice an explicit product.
   limited to the single-model attempt. Report:
   `reports/plan_composer_temp04_v1.md`.
 
+## Single-Model Attempt (approved 2026-09-14)
+
+- Objective: one model that writes plan and poem in a single generation,
+  initialized from the plan generator and trained on the joint dataset
+  (11,264 corpus trace cards plus 600 valid pipeline pairs; 727 steps,
+  $0.69). Data builder: `scripts/build_joint_trace_data.py`.
+- Result (960-plan grid, eight seeds): plans parse 0.9510 and are valid
+  0.5396 (planning transferred from the plan generator), but poems are
+  scheme-valid only 0.2604 - below the 0.50 success bar and the 0.30 gate.
+  Given a valid plan, the poem follows it 48% of the time versus 79% for the
+  dedicated follower. Rhyme score 0.9798, accepted lines 8.048, no
+  memorization. Reading: SELF_PLAY_NULL for the single-model bar.
+- One more attempt is allowed by the stop rule; otherwise the two-model
+  pipeline (0.6250) remains the form deliverable. See
+  `reports/joint_trace_sft_v1.md`.
+
 ## Caveats
 
 - Training targets are real poems, so the model learns to imitate corpus

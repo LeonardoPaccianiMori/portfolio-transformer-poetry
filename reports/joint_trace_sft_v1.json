@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "generation_dir": "artifacts/local/joint_trace/validation/generation",
+  "form": {
+    "trace_baseline": {
+      "outputs": 0,
+      "trace_parsed": 0.0,
+      "trace_valid": 0.0,
+      "valid_without_repair": 0.0,
+      "scheme_matches_trace": 0.0,
+      "accepted_lines": 0.0,
+      "failed_lines": 0.0,
+      "uncertain_lines": 0.0,
+      "stanza_pattern_ok": 0.0,
+      "rhyme_score": 0.0,
+      "proxies": {
+        "type_token_ratio": 0.0,
+        "repeated_line_ratio": 0.0,
+        "repeated_bigram_ratio": 0.0,
+        "final_word_repetition": 0.0
+      }
+    },
+    "trace_sft": {
+      "outputs": 960,
+      "trace_parsed": 0.9510416666666667,
+      "trace_valid": 0.5395833333333333,
+      "valid_without_repair": 0.2604166666666667,
+      "scheme_matches_trace": 0.246875,
+      "accepted_lines": 8.047916666666667,
+      "failed_lines": 2.0875,
+      "uncertain_lines": 4.696875,
+      "stanza_pattern_ok": 0.0,
+      "rhyme_score": 0.9797545257128352,
+      "proxies": {
+        "type_token_ratio": 0.7096996177695124,
+        "repeated_line_ratio": 0.0016465053763440845,
+        "repeated_bigram_ratio": 0.032067585435175405,
+        "final_word_repetition": 0.07215293778801843
+      }
+    }
+  },
+  "memorization_screen": {
+    "shingle_size": 5,
+    "corpus_documents": 16298,
+    "corpus_lines": 223892,
+    "corpus_shingles": 1515762,
+    "conditions": {
+      "trace_sft": {
+        "outputs": 960,
+        "outputs_with_exact_line": 0,
+        "outputs_with_four_exact_lines": 0,
+        "max_exact_lines": 0,
+        "outputs_shingle_hit_at_least_half": 0,
+        "mean_shingle_hit": 0.003306525169108709
+      }
+    }
+  },
+  "judge_summary": null,
+  "judge_gain": null,
+  "reading": {
+    "result": "SELF_PLAY_NULL",
+    "reasons": [
+      "Autonomous scheme validity 0.2604 against baseline 0.0000 and gate 0.30.",
+      "Accepted-line gap +8.048 (minimum -0.5).",
+      "Judge gain None (minimum -0.3)."
+    ],
+    "checks": {
+      "validity_gate": false,
+      "accepted_loss": true,
+      "judge_loss": true
+    }
+  },
+  "scores_jsonl": "artifacts/local/joint_trace/validation/scores_v1.jsonl"
+}
