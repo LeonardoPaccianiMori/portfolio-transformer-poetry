@@ -132,6 +132,17 @@ endings; this arm makes the choice an explicit product.
 - One more attempt is allowed by the stop rule; otherwise the two-model
   pipeline (0.6250) remains the form deliverable. See
   `reports/joint_trace_sft_v1.md`.
+- Attempt 2 (2026-09-14, night): the joint dataset rebalanced to 11,264 corpus
+  cards plus 6,426 pipeline pairs (all three pipeline runs, repeated six
+  times), retrained from the plan generator (1,084 steps, $1.07, config
+  `configs/joint_trace_v2.json`). Reading: SELF_PLAY_SIGNAL. Plans parse
+  0.9875 and are valid 0.8542; poems are scheme-valid without repair 0.5719
+  and match the traced scheme 0.5687, with 7.700 accepted and 1.475 failed
+  lines, rhyme score 0.9924, and no memorization. The single-model bar
+  (composed 0.50) is met: both form deliverables now exist, the two-model
+  pipeline at 0.6250 and the single model at 0.5719. Form work closes here;
+  the next line is coherence (judges put grammar at 1.9-2.0 and continuity at
+  1.8-2.1 on the composed poems). See `reports/joint_trace_sft_v2.md`.
 
 ## Caveats
 
