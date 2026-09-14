@@ -176,6 +176,26 @@ def main() -> None:
         judge_gain=None,
     )
 
+    judge_summary = None
+    if args.judge_json.is_file():
+        payload = json.loads(args.judge_json.read_text(encoding="utf-8"))
+        judge_summary = {}
+        for judge, data in payload["judges"].items():
+            condition_means = {}
+            for condition, rows in data["conditions"].items():
+                if not str(condition).startswith("stage2_"):
+                    continue
+                scores = [
+                    row["scores"]["mean"]
+                    for row in rows
+                    if row.get("scores") is not None
+                ]
+                condition_means[condition] = mean(scores)
+            judge_summary[judge] = {
+                "condition_means": condition_means,
+                "calibration_separation": data["calibration"]["separation"],
+            }
+
     with args.scores_jsonl.open("w", encoding="utf-8") as handle:
         for row in stage2_scored:
             handle.write(json.dumps(row, ensure_ascii=False) + "\n")
@@ -221,6 +241,23 @@ def main() -> None:
             + " | ".join(format_value(value, fmt) for value in values)
             + " |"
         )
+    if judge_summary:
+        lines.extend(
+            [
+                "",
+                "## Judge panel (composed poems)",
+                "",
+                "| Judge | Condition | Mean | Separation |",
+                "|---|---|---:|---:|",
+            ]
+        )
+        for judge, data in judge_summary.items():
+            for condition, value in data["condition_means"].items():
+                lines.append(
+                    f"| {judge} | {condition} | "
+                    f"{format_value(value, '{:.3f}')} | "
+                    f"{data['calibration_separation']} |"
+                )
     lines.extend(["", "## Pre-registered reading", "", f"- Result: {reading['result']}"])
     for reason in reading["reasons"]:
         lines.append(f"- {reason}")
@@ -248,6 +285,7 @@ def main() -> None:
         },
         "stage2_stats": stage2_stats,
         "composed": composed,
+        "judge_summary": judge_summary,
         "reading": reading,
         "scores_jsonl": str(args.scores_jsonl.relative_to(ROOT)),
     }
