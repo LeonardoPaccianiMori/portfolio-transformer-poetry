@@ -41,6 +41,14 @@ SFT, with RL later).
   every RFT output lost the 4+4+3+3 stanza breaks (stanza pattern `[14]`) and
   the run is invalidated as a test of its hypothesis. The builder now
   preserves interior blank lines and run 2 repeats the same protocol.
+- Run 2 (2026-09-14): the primary reading is SELF_PLAY_NULL. Scheme validity
+  is 0.0000 in both arms; the RFT arm raises accepted lines by 1.242, cuts
+  failed lines by 4.06, reaches the 4+4+3+3 pattern in 0.98 of outputs, and
+  removes final-word repetition, but its rhyme score falls to 0.525 and most
+  lines become checker-uncertain. See `reports/self_play_rft_v1.md`.
+- Exploratory follow-up (2026-09-14): the same data with 3 epochs
+  (`configs/self_play_rft_3epoch.json`) tests whether the 30-step primary run
+  was simply too short. The gate is unchanged.
 
 ## Evaluation
 
