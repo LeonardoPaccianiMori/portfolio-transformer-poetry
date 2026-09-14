@@ -48,7 +48,15 @@ SFT, with RL later).
   lines become checker-uncertain. See `reports/self_play_rft_v1.md`.
 - Exploratory follow-up (2026-09-14): the same data with 3 epochs
   (`configs/self_play_rft_3epoch.json`) tests whether the 30-step primary run
-  was simply too short. The gate is unchanged.
+  was simply too short. The gate is unchanged. Result: still
+  SELF_PLAY_NULL. Scheme validity stays 0.0000 in both arms; the 3-epoch arm
+  reaches accepted lines 7.246 (+1.413), failed lines 1.296, stanza pattern
+  0.9625, and rhyme score 0.7004 (up from 0.5250 at 1 epoch). The scheme
+  distribution shows the cause: 57% of quatrains have eight distinct endings
+  and 65% of tercets have six, so the model writes structure without rhyme.
+  See `reports/self_play_rft_3epoch_v1.md`. Rejection SFT on roughly 500
+  self examples does not teach rhyme choice; the next step is reasoning-trace
+  SFT.
 
 ## Evaluation
 

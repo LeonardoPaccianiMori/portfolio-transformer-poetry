@@ -74,6 +74,12 @@ def format_value(value: float | None, fmt: str) -> str:
 
 def main() -> None:
     args = parse_args()
+    args.generation_dir = args.generation_dir.resolve()
+    args.corpus_manifest = args.corpus_manifest.resolve()
+    args.judge_json = args.judge_json.resolve()
+    args.report_md = args.report_md.resolve()
+    args.report_json = args.report_json.resolve()
+    args.scores_jsonl = args.scores_jsonl.resolve()
     records = load_context_records(args.generation_dir)
     scored = score_records(
         [
