@@ -110,6 +110,12 @@ endings; this arm makes the choice an explicit product.
   5204: 35% valid, seed 5205: 26%, other seeds 90%+). At 0.4 the unlucky seeds
   recover to 92.1% and good seeds reach 92.9%, so the plan recipe now uses
   temperature 0.4.
+- Final form evaluation (2026-09-14, frozen): 960-plan grid at temperature
+  0.4 with the v2 follower. Valid plans 891/960 (0.9281); stage-two poems
+  scheme-valid 0.6734 with 7.327 accepted and 1.147 failed lines; composed
+  pipeline rate 0.6250. Form is frozen at this level; further form work is
+  limited to the single-model attempt. Report:
+  `reports/plan_composer_temp04_v1.md`.
 
 ## Caveats
 
