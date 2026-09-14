@@ -47,6 +47,8 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
+    args.output = args.output.resolve()
+    args.stats_json = args.stats_json.resolve()
     lexicon = load_lexicon(args.lexicon)
     cards = []
     with args.traces.open(encoding="utf-8") as handle:
