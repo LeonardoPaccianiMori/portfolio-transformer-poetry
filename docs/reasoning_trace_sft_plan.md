@@ -91,6 +91,22 @@ endings; this arm makes the choice an explicit product.
   is trivial because the baseline produced no valid plans.
   See `reports/plan_generator_sft_v1.md`.
 
+## Plan-Follower v2 and Composed Comparison (approved 2026-09-14)
+
+- Stage-one plans from the v1 plan model at eight seeds (5200-5207):
+  955/960 parsed, 955 valid schemes, 676 valid plans (70.4%).
+- Stage two wrote poems for all 676 valid plans with two followers on the
+  same plan grid: the original merged plan-follower (v1) and a follower
+  fine-tuned on 324 valid generated-plan poems (v2, 160 steps, $0.11).
+- Composed scheme-valid rate without repair: v1 follower 0.3646, v2 follower
+  0.5583. Given a valid plan, the v2 follower writes a valid poem 0.7929 of
+  the time (v1: 0.5178), with 7.525 accepted and 0.994 failed lines.
+- Coherence of the v1 composed poems, calibrated judge panel: GLM-5.2 mean
+  2.875 (separation 1.625), Qwen 3.6 Plus mean 2.750 (separation 1.917).
+  Form is solved; coherence remains the open problem.
+- Reports: `reports/plan_composer_follower_v1.md`,
+  `reports/plan_composer_follower_v2.md`.
+
 ## Caveats
 
 - Training targets are real poems, so the model learns to imitate corpus

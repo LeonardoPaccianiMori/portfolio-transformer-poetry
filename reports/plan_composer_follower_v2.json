@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "plan_stats": {
+    "plan_baseline": {
+      "outputs": 0,
+      "parsed": 0,
+      "schema_valid": 0,
+      "valid": 0,
+      "schemes": []
+    },
+    "plan_sft": {
+      "outputs": 960,
+      "parsed": 955,
+      "schema_valid": 955,
+      "valid": 676,
+      "schemes": [
+        [
+          "ABBAABBACDECDE",
+          836
+        ],
+        [
+          "ABBAABBACDCDCD",
+          119
+        ]
+      ]
+    }
+  },
+  "stage2_stats": {
+    "plan_baseline": {
+      "poems": 0,
+      "valid_without_repair": null,
+      "accepted_lines": null,
+      "failed_lines": null,
+      "composed": 0.0
+    },
+    "plan_sft": {
+      "poems": 676,
+      "valid_without_repair": 0.7928994082840237,
+      "accepted_lines": 7.525147928994083,
+      "failed_lines": 0.9940828402366864,
+      "composed": 0.5583333333333333
+    }
+  },
+  "composed": {
+    "plan_baseline": 0.0,
+    "plan_sft": 0.5583333333333333
+  },
+  "judge_summary": null,
+  "reading": {
+    "result": "SELF_PLAY_SIGNAL",
+    "reasons": [
+      "Autonomous scheme validity 0.5583 against baseline 0.0000 and gate 0.30.",
+      "Accepted-line gap +7.525 (minimum -0.5).",
+      "Judge gain None (minimum -0.3)."
+    ],
+    "checks": {
+      "validity_gate": true,
+      "accepted_loss": true,
+      "judge_loss": true
+    }
+  },
+  "scores_jsonl": "artifacts/local/plan_follower_v2/validation/scores_follower_v2.jsonl"
+}
