@@ -162,6 +162,21 @@ def main() -> None:
     form = {}
     for arm in TRACE_ARMS:
         rows = arm_rows(arm)
+        if not rows:
+            form[arm] = {
+                "outputs": 0,
+                "trace_parsed": 0.0,
+                "trace_valid": 0.0,
+                "valid_without_repair": 0.0,
+                "scheme_matches_trace": 0.0,
+                "accepted_lines": 0.0,
+                "failed_lines": 0.0,
+                "uncertain_lines": 0.0,
+                "stanza_pattern_ok": 0.0,
+                "rhyme_score": 0.0,
+                "proxies": {field: 0.0 for field in PROXY_FIELDS},
+            }
+            continue
         form[arm] = {
             "outputs": len(rows),
             "trace_parsed": mean([float(row["parsed"]) for row in rows]),
