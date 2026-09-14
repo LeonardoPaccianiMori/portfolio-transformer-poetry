@@ -153,6 +153,7 @@ def train_plan_following_sft(
     *,
     state: Mapping[str, Any] | None = None,
     base_model_dir: Path | None = None,
+    tokenizer_dir: Path | None = None,
     verifier_adapter_path: Path | None = None,
     examples: Sequence[Mapping[str, Any]],
     validation_examples: Sequence[Mapping[str, Any]],
@@ -176,7 +177,9 @@ def train_plan_following_sft(
         if base_model_dir is not None
         else Path(str(state["model_dir"]))  # type: ignore[index]
     )
-    tokenizer = AutoTokenizer.from_pretrained(str(model_dir), local_files_only=True)
+    tokenizer = AutoTokenizer.from_pretrained(
+        str(tokenizer_dir or model_dir), local_files_only=True
+    )
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
     model = AutoModelForCausalLM.from_pretrained(

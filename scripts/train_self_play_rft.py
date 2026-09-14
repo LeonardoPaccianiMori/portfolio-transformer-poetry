@@ -83,6 +83,7 @@ def main() -> None:
     )
     report = train_plan_following_sft(
         base_model_dir=args.base_model_dir,
+        tokenizer_dir=args.tokenizer_dir,
         examples=train,
         validation_examples=validation,
         output_dir=args.output_dir,
