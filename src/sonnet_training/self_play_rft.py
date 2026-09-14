@@ -77,13 +77,19 @@ def build_no_plan_examples(
     examples: list[dict[str, Any]] = []
     skipped = {"malformed": 0, "too_long": 0}
     for card in cards:
-        lines = [line.strip() for line in str(card["text"]).splitlines() if line.strip()]
+        raw_lines = [line for line in str(card["text"]).splitlines()]
+        nonempty = [
+            (index, line.strip())
+            for index, line in enumerate(raw_lines)
+            if line.strip()
+        ]
         opening = str(card["opening_line"]).strip()
-        if len(lines) != 14 or lines[0] != opening:
+        if len(nonempty) != 14 or nonempty[0][1] != opening:
             skipped["malformed"] += 1
             continue
-        continuation = "\n".join(lines[1:]) + "\n"
-        prompt = autonomous_prompt(tokenizer, lines[0])
+        first_index = nonempty[0][0]
+        continuation = "\n".join(raw_lines[first_index + 1 :]).strip("\n") + "\n"
+        prompt = autonomous_prompt(tokenizer, nonempty[0][1])
         prompt_ids = tokenizer(prompt, add_special_tokens=False)["input_ids"]
         target_ids = tokenizer(continuation, add_special_tokens=False)["input_ids"]
         target_ids = list(target_ids) + [int(tokenizer.eos_token_id)]
@@ -95,7 +101,7 @@ def build_no_plan_examples(
                 "unit_id": str(card["path"]),
                 "prompt_ids": list(prompt_ids),
                 "target_ids": target_ids,
-                "opening_line": lines[0],
+                "opening_line": nonempty[0][1],
             }
         )
     if not examples:

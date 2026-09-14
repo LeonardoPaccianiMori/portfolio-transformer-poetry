@@ -35,6 +35,13 @@ SFT, with RL later).
 - Trainer: `train_plan_following_sft` with a direct base model and no
   verifier adapter (commit `84ad96c`).
 
+## Run History
+
+- Run 1 (2026-09-14): the example builder removed interior blank lines, so
+  every RFT output lost the 4+4+3+3 stanza breaks (stanza pattern `[14]`) and
+  the run is invalidated as a test of its hypothesis. The builder now
+  preserves interior blank lines and run 2 repeats the same protocol.
+
 ## Evaluation
 
 - Two arms for the same 120 openings and seeds 5200-5201:
