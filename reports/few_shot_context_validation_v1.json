@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "generation_dir": "artifacts/local/few_shot_context/validation/generation",
+  "form": {
+    "zeroshot": {
+      "original_scheme": 0.5166666666666667,
+      "repaired_scheme": 1.0,
+      "key_match": 0.9315476190476191,
+      "repair_distance": 1.1583333333333334,
+      "metrics": {
+        "system_id": "zeroshot",
+        "output_count": 120,
+        "structure_ok_rate": 1.0,
+        "stanza_pattern_ok_rate": 0.9583333333333334,
+        "all_lines_valid_rate": 0.0,
+        "definite_valid_rate": 0.0,
+        "no_definite_failure_rate": 0.20833333333333334,
+        "quatrain_ok_rate": 1.0,
+        "tercet_ok_rate": 1.0,
+        "mean_hendecasyllable_lines": 7.508333333333334,
+        "mean_failed_lines": 1.6666666666666667,
+        "mean_uncertain_lines": 4.825,
+        "mean_perfect_rhyme_pairs": 15.0,
+        "mean_soft_rhyme_pairs": 0.13333333333333333,
+        "mean_rhyme_score": 0.9956989247311828,
+        "tercet_scheme_distribution": {
+          "ABCABC": 120
+        }
+      },
+      "proxies": {
+        "type_token_ratio": 0.7280714814893752,
+        "repeated_line_ratio": 0.0,
+        "repeated_bigram_ratio": 0.023909893329121332,
+        "final_word_repetition": 0.011904761904761902
+      }
+    },
+    "fewshot1": {
+      "original_scheme": 0.5333333333333333,
+      "repaired_scheme": 1.0,
+      "key_match": 0.9071428571428571,
+      "repair_distance": 1.5083333333333333,
+      "metrics": {
+        "system_id": "fewshot1",
+        "output_count": 120,
+        "structure_ok_rate": 1.0,
+        "stanza_pattern_ok_rate": 0.9083333333333333,
+        "all_lines_valid_rate": 0.0,
+        "definite_valid_rate": 0.0,
+        "no_definite_failure_rate": 0.3333333333333333,
+        "quatrain_ok_rate": 1.0,
+        "tercet_ok_rate": 1.0,
+        "mean_hendecasyllable_lines": 7.341666666666667,
+        "mean_failed_lines": 1.225,
+        "mean_uncertain_lines": 5.433333333333334,
+        "mean_perfect_rhyme_pairs": 15.0,
+        "mean_soft_rhyme_pairs": 0.13333333333333333,
+        "mean_rhyme_score": 0.9956989247311828,
+        "tercet_scheme_distribution": {
+          "ABCABC": 120
+        }
+      },
+      "proxies": {
+        "type_token_ratio": 0.7293191467686788,
+        "repeated_line_ratio": 0.0,
+        "repeated_bigram_ratio": 0.025541955696329006,
+        "final_word_repetition": 0.009523809523809523
+      }
+    },
+    "fewshot3": {
+      "original_scheme": 0.5583333333333333,
+      "repaired_scheme": 1.0,
+      "key_match": 0.9142857142857143,
+      "repair_distance": 1.4166666666666667,
+      "metrics": {
+        "system_id": "fewshot3",
+        "output_count": 120,
+        "structure_ok_rate": 1.0,
+        "stanza_pattern_ok_rate": 0.9416666666666667,
+        "all_lines_valid_rate": 0.0,
+        "definite_valid_rate": 0.0,
+        "no_definite_failure_rate": 0.325,
+        "quatrain_ok_rate": 1.0,
+        "tercet_ok_rate": 1.0,
+        "mean_hendecasyllable_lines": 7.508333333333334,
+        "mean_failed_lines": 1.25,
+        "mean_uncertain_lines": 5.241666666666666,
+        "mean_perfect_rhyme_pairs": 15.0,
+        "mean_soft_rhyme_pairs": 0.13333333333333333,
+        "mean_rhyme_score": 0.9956989247311828,
+        "tercet_scheme_distribution": {
+          "ABCABC": 120
+        }
+      },
+      "proxies": {
+        "type_token_ratio": 0.7252166933002673,
+        "repeated_line_ratio": 0.0,
+        "repeated_bigram_ratio": 0.02597450622369348,
+        "final_word_repetition": 0.01607142857142857
+      }
+    }
+  },
+  "judge_summary": {
+    "opencode-go/glm-5.2": {
+      "condition_means": {
+        "zeroshot": 2.892857142857143,
+        "fewshot1": 3.09375,
+        "fewshot3": 3.357142857142857
+      },
+      "calibration_separation": 1.2083333333333335
+    },
+    "opencode-go/qwen3.6-plus": {
+      "condition_means": {
+        "zeroshot": 2.96875,
+        "fewshot1": 3.0,
+        "fewshot3": 2.75
+      },
+      "calibration_separation": 1.3333333333333335
+    }
+  },
+  "memorization_screen": {
+    "shingle_size": 5,
+    "corpus_documents": 16298,
+    "corpus_lines": 223892,
+    "corpus_shingles": 1515762,
+    "conditions": {
+      "fewshot3": {
+        "outputs": 120,
+        "outputs_with_exact_line": 0,
+        "outputs_with_four_exact_lines": 0,
+        "max_exact_lines": 0,
+        "outputs_shingle_hit_at_least_half": 0,
+        "mean_shingle_hit": 0.0011530070052893783
+      },
+      "zeroshot": {
+        "outputs": 120,
+        "outputs_with_exact_line": 0,
+        "outputs_with_four_exact_lines": 0,
+        "max_exact_lines": 0,
+        "outputs_shingle_hit_at_least_half": 0,
+        "mean_shingle_hit": 0.0026304617557433825
+      },
+      "fewshot1": {
+        "outputs": 120,
+        "outputs_with_exact_line": 0,
+        "outputs_with_four_exact_lines": 0,
+        "max_exact_lines": 0,
+        "outputs_shingle_hit_at_least_half": 0,
+        "mean_shingle_hit": 0.0023401185788929006
+      }
+    }
+  },
+  "reading": {
+    "result": "CONTEXT_NULL",
+    "reasons": [
+      "No few-shot condition improves the judge mean by 0.3 or more while keeping form.",
+      "Best condition fewshot1; repaired scheme 1.0000; accepted gap -0.167; judge gain 0.1160714285714286.",
+      "Memorization screen: max copied corpus lines 0; max mean 5-gram overlap 0.0026."
+    ]
+  },
+  "scores_jsonl": "artifacts/local/few_shot_context/validation/scores_v1.jsonl"
+}

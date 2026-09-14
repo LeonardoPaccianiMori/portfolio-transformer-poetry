@@ -10,8 +10,10 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import re
 import time
-from collections.abc import Callable, Mapping, Sequence
+import unicodedata
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from pathlib import Path
 from typing import Any
 
@@ -245,3 +247,79 @@ def load_context_records(generation_dir: Path) -> list[dict[str, Any]]:
     if len(records) != int(complete["completed_output_count"]):
         raise ValueError("context generation count does not match complete.json")
     return records
+
+
+def screen_normalize(text: str) -> str:
+    text = (
+        text.replace("\u2019", "'")
+        .replace("\u2018", "'")
+        .replace("\u201c", '"')
+        .replace("\u201d", '"')
+    )
+    text = unicodedata.normalize("NFC", text).casefold()
+    text = re.sub(r"[^a-zàèéìòùç' ]", " ", text)
+    return " ".join(text.split())
+
+
+def memorization_screen(
+    records: Sequence[Mapping[str, Any]],
+    corpus_texts: Iterable[str],
+    *,
+    shingle_size: int = 5,
+) -> dict[str, Any]:
+    """Measure verbatim corpus overlap in outputs, excluding the given opening."""
+    line_index: set[str] = set()
+    shingle_index: set[tuple[str, ...]] = set()
+    corpus_documents = 0
+    for text in corpus_texts:
+        corpus_documents += 1
+        for line in str(text).splitlines():
+            normalized = screen_normalize(line)
+            if len(normalized.split()) >= 4:
+                line_index.add(normalized)
+        tokens = screen_normalize(str(text)).split()
+        shingle_index.update(
+            tuple(tokens[index : index + shingle_size])
+            for index in range(max(0, len(tokens) - shingle_size + 1))
+        )
+    per_condition: dict[str, dict[str, Any]] = {}
+    for record in records:
+        condition = str(record["system_id"])
+        raw_lines = [line for line in str(record["text"]).splitlines() if line.strip()]
+        lines = [screen_normalize(line) for line in raw_lines[1:]]
+        exact_lines = sum(1 for line in lines if line in line_index)
+        tokens = [token for line in lines for token in line.split()]
+        shingles = {
+            tuple(tokens[index : index + shingle_size])
+            for index in range(max(0, len(tokens) - shingle_size + 1))
+        }
+        hit_rate = len(shingles & shingle_index) / len(shingles) if shingles else 0.0
+        stats = per_condition.setdefault(
+            condition,
+            {
+                "outputs": 0,
+                "outputs_with_exact_line": 0,
+                "outputs_with_four_exact_lines": 0,
+                "max_exact_lines": 0,
+                "outputs_shingle_hit_at_least_half": 0,
+                "shingle_hit_sum": 0.0,
+            },
+        )
+        stats["outputs"] += 1
+        stats["outputs_with_exact_line"] += int(exact_lines > 0)
+        stats["outputs_with_four_exact_lines"] += int(exact_lines >= 4)
+        stats["max_exact_lines"] = max(stats["max_exact_lines"], exact_lines)
+        stats["outputs_shingle_hit_at_least_half"] += int(hit_rate >= 0.5)
+        stats["shingle_hit_sum"] += hit_rate
+    for stats in per_condition.values():
+        stats["mean_shingle_hit"] = stats["shingle_hit_sum"] / max(
+            1, stats["outputs"]
+        )
+        del stats["shingle_hit_sum"]
+    return {
+        "shingle_size": shingle_size,
+        "corpus_documents": corpus_documents,
+        "corpus_lines": len(line_index),
+        "corpus_shingles": len(shingle_index),
+        "conditions": per_condition,
+    }

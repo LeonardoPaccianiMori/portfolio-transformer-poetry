@@ -14,7 +14,10 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from sonnet_analysis.constrained_plan_validation import repair_endings
-from sonnet_analysis.few_shot_context_validation import load_context_records
+from sonnet_analysis.few_shot_context_validation import (
+    load_context_records,
+    memorization_screen,
+)
 from sonnet_analysis.plan_then_poem_validation import DEFAULT_SCHEME, adherence
 from sonnet_evaluation.coherence import coherence_proxies
 from sonnet_evaluation.sonnet_prosody_sealed import (
@@ -23,6 +26,7 @@ from sonnet_evaluation.sonnet_prosody_sealed import (
     pair_records,
     score_records,
 )
+from sonnet_training.form_targeted_data import load_train_rows, read_sonnet_text
 
 ZERO = "zeroshot"
 CONDITIONS = (ZERO, "fewshot1", "fewshot3")
@@ -61,6 +65,11 @@ def parse_args() -> argparse.Namespace:
         "--scores-jsonl",
         type=Path,
         default=ROOT / "artifacts/local/few_shot_context/validation/scores_v1.jsonl",
+    )
+    parser.add_argument(
+        "--corpus-manifest",
+        type=Path,
+        default=ROOT / "data/processed/sonnets_expanded_v8/sonnets_manifest.csv",
     )
     return parser.parse_args()
 
@@ -168,6 +177,12 @@ def main() -> None:
                 "calibration_separation": data["calibration"]["separation"],
             }
 
+    corpus_rows = load_train_rows(args.corpus_manifest)
+    screen = memorization_screen(
+        records,
+        (read_sonnet_text(ROOT, row) for row in corpus_rows),
+    )
+
     best_condition = max(
         CONDITIONS[1:], key=lambda condition: form[condition]["repaired_scheme"]
     )
@@ -207,6 +222,12 @@ def main() -> None:
         f"Best condition {best_condition}; repaired scheme "
         f"{form[best_condition]['repaired_scheme']:.4f}; accepted gap "
         f"{accepted_gap:+.3f}; judge gain {judge_gain}."
+    )
+    reasons.append(
+        "Memorization screen: max copied corpus lines "
+        f"{max(screen['conditions'][c]['max_exact_lines'] for c in CONDITIONS)}; "
+        "max mean 5-gram overlap "
+        f"{max(screen['conditions'][c]['mean_shingle_hit'] for c in CONDITIONS):.4f}."
     )
 
     args.scores_jsonl.parent.mkdir(parents=True, exist_ok=True)
@@ -257,6 +278,27 @@ def main() -> None:
             f"{form[CONDITIONS[1]]['proxies'][field]:.4f} | "
             f"{form[CONDITIONS[2]]['proxies'][field]:.4f} |"
         )
+    lines.extend(
+        [
+            "",
+            "## Memorization screen",
+            "",
+            f"Verbatim overlap with {screen['corpus_documents']:,} training "
+            f"sonnets ({screen['corpus_lines']:,} lines, "
+            f"{screen['shingle_size']}-word shingles). Opening line excluded.",
+            "",
+            "| Metric | Zero | One | Three |",
+            "|---|---:|---:|---:|",
+        ]
+    )
+    for label, key, fmt in (
+        ("Outputs with a copied line", "outputs_with_exact_line", "{:d}"),
+        ("Outputs with 4+ copied lines", "outputs_with_four_exact_lines", "{:d}"),
+        ("Max copied lines in one output", "max_exact_lines", "{:d}"),
+        ("Mean 5-gram overlap", "mean_shingle_hit", "{:.4f}"),
+    ):
+        values = [screen["conditions"][condition][key] for condition in CONDITIONS]
+        lines.append("| " + label + " | " + " | ".join(fmt.format(v) for v in values) + " |")
     if judge_summary:
         lines.extend(["", "## Judge panel", "", "| Judge | Zero | One | Three | Separation |", "|---|---:|---:|---:|---:|"])
         for judge, data in judge_summary.items():
@@ -289,6 +331,7 @@ def main() -> None:
         "generation_dir": repository_relative(args.generation_dir),
         "form": form,
         "judge_summary": judge_summary,
+        "memorization_screen": screen,
         "reading": {"result": reading, "reasons": reasons},
         "scores_jsonl": repository_relative(args.scores_jsonl),
     }

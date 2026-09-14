@@ -5,6 +5,7 @@ from pathlib import Path
 from sonnet_analysis.few_shot_context_validation import (
     build_context_examples,
     context_prompt,
+    memorization_screen,
     output_name,
 )
 from sonnet_training.form_targeted_data import load_train_rows
@@ -93,3 +94,35 @@ def test_context_prompt_places_examples_before_the_final_user_turn():
 def test_output_name_is_condition_specific():
     assert output_name("zeroshot", "p1", 5200) != output_name("fewshot1", "p1", 5200)
     assert output_name("zeroshot", "p1", 5200) == output_name("zeroshot", "p1", 5200)
+
+
+def test_memorization_screen_counts_copied_lines_and_ignores_the_opening():
+    corpus = [
+        "alpha beta gamma delta epsilon\n"
+        "uno due tre quattro cinque\n"
+        "sei sette otto nove dieci\n"
+    ]
+    records = [
+        {
+            "system_id": "zeroshot",
+            "text": "alpha beta gamma delta epsilon\n"
+            "alpha beta gamma delta epsilon\n"
+            "nuovo testo scritto qui ora\n",
+        },
+        {
+            "system_id": "fewshot1",
+            "text": "riga di apertura diversa qui\n"
+            "parole tutte diverse ancora\n"
+            "versi nuovi senza prestiti\n",
+        },
+    ]
+    screen = memorization_screen(records, corpus)
+    assert screen["corpus_documents"] == 1
+    zeroshot = screen["conditions"]["zeroshot"]
+    assert zeroshot["outputs_with_exact_line"] == 1
+    assert zeroshot["max_exact_lines"] == 1
+    assert zeroshot["outputs_shingle_hit_at_least_half"] == 0
+    fewshot = screen["conditions"]["fewshot1"]
+    assert fewshot["outputs_with_exact_line"] == 0
+    assert fewshot["max_exact_lines"] == 0
+    assert fewshot["mean_shingle_hit"] == 0.0
