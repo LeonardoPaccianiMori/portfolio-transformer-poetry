@@ -70,6 +70,27 @@ endings; this arm makes the choice an explicit product.
   from 0.405 to 0.066. The bottleneck is the choice of rhyming endings, not
   the format. See `reports/reasoning_trace_sft_v1.md`.
 
+## Plan-Generator Follow-up (approved 2026-09-14)
+
+- Objective: attack the rhyme-choice bottleneck directly by training a
+  plan-only model (opening -> trace, EOS after the plan), then composing it
+  with the existing plan-following poem model.
+- Data: the 11,264 corpus traces plus 11,258 lexicon-augmented valid plans
+  (one per corpus opening), 22,522 cards in
+  `artifacts/local/plan_generator/data/plans_v1.jsonl`.
+- Training: plan-only target, LoRA rank 16, 1 epoch, micro-batch 8, effective
+  batch 16, seed 11416. Config `configs/plan_generator_sft.json`.
+- Evaluation: stage one generates plans for both arms (merged baseline and
+  plan model); stage two writes poems with the existing merged model for every
+  valid plan; the composed rate counts the full grid where the plan is valid
+  and the poem is scheme-valid without repair.
+- Result (2026-09-14): SELF_PLAY_SIGNAL. Plan validity is 221/240 (92.1%) for
+  the trained arm and 0/240 for the baseline. Stage-two poems are scheme-valid
+  0.5475 of the time with 7.484 accepted and 1.190 failed lines. The composed
+  pipeline rate is 0.5042 against the 0.30 gate. The accepted-line comparison
+  is trivial because the baseline produced no valid plans.
+  See `reports/plan_generator_sft_v1.md`.
+
 ## Caveats
 
 - Training targets are real poems, so the model learns to imitate corpus

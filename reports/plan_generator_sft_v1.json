@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "plan_stats": {
+    "plan_baseline": {
+      "outputs": 240,
+      "parsed": 0,
+      "schema_valid": 0,
+      "valid": 0,
+      "schemes": []
+    },
+    "plan_sft": {
+      "outputs": 240,
+      "parsed": 239,
+      "schema_valid": 239,
+      "valid": 221,
+      "schemes": [
+        [
+          "ABBAABBACDECDE",
+          239
+        ]
+      ]
+    }
+  },
+  "stage2_stats": {
+    "plan_baseline": {
+      "poems": 0,
+      "valid_without_repair": null,
+      "accepted_lines": null,
+      "failed_lines": null,
+      "composed": 0.0
+    },
+    "plan_sft": {
+      "poems": 221,
+      "valid_without_repair": 0.5475113122171946,
+      "accepted_lines": 7.484162895927602,
+      "failed_lines": 1.1900452488687783,
+      "composed": 0.5041666666666667
+    }
+  },
+  "composed": {
+    "plan_baseline": 0.0,
+    "plan_sft": 0.5041666666666667
+  },
+  "reading": {
+    "result": "SELF_PLAY_SIGNAL",
+    "reasons": [
+      "Autonomous scheme validity 0.5042 against baseline 0.0000 and gate 0.30.",
+      "Accepted-line gap +7.484 (minimum -0.5).",
+      "Judge gain None (minimum -0.3)."
+    ],
+    "checks": {
+      "validity_gate": true,
+      "accepted_loss": true,
+      "judge_loss": true
+    }
+  },
+  "scores_jsonl": "artifacts/local/plan_generator/validation/scores_v1.jsonl"
+}
