@@ -14,6 +14,7 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
+from sonnet_analysis.minerva_v7_runtime import load_verified_state
 from sonnet_training.plan_following_sft import TARGET_MODULES
 
 
@@ -54,10 +55,10 @@ def main() -> None:
         args.verifier_adapter, map_location="cpu", weights_only=True
     )
     if args.state_audit is not None:
-        state = json.loads(args.state_audit.read_text(encoding="utf-8"))
+        state = load_verified_state(args.state_audit, "stage_3_selected")
         if (
             checkpoint.get("parent_state_identity_sha256")
-            != state.get("state_identity_sha256")
+            != state["state_identity_sha256"]
         ):
             raise ValueError("verifier adapter parent mismatch")
     set_peft_model_state_dict(model, checkpoint["adapter_state_dict"])
