@@ -90,6 +90,47 @@ def build_examples(
     return examples, skipped
 
 
+def build_planned_poem_examples(
+    cards: Sequence[Mapping[str, Any]],
+    tokenizer: Any,
+    *,
+    max_sequence_tokens: int = 1536,
+) -> tuple[list[dict[str, Any]], dict[str, int]]:
+    """Build plan-following examples from cards with a plan and a poem."""
+
+    examples: list[dict[str, Any]] = []
+    skipped = {"malformed": 0, "too_long": 0}
+    for card in cards:
+        lines = [
+            line.strip() for line in str(card["poem_text"]).splitlines() if line.strip()
+        ]
+        words = [str(word) for word in card["planned_words"]]
+        if len(lines) != 14 or len(words) != 14:
+            skipped["malformed"] += 1
+            continue
+        opening = str(card["opening_line"])
+        prompt = planned_prompt(tokenizer, opening, words)
+        prompt_ids = tokenizer(prompt, add_special_tokens=False)["input_ids"]
+        continuation = "\n".join(lines[1:]) + "\n"
+        target_ids = tokenizer(continuation, add_special_tokens=False)["input_ids"]
+        target_ids = list(target_ids) + [int(tokenizer.eos_token_id)]
+        if len(prompt_ids) + len(target_ids) > max_sequence_tokens:
+            skipped["too_long"] += 1
+            continue
+        examples.append(
+            {
+                "unit_id": str(card["unit_id"]),
+                "prompt_ids": list(prompt_ids),
+                "target_ids": target_ids,
+                "opening_line": opening,
+                "planned_words": words,
+            }
+        )
+    if not examples:
+        raise ValueError("no planned-poem examples could be built")
+    return examples, skipped
+
+
 def split_examples(
     examples: Sequence[Mapping[str, Any]],
     *,

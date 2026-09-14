@@ -1,0 +1,39 @@
+{
+  "experiment_version": "plan_follower_v2_v1",
+  "training": {
+    "verifier_lora_rank": 8,
+    "verifier_lora_alpha": 16,
+    "verifier_lora_dropout": 0.05,
+    "lora_rank": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "epochs": 8,
+    "batch_size": 8,
+    "gradient_accumulation_steps": 2,
+    "learning_rate": 0.0001,
+    "minimum_learning_rate": 0.00001,
+    "warmup_fraction": 0.05,
+    "weight_decay": 0.0,
+    "max_gradient_norm": 1.0,
+    "max_preclip_gradient_norm": 100.0,
+    "evaluation_interval": 50,
+    "seed": 11417,
+    "hourly_rate_usd": 0.5
+  },
+  "data": {
+    "validation_fraction": 0.05,
+    "max_sequence_tokens": 1536
+  },
+  "generation": {
+    "seeds": [5200, 5201],
+    "recipe": {
+      "temperature": 0.85,
+      "top_k": null,
+      "top_p": 0.95,
+      "repetition_penalty": 1.0,
+      "no_repeat_ngram_size": 4,
+      "max_new_tokens": 512,
+      "continuation_line_target": 13
+    }
+  }
+}

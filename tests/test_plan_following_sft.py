@@ -5,6 +5,7 @@ from pathlib import Path
 from sonnet_training.form_targeted_data import load_train_rows
 from sonnet_training.plan_following_sft import (
     build_examples,
+    build_planned_poem_examples,
     pad_batch,
     split_examples,
 )
@@ -142,3 +143,26 @@ def test_split_examples_is_disjoint_and_deterministic():
     assert {row["unit_id"] for row in first_train}.isdisjoint(
         {row["unit_id"] for row in first_validation}
     )
+
+
+def test_build_planned_poem_examples_uses_the_plan_and_poem():
+    card = {
+        "unit_id": "u1",
+        "opening_line": "verso numero 0 vita",
+        "planned_words": ["vita"] * 14,
+        "poem_text": "\n".join(f"verso numero {index} vita" for index in range(14)),
+    }
+    examples, skipped = build_planned_poem_examples([card], FakeTokenizer())
+    assert skipped == {"malformed": 0, "too_long": 0}
+    assert len(examples) == 1
+    example = examples[0]
+    assert example["unit_id"] == "u1"
+    assert example["planned_words"] == ["vita"] * 14
+    assert example["target_ids"][-1] == FakeTokenizer.eos_token_id
+    malformed = dict(card, poem_text="solo tre versi qui")
+    try:
+        build_planned_poem_examples([malformed], FakeTokenizer())
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("malformed cards must not produce examples")
