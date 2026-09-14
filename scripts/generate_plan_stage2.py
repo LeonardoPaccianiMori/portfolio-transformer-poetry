@@ -106,7 +106,7 @@ def main() -> None:
         stats["source_records"] += 1
         prompt = prompt_by_id[str(record["prompt_id"])]
         opening = str(prompt["opening_line"])
-        parsed = parse_trace(str(record["text"]))
+        parsed = parse_trace(str(record["text"]), require_poem=False)
         if parsed is None:
             stats["plan_invalid"] += 1
             continue

@@ -96,7 +96,7 @@ def main() -> None:
         valid_keys = set()
         for record in rows:
             opening = opening_by_id[str(record["prompt_id"])]
-            parsed = parse_trace(str(record["text"]))
+            parsed = parse_trace(str(record["text"]), require_poem=False)
             if parsed is None:
                 continue
             parsed_count += 1

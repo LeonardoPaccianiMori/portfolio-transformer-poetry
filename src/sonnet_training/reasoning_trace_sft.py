@@ -123,8 +123,8 @@ def derive_trace(scheme: str, words: Sequence[str]) -> str:
     return "\n".join(lines)
 
 
-def parse_trace(text: str) -> dict[str, Any] | None:
-    """Split a generation into a rhyme plan and the 14 poem lines."""
+def parse_trace(text: str, *, require_poem: bool = True) -> dict[str, Any] | None:
+    """Split a generation into a rhyme plan and the poem lines."""
 
     raw_lines = str(text).splitlines()
     schema = None
@@ -160,7 +160,7 @@ def parse_trace(text: str) -> dict[str, Any] | None:
             poem_lines.append(stripped)
         if len(poem_lines) == 14:
             break
-    if len(poem_lines) < 14:
+    if require_poem and len(poem_lines) < 14:
         return None
     return {
         "raw_schema": schema.upper(),

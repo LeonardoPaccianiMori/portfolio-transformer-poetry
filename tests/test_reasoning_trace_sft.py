@@ -177,3 +177,12 @@ def test_planned_words_from_trace_includes_the_opening_ending():
     assert words[0] == "vita"
     assert words[1] == "salita"
     assert words[8] == "sole"
+
+
+def test_parse_trace_can_accept_a_plan_without_a_poem():
+    trace = build_trace("ABBAABBACDECDE", valid_entries())
+    assert parse_trace(trace) is None
+    parsed = parse_trace(trace, require_poem=False)
+    assert parsed is not None
+    assert len(parsed["entries"]) == 13
+    assert parsed["poem_lines"] == []
