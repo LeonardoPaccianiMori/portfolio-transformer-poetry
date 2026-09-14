@@ -1,6 +1,9 @@
 from sonnet_training.reasoning_trace_sft import (
+    build_plan_examples,
     build_trace_examples,
     canonical_scheme,
+    plan_prompt,
+    planned_words_from_trace,
     derive_trace,
     parse_trace,
     validate_trace,
@@ -141,3 +144,36 @@ def test_build_trace_examples_skips_malformed_cards():
         pass
     else:
         raise AssertionError("malformed cards must not produce examples")
+
+
+def test_plan_prompt_asks_for_the_plan_only():
+    prompt = plan_prompt(FakeTokenizer(), "Nel mezzo del cammin di nostra vita")
+    assert "Nel mezzo del cammin di nostra vita" in prompt
+    assert "Non scrivere i versi" in prompt
+
+
+def test_build_plan_examples_target_is_the_trace_only():
+    card = {
+        "unit_id": "unit-1",
+        "opening_line": "Nel mezzo del cammin di nostra vita",
+        "scheme": "ABBAABBACDECDE",
+        "trace_text": build_trace("ABBAABBACDECDE", valid_entries()),
+    }
+    examples, skipped = build_plan_examples([card], FakeTokenizer())
+    assert skipped == {"malformed": 0, "too_long": 0}
+    assert len(examples) == 1
+    expected = len(card["trace_text"].split()) + 1
+    assert len(examples[0]["target_ids"]) == expected
+
+
+def test_planned_words_from_trace_includes_the_opening_ending():
+    trace = build_trace("ABBAABBACDECDE", valid_entries())
+    parsed = parse_trace(
+        trace + "\n\n" + "\n".join("verso numero qui ora" for _ in range(14))
+    )
+    words = planned_words_from_trace(parsed, "Nel mezzo del cammin di nostra vita")
+    assert words is not None
+    assert len(words) == 14
+    assert words[0] == "vita"
+    assert words[1] == "salita"
+    assert words[8] == "sole"

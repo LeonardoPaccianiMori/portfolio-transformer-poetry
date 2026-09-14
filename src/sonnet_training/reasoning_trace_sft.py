@@ -24,6 +24,8 @@ from sonnet_training.self_play_rft import generate_autonomous_validation
 
 TRACE_VERSION = "reasoning_trace_sft_v1"
 TRACE_ARMS = ("trace_baseline", "trace_sft")
+PLAN_VERSION = "plan_generator_sft_v1"
+PLAN_ARMS = ("plan_baseline", "plan_sft")
 
 TRACE_INSTRUCTION = (
     "Prima scrivi il piano di rime in questo formato esatto:\n"
@@ -34,6 +36,16 @@ TRACE_INSTRUCTION = (
     "... e così fino a 14\n"
     "Poi scrivi esclusivamente i quattordici versi poetici, senza titolo, "
     "introduzione, spiegazione, commento, numeri o prosa."
+)
+PLAN_INSTRUCTION = (
+    "Scrivi solo il piano di rime del sonetto che comincia con il verso "
+    "indicato, in questo formato esatto:\n"
+    "Schema: <quattordici lettere maiuscole, per esempio ABBAABBACDECDE>\n"
+    "Rime:\n"
+    "2. <parola>\n"
+    "3. <parola>\n"
+    "... e così fino a 14\n"
+    "Non scrivere i versi del sonetto."
 )
 SCHEMA_PATTERN = re.compile(r"^\s*Schema:\s*([A-Za-z]{14})\s*$")
 RIME_PATTERN = re.compile(r"^\s*Rime:\s*$", re.IGNORECASE)
@@ -46,6 +58,32 @@ def trace_prompt(tokenizer: Any, opening_line: str) -> str:
     return build_intervention_prompt(
         tokenizer, opening_line, PROMPT_ARM, extra_instruction=TRACE_INSTRUCTION
     )
+
+
+def plan_prompt(tokenizer: Any, opening_line: str) -> str:
+    """Render the plan-only instruction with the exact opening prefill."""
+
+    return build_intervention_prompt(
+        tokenizer, opening_line, PROMPT_ARM, extra_instruction=PLAN_INSTRUCTION
+    )
+
+
+def planned_words_from_trace(
+    parsed: Mapping[str, Any], opening_line: str
+) -> list[str] | None:
+    """Return the 14 ending words implied by a parsed trace, or None."""
+
+    opening_word = line_final_word(opening_line)
+    entries = dict(parsed.get("entries", {}))
+    if opening_word is None or set(entries) != set(range(2, 15)):
+        return None
+    words = [str(opening_word)]
+    for index in range(2, 15):
+        word = line_final_word(str(entries[index]))
+        if word is None:
+            return None
+        words.append(str(word))
+    return words
 
 
 def _relabel(scheme: str) -> str | None:
@@ -224,6 +262,44 @@ def build_trace_examples(
     return examples, skipped
 
 
+def build_plan_examples(
+    cards: Sequence[Mapping[str, Any]],
+    tokenizer: Any,
+    *,
+    max_sequence_tokens: int = 512,
+) -> tuple[list[dict[str, Any]], dict[str, int]]:
+    """Build plan-only examples: prompt plus the trace and then EOS."""
+
+    examples: list[dict[str, Any]] = []
+    skipped = {"malformed": 0, "too_long": 0}
+    for card in cards:
+        trace_text = str(card["trace_text"]).strip("\n")
+        if not trace_text.startswith("Schema:"):
+            skipped["malformed"] += 1
+            continue
+        prompt = plan_prompt(tokenizer, str(card["opening_line"]))
+        prompt_ids = tokenizer(prompt, add_special_tokens=False)["input_ids"]
+        target_ids = tokenizer(
+            trace_text + "\n", add_special_tokens=False
+        )["input_ids"]
+        target_ids = list(target_ids) + [int(tokenizer.eos_token_id)]
+        if len(prompt_ids) + len(target_ids) > max_sequence_tokens:
+            skipped["too_long"] += 1
+            continue
+        examples.append(
+            {
+                "unit_id": str(card["unit_id"]),
+                "prompt_ids": list(prompt_ids),
+                "target_ids": target_ids,
+                "opening_line": str(card["opening_line"]),
+                "scheme": str(card["scheme"]),
+            }
+        )
+    if not examples:
+        raise ValueError("no plan examples could be built")
+    return examples, skipped
+
+
 def generate_trace_validation(
     *,
     model: Any,
@@ -254,4 +330,37 @@ def generate_trace_validation(
         version=TRACE_VERSION,
         analysis_role="reasoning_trace_sft_validation",
         arms=TRACE_ARMS,
+    )
+
+
+def generate_plan_validation(
+    *,
+    model: Any,
+    tokenizer: Any,
+    prompts: Sequence[Mapping[str, Any]],
+    arm: str,
+    seeds: Sequence[int],
+    recipe: Mapping[str, Any],
+    output_dir: Any,
+    device: Any,
+    batch_size: int,
+    model_identity: str | None = None,
+    progress: Any = None,
+) -> dict[str, Any]:
+    return generate_autonomous_validation(
+        model=model,
+        tokenizer=tokenizer,
+        prompts=prompts,
+        arm=arm,
+        seeds=seeds,
+        recipe=recipe,
+        output_dir=output_dir,
+        device=device,
+        batch_size=batch_size,
+        model_identity=model_identity,
+        progress=progress,
+        prompt_builder=plan_prompt,
+        version=PLAN_VERSION,
+        analysis_role="plan_generator_sft_validation",
+        arms=PLAN_ARMS,
     )
