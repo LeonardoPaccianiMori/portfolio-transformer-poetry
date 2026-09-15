@@ -143,3 +143,9 @@ authorship of every implementation detail.
 | Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
 | --- | --- | --- | --- | --- |
 | DeepSeek Open Platform `deepseek-chat` | unknown (API default) | Synthetic teacher sonnets and grammar repair | Generated 1,499 planned-mode teacher sonnets (1,114 scheme-valid, 1,207 with key match >= 0.9), 400 free-mode sonnets (130 scheme-valid), and a grammar-repair batch over the project's own valid-scheme poems. Used only under verified API terms that permit training other models on outputs. | `docs/teacher_licence_review.md`, `scripts/generate_teacher_api.py`, `scripts/generate_teacher_repair.py`, `artifacts/local/api_teacher/`, `artifacts/local/grammar_repair/` |
+
+## 2026-09-15 Teacher-data fine-tunes and coherence stop
+
+| Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
+| --- | --- | --- | --- | --- |
+| OpenCode Go deepseek-v4.1-flash | unknown | Data preparation, training runs, evaluation, and analysis | Built the teacher card sets from the DeepSeek outputs, ran the teacher-mix and grammar-focus fine-tunes, generated and scored the frozen plan grid, ran the calibrated judge panels, and recorded the stop verdict (coherence gain +0.145 then +0.01, below the +0.3 gate; form 0.6250 -> 0.6917). | `reports/teacher_ft_v1.md`, `reports/grammar_ft_v1.md`, `docs/teacher_licence_review.md` |
