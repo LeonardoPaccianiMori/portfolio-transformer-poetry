@@ -121,7 +121,11 @@ def call_api(provider: str, model: str, key: str, prompt: str, args) -> str:
     )
     with urllib.request.urlopen(request, timeout=300) as response:
         body = json.loads(response.read().decode("utf-8"))
-    return str(body["choices"][0]["message"]["content"]).strip()
+    usage = body.get("usage", {}) or {}
+    return str(body["choices"][0]["message"]["content"]).strip(), {
+        "prompt_tokens": int(usage.get("prompt_tokens", 0)),
+        "completion_tokens": int(usage.get("completion_tokens", 0)),
+    }
 
 
 def main() -> None:
@@ -191,9 +195,11 @@ def main() -> None:
     started = time.monotonic()
     completed = 0
     errors = 0
+    prompt_tokens = 0
+    completion_tokens = 0
     for job in jobs:
         try:
-            raw = call_api(args.provider, args.model, key, job["prompt"], args)
+            raw, usage = call_api(args.provider, args.model, key, job["prompt"], args)
         except (urllib.error.URLError, KeyError, ValueError, TimeoutError) as exc:
             errors += 1
             print(f"api-teacher | error={exc}", flush=True)
@@ -216,6 +222,7 @@ def main() -> None:
             "text": text,
             "raw": raw,
             "opening_found": opening_found,
+            "usage": usage,
         }
         temporary = job["path"].with_suffix(".json.tmp")
         temporary.write_text(
@@ -223,6 +230,8 @@ def main() -> None:
         )
         os.replace(temporary, job["path"])
         completed += 1
+        prompt_tokens += int(usage.get("prompt_tokens", 0))
+        completion_tokens += int(usage.get("completion_tokens", 0))
         print(
             f"api-teacher | completed={completed}/{len(jobs)} errors={errors} "
             f"elapsed={time.monotonic() - started:.0f}s",
@@ -248,6 +257,8 @@ def main() -> None:
         "analysis_role": "api_teacher_pilot",
         "models": sorted({row["condition"] for row in outputs}),
         "completed_output_count": len(outputs),
+        "prompt_tokens": prompt_tokens,
+        "completion_tokens": completion_tokens,
         "outputs": outputs,
         "v7_test_accessed": False,
     }

@@ -103,8 +103,12 @@ def main() -> None:
             if mean is None or mean < args.judge_threshold:
                 stats["judge_rejected"] += 1
                 continue
-        words = [line_final_word(line) for line in lines]
-        if any(word is None for word in words):
+        planned = [str(word) for word in payload.get("planned_words", [])]
+        if len(planned) == 14:
+            words = planned
+        else:
+            words = [line_final_word(line) for line in lines]
+        if any(word is None for word in words) or len(words) != 14:
             stats["malformed"] += 1
             continue
         model = str(payload.get("teacher_model", payload.get("condition", "unknown")))
