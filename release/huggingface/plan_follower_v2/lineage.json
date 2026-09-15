@@ -1,0 +1,46 @@
+{
+  "artifact": {
+    "artifact_id": "plan_follower_v2",
+    "kind": "peft_adapter",
+    "lora_rank": 16,
+    "lora_alpha": 32,
+    "adapter_model_sha256": "790f2a021f27e5371f0089ca69404313dd9637963b50e23cbeb35e4cae4a8eba",
+    "adapter_config": {
+      "r": 16,
+      "lora_alpha": 32,
+      "lora_dropout": 0.05,
+      "target_modules": [
+        "o_proj",
+        "v_proj",
+        "up_proj",
+        "gate_proj",
+        "k_proj",
+        "down_proj",
+        "q_proj"
+      ],
+      "task_type": "CAUSAL_LM"
+    },
+    "parent_chain": "`stage3` -> `dpo_adapter` -> `plan_following_adapter` -> `plan_follower_v2`",
+    "parent_state_note": "stage3 + dpo_adapter + plan_following_adapter",
+    "repository": "LPM93/teaching-transformers-classical-italian-sonnets",
+    "subfolder": "plan_follower_v2",
+    "training_examples": 324,
+    "validation_examples": 16,
+    "optimizer_updates": 160,
+    "seed": 11417,
+    "uses_synthetic_teacher_data": false,
+    "measured_metrics": {
+      "poem_valid_given_plan": 0.7929,
+      "previous_poem_valid_given_plan": 0.5178,
+      "composed_rate": 0.5583
+    }
+  },
+  "parent": {
+    "license": "Apache-2.0",
+    "model_id": "sapienzanlp/Minerva-7B-instruct-v1.0",
+    "revision": "d1fc0f0e589ae879c5ac763e0e4206a4d14a3f6d"
+  },
+  "publication_scope": "adapter_tensors_and_aggregate_documentation_only",
+  "rights_boundary": "Source disclosure is not a redistribution grant and does not decide whether training-data licenses govern model weights.",
+  "schema_version": "transformer_poetry_hf_lineage_v2"
+}

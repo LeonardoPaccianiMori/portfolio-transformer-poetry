@@ -79,3 +79,20 @@ clean-cache downloads, all three `subfolder=` model loads, and exact
 Stage-3-plus-DPO attachment must pass before public visibility. If upload,
 visibility transition, or public verification fails, the repository must be
 returned to private and its private state verified.
+
+## 2026-09-15 Amendment — second-generation adapters
+
+Leonardo Pacciani-Mori authorized a second release package that adds five
+rank-16 LoRA adapters to the same repository:
+`plan_following_adapter`, `plan_generator`, `plan_follower_v2`,
+`poem_follower_distilled`, and `joint_single_model`. Decision record and
+Career Center reference: `decision-2026-09-15-huggingface-distilled-adapter-release`.
+
+The amendment explicitly authorizes publication of `poem_follower_distilled`,
+which was trained in part on outputs of the third-party DeepSeek Open Platform
+model `deepseek-chat`, under the terms recorded in that decision and disclosed
+in the artifact's `TRAINING_CONTENT_SUMMARY.md`. The authorization covers only
+the adapter tensors (LoRA weights and configuration) and aggregate
+documentation. No synthetic sonnet text, prompt text, or teacher output is
+authorized for distribution. The authorization also covers the updated root
+model card, release plan, and aggregate documentation.
