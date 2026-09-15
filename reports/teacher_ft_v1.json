@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "plan_stats": {
+    "plan_baseline": {
+      "outputs": 0,
+      "parsed": 0,
+      "schema_valid": 0,
+      "valid": 0,
+      "schemes": []
+    },
+    "plan_sft": {
+      "outputs": 960,
+      "parsed": 957,
+      "schema_valid": 957,
+      "valid": 891,
+      "schemes": [
+        [
+          "ABBAABBACDECDE",
+          956
+        ],
+        [
+          "ABBAABBACDCDCD",
+          1
+        ]
+      ]
+    }
+  },
+  "stage2_stats": {
+    "plan_baseline": {
+      "poems": 0,
+      "valid_without_repair": null,
+      "accepted_lines": null,
+      "failed_lines": null,
+      "composed": 0.0
+    },
+    "plan_sft": {
+      "poems": 891,
+      "valid_without_repair": 0.7317620650953984,
+      "accepted_lines": 7.3232323232323235,
+      "failed_lines": 0.9304152637485971,
+      "composed": 0.6791666666666667
+    }
+  },
+  "composed": {
+    "plan_baseline": 0.0,
+    "plan_sft": 0.6791666666666667
+  },
+  "judge_summary": {
+    "opencode-go/glm-5.2": {
+      "condition_means": {
+        "stage2_plan_sft": 3.075
+      },
+      "calibration_separation": 1.275
+    },
+    "opencode-go/qwen3.6-plus": {
+      "condition_means": {
+        "stage2_plan_sft": 2.825
+      },
+      "calibration_separation": 1.375
+    }
+  },
+  "reading": {
+    "result": "SELF_PLAY_SIGNAL",
+    "reasons": [
+      "Autonomous scheme validity 0.6792 against baseline 0.0000 and gate 0.30.",
+      "Accepted-line gap +7.323 (minimum -0.5).",
+      "Judge gain None (minimum -0.3)."
+    ],
+    "checks": {
+      "validity_gate": true,
+      "accepted_loss": true,
+      "judge_loss": true
+    }
+  },
+  "scores_jsonl": "artifacts/local/teacher_ft/validation/scores_v1.jsonl"
+}
