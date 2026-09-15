@@ -13,6 +13,7 @@ import random
 import re
 import statistics
 import subprocess
+from concurrent.futures import ThreadPoolExecutor
 from collections import Counter
 from typing import Any, Callable, Mapping, Sequence
 
@@ -151,34 +152,47 @@ def calibrate_judge(
     *,
     timeout_seconds: int = 240,
     progress: Callable[[str], None] | None = None,
+    concurrency: int = 1,
 ) -> dict[str, Any]:
-    original_scores = []
-    corruption_scores = []
-    rows = []
+    tasks = []
     for index, text in enumerate(originals):
-        original = run_judge(model, judge_prompt(text), timeout_seconds=timeout_seconds)
-        corruptions = {
-            "shuffle": corrupt_shuffle_lines(text),
-            "swap": corrupt_swap_words(text),
-            "truncate": corrupt_truncate(text),
-        }
-        corruption_results = {
-            name: run_judge(model, judge_prompt(value), timeout_seconds=timeout_seconds)
-            for name, value in corruptions.items()
-        }
-        if original is not None:
-            original_scores.append(original["mean"])
-        valid = [value["mean"] for value in corruption_results.values() if value]
-        corruption_scores.extend(valid)
-        rows.append(
-            {
-                "index": index,
-                "original": original,
-                "corruptions": corruption_results,
-            }
+        tasks.append((index, "original", text))
+        tasks.append((index, "shuffle", corrupt_shuffle_lines(text)))
+        tasks.append((index, "swap", corrupt_swap_words(text)))
+        tasks.append((index, "truncate", corrupt_truncate(text)))
+    with ThreadPoolExecutor(max_workers=max(1, concurrency)) as pool:
+        outcomes = list(
+            pool.map(
+                lambda task: (
+                    (task[0], task[1]),
+                    run_judge(
+                        model,
+                        judge_prompt(task[2]),
+                        timeout_seconds=timeout_seconds,
+                    ),
+                ),
+                tasks,
+            )
         )
-        if progress:
-            progress(f"calibration sample {index + 1}/{len(originals)}")
+    grouped: dict[int, dict[str, Any]] = {}
+    for (index, kind), result in outcomes:
+        entry = grouped.setdefault(
+            index, {"index": index, "original": None, "corruptions": {}}
+        )
+        if kind == "original":
+            entry["original"] = result
+        else:
+            entry["corruptions"][kind] = result
+    rows = [grouped[index] for index in sorted(grouped)]
+    original_scores = [row["original"]["mean"] for row in rows if row["original"]]
+    corruption_scores = [
+        value["mean"]
+        for row in rows
+        for value in row["corruptions"].values()
+        if value
+    ]
+    if progress:
+        progress(f"calibration samples {len(rows)}/{len(originals)}")
     separation = (
         statistics.fmean(original_scores) - statistics.fmean(corruption_scores)
         if original_scores and corruption_scores
@@ -205,12 +219,17 @@ def judge_texts(
     *,
     timeout_seconds: int = 240,
     progress: Callable[[str], None] | None = None,
+    concurrency: int = 1,
 ) -> list[dict[str, Any] | None]:
-    results = []
-    for index, text in enumerate(texts):
-        results.append(
-            run_judge(model, judge_prompt(text), timeout_seconds=timeout_seconds)
+    with ThreadPoolExecutor(max_workers=max(1, concurrency)) as pool:
+        results = list(
+            pool.map(
+                lambda text: run_judge(
+                    model, judge_prompt(text), timeout_seconds=timeout_seconds
+                ),
+                texts,
+            )
         )
-        if progress and (index + 1) % 10 == 0:
-            progress(f"{index + 1}/{len(texts)}")
+    if progress:
+        progress(f"{len(results)}/{len(texts)}")
     return results

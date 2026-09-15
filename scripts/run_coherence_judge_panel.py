@@ -44,6 +44,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--calibration-count", type=int, default=2)
     parser.add_argument("--timeout", type=int, default=240)
+    parser.add_argument("--concurrency", type=int, default=4)
     return parser.parse_args()
 
 
@@ -90,6 +91,7 @@ def main() -> None:
             judge,
             originals,
             timeout_seconds=args.timeout,
+            concurrency=args.concurrency,
             progress=lambda message: print(f"coherence-panel | {judge} {message}", flush=True),
         )
         condition_scores = {}
@@ -103,6 +105,7 @@ def main() -> None:
                 judge,
                 [str(row["text"]) for row in rows],
                 timeout_seconds=args.timeout,
+                concurrency=args.concurrency,
                 progress=lambda message: print(
                     f"coherence-panel | {judge} {condition} {message}", flush=True
                 ),
