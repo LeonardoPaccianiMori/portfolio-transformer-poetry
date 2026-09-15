@@ -173,12 +173,10 @@ model weights. See [the Hugging Face release record](docs/HUGGING_FACE_RELEASE.m
 
 ## AI Contribution
 
-Leonardo conceived and directed the project, made executive decisions, approved
-the research plan, reviewed outputs, and sometimes ran GPU work. Codex 5.5 and
-later Codex 5.6 Sol substantially assisted research design, implementation,
-tests, execution, and analysis. The project must not be described as
-independently designed or independently implemented by Leonardo. See
-[AI_CONTRIBUTIONS.md](AI_CONTRIBUTIONS.md).
+The project was conceived, directed, and reviewed by Leonardo Pacciani-Mori,
+who set the goals, gates, and publication decisions. AI assistants assisted
+design, implementation, execution, and analysis under his direction. See
+[AI_CONTRIBUTIONS.md](AI_CONTRIBUTIONS.md) for the task-level record.
 
 ## Citation and Limitations
 

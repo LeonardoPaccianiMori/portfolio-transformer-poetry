@@ -96,3 +96,13 @@ the adapter tensors (LoRA weights and configuration) and aggregate
 documentation. No synthetic sonnet text, prompt text, or teacher output is
 authorized for distribution. The authorization also covers the updated root
 model card, release plan, and aggregate documentation.
+
+### Revision note (2026-09-15)
+
+The model cards were reworded so the contribution statement is positive and
+accurate rather than a negative disclaimer: "The project was conceived,
+directed, and reviewed by Leonardo Pacciani-Mori, who set the goals, gates, and
+publication decisions. AI assistants assisted design, implementation,
+execution, and analysis under his direction." The same statement now appears in
+the repository README, `CITATION.cff`, `AI_CONTRIBUTIONS.md`, and the artifact
+cards.

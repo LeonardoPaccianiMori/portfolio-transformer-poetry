@@ -45,11 +45,9 @@ project claim; they are not evaluations of Stage 1 itself.
 
 ## AI contribution
 
-Leonardo Pacciani-Mori conceived and directed the project, made executive
-decisions, approved the research plan, reviewed outputs, and sometimes ran GPU
-work. Codex 5.5 and later Codex 5.6 Sol substantially assisted research design,
-implementation, tests, execution, and analysis. The study was not independently
-designed or independently implemented by Leonardo.
+The project was conceived, directed, and reviewed by Leonardo Pacciani-Mori,
+who set the goals, gates, and publication decisions. AI assistants assisted
+design, implementation, execution, and analysis under his direction.
 
 ## Rights and provenance
 

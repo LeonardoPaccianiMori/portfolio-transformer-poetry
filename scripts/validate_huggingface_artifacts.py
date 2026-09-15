@@ -52,6 +52,47 @@ def _artifact_map(plan: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return {str(row["artifact_id"]): row for row in plan["artifacts"]}
 
 
+
+def _validate_second_generation_metadata(
+    artifact_id: str, artifact: dict[str, Any], plan: dict[str, Any]
+) -> None:
+    """Fail-closed checks for the 2026-09 adapters, including disclosure."""
+
+    root = RELEASE_ROOT / artifact_id
+    if artifact.get("kind") != "peft_adapter":
+        raise ValueError(f"Second-generation artifact {artifact_id} must be a PEFT adapter")
+    if artifact.get("subfolder") != artifact_id:
+        raise ValueError(f"Second-generation subfolder mismatch for {artifact_id}")
+    if artifact.get("repository") != plan["repository"]:
+        raise ValueError(f"Second-generation repository mismatch for {artifact_id}")
+    lineage = load_json(root / "lineage.json")
+    if not str(lineage.get("schema_version", "")).startswith("transformer_poetry_hf_lineage"):
+        raise ValueError(f"Unexpected lineage schema for {artifact_id}")
+    if lineage["parent"] != plan["parent"]:
+        raise ValueError(f"Second-generation parent mismatch for {artifact_id}")
+    record = lineage["artifact"]
+    if record.get("artifact_id") != artifact_id:
+        raise ValueError(f"Second-generation lineage identity mismatch for {artifact_id}")
+    if record.get("parent_chain") != artifact.get("parent_chain"):
+        raise ValueError(f"Second-generation parent-chain mismatch for {artifact_id}")
+    if re.fullmatch(r"[0-9a-f]{64}", str(record.get("adapter_model_sha256", ""))) is None:
+        raise ValueError(f"Invalid adapter hash for {artifact_id}")
+    summary = (root / "TRAINING_CONTENT_SUMMARY.md").read_text(encoding="utf-8")
+    if record.get("uses_synthetic_teacher_data"):
+        for phrase in (
+            "DeepSeek Open Platform Terms of Service",
+            "section 4.2",
+            "No synthetic sonnet text",
+        ):
+            if phrase not in summary:
+                raise ValueError(
+                    f"Missing synthetic-data disclosure phrase {phrase!r} in {artifact_id}"
+                )
+    elif "DeepSeek" in summary:
+        raise ValueError(
+            f"Clean artifact {artifact_id} must not claim synthetic teacher data"
+        )
+
 def validate_tracked_release_metadata() -> None:
     plan = load_json(PLAN_PATH)
     upstream_files = load_json(UPSTREAM_FILE_MANIFEST)
@@ -60,8 +101,16 @@ def validate_tracked_release_metadata() -> None:
     if plan["license_metadata"] != "cc-by-nc-4.0":
         raise ValueError("Unexpected weight-license metadata")
     artifacts = _artifact_map(plan)
-    if set(artifacts) != {"stage1", "stage2", "stage3", "dpo_adapter"}:
-        raise ValueError("The release plan must define exactly four artifacts")
+    first_generation = {"stage1", "stage2", "stage3", "dpo_adapter"}
+    second_generation = {
+        "plan_following_adapter",
+        "plan_generator",
+        "plan_follower_v2",
+        "poem_follower_distilled",
+        "joint_single_model",
+    }
+    if set(artifacts) != first_generation | second_generation:
+        raise ValueError("The release plan must define the approved nine artifacts")
     repository = "LPM93/teaching-transformers-classical-italian-sonnets"
     if plan["repository"] != repository:
         raise ValueError("Unexpected single Hugging Face repository")
@@ -86,7 +135,15 @@ def validate_tracked_release_metadata() -> None:
     if {artifact["repository"] for artifact in artifacts.values()} != {repository}:
         raise ValueError("Every artifact must use the single Hugging Face repository")
     if {artifact["subfolder"] for artifact in artifacts.values()} != {
-        "stage1", "stage2", "stage3", "dpo_adapter",
+        "stage1",
+        "stage2",
+        "stage3",
+        "dpo_adapter",
+        "plan_following_adapter",
+        "plan_generator",
+        "plan_follower_v2",
+        "poem_follower_distilled",
+        "joint_single_model",
     }:
         raise ValueError("The single-repository subfolder map is incomplete")
     if artifacts["dpo_adapter"]["parent_repository"] != repository:
@@ -115,6 +172,9 @@ def validate_tracked_release_metadata() -> None:
         missing = sorted(name for name in required if not (root / name).is_file())
         if missing:
             raise ValueError(f"Missing tracked {artifact_id} files: {missing}")
+        if artifact_id in second_generation:
+            _validate_second_generation_metadata(artifact_id, artifact, plan)
+            continue
         lineage = load_json(root / "lineage.json")
         if lineage["artifact_id"] != artifact_id:
             raise ValueError(f"Lineage artifact mismatch for {artifact_id}")
@@ -213,15 +273,18 @@ def _validate_adapter(
     root: Path, checkpoint_path: Path | None, artifact: dict[str, Any]
 ) -> None:
     config = load_json(root / "adapter_config.json")
-    if config["base_model_name_or_path"] != artifact["parent_repository"]:
-        raise ValueError("Adapter does not identify the planned single repository")
+    if artifact.get("research_checkpoint_sha256"):
+        if config["base_model_name_or_path"] != artifact.get("parent_repository"):
+            raise ValueError("Adapter does not identify the planned single repository")
+    elif not str(config.get("base_model_name_or_path", "")):
+        raise ValueError("Adapter config lacks a base-model reference")
     exported = load_file(root / "adapter_model.safetensors", device="cpu")
     if not exported or any("lora_" not in key for key in exported):
         raise ValueError("Unexpected PEFT adapter tensor set")
     with safe_open(root / "adapter_model.safetensors", framework="pt", device="cpu") as handle:
         if handle.metadata() not in ({"format": "pt"}, None):
             raise ValueError("Unexpected adapter safetensors metadata")
-    if checkpoint_path is not None:
+    if checkpoint_path is not None and artifact.get("research_checkpoint_sha256"):
         if sha256_path(checkpoint_path) != artifact["research_checkpoint_sha256"]:
             raise ValueError("Adapter checkpoint is not the selected research checkpoint")
         checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)

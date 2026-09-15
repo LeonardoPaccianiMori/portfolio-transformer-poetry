@@ -22,6 +22,64 @@
   },
   "artifacts": [
     {
+      "artifact_id": "dpo_adapter",
+      "repository": "LPM93/teaching-transformers-classical-italian-sonnets",
+      "subfolder": "dpo_adapter",
+      "kind": "peft_adapter",
+      "parent_repository": "LPM93/teaching-transformers-classical-italian-sonnets",
+      "parent_subfolder": "stage3",
+      "parent_state_identity_sha256": "478d5979e25a78375d7af0434db6a5432678762fac2d142af2d4798dda53a474",
+      "research_checkpoint_sha256": "72aa174b2ef87e021a367b0f7e786fce8c3437bb5ca1f8c7f9c5b13588620822",
+      "training_pairs": 482,
+      "validation_pairs": 52,
+      "optimizer_updates": 61
+    },
+    {
+      "artifact_id": "joint_single_model",
+      "subfolder": "joint_single_model",
+      "kind": "peft_adapter",
+      "repository": "LPM93/teaching-transformers-classical-italian-sonnets",
+      "parent_repository": "LPM93/teaching-transformers-classical-italian-sonnets",
+      "parent_subfolder": "stage3",
+      "parent_chain": "`stage3` -> `dpo_adapter` -> `plan_following_adapter` -> `plan_generator` -> `joint_single_model`"
+    },
+    {
+      "artifact_id": "plan_follower_v2",
+      "subfolder": "plan_follower_v2",
+      "kind": "peft_adapter",
+      "repository": "LPM93/teaching-transformers-classical-italian-sonnets",
+      "parent_repository": "LPM93/teaching-transformers-classical-italian-sonnets",
+      "parent_subfolder": "stage3",
+      "parent_chain": "`stage3` -> `dpo_adapter` -> `plan_following_adapter` -> `plan_follower_v2`"
+    },
+    {
+      "artifact_id": "plan_following_adapter",
+      "subfolder": "plan_following_adapter",
+      "kind": "peft_adapter",
+      "repository": "LPM93/teaching-transformers-classical-italian-sonnets",
+      "parent_repository": "LPM93/teaching-transformers-classical-italian-sonnets",
+      "parent_subfolder": "stage3",
+      "parent_chain": "`stage3` -> `dpo_adapter` -> `plan_following_adapter`"
+    },
+    {
+      "artifact_id": "plan_generator",
+      "subfolder": "plan_generator",
+      "kind": "peft_adapter",
+      "repository": "LPM93/teaching-transformers-classical-italian-sonnets",
+      "parent_repository": "LPM93/teaching-transformers-classical-italian-sonnets",
+      "parent_subfolder": "stage3",
+      "parent_chain": "`stage3` -> `dpo_adapter` -> `plan_following_adapter` -> `plan_generator`"
+    },
+    {
+      "artifact_id": "poem_follower_distilled",
+      "subfolder": "poem_follower_distilled",
+      "kind": "peft_adapter",
+      "repository": "LPM93/teaching-transformers-classical-italian-sonnets",
+      "parent_repository": "LPM93/teaching-transformers-classical-italian-sonnets",
+      "parent_subfolder": "stage3",
+      "parent_chain": "`stage3` -> `dpo_adapter` -> `plan_following_adapter` -> `plan_follower_v2` -> `poem_follower_distilled`"
+    },
+    {
       "artifact_id": "stage1",
       "repository": "LPM93/teaching-transformers-classical-italian-sonnets",
       "subfolder": "stage1",
@@ -51,19 +109,6 @@
       "selected_windows": 1920,
       "state_identity_sha256": "478d5979e25a78375d7af0434db6a5432678762fac2d142af2d4798dda53a474",
       "source_directory": "stage_3_sonnets_selected"
-    },
-    {
-      "artifact_id": "dpo_adapter",
-      "repository": "LPM93/teaching-transformers-classical-italian-sonnets",
-      "subfolder": "dpo_adapter",
-      "kind": "peft_adapter",
-      "parent_repository": "LPM93/teaching-transformers-classical-italian-sonnets",
-      "parent_subfolder": "stage3",
-      "parent_state_identity_sha256": "478d5979e25a78375d7af0434db6a5432678762fac2d142af2d4798dda53a474",
-      "research_checkpoint_sha256": "72aa174b2ef87e021a367b0f7e786fce8c3437bb5ca1f8c7f9c5b13588620822",
-      "training_pairs": 482,
-      "validation_pairs": 52,
-      "optimizer_updates": 61
     }
   ],
   "repository_root_allowlist": [
@@ -119,7 +164,7 @@
     "credentials or machine-local paths"
   ],
   "generation_2": {
-    "status": "authorized_after_owner_decision_pending_upload",
+    "status": "published_public_ungated",
     "decision_record_id": "decision-2026-09-15-huggingface-distilled-adapter-release",
     "authorization_date": "2026-09-15",
     "scope": "five additional rank-16 LoRA adapters plus updated root documentation",
@@ -159,6 +204,8 @@
       "date": "2026-09-15",
       "licence_basis": "DeepSeek Open Platform Terms of Service, release 2026-04-22, effective 2026-04-29, section 4.2 (use of Inputs and Outputs, including training other models such as model distillation) and section 4.2(2) (assignment of Output rights to the user)",
       "distribution": "no synthetic text or teacher output is distributed"
-    }
+    },
+    "published_revision": "91ddaf771e159e71f949744f80d62d161d4f703d",
+    "publication_date": "2026-09-15"
   }
 }

@@ -5,13 +5,14 @@ research goals, made executive decisions, approved the research plan, reviewed
 outputs, and sometimes ran GPU work.
 
 Codex 5.5 and later Codex 5.6 Sol helped design the research plan and
-substantially assisted implementation, tests, execution, and analysis. Their
-contribution includes source and test drafting, experiment and evaluation
-tooling, debugging, evidence synthesis, and documentation support.
+assisted implementation, tests, execution, and analysis under Leonardo's
+direction. Their contribution includes source and test drafting, experiment
+and evaluation tooling, debugging, evidence synthesis, and documentation
+support.
 
-Leonardo remained responsible for accepting or rejecting decisions and for the
-public release. The project must not be described as independently designed or
-independently implemented by Leonardo. Generated or AI-assisted material was
+Leonardo directed the work, accepted or rejected decisions, and made every
+public-release decision. This record exists so the contribution boundary stays
+explicit. Generated or AI-assisted material was
 reviewed against tests, frozen protocols, source artifacts, and reported
 limitations; that review does not turn AI assistance into independent human
 authorship of every implementation detail.

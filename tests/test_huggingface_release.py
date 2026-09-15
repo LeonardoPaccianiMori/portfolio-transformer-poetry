@@ -29,7 +29,7 @@ def test_tracked_huggingface_release_metadata_is_published_and_bounded():
     validator.validate_tracked_release_metadata()
 
 
-def test_release_plan_uses_one_repository_with_four_subfolders():
+def test_release_plan_uses_one_repository_with_documented_subfolders():
     plan = json.loads((ROOT / "release/huggingface/release_plan.yml").read_text(encoding="utf-8"))
     repository = "LPM93/teaching-transformers-classical-italian-sonnets"
     assert plan["repository"] == repository
@@ -45,8 +45,17 @@ def test_release_plan_uses_one_repository_with_four_subfolders():
     assert plan["authorization_date"] == "2026-08-21"
     assert {artifact["repository"] for artifact in plan["artifacts"]} == {repository}
     assert {artifact["subfolder"] for artifact in plan["artifacts"]} == {
-        "stage1", "stage2", "stage3", "dpo_adapter",
+        "stage1",
+        "stage2",
+        "stage3",
+        "dpo_adapter",
+        "plan_following_adapter",
+        "plan_generator",
+        "plan_follower_v2",
+        "poem_follower_distilled",
+        "joint_single_model",
     }
+    assert all(artifact["repository"] == repository for artifact in plan["artifacts"])
     adapter = next(row for row in plan["artifacts"] if row["artifact_id"] == "dpo_adapter")
     assert adapter["parent_repository"] == repository
     assert adapter["parent_subfolder"] == "stage3"
