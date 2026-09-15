@@ -199,7 +199,7 @@ def main() -> None:
     for job in jobs:
         try:
             raw, usage = call_api(args.provider, args.model, key, job["prompt"], args)
-        except (urllib.error.URLError, KeyError, ValueError, TimeoutError) as exc:
+        except Exception as exc:  # noqa: BLE001 - report and continue
             errors += 1
             print(f"api-teacher | error={exc}", flush=True)
             continue
