@@ -16,6 +16,7 @@ import sys
 import time
 import urllib.error
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -68,7 +69,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--seeds", type=int, nargs="+", default=[7500])
     parser.add_argument("--max-tokens", type=int, default=900)
     parser.add_argument("--temperature", type=float, default=0.7)
-    parser.add_argument("--sleep", type=float, default=0.5)
+    parser.add_argument("--sleep", type=float, default=0.0)
+    parser.add_argument("--concurrency", type=int, default=8)
     parser.add_argument(
         "--output-dir",
         type=Path,
@@ -196,13 +198,9 @@ def main() -> None:
     errors = 0
     prompt_tokens = 0
     completion_tokens = 0
-    for job in jobs:
-        try:
-            raw, usage = call_api(args.provider, args.model, key, job["prompt"], args)
-        except Exception as exc:  # noqa: BLE001 - report and continue
-            errors += 1
-            print(f"api-teacher | error={exc}", flush=True)
-            continue
+
+    def run_job(job):
+        raw, usage = call_api(args.provider, args.model, key, job["prompt"], args)
         text, opening_found = clean_sonnet(raw, job["opening_line"])
         payload = {
             "generation_version": API_VERSION,
@@ -228,16 +226,26 @@ def main() -> None:
             json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
         )
         os.replace(temporary, job["path"])
-        completed += 1
-        prompt_tokens += int(usage.get("prompt_tokens", 0))
-        completion_tokens += int(usage.get("completion_tokens", 0))
-        print(
-            f"api-teacher | completed={completed}/{len(jobs)} errors={errors} "
-            f"elapsed={time.monotonic() - started:.0f}s",
-            flush=True,
-        )
-        if args.sleep:
-            time.sleep(args.sleep)
+        return usage
+
+    with ThreadPoolExecutor(max_workers=max(1, args.concurrency)) as pool:
+        futures = {pool.submit(run_job, job): job for job in jobs}
+        for future in as_completed(futures):
+            try:
+                usage = future.result()
+            except Exception as exc:  # noqa: BLE001 - report and continue
+                errors += 1
+                print(f"api-teacher | error={exc}", flush=True)
+                continue
+            completed += 1
+            prompt_tokens += int(usage.get("prompt_tokens", 0))
+            completion_tokens += int(usage.get("completion_tokens", 0))
+            if completed % 25 == 0 or completed == len(jobs):
+                print(
+                    f"api-teacher | completed={completed}/{len(jobs)} errors={errors} "
+                    f"elapsed={time.monotonic() - started:.0f}s",
+                    flush=True,
+                )
     outputs = []
     for path in sorted(output_dir.glob("*.json")):
         if path.name == "complete.json":
