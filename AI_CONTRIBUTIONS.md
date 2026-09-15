@@ -131,3 +131,15 @@ authorship of every implementation detail.
 | Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
 | --- | --- | --- | --- | --- |
 | OpenCode Go deepseek-v4.1-flash | unknown | Run and scoring | Built the anchored plans, ran the constrained generation and repair, scored scheme compliance, adherence, repair distance, and form against the baseline, and recorded the form-objective-met reading. | `reports/constrained_plan_validation_v1.md`, `reports/constrained_plan_validation_v1.json` |
+
+## 2026-09-14/15 Reasoning-trace, plan-generator, and joint single-model line
+
+| Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
+| --- | --- | --- | --- | --- |
+| OpenCode Go deepseek-v4.1-flash | unknown | Implementation, runs, scoring, and analysis | Built the reasoning-trace pipeline and diagnosis, the plan-only generator with lexicon augmentation, the plan-follower v2, the temperature fix, and both single-model joint attempts; produced and recorded the frozen form result (pipeline 0.6250, single model 0.5719 composed scheme validity without repair). | `docs/reasoning_trace_sft_plan.md`, `reports/joint_trace_sft_v2.md`, `reports/plan_composer_temp04_v1.md` |
+
+## 2026-09-15 Teacher data through the DeepSeek API
+
+| Provider and model | Reasoning effort | Role | Completed contribution | Supporting evidence |
+| --- | --- | --- | --- | --- |
+| DeepSeek Open Platform `deepseek-chat` | unknown (API default) | Synthetic teacher sonnets and grammar repair | Generated 1,499 planned-mode teacher sonnets (1,114 scheme-valid, 1,207 with key match >= 0.9), 400 free-mode sonnets (130 scheme-valid), and a grammar-repair batch over the project's own valid-scheme poems. Used only under verified API terms that permit training other models on outputs. | `docs/teacher_licence_review.md`, `scripts/generate_teacher_api.py`, `scripts/generate_teacher_repair.py`, `artifacts/local/api_teacher/`, `artifacts/local/grammar_repair/` |

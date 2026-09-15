@@ -37,6 +37,28 @@ Qwen2.5-72B (custom Qwen agreement with naming conditions).
 
 Excluded on capability: Phi-4 and OLMo 2 (English-centric).
 
+## Verified basis for the DeepSeek API route
+
+Fetched 2026-09-15 from the DeepSeek Open Platform Terms of Service (release
+2026-04-22, effective 2026-04-29), section 4.2:
+
+> "(3) You may apply the Inputs and Outputs of the Services to a wide range of
+> use cases, including personal use, academic research, derivative product
+> development, training other models (such as model distillation), etc."
+
+Section 4.2(2) also assigns any rights in the Outputs to the user. URL:
+https://cdn.deepseek.com/policies/en-US/deepseek-open-platform-terms-of-service.html
+
+Caveats that travel with this basis: the terms are governed by PRC law and
+the Hangzhou courts; sections 5.2-5.4 forbid implying partnership, endorsement,
+or co-creation with DeepSeek, so public writing must name the teacher factually
+and without brand endorsement; section 8.1 requires disclosing AI-generated
+content to end users; export-control and sanctions rules apply. The open-weight
+DeepSeek releases additionally carry MIT terms, but the API terms above govern
+the API outputs actually used here. Outputs stay private; any weight or corpus
+publication is a separate owner decision under the Career Center publication
+risk record.
+
 ## Route chosen
 
 Generate the teacher corpus by self-hosting Qwen3-32B on the rented 48 GB
