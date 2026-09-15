@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """Teacher generation through a provider API with clean output-training terms.
 
-Supports DeepSeek (API terms explicitly permit using outputs to train other
-models) and Mistral (the commercial terms assign Output ownership to the
-customer and restrict only image outputs). Keys are read from the environment
-and never stored in the repository.
+Uses DeepSeek only: its model licence is MIT and its platform terms
+explicitly permit using outputs to train other models. Keys are read from the
+environment and never stored in the repository.
 """
 
 from __future__ import annotations

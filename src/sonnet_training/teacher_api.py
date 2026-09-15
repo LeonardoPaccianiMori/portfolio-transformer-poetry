@@ -1,6 +1,8 @@
-"""Provider API helpers for teacher generation with clean output-training terms.
+"""DeepSeek API helper for teacher generation with clean output-training terms.
 
-Keys are read from the environment; nothing is stored in the repository.
+The DeepSeek model licence is MIT and its platform terms explicitly permit
+using outputs to train other models. Keys are read from the environment;
+nothing is stored in the repository.
 """
 
 from __future__ import annotations
@@ -14,11 +16,6 @@ PROVIDERS = {
         "url": "https://api.deepseek.com/chat/completions",
         "env": "DEEPSEEK_API_KEY",
         "models": ["deepseek-chat", "deepseek-reasoner"],
-    },
-    "mistral": {
-        "url": "https://api.mistral.ai/v1/chat/completions",
-        "env": "MISTRAL_API_KEY",
-        "models": ["mistral-large-latest", "mistral-medium-latest"],
     },
 }
 
