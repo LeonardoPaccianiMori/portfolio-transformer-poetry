@@ -54,6 +54,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--timeout", type=int, default=240)
     parser.add_argument("--sleep", type=float, default=1.0)
+    parser.add_argument("--openings-file", type=Path, default=None)
     parser.add_argument("--offset", type=int, default=0)
     parser.add_argument("--stride", type=int, default=1)
     return parser.parse_args()
@@ -87,10 +88,18 @@ def clean_sonnet(raw: str, opening_line: str) -> tuple[str, bool]:
 
 def main() -> None:
     args = parse_args()
-    prompts = validate_exploratory_prompt_manifest(
-        args.prompts,
-        expected_sha256="2f33aa518aa61c11193831e53b07fd3bd861a72bf68bb23c0e0e5b1a13b1d0c7",
-    )["prompts"][: args.limit]
+    if args.openings_file is not None:
+        prompts = [
+            json.loads(line)
+            for line in args.openings_file.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+    else:
+        prompts = validate_exploratory_prompt_manifest(
+            args.prompts,
+            expected_sha256="2f33aa518aa61c11193831e53b07fd3bd861a72bf68bb23c0e0e5b1a13b1d0c7",
+        )["prompts"]
+    prompts = prompts[: args.limit]
     prompts = [
         prompt
         for index, prompt in enumerate(prompts)
