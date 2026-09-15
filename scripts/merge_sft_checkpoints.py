@@ -24,6 +24,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--verifier-adapter", type=Path, required=True)
     parser.add_argument("--plan-adapter", type=Path, required=True)
     parser.add_argument("--state-audit", type=Path, default=None)
+    parser.add_argument(
+        "--extra-adapter",
+        type=Path,
+        action="append",
+        default=None,
+        help="additional PEFT adapter directory to merge, in order",
+    )
     parser.add_argument("--output-dir", type=Path, required=True)
     return parser.parse_args()
 
@@ -65,12 +72,16 @@ def main() -> None:
     model = model.merge_and_unload()
     model = PeftModel.from_pretrained(model, str(args.plan_adapter))
     model = model.merge_and_unload()
+    for extra in args.extra_adapter or []:
+        model = PeftModel.from_pretrained(model, str(extra))
+        model = model.merge_and_unload()
     args.output_dir.mkdir(parents=True, exist_ok=True)
     model.save_pretrained(args.output_dir, safe_serialization=True)
     report = {
         "base_model_dir": str(args.base_model_dir),
         "verifier_adapter": str(args.verifier_adapter),
         "plan_adapter": str(args.plan_adapter),
+        "extra_adapters": [str(path) for path in (args.extra_adapter or [])],
         "output_dir": str(args.output_dir),
         "merged_files": sorted(
             path.name for path in args.output_dir.glob("*.safetensors")
